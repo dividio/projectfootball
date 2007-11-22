@@ -22,49 +22,60 @@
 #include "CStateManager.h"
 
 
-CStateManager::CStateManager(){
-
+CStateManager::CStateManager()
+{
+	m_stateMainMenu = new CStateMainMenu();
 }
 
 
 
-CStateManager::~CStateManager(){
-
+CStateManager::~CStateManager()
+{
+	if(m_stateMainMenu != NULL) {
+		delete m_stateMainMenu;
+	}
 }
 
 
 
 
 
-void CStateManager::forcedPopStack(){
+void CStateManager::forcedPopStack()
+{
 
 }
 
 
-bool CStateManager::frameEnded(const FrameEvent& evt){
+bool CStateManager::frameEnded(const FrameEvent& evt)
+{
 
-	return false;
+	return true;
 }
 
 
-bool CStateManager::frameStarted(const FrameEvent& evt){
+bool CStateManager::frameStarted(const FrameEvent& evt)
+{
 
-	return false;
+
+	return true;
 }
 
 
-CStateManager* CStateManager::getInstance(){
+CStateManager* CStateManager::getInstance()
+{
 
 	return  NULL;
 }
 
 
-void CStateManager::popStack(){
+void CStateManager::popStack()
+{
 
 }
 
 
-void CStateManager::popState(){
+void CStateManager::popState()
+{
 
 }
 

@@ -23,24 +23,26 @@
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
+#include "StateManager/CStateManager.h"
+
 using namespace Ogre;
 
 class ExitListener : public FrameListener
 {
 public:
     ExitListener(OIS::Keyboard *keyboard)
-        : mKeyboard(keyboard)
+        : m_Keyboard(keyboard)
     {
     }
 
     bool frameStarted(const FrameEvent& evt)
     {
-        mKeyboard->capture();
-        return !mKeyboard->isKeyDown(OIS::KC_ESCAPE);
+        m_Keyboard->capture();
+        return !m_Keyboard->isKeyDown(OIS::KC_ESCAPE);
     }
 
 private:
-    OIS::Keyboard *mKeyboard;
+    OIS::Keyboard *m_Keyboard;
 };
 
 class CApplication
@@ -62,27 +64,31 @@ public:
 
     ~CApplication()
     {
-        mInputManager->destroyInputObject(mKeyboard);
-        OIS::InputManager::destroyInputSystem(mInputManager);
+        m_InputManager->destroyInputObject(m_Keyboard);
+        m_InputManager->destroyInputObject(m_Mouse);
+        OIS::InputManager::destroyInputSystem(m_InputManager);
 
-        delete mRenderer;
-        delete mSystem;
+        delete m_Renderer;
+        delete m_System;
 
-        delete mListener;
-        delete mRoot;
+        delete m_StateManager;
+        delete m_Listener;
+        delete m_Root;
     }
 
 private:
-    Root *mRoot;
-    OIS::Keyboard *mKeyboard;
-    OIS::InputManager *mInputManager;
-    CEGUI::OgreCEGUIRenderer *mRenderer;
-    CEGUI::System *mSystem;
-    ExitListener *mListener;
+    Root *m_Root;
+    OIS::Keyboard *m_Keyboard;
+    OIS::Mouse *m_Mouse;
+    OIS::InputManager *m_InputManager;
+    CEGUI::OgreCEGUIRenderer *m_Renderer;
+    CEGUI::System *m_System;
+    ExitListener *m_Listener;
+    CStateManager *m_StateManager;
 
     void createRoot()
     {
-        mRoot = new Root();
+        m_Root = new Root();
     }
 
     void defineResources()
@@ -92,13 +98,11 @@ private:
         cf.load("resources.cfg");
 
         ConfigFile::SectionIterator seci = cf.getSectionIterator();
-        while (seci.hasMoreElements())
-        {
+        while (seci.hasMoreElements()) {
             secName = seci.peekNextKey();
             ConfigFile::SettingsMultiMap *settings = seci.getNext();
             ConfigFile::SettingsMultiMap::iterator i;
-            for (i = settings->begin(); i != settings->end(); ++i)
-            {
+            for (i = settings->begin(); i != settings->end(); ++i) {
                 typeName = i->first;
                 archName = i->second;
                 ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
@@ -108,26 +112,16 @@ private:
 
     void setupRenderSystem()
     {
-        if (!mRoot->restoreConfig() && !mRoot->showConfigDialog())
+        if (!m_Root->restoreConfig() && !m_Root->showConfigDialog()) {
             throw Exception(52, "User canceled the config dialog!", "Application::setupRenderSystem()");
+        }
 
-        //// Do not add this to the application
-        //RenderSystem *rs = mRoot->getRenderSystemByName("Direct3D9 Rendering Subsystem");
-        //mRoot->setRenderSystem(rs);
-        //rs->setConfigOption("Full Screen", "No");
-        //rs->setConfigOption("Video Mode", "800 x 600 @ 32-bit colour");
     }
 
     void createRenderWindow()
     {
-        mRoot->initialise(true, "Tutorial Render Window");
+        m_Root->initialise(true, "Project Football");
 
-        //// Do not add this to the application
-        //mRoot->initialise(false);
-        //HWND hWnd = 0;  // Get the hWnd of the application!
-        //NameValuePairList misc;
-        //misc["externalWindowHandle"] = StringConverter::toString((int)hWnd);
-        //RenderWindow *win = mRoot->createRenderWindow("Main RenderWindow", 800, 600, false, &misc);
     }
 
     void initializeResourceGroups()
@@ -138,10 +132,10 @@ private:
 
     void setupScene()
     {
-        SceneManager *mgr = mRoot->createSceneManager(ST_GENERIC, "Default SceneManager");
+        SceneManager *mgr = m_Root->createSceneManager(ST_GENERIC, "Default SceneManager");
         Camera *cam = mgr->createCamera("Camera");
-        Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
-        vp->setShadowsEnabled(true);
+        Viewport *vp = m_Root->getAutoCreatedWindow()->addViewport(cam);
+        vp->setSkiesEnabled(false);
     }
 
     void setupInputSystem()
@@ -149,17 +143,17 @@ private:
         size_t windowHnd = 0;
         std::ostringstream windowHndStr;
         OIS::ParamList pl;
-        RenderWindow *win = mRoot->getAutoCreatedWindow();
+        RenderWindow *win = m_Root->getAutoCreatedWindow();
 
         win->getCustomAttribute("WINDOW", &windowHnd);
         windowHndStr << windowHnd;
         pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
-        mInputManager = OIS::InputManager::createInputSystem(pl);
+        m_InputManager = OIS::InputManager::createInputSystem(pl);
 
         try
         {
-            mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject(OIS::OISKeyboard, false));
-            //mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, false));
+            m_Keyboard = static_cast<OIS::Keyboard*>(m_InputManager->createInputObject(OIS::OISKeyboard, false));
+            m_Mouse = static_cast<OIS::Mouse*>(m_InputManager->createInputObject(OIS::OISMouse, false));
             //mJoy = static_cast<OIS::JoyStick*>(mInputManager->createInputObject(OIS::OISJoyStick, false));
         }
         catch (const OIS::Exception &e)
@@ -170,25 +164,28 @@ private:
 
     void setupCEGUI()
     {
-        SceneManager *mgr = mRoot->getSceneManager("Default SceneManager");
-        RenderWindow *win = mRoot->getAutoCreatedWindow();
+        SceneManager *mgr = m_Root->getSceneManager("Default SceneManager");
+        RenderWindow *win = m_Root->getAutoCreatedWindow();
 
         // CEGUI setup
-        mRenderer = new CEGUI::OgreCEGUIRenderer(win, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
-        mSystem = new CEGUI::System(mRenderer);
+        m_Renderer = new CEGUI::OgreCEGUIRenderer(win, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
+        CEGUI::System::setDefaultXMLParserName("TinyXMLParser");
+        m_System = new CEGUI::System(m_Renderer);
 
         // Other CEGUI setup here.
     }
 
     void createFrameListener()
     {
-        mListener = new ExitListener(mKeyboard);
-        mRoot->addFrameListener(mListener);
+        m_Listener = new ExitListener(m_Keyboard);
+        m_StateManager = new CStateManager();
+        m_Root->addFrameListener(m_Listener);
+        m_Root->addFrameListener(m_StateManager);
     }
 
     void startRenderLoop()
     {
-        mRoot->startRendering();
+        m_Root->startRendering();
 
         //// Do not add this to the application
         //while (mRoot->renderOneFrame())

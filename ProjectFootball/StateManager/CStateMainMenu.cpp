@@ -22,13 +22,15 @@
 #include "CStateMainMenu.h"
 
 
-CStateMainMenu::CStateMainMenu(){
+CStateMainMenu::CStateMainMenu()
+{
 
 }
 
 
 
-CStateMainMenu::~CStateMainMenu(){
+CStateMainMenu::~CStateMainMenu()
+{
 
 }
 
@@ -36,23 +38,27 @@ CStateMainMenu::~CStateMainMenu(){
 
 
 
-void CStateMainMenu::enter(){
+void CStateMainMenu::enter()
+{
 
 }
 
 
-void CStateMainMenu::forcedLeave(){
+void CStateMainMenu::forcedLeave()
+{
 
 }
 
 
-bool CStateMainMenu::keyPressed(const OIS::KeyEvent& e){
+bool CStateMainMenu::keyPressed(const OIS::KeyEvent& e)
+{
 
 	return false;
 }
 
 
-bool CStateMainMenu::keyReleased(const OIS::KeyEvent& e){
+bool CStateMainMenu::keyReleased(const OIS::KeyEvent& e)
+{
 
 	return false;
 }
@@ -64,24 +70,28 @@ bool CStateMainMenu::leave(){
 }
 
 
-bool CStateMainMenu::mouseMoved(const OIS::MouseEvent& e){
+bool CStateMainMenu::mouseMoved(const OIS::MouseEvent& e)
+{
 
 	return false;
 }
 
 
-bool CStateMainMenu::mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id){
+bool CStateMainMenu::mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id)
+{
 
 	return false;
 }
 
 
-bool CStateMainMenu::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id){
+bool CStateMainMenu::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id)
+{
 
 	return false;
 }
 
 
-void CStateMainMenu::update(){
+void CStateMainMenu::update()
+{
 
 }

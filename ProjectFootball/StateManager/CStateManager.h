@@ -25,6 +25,7 @@
 #include <Ogre.h>
 
 #include "IState.h"
+#include "CStateMainMenu.h"
 
 using namespace Ogre;
 
@@ -45,5 +46,7 @@ public:
 	void popToState(IState* state);
 	void pushState(IState* state);
 
+private:
+	CStateMainMenu *m_stateMainMenu;
 };
 #endif // __CStateManager_H__
