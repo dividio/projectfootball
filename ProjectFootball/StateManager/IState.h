@@ -22,22 +22,35 @@
 #ifndef __IState_H__
 #define __IState_H__
 
-class IState
+#include <Ogre.h>
+#include <OIS/OIS.h>
+
+class IState:
+    public Ogre::FrameListener, public OIS::MouseListener, public OIS::KeyListener
 {
 
 public:
-	IState() {
+  IState() {
 
-	}
+  }
 
-	virtual ~IState() {
+  virtual ~IState() {
 
-	}
+  }
 
-	virtual void enter() =0;
-	virtual void forcedLeave() =0;
-	virtual bool leave() =0;
-	virtual void update() =0;
+    virtual void enter() = 0;
+    virtual void forcedLeave() = 0;
+    virtual bool leave() = 0;
+    virtual void update() = 0;
+
+//    virtual bool frameEnded(const Ogre::FrameEvent& evt) = 0;
+//    virtual bool frameStarted(const Ogre::FrameEvent& evt) = 0;
+
+    virtual bool keyPressed(const OIS::KeyEvent& e) = 0;
+    virtual bool keyReleased(const OIS::KeyEvent& e) = 0;
+    virtual bool mouseMoved(const OIS::MouseEvent& e) = 0;
+    virtual bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id) = 0;
+    virtual bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id) = 0;
 
 };
 #endif // __IState_H__

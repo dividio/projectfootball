@@ -18,22 +18,28 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <iostream.h>
 
 #include "CStateManager.h"
 
 
-CStateManager::CStateManager()
+
+CStateManager::CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 {
-	m_stateMainMenu = new CStateMainMenu();
+  m_stateMainMenu = new CStateMainMenu(mouse, keyboard);
+  //Ogre::Root::getSingleton().addFrameListener(m_stateMainMenu);
+  m_stateMainMenu->enter();
+
 }
 
 
 
 CStateManager::~CStateManager()
 {
-	if(m_stateMainMenu != NULL) {
-		delete m_stateMainMenu;
-	}
+    if(m_stateMainMenu != NULL) {
+      Ogre::Root::getSingleton().removeFrameListener(m_stateMainMenu);
+      delete m_stateMainMenu;
+  }
 }
 
 
@@ -49,22 +55,21 @@ void CStateManager::forcedPopStack()
 bool CStateManager::frameEnded(const FrameEvent& evt)
 {
 
-	return true;
+  return true;
 }
 
 
 bool CStateManager::frameStarted(const FrameEvent& evt)
 {
-
-
-	return true;
+    m_stateMainMenu->update();
+    return true;
 }
 
 
 CStateManager* CStateManager::getInstance()
 {
 
-	return  NULL;
+  return  NULL;
 }
 
 

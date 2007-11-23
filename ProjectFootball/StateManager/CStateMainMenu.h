@@ -29,22 +29,40 @@
 
 #include "IState.h"
 
-class CStateMainMenu : public IState, public OIS::MouseListener, public OIS::KeyListener
+
+class CStateMainMenu : public IState
 {
 
 public:
-	CStateMainMenu();
-	virtual ~CStateMainMenu();
+    CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+    virtual ~CStateMainMenu();
 
-	virtual void enter();
-	virtual void forcedLeave();
-	virtual bool keyPressed(const OIS::KeyEvent& e);
-	virtual bool keyReleased(const OIS::KeyEvent& e);
-	virtual bool leave();
-	virtual bool mouseMoved(const OIS::MouseEvent& e);
-	virtual bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-	virtual bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-	virtual void update();
+    virtual void enter();
+    virtual void forcedLeave();
+    virtual bool leave();
+
+
+//    virtual bool frameEnded(const Ogre::FrameEvent& evt);
+//    virtual bool frameStarted(const Ogre::FrameEvent& evt);
+
+    virtual bool keyPressed(const OIS::KeyEvent& e);
+    virtual bool keyReleased(const OIS::KeyEvent& e);
+
+    virtual bool mouseMoved(const OIS::MouseEvent& e);
+    virtual bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
+    virtual bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
+    virtual void update();
+
+    bool quit(const CEGUI::EventArgs &e);
+
+
+protected:
+    OIS::Mouse*    m_mouse;
+    OIS::Keyboard* m_keyboard;
+    Ogre::Root*    m_root;
+    CEGUI::OgreCEGUIRenderer *m_renderer;
+    CEGUI::System *m_system;
+    bool m_continue;
 
 };
 #endif // __CStateMainMenu_H__

@@ -23,9 +23,13 @@
 #define __CStateManager_H__
 
 #include <Ogre.h>
+#include <iostream>
+
 
 #include "IState.h"
 #include "CStateMainMenu.h"
+
+
 
 using namespace Ogre;
 
@@ -34,19 +38,19 @@ class CStateManager : public FrameListener
 {
 
 public:
-	CStateManager();
-	virtual ~CStateManager();
+  CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+  virtual ~CStateManager();
 
-	void forcedPopStack();
-	virtual bool frameEnded(const FrameEvent& evt);
-	virtual bool frameStarted(const FrameEvent& evt);
-	static CStateManager* getInstance();
-	void popStack();
-	void popState();
-	void popToState(IState* state);
-	void pushState(IState* state);
+  void forcedPopStack();
+  virtual bool frameEnded(const FrameEvent& evt);
+  virtual bool frameStarted(const FrameEvent& evt);
+  static CStateManager* getInstance();
+  void popStack();
+  void popState();
+  void popToState(IState* state);
+  void pushState(IState* state);
 
 private:
-	CStateMainMenu *m_stateMainMenu;
+  CStateMainMenu *m_stateMainMenu;
 };
 #endif // __CStateManager_H__

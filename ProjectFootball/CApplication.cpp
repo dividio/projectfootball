@@ -18,10 +18,14 @@
 *                                                                             *
 ******************************************************************************/
 
+#ifndef __CApplication_CPP__
+#define __CApplication_CPP__
+
 #include <Ogre.h>
 #include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
+#include <iostream.h>
 
 #include "StateManager/CStateManager.h"
 
@@ -45,6 +49,7 @@ private:
     OIS::Keyboard *m_Keyboard;
 };
 
+
 class CApplication
 {
 public:
@@ -64,31 +69,34 @@ public:
 
     ~CApplication()
     {
-        m_InputManager->destroyInputObject(m_Keyboard);
-        m_InputManager->destroyInputObject(m_Mouse);
-        OIS::InputManager::destroyInputSystem(m_InputManager);
+        m_inputManager->destroyInputObject(m_keyboard);
+        m_inputManager->destroyInputObject(m_mouse);
+        OIS::InputManager::destroyInputSystem(m_inputManager);
 
-        delete m_Renderer;
-        delete m_System;
+        if(m_system != NULL)
+          delete m_system;
 
-        delete m_StateManager;
-        delete m_Listener;
-        delete m_Root;
+        if(m_renderer != NULL)
+          delete m_renderer;
+
+        delete m_stateManager;
+        delete m_listener;
+        delete m_root;
     }
 
 private:
-    Root *m_Root;
-    OIS::Keyboard *m_Keyboard;
-    OIS::Mouse *m_Mouse;
-    OIS::InputManager *m_InputManager;
-    CEGUI::OgreCEGUIRenderer *m_Renderer;
-    CEGUI::System *m_System;
-    ExitListener *m_Listener;
-    CStateManager *m_StateManager;
+    Root *m_root;
+    OIS::Keyboard *m_keyboard;
+    OIS::Mouse *m_mouse;
+    OIS::InputManager *m_inputManager;
+    CEGUI::OgreCEGUIRenderer *m_renderer;
+    CEGUI::System *m_system;
+    ExitListener *m_listener;
+    CStateManager *m_stateManager;
 
     void createRoot()
     {
-        m_Root = new Root();
+        m_root = new Root();
     }
 
     void defineResources()
@@ -112,7 +120,7 @@ private:
 
     void setupRenderSystem()
     {
-        if (!m_Root->restoreConfig() && !m_Root->showConfigDialog()) {
+        if (!m_root->restoreConfig() && !m_root->showConfigDialog()) {
             throw Exception(52, "User canceled the config dialog!", "Application::setupRenderSystem()");
         }
 
@@ -120,7 +128,7 @@ private:
 
     void createRenderWindow()
     {
-        m_Root->initialise(true, "Project Football");
+        m_root->initialise(true, "Project Football");
 
     }
 
@@ -132,9 +140,9 @@ private:
 
     void setupScene()
     {
-        SceneManager *mgr = m_Root->createSceneManager(ST_GENERIC, "Default SceneManager");
+        SceneManager *mgr = m_root->createSceneManager(ST_GENERIC, "Default SceneManager");
         Camera *cam = mgr->createCamera("Camera");
-        Viewport *vp = m_Root->getAutoCreatedWindow()->addViewport(cam);
+        Viewport *vp = m_root->getAutoCreatedWindow()->addViewport(cam);
         vp->setSkiesEnabled(false);
     }
 
@@ -143,17 +151,17 @@ private:
         size_t windowHnd = 0;
         std::ostringstream windowHndStr;
         OIS::ParamList pl;
-        RenderWindow *win = m_Root->getAutoCreatedWindow();
+        RenderWindow *win = m_root->getAutoCreatedWindow();
 
         win->getCustomAttribute("WINDOW", &windowHnd);
         windowHndStr << windowHnd;
         pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
-        m_InputManager = OIS::InputManager::createInputSystem(pl);
+        m_inputManager = OIS::InputManager::createInputSystem(pl);
 
         try
         {
-            m_Keyboard = static_cast<OIS::Keyboard*>(m_InputManager->createInputObject(OIS::OISKeyboard, false));
-            m_Mouse = static_cast<OIS::Mouse*>(m_InputManager->createInputObject(OIS::OISMouse, false));
+            m_keyboard = static_cast<OIS::Keyboard*>(m_inputManager->createInputObject(OIS::OISKeyboard, true));
+            m_mouse = static_cast<OIS::Mouse*>(m_inputManager->createInputObject(OIS::OISMouse, true));
             //mJoy = static_cast<OIS::JoyStick*>(mInputManager->createInputObject(OIS::OISJoyStick, false));
         }
         catch (const OIS::Exception &e)
@@ -164,28 +172,28 @@ private:
 
     void setupCEGUI()
     {
-        SceneManager *mgr = m_Root->getSceneManager("Default SceneManager");
-        RenderWindow *win = m_Root->getAutoCreatedWindow();
+        SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
+        RenderWindow *win = m_root->getAutoCreatedWindow();
 
         // CEGUI setup
-        m_Renderer = new CEGUI::OgreCEGUIRenderer(win, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
+        m_renderer = new CEGUI::OgreCEGUIRenderer(win, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
         CEGUI::System::setDefaultXMLParserName("TinyXMLParser");
-        m_System = new CEGUI::System(m_Renderer);
+        m_system = new CEGUI::System(m_renderer);
 
         // Other CEGUI setup here.
     }
 
     void createFrameListener()
     {
-        m_Listener = new ExitListener(m_Keyboard);
-        m_StateManager = new CStateManager();
-        m_Root->addFrameListener(m_Listener);
-        m_Root->addFrameListener(m_StateManager);
+        m_listener = new ExitListener(m_keyboard);
+        m_stateManager = new CStateManager(m_mouse, m_keyboard);
+        m_root->addFrameListener(m_listener);
+        m_root->addFrameListener(m_stateManager);
     }
 
     void startRenderLoop()
     {
-        m_Root->startRendering();
+        m_root->startRendering();
 
         //// Do not add this to the application
         //while (mRoot->renderOneFrame())
@@ -221,3 +229,4 @@ int main(int argc, char **argv)
 
     return 0;
 }
+#endif // __CApplication_CPP__
