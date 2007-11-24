@@ -26,24 +26,19 @@
 
 CStateManager::CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 {
-  m_stateMainMenu = new CStateMainMenu(mouse, keyboard);
-  //Ogre::Root::getSingleton().addFrameListener(m_stateMainMenu);
-  m_stateMainMenu->enter();
+    m_stateMainMenu = new CStateMainMenu(mouse, keyboard);
+    //Ogre::Root::getSingleton().addFrameListener(m_stateMainMenu);
+    m_stateMainMenu->enter();
 
 }
-
 
 
 CStateManager::~CStateManager()
 {
     if(m_stateMainMenu != NULL) {
-      Ogre::Root::getSingleton().removeFrameListener(m_stateMainMenu);
-      delete m_stateMainMenu;
-  }
+        delete m_stateMainMenu;
+    }
 }
-
-
-
 
 
 void CStateManager::forcedPopStack()
@@ -55,7 +50,7 @@ void CStateManager::forcedPopStack()
 bool CStateManager::frameEnded(const FrameEvent& evt)
 {
 
-  return true;
+    return true;
 }
 
 
@@ -69,7 +64,7 @@ bool CStateManager::frameStarted(const FrameEvent& evt)
 CStateManager* CStateManager::getInstance()
 {
 
-  return  NULL;
+    return  NULL;
 }
 
 
@@ -85,11 +80,13 @@ void CStateManager::popState()
 }
 
 
-void CStateManager::popToState(IState* state){
+void CStateManager::popToState(CState* state)
+{
 
 }
 
 
-void CStateManager::pushState(IState* state){
+void CStateManager::pushState(CState* state)
+{
 
 }

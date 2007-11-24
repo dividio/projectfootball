@@ -181,6 +181,9 @@ private:
         m_system = new CEGUI::System(m_renderer);
 
         // Other CEGUI setup here.
+        CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
+        m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
+        m_system->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
     }
 
     void createFrameListener()

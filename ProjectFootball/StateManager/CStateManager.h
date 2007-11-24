@@ -26,7 +26,7 @@
 #include <iostream>
 
 
-#include "IState.h"
+#include "CState.h"
 #include "CStateMainMenu.h"
 
 
@@ -47,8 +47,8 @@ public:
   static CStateManager* getInstance();
   void popStack();
   void popState();
-  void popToState(IState* state);
-  void pushState(IState* state);
+  void popToState(CState* state);
+  void pushState(CState* state);
 
 private:
   CStateMainMenu *m_stateMainMenu;
