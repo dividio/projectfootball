@@ -23,11 +23,13 @@
 #define __CStateManager_H__
 
 #include <Ogre.h>
+#include <vector>
 #include <iostream>
 
 
 #include "CState.h"
 #include "CStateMainMenu.h"
+#include "CStateCredits.h"
 
 
 
@@ -38,19 +40,26 @@ class CStateManager : public FrameListener
 {
 
 public:
-  CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-  virtual ~CStateManager();
+    ~CStateManager();
+    static CStateManager* getInstance(OIS::Mouse *mouse = NULL,
+                                      OIS::Keyboard *keyboard = NULL);
 
-  void forcedPopStack();
-  virtual bool frameEnded(const FrameEvent& evt);
-  virtual bool frameStarted(const FrameEvent& evt);
-  static CStateManager* getInstance();
-  void popStack();
-  void popState();
-  void popToState(CState* state);
-  void pushState(CState* state);
+    void forcedPopStack();
+    bool frameEnded(const FrameEvent& evt);
+    bool frameStarted(const FrameEvent& evt);
+    void popStack();
+    void popState();
+    void popToState(CState* state);
+    void pushState(CState* state);
 
+protected:
+    CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
 private:
-  CStateMainMenu *m_stateMainMenu;
+    CStateMainMenu *m_stateMainMenu;
+    CStateCredits *m_stateCredits;
+    std::vector<CState*> m_stack;
+
+    static CStateManager* m_instance;
+
 };
 #endif // __CStateManager_H__

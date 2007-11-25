@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="MainMenu" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.998333,0}}" />
+        <Window Type="TaharezLook/Button" Name="MainMenu/PlayButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="Play" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.332626,0},{0.25924,0},{0.652626,0},{0.324919,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="MainMenu/QuitButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="Quit" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.332626,0},{0.599635,0},{0.652626,0},{0.662454,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="MainMenu/CreditsButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="Credits" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.332626,0},{0.43076,0},{0.652626,0},{0.498567,0}}" />
+        </Window>
+    </Window>
+</GUILayout>

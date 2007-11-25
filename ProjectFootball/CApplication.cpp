@@ -189,7 +189,7 @@ private:
     void createFrameListener()
     {
         m_listener = new ExitListener(m_keyboard);
-        m_stateManager = new CStateManager(m_mouse, m_keyboard);
+        m_stateManager = CStateManager::getInstance(m_mouse, m_keyboard);
         m_root->addFrameListener(m_listener);
         m_root->addFrameListener(m_stateManager);
     }

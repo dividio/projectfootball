@@ -22,19 +22,34 @@
 
 #include "CStateManager.h"
 
-
+CStateManager* CStateManager::m_instance = NULL;
 
 CStateManager::CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 {
-    m_stateMainMenu = new CStateMainMenu(mouse, keyboard);
-    //Ogre::Root::getSingleton().addFrameListener(m_stateMainMenu);
-    m_stateMainMenu->enter();
+//    m_stateMainMenu = new CStateMainMenu(mouse, keyboard);
+//    m_stateCredits = new CStateCredits(mouse, keyboard);
+    m_stateMainMenu = CStateMainMenu::getInstance(mouse, keyboard);
+    m_stateCredits = CStateCredits::getInstance(mouse, keyboard);
 
+    pushState(m_stateMainMenu);
+}
+
+
+CStateManager* CStateManager::getInstance(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+{
+    if(m_instance == NULL && mouse != NULL && keyboard != NULL ) {
+        m_instance = new CStateManager(mouse, keyboard);
+    }
+
+    return  m_instance;
 }
 
 
 CStateManager::~CStateManager()
 {
+
+    forcedPopStack();
+
     if(m_stateMainMenu != NULL) {
         delete m_stateMainMenu;
     }
@@ -43,7 +58,10 @@ CStateManager::~CStateManager()
 
 void CStateManager::forcedPopStack()
 {
-
+    while(!m_stack.empty()) {
+        m_stack.back()->forcedLeave();
+        m_stack.pop_back();
+    }
 }
 
 
@@ -56,27 +74,37 @@ bool CStateManager::frameEnded(const FrameEvent& evt)
 
 bool CStateManager::frameStarted(const FrameEvent& evt)
 {
-    m_stateMainMenu->update();
-    return true;
-}
-
-
-CStateManager* CStateManager::getInstance()
-{
-
-    return  NULL;
+    bool ingame = true;
+    if(!m_stack.empty()) {
+        m_stack.back()->update();
+    } else {
+        ingame = false;
+    }
+    return ingame;
 }
 
 
 void CStateManager::popStack()
 {
-
+    while(!m_stack.empty()) {
+        m_stack.back()->leave();
+        m_stack.pop_back();
+    }
 }
 
 
 void CStateManager::popState()
 {
+  // cleanup the current state
+  if(!m_stack.empty()) {
+      m_stack.back()->leave();
+      m_stack.pop_back();
+  }
 
+  // enter previous state
+  if(!m_stack.empty()) {
+      m_stack.back()->enter();
+  }
 }
 
 
@@ -88,5 +116,6 @@ void CStateManager::popToState(CState* state)
 
 void CStateManager::pushState(CState* state)
 {
-
+    m_stack.push_back(state);
+    m_stack.back()->enter();
 }

@@ -34,7 +34,9 @@ class CStateMainMenu : public CState
 {
 
 public:
-    CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+
+    static CStateMainMenu* getInstance(OIS::Mouse *mouse = NULL,
+                                       OIS::Keyboard *keyboard = NULL);
     virtual ~CStateMainMenu();
 
     virtual void enter();
@@ -44,10 +46,13 @@ public:
     virtual void update();
 
     bool quit(const CEGUI::EventArgs &e);
-
+    bool credits(const CEGUI::EventArgs &e);
 
 protected:
-    bool m_continue;
+    CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+
+private:
+    static CStateMainMenu* m_instance;
 
 };
 #endif // __CStateMainMenu_H__

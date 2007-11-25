@@ -22,12 +22,62 @@
 
 
 #include "CStateMainMenu.h"
+#include "CStateManager.h"
 
+
+CStateMainMenu* CStateMainMenu::m_instance = NULL;
 
 CStateMainMenu::CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
  :CState(mouse, keyboard)
 {
-    m_continue = true;
+//    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
+//    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet");
+//
+//    CEGUI::Window *quit = win->createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+//    quit->setText("Quit");
+//    quit->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
+//
+//    m_sheet->addChildWindow(quit);
+//
+//
+//    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
+//               CEGUI::Event::Subscriber(&CStateMainMenu::quit, this));
+//
+//
+//    CEGUI::Window *credits = win->createWindow("TaharezLook/Button", "CEGUIDemo/CreditsButton");
+//    credits->setText("Credits");
+//    credits->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
+//    credits->setPosition(CEGUI::UVector2(CEGUI::UDim(0.55, 0),CEGUI::UDim(0.55, 0)));
+//
+//    m_sheet->addChildWindow(credits);
+//
+//    credits->subscribeEvent(CEGUI::PushButton::EventClicked,
+//               CEGUI::Event::Subscriber(&CStateMainMenu::credits, this));
+
+    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"mainMenu.layout");
+
+    CEGUI::PushButton *quit =
+      (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/QuitButton");
+
+    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
+               CEGUI::Event::Subscriber(&CStateMainMenu::quit, this));
+
+
+    CEGUI::PushButton *credits =
+      (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/CreditsButton");
+
+    credits->subscribeEvent(CEGUI::PushButton::EventClicked,
+               CEGUI::Event::Subscriber(&CStateMainMenu::credits, this));
+}
+
+
+CStateMainMenu* CStateMainMenu::getInstance(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+{
+    if(m_instance == NULL && mouse != NULL && keyboard != NULL ) {
+        m_instance = new CStateMainMenu(mouse, keyboard);
+    }
+
+    return  m_instance;
 }
 
 
@@ -42,26 +92,21 @@ void CStateMainMenu::enter()
     m_mouse->setEventCallback(this);
     //m_keyboard->setEventCallback(this);
 
-    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
-    CEGUI::Window *sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet");
-
-    CEGUI::Window *quit = win->createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
-    quit->setText("Quit");
-    quit->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-
-    sheet->addChildWindow(quit);
-    m_system->setGUISheet(sheet);
-
-    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
-               CEGUI::Event::Subscriber(&CStateMainMenu::quit, this));
-
+    m_system->setGUISheet(m_sheet);
 }
 
 
 bool CStateMainMenu::quit(const CEGUI::EventArgs &e)
 {
-        m_continue = false;
-        return true;
+    CStateManager::getInstance()->popState();
+    return true;
+}
+
+
+bool CStateMainMenu::credits(const CEGUI::EventArgs &e)
+{
+    CStateManager::getInstance()->pushState(CStateCredits::getInstance());
+    return true;
 }
 
 

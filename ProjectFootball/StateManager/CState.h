@@ -33,7 +33,6 @@ class CState:
 {
 
 public:
-    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
     virtual ~CState();
 
     virtual void enter() = 0;
@@ -53,7 +52,10 @@ protected:
     Ogre::Root*    m_root;
     CEGUI::OgreCEGUIRenderer *m_renderer;
     CEGUI::System *m_system;
+    CEGUI::Window *m_sheet;
 
+    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+    CState() {}
     CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 };
 #endif // __CState_H__
