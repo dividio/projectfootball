@@ -20,7 +20,6 @@
 
 #include <iostream.h>
 
-
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
 
@@ -62,12 +61,25 @@ CStateMainMenu::CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
     quit->subscribeEvent(CEGUI::PushButton::EventClicked,
                CEGUI::Event::Subscriber(&CStateMainMenu::quit, this));
 
-
     CEGUI::PushButton *credits =
       (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/CreditsButton");
 
     credits->subscribeEvent(CEGUI::PushButton::EventClicked,
                CEGUI::Event::Subscriber(&CStateMainMenu::credits, this));
+
+
+
+    // Maybe using CEGUI::GlobalEventSet ?
+    CEGUI::WindowManager::WindowIterator i =  CEGUI::WindowManager::getSingleton().getIterator();
+
+    while (!i.isAtEnd())
+    {
+        if(i.getCurrentValue()) {
+            i.getCurrentValue()->subscribeEvent(CEGUI::PushButton::EventClicked,
+                    CEGUI::Event::Subscriber(&CStateMainMenu::clickAudioEvent, this));
+        }
+        ++i;
+    }
 }
 
 
@@ -109,6 +121,11 @@ bool CStateMainMenu::credits(const CEGUI::EventArgs &e)
     return true;
 }
 
+bool CStateMainMenu::clickAudioEvent(const CEGUI::EventArgs &e)
+{
+    cout << "CLICK" << endl;
+    return true;
+}
 
 void CStateMainMenu::forcedLeave()
 {

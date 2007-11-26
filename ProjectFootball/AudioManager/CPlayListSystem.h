@@ -18,45 +18,26 @@
 *                                                                             *
 ******************************************************************************/
 
+#ifndef __CPlayListSystem_H__
+#define __CPlayListSystem_H__
 
-#ifndef __CState_H__
-#define __CState_H__
+#include "IAudioFile.h"
 
-#include <Ogre.h>
-#include <OIS/OIS.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
-
-
-class CState:
-    public OIS::MouseListener, public OIS::KeyListener
+class CPlayListSystem
 {
 
 public:
-    virtual ~CState();
+  CPlayListSystem();
+  virtual ~CPlayListSystem();
 
-    virtual void enter() = 0;
-    virtual void forcedLeave() = 0;
-    virtual bool leave() = 0;
-    virtual void update() = 0;
-
-    bool keyPressed(const OIS::KeyEvent& e);
-    bool keyReleased(const OIS::KeyEvent& e);
-    bool mouseMoved(const OIS::MouseEvent& e);
-    bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-    bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-
-protected:
-    OIS::Mouse*    m_mouse;
-    OIS::Keyboard* m_keyboard;
-    Ogre::Root*    m_root;
-    CEGUI::OgreCEGUIRenderer *m_renderer;
-    CEGUI::System *m_system;
-    CEGUI::Window *m_sheet;
-
-    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-    CState() {}
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
+  void addTrack(IAudioFile * audioFile);
+  void deleteTrack(int pos);
+  static CPlayListSystem * getInstance();
+  void nextTrack();
+  void pausePlayback();
+  void previousTrack();
+  void startPlayback(int pos = 1);
+  void stopPlayback();
 
 };
-#endif // __CState_H__
+#endif // __CPlayListSystem_H__

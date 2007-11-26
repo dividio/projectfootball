@@ -18,45 +18,24 @@
 *                                                                             *
 ******************************************************************************/
 
+#ifndef __CAudioAbstractFactory_H__
+#define __CAudioAbstractFactory_H__
 
-#ifndef __CState_H__
-#define __CState_H__
+#include "IAudioFactory.h"
 
-#include <Ogre.h>
-#include <OIS/OIS.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
-
-
-class CState:
-    public OIS::MouseListener, public OIS::KeyListener
+class CAudioAbstractFactory
 {
+private:
 
-public:
-    virtual ~CState();
-
-    virtual void enter() = 0;
-    virtual void forcedLeave() = 0;
-    virtual bool leave() = 0;
-    virtual void update() = 0;
-
-    bool keyPressed(const OIS::KeyEvent& e);
-    bool keyReleased(const OIS::KeyEvent& e);
-    bool mouseMoved(const OIS::MouseEvent& e);
-    bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-    bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
+    static IAudioFactory* m_instance;
 
 protected:
-    OIS::Mouse*    m_mouse;
-    OIS::Keyboard* m_keyboard;
-    Ogre::Root*    m_root;
-    CEGUI::OgreCEGUIRenderer *m_renderer;
-    CEGUI::System *m_system;
-    CEGUI::Window *m_sheet;
+    CAudioAbstractFactory();
 
-    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-    CState() {}
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
+public:
+  virtual ~CAudioAbstractFactory();
+
+  static IAudioFactory* getIAudioFactory();
 
 };
-#endif // __CState_H__
+#endif // __CAudioAbstractFactory_H__

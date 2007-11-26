@@ -53,6 +53,9 @@ CStateManager::~CStateManager()
     if(m_stateMainMenu != NULL) {
         delete m_stateMainMenu;
     }
+    if(m_stateCredits != NULL) {
+        delete m_stateCredits;
+    }
 }
 
 

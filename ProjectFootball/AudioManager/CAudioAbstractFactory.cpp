@@ -18,45 +18,35 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CAudioAbstractFactory.h"
+#include "IAudioFactory.h"
+#include "CAudioFactoryOpenAL.h"
 
-#ifndef __CState_H__
-#define __CState_H__
+IAudioFactory* CAudioAbstractFactory::m_instance = 0;
 
-#include <Ogre.h>
-#include <OIS/OIS.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
-
-
-class CState:
-    public OIS::MouseListener, public OIS::KeyListener
+CAudioAbstractFactory::CAudioAbstractFactory()
 {
 
-public:
-    virtual ~CState();
+}
 
-    virtual void enter() = 0;
-    virtual void forcedLeave() = 0;
-    virtual bool leave() = 0;
-    virtual void update() = 0;
 
-    bool keyPressed(const OIS::KeyEvent& e);
-    bool keyReleased(const OIS::KeyEvent& e);
-    bool mouseMoved(const OIS::MouseEvent& e);
-    bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-    bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
+CAudioAbstractFactory::~CAudioAbstractFactory()
+{
 
-protected:
-    OIS::Mouse*    m_mouse;
-    OIS::Keyboard* m_keyboard;
-    Ogre::Root*    m_root;
-    CEGUI::OgreCEGUIRenderer *m_renderer;
-    CEGUI::System *m_system;
-    CEGUI::Window *m_sheet;
+}
 
-    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-    CState() {}
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 
-};
-#endif // __CState_H__
+IAudioFactory* CAudioAbstractFactory::getIAudioFactory()
+{
+    int tipe = 1;
+    if (m_instance==0) {
+        switch (tipe) {
+            case 1:
+                m_instance = CAudioFactoryOpenAL::getInstance();
+                break;
+            default:
+                m_instance = CAudioFactoryOpenAL::getInstance();
+        }
+    }
+    return m_instance;
+}

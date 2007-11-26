@@ -18,45 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
+#ifndef __CAudioSystem_H__
+#define __CAudioSystem_H__
 
-#ifndef __CState_H__
-#define __CState_H__
+#include "IAudioFile.h"
 
-#include <Ogre.h>
-#include <OIS/OIS.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
-
-
-class CState:
-    public OIS::MouseListener, public OIS::KeyListener
+class CAudioSystem
 {
 
 public:
-    virtual ~CState();
-
-    virtual void enter() = 0;
-    virtual void forcedLeave() = 0;
-    virtual bool leave() = 0;
-    virtual void update() = 0;
-
-    bool keyPressed(const OIS::KeyEvent& e);
-    bool keyReleased(const OIS::KeyEvent& e);
-    bool mouseMoved(const OIS::MouseEvent& e);
-    bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-    bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-
-protected:
-    OIS::Mouse*    m_mouse;
-    OIS::Keyboard* m_keyboard;
-    Ogre::Root*    m_root;
-    CEGUI::OgreCEGUIRenderer *m_renderer;
-    CEGUI::System *m_system;
-    CEGUI::Window *m_sheet;
-
-    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-    CState() {}
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
+  CAudioSystem();
+  virtual ~CAudioSystem();
+  static const IAudioFile * CLICK;
 
 };
-#endif // __CState_H__
+#endif // __CAudioSystem_H__
