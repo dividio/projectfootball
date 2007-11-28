@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-    <Window Type="DefaultWindow" Name="MainMenu" >
+    <Window Type="WindowsLook/StaticImage" Name="MainMenu" >
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.998333,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
         <Window Type="TaharezLook/Button" Name="MainMenu/PlayButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Text" Value="Play" />

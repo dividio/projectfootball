@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-    <Window Type="DefaultWindow" Name="Credits" >
+    <Window Type="WindowsLook/StaticImage" Name="Credits" >
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.998333,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
         <Window Type="TaharezLook/Button" Name="Credits/BackButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Text" Value="Back" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.332626,0},{0.785756,0},{0.652626,0},{0.848575,0}}" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="Credits/" >
+        <Window Type="TaharezLook/StaticText" Name="Credits/Text" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Text" >Project Football
 
 by Ikaro Games:
 www.ikarogames.com</Property>
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{-0.209848,0},{-0.141443,0},{0.0174236,0},{-0.0132679,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{-0.209848,0},{-0.141443,0},{0.017424,0},{-0.013268,0}}" />
             <Property Name="VerticalAlignment" Value="Centre" />
             <Property Name="HorizontalAlignment" Value="Centre" />
+        </Window>
+        <Window Type="TaharezLook/StaticImage" Name="Credits/Image" >
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.468434,0},{0.17175,0},{0.718434,0},{0.421751,0}}" />
         </Window>
     </Window>
 </GUILayout>

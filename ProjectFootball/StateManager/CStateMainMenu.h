@@ -47,6 +47,7 @@ protected:
     CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
     bool quit(const CEGUI::EventArgs &e);
     bool credits(const CEGUI::EventArgs &e);
+    bool play(const CEGUI::EventArgs &e);
     bool clickAudioEvent(const CEGUI::EventArgs &e);
 
 

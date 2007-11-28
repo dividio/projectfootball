@@ -19,14 +19,28 @@
 ******************************************************************************/
 
 #include "CAudioSystem.h"
+#include "CAudioAbstractFactory.h"
+
+
+
+CAudioSystem* CAudioSystem::m_instance = 0;
+
 
 
 CAudioSystem::CAudioSystem()
 {
-
+  //CAudioSystem::CLICK = CAudioAbstractFactory::getIAudioFactory()->createAudioFile("click.wav");
 }
 
 
+CAudioSystem* CAudioSystem::getInstance()
+{
+    if(m_instance == 0) {
+      m_instance = new CAudioSystem();
+    }
+
+    return m_instance;
+}
 
 CAudioSystem::~CAudioSystem()
 {

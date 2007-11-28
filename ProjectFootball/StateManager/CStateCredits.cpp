@@ -67,8 +67,11 @@ void CStateCredits::enter()
 {
     m_mouse->setEventCallback(this);
     //m_keyboard->setEventCallback(this);
-
     m_system->setGUISheet(m_sheet);
+
+    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
+    mgr->clearScene();
+
 }
 
 

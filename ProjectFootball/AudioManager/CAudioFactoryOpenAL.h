@@ -21,6 +21,10 @@
 #ifndef __CAudioFactoryOpenAL_H__
 #define __CAudioFactoryOpenAL_H__
 
+#include "AL/al.h"
+#include "AL/alc.h"
+
+
 #include "IAudioFactory.h"
 
 class CAudioFactoryOpenAL : public IAudioFactory
@@ -32,6 +36,10 @@ private:
     CAudioFactoryOpenAL();
 
     static CAudioFactoryOpenAL* getInstance();
+
+    ALCdevice *m_device;
+    ALCcontext *m_context;
+    ALuint m_gBuffers[2];
 
 public:
   virtual ~CAudioFactoryOpenAL();

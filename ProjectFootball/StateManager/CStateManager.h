@@ -30,6 +30,7 @@
 #include "CState.h"
 #include "CStateMainMenu.h"
 #include "CStateCredits.h"
+#include "CStateMonitor.h"
 
 
 
@@ -57,6 +58,7 @@ protected:
 private:
     CStateMainMenu *m_stateMainMenu;
     CStateCredits *m_stateCredits;
+    CStateMonitor *m_stateMonitor;
     std::vector<CState*> m_stack;
 
     static CStateManager* m_instance;

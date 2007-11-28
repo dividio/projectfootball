@@ -18,11 +18,32 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "string.h"
+
 #include "CAudioFactoryOpenAL.h"
+
 
 
 CAudioFactoryOpenAL::CAudioFactoryOpenAL()
 {
+  //Initialization
+    m_device = alcOpenDevice(NULL);
+
+    if(m_device) {
+      m_context = alcCreateContext(m_device, NULL);
+      alcMakeContextCurrent(m_context);
+    }
+
+    //Create Buffers
+    alGetError();
+    alGenBuffers(2, m_gBuffers);
+    ALenum error;
+    if((error = alGetError()) != AL_NO_ERROR) {
+          //printf("alGenBuffers :", error);
+          return;
+    }
+
+
 
 }
 
@@ -30,6 +51,9 @@ CAudioFactoryOpenAL::CAudioFactoryOpenAL()
 
 CAudioFactoryOpenAL::~CAudioFactoryOpenAL()
 {
+    alcMakeContextCurrent(NULL);
+    alcDestroyContext(m_context);
+    alcCloseDevice(m_device);
 
 }
 

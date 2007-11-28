@@ -37,6 +37,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1131655999" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.1331932228" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="sqlite3"/>
+<listOptionValue builtIn="false" value="openal"/>
 <listOptionValue builtIn="false" value="OIS"/>
 <listOptionValue builtIn="false" value="CEGUIBase"/>
 <listOptionValue builtIn="false" value="OgreMain"/>
@@ -306,6 +307,7 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">

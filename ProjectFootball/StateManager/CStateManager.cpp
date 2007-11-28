@@ -30,6 +30,7 @@ CStateManager::CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 //    m_stateCredits = new CStateCredits(mouse, keyboard);
     m_stateMainMenu = CStateMainMenu::getInstance(mouse, keyboard);
     m_stateCredits = CStateCredits::getInstance(mouse, keyboard);
+    m_stateMonitor = CStateMonitor::getInstance(mouse, keyboard);
 
     pushState(m_stateMainMenu);
 }
@@ -55,6 +56,9 @@ CStateManager::~CStateManager()
     }
     if(m_stateCredits != NULL) {
         delete m_stateCredits;
+    }
+    if(m_stateMonitor != NULL) {
+            delete m_stateMonitor;
     }
 }
 

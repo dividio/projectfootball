@@ -182,6 +182,8 @@ private:
 
         // Other CEGUI setup here.
         CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
+        CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"WindowsLook.scheme");
+        //CEGUI::ImagesetManager::getSingletonPtr()->createImageset( "MenuBackground.imageset");
         m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
         m_system->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
     }

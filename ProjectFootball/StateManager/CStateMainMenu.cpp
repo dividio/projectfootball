@@ -67,7 +67,11 @@ CStateMainMenu::CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
     credits->subscribeEvent(CEGUI::PushButton::EventClicked,
                CEGUI::Event::Subscriber(&CStateMainMenu::credits, this));
 
+    CEGUI::PushButton *play =
+      (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/PlayButton");
 
+    play->subscribeEvent(CEGUI::PushButton::EventClicked,
+               CEGUI::Event::Subscriber(&CStateMainMenu::play, this));
 
     // Maybe using CEGUI::GlobalEventSet ?
     CEGUI::WindowManager::WindowIterator i =  CEGUI::WindowManager::getSingleton().getIterator();
@@ -80,6 +84,9 @@ CStateMainMenu::CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
         }
         ++i;
     }
+
+//    CEGUI::Imageset* menuImageset = CEGUI::ImagesetManager::getSingletonPtr()->createImagesetFromImageFile("Background","background.tga");
+//    menuImageset->defineImage("Background", CEGUI::Point(0.0f,0.0f), CEGUI::Size( 1.0f, 1.0f ), CEGUI::Point(0.0f,0.0f)); // Whole Image
 }
 
 
@@ -105,6 +112,8 @@ void CStateMainMenu::enter()
     //m_keyboard->setEventCallback(this);
 
     m_system->setGUISheet(m_sheet);
+    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
+    mgr->clearScene();
 }
 
 
@@ -120,6 +129,14 @@ bool CStateMainMenu::credits(const CEGUI::EventArgs &e)
     CStateManager::getInstance()->pushState(CStateCredits::getInstance());
     return true;
 }
+
+
+bool CStateMainMenu::play(const CEGUI::EventArgs &e)
+{
+    CStateManager::getInstance()->pushState(CStateMonitor::getInstance());
+    return true;
+}
+
 
 bool CStateMainMenu::clickAudioEvent(const CEGUI::EventArgs &e)
 {
