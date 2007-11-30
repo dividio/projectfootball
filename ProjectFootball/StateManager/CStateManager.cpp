@@ -18,8 +18,6 @@
 *                                                                             *
 ******************************************************************************/
 
-#include <iostream.h>
-
 #include "CStateManager.h"
 
 CStateManager* CStateManager::m_instance = NULL;

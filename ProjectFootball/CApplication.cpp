@@ -25,7 +25,6 @@
 #include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
-#include <iostream.h>
 
 #include "StateManager/CStateManager.h"
 

@@ -18,7 +18,6 @@
 *                                                                             *
 ******************************************************************************/
 
-#include <iostream.h>
 
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
@@ -140,7 +139,7 @@ bool CStateMainMenu::play(const CEGUI::EventArgs &e)
 
 bool CStateMainMenu::clickAudioEvent(const CEGUI::EventArgs &e)
 {
-    cout << "CLICK" << endl;
+    //cout << "CLICK" << endl;
     return true;
 }
 
