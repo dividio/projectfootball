@@ -4,7 +4,7 @@
     <Window Type="WindowsLook/StaticImage" Name="Credits" >
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.998333,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Property Name="Image" Value="set:Background image:Background" />
         <Window Type="TaharezLook/Button" Name="Credits/BackButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
