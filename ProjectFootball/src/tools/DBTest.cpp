@@ -23,9 +23,9 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include "../DBManager/CDAOAbstractFactory.h"
-#include "../DBManager/IDAOFactory.h"
-#include "../DBManager/IPfEquiposDAO.h"
+#include "../db/CDAOAbstractFactory.h"
+#include "../db/IDAOFactory.h"
+#include "../db/IPfEquiposDAO.h"
 
 //int main(void) {
 //	cout << "Aplicación test:" << endl;

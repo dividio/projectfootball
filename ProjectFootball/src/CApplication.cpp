@@ -26,7 +26,7 @@
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
-#include "StateManager/CStateManager.h"
+#include "state/CStateManager.h"
 
 using namespace Ogre;
 
