@@ -19,45 +19,27 @@
 ******************************************************************************/
 
 #include "CStateManager.h"
+#include "../CApplication.h"
+#include <stdio.h>
 
-CStateManager* CStateManager::m_instance = NULL;
-
-CStateManager::CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+CStateManager::CStateManager()
+	:m_stack()
 {
-//    m_stateMainMenu = new CStateMainMenu(mouse, keyboard);
-//    m_stateCredits = new CStateCredits(mouse, keyboard);
-    m_stateMainMenu = CStateMainMenu::getInstance(mouse, keyboard);
-    m_stateCredits = CStateCredits::getInstance(mouse, keyboard);
-    m_stateMonitor = CStateMonitor::getInstance(mouse, keyboard);
-
-    pushState(m_stateMainMenu);
+    printf("--> CStateManager()\n");
 }
 
 
-CStateManager* CStateManager::getInstance(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+CStateManager* CStateManager::getInstance()
 {
-    if(m_instance == NULL && mouse != NULL && keyboard != NULL ) {
-        m_instance = new CStateManager(mouse, keyboard);
-    }
-
-    return  m_instance;
+	static CStateManager instance;
+	return &instance;
 }
 
 
 CStateManager::~CStateManager()
 {
-
-    forcedPopStack();
-
-    if(m_stateMainMenu != NULL) {
-        delete m_stateMainMenu;
-    }
-    if(m_stateCredits != NULL) {
-        delete m_stateCredits;
-    }
-    if(m_stateMonitor != NULL) {
-            delete m_stateMonitor;
-    }
+    printf("<-- ~CStateManager()\n");
+	forcedPopStack();
 }
 
 
@@ -79,22 +61,22 @@ bool CStateManager::frameEnded(const FrameEvent& evt)
 
 bool CStateManager::frameStarted(const FrameEvent& evt)
 {
-    bool ingame = true;
-    if(!m_stack.empty()) {
-        m_stack.back()->update();
-    } else {
-        ingame = false;
-    }
-    return ingame;
+	CApplication::getInstance()->getMouse()->capture();
+	CApplication::getInstance()->getKeyboard()->capture();
+
+	if( m_stack.empty() ) return false;
+
+	m_stack.back()->update();
+    return true;
 }
 
 
 void CStateManager::popStack()
 {
-    while(!m_stack.empty()) {
-        m_stack.back()->leave();
+    while(!m_stack.empty() && m_stack.back()->leave()) {
         m_stack.pop_back();
     }
+    enterState();
 }
 
 
@@ -102,13 +84,10 @@ void CStateManager::popState()
 {
   // cleanup the current state
   if(!m_stack.empty()) {
-      m_stack.back()->leave();
-      m_stack.pop_back();
-  }
-
-  // enter previous state
-  if(!m_stack.empty()) {
-      m_stack.back()->enter();
+      if( m_stack.back()->leave() ){
+          m_stack.pop_back();
+          enterState();
+      }
   }
 }
 
@@ -122,5 +101,16 @@ void CStateManager::popToState(CState* state)
 void CStateManager::pushState(CState* state)
 {
     m_stack.push_back(state);
-    m_stack.back()->enter();
+    enterState();
+}
+
+void CStateManager::enterState()
+{
+	if( !m_stack.empty() ){
+		CState *state = m_stack.back();
+		CApplication::getInstance()->getMouse()->setEventCallback(state);
+		CApplication::getInstance()->getKeyboard()->setEventCallback(state);
+
+		state->enter();
+	}
 }

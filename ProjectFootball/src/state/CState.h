@@ -47,15 +47,12 @@ public:
     bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 
 protected:
-    OIS::Mouse*    m_mouse;
-    OIS::Keyboard* m_keyboard;
     Ogre::Root*    m_root;
     CEGUI::OgreCEGUIRenderer *m_renderer;
     CEGUI::System *m_system;
     CEGUI::Window *m_sheet;
 
-    CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-    CState() {}
+    CState();
     CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 
 };

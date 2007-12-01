@@ -42,8 +42,7 @@ class CStateManager : public FrameListener
 
 public:
     ~CStateManager();
-    static CStateManager* getInstance(OIS::Mouse *mouse = NULL,
-                                      OIS::Keyboard *keyboard = NULL);
+    static CStateManager* getInstance();
 
     void forcedPopStack();
     bool frameEnded(const FrameEvent& evt);
@@ -54,14 +53,10 @@ public:
     void pushState(CState* state);
 
 protected:
-    CStateManager(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+    CStateManager();
 private:
-    CStateMainMenu *m_stateMainMenu;
-    CStateCredits *m_stateCredits;
-    CStateMonitor *m_stateMonitor;
+	void enterState();
+
     std::vector<CState*> m_stack;
-
-    static CStateManager* m_instance;
-
 };
 #endif // __CStateManager_H__

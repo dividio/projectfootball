@@ -31,8 +31,7 @@
 class CStateCredits : public CState
 {
 public:
-    static CStateCredits* getInstance(OIS::Mouse *mouse = NULL,
-                                      OIS::Keyboard *keyboard = NULL);
+    static CStateCredits* getInstance();
 
     virtual ~CStateCredits();
 
@@ -44,11 +43,7 @@ public:
     bool back(const CEGUI::EventArgs &e);
 
 protected:
-    CStateCredits(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
-
-private:
-    static CStateCredits* m_instance;
-
+    CStateCredits();
 };
 
 #endif // __CStateCredits_H__

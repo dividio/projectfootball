@@ -19,12 +19,14 @@
 ******************************************************************************/
 
 #include "CState.h"
+#include "../CApplication.h"
+#include <stdio.h>
 
 
-CState::CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+CState::CState()
 {
-    m_mouse = mouse;
-    m_keyboard = keyboard;
+    printf("--> CState()\n");
+
     m_root = Ogre::Root::getSingletonPtr();
     m_system = CEGUI::System::getSingletonPtr();
     m_renderer = (CEGUI::OgreCEGUIRenderer *) m_system->getRenderer();
@@ -33,14 +35,18 @@ CState::CState(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 
 CState::~CState()
 {
-
+    printf("<-- ~CState()\n");
 }
 
 
 bool CState::keyPressed(const OIS::KeyEvent& e)
 {
-    m_system->injectKeyDown(e.key);
-    m_system->injectChar(e.text);
+	if( e.key==OIS::KC_ESCAPE ){
+		CStateManager::getInstance()->popState();
+	}else{
+		m_system->injectKeyDown(e.key);
+		m_system->injectChar(e.text);
+	}
 
     return true;
 }

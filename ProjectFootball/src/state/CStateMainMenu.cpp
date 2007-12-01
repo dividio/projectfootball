@@ -21,13 +21,14 @@
 
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
+#include <stdio.h>
 
 
-CStateMainMenu* CStateMainMenu::m_instance = NULL;
-
-CStateMainMenu::CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
- :CState(mouse, keyboard)
+CStateMainMenu::CStateMainMenu()
+ :CState()
 {
+    printf("--> CStateMainMenu()\n");
+
 //    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
 //    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet");
 //
@@ -89,27 +90,21 @@ CStateMainMenu::CStateMainMenu(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 }
 
 
-CStateMainMenu* CStateMainMenu::getInstance(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+CStateMainMenu* CStateMainMenu::getInstance()
 {
-    if(m_instance == NULL && mouse != NULL && keyboard != NULL ) {
-        m_instance = new CStateMainMenu(mouse, keyboard);
-    }
-
-    return  m_instance;
+	static CStateMainMenu instance;
+	return &instance;
 }
 
 
 CStateMainMenu::~CStateMainMenu()
 {
-
+    printf("<-- ~CStateMainMenu()\n");
 }
 
 
 void CStateMainMenu::enter()
 {
-    m_mouse->setEventCallback(this);
-    //m_keyboard->setEventCallback(this);
-
     m_system->setGUISheet(m_sheet);
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
@@ -118,7 +113,7 @@ void CStateMainMenu::enter()
 
 bool CStateMainMenu::quit(const CEGUI::EventArgs &e)
 {
-    CStateManager::getInstance()->popState();
+    CStateManager::getInstance()->popStack();
     return true;
 }
 
@@ -151,12 +146,10 @@ void CStateMainMenu::forcedLeave()
 
 bool CStateMainMenu::leave()
 {
-    return false;
+    return true;
 }
 
 
 void CStateMainMenu::update()
 {
-    //m_keyboard->capture();
-    m_mouse->capture();
 }

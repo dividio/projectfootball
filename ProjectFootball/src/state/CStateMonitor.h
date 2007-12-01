@@ -32,8 +32,7 @@
 class CStateMonitor : public CState
 {
 public:
-    static CStateMonitor* getInstance(OIS::Mouse *mouse = NULL,
-                                      OIS::Keyboard *keyboard = NULL);
+    static CStateMonitor* getInstance();
 
     virtual ~CStateMonitor();
 
@@ -45,10 +44,9 @@ public:
     bool back(const CEGUI::EventArgs &e);
 
 protected:
-    CStateMonitor(OIS::Mouse *mouse, OIS::Keyboard *keyboard);
+    CStateMonitor();
 
 private:
-    static CStateMonitor* m_instance;
     //Ogre::RenderTexture *m_tex;
 
     void renderImage(Ogre::Camera *cam, CEGUI::Window *si);

@@ -20,14 +20,13 @@
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
+#include <stdio.h>
 
 
-CStateMonitor* CStateMonitor::m_instance = NULL;
-
-
-CStateMonitor::CStateMonitor(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
- :CState(mouse, keyboard)
+CStateMonitor::CStateMonitor()
+ :CState()
 {
+    printf("--> CStateMonitor()\n");
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"monitor.layout");
     CEGUI::PushButton *back = (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("Monitor/BackButton");
@@ -46,30 +45,24 @@ CStateMonitor::CStateMonitor(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
     Ogre::MeshManager::getSingleton().createPlane("ground",
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
         1500,1500,20,20,true,1,5,5,Ogre::Vector3::UNIT_Z);
-
 }
 
 
-CStateMonitor* CStateMonitor::getInstance(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+CStateMonitor* CStateMonitor::getInstance()
 {
-    if(m_instance == NULL && mouse != NULL && keyboard != NULL ) {
-        m_instance = new CStateMonitor(mouse, keyboard);
-    }
-
-    return  m_instance;
+	static CStateMonitor instance;
+	return &instance;
 }
 
 
 CStateMonitor::~CStateMonitor()
 {
-
+    printf("<-- ~CStateMonitor()\n");
 }
 
 
 void CStateMonitor::enter()
 {
-    m_mouse->setEventCallback(this);
-    //m_keyboard->setEventCallback(this);
     m_system->setGUISheet(m_sheet);
 
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
@@ -126,12 +119,10 @@ void CStateMonitor::forcedLeave()
 
 bool CStateMonitor::leave()
 {
-    return false;
+    return true;
 }
 
 
 void CStateMonitor::update()
 {
-    //m_keyboard->capture();
-    m_mouse->capture();
 }

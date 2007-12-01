@@ -20,14 +20,13 @@
 
 #include "CStateCredits.h"
 #include "CStateManager.h"
+#include <stdio.h>
 
 
-CStateCredits* CStateCredits::m_instance = NULL;
-
-
-CStateCredits::CStateCredits(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
- :CState(mouse, keyboard)
+CStateCredits::CStateCredits()
+ :CState()
 {
+    printf("--> CStateCredits()\n");
 
 //    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
 //    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet2");
@@ -47,28 +46,22 @@ CStateCredits::CStateCredits(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
 }
 
 
-CStateCredits* CStateCredits::getInstance(OIS::Mouse *mouse, OIS::Keyboard *keyboard)
+CStateCredits* CStateCredits::getInstance()
 {
-    if(m_instance == NULL && mouse != NULL && keyboard != NULL ) {
-        m_instance = new CStateCredits(mouse, keyboard);
-    }
-
-    return  m_instance;
+	static CStateCredits instance;
+	return &instance;
 }
 
 
 CStateCredits::~CStateCredits()
 {
-
+    printf("<-- ~CStateCredits()\n");
 }
 
 
 void CStateCredits::enter()
 {
-    m_mouse->setEventCallback(this);
-    //m_keyboard->setEventCallback(this);
     m_system->setGUISheet(m_sheet);
-
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
@@ -90,12 +83,10 @@ void CStateCredits::forcedLeave()
 
 bool CStateCredits::leave()
 {
-    return false;
+    return true;
 }
 
 
 void CStateCredits::update()
 {
-    //m_keyboard->capture();
-    m_mouse->capture();
 }
