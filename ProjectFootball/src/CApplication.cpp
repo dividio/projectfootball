@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include "CApplication.h"
+#include "utils/CLog.h"
 #include <stdio.h>
 
 ExitListener::ExitListener(OIS::Keyboard *keyboard)
@@ -36,7 +37,7 @@ bool ExitListener::frameStarted(const FrameEvent& evt)
 
 CApplication::CApplication()
 {
-    printf("--> CApplication()\n");
+	CLog::getInstance()->debug("CApplication()");
 
     createRoot();
     defineResources();
@@ -51,7 +52,7 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-    printf("<-- ~CApplication()\n");
+	CLog::getInstance()->debug("~CApplication()");
 
     m_inputManager->destroyInputObject(m_keyboard);
     m_inputManager->destroyInputObject(m_mouse);
