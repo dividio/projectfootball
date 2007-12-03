@@ -20,13 +20,14 @@
 
 #include "CStateCredits.h"
 #include "CStateManager.h"
+#include "../utils/CLog.h"
 #include <stdio.h>
 
 
 CStateCredits::CStateCredits()
  :CState()
 {
-    printf("--> CStateCredits()\n");
+	CLog::getInstance()->debug("CStateCredits()");
 
 //    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
 //    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet2");
@@ -55,7 +56,7 @@ CStateCredits* CStateCredits::getInstance()
 
 CStateCredits::~CStateCredits()
 {
-    printf("<-- ~CStateCredits()\n");
+	CLog::getInstance()->debug("~CStateCredits()");
 }
 
 

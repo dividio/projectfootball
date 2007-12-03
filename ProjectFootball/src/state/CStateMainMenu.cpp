@@ -21,13 +21,14 @@
 
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
+#include "../utils/CLog.h"
 #include <stdio.h>
 
 
 CStateMainMenu::CStateMainMenu()
  :CState()
 {
-    printf("--> CStateMainMenu()\n");
+	CLog::getInstance()->debug("CStateMainMenu()");
 
 //    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
 //    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet");
@@ -99,7 +100,7 @@ CStateMainMenu* CStateMainMenu::getInstance()
 
 CStateMainMenu::~CStateMainMenu()
 {
-    printf("<-- ~CStateMainMenu()\n");
+	CLog::getInstance()->debug("~CStateMainMenu()");
 }
 
 

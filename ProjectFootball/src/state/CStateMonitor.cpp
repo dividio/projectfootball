@@ -20,13 +20,14 @@
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
+#include "../utils/CLog.h"
 #include <stdio.h>
 
 
 CStateMonitor::CStateMonitor()
  :CState()
 {
-    printf("--> CStateMonitor()\n");
+	CLog::getInstance()->debug("CStateMonitor()");
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"monitor.layout");
     CEGUI::PushButton *back = (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("Monitor/BackButton");
@@ -57,7 +58,7 @@ CStateMonitor* CStateMonitor::getInstance()
 
 CStateMonitor::~CStateMonitor()
 {
-    printf("<-- ~CStateMonitor()\n");
+	CLog::getInstance()->debug("~CStateMonitor()");
 }
 
 

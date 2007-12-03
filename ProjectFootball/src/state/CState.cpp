@@ -19,13 +19,14 @@
 ******************************************************************************/
 
 #include "CState.h"
+#include "../utils/CLog.h"
 #include "../CApplication.h"
 #include <stdio.h>
 
 
 CState::CState()
 {
-    printf("--> CState()\n");
+	CLog::getInstance()->debug("CState()");
 
     m_root = Ogre::Root::getSingletonPtr();
     m_system = CEGUI::System::getSingletonPtr();
@@ -35,7 +36,7 @@ CState::CState()
 
 CState::~CState()
 {
-    printf("<-- ~CState()\n");
+	CLog::getInstance()->debug("~CState()");
 }
 
 

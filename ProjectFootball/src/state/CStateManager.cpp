@@ -19,13 +19,14 @@
 ******************************************************************************/
 
 #include "CStateManager.h"
+#include "../utils/CLog.h"
 #include "../CApplication.h"
 #include <stdio.h>
 
 CStateManager::CStateManager()
 	:m_stack()
 {
-    printf("--> CStateManager()\n");
+	CLog::getInstance()->debug("CStateManager()");
 }
 
 
@@ -38,7 +39,7 @@ CStateManager* CStateManager::getInstance()
 
 CStateManager::~CStateManager()
 {
-    printf("<-- ~CStateManager()\n");
+	CLog::getInstance()->debug("~CStateManager()");
 	forcedPopStack();
 }
 
