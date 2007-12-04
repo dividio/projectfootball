@@ -18,15 +18,16 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CState.h"
-#include "../utils/CLog.h"
-#include "../CApplication.h"
 #include <stdio.h>
+
+#include "CState.h"
+#include "CStateManager.h"
+#include "../utils/CLog.h"
 
 
 CState::CState()
 {
-	CLog::getInstance()->debug("CState()");
+  CLog::getInstance()->debug("CState()");
 
     m_root = Ogre::Root::getSingletonPtr();
     m_system = CEGUI::System::getSingletonPtr();
@@ -36,18 +37,18 @@ CState::CState()
 
 CState::~CState()
 {
-	CLog::getInstance()->debug("~CState()");
+  CLog::getInstance()->debug("~CState()");
 }
 
 
 bool CState::keyPressed(const OIS::KeyEvent& e)
 {
-	if( e.key==OIS::KC_ESCAPE ){
-		CStateManager::getInstance()->popState();
-	}else{
-		m_system->injectKeyDown(e.key);
-		m_system->injectChar(e.text);
-	}
+  if( e.key==OIS::KC_ESCAPE ){
+    CStateManager::getInstance()->popState();
+  }else{
+    m_system->injectKeyDown(e.key);
+    m_system->injectChar(e.text);
+  }
 
     return true;
 }

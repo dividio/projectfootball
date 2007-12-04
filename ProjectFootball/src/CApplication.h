@@ -26,8 +26,6 @@
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
-#include "state/CStateManager.h"
-
 using namespace Ogre;
 
 
@@ -55,7 +53,7 @@ public:
     OIS::Keyboard* getKeyboard();
 
 protected:
-	CApplication();
+  CApplication();
 
 private:
 

@@ -18,12 +18,16 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CApplication.h"
-#include "utils/CLog.h"
 #include <stdio.h>
 
+#include "CApplication.h"
+#include "state/CStateManager.h"
+#include "utils/CLuaManager.h"
+#include "utils/CLog.h"
+
+
 ExitListener::ExitListener(OIS::Keyboard *keyboard)
-	: m_Keyboard(keyboard)
+  : m_Keyboard(keyboard)
 {
 }
 
@@ -37,7 +41,7 @@ bool ExitListener::frameStarted(const FrameEvent& evt)
 
 CApplication::CApplication()
 {
-	CLog::getInstance()->debug("CApplication()");
+  CLog::getInstance()->debug("CApplication()");
 
     createRoot();
     defineResources();
@@ -52,7 +56,7 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-	CLog::getInstance()->debug("~CApplication()");
+  CLog::getInstance()->debug("~CApplication()");
 
     m_inputManager->destroyInputObject(m_keyboard);
     m_inputManager->destroyInputObject(m_mouse);
@@ -70,29 +74,29 @@ CApplication::~CApplication()
 
 CApplication* CApplication::getInstance()
 {
-	static CApplication instance;
-	return &instance;
+  static CApplication instance;
+  return &instance;
 }
 
 void CApplication::go()
 {
-	CStateManager::getInstance()->pushState(CStateMainMenu::getInstance());
-	startRenderLoop();
+  CStateManager::getInstance()->pushState(CStateMainMenu::getInstance());
+  startRenderLoop();
 }
 
 void CApplication::exit()
 {
-	CStateManager::getInstance()->popStack();
+  CStateManager::getInstance()->popStack();
 }
 
 OIS::Mouse* CApplication::getMouse()
 {
-	return m_mouse;
+  return m_mouse;
 }
 
 OIS::Keyboard* CApplication::getKeyboard()
 {
-	return m_keyboard;
+  return m_keyboard;
 }
 
 void CApplication::createRoot()
@@ -194,6 +198,7 @@ void CApplication::createFrameListener()
     m_listener = new ExitListener(m_keyboard);
 //    m_root->addFrameListener(m_listener);
     m_root->addFrameListener(CStateManager::getInstance());
+
 }
 
 void CApplication::startRenderLoop()
@@ -219,25 +224,25 @@ int main(int argc, char **argv)
         app->go();
     }
     catch(Exception &e){
-		#if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-        	MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
-		#else
-        	fprintf(stderr, "An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
-		#endif
+    #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+          MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+    #else
+          fprintf(stderr, "An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
+    #endif
     }
     catch(CEGUI::Exception &e){
-		#if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-        	MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
-		#else
-        	fprintf(stderr, "An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
-		#endif
+    #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+          MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+    #else
+          fprintf(stderr, "An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
+    #endif
     }
     catch(...){
-		#if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-			MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
-		#else
-			fprintf(stderr, "Unexpected exception!");
-		#endif
+    #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+      MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+    #else
+      fprintf(stderr, "Unexpected exception!");
+    #endif
     }
 
     return 0;
