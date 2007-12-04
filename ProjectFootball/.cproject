@@ -24,6 +24,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.277299267" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.63830879" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
+<listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
 </option>
@@ -37,6 +38,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1131655999" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.1331932228" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="sqlite3"/>
+<listOptionValue builtIn="false" value="lua5.1"/>
 <listOptionValue builtIn="false" value="openal"/>
 <listOptionValue builtIn="false" value="OIS"/>
 <listOptionValue builtIn="false" value="CEGUIBase"/>
