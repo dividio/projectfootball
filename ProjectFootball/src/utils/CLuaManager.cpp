@@ -26,9 +26,10 @@ CLuaManager::CLuaManager()
     CLog::getInstance()->debug("CLuaManager()");
     m_luaVM = luaL_newstate();
     if(NULL == m_luaVM) {
-        CLog::getInstance()->error("Error Initializing lua");
+        CLog::getInstance()->error("Error initializing lua");
     } else {
         luaL_openlibs(m_luaVM);
+        luaopen_PF(m_luaVM);
     }
 }
 

@@ -23,9 +23,11 @@
 
 extern "C"
 {
- #include <lua.h>
- #include <lualib.h>
- #include <lauxlib.h>
+    #include <lua.h>
+    #include <lualib.h>
+    #include <lauxlib.h>
+
+    int luaopen_PF(lua_State* L); // declare the wrapped module
 }
 
 class CLuaManager
