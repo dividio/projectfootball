@@ -23,15 +23,16 @@
 
 class IAudioFile
 {
-
 public:
-  IAudioFile() { }
+	IAudioFile() { }
 
-  virtual ~IAudioFile() { }
+	virtual ~IAudioFile() { }
 
-  virtual void pause() =0;
-  virtual void play() =0;
-  virtual void stop() =0;
-
+	virtual bool isPaused() =0;
+	virtual bool isPlaying() =0;
+	virtual void pause() =0;
+	virtual void play() =0;
+	virtual void stop() =0;
+	virtual void update() =0;
 };
 #endif // __IAudioFile_H__

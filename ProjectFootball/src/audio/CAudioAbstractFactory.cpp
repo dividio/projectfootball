@@ -20,7 +20,7 @@
 
 #include "CAudioAbstractFactory.h"
 #include "IAudioFactory.h"
-#include "CAudioFactoryOpenAL.h"
+#include "openal/CAudioFactoryOpenAL.h"
 
 IAudioFactory* CAudioAbstractFactory::m_instance = 0;
 
@@ -38,9 +38,9 @@ CAudioAbstractFactory::~CAudioAbstractFactory()
 
 IAudioFactory* CAudioAbstractFactory::getIAudioFactory()
 {
-    int tipe = 1;
+    int type = 1;
     if (m_instance==0) {
-        switch (tipe) {
+        switch (type) {
             case 1:
                 m_instance = CAudioFactoryOpenAL::getInstance();
                 break;

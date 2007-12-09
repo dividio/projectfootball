@@ -18,21 +18,34 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CAudioFileOpenAL_H__
-#define __CAudioFileOpenAL_H__
+#ifndef __CAudioFactoryOpenAL_H__
+#define __CAudioFactoryOpenAL_H__
 
-#include "IAudioFile.h"
+#include <list>
+#include <string>
 
-class CAudioFileOpenAL : public IAudioFile
+#include <AL/al.h>
+#include <AL/alc.h>
+
+#include "../IAudioFile.h"
+#include "../IAudioFactory.h"
+
+class CAudioFactoryOpenAL : public IAudioFactory
 {
-
+friend class CAudioAbstractFactory;
 public:
-  CAudioFileOpenAL();
-  virtual ~CAudioFileOpenAL();
+	virtual ~CAudioFactoryOpenAL();
+	virtual IAudioFile * createAudioFile(std::string filepath);
 
-  virtual void pause();
-  virtual void play();
-  virtual void stop();
+private:
+    CAudioFactoryOpenAL();
+    IAudioFile* createDummyAudioFile();
+    IAudioFile* createOGGAudioFile( std::string filepath );
 
+    static CAudioFactoryOpenAL* getInstance();
+
+    ALCdevice *m_device;
+    ALCcontext *m_context;
+    std::list<IAudioFile*> m_audioFileList;
 };
-#endif // __CAudioFileOpenAL_H__
+#endif // __CAudioFactoryOpenAL_H__

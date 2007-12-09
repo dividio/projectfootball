@@ -21,6 +21,7 @@
 #ifndef __IAudioFactory_H__
 #define __IAudioFactory_H__
 
+#include <string>
 #include "IAudioFile.h"
 
 class IAudioFactory
@@ -29,7 +30,7 @@ class IAudioFactory
 public:
   virtual ~IAudioFactory() {}
 
-  virtual IAudioFile* createAudioFile(char * filepath) =0;
+  virtual IAudioFile* createAudioFile(std::string filepath) =0;
 
 };
 #endif // __IAudioFactory_H__
