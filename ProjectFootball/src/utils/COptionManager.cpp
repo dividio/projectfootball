@@ -52,7 +52,7 @@ char * trim( char *s )
     while( i>=0 && isspace(s[i]) ){
       i--;
     }
-    s[i] = '\0';  // Remove '\n' character
+    s[i+1] = '\0';
 
     return s;
 }
@@ -130,6 +130,7 @@ COptionManager::COptionManager()
                 }
             }else{
               // else, then it's a assignment
+              sentence[strlen(sentence)-1] = '\0'; // Remove '\n'
               getAssignment(option, value, sentence);
               setStringOption(category, option, value);
            }
