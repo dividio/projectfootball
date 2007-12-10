@@ -58,12 +58,12 @@ protected:
 private:
 
     Root 						*m_root;
+    RenderWindow                *m_window;
     OIS::Keyboard 				*m_keyboard;
     OIS::Mouse 					*m_mouse;
     OIS::InputManager 			*m_inputManager;
     CEGUI::OgreCEGUIRenderer 	*m_renderer;
     CEGUI::System 				*m_system;
-    ExitListener 				*m_listener;
 
     void createRoot();
     void defineResources();

@@ -23,25 +23,13 @@
 #include "CApplication.h"
 #include "state/CStateManager.h"
 #include "utils/CLuaManager.h"
+#include "utils/COptionManager.h"
 #include "utils/CLog.h"
-
-
-ExitListener::ExitListener(OIS::Keyboard *keyboard)
-  : m_Keyboard(keyboard)
-{
-}
-
-bool ExitListener::frameStarted(const FrameEvent& evt)
-{
-    m_Keyboard->capture();
-    return true;
-//    return !m_Keyboard->isKeyDown(OIS::KC_ESCAPE);
-}
 
 
 CApplication::CApplication()
 {
-  CLog::getInstance()->debug("CApplication()");
+    CLog::getInstance()->debug("CApplication()");
 
     createRoot();
     defineResources();
@@ -56,52 +44,51 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-  CLog::getInstance()->debug("~CApplication()");
+    CLog::getInstance()->debug("~CApplication()");
 
     m_inputManager->destroyInputObject(m_keyboard);
     m_inputManager->destroyInputObject(m_mouse);
     OIS::InputManager::destroyInputSystem(m_inputManager);
 
     if(m_system != NULL)
-      delete m_system;
+        delete m_system;
 
     if(m_renderer != NULL)
-      delete m_renderer;
+        delete m_renderer;
 
-    delete m_listener;
     delete m_root;
 }
 
 CApplication* CApplication::getInstance()
 {
-  static CApplication instance;
-  return &instance;
+    static CApplication instance;
+    return &instance;
 }
 
 void CApplication::go()
 {
-  CStateManager::getInstance()->pushState(CStateMainMenu::getInstance());
-  startRenderLoop();
+    CStateManager::getInstance()->pushState(CStateMainMenu::getInstance());
+    startRenderLoop();
 }
 
 void CApplication::exit()
 {
-  CStateManager::getInstance()->popStack();
+    CStateManager::getInstance()->popStack();
 }
 
 OIS::Mouse* CApplication::getMouse()
 {
-  return m_mouse;
+    return m_mouse;
 }
 
 OIS::Keyboard* CApplication::getKeyboard()
 {
-  return m_keyboard;
+    return m_keyboard;
 }
 
 void CApplication::createRoot()
 {
-    m_root = new Root();
+    m_root = new Root("plugins.cfg", "");
 }
 
 void CApplication::defineResources()
@@ -125,16 +112,40 @@ void CApplication::defineResources()
 
 void CApplication::setupRenderSystem()
 {
-    if (!m_root->restoreConfig() && !m_root->showConfigDialog()) {
-        throw Exception(52, "User canceled the config dialog!", "Application::setupRenderSystem()");
+    Ogre::RenderSystemList *renderSystems = NULL;
+    Ogre::RenderSystemList::iterator r_it;
+
+    COptionManager *op = COptionManager::getInstance();
+    std::string val = op->getStringOption("Video","RenderSystem", "OpenGL Rendering Subsystem");
+    renderSystems = m_root->getAvailableRenderers();
+
+    bool renderSystemFound = false;
+    for (r_it=renderSystems->begin(); r_it!=renderSystems->end(); r_it++) {
+        RenderSystem *tmp = *r_it;
+        std::string rName(tmp->getName());
+
+        // returns -1 if string not found
+        if ((int) rName.find(val) >= 0) {
+            m_root->setRenderSystem(*r_it);
+            renderSystemFound = true;
+            break;
+        }
+    }
+
+    if (!renderSystemFound) {
+        CLog::getInstance()->exception("Specified render system (%s) not found, exiting...", val.c_str());
     }
 
 }
 
 void CApplication::createRenderWindow()
 {
-    m_root->initialise(true, "Project Football");
-
+    COptionManager *op = COptionManager::getInstance();
+    int width = op->getIntOption("Video","width", 800);
+    int height = op->getIntOption("Video","height", 600);
+    bool fullscreen = op->getBooleanOption("Video","fullscreen", false);
+    m_root->initialise(false);
+    m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen);
 }
 
 void CApplication::initializeResourceGroups()
@@ -147,7 +158,7 @@ void CApplication::setupScene()
 {
     SceneManager *mgr = m_root->createSceneManager(ST_GENERIC, "Default SceneManager");
     Camera *cam = mgr->createCamera("Camera");
-    Viewport *vp = m_root->getAutoCreatedWindow()->addViewport(cam);
+    Viewport *vp = m_window->addViewport(cam);
     vp->setSkiesEnabled(false);
 }
 
@@ -156,9 +167,8 @@ void CApplication::setupInputSystem()
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
     OIS::ParamList pl;
-    RenderWindow *win = m_root->getAutoCreatedWindow();
 
-    win->getCustomAttribute("WINDOW", &windowHnd);
+    m_window->getCustomAttribute("WINDOW", &windowHnd);
     windowHndStr << windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
     m_inputManager = OIS::InputManager::createInputSystem(pl);
@@ -178,10 +188,9 @@ void CApplication::setupInputSystem()
 void CApplication::setupCEGUI()
 {
     SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    RenderWindow *win = m_root->getAutoCreatedWindow();
 
     // CEGUI setup
-    m_renderer = new CEGUI::OgreCEGUIRenderer(win, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
+    m_renderer = new CEGUI::OgreCEGUIRenderer(m_window, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
     CEGUI::System::setDefaultXMLParserName("TinyXMLParser");
     m_system = new CEGUI::System(m_renderer);
 
@@ -195,19 +204,16 @@ void CApplication::setupCEGUI()
 
 void CApplication::createFrameListener()
 {
-    m_listener = new ExitListener(m_keyboard);
-//    m_root->addFrameListener(m_listener);
     m_root->addFrameListener(CStateManager::getInstance());
-
 }
 
 void CApplication::startRenderLoop()
 {
     m_root->startRendering();
-//	while( m_root->renderOneFrame() ){
-//		m_mouse->capture();
-//		m_keyboard->capture();
-//	}
+//  while( m_root->renderOneFrame() ){
+//    m_mouse->capture();
+//    m_keyboard->capture();
+//  }
 }
 
 #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
@@ -220,8 +226,10 @@ int main(int argc, char **argv)
 #endif
 {
     try{
+        CLuaManager* lua = CLuaManager::getInstance();
         CApplication *app = CApplication::getInstance();
         app->go();
+        lua->runScript("data/scripts/prueba.lua");
     }
     catch(Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
