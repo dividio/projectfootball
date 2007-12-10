@@ -229,7 +229,6 @@ int main(int argc, char **argv)
         CLuaManager* lua = CLuaManager::getInstance();
         CApplication *app = CApplication::getInstance();
         app->go();
-        lua->runScript("data/scripts/prueba.lua");
     }
     catch(Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
