@@ -93,19 +93,23 @@ void CApplication::createRoot()
 
 void CApplication::defineResources()
 {
-    String secName, typeName, archName;
+    Ogre::String secName, typeName, archName;
     ConfigFile cf;
     cf.load("resources.cfg");
 
+    Ogre::String skin = COptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
     ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements()) {
         secName = seci.peekNextKey();
+
         ConfigFile::SettingsMultiMap *settings = seci.getNext();
         ConfigFile::SettingsMultiMap::iterator i;
-        for (i = settings->begin(); i != settings->end(); ++i) {
-            typeName = i->first;
-            archName = i->second;
-            ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
+        if(secName.compare("General") == 0 || secName.compare(skin) == 0) {
+            for (i = settings->begin(); i != settings->end(); ++i) {
+                typeName = i->first;
+                archName = i->second;
+                ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
+            }
         }
     }
 }
@@ -141,9 +145,9 @@ void CApplication::setupRenderSystem()
 void CApplication::createRenderWindow()
 {
     COptionManager *op = COptionManager::getInstance();
-    int width = op->getIntOption("Video","width", 800);
-    int height = op->getIntOption("Video","height", 600);
-    bool fullscreen = op->getBooleanOption("Video","fullscreen", false);
+    int width = op->getIntOption("Video","Width", 800);
+    int height = op->getIntOption("Video","Height", 600);
+    bool fullscreen = op->getBooleanOption("Video","Fullscreen", false);
     m_root->initialise(false);
     m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen);
 }
@@ -151,7 +155,9 @@ void CApplication::createRenderWindow()
 void CApplication::initializeResourceGroups()
 {
     TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+    std::string skin = COptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
+    ResourceGroupManager::getSingleton().initialiseResourceGroup("General");
+    ResourceGroupManager::getSingleton().initialiseResourceGroup(skin.c_str());
 }
 
 void CApplication::setupScene()
@@ -197,9 +203,7 @@ void CApplication::setupCEGUI()
     // Other CEGUI setup here.
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"WindowsLook.scheme");
-    //CEGUI::ImagesetManager::getSingletonPtr()->createImageset( "MenuBackground.imageset");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
-    m_system->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
 }
 
 void CApplication::createFrameListener()
@@ -232,23 +236,23 @@ int main(int argc, char **argv)
     }
     catch(Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-          MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
     #else
-          fprintf(stderr, "An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
+        CLog::getInstance()->error("An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
     #endif
     }
     catch(CEGUI::Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-          MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
     #else
-          fprintf(stderr, "An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
+        CLog::getInstance()->error("An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
     #endif
     }
     catch(...){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-      MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
     #else
-      fprintf(stderr, "Unexpected exception!");
+        CLog::getInstance()->error("Unexpected exception!");
     #endif
     }
 
