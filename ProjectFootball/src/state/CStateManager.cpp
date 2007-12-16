@@ -95,7 +95,10 @@ void CStateManager::popState()
 
 void CStateManager::popToState(CState* state)
 {
-
+    while(!m_stack.empty() && m_stack.back()!=state && m_stack.back()->leave()) {
+        m_stack.pop_back();
+    }
+    enterState();
 }
 
 
