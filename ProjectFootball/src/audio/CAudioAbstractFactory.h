@@ -25,17 +25,15 @@
 
 class CAudioAbstractFactory
 {
-private:
-
-    static IAudioFactory* m_instance;
+public:
+    virtual ~CAudioAbstractFactory();
+    static IAudioFactory* getIAudioFactory();
 
 protected:
     CAudioAbstractFactory();
 
-public:
-  virtual ~CAudioAbstractFactory();
-
-  static IAudioFactory* getIAudioFactory();
+private:
+    static IAudioFactory* m_instance;
 
 };
 #endif // __CAudioAbstractFactory_H__
