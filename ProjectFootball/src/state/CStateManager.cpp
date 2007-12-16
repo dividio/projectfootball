@@ -112,9 +112,6 @@ void CStateManager::enterState()
 {
 	if( !m_stack.empty() ){
 		CState *state = m_stack.back();
-		CApplication::getInstance()->getMouse()->setEventCallback(state);
-		CApplication::getInstance()->getKeyboard()->setEventCallback(state);
-
 		state->enter();
 	}
 }

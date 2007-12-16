@@ -28,8 +28,7 @@
 #include <OgreCEGUIRenderer.h>
 
 
-class CState:
-    public OIS::MouseListener, public OIS::KeyListener
+class CState
 {
 
 public:
@@ -40,12 +39,6 @@ public:
     virtual bool leave() = 0;
     virtual void update() = 0;
 
-    bool keyPressed(const OIS::KeyEvent& e);
-    bool keyReleased(const OIS::KeyEvent& e);
-    bool mouseMoved(const OIS::MouseEvent& e);
-    bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-    bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
-
 protected:
     Ogre::Root*    m_root;
     CEGUI::OgreCEGUIRenderer *m_renderer;
@@ -53,7 +46,5 @@ protected:
     CEGUI::Window *m_sheet;
 
     CState();
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
-
 };
 #endif // __CState_H__

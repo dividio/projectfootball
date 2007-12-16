@@ -27,7 +27,7 @@
 
 CState::CState()
 {
-  CLog::getInstance()->debug("CState()");
+    CLog::getInstance()->debug("CState()");
 
     m_root = Ogre::Root::getSingletonPtr();
     m_system = CEGUI::System::getSingletonPtr();
@@ -38,65 +38,4 @@ CState::CState()
 CState::~CState()
 {
   CLog::getInstance()->debug("~CState()");
-}
-
-
-bool CState::keyPressed(const OIS::KeyEvent& e)
-{
-  if( e.key==OIS::KC_ESCAPE ){
-    CStateManager::getInstance()->popState();
-  }else{
-    m_system->injectKeyDown(e.key);
-    m_system->injectChar(e.text);
-  }
-
-    return true;
-}
-
-
-bool CState::keyReleased(const OIS::KeyEvent& e)
-{
-    m_system->injectKeyUp(e.key);
-    return true;
-}
-
-
-
-bool CState::mouseMoved(const OIS::MouseEvent& e)
-{
-    m_system->injectMouseMove(e.state.X.rel, e.state.Y.rel);
-    return true;
-}
-
-
-bool CState::mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id)
-{
-    m_system->injectMouseButtonDown(convertButton(id));
-    return true;
-}
-
-
-bool CState::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id)
-{
-    m_system->injectMouseButtonUp(convertButton(id));
-    return true;
-}
-
-
-CEGUI::MouseButton CState::convertButton(OIS::MouseButtonID buttonID)
-{
-    switch (buttonID)
-    {
-    case OIS::MB_Left:
-        return CEGUI::LeftButton;
-
-    case OIS::MB_Right:
-        return CEGUI::RightButton;
-
-    case OIS::MB_Middle:
-        return CEGUI::MiddleButton;
-
-    default:
-        return CEGUI::LeftButton;
-    }
 }

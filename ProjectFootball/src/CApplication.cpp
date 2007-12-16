@@ -22,6 +22,7 @@
 
 #include "CApplication.h"
 #include "state/CStateManager.h"
+#include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
 #include "utils/COptionManager.h"
 #include "utils/CLog.h"
@@ -37,8 +38,8 @@ CApplication::CApplication()
     createRenderWindow();
     initializeResourceGroups();
     setupScene();
-    setupInputSystem();
     setupCEGUI();
+    setupInputSystem();
     createFrameListener();
 }
 
@@ -184,6 +185,9 @@ void CApplication::setupInputSystem()
         m_keyboard = static_cast<OIS::Keyboard*>(m_inputManager->createInputObject(OIS::OISKeyboard, true));
         m_mouse = static_cast<OIS::Mouse*>(m_inputManager->createInputObject(OIS::OISMouse, true));
         //mJoy = static_cast<OIS::JoyStick*>(mInputManager->createInputObject(OIS::OISJoyStick, false));
+
+        m_keyboard->setEventCallback(CInputManager::getInstance());
+        m_mouse->setEventCallback(CInputManager::getInstance());
     }
     catch (const OIS::Exception &e)
     {
