@@ -21,6 +21,7 @@
 #include <stdio.h>
 
 #include "CApplication.h"
+#include "audio/CAudioFrameListener.h"
 #include "state/CStateManager.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
@@ -40,7 +41,7 @@ CApplication::CApplication()
     setupScene();
     setupCEGUI();
     setupInputSystem();
-    createFrameListener();
+    createFrameListeners();
 }
 
 CApplication::~CApplication()
@@ -210,9 +211,10 @@ void CApplication::setupCEGUI()
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 }
 
-void CApplication::createFrameListener()
+void CApplication::createFrameListeners()
 {
     m_root->addFrameListener(CStateManager::getInstance());
+    m_root->addFrameListener(CAudioFrameListener::getInstance());
 }
 
 void CApplication::startRenderLoop()

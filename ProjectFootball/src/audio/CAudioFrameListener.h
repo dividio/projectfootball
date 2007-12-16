@@ -18,64 +18,23 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CAPPLICATION_H__
-#define __CAPPLICATION_H__
+#ifndef CAUDIOFRAMELISTENER_H_
+#define CAUDIOFRAMELISTENER_H_
 
 #include <Ogre.h>
-#include <OIS/OIS.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-using namespace Ogre;
-
-
-class ExitListener : public FrameListener
+class CAudioFrameListener : public Ogre::FrameListener
 {
 public:
-    ExitListener(OIS::Keyboard *keyboard);
+	virtual ~CAudioFrameListener();
+	static CAudioFrameListener* getInstance();
 
-    bool frameStarted(const FrameEvent& evt);
-
-private:
-    OIS::Keyboard *m_Keyboard;
-};
-
-
-class CApplication
-{
-public:
-    ~CApplication();
-    static CApplication* getInstance();
-
-    void go();
-    void exit();
-    OIS::Mouse* getMouse();
-    OIS::Keyboard* getKeyboard();
+	bool frameEnded(const Ogre::FrameEvent& evt);
+    bool frameStarted(const Ogre::FrameEvent& evt);
 
 protected:
-  CApplication();
+    CAudioFrameListener();
 
-private:
-
-    Root 						*m_root;
-    RenderWindow                *m_window;
-    OIS::Keyboard 				*m_keyboard;
-    OIS::Mouse 					*m_mouse;
-    OIS::InputManager 			*m_inputManager;
-    CEGUI::OgreCEGUIRenderer 	*m_renderer;
-    CEGUI::System 				*m_system;
-
-    void createRoot();
-    void defineResources();
-    void setupRenderSystem();
-    void createRenderWindow();
-    void initializeResourceGroups();
-    void setupScene();
-    void setupInputSystem();
-    void setupCEGUI();
-    void createFrameListeners();
-    void startRenderLoop();
 };
 
-
-#endif // __CAPPLICATION_H__
+#endif /*CAUDIOFRAMELISTENER_H_*/
