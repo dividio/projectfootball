@@ -59,6 +59,16 @@ CAudioFactoryOpenAL* CAudioFactoryOpenAL::getInstance()
     return &instance;
 }
 
+void CAudioFactoryOpenAL::updateIAudioFiles()
+{
+    for( std::list<IAudioFile*>::iterator itAudioFiles = m_audioFileList.begin(); itAudioFiles!=m_audioFileList.end(); itAudioFiles++ ){
+        IAudioFile *audioFile = *itAudioFiles;
+        if( audioFile->isPlaying() ){
+            audioFile->update();
+        }
+    }
+}
+
 
 IAudioFile * CAudioFactoryOpenAL::createAudioFile( std::string filepath )
 {

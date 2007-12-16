@@ -31,6 +31,6 @@ public:
   virtual ~IAudioFactory() {}
 
   virtual IAudioFile* createAudioFile(std::string filepath) =0;
-
+  virtual void updateIAudioFiles() =0;
 };
 #endif // __IAudioFactory_H__

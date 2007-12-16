@@ -36,6 +36,7 @@ friend class CAudioAbstractFactory;
 public:
 	virtual ~CAudioFactoryOpenAL();
 	virtual IAudioFile * createAudioFile(std::string filepath);
+	virtual void updateIAudioFiles();
 
 private:
     CAudioFactoryOpenAL();
