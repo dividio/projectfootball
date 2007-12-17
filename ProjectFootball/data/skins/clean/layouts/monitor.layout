@@ -10,6 +10,7 @@
             <Property Name="Text" Value="Back" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.340404,0},{0.908109,0},{0.620707,0},{0.970609,0}}" />
+            <Event Name="Clicked" Function="cmd_back" />
         </Window>
         <Window Type="TaharezLook/StaticImage" Name="Monitor/Image" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
