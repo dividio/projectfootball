@@ -18,45 +18,31 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CLUAMANAGER_H__
-#define __CLUAMANAGER_H__
+#ifndef __CLuaFunctor_H__
+#define __CLuaFunctor_H__
 
-extern "C"
-{
-    #include <lua.h>
-    #include <lualib.h>
-    #include <lauxlib.h>
+#include "CEGUI.h"
 
-    int luaopen_PF(lua_State* L); // declare the wrapped module
-    int luaopen_CEGUI(lua_State* L);
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
 }
 
-#include "CEGUIScriptModule.h"
-
-class CLuaManager: public CEGUI::ScriptModule
+class CLuaFunctor
 {
 public:
-    static CLuaManager* getInstance();
+  CLuaFunctor();
+  CLuaFunctor(lua_State* state, const CEGUI::String& func);
+  ~CLuaFunctor();
 
-    virtual ~CLuaManager();
+  bool operator()(const CEGUI::EventArgs& args) const;
 
-    void executeScriptFile(const CEGUI::String& filename, const CEGUI::String& resourceGroup);
-    int executeScriptGlobal(const CEGUI::String& function_name);
-    bool executeScriptedEventHandler(const CEGUI::String& handler_name, const CEGUI::EventArgs& e);
-    void executeString(const CEGUI::String& str);
-    CEGUI::Event::Connection subscribeEvent(CEGUI::EventSet* target,
-        const CEGUI::String& name, const CEGUI::String& subscriber_name);
-    CEGUI::Event::Connection subscribeEvent(CEGUI::EventSet* target,
-        const CEGUI::String& name, CEGUI::Event::Group group, const CEGUI::String& subscriber_name);
-    void createBindings(void);
-    void destroyBindings(void);
-
-    void runScript(char* file);
-
-protected:
-    lua_State* m_luaVM;
-
-    CLuaManager();
+private:
+  mutable CEGUI::String m_function;
+  mutable int m_index;
+  lua_State* m_luaVM;
+  mutable bool m_initFlag;
 };
 
-#endif // __CLUAMANAGER_H__
+#endif // __CLuaFunctor_H__
