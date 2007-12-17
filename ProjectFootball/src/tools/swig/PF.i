@@ -1,4 +1,8 @@
 %module PF
+%{
+#define SWIG_init_user SWIG_init_user_PF
+%}
 
-%include DAO.i
-%include CLog.i
+%include PF/DAO.i
+%include PF/CLog.i
+%include PF/States.i
