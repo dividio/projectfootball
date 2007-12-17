@@ -40,8 +40,6 @@ public:
     virtual bool leave();
     virtual void update();
 
-    bool back(const CEGUI::EventArgs &e);
-
 protected:
     CStateCredits();
 };

@@ -202,13 +202,18 @@ void CApplication::setupCEGUI()
 
     // CEGUI setup
     m_renderer = new CEGUI::OgreCEGUIRenderer(m_window, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
+    CEGUI::ScriptModule* script_module = CLuaManager::getInstance();
     CEGUI::System::setDefaultXMLParserName("TinyXMLParser");
-    m_system = new CEGUI::System(m_renderer);
+    m_system = new CEGUI::System(m_renderer, 0, 0, script_module);
+
+    CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
 
     // Other CEGUI setup here.
+    // TODO CLuaManager::getInstance()->runScript("data/skins/default/lua_scripts/initCEGUI.lua");
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"WindowsLook.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
+
 }
 
 void CApplication::createFrameListeners()

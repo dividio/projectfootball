@@ -27,12 +27,9 @@
 CStateMonitor::CStateMonitor()
  :CState()
 {
-	CLog::getInstance()->debug("CStateMonitor()");
+  CLog::getInstance()->debug("CStateMonitor()");
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"monitor.layout");
-    CEGUI::PushButton *back = (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("Monitor/BackButton");
-    back->subscribeEvent(CEGUI::PushButton::EventClicked,
-               CEGUI::Event::Subscriber(&CStateMonitor::back, this));
 
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     Ogre::Camera *cam = mgr->createCamera("RttCam");
@@ -51,14 +48,14 @@ CStateMonitor::CStateMonitor()
 
 CStateMonitor* CStateMonitor::getInstance()
 {
-	static CStateMonitor instance;
-	return &instance;
+  static CStateMonitor instance;
+  return &instance;
 }
 
 
 CStateMonitor::~CStateMonitor()
 {
-	CLog::getInstance()->debug("~CStateMonitor()");
+  CLog::getInstance()->debug("~CStateMonitor()");
 }
 
 
@@ -80,13 +77,6 @@ void CStateMonitor::enter()
     //ent->setMaterialName("Examples/GrassFloor");
     ent->setCastShadows(false);
 
-}
-
-
-bool CStateMonitor::back(const CEGUI::EventArgs &e)
-{
-        CStateManager::getInstance()->popState();
-        return true;
 }
 
 

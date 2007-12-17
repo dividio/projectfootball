@@ -27,36 +27,22 @@
 CStateCredits::CStateCredits()
  :CState()
 {
-	CLog::getInstance()->debug("CStateCredits()");
+  CLog::getInstance()->debug("CStateCredits()");
 
-//    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
-//    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet2");
-//
-//    CEGUI::Window *back = win->createWindow("TaharezLook/Button", "CEGUIDemo/BackButton");
-//    back->setText("Back");
-//    back->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-//
-//    m_sheet->addChildWindow(back);
-//
-//    back->subscribeEvent(CEGUI::PushButton::EventClicked,
-//               CEGUI::Event::Subscriber(&CStateCredits::back, this));
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"credits.layout");
-    CEGUI::PushButton *back = (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("Credits/BackButton");
-    back->subscribeEvent(CEGUI::PushButton::EventClicked,
-               CEGUI::Event::Subscriber(&CStateCredits::back, this));
 }
 
 
 CStateCredits* CStateCredits::getInstance()
 {
-	static CStateCredits instance;
-	return &instance;
+  static CStateCredits instance;
+  return &instance;
 }
 
 
 CStateCredits::~CStateCredits()
 {
-	CLog::getInstance()->debug("~CStateCredits()");
+  CLog::getInstance()->debug("~CStateCredits()");
 }
 
 
@@ -66,13 +52,6 @@ void CStateCredits::enter()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
-}
-
-
-bool CStateCredits::back(const CEGUI::EventArgs &e)
-{
-        CStateManager::getInstance()->popState();
-        return true;
 }
 
 

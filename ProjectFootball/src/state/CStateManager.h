@@ -34,10 +34,7 @@
 
 
 
-using namespace Ogre;
-
-
-class CStateManager : public FrameListener
+class CStateManager : public Ogre::FrameListener
 {
 
 public:
@@ -45,8 +42,8 @@ public:
     static CStateManager* getInstance();
 
     void forcedPopStack();
-    bool frameEnded(const FrameEvent& evt);
-    bool frameStarted(const FrameEvent& evt);
+    bool frameEnded(const Ogre::FrameEvent& evt);
+    bool frameStarted(const Ogre::FrameEvent& evt);
     void popStack();
     void popState();
     void popToState(CState* state);
@@ -55,7 +52,7 @@ public:
 protected:
     CStateManager();
 private:
-	void enterState();
+  void enterState();
 
     std::vector<CState*> m_stack;
 };

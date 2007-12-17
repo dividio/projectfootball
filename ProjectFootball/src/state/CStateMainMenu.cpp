@@ -18,61 +18,20 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <stdio.h>
 
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
 #include "../utils/CLog.h"
-#include <stdio.h>
+#include "../utils/CLuaManager.h"
 
 
 CStateMainMenu::CStateMainMenu()
  :CState()
 {
-	CLog::getInstance()->debug("CStateMainMenu()");
-
-//    CEGUI::WindowManager *win = CEGUI::WindowManager::getSingletonPtr();
-//    m_sheet = win->createWindow("DefaultGUISheet", "CEGUIDemo/Sheet");
-//
-//    CEGUI::Window *quit = win->createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
-//    quit->setText("Quit");
-//    quit->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-//
-//    m_sheet->addChildWindow(quit);
-//
-//
-//    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
-//               CEGUI::Event::Subscriber(&CStateMainMenu::quit, this));
-//
-//
-//    CEGUI::Window *credits = win->createWindow("TaharezLook/Button", "CEGUIDemo/CreditsButton");
-//    credits->setText("Credits");
-//    credits->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-//    credits->setPosition(CEGUI::UVector2(CEGUI::UDim(0.55, 0),CEGUI::UDim(0.55, 0)));
-//
-//    m_sheet->addChildWindow(credits);
-//
-//    credits->subscribeEvent(CEGUI::PushButton::EventClicked,
-//               CEGUI::Event::Subscriber(&CStateMainMenu::credits, this));
+    CLog::getInstance()->debug("CStateMainMenu()");
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"mainMenu.layout");
-
-    CEGUI::PushButton *quit =
-      (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/QuitButton");
-
-    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
-               CEGUI::Event::Subscriber(&CStateMainMenu::quit, this));
-
-    CEGUI::PushButton *credits =
-      (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/CreditsButton");
-
-    credits->subscribeEvent(CEGUI::PushButton::EventClicked,
-               CEGUI::Event::Subscriber(&CStateMainMenu::credits, this));
-
-    CEGUI::PushButton *play =
-      (CEGUI::PushButton *)CEGUI::WindowManager::getSingleton().getWindow("MainMenu/PlayButton");
-
-    play->subscribeEvent(CEGUI::PushButton::EventClicked,
-               CEGUI::Event::Subscriber(&CStateMainMenu::play, this));
 
     // Maybe using CEGUI::GlobalEventSet ?
     CEGUI::WindowManager::WindowIterator i =  CEGUI::WindowManager::getSingleton().getIterator();
@@ -93,14 +52,14 @@ CStateMainMenu::CStateMainMenu()
 
 CStateMainMenu* CStateMainMenu::getInstance()
 {
-	static CStateMainMenu instance;
-	return &instance;
+  static CStateMainMenu instance;
+  return &instance;
 }
 
 
 CStateMainMenu::~CStateMainMenu()
 {
-	CLog::getInstance()->debug("~CStateMainMenu()");
+  CLog::getInstance()->debug("~CStateMainMenu()");
 }
 
 
@@ -112,29 +71,9 @@ void CStateMainMenu::enter()
 }
 
 
-bool CStateMainMenu::quit(const CEGUI::EventArgs &e)
-{
-    CStateManager::getInstance()->popStack();
-    return true;
-}
-
-
-bool CStateMainMenu::credits(const CEGUI::EventArgs &e)
-{
-    CStateManager::getInstance()->pushState(CStateCredits::getInstance());
-    return true;
-}
-
-
-bool CStateMainMenu::play(const CEGUI::EventArgs &e)
-{
-    CStateManager::getInstance()->pushState(CStateMonitor::getInstance());
-    return true;
-}
-
-
 bool CStateMainMenu::clickAudioEvent(const CEGUI::EventArgs &e)
 {
+    //CAudioSystem::CLICK.play();
     //cout << "CLICK" << endl;
     return true;
 }
