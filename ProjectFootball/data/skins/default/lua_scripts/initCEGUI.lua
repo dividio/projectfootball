@@ -26,16 +26,16 @@ function cmd_play()
 end
 
 
----------------------
--- CCredits functions
----------------------
+--------------------------
+-- CStateCredits functions
+--------------------------
 
 -- cmd_back
 
 
----------------------
--- CMonitor functions
----------------------
+--------------------------
+-- CStateMonitor functions
+--------------------------
 
 -- cmd_back
 
