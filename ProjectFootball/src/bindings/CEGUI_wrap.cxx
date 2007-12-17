@@ -1382,95 +1382,53 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 
 /* ------------------------------ end luarun.swg  ------------------------------ */
 
-/*  Errors in SWIG */
-#define  SWIG_UnknownError    	   -1 
-#define  SWIG_IOError        	   -2 
-#define  SWIG_RuntimeError   	   -3 
-#define  SWIG_IndexError     	   -4 
-#define  SWIG_TypeError      	   -5 
-#define  SWIG_DivisionByZero 	   -6 
-#define  SWIG_OverflowError  	   -7 
-#define  SWIG_SyntaxError    	   -8 
-#define  SWIG_ValueError     	   -9 
-#define  SWIG_SystemError    	   -10
-#define  SWIG_AttributeError 	   -11
-#define  SWIG_MemoryError    	   -12 
-#define  SWIG_NullReferenceError   -13
-
-
-
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_CDAOAbstractFactory swig_types[0]
-#define SWIGTYPE_p_CLog swig_types[1]
-#define SWIGTYPE_p_CPfEquipos swig_types[2]
-#define SWIGTYPE_p_CState swig_types[3]
-#define SWIGTYPE_p_CStateCredits swig_types[4]
-#define SWIGTYPE_p_CStateMainMenu swig_types[5]
-#define SWIGTYPE_p_CStateManager swig_types[6]
-#define SWIGTYPE_p_CStateMonitor swig_types[7]
-#define SWIGTYPE_p_IDAOFactory swig_types[8]
-#define SWIGTYPE_p_IPfEquiposDAO swig_types[9]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[10]
-#define SWIGTYPE_p_std__string swig_types[11]
-#define SWIGTYPE_p_std__vectorTCPfEquipos_p_t swig_types[12]
-static swig_type_info *swig_types[14];
-static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
+#define SWIGTYPE_p_first_type swig_types[0]
+#define SWIGTYPE_p_second_type swig_types[1]
+#define SWIGTYPE_p_std__ostream swig_types[2]
+#define SWIGTYPE_p_std__pairTfloat_float_t swig_types[3]
+#define SWIGTYPE_p_unsigned_char swig_types[4]
+#define SWIGTYPE_p_unsigned_int swig_types[5]
+#define SWIGTYPE_p_unsigned_long swig_types[6]
+#define SWIGTYPE_p_unsigned_short swig_types[7]
+static swig_type_info *swig_types[9];
+static swig_module_info swig_module = {swig_types, 8, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
 /* -------- TYPES TABLE (END) -------- */
 
-#define SWIG_init    Pf_Init
-#define SWIG_name    "PF"
-#define SWIG_import  luaopen_PF
+#define SWIG_init    Cegui_Init
+#define SWIG_name    "CEGUI"
+#define SWIG_import  luaopen_CEGUI
 
 
-#define SWIG_init_user SWIG_init_user_PF
+#define SWIG_init_user SWIG_init_user_CEGUI
 
 
-#include "../db/CDAOAbstractFactory.h"
-#include "../db/CPfEquipos.h"
-#include "../db/IDAOFactory.h"
-#include "../db/IPfEquiposDAO.h"
+#include <CEGUI.h>
+#include <CEGUIExceptions.h>
+
+using namespace CEGUI;
 
 
-	#include <string>
+#include <utility>
 
 
-#include <vector>
-
-
-#include <stdexcept>
-
-
-#define SWIG_exception(a,b)\
-{ lua_pushfstring(L,"%s:%s",#a,b);SWIG_fail; }
-
-
-#include <stdexcept>
-
-
-#include "../utils/CLog.h"
-
-
-#include "../state/CStateManager.h"
-#include "../state/CState.h"
-#include "../state/CStateMainMenu.h"
-#include "../state/CStateMonitor.h"
-#include "../state/CStateCredits.h"
+#include <CEGUISingleton.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-static int _wrap_new_string__SWIG_0(lua_State* L) {
+static int _wrap_DefaultNativeHorzRes_get(lua_State* L) {
   int SWIG_arg = -1;
-  std::string *result = 0 ;
+  float result;
   
-  result = (std::string *)new std::string();
+  result = (float)(float)CEGUI::DefaultNativeHorzRes;
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,1); SWIG_arg++; 
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -1479,16 +1437,13 @@ fail:
 }
 
 
-static int _wrap_new_string__SWIG_1(lua_State* L) {
+static int _wrap_DefaultNativeVertRes_get(lua_State* L) {
   int SWIG_arg = -1;
-  char *arg1 = (char *) 0 ;
-  std::string *result = 0 ;
+  float result;
   
-  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
-  arg1 = (char *)lua_tostring(L, 1);
-  result = (std::string *)new std::string((char const *)arg1);
+  result = (float)(float)CEGUI::DefaultNativeVertRes;
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,1); SWIG_arg++; 
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -1497,346 +1452,210 @@ fail:
 }
 
 
-static int _wrap_new_string(lua_State* L) {
+static int _wrap_new__FloatFloatPair__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  std::pair<float,float > *result = 0 ;
+  
+  result = (std::pair<float,float > *)new std::pair<float,float >();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__pairTfloat_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new__FloatFloatPair__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  float arg2 ;
+  std::pair<float,float > *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  result = (std::pair<float,float > *)new std::pair<float,float >(arg1,arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__pairTfloat_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new__FloatFloatPair__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  std::pair<float,float > *arg1 = 0 ;
+  std::pair<float,float > *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__pairTfloat_float_t,0))){
+    SWIG_fail_ptr("new__FloatFloatPair",1,SWIGTYPE_p_std__pairTfloat_float_t);
+  }
+  
+  result = (std::pair<float,float > *)new std::pair<float,float >((std::pair<float,float > const &)*arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__pairTfloat_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new__FloatFloatPair(lua_State* L) {
   int argc;
-  int argv[2]={
-    1,2
+  int argv[3]={
+    1,2,3
   };
   
   argc = lua_gettop(L);
   if (argc == 0) {
-    return _wrap_new_string__SWIG_0(L);
+    return _wrap_new__FloatFloatPair__SWIG_0(L);
   }
   if (argc == 1) {
     int _v;
     {
-      _v = lua_isstring(L,argv[0]);
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__pairTfloat_float_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
     }
     if (_v) {
-      return _wrap_new_string__SWIG_1(L);
+      return _wrap_new__FloatFloatPair__SWIG_2(L);
     }
   }
-  
-  lua_pushstring(L,"No matching function for overloaded 'new_string'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_string_size(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  unsigned int result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("string_size",1,SWIGTYPE_p_std__string);
-  }
-  
-  result = (unsigned int)((std::string const *)arg1)->size();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_string_length(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  unsigned int result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("string_length",1,SWIGTYPE_p_std__string);
-  }
-  
-  result = (unsigned int)((std::string const *)arg1)->length();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_string_empty(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("string_empty",1,SWIGTYPE_p_std__string);
-  }
-  
-  result = (bool)((std::string const *)arg1)->empty();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_string_c_str(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  char *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("string_c_str",1,SWIGTYPE_p_std__string);
-  }
-  
-  result = (char *)((std::string const *)arg1)->c_str();
-  SWIG_arg=0;
-  lua_pushstring(L,(const char*)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_string_data(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  char *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("string_data",1,SWIGTYPE_p_std__string);
-  }
-  
-  result = (char *)((std::string const *)arg1)->data();
-  SWIG_arg=0;
-  lua_pushstring(L,(const char*)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_string_assign(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  char *arg2 = (char *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("string_assign",1,SWIGTYPE_p_std__string);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  (arg1)->assign((char const *)arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_delete_string(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string *arg1 = (std::string *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
-    SWIG_fail_ptr("delete_string",1,SWIGTYPE_p_std__string);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_string(void *obj) {
-std::string *arg1 = (std::string *) obj;
-delete arg1;
-}
-static swig_lua_method swig_std_string_methods[] = {
-    {"size", _wrap_string_size}, 
-    {"length", _wrap_string_length}, 
-    {"empty", _wrap_string_empty}, 
-    {"c_str", _wrap_string_c_str}, 
-    {"data", _wrap_string_data}, 
-    {"assign", _wrap_string_assign}, 
-    {0,0}
-};
-static swig_lua_attribute swig_std_string_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_std_string_bases[] = {0};
-swig_lua_class _wrap_class_std_string = { "string", &SWIGTYPE_p_std__string,_wrap_new_string, swig_delete_string, swig_std_string_methods, swig_std_string_attributes, swig_std_string_bases };
-
-static int _wrap_delete_CDAOAbstractFactory(lua_State* L) {
-  int SWIG_arg = -1;
-  CDAOAbstractFactory *arg1 = (CDAOAbstractFactory *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CDAOAbstractFactory,0))){
-    SWIG_fail_ptr("delete_CDAOAbstractFactory",1,SWIGTYPE_p_CDAOAbstractFactory);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CDAOAbstractFactory_getIDAOFactory(lua_State* L) {
-  int SWIG_arg = -1;
-  IDAOFactory *result = 0 ;
-  
-  result = (IDAOFactory *)CDAOAbstractFactory::getIDAOFactory();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IDAOFactory,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CDAOAbstractFactory(void *obj) {
-CDAOAbstractFactory *arg1 = (CDAOAbstractFactory *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CDAOAbstractFactory_methods[] = {
-    {0,0}
-};
-static swig_lua_attribute swig_CDAOAbstractFactory_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CDAOAbstractFactory_bases[] = {0};
-swig_lua_class _wrap_class_CDAOAbstractFactory = { "CDAOAbstractFactory", &SWIGTYPE_p_CDAOAbstractFactory,0, swig_delete_CDAOAbstractFactory, swig_CDAOAbstractFactory_methods, swig_CDAOAbstractFactory_attributes, swig_CDAOAbstractFactory_bases };
-
-static int _wrap_new_CPfEquipos__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *result = 0 ;
-  
-  result = (CPfEquipos *)new CPfEquipos();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_CPfEquipos__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string arg1 ;
-  std::string arg2 ;
-  std::string arg3 ;
-  std::string arg4 ;
-  CPfEquipos *result = 0 ;
-  
-  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
-  if(!lua_isstring(L,4)) SWIG_fail_arg(4);
-  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (&arg3)->assign(lua_tostring(L,3),lua_strlen(L,3));
-  (&arg4)->assign(lua_tostring(L,4),lua_strlen(L,4));
-  result = (CPfEquipos *)new CPfEquipos(arg1,arg2,arg3,arg4);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_CPfEquipos(lua_State* L) {
-  int argc;
-  int argv[5]={
-    1,2,3,4,5
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 0) {
-    return _wrap_new_CPfEquipos__SWIG_0(L);
-  }
-  if (argc == 4) {
+  if (argc == 2) {
     int _v;
     {
-      _v = lua_isstring(L,argv[0]);
+      _v = lua_isnumber(L,argv[0]);
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        {
-          _v = lua_isstring(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isstring(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_new_CPfEquipos__SWIG_1(L);
-          }
-        }
+        return _wrap_new__FloatFloatPair__SWIG_1(L);
       }
     }
   }
   
-  lua_pushstring(L,"No matching function for overloaded 'new_CPfEquipos'");
+  lua_pushstring(L,"No matching function for overloaded 'new__FloatFloatPair'");
   lua_error(L);return 0;
 }
 
 
-static int _wrap_delete_CPfEquipos(lua_State* L) {
+static int _wrap__FloatFloatPair_first_set(lua_State* L) {
   int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  std::pair<float,float > *arg1 = (std::pair<float,float > *) 0 ;
+  float arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__pairTfloat_float_t,0))){
+    SWIG_fail_ptr("_FloatFloatPair_first_set",1,SWIGTYPE_p_std__pairTfloat_float_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->first = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap__FloatFloatPair_first_get(lua_State* L) {
+  int SWIG_arg = -1;
+  std::pair<float,float > *arg1 = (std::pair<float,float > *) 0 ;
+  float result;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("delete_CPfEquipos",1,SWIGTYPE_p_CPfEquipos);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__pairTfloat_float_t,0))){
+    SWIG_fail_ptr("_FloatFloatPair_first_get",1,SWIGTYPE_p_std__pairTfloat_float_t);
+  }
+  
+  result = (float) ((arg1)->first);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap__FloatFloatPair_second_set(lua_State* L) {
+  int SWIG_arg = -1;
+  std::pair<float,float > *arg1 = (std::pair<float,float > *) 0 ;
+  float arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__pairTfloat_float_t,0))){
+    SWIG_fail_ptr("_FloatFloatPair_second_set",1,SWIGTYPE_p_std__pairTfloat_float_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->second = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap__FloatFloatPair_second_get(lua_State* L) {
+  int SWIG_arg = -1;
+  std::pair<float,float > *arg1 = (std::pair<float,float > *) 0 ;
+  float result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__pairTfloat_float_t,0))){
+    SWIG_fail_ptr("_FloatFloatPair_second_get",1,SWIGTYPE_p_std__pairTfloat_float_t);
+  }
+  
+  result = (float) ((arg1)->second);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete__FloatFloatPair(lua_State* L) {
+  int SWIG_arg = -1;
+  std::pair<float,float > *arg1 = (std::pair<float,float > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__pairTfloat_float_t,0))){
+    SWIG_fail_ptr("delete__FloatFloatPair",1,SWIGTYPE_p_std__pairTfloat_float_t);
   }
   
   delete arg1;
@@ -1851,1553 +1670,88 @@ fail:
 }
 
 
-static int _wrap_CPfEquipos_setXFkPais(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setXFkPais",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setXFkPais(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_setXEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setXEquipo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setXEquipo(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_setSEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setSEquipo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSEquipo(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_setSRutaEscudo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setSRutaEscudo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSRutaEscudo(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_getXFkPais(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_getXFkPais",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (std::string *)(arg1)->getXFkPais();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_getXEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_getXEquipo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (std::string *)(arg1)->getXEquipo();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_getSEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_getSEquipo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (std::string *)(arg1)->getSEquipo();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_getSRutaEscudo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_getSRutaEscudo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (std::string *)(arg1)->getSRutaEscudo();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CPfEquipos(void *obj) {
-CPfEquipos *arg1 = (CPfEquipos *) obj;
+static void swig_delete__FloatFloatPair(void *obj) {
+std::pair<float,float > *arg1 = (std::pair<float,float > *) obj;
 delete arg1;
 }
-static swig_lua_method swig_CPfEquipos_methods[] = {
-    {"setXFkPais", _wrap_CPfEquipos_setXFkPais}, 
-    {"setXEquipo", _wrap_CPfEquipos_setXEquipo}, 
-    {"setSEquipo", _wrap_CPfEquipos_setSEquipo}, 
-    {"setSRutaEscudo", _wrap_CPfEquipos_setSRutaEscudo}, 
-    {"getXFkPais", _wrap_CPfEquipos_getXFkPais}, 
-    {"getXEquipo", _wrap_CPfEquipos_getXEquipo}, 
-    {"getSEquipo", _wrap_CPfEquipos_getSEquipo}, 
-    {"getSRutaEscudo", _wrap_CPfEquipos_getSRutaEscudo}, 
+static swig_lua_method swig_std_pair_Sl_float_Sc_float_Sg__methods[] = {
     {0,0}
 };
-static swig_lua_attribute swig_CPfEquipos_attributes[] = {
+static swig_lua_attribute swig_std_pair_Sl_float_Sc_float_Sg__attributes[] = {
+    { "first",_wrap__FloatFloatPair_first_get, _wrap__FloatFloatPair_first_set},
+    { "second",_wrap__FloatFloatPair_second_get, _wrap__FloatFloatPair_second_set},
     {0,0,0}
 };
-static swig_lua_class *swig_CPfEquipos_bases[] = {0};
-swig_lua_class _wrap_class_CPfEquipos = { "CPfEquipos", &SWIGTYPE_p_CPfEquipos,_wrap_new_CPfEquipos, swig_delete_CPfEquipos, swig_CPfEquipos_methods, swig_CPfEquipos_attributes, swig_CPfEquipos_bases };
-
-static int _wrap_delete_IDAOFactory(lua_State* L) {
-  int SWIG_arg = -1;
-  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
-    SWIG_fail_ptr("delete_IDAOFactory",1,SWIGTYPE_p_IDAOFactory);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_IDAOFactory_getIPfEquiposDAO(lua_State* L) {
-  int SWIG_arg = -1;
-  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
-  IPfEquiposDAO *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
-    SWIG_fail_ptr("IDAOFactory_getIPfEquiposDAO",1,SWIGTYPE_p_IDAOFactory);
-  }
-  
-  result = (IPfEquiposDAO *)(arg1)->getIPfEquiposDAO();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IPfEquiposDAO,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_IDAOFactory(void *obj) {
-IDAOFactory *arg1 = (IDAOFactory *) obj;
-delete arg1;
-}
-static swig_lua_method swig_IDAOFactory_methods[] = {
-    {"getIPfEquiposDAO", _wrap_IDAOFactory_getIPfEquiposDAO}, 
-    {0,0}
-};
-static swig_lua_attribute swig_IDAOFactory_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_IDAOFactory_bases[] = {0};
-swig_lua_class _wrap_class_IDAOFactory = { "IDAOFactory", &SWIGTYPE_p_IDAOFactory,0, swig_delete_IDAOFactory, swig_IDAOFactory_methods, swig_IDAOFactory_attributes, swig_IDAOFactory_bases };
-
-static int _wrap_delete_IPfEquiposDAO(lua_State* L) {
-  int SWIG_arg = -1;
-  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("delete_IPfEquiposDAO",1,SWIGTYPE_p_IPfEquiposDAO);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_IPfEquiposDAO_deleteReg(lua_State* L) {
-  int SWIG_arg = -1;
-  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
-  CPfEquipos *arg2 = (CPfEquipos *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_deleteReg",1,SWIGTYPE_p_IPfEquiposDAO);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_deleteReg",2,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (bool)(arg1)->deleteReg(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_IPfEquiposDAO_insert(lua_State* L) {
-  int SWIG_arg = -1;
-  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
-  CPfEquipos *arg2 = (CPfEquipos *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_insert",1,SWIGTYPE_p_IPfEquiposDAO);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_insert",2,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (bool)(arg1)->insert(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_IPfEquiposDAO_update(lua_State* L) {
-  int SWIG_arg = -1;
-  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
-  CPfEquipos *arg2 = (CPfEquipos *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_update",1,SWIGTYPE_p_IPfEquiposDAO);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_update",2,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  result = (bool)(arg1)->update(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_IPfEquiposDAO_findVectorByXFkPais(lua_State* L) {
-  int SWIG_arg = -1;
-  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
-  std::string arg2 ;
-  std::vector<CPfEquipos * > *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_findVectorByXFkPais",1,SWIGTYPE_p_IPfEquiposDAO);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  result = (std::vector<CPfEquipos * > *)(arg1)->findVectorByXFkPais(arg2);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCPfEquipos_p_t,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_IPfEquiposDAO_findByXEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
-  std::string arg2 ;
-  CPfEquipos *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_findByXEquipo",1,SWIGTYPE_p_IPfEquiposDAO);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  result = (CPfEquipos *)(arg1)->findByXEquipo(arg2);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_IPfEquiposDAO(void *obj) {
-IPfEquiposDAO *arg1 = (IPfEquiposDAO *) obj;
-delete arg1;
-}
-static swig_lua_method swig_IPfEquiposDAO_methods[] = {
-    {"deleteReg", _wrap_IPfEquiposDAO_deleteReg}, 
-    {"insert", _wrap_IPfEquiposDAO_insert}, 
-    {"update", _wrap_IPfEquiposDAO_update}, 
-    {"findVectorByXFkPais", _wrap_IPfEquiposDAO_findVectorByXFkPais}, 
-    {"findByXEquipo", _wrap_IPfEquiposDAO_findByXEquipo}, 
-    {0,0}
-};
-static swig_lua_attribute swig_IPfEquiposDAO_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_IPfEquiposDAO_bases[] = {0};
-swig_lua_class _wrap_class_IPfEquiposDAO = { "IPfEquiposDAO", &SWIGTYPE_p_IPfEquiposDAO,0, swig_delete_IPfEquiposDAO, swig_IPfEquiposDAO_methods, swig_IPfEquiposDAO_attributes, swig_IPfEquiposDAO_bases };
-
-static int _wrap_delete_CLog(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *arg1 = (CLog *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
-    SWIG_fail_ptr("delete_CLog",1,SWIGTYPE_p_CLog);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CLog_getInstance(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *result = 0 ;
-  
-  result = (CLog *)CLog::getInstance();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CLog,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CLog_debug(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *arg1 = (CLog *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *arg3 = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
-    SWIG_fail_ptr("CLog_debug",1,SWIGTYPE_p_CLog);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  (arg1)->debug((char const *)arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CLog_info(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *arg1 = (CLog *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *arg3 = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
-    SWIG_fail_ptr("CLog_info",1,SWIGTYPE_p_CLog);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  (arg1)->info((char const *)arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CLog_warning(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *arg1 = (CLog *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *arg3 = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
-    SWIG_fail_ptr("CLog_warning",1,SWIGTYPE_p_CLog);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  (arg1)->warning((char const *)arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CLog_error(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *arg1 = (CLog *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *arg3 = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
-    SWIG_fail_ptr("CLog_error",1,SWIGTYPE_p_CLog);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  (arg1)->error((char const *)arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CLog_exception(lua_State* L) {
-  int SWIG_arg = -1;
-  CLog *arg1 = (CLog *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *arg3 = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
-    SWIG_fail_ptr("CLog_exception",1,SWIGTYPE_p_CLog);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  (arg1)->exception((char const *)arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CLog(void *obj) {
-CLog *arg1 = (CLog *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CLog_methods[] = {
-    {"debug", _wrap_CLog_debug}, 
-    {"info", _wrap_CLog_info}, 
-    {"warning", _wrap_CLog_warning}, 
-    {"error", _wrap_CLog_error}, 
-    {"exception", _wrap_CLog_exception}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CLog_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CLog_bases[] = {0};
-swig_lua_class _wrap_class_CLog = { "CLog", &SWIGTYPE_p_CLog,0, swig_delete_CLog, swig_CLog_methods, swig_CLog_attributes, swig_CLog_bases };
-
-static int _wrap_delete_CStateManager(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("delete_CStateManager",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_getInstance(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *result = 0 ;
-  
-  result = (CStateManager *)CStateManager::getInstance();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateManager,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_forcedPopStack(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_forcedPopStack",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  (arg1)->forcedPopStack();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_frameEnded(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  Ogre::FrameEvent *arg2 = 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_frameEnded",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Ogre__FrameEvent,0))){
-    SWIG_fail_ptr("CStateManager_frameEnded",2,SWIGTYPE_p_Ogre__FrameEvent);
-  }
-  
-  result = (bool)(arg1)->frameEnded((Ogre::FrameEvent const &)*arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_frameStarted(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  Ogre::FrameEvent *arg2 = 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_frameStarted",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Ogre__FrameEvent,0))){
-    SWIG_fail_ptr("CStateManager_frameStarted",2,SWIGTYPE_p_Ogre__FrameEvent);
-  }
-  
-  result = (bool)(arg1)->frameStarted((Ogre::FrameEvent const &)*arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_popStack(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_popStack",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  (arg1)->popStack();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_popState(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_popState",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  (arg1)->popState();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_popToState(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  CState *arg2 = (CState *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_popToState",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("CStateManager_popToState",2,SWIGTYPE_p_CState);
-  }
-  
-  (arg1)->popToState(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateManager_pushState(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateManager *arg1 = (CStateManager *) 0 ;
-  CState *arg2 = (CState *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateManager,0))){
-    SWIG_fail_ptr("CStateManager_pushState",1,SWIGTYPE_p_CStateManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("CStateManager_pushState",2,SWIGTYPE_p_CState);
-  }
-  
-  (arg1)->pushState(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CStateManager(void *obj) {
-CStateManager *arg1 = (CStateManager *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CStateManager_methods[] = {
-    {"forcedPopStack", _wrap_CStateManager_forcedPopStack}, 
-    {"frameEnded", _wrap_CStateManager_frameEnded}, 
-    {"frameStarted", _wrap_CStateManager_frameStarted}, 
-    {"popStack", _wrap_CStateManager_popStack}, 
-    {"popState", _wrap_CStateManager_popState}, 
-    {"popToState", _wrap_CStateManager_popToState}, 
-    {"pushState", _wrap_CStateManager_pushState}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CStateManager_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CStateManager_bases[] = {0};
-swig_lua_class _wrap_class_CStateManager = { "CStateManager", &SWIGTYPE_p_CStateManager,0, swig_delete_CStateManager, swig_CStateManager_methods, swig_CStateManager_attributes, swig_CStateManager_bases };
-
-static int _wrap_delete_CState(lua_State* L) {
-  int SWIG_arg = -1;
-  CState *arg1 = (CState *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("delete_CState",1,SWIGTYPE_p_CState);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CState_enter(lua_State* L) {
-  int SWIG_arg = -1;
-  CState *arg1 = (CState *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("CState_enter",1,SWIGTYPE_p_CState);
-  }
-  
-  (arg1)->enter();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CState_forcedLeave(lua_State* L) {
-  int SWIG_arg = -1;
-  CState *arg1 = (CState *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("CState_forcedLeave",1,SWIGTYPE_p_CState);
-  }
-  
-  (arg1)->forcedLeave();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CState_leave(lua_State* L) {
-  int SWIG_arg = -1;
-  CState *arg1 = (CState *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("CState_leave",1,SWIGTYPE_p_CState);
-  }
-  
-  result = (bool)(arg1)->leave();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CState_update(lua_State* L) {
-  int SWIG_arg = -1;
-  CState *arg1 = (CState *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CState,0))){
-    SWIG_fail_ptr("CState_update",1,SWIGTYPE_p_CState);
-  }
-  
-  (arg1)->update();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CState(void *obj) {
-CState *arg1 = (CState *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CState_methods[] = {
-    {"enter", _wrap_CState_enter}, 
-    {"forcedLeave", _wrap_CState_forcedLeave}, 
-    {"leave", _wrap_CState_leave}, 
-    {"update", _wrap_CState_update}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CState_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CState_bases[] = {0};
-swig_lua_class _wrap_class_CState = { "CState", &SWIGTYPE_p_CState,0, swig_delete_CState, swig_CState_methods, swig_CState_attributes, swig_CState_bases };
-
-static int _wrap_CStateMainMenu_getInstance(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMainMenu *result = 0 ;
-  
-  result = (CStateMainMenu *)CStateMainMenu::getInstance();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMainMenu,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_delete_CStateMainMenu(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMainMenu *arg1 = (CStateMainMenu *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMainMenu,0))){
-    SWIG_fail_ptr("delete_CStateMainMenu",1,SWIGTYPE_p_CStateMainMenu);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMainMenu_enter(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMainMenu *arg1 = (CStateMainMenu *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMainMenu,0))){
-    SWIG_fail_ptr("CStateMainMenu_enter",1,SWIGTYPE_p_CStateMainMenu);
-  }
-  
-  (arg1)->enter();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMainMenu_forcedLeave(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMainMenu *arg1 = (CStateMainMenu *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMainMenu,0))){
-    SWIG_fail_ptr("CStateMainMenu_forcedLeave",1,SWIGTYPE_p_CStateMainMenu);
-  }
-  
-  (arg1)->forcedLeave();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMainMenu_leave(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMainMenu *arg1 = (CStateMainMenu *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMainMenu,0))){
-    SWIG_fail_ptr("CStateMainMenu_leave",1,SWIGTYPE_p_CStateMainMenu);
-  }
-  
-  result = (bool)(arg1)->leave();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMainMenu_update(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMainMenu *arg1 = (CStateMainMenu *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMainMenu,0))){
-    SWIG_fail_ptr("CStateMainMenu_update",1,SWIGTYPE_p_CStateMainMenu);
-  }
-  
-  (arg1)->update();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CStateMainMenu(void *obj) {
-CStateMainMenu *arg1 = (CStateMainMenu *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CStateMainMenu_methods[] = {
-    {"enter", _wrap_CStateMainMenu_enter}, 
-    {"forcedLeave", _wrap_CStateMainMenu_forcedLeave}, 
-    {"leave", _wrap_CStateMainMenu_leave}, 
-    {"update", _wrap_CStateMainMenu_update}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CStateMainMenu_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CStateMainMenu_bases[] = {&_wrap_class_CState,0};
-swig_lua_class _wrap_class_CStateMainMenu = { "CStateMainMenu", &SWIGTYPE_p_CStateMainMenu,0, swig_delete_CStateMainMenu, swig_CStateMainMenu_methods, swig_CStateMainMenu_attributes, swig_CStateMainMenu_bases };
-
-static int _wrap_CStateMonitor_getInstance(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMonitor *result = 0 ;
-  
-  result = (CStateMonitor *)CStateMonitor::getInstance();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMonitor,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_delete_CStateMonitor(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
-    SWIG_fail_ptr("delete_CStateMonitor",1,SWIGTYPE_p_CStateMonitor);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMonitor_enter(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
-    SWIG_fail_ptr("CStateMonitor_enter",1,SWIGTYPE_p_CStateMonitor);
-  }
-  
-  (arg1)->enter();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMonitor_forcedLeave(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
-    SWIG_fail_ptr("CStateMonitor_forcedLeave",1,SWIGTYPE_p_CStateMonitor);
-  }
-  
-  (arg1)->forcedLeave();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMonitor_leave(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
-    SWIG_fail_ptr("CStateMonitor_leave",1,SWIGTYPE_p_CStateMonitor);
-  }
-  
-  result = (bool)(arg1)->leave();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateMonitor_update(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
-    SWIG_fail_ptr("CStateMonitor_update",1,SWIGTYPE_p_CStateMonitor);
-  }
-  
-  (arg1)->update();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CStateMonitor(void *obj) {
-CStateMonitor *arg1 = (CStateMonitor *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CStateMonitor_methods[] = {
-    {"enter", _wrap_CStateMonitor_enter}, 
-    {"forcedLeave", _wrap_CStateMonitor_forcedLeave}, 
-    {"leave", _wrap_CStateMonitor_leave}, 
-    {"update", _wrap_CStateMonitor_update}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CStateMonitor_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CStateMonitor_bases[] = {&_wrap_class_CState,0};
-swig_lua_class _wrap_class_CStateMonitor = { "CStateMonitor", &SWIGTYPE_p_CStateMonitor,0, swig_delete_CStateMonitor, swig_CStateMonitor_methods, swig_CStateMonitor_attributes, swig_CStateMonitor_bases };
-
-static int _wrap_CStateCredits_getInstance(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateCredits *result = 0 ;
-  
-  result = (CStateCredits *)CStateCredits::getInstance();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateCredits,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_delete_CStateCredits(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateCredits *arg1 = (CStateCredits *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateCredits,0))){
-    SWIG_fail_ptr("delete_CStateCredits",1,SWIGTYPE_p_CStateCredits);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateCredits_enter(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateCredits *arg1 = (CStateCredits *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateCredits,0))){
-    SWIG_fail_ptr("CStateCredits_enter",1,SWIGTYPE_p_CStateCredits);
-  }
-  
-  (arg1)->enter();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateCredits_forcedLeave(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateCredits *arg1 = (CStateCredits *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateCredits,0))){
-    SWIG_fail_ptr("CStateCredits_forcedLeave",1,SWIGTYPE_p_CStateCredits);
-  }
-  
-  (arg1)->forcedLeave();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateCredits_leave(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateCredits *arg1 = (CStateCredits *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateCredits,0))){
-    SWIG_fail_ptr("CStateCredits_leave",1,SWIGTYPE_p_CStateCredits);
-  }
-  
-  result = (bool)(arg1)->leave();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CStateCredits_update(lua_State* L) {
-  int SWIG_arg = -1;
-  CStateCredits *arg1 = (CStateCredits *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateCredits,0))){
-    SWIG_fail_ptr("CStateCredits_update",1,SWIGTYPE_p_CStateCredits);
-  }
-  
-  (arg1)->update();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CStateCredits(void *obj) {
-CStateCredits *arg1 = (CStateCredits *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CStateCredits_methods[] = {
-    {"enter", _wrap_CStateCredits_enter}, 
-    {"forcedLeave", _wrap_CStateCredits_forcedLeave}, 
-    {"leave", _wrap_CStateCredits_leave}, 
-    {"update", _wrap_CStateCredits_update}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CStateCredits_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CStateCredits_bases[] = {&_wrap_class_CState,0};
-swig_lua_class _wrap_class_CStateCredits = { "CStateCredits", &SWIGTYPE_p_CStateCredits,0, swig_delete_CStateCredits, swig_CStateCredits_methods, swig_CStateCredits_attributes, swig_CStateCredits_bases };
+static swig_lua_class *swig_std_pair_Sl_float_Sc_float_Sg__bases[] = {0};
+swig_lua_class _wrap_class_std_pair_Sl_float_Sc_float_Sg_ = { "_FloatFloatPair", &SWIGTYPE_p_std__pairTfloat_float_t,_wrap_new__FloatFloatPair, swig_delete__FloatFloatPair, swig_std_pair_Sl_float_Sc_float_Sg__methods, swig_std_pair_Sl_float_Sc_float_Sg__attributes, swig_std_pair_Sl_float_Sc_float_Sg__bases };
 
 #ifdef __cplusplus
 }
 #endif
 
 static const struct luaL_reg swig_commands[] = {
-    { "new_string",_wrap_new_string},
-    { "string_size", _wrap_string_size},
-    { "string_length", _wrap_string_length},
-    { "string_empty", _wrap_string_empty},
-    { "string_c_str", _wrap_string_c_str},
-    { "string_data", _wrap_string_data},
-    { "string_assign", _wrap_string_assign},
-    { "delete_string", _wrap_delete_string},
-    { "delete_CDAOAbstractFactory", _wrap_delete_CDAOAbstractFactory},
-    { "CDAOAbstractFactory_getIDAOFactory", _wrap_CDAOAbstractFactory_getIDAOFactory},
-    { "new_CPfEquipos",_wrap_new_CPfEquipos},
-    { "delete_CPfEquipos", _wrap_delete_CPfEquipos},
-    { "CPfEquipos_setXFkPais", _wrap_CPfEquipos_setXFkPais},
-    { "CPfEquipos_setXEquipo", _wrap_CPfEquipos_setXEquipo},
-    { "CPfEquipos_setSEquipo", _wrap_CPfEquipos_setSEquipo},
-    { "CPfEquipos_setSRutaEscudo", _wrap_CPfEquipos_setSRutaEscudo},
-    { "CPfEquipos_getXFkPais", _wrap_CPfEquipos_getXFkPais},
-    { "CPfEquipos_getXEquipo", _wrap_CPfEquipos_getXEquipo},
-    { "CPfEquipos_getSEquipo", _wrap_CPfEquipos_getSEquipo},
-    { "CPfEquipos_getSRutaEscudo", _wrap_CPfEquipos_getSRutaEscudo},
-    { "delete_IDAOFactory", _wrap_delete_IDAOFactory},
-    { "IDAOFactory_getIPfEquiposDAO", _wrap_IDAOFactory_getIPfEquiposDAO},
-    { "delete_IPfEquiposDAO", _wrap_delete_IPfEquiposDAO},
-    { "IPfEquiposDAO_deleteReg", _wrap_IPfEquiposDAO_deleteReg},
-    { "IPfEquiposDAO_insert", _wrap_IPfEquiposDAO_insert},
-    { "IPfEquiposDAO_update", _wrap_IPfEquiposDAO_update},
-    { "IPfEquiposDAO_findVectorByXFkPais", _wrap_IPfEquiposDAO_findVectorByXFkPais},
-    { "IPfEquiposDAO_findByXEquipo", _wrap_IPfEquiposDAO_findByXEquipo},
-    { "delete_CLog", _wrap_delete_CLog},
-    { "CLog_getInstance", _wrap_CLog_getInstance},
-    { "CLog_debug", _wrap_CLog_debug},
-    { "CLog_info", _wrap_CLog_info},
-    { "CLog_warning", _wrap_CLog_warning},
-    { "CLog_error", _wrap_CLog_error},
-    { "CLog_exception", _wrap_CLog_exception},
-    { "delete_CStateManager", _wrap_delete_CStateManager},
-    { "CStateManager_getInstance", _wrap_CStateManager_getInstance},
-    { "CStateManager_forcedPopStack", _wrap_CStateManager_forcedPopStack},
-    { "CStateManager_frameEnded", _wrap_CStateManager_frameEnded},
-    { "CStateManager_frameStarted", _wrap_CStateManager_frameStarted},
-    { "CStateManager_popStack", _wrap_CStateManager_popStack},
-    { "CStateManager_popState", _wrap_CStateManager_popState},
-    { "CStateManager_popToState", _wrap_CStateManager_popToState},
-    { "CStateManager_pushState", _wrap_CStateManager_pushState},
-    { "delete_CState", _wrap_delete_CState},
-    { "CState_enter", _wrap_CState_enter},
-    { "CState_forcedLeave", _wrap_CState_forcedLeave},
-    { "CState_leave", _wrap_CState_leave},
-    { "CState_update", _wrap_CState_update},
-    { "CStateMainMenu_getInstance", _wrap_CStateMainMenu_getInstance},
-    { "delete_CStateMainMenu", _wrap_delete_CStateMainMenu},
-    { "CStateMainMenu_enter", _wrap_CStateMainMenu_enter},
-    { "CStateMainMenu_forcedLeave", _wrap_CStateMainMenu_forcedLeave},
-    { "CStateMainMenu_leave", _wrap_CStateMainMenu_leave},
-    { "CStateMainMenu_update", _wrap_CStateMainMenu_update},
-    { "CStateMonitor_getInstance", _wrap_CStateMonitor_getInstance},
-    { "delete_CStateMonitor", _wrap_delete_CStateMonitor},
-    { "CStateMonitor_enter", _wrap_CStateMonitor_enter},
-    { "CStateMonitor_forcedLeave", _wrap_CStateMonitor_forcedLeave},
-    { "CStateMonitor_leave", _wrap_CStateMonitor_leave},
-    { "CStateMonitor_update", _wrap_CStateMonitor_update},
-    { "CStateCredits_getInstance", _wrap_CStateCredits_getInstance},
-    { "delete_CStateCredits", _wrap_delete_CStateCredits},
-    { "CStateCredits_enter", _wrap_CStateCredits_enter},
-    { "CStateCredits_forcedLeave", _wrap_CStateCredits_forcedLeave},
-    { "CStateCredits_leave", _wrap_CStateCredits_leave},
-    { "CStateCredits_update", _wrap_CStateCredits_update},
+    { "DefaultNativeHorzRes_get", _wrap_DefaultNativeHorzRes_get},
+    { "DefaultNativeVertRes_get", _wrap_DefaultNativeVertRes_get},
+    { "new__FloatFloatPair",_wrap_new__FloatFloatPair},
+    { "_FloatFloatPair_first_set", _wrap__FloatFloatPair_first_set},
+    { "_FloatFloatPair_first_get", _wrap__FloatFloatPair_first_get},
+    { "_FloatFloatPair_second_set", _wrap__FloatFloatPair_second_set},
+    { "_FloatFloatPair_second_get", _wrap__FloatFloatPair_second_get},
+    { "delete__FloatFloatPair", _wrap_delete__FloatFloatPair},
     {0,0}
 };
 
 static swig_lua_var_info swig_variables[] = {
+    { "DefaultNativeHorzRes", _wrap_DefaultNativeHorzRes_get, 0 },
+    { "DefaultNativeVertRes", _wrap_DefaultNativeVertRes_get, 0 },
     {0,0,0}
 };
 
 static swig_lua_const_info swig_constants[] = {
+{ SWIG_LUA_INT,     (char *)"CEGUI_ALIGN_ELEMENTS_TO_PIXELS", (long) 1, 0, 0, 0},
     {0,0,0,0,0,0}
 };
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_CStateMonitorTo_p_CState(void *x) {
-    return (void *)((CState *)  ((CStateMonitor *) x));
-}
-static void *_p_CStateMainMenuTo_p_CState(void *x) {
-    return (void *)((CState *)  ((CStateMainMenu *) x));
-}
-static void *_p_CStateCreditsTo_p_CState(void *x) {
-    return (void *)((CState *)  ((CStateCredits *) x));
-}
-static swig_type_info _swigt__p_CDAOAbstractFactory = {"_p_CDAOAbstractFactory", "CDAOAbstractFactory *", 0, 0, (void*)&_wrap_class_CDAOAbstractFactory, 0};
-static swig_type_info _swigt__p_CLog = {"_p_CLog", "CLog *", 0, 0, (void*)&_wrap_class_CLog, 0};
-static swig_type_info _swigt__p_CPfEquipos = {"_p_CPfEquipos", "CPfEquipos *", 0, 0, (void*)&_wrap_class_CPfEquipos, 0};
-static swig_type_info _swigt__p_CState = {"_p_CState", "CState *", 0, 0, (void*)&_wrap_class_CState, 0};
-static swig_type_info _swigt__p_CStateCredits = {"_p_CStateCredits", "CStateCredits *", 0, 0, (void*)&_wrap_class_CStateCredits, 0};
-static swig_type_info _swigt__p_CStateMainMenu = {"_p_CStateMainMenu", "CStateMainMenu *", 0, 0, (void*)&_wrap_class_CStateMainMenu, 0};
-static swig_type_info _swigt__p_CStateManager = {"_p_CStateManager", "CStateManager *", 0, 0, (void*)&_wrap_class_CStateManager, 0};
-static swig_type_info _swigt__p_CStateMonitor = {"_p_CStateMonitor", "CStateMonitor *", 0, 0, (void*)&_wrap_class_CStateMonitor, 0};
-static swig_type_info _swigt__p_IDAOFactory = {"_p_IDAOFactory", "IDAOFactory *", 0, 0, (void*)&_wrap_class_IDAOFactory, 0};
-static swig_type_info _swigt__p_IPfEquiposDAO = {"_p_IPfEquiposDAO", "IPfEquiposDAO *", 0, 0, (void*)&_wrap_class_IPfEquiposDAO, 0};
-static swig_type_info _swigt__p_Ogre__FrameEvent = {"_p_Ogre__FrameEvent", "Ogre::FrameEvent *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)&_wrap_class_std_string, 0};
-static swig_type_info _swigt__p_std__vectorTCPfEquipos_p_t = {"_p_std__vectorTCPfEquipos_p_t", "std::vector<CPfEquipos * > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_first_type = {"_p_first_type", "first_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_second_type = {"_p_second_type", "second_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *|CEGUI::OutStream *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__pairTfloat_float_t = {"_p_std__pairTfloat_float_t", "std::pair<float,float > *", 0, 0, (void*)&_wrap_class_std_pair_Sl_float_Sc_float_Sg_, 0};
+static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|CEGUI::uint8 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|CEGUI::uint32 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "unsigned long *|CEGUI::ulong *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned short *|CEGUI::uint16 *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_CDAOAbstractFactory,
-  &_swigt__p_CLog,
-  &_swigt__p_CPfEquipos,
-  &_swigt__p_CState,
-  &_swigt__p_CStateCredits,
-  &_swigt__p_CStateMainMenu,
-  &_swigt__p_CStateManager,
-  &_swigt__p_CStateMonitor,
-  &_swigt__p_IDAOFactory,
-  &_swigt__p_IPfEquiposDAO,
-  &_swigt__p_Ogre__FrameEvent,
-  &_swigt__p_std__string,
-  &_swigt__p_std__vectorTCPfEquipos_p_t,
+  &_swigt__p_first_type,
+  &_swigt__p_second_type,
+  &_swigt__p_std__ostream,
+  &_swigt__p_std__pairTfloat_float_t,
+  &_swigt__p_unsigned_char,
+  &_swigt__p_unsigned_int,
+  &_swigt__p_unsigned_long,
+  &_swigt__p_unsigned_short,
 };
 
-static swig_cast_info _swigc__p_CDAOAbstractFactory[] = {  {&_swigt__p_CDAOAbstractFactory, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CLog[] = {  {&_swigt__p_CLog, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CPfEquipos[] = {  {&_swigt__p_CPfEquipos, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CStateCredits[] = {  {&_swigt__p_CStateCredits, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CStateMainMenu[] = {  {&_swigt__p_CStateMainMenu, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CStateManager[] = {  {&_swigt__p_CStateManager, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CStateMonitor[] = {  {&_swigt__p_CStateMonitor, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IDAOFactory[] = {  {&_swigt__p_IDAOFactory, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_IPfEquiposDAO[] = {  {&_swigt__p_IPfEquiposDAO, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Ogre__FrameEvent[] = {  {&_swigt__p_Ogre__FrameEvent, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorTCPfEquipos_p_t[] = {  {&_swigt__p_std__vectorTCPfEquipos_p_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_first_type[] = {  {&_swigt__p_first_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_second_type[] = {  {&_swigt__p_second_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__pairTfloat_float_t[] = {  {&_swigt__p_std__pairTfloat_float_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_CDAOAbstractFactory,
-  _swigc__p_CLog,
-  _swigc__p_CPfEquipos,
-  _swigc__p_CState,
-  _swigc__p_CStateCredits,
-  _swigc__p_CStateMainMenu,
-  _swigc__p_CStateManager,
-  _swigc__p_CStateMonitor,
-  _swigc__p_IDAOFactory,
-  _swigc__p_IPfEquiposDAO,
-  _swigc__p_Ogre__FrameEvent,
-  _swigc__p_std__string,
-  _swigc__p_std__vectorTCPfEquipos_p_t,
+  _swigc__p_first_type,
+  _swigc__p_second_type,
+  _swigc__p_std__ostream,
+  _swigc__p_std__pairTfloat_float_t,
+  _swigc__p_unsigned_char,
+  _swigc__p_unsigned_int,
+  _swigc__p_unsigned_long,
+  _swigc__p_unsigned_short,
 };
 
 
