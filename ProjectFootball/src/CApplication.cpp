@@ -146,12 +146,23 @@ void CApplication::setupRenderSystem()
 
 void CApplication::createRenderWindow()
 {
+    Ogre::NameValuePairList opts;
     COptionManager *op = COptionManager::getInstance();
     int width = op->getIntOption("Video","Width", 800);
     int height = op->getIntOption("Video","Height", 600);
     bool fullscreen = op->getBooleanOption("Video","Fullscreen", false);
+    bool vsync = op->getBooleanOption("Video", "VSync", false);
     m_root->initialise(false);
-    m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen);
+    if(vsync) {
+        opts["vsync"] = "true";
+        #if OGRE_PLATFORM == PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_LINUX
+            // TODO Nvidia and Ati check
+        #endif
+            m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
+    } else {
+        opts["vsync"] = "false";
+        m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
+    }
 }
 
 void CApplication::initializeResourceGroups()
@@ -209,11 +220,14 @@ void CApplication::setupCEGUI()
     CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
 
     // Other CEGUI setup here.
-    // TODO CLuaManager::getInstance()->runScript("data/skins/default/lua_scripts/initCEGUI.lua");
+    // TODO Make Cegui initialization in Lua
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"WindowsLook.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 
+    int mouseVelocity = COptionManager::getInstance()->getIntOption("GUI", "MouseVelocity", 50);
+    float mouseScale = 1.0f + (mouseVelocity/100);
+    m_system->setMouseMoveScaling(mouseScale);
 }
 
 void CApplication::createFrameListeners()
@@ -224,11 +238,14 @@ void CApplication::createFrameListeners()
 
 void CApplication::startRenderLoop()
 {
-    m_root->startRendering();
-//  while( m_root->renderOneFrame() ){
-//    m_mouse->capture();
-//    m_keyboard->capture();
-//  }
+    bool run = true;
+    CInputManager* input = CInputManager::getInstance();
+    while(run) {
+        input->capture();
+
+        Ogre::WindowEventUtilities::messagePump();
+        run = m_root->renderOneFrame();
+    }
 }
 
 #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
