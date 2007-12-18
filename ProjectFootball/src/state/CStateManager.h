@@ -52,7 +52,7 @@ public:
 protected:
     CStateManager();
 private:
-  void enterState();
+    void enterState();
 
     std::vector<CState*> m_stack;
 };

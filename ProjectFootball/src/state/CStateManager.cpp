@@ -26,21 +26,21 @@
 CStateManager::CStateManager()
   :m_stack()
 {
-  CLog::getInstance()->debug("CStateManager()");
+    CLog::getInstance()->debug("CStateManager()");
 }
 
 
 CStateManager* CStateManager::getInstance()
 {
-  static CStateManager instance;
-  return &instance;
+    static CStateManager instance;
+    return &instance;
 }
 
 
 CStateManager::~CStateManager()
 {
-  CLog::getInstance()->debug("~CStateManager()");
-  forcedPopStack();
+    CLog::getInstance()->debug("~CStateManager()");
+    orcedPopStack();
 }
 
 
@@ -55,19 +55,20 @@ void CStateManager::forcedPopStack()
 
 bool CStateManager::frameEnded(const Ogre::FrameEvent& evt)
 {
-
     return true;
 }
 
 
 bool CStateManager::frameStarted(const Ogre::FrameEvent& evt)
 {
-  CApplication::getInstance()->getMouse()->capture();
-  CApplication::getInstance()->getKeyboard()->capture();
+    CApplication::getInstance()->getMouse()->capture();
+    CApplication::getInstance()->getKeyboard()->capture();
 
-  if( m_stack.empty() ) return false;
+    if(m_stack.empty()) {
+        return false;
+    }
 
-  m_stack.back()->update();
+    m_stack.back()->update();
     return true;
 }
 
@@ -85,7 +86,7 @@ void CStateManager::popState()
 {
   // cleanup the current state
   if(!m_stack.empty()) {
-      if( m_stack.back()->leave() ){
+      if(m_stack.back()->leave()) {
           m_stack.pop_back();
           enterState();
       }
@@ -110,8 +111,8 @@ void CStateManager::pushState(CState* state)
 
 void CStateManager::enterState()
 {
-  if( !m_stack.empty() ){
-    CState *state = m_stack.back();
-    state->enter();
-  }
+    if(!m_stack.empty()) {
+        CState *state = m_stack.back();
+        state->enter();
+    }
 }
