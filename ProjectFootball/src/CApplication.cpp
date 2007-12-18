@@ -157,6 +157,7 @@ void CApplication::createRenderWindow()
         opts["vsync"] = "true";
         #if OGRE_PLATFORM == PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_LINUX
             // TODO Nvidia and Ati check
+            putenv("__GL_SYNC_TO_VBLANK=1");
         #endif
             m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
     } else {
