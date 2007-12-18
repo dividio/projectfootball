@@ -29,18 +29,6 @@
 using namespace Ogre;
 
 
-class ExitListener : public FrameListener
-{
-public:
-    ExitListener(OIS::Keyboard *keyboard);
-
-    bool frameStarted(const FrameEvent& evt);
-
-private:
-    OIS::Keyboard *m_Keyboard;
-};
-
-
 class CApplication
 {
 public:
