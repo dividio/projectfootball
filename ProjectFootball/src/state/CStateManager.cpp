@@ -18,10 +18,11 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <stdio.h>
+
 #include "CStateManager.h"
 #include "../utils/CLog.h"
-#include "../CApplication.h"
-#include <stdio.h>
+
 
 CStateManager::CStateManager()
   :m_stack()
@@ -40,7 +41,7 @@ CStateManager* CStateManager::getInstance()
 CStateManager::~CStateManager()
 {
     CLog::getInstance()->debug("~CStateManager()");
-    orcedPopStack();
+    forcedPopStack();
 }
 
 
@@ -61,9 +62,6 @@ bool CStateManager::frameEnded(const Ogre::FrameEvent& evt)
 
 bool CStateManager::frameStarted(const Ogre::FrameEvent& evt)
 {
-    CApplication::getInstance()->getMouse()->capture();
-    CApplication::getInstance()->getKeyboard()->capture();
-
     if(m_stack.empty()) {
         return false;
     }
@@ -108,6 +106,7 @@ void CStateManager::pushState(CState* state)
     m_stack.push_back(state);
     enterState();
 }
+
 
 void CStateManager::enterState()
 {

@@ -20,15 +20,18 @@
 
 #include "CInputManager.h"
 #include "../state/CStateManager.h"
+#include "../CApplication.h"
 
 CInputManager::CInputManager()
 {
     m_system = CEGUI::System::getSingletonPtr();
 }
 
+
 CInputManager::~CInputManager()
 {
 }
+
 
 CInputManager* CInputManager::getInstance()
 {
@@ -36,21 +39,31 @@ CInputManager* CInputManager::getInstance()
     return &instance;
 }
 
+
+void CInputManager::capture()
+{
+    CApplication::getInstance()->getMouse()->capture();
+    CApplication::getInstance()->getKeyboard()->capture();
+}
+
+
 bool CInputManager::keyPressed(const OIS::KeyEvent& e)
 {
-    if( e.key==OIS::KC_ESCAPE ){
+    if(e.key==OIS::KC_ESCAPE) {
         CStateManager::getInstance()->popState();
-    }else{
+    } else {
         m_system->injectKeyDown(e.key);
         m_system->injectChar(e.text);
     }
     return true;
 }
 
+
 bool CInputManager::keyReleased(const OIS::KeyEvent& e)
 {    m_system->injectKeyUp(e.key);
     return true;
 }
+
 
 bool CInputManager::mouseMoved(const OIS::MouseEvent& e)
 {
@@ -58,17 +71,20 @@ bool CInputManager::mouseMoved(const OIS::MouseEvent& e)
     return true;
 }
 
+
 bool CInputManager::mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id)
 {
     m_system->injectMouseButtonDown(convertButton(id));
     return true;
 }
 
+
 bool CInputManager::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id)
 {
     m_system->injectMouseButtonUp(convertButton(id));
     return true;
 }
+
 
 CEGUI::MouseButton CInputManager::convertButton(OIS::MouseButtonID buttonID)
 {

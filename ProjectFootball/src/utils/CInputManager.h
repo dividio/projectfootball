@@ -28,8 +28,10 @@ class CInputManager :
     public OIS::MouseListener, public OIS::KeyListener
 {
 public:
-	virtual ~CInputManager();
-	static CInputManager *getInstance();
+  virtual ~CInputManager();
+  static CInputManager *getInstance();
+
+  void capture();
 
     bool keyPressed(const OIS::KeyEvent& e);
     bool keyReleased(const OIS::KeyEvent& e);
@@ -38,8 +40,8 @@ public:
     bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 
 protected:
-	CInputManager();
-	CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
+  CInputManager();
+  CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 
 private:
     CEGUI::System *m_system;
