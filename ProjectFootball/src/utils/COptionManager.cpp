@@ -34,21 +34,22 @@
 char * trim( char *s )
 {
     int  i;
-    int length = strlen(s);
 
     // First, from the beggining of the string iterate forward
     // to the first character that not validate isspace(). Copying
     // the rest of the string to the beggining.
     i = 0;
-    while( i<length && isspace(s[i]) ){
+    while( isspace(s[i]) ){
       i++;
     }
-    strcpy(&(s[0]), &(s[i]) );
+    if( i!=0 ){
+        strcpy(&(s[0]), &(s[i]) );
+    }
 
     // Later, from the end of the string iterate backward to the first
     // character that not validate isspace(). Invalidating the rest of
     // the string
-    i = length-1;
+    i = strlen(s)-1;
     while( i>=0 && isspace(s[i]) ){
       i--;
     }
@@ -60,7 +61,7 @@ char * trim( char *s )
 
 char * getSentence( char *sentence, const char *line )
 {
-  // First, copy the line to the sentence
+    // First, copy the line to the sentence
     strcpy( sentence, line );
     // Later, detele comments from the sentence
     strtok( sentence, "#" );
@@ -78,7 +79,7 @@ char * getSentence( char *sentence, const char *line )
 
 void getAssignment( char *attribute, char *value, const char *sentence )
 {
-  // First, create temp buffer and copy sentence to it
+    // First, create temp buffer and copy sentence to it
     char *buffer = new char[strlen(sentence)+1];
     strcpy( buffer, sentence );
 
@@ -96,7 +97,7 @@ void getAssignment( char *attribute, char *value, const char *sentence )
 COptionManager::COptionManager()
    : m_categoriesList()
 {
-  // Open the config file
+    // Open the config file
     FILE *file = fopen( CONFIG_FILE, "r" );
     if( file==NULL ){
       CLog::getInstance()->error("Config file not found: %s", CONFIG_FILE);
@@ -130,7 +131,6 @@ COptionManager::COptionManager()
                 }
             }else{
               // else, then it's a assignment
-              sentence[strlen(sentence)-1] = '\0'; // Remove '\n'
               getAssignment(option, value, sentence);
               setStringOption(category, option, value);
            }
@@ -151,7 +151,7 @@ COptionManager::~COptionManager()
     // configuracion a la vez que se va liberando la memoria que se habia
     // reservado.
 
-  // Open the config file
+    // Open the config file
     FILE *file = fopen( CONFIG_FILE, "w" );
     if( file == NULL ){
       CLog::getInstance()->exception("Error at open the config file: %s", CONFIG_FILE);
@@ -217,7 +217,7 @@ const char * COptionManager::getStringOption( const char *category, const char *
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-      // If not found then create the option
+        // If not found then create the option
         o = createOption( optionsList, option, defaultValue );
     }
 
@@ -228,7 +228,7 @@ const char * COptionManager::getStringOption( const char *category, const char *
 
 int COptionManager::getIntOption( const char *category, const char *option, int defaultValue )
 {
-  // First, search the category
+    // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then create the category
@@ -238,7 +238,7 @@ int COptionManager::getIntOption( const char *category, const char *option, int 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-      // If not found then create the option
+        // If not found then create the option
         std::ostringstream stream;
         stream << defaultValue;
         o = createOption( optionsList, option, stream.str().c_str() );
@@ -279,17 +279,17 @@ void COptionManager::setStringOption( const char *category, const char *option, 
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-      // If not found then create the category
+        // If not found then create the category
         optionsList = createCategory( category );
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-      // If not found then create the option
+        // If not found then create the option
         createOption( optionsList, option, value );
     }else{
-      // Else delete old value
+        // Else delete old value
         delete optionsList->operator[](o);
         // and set the new value
         char *v = new char[strlen(value)+1];
@@ -366,7 +366,7 @@ const char * COptionManager::searchOption( std::map<const char *, const char *> 
 
 std::map<const char *, const char *> * COptionManager::createCategory( const char *category )
 {
-  // First, create the new options list
+    // First, create the new options list
     std::map<const char *, const char *> *optionsList = new std::map<const char *, const char *>();
     // Copy the category name
     char *c = new char[strlen(category)+1];
@@ -381,7 +381,7 @@ std::map<const char *, const char *> * COptionManager::createCategory( const cha
 
 const char * COptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
 {
-  // First, copu the option and the value
+    // First, copu the option and the value
     char *o = new char[strlen(option)+1];
     char *v = new char[strlen(value)+1];
 
