@@ -112,4 +112,6 @@ void CLog::printLog( const char *label, const char *format, va_list listArgument
     fprintf( m_log, "%s\t", label );
     vfprintf( m_log, format, listArguments );
     fprintf( m_log, "\n" );
+
+    fflush(m_log);
 }
