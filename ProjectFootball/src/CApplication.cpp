@@ -223,7 +223,6 @@ void CApplication::setupCEGUI()
     // Other CEGUI setup here.
     // TODO Make Cegui initialization in Lua
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
-    CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"WindowsLook.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 
     int mouseVelocity = COptionManager::getInstance()->getIntOption("GUI", "MouseVelocity", 50);

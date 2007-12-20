@@ -5,10 +5,11 @@
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="WindowsLook/StaticImage" Name="Monitor/Background" >
+        <Window Type="TaharezLook/StaticImage" Name="Monitor/Background" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
             <Property Name="Image" Value="set:Background image:Background" />
+            <Property Name="FrameEnabled" Value="false" />
             <Window Type="TaharezLook/Button" Name="Monitor/BackButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="Back" />
