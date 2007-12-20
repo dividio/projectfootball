@@ -106,7 +106,7 @@ void CApplication::defineResources()
 
         ConfigFile::SettingsMultiMap *settings = seci.getNext();
         ConfigFile::SettingsMultiMap::iterator i;
-        if(secName.compare("General") == 0 || secName.compare(skin) == 0) {
+        if(secName == "General" || secName == skin) {
             for (i = settings->begin(); i != settings->end(); ++i) {
                 typeName = i->first;
                 archName = i->second;
