@@ -1405,18 +1405,20 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_CDAOAbstractFactory swig_types[0]
 #define SWIGTYPE_p_CLog swig_types[1]
 #define SWIGTYPE_p_CPfEquipos swig_types[2]
-#define SWIGTYPE_p_CState swig_types[3]
-#define SWIGTYPE_p_CStateCredits swig_types[4]
-#define SWIGTYPE_p_CStateMainMenu swig_types[5]
-#define SWIGTYPE_p_CStateManager swig_types[6]
-#define SWIGTYPE_p_CStateMonitor swig_types[7]
-#define SWIGTYPE_p_IDAOFactory swig_types[8]
-#define SWIGTYPE_p_IPfEquiposDAO swig_types[9]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[10]
-#define SWIGTYPE_p_std__string swig_types[11]
-#define SWIGTYPE_p_std__vectorTCPfEquipos_p_t swig_types[12]
-static swig_type_info *swig_types[14];
-static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
+#define SWIGTYPE_p_CPfSavedGames swig_types[3]
+#define SWIGTYPE_p_CPfSavedGamesDAO swig_types[4]
+#define SWIGTYPE_p_CState swig_types[5]
+#define SWIGTYPE_p_CStateCredits swig_types[6]
+#define SWIGTYPE_p_CStateMainMenu swig_types[7]
+#define SWIGTYPE_p_CStateManager swig_types[8]
+#define SWIGTYPE_p_CStateMonitor swig_types[9]
+#define SWIGTYPE_p_IDAOFactory swig_types[10]
+#define SWIGTYPE_p_IPfEquiposDAO swig_types[11]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[12]
+#define SWIGTYPE_p_std__string swig_types[13]
+#define SWIGTYPE_p_std__vectorTCPfEquipos_p_t swig_types[14]
+static swig_type_info *swig_types[16];
+static swig_module_info swig_module = {swig_types, 15, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1434,6 +1436,8 @@ static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
 #include "../db/CPfEquipos.h"
 #include "../db/IDAOFactory.h"
 #include "../db/IPfEquiposDAO.h"
+#include "../db/CPfSavedGames.h"
+#include "../db/CPfSavedGamesDAO.h"
 
 
 	#include <string>
@@ -1721,9 +1725,16 @@ fail:
 
 static int _wrap_CDAOAbstractFactory_getIDAOFactory(lua_State* L) {
   int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
   IDAOFactory *result = 0 ;
   
-  result = (IDAOFactory *)CDAOAbstractFactory::getIDAOFactory();
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CDAOAbstractFactory_getIDAOFactory",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (IDAOFactory *)CDAOAbstractFactory::getIDAOFactory(arg1);
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_IDAOFactory,0); SWIG_arg++; 
   return SWIG_arg;
@@ -2290,6 +2301,537 @@ static swig_lua_attribute swig_IPfEquiposDAO_attributes[] = {
 };
 static swig_lua_class *swig_IPfEquiposDAO_bases[] = {0};
 swig_lua_class _wrap_class_IPfEquiposDAO = { "IPfEquiposDAO", &SWIGTYPE_p_IPfEquiposDAO,0, swig_delete_IPfEquiposDAO, swig_IPfEquiposDAO_methods, swig_IPfEquiposDAO_attributes, swig_IPfEquiposDAO_bases };
+
+static int _wrap_new_CPfSavedGames__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *result = 0 ;
+  
+  result = (CPfSavedGames *)new CPfSavedGames();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGames,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfSavedGames__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  std::string arg1 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  CPfSavedGames *result = 0 ;
+  
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  if(!lua_isstring(L,4)) SWIG_fail_arg(4);
+  if(!lua_isstring(L,5)) SWIG_fail_arg(5);
+  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (&arg3)->assign(lua_tostring(L,3),lua_strlen(L,3));
+  (&arg4)->assign(lua_tostring(L,4),lua_strlen(L,4));
+  (&arg5)->assign(lua_tostring(L,5),lua_strlen(L,5));
+  result = (CPfSavedGames *)new CPfSavedGames(arg1,arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGames,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfSavedGames(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_CPfSavedGames__SWIG_0(L);
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isstring(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_CPfSavedGames__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_CPfSavedGames'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_delete_CPfSavedGames(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("delete_CPfSavedGames",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_setSUser(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_setSUser",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setSUser(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_setSConnectionString(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_setSConnectionString",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setSConnectionString(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_setSSavedGame(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_setSSavedGame",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setSSavedGame(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_setXSavedGame(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_setXSavedGame",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setXSavedGame(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_setSDriver(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_setSDriver",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setSDriver(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_getSUser(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_getSUser",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (std::string *)(arg1)->getSUser();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_getSConnectionString(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_getSConnectionString",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (std::string *)(arg1)->getSConnectionString();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_getSSavedGame(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_getSSavedGame",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (std::string *)(arg1)->getSSavedGame();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_getXSavedGame(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_getXSavedGame",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (std::string *)(arg1)->getXSavedGame();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGames_getSDriver(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGames_getSDriver",1,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (std::string *)(arg1)->getSDriver();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CPfSavedGames(void *obj) {
+CPfSavedGames *arg1 = (CPfSavedGames *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CPfSavedGames_methods[] = {
+    {"setSUser", _wrap_CPfSavedGames_setSUser}, 
+    {"setSConnectionString", _wrap_CPfSavedGames_setSConnectionString}, 
+    {"setSSavedGame", _wrap_CPfSavedGames_setSSavedGame}, 
+    {"setXSavedGame", _wrap_CPfSavedGames_setXSavedGame}, 
+    {"setSDriver", _wrap_CPfSavedGames_setSDriver}, 
+    {"getSUser", _wrap_CPfSavedGames_getSUser}, 
+    {"getSConnectionString", _wrap_CPfSavedGames_getSConnectionString}, 
+    {"getSSavedGame", _wrap_CPfSavedGames_getSSavedGame}, 
+    {"getXSavedGame", _wrap_CPfSavedGames_getXSavedGame}, 
+    {"getSDriver", _wrap_CPfSavedGames_getSDriver}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CPfSavedGames_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CPfSavedGames_bases[] = {0};
+swig_lua_class _wrap_class_CPfSavedGames = { "CPfSavedGames", &SWIGTYPE_p_CPfSavedGames,_wrap_new_CPfSavedGames, swig_delete_CPfSavedGames, swig_CPfSavedGames_methods, swig_CPfSavedGames_attributes, swig_CPfSavedGames_bases };
+
+static int _wrap_delete_CPfSavedGamesDAO(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
+    SWIG_fail_ptr("delete_CPfSavedGamesDAO",1,SWIGTYPE_p_CPfSavedGamesDAO);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGamesDAO_getInstance(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGamesDAO *result = 0 ;
+  
+  result = (CPfSavedGamesDAO *)CPfSavedGamesDAO::getInstance();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGamesDAO,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGamesDAO_deleteReg(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
+  CPfSavedGames *arg2 = (CPfSavedGames *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_deleteReg",1,SWIGTYPE_p_CPfSavedGamesDAO);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_deleteReg",2,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (bool)(arg1)->deleteReg(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGamesDAO_insert(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
+  CPfSavedGames *arg2 = (CPfSavedGames *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_insert",1,SWIGTYPE_p_CPfSavedGamesDAO);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_insert",2,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (bool)(arg1)->insert(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGamesDAO_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
+  CPfSavedGames *arg2 = (CPfSavedGames *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_update",1,SWIGTYPE_p_CPfSavedGamesDAO);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfSavedGames,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_update",2,SWIGTYPE_p_CPfSavedGames);
+  }
+  
+  result = (bool)(arg1)->update(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfSavedGamesDAO_findByXSavedGame(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
+  std::string arg2 ;
+  CPfSavedGames *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
+    SWIG_fail_ptr("CPfSavedGamesDAO_findByXSavedGame",1,SWIGTYPE_p_CPfSavedGamesDAO);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  result = (CPfSavedGames *)(arg1)->findByXSavedGame(arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGames,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CPfSavedGamesDAO(void *obj) {
+CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CPfSavedGamesDAO_methods[] = {
+    {"deleteReg", _wrap_CPfSavedGamesDAO_deleteReg}, 
+    {"insert", _wrap_CPfSavedGamesDAO_insert}, 
+    {"update", _wrap_CPfSavedGamesDAO_update}, 
+    {"findByXSavedGame", _wrap_CPfSavedGamesDAO_findByXSavedGame}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CPfSavedGamesDAO_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CPfSavedGamesDAO_bases[] = {0};
+swig_lua_class _wrap_class_CPfSavedGamesDAO = { "CPfSavedGamesDAO", &SWIGTYPE_p_CPfSavedGamesDAO,0, swig_delete_CPfSavedGamesDAO, swig_CPfSavedGamesDAO_methods, swig_CPfSavedGamesDAO_attributes, swig_CPfSavedGamesDAO_bases };
 
 static int _wrap_delete_CLog(lua_State* L) {
   int SWIG_arg = -1;
@@ -3279,6 +3821,24 @@ static const struct luaL_reg swig_commands[] = {
     { "IPfEquiposDAO_update", _wrap_IPfEquiposDAO_update},
     { "IPfEquiposDAO_findVectorByXFkPais", _wrap_IPfEquiposDAO_findVectorByXFkPais},
     { "IPfEquiposDAO_findByXEquipo", _wrap_IPfEquiposDAO_findByXEquipo},
+    { "new_CPfSavedGames",_wrap_new_CPfSavedGames},
+    { "delete_CPfSavedGames", _wrap_delete_CPfSavedGames},
+    { "CPfSavedGames_setSUser", _wrap_CPfSavedGames_setSUser},
+    { "CPfSavedGames_setSConnectionString", _wrap_CPfSavedGames_setSConnectionString},
+    { "CPfSavedGames_setSSavedGame", _wrap_CPfSavedGames_setSSavedGame},
+    { "CPfSavedGames_setXSavedGame", _wrap_CPfSavedGames_setXSavedGame},
+    { "CPfSavedGames_setSDriver", _wrap_CPfSavedGames_setSDriver},
+    { "CPfSavedGames_getSUser", _wrap_CPfSavedGames_getSUser},
+    { "CPfSavedGames_getSConnectionString", _wrap_CPfSavedGames_getSConnectionString},
+    { "CPfSavedGames_getSSavedGame", _wrap_CPfSavedGames_getSSavedGame},
+    { "CPfSavedGames_getXSavedGame", _wrap_CPfSavedGames_getXSavedGame},
+    { "CPfSavedGames_getSDriver", _wrap_CPfSavedGames_getSDriver},
+    { "delete_CPfSavedGamesDAO", _wrap_delete_CPfSavedGamesDAO},
+    { "CPfSavedGamesDAO_getInstance", _wrap_CPfSavedGamesDAO_getInstance},
+    { "CPfSavedGamesDAO_deleteReg", _wrap_CPfSavedGamesDAO_deleteReg},
+    { "CPfSavedGamesDAO_insert", _wrap_CPfSavedGamesDAO_insert},
+    { "CPfSavedGamesDAO_update", _wrap_CPfSavedGamesDAO_update},
+    { "CPfSavedGamesDAO_findByXSavedGame", _wrap_CPfSavedGamesDAO_findByXSavedGame},
     { "delete_CLog", _wrap_delete_CLog},
     { "CLog_getInstance", _wrap_CLog_getInstance},
     { "CLog_debug", _wrap_CLog_debug},
@@ -3343,6 +3903,8 @@ static void *_p_CStateCreditsTo_p_CState(void *x) {
 static swig_type_info _swigt__p_CDAOAbstractFactory = {"_p_CDAOAbstractFactory", "CDAOAbstractFactory *", 0, 0, (void*)&_wrap_class_CDAOAbstractFactory, 0};
 static swig_type_info _swigt__p_CLog = {"_p_CLog", "CLog *", 0, 0, (void*)&_wrap_class_CLog, 0};
 static swig_type_info _swigt__p_CPfEquipos = {"_p_CPfEquipos", "CPfEquipos *", 0, 0, (void*)&_wrap_class_CPfEquipos, 0};
+static swig_type_info _swigt__p_CPfSavedGames = {"_p_CPfSavedGames", "CPfSavedGames *", 0, 0, (void*)&_wrap_class_CPfSavedGames, 0};
+static swig_type_info _swigt__p_CPfSavedGamesDAO = {"_p_CPfSavedGamesDAO", "CPfSavedGamesDAO *", 0, 0, (void*)&_wrap_class_CPfSavedGamesDAO, 0};
 static swig_type_info _swigt__p_CState = {"_p_CState", "CState *", 0, 0, (void*)&_wrap_class_CState, 0};
 static swig_type_info _swigt__p_CStateCredits = {"_p_CStateCredits", "CStateCredits *", 0, 0, (void*)&_wrap_class_CStateCredits, 0};
 static swig_type_info _swigt__p_CStateMainMenu = {"_p_CStateMainMenu", "CStateMainMenu *", 0, 0, (void*)&_wrap_class_CStateMainMenu, 0};
@@ -3358,6 +3920,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CDAOAbstractFactory,
   &_swigt__p_CLog,
   &_swigt__p_CPfEquipos,
+  &_swigt__p_CPfSavedGames,
+  &_swigt__p_CPfSavedGamesDAO,
   &_swigt__p_CState,
   &_swigt__p_CStateCredits,
   &_swigt__p_CStateMainMenu,
@@ -3373,6 +3937,8 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_CDAOAbstractFactory[] = {  {&_swigt__p_CDAOAbstractFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CLog[] = {  {&_swigt__p_CLog, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfEquipos[] = {  {&_swigt__p_CPfEquipos, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CPfSavedGames[] = {  {&_swigt__p_CPfSavedGames, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CPfSavedGamesDAO[] = {  {&_swigt__p_CPfSavedGamesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateCredits[] = {  {&_swigt__p_CStateCredits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMainMenu[] = {  {&_swigt__p_CStateMainMenu, 0, 0, 0},{0, 0, 0, 0}};
@@ -3388,6 +3954,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CDAOAbstractFactory,
   _swigc__p_CLog,
   _swigc__p_CPfEquipos,
+  _swigc__p_CPfSavedGames,
+  _swigc__p_CPfSavedGamesDAO,
   _swigc__p_CState,
   _swigc__p_CStateCredits,
   _swigc__p_CStateMainMenu,
