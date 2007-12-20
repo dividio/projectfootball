@@ -20,9 +20,8 @@
 
 
 #include "CDAOAbstractFactory.h"
+#include "../utils/CLog.h"
 
-
-IDAOFactory* CDAOAbstractFactory::m_instance = 0;
 
 CDAOAbstractFactory::CDAOAbstractFactory()
 {
@@ -36,18 +35,16 @@ CDAOAbstractFactory::~CDAOAbstractFactory()
 }
 
 
-IDAOFactory* CDAOAbstractFactory::getIDAOFactory()
+IDAOFactory* CDAOAbstractFactory::getIDAOFactory(CPfSavedGames* sg)
 {
+    std::string driver = sg->getSDriver()->c_str();
+    std::string connection = sg->getSConnectionString()->c_str();
+    IDAOFactory *factory = NULL;
 
-    int tipe = 1;
-    if (m_instance==0) {
-        switch (tipe) {
-            case 1:
-                m_instance = CDAOFactorySqlite::getInstance();
-                break;
-            default:
-                m_instance = CDAOFactorySqlite::getInstance();
-        }
+    if(driver == "SQLite") {
+        factory = new CDAOFactorySqlite(connection);
+    } else {
+        CLog::getInstance()->exception("Unknown database driver: %s", driver.c_str());
     }
-    return m_instance;
+    return factory;
 }

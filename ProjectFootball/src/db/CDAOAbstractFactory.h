@@ -24,20 +24,17 @@
 
 #include "IDAOFactory.h"
 #include "CDAOFactorySqlite.h"
+#include "CPfSavedGames.h"
 
 class CDAOAbstractFactory
 {
 private:
-
-    static IDAOFactory* m_instance;
-
-protected:
     CDAOAbstractFactory();
 
 public:
-	virtual ~CDAOAbstractFactory();
+  virtual ~CDAOAbstractFactory();
 
-	static IDAOFactory* getIDAOFactory();
+  static IDAOFactory* getIDAOFactory(CPfSavedGames* sg);
 
 };
 #endif // __CDAOAbstractFactory_H__
