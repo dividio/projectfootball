@@ -62,6 +62,7 @@ bool CStateManager::frameEnded(const Ogre::FrameEvent& evt)
 
 bool CStateManager::frameStarted(const Ogre::FrameEvent& evt)
 {
+    m_timeSinceLastFrame = evt.timeSinceLastFrame;
     if(m_stack.empty()) {
         return false;
     }
@@ -114,4 +115,10 @@ void CStateManager::enterState()
         CState *state = m_stack.back();
         state->enter();
     }
+}
+
+
+float CStateManager::getTimeSinceLastFrame()
+{
+    return m_timeSinceLastFrame;
 }

@@ -49,11 +49,14 @@ public:
     void popToState(CState* state);
     void pushState(CState* state);
 
+    float getTimeSinceLastFrame();
+
 protected:
     CStateManager();
 private:
     void enterState();
 
+    float m_timeSinceLastFrame;
     std::vector<CState*> m_stack;
 };
 #endif // __CStateManager_H__
