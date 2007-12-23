@@ -16,12 +16,12 @@ function cmd_quit()
 end
 
 function cmd_credits()
-    state = PF.CStateCredits_getInstance()
+    local state = PF.CStateCredits_getInstance()
     PF.CStateManager_getInstance():pushState(state)
 end
 
 function cmd_play()
-    state = PF.CStateMonitor_getInstance()
+    local state = PF.CStateMonitor_getInstance()
     PF.CStateManager_getInstance():pushState(state)
 end
 
