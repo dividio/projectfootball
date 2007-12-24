@@ -47,7 +47,12 @@ protected:
 private:
     //Ogre::RenderTexture *m_tex;
 
+    Ogre::Camera *m_cam;
+    Ogre::Vector3 m_direction;
+
     void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
+    bool keyDownHandler(const CEGUI::EventArgs& e);
+    bool keyUpHandler(const CEGUI::EventArgs& e);
 
 };
 

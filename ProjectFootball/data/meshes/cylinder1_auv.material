@@ -1,0 +1,13 @@
+material cylinder1_auv
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture cylinder1_auv.png
+			}
+		}
+	}
+}
