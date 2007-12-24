@@ -1385,16 +1385,34 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_first_type swig_types[0]
-#define SWIGTYPE_p_second_type swig_types[1]
-#define SWIGTYPE_p_std__ostream swig_types[2]
-#define SWIGTYPE_p_std__pairTfloat_float_t swig_types[3]
-#define SWIGTYPE_p_unsigned_char swig_types[4]
-#define SWIGTYPE_p_unsigned_int swig_types[5]
-#define SWIGTYPE_p_unsigned_long swig_types[6]
-#define SWIGTYPE_p_unsigned_short swig_types[7]
-static swig_type_info *swig_types[9];
-static swig_module_info swig_module = {swig_types, 8, 0, 0, 0, 0};
+#define SWIGTYPE_Point swig_types[0]
+#define SWIGTYPE_Vector2 swig_types[1]
+#define SWIGTYPE_p_CEGUI__ActivationEventArgs swig_types[2]
+#define SWIGTYPE_p_CEGUI__DragDropEventArgs swig_types[3]
+#define SWIGTYPE_p_CEGUI__EventArgs swig_types[4]
+#define SWIGTYPE_p_CEGUI__Key swig_types[5]
+#define SWIGTYPE_p_CEGUI__KeyEventArgs swig_types[6]
+#define SWIGTYPE_p_CEGUI__MouseCursorEventArgs swig_types[7]
+#define SWIGTYPE_p_CEGUI__MouseEventArgs swig_types[8]
+#define SWIGTYPE_p_CEGUI__WindowEventArgs swig_types[9]
+#define SWIGTYPE_p_DragContainer swig_types[10]
+#define SWIGTYPE_p_Image swig_types[11]
+#define SWIGTYPE_p_MouseCursor swig_types[12]
+#define SWIGTYPE_p_Point swig_types[13]
+#define SWIGTYPE_p_Vector2 swig_types[14]
+#define SWIGTYPE_p_Window swig_types[15]
+#define SWIGTYPE_p_first_type swig_types[16]
+#define SWIGTYPE_p_second_type swig_types[17]
+#define SWIGTYPE_p_std__ostream swig_types[18]
+#define SWIGTYPE_p_std__pairTfloat_float_t swig_types[19]
+#define SWIGTYPE_p_unsigned_char swig_types[20]
+#define SWIGTYPE_p_unsigned_int swig_types[21]
+#define SWIGTYPE_p_unsigned_long swig_types[22]
+#define SWIGTYPE_p_unsigned_short swig_types[23]
+#define SWIGTYPE_p_utf32 swig_types[24]
+#define SWIGTYPE_utf32 swig_types[25]
+static swig_type_info *swig_types[27];
+static swig_module_info swig_module = {swig_types, 26, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1418,6 +1436,12 @@ using namespace CEGUI;
 
 
 #include <CEGUISingleton.h>
+
+
+#include <CEGUIEventArgs.h>
+
+
+#include <CEGUIInputEvent.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -1685,6 +1709,1215 @@ static swig_lua_attribute swig_std_pair_Sl_float_Sc_float_Sg__attributes[] = {
 static swig_lua_class *swig_std_pair_Sl_float_Sc_float_Sg__bases[] = {0};
 swig_lua_class _wrap_class_std_pair_Sl_float_Sc_float_Sg_ = { "_FloatFloatPair", &SWIGTYPE_p_std__pairTfloat_float_t,_wrap_new__FloatFloatPair, swig_delete__FloatFloatPair, swig_std_pair_Sl_float_Sc_float_Sg__methods, swig_std_pair_Sl_float_Sc_float_Sg__attributes, swig_std_pair_Sl_float_Sc_float_Sg__bases };
 
+static int _wrap_new_EventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::EventArgs *result = 0 ;
+  
+  result = (CEGUI::EventArgs *)new CEGUI::EventArgs();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__EventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_EventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::EventArgs *arg1 = (CEGUI::EventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__EventArgs,0))){
+    SWIG_fail_ptr("delete_EventArgs",1,SWIGTYPE_p_CEGUI__EventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EventArgs_Handled_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::EventArgs *arg1 = (CEGUI::EventArgs *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__EventArgs,0))){
+    SWIG_fail_ptr("EventArgs_Handled_set",1,SWIGTYPE_p_CEGUI__EventArgs);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  if (arg1) (arg1)->handled = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EventArgs_Handled_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::EventArgs *arg1 = (CEGUI::EventArgs *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__EventArgs,0))){
+    SWIG_fail_ptr("EventArgs_Handled_get",1,SWIGTYPE_p_CEGUI__EventArgs);
+  }
+  
+  result = (bool) ((arg1)->handled);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_EventArgs(void *obj) {
+CEGUI::EventArgs *arg1 = (CEGUI::EventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_EventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_EventArgs_attributes[] = {
+    { "Handled",_wrap_EventArgs_Handled_get, _wrap_EventArgs_Handled_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_EventArgs_bases[] = {0};
+swig_lua_class _wrap_class_CEGUI_EventArgs = { "EventArgs", &SWIGTYPE_p_CEGUI__EventArgs,_wrap_new_EventArgs, swig_delete_EventArgs, swig_CEGUI_EventArgs_methods, swig_CEGUI_EventArgs_attributes, swig_CEGUI_EventArgs_bases };
+
+static int _wrap_new_Key(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::Key *result = 0 ;
+  
+  result = (CEGUI::Key *)new CEGUI::Key();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__Key,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_Key(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::Key *arg1 = (CEGUI::Key *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__Key,0))){
+    SWIG_fail_ptr("delete_Key",1,SWIGTYPE_p_CEGUI__Key);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Key(void *obj) {
+CEGUI::Key *arg1 = (CEGUI::Key *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_Key_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_Key_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_Key_bases[] = {0};
+swig_lua_class _wrap_class_CEGUI_Key = { "Key", &SWIGTYPE_p_CEGUI__Key,_wrap_new_Key, swig_delete_Key, swig_CEGUI_Key_methods, swig_CEGUI_Key_attributes, swig_CEGUI_Key_bases };
+
+static int _wrap_new_WindowEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  Window *arg1 = (Window *) 0 ;
+  CEGUI::WindowEventArgs *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("new_WindowEventArgs",1,SWIGTYPE_p_Window);
+  }
+  
+  result = (CEGUI::WindowEventArgs *)new CEGUI::WindowEventArgs(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__WindowEventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WindowEventArgs_Window_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::WindowEventArgs *arg1 = (CEGUI::WindowEventArgs *) 0 ;
+  Window *arg2 = (Window *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__WindowEventArgs,0))){
+    SWIG_fail_ptr("WindowEventArgs_Window_set",1,SWIGTYPE_p_CEGUI__WindowEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("WindowEventArgs_Window_set",2,SWIGTYPE_p_Window);
+  }
+  
+  if (arg1) (arg1)->window = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WindowEventArgs_Window_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::WindowEventArgs *arg1 = (CEGUI::WindowEventArgs *) 0 ;
+  Window *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__WindowEventArgs,0))){
+    SWIG_fail_ptr("WindowEventArgs_Window_get",1,SWIGTYPE_p_CEGUI__WindowEventArgs);
+  }
+  
+  result = (Window *) ((arg1)->window);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Window,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_WindowEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::WindowEventArgs *arg1 = (CEGUI::WindowEventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__WindowEventArgs,0))){
+    SWIG_fail_ptr("delete_WindowEventArgs",1,SWIGTYPE_p_CEGUI__WindowEventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_WindowEventArgs(void *obj) {
+CEGUI::WindowEventArgs *arg1 = (CEGUI::WindowEventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_WindowEventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_WindowEventArgs_attributes[] = {
+    { "Window",_wrap_WindowEventArgs_Window_get, _wrap_WindowEventArgs_Window_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_WindowEventArgs_bases[] = {&_wrap_class_CEGUI_EventArgs,0};
+swig_lua_class _wrap_class_CEGUI_WindowEventArgs = { "WindowEventArgs", &SWIGTYPE_p_CEGUI__WindowEventArgs,_wrap_new_WindowEventArgs, swig_delete_WindowEventArgs, swig_CEGUI_WindowEventArgs_methods, swig_CEGUI_WindowEventArgs_attributes, swig_CEGUI_WindowEventArgs_bases };
+
+static int _wrap_new_MouseEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  Window *arg1 = (Window *) 0 ;
+  CEGUI::MouseEventArgs *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("new_MouseEventArgs",1,SWIGTYPE_p_Window);
+  }
+  
+  result = (CEGUI::MouseEventArgs *)new CEGUI::MouseEventArgs(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__MouseEventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_Position_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  Point arg2 ;
+  Point *argp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_Position_set",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_Point,0))){
+    SWIG_fail_ptr("MouseEventArgs_Position_set",2,SWIGTYPE_Point);
+  }
+  arg2 = *argp2;
+  
+  if (arg1) (arg1)->position = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_Position_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  Point result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_Position_get",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  result =  ((arg1)->position);
+  SWIG_arg=0;
+  {
+    Point * resultptr = new Point((Point &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Point,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_MoveDelta_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  Vector2 arg2 ;
+  Vector2 *argp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_MoveDelta_set",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_Vector2,0))){
+    SWIG_fail_ptr("MouseEventArgs_MoveDelta_set",2,SWIGTYPE_Vector2);
+  }
+  arg2 = *argp2;
+  
+  if (arg1) (arg1)->moveDelta = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_MoveDelta_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  Vector2 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_MoveDelta_get",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  result =  ((arg1)->moveDelta);
+  SWIG_arg=0;
+  {
+    Vector2 * resultptr = new Vector2((Vector2 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector2,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_Button_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  CEGUI::MouseButton arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_Button_set",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  arg2 = (CEGUI::MouseButton)(int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->button = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_Button_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  CEGUI::MouseButton result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_Button_get",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  result = (CEGUI::MouseButton) ((arg1)->button);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_SysKeys_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  CEGUI::uint arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_SysKeys_set",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  arg2 = (CEGUI::uint)lua_tonumber(L, 2);
+  if (arg1) (arg1)->sysKeys = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_SysKeys_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  CEGUI::uint result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_SysKeys_get",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  result = (CEGUI::uint) ((arg1)->sysKeys);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_WheelChange_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  float arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_WheelChange_set",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->wheelChange = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_WheelChange_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  float result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_WheelChange_get",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  result = (float) ((arg1)->wheelChange);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_ClickCount_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  CEGUI::uint arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_ClickCount_set",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  arg2 = (CEGUI::uint)lua_tonumber(L, 2);
+  if (arg1) (arg1)->clickCount = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseEventArgs_ClickCount_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  CEGUI::uint result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("MouseEventArgs_ClickCount_get",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  result = (CEGUI::uint) ((arg1)->clickCount);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_MouseEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseEventArgs,0))){
+    SWIG_fail_ptr("delete_MouseEventArgs",1,SWIGTYPE_p_CEGUI__MouseEventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MouseEventArgs(void *obj) {
+CEGUI::MouseEventArgs *arg1 = (CEGUI::MouseEventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_MouseEventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_MouseEventArgs_attributes[] = {
+    { "Position",_wrap_MouseEventArgs_Position_get, _wrap_MouseEventArgs_Position_set},
+    { "MoveDelta",_wrap_MouseEventArgs_MoveDelta_get, _wrap_MouseEventArgs_MoveDelta_set},
+    { "Button",_wrap_MouseEventArgs_Button_get, _wrap_MouseEventArgs_Button_set},
+    { "SysKeys",_wrap_MouseEventArgs_SysKeys_get, _wrap_MouseEventArgs_SysKeys_set},
+    { "WheelChange",_wrap_MouseEventArgs_WheelChange_get, _wrap_MouseEventArgs_WheelChange_set},
+    { "ClickCount",_wrap_MouseEventArgs_ClickCount_get, _wrap_MouseEventArgs_ClickCount_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_MouseEventArgs_bases[] = {&_wrap_class_CEGUI_WindowEventArgs,0};
+swig_lua_class _wrap_class_CEGUI_MouseEventArgs = { "MouseEventArgs", &SWIGTYPE_p_CEGUI__MouseEventArgs,_wrap_new_MouseEventArgs, swig_delete_MouseEventArgs, swig_CEGUI_MouseEventArgs_methods, swig_CEGUI_MouseEventArgs_attributes, swig_CEGUI_MouseEventArgs_bases };
+
+static int _wrap_new_MouseCursorEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  MouseCursor *arg1 = (MouseCursor *) 0 ;
+  CEGUI::MouseCursorEventArgs *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_MouseCursor,0))){
+    SWIG_fail_ptr("new_MouseCursorEventArgs",1,SWIGTYPE_p_MouseCursor);
+  }
+  
+  result = (CEGUI::MouseCursorEventArgs *)new CEGUI::MouseCursorEventArgs(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__MouseCursorEventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseCursorEventArgs_MouseCursor_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseCursorEventArgs *arg1 = (CEGUI::MouseCursorEventArgs *) 0 ;
+  MouseCursor *arg2 = (MouseCursor *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs,0))){
+    SWIG_fail_ptr("MouseCursorEventArgs_MouseCursor_set",1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_MouseCursor,0))){
+    SWIG_fail_ptr("MouseCursorEventArgs_MouseCursor_set",2,SWIGTYPE_p_MouseCursor);
+  }
+  
+  if (arg1) (arg1)->mouseCursor = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseCursorEventArgs_MouseCursor_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseCursorEventArgs *arg1 = (CEGUI::MouseCursorEventArgs *) 0 ;
+  MouseCursor *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs,0))){
+    SWIG_fail_ptr("MouseCursorEventArgs_MouseCursor_get",1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs);
+  }
+  
+  result = (MouseCursor *) ((arg1)->mouseCursor);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_MouseCursor,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseCursorEventArgs_Image_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseCursorEventArgs *arg1 = (CEGUI::MouseCursorEventArgs *) 0 ;
+  Image *arg2 = (Image *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs,0))){
+    SWIG_fail_ptr("MouseCursorEventArgs_Image_set",1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Image,0))){
+    SWIG_fail_ptr("MouseCursorEventArgs_Image_set",2,SWIGTYPE_p_Image);
+  }
+  
+  if (arg1) (arg1)->image = (Image const *)arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseCursorEventArgs_Image_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseCursorEventArgs *arg1 = (CEGUI::MouseCursorEventArgs *) 0 ;
+  Image *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs,0))){
+    SWIG_fail_ptr("MouseCursorEventArgs_Image_get",1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs);
+  }
+  
+  result = (Image *) ((arg1)->image);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Image,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_MouseCursorEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::MouseCursorEventArgs *arg1 = (CEGUI::MouseCursorEventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs,0))){
+    SWIG_fail_ptr("delete_MouseCursorEventArgs",1,SWIGTYPE_p_CEGUI__MouseCursorEventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MouseCursorEventArgs(void *obj) {
+CEGUI::MouseCursorEventArgs *arg1 = (CEGUI::MouseCursorEventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_MouseCursorEventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_MouseCursorEventArgs_attributes[] = {
+    { "MouseCursor",_wrap_MouseCursorEventArgs_MouseCursor_get, _wrap_MouseCursorEventArgs_MouseCursor_set},
+    { "Image",_wrap_MouseCursorEventArgs_Image_get, _wrap_MouseCursorEventArgs_Image_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_MouseCursorEventArgs_bases[] = {&_wrap_class_CEGUI_EventArgs,0};
+swig_lua_class _wrap_class_CEGUI_MouseCursorEventArgs = { "MouseCursorEventArgs", &SWIGTYPE_p_CEGUI__MouseCursorEventArgs,_wrap_new_MouseCursorEventArgs, swig_delete_MouseCursorEventArgs, swig_CEGUI_MouseCursorEventArgs_methods, swig_CEGUI_MouseCursorEventArgs_attributes, swig_CEGUI_MouseCursorEventArgs_bases };
+
+static int _wrap_new_KeyEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  Window *arg1 = (Window *) 0 ;
+  CEGUI::KeyEventArgs *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("new_KeyEventArgs",1,SWIGTYPE_p_Window);
+  }
+  
+  result = (CEGUI::KeyEventArgs *)new CEGUI::KeyEventArgs(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__KeyEventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_KeyEventArgs_Codepoint_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  utf32 arg2 ;
+  utf32 *argp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("KeyEventArgs_Codepoint_set",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_utf32,0))){
+    SWIG_fail_ptr("KeyEventArgs_Codepoint_set",2,SWIGTYPE_utf32);
+  }
+  arg2 = *argp2;
+  
+  if (arg1) (arg1)->codepoint = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_KeyEventArgs_Codepoint_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  utf32 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("KeyEventArgs_Codepoint_get",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  result =  ((arg1)->codepoint);
+  SWIG_arg=0;
+  {
+    utf32 * resultptr = new utf32((utf32 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_utf32,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_KeyEventArgs_Scancode_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  CEGUI::Key::Scan arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("KeyEventArgs_Scancode_set",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  arg2 = (CEGUI::Key::Scan)(int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->scancode = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_KeyEventArgs_Scancode_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  CEGUI::Key::Scan result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("KeyEventArgs_Scancode_get",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  result = (CEGUI::Key::Scan) ((arg1)->scancode);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_KeyEventArgs_SysKeys_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  CEGUI::uint arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("KeyEventArgs_SysKeys_set",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  arg2 = (CEGUI::uint)lua_tonumber(L, 2);
+  if (arg1) (arg1)->sysKeys = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_KeyEventArgs_SysKeys_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  CEGUI::uint result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("KeyEventArgs_SysKeys_get",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  result = (CEGUI::uint) ((arg1)->sysKeys);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_KeyEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__KeyEventArgs,0))){
+    SWIG_fail_ptr("delete_KeyEventArgs",1,SWIGTYPE_p_CEGUI__KeyEventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_KeyEventArgs(void *obj) {
+CEGUI::KeyEventArgs *arg1 = (CEGUI::KeyEventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_KeyEventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_KeyEventArgs_attributes[] = {
+    { "Codepoint",_wrap_KeyEventArgs_Codepoint_get, _wrap_KeyEventArgs_Codepoint_set},
+    { "Scancode",_wrap_KeyEventArgs_Scancode_get, _wrap_KeyEventArgs_Scancode_set},
+    { "SysKeys",_wrap_KeyEventArgs_SysKeys_get, _wrap_KeyEventArgs_SysKeys_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_KeyEventArgs_bases[] = {&_wrap_class_CEGUI_WindowEventArgs,0};
+swig_lua_class _wrap_class_CEGUI_KeyEventArgs = { "KeyEventArgs", &SWIGTYPE_p_CEGUI__KeyEventArgs,_wrap_new_KeyEventArgs, swig_delete_KeyEventArgs, swig_CEGUI_KeyEventArgs_methods, swig_CEGUI_KeyEventArgs_attributes, swig_CEGUI_KeyEventArgs_bases };
+
+static int _wrap_new_ActivationEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  Window *arg1 = (Window *) 0 ;
+  CEGUI::ActivationEventArgs *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("new_ActivationEventArgs",1,SWIGTYPE_p_Window);
+  }
+  
+  result = (CEGUI::ActivationEventArgs *)new CEGUI::ActivationEventArgs(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__ActivationEventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ActivationEventArgs_OtherWindow_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::ActivationEventArgs *arg1 = (CEGUI::ActivationEventArgs *) 0 ;
+  Window *arg2 = (Window *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__ActivationEventArgs,0))){
+    SWIG_fail_ptr("ActivationEventArgs_OtherWindow_set",1,SWIGTYPE_p_CEGUI__ActivationEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("ActivationEventArgs_OtherWindow_set",2,SWIGTYPE_p_Window);
+  }
+  
+  if (arg1) (arg1)->otherWindow = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ActivationEventArgs_OtherWindow_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::ActivationEventArgs *arg1 = (CEGUI::ActivationEventArgs *) 0 ;
+  Window *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__ActivationEventArgs,0))){
+    SWIG_fail_ptr("ActivationEventArgs_OtherWindow_get",1,SWIGTYPE_p_CEGUI__ActivationEventArgs);
+  }
+  
+  result = (Window *) ((arg1)->otherWindow);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Window,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_ActivationEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::ActivationEventArgs *arg1 = (CEGUI::ActivationEventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__ActivationEventArgs,0))){
+    SWIG_fail_ptr("delete_ActivationEventArgs",1,SWIGTYPE_p_CEGUI__ActivationEventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ActivationEventArgs(void *obj) {
+CEGUI::ActivationEventArgs *arg1 = (CEGUI::ActivationEventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_ActivationEventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_ActivationEventArgs_attributes[] = {
+    { "OtherWindow",_wrap_ActivationEventArgs_OtherWindow_get, _wrap_ActivationEventArgs_OtherWindow_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_ActivationEventArgs_bases[] = {&_wrap_class_CEGUI_WindowEventArgs,0};
+swig_lua_class _wrap_class_CEGUI_ActivationEventArgs = { "ActivationEventArgs", &SWIGTYPE_p_CEGUI__ActivationEventArgs,_wrap_new_ActivationEventArgs, swig_delete_ActivationEventArgs, swig_CEGUI_ActivationEventArgs_methods, swig_CEGUI_ActivationEventArgs_attributes, swig_CEGUI_ActivationEventArgs_bases };
+
+static int _wrap_new_DragDropEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  Window *arg1 = (Window *) 0 ;
+  CEGUI::DragDropEventArgs *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Window,0))){
+    SWIG_fail_ptr("new_DragDropEventArgs",1,SWIGTYPE_p_Window);
+  }
+  
+  result = (CEGUI::DragDropEventArgs *)new CEGUI::DragDropEventArgs(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEGUI__DragDropEventArgs,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DragDropEventArgs_DragDropItem_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::DragDropEventArgs *arg1 = (CEGUI::DragDropEventArgs *) 0 ;
+  DragContainer *arg2 = (DragContainer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__DragDropEventArgs,0))){
+    SWIG_fail_ptr("DragDropEventArgs_DragDropItem_set",1,SWIGTYPE_p_CEGUI__DragDropEventArgs);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_DragContainer,0))){
+    SWIG_fail_ptr("DragDropEventArgs_DragDropItem_set",2,SWIGTYPE_p_DragContainer);
+  }
+  
+  if (arg1) (arg1)->dragDropItem = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DragDropEventArgs_DragDropItem_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::DragDropEventArgs *arg1 = (CEGUI::DragDropEventArgs *) 0 ;
+  DragContainer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__DragDropEventArgs,0))){
+    SWIG_fail_ptr("DragDropEventArgs_DragDropItem_get",1,SWIGTYPE_p_CEGUI__DragDropEventArgs);
+  }
+  
+  result = (DragContainer *) ((arg1)->dragDropItem);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_DragContainer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_DragDropEventArgs(lua_State* L) {
+  int SWIG_arg = -1;
+  CEGUI::DragDropEventArgs *arg1 = (CEGUI::DragDropEventArgs *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEGUI__DragDropEventArgs,0))){
+    SWIG_fail_ptr("delete_DragDropEventArgs",1,SWIGTYPE_p_CEGUI__DragDropEventArgs);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DragDropEventArgs(void *obj) {
+CEGUI::DragDropEventArgs *arg1 = (CEGUI::DragDropEventArgs *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEGUI_DragDropEventArgs_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CEGUI_DragDropEventArgs_attributes[] = {
+    { "DragDropItem",_wrap_DragDropEventArgs_DragDropItem_get, _wrap_DragDropEventArgs_DragDropItem_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CEGUI_DragDropEventArgs_bases[] = {&_wrap_class_CEGUI_WindowEventArgs,0};
+swig_lua_class _wrap_class_CEGUI_DragDropEventArgs = { "DragDropEventArgs", &SWIGTYPE_p_CEGUI__DragDropEventArgs,_wrap_new_DragDropEventArgs, swig_delete_DragDropEventArgs, swig_CEGUI_DragDropEventArgs_methods, swig_CEGUI_DragDropEventArgs_attributes, swig_CEGUI_DragDropEventArgs_bases };
+
 #ifdef __cplusplus
 }
 #endif
@@ -1698,6 +2931,52 @@ static const struct luaL_reg swig_commands[] = {
     { "_FloatFloatPair_second_set", _wrap__FloatFloatPair_second_set},
     { "_FloatFloatPair_second_get", _wrap__FloatFloatPair_second_get},
     { "delete__FloatFloatPair", _wrap_delete__FloatFloatPair},
+    { "new_EventArgs", _wrap_new_EventArgs},
+    { "delete_EventArgs", _wrap_delete_EventArgs},
+    { "EventArgs_Handled_set", _wrap_EventArgs_Handled_set},
+    { "EventArgs_Handled_get", _wrap_EventArgs_Handled_get},
+    { "new_Key", _wrap_new_Key},
+    { "delete_Key", _wrap_delete_Key},
+    { "new_WindowEventArgs", _wrap_new_WindowEventArgs},
+    { "WindowEventArgs_Window_set", _wrap_WindowEventArgs_Window_set},
+    { "WindowEventArgs_Window_get", _wrap_WindowEventArgs_Window_get},
+    { "delete_WindowEventArgs", _wrap_delete_WindowEventArgs},
+    { "new_MouseEventArgs", _wrap_new_MouseEventArgs},
+    { "MouseEventArgs_Position_set", _wrap_MouseEventArgs_Position_set},
+    { "MouseEventArgs_Position_get", _wrap_MouseEventArgs_Position_get},
+    { "MouseEventArgs_MoveDelta_set", _wrap_MouseEventArgs_MoveDelta_set},
+    { "MouseEventArgs_MoveDelta_get", _wrap_MouseEventArgs_MoveDelta_get},
+    { "MouseEventArgs_Button_set", _wrap_MouseEventArgs_Button_set},
+    { "MouseEventArgs_Button_get", _wrap_MouseEventArgs_Button_get},
+    { "MouseEventArgs_SysKeys_set", _wrap_MouseEventArgs_SysKeys_set},
+    { "MouseEventArgs_SysKeys_get", _wrap_MouseEventArgs_SysKeys_get},
+    { "MouseEventArgs_WheelChange_set", _wrap_MouseEventArgs_WheelChange_set},
+    { "MouseEventArgs_WheelChange_get", _wrap_MouseEventArgs_WheelChange_get},
+    { "MouseEventArgs_ClickCount_set", _wrap_MouseEventArgs_ClickCount_set},
+    { "MouseEventArgs_ClickCount_get", _wrap_MouseEventArgs_ClickCount_get},
+    { "delete_MouseEventArgs", _wrap_delete_MouseEventArgs},
+    { "new_MouseCursorEventArgs", _wrap_new_MouseCursorEventArgs},
+    { "MouseCursorEventArgs_MouseCursor_set", _wrap_MouseCursorEventArgs_MouseCursor_set},
+    { "MouseCursorEventArgs_MouseCursor_get", _wrap_MouseCursorEventArgs_MouseCursor_get},
+    { "MouseCursorEventArgs_Image_set", _wrap_MouseCursorEventArgs_Image_set},
+    { "MouseCursorEventArgs_Image_get", _wrap_MouseCursorEventArgs_Image_get},
+    { "delete_MouseCursorEventArgs", _wrap_delete_MouseCursorEventArgs},
+    { "new_KeyEventArgs", _wrap_new_KeyEventArgs},
+    { "KeyEventArgs_Codepoint_set", _wrap_KeyEventArgs_Codepoint_set},
+    { "KeyEventArgs_Codepoint_get", _wrap_KeyEventArgs_Codepoint_get},
+    { "KeyEventArgs_Scancode_set", _wrap_KeyEventArgs_Scancode_set},
+    { "KeyEventArgs_Scancode_get", _wrap_KeyEventArgs_Scancode_get},
+    { "KeyEventArgs_SysKeys_set", _wrap_KeyEventArgs_SysKeys_set},
+    { "KeyEventArgs_SysKeys_get", _wrap_KeyEventArgs_SysKeys_get},
+    { "delete_KeyEventArgs", _wrap_delete_KeyEventArgs},
+    { "new_ActivationEventArgs", _wrap_new_ActivationEventArgs},
+    { "ActivationEventArgs_OtherWindow_set", _wrap_ActivationEventArgs_OtherWindow_set},
+    { "ActivationEventArgs_OtherWindow_get", _wrap_ActivationEventArgs_OtherWindow_get},
+    { "delete_ActivationEventArgs", _wrap_delete_ActivationEventArgs},
+    { "new_DragDropEventArgs", _wrap_new_DragDropEventArgs},
+    { "DragDropEventArgs_DragDropItem_set", _wrap_DragDropEventArgs_DragDropItem_set},
+    { "DragDropEventArgs_DragDropItem_get", _wrap_DragDropEventArgs_DragDropItem_get},
+    { "delete_DragDropEventArgs", _wrap_delete_DragDropEventArgs},
     {0,0}
 };
 
@@ -1709,11 +2988,217 @@ static swig_lua_var_info swig_variables[] = {
 
 static swig_lua_const_info swig_constants[] = {
 { SWIG_LUA_INT,     (char *)"CEGUI_ALIGN_ELEMENTS_TO_PIXELS", (long) 1, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Escape", (long) CEGUI::Key::Escape, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_One", (long) CEGUI::Key::One, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Two", (long) CEGUI::Key::Two, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Three", (long) CEGUI::Key::Three, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Four", (long) CEGUI::Key::Four, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Five", (long) CEGUI::Key::Five, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Six", (long) CEGUI::Key::Six, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Seven", (long) CEGUI::Key::Seven, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Eight", (long) CEGUI::Key::Eight, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Nine", (long) CEGUI::Key::Nine, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Zero", (long) CEGUI::Key::Zero, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Minus", (long) CEGUI::Key::Minus, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Equals", (long) CEGUI::Key::Equals, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Backspace", (long) CEGUI::Key::Backspace, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Tab", (long) CEGUI::Key::Tab, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Q", (long) CEGUI::Key::Q, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_W", (long) CEGUI::Key::W, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_E", (long) CEGUI::Key::E, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_R", (long) CEGUI::Key::R, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_T", (long) CEGUI::Key::T, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Y", (long) CEGUI::Key::Y, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_U", (long) CEGUI::Key::U, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_I", (long) CEGUI::Key::I, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_O", (long) CEGUI::Key::O, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_P", (long) CEGUI::Key::P, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_LeftBracket", (long) CEGUI::Key::LeftBracket, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_RightBracket", (long) CEGUI::Key::RightBracket, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Return", (long) CEGUI::Key::Return, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_LeftControl", (long) CEGUI::Key::LeftControl, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_A", (long) CEGUI::Key::A, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_S", (long) CEGUI::Key::S, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_D", (long) CEGUI::Key::D, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F", (long) CEGUI::Key::F, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_G", (long) CEGUI::Key::G, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_H", (long) CEGUI::Key::H, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_J", (long) CEGUI::Key::J, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_K", (long) CEGUI::Key::K, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_L", (long) CEGUI::Key::L, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Semicolon", (long) CEGUI::Key::Semicolon, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Apostrophe", (long) CEGUI::Key::Apostrophe, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Grave", (long) CEGUI::Key::Grave, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_LeftShift", (long) CEGUI::Key::LeftShift, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Backslash", (long) CEGUI::Key::Backslash, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Z", (long) CEGUI::Key::Z, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_X", (long) CEGUI::Key::X, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_C", (long) CEGUI::Key::C, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_V", (long) CEGUI::Key::V, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_B", (long) CEGUI::Key::B, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_N", (long) CEGUI::Key::N, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_M", (long) CEGUI::Key::M, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Comma", (long) CEGUI::Key::Comma, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Period", (long) CEGUI::Key::Period, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Slash", (long) CEGUI::Key::Slash, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_RightShift", (long) CEGUI::Key::RightShift, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Multiply", (long) CEGUI::Key::Multiply, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_LeftAlt", (long) CEGUI::Key::LeftAlt, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Space", (long) CEGUI::Key::Space, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Capital", (long) CEGUI::Key::Capital, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F1", (long) CEGUI::Key::F1, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F2", (long) CEGUI::Key::F2, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F3", (long) CEGUI::Key::F3, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F4", (long) CEGUI::Key::F4, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F5", (long) CEGUI::Key::F5, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F6", (long) CEGUI::Key::F6, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F7", (long) CEGUI::Key::F7, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F8", (long) CEGUI::Key::F8, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F9", (long) CEGUI::Key::F9, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F10", (long) CEGUI::Key::F10, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_NumLock", (long) CEGUI::Key::NumLock, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ScrollLock", (long) CEGUI::Key::ScrollLock, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad7", (long) CEGUI::Key::Numpad7, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad8", (long) CEGUI::Key::Numpad8, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad9", (long) CEGUI::Key::Numpad9, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Subtract", (long) CEGUI::Key::Subtract, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad4", (long) CEGUI::Key::Numpad4, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad5", (long) CEGUI::Key::Numpad5, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad6", (long) CEGUI::Key::Numpad6, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Add", (long) CEGUI::Key::Add, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad1", (long) CEGUI::Key::Numpad1, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad2", (long) CEGUI::Key::Numpad2, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad3", (long) CEGUI::Key::Numpad3, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Numpad0", (long) CEGUI::Key::Numpad0, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Decimal", (long) CEGUI::Key::Decimal, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_OEM_102", (long) CEGUI::Key::OEM_102, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F11", (long) CEGUI::Key::F11, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F12", (long) CEGUI::Key::F12, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F13", (long) CEGUI::Key::F13, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F14", (long) CEGUI::Key::F14, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_F15", (long) CEGUI::Key::F15, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Kana", (long) CEGUI::Key::Kana, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ABNT_C1", (long) CEGUI::Key::ABNT_C1, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Convert", (long) CEGUI::Key::Convert, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_NoConvert", (long) CEGUI::Key::NoConvert, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Yen", (long) CEGUI::Key::Yen, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ABNT_C2", (long) CEGUI::Key::ABNT_C2, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_NumpadEquals", (long) CEGUI::Key::NumpadEquals, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_PrevTrack", (long) CEGUI::Key::PrevTrack, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_At", (long) CEGUI::Key::At, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Colon", (long) CEGUI::Key::Colon, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Underline", (long) CEGUI::Key::Underline, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Kanji", (long) CEGUI::Key::Kanji, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Stop", (long) CEGUI::Key::Stop, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_AX", (long) CEGUI::Key::AX, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Unlabeled", (long) CEGUI::Key::Unlabeled, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_NextTrack", (long) CEGUI::Key::NextTrack, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_NumpadEnter", (long) CEGUI::Key::NumpadEnter, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_RightControl", (long) CEGUI::Key::RightControl, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Mute", (long) CEGUI::Key::Mute, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Calculator", (long) CEGUI::Key::Calculator, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_PlayPause", (long) CEGUI::Key::PlayPause, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_MediaStop", (long) CEGUI::Key::MediaStop, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_VolumeDown", (long) CEGUI::Key::VolumeDown, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_VolumeUp", (long) CEGUI::Key::VolumeUp, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebHome", (long) CEGUI::Key::WebHome, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_NumpadComma", (long) CEGUI::Key::NumpadComma, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Divide", (long) CEGUI::Key::Divide, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_SysRq", (long) CEGUI::Key::SysRq, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_RightAlt", (long) CEGUI::Key::RightAlt, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Pause", (long) CEGUI::Key::Pause, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Home", (long) CEGUI::Key::Home, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ArrowUp", (long) CEGUI::Key::ArrowUp, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_PageUp", (long) CEGUI::Key::PageUp, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ArrowLeft", (long) CEGUI::Key::ArrowLeft, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ArrowRight", (long) CEGUI::Key::ArrowRight, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_End", (long) CEGUI::Key::End, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_ArrowDown", (long) CEGUI::Key::ArrowDown, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_PageDown", (long) CEGUI::Key::PageDown, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Insert", (long) CEGUI::Key::Insert, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Delete", (long) CEGUI::Key::Delete, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_LeftWindows", (long) CEGUI::Key::LeftWindows, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_RightWindow", (long) CEGUI::Key::RightWindow, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_RightWindows", (long) CEGUI::Key::RightWindows, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_AppMenu", (long) CEGUI::Key::AppMenu, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Power", (long) CEGUI::Key::Power, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Sleep", (long) CEGUI::Key::Sleep, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Wake", (long) CEGUI::Key::Wake, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebSearch", (long) CEGUI::Key::WebSearch, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebFavorites", (long) CEGUI::Key::WebFavorites, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebRefresh", (long) CEGUI::Key::WebRefresh, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebStop", (long) CEGUI::Key::WebStop, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebForward", (long) CEGUI::Key::WebForward, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_WebBack", (long) CEGUI::Key::WebBack, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_MyComputer", (long) CEGUI::Key::MyComputer, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_Mail", (long) CEGUI::Key::Mail, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Key_MediaSelect", (long) CEGUI::Key::MediaSelect, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"LeftButton", (long) CEGUI::LeftButton, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"RightButton", (long) CEGUI::RightButton, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"MiddleButton", (long) CEGUI::MiddleButton, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"X1Button", (long) CEGUI::X1Button, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"X2Button", (long) CEGUI::X2Button, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"MouseButtonCount", (long) CEGUI::MouseButtonCount, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"NoButton", (long) CEGUI::NoButton, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"LeftMouse", (long) CEGUI::LeftMouse, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"RightMouse", (long) CEGUI::RightMouse, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Shift", (long) CEGUI::Shift, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Control", (long) CEGUI::Control, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"MiddleMouse", (long) CEGUI::MiddleMouse, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"X1Mouse", (long) CEGUI::X1Mouse, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"X2Mouse", (long) CEGUI::X2Mouse, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Alt", (long) CEGUI::Alt, 0, 0, 0},
     {0,0,0,0,0,0}
 };
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_CEGUI__MouseEventArgsTo_p_CEGUI__WindowEventArgs(void *x) {
+    return (void *)((CEGUI::WindowEventArgs *)  ((CEGUI::MouseEventArgs *) x));
+}
+static void *_p_CEGUI__KeyEventArgsTo_p_CEGUI__WindowEventArgs(void *x) {
+    return (void *)((CEGUI::WindowEventArgs *)  ((CEGUI::KeyEventArgs *) x));
+}
+static void *_p_CEGUI__ActivationEventArgsTo_p_CEGUI__WindowEventArgs(void *x) {
+    return (void *)((CEGUI::WindowEventArgs *)  ((CEGUI::ActivationEventArgs *) x));
+}
+static void *_p_CEGUI__DragDropEventArgsTo_p_CEGUI__WindowEventArgs(void *x) {
+    return (void *)((CEGUI::WindowEventArgs *)  ((CEGUI::DragDropEventArgs *) x));
+}
+static void *_p_CEGUI__WindowEventArgsTo_p_CEGUI__EventArgs(void *x) {
+    return (void *)((CEGUI::EventArgs *)  ((CEGUI::WindowEventArgs *) x));
+}
+static void *_p_CEGUI__MouseEventArgsTo_p_CEGUI__EventArgs(void *x) {
+    return (void *)((CEGUI::EventArgs *) (CEGUI::WindowEventArgs *) ((CEGUI::MouseEventArgs *) x));
+}
+static void *_p_CEGUI__MouseCursorEventArgsTo_p_CEGUI__EventArgs(void *x) {
+    return (void *)((CEGUI::EventArgs *)  ((CEGUI::MouseCursorEventArgs *) x));
+}
+static void *_p_CEGUI__KeyEventArgsTo_p_CEGUI__EventArgs(void *x) {
+    return (void *)((CEGUI::EventArgs *) (CEGUI::WindowEventArgs *) ((CEGUI::KeyEventArgs *) x));
+}
+static void *_p_CEGUI__ActivationEventArgsTo_p_CEGUI__EventArgs(void *x) {
+    return (void *)((CEGUI::EventArgs *) (CEGUI::WindowEventArgs *) ((CEGUI::ActivationEventArgs *) x));
+}
+static void *_p_CEGUI__DragDropEventArgsTo_p_CEGUI__EventArgs(void *x) {
+    return (void *)((CEGUI::EventArgs *) (CEGUI::WindowEventArgs *) ((CEGUI::DragDropEventArgs *) x));
+}
+static swig_type_info _swigt__Point = {"_Point", "Point", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__Vector2 = {"_Vector2", "Vector2", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_CEGUI__ActivationEventArgs = {"_p_CEGUI__ActivationEventArgs", "CEGUI::ActivationEventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_ActivationEventArgs, 0};
+static swig_type_info _swigt__p_CEGUI__DragDropEventArgs = {"_p_CEGUI__DragDropEventArgs", "CEGUI::DragDropEventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_DragDropEventArgs, 0};
+static swig_type_info _swigt__p_CEGUI__EventArgs = {"_p_CEGUI__EventArgs", "CEGUI::EventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_EventArgs, 0};
+static swig_type_info _swigt__p_CEGUI__Key = {"_p_CEGUI__Key", "CEGUI::Key *", 0, 0, (void*)&_wrap_class_CEGUI_Key, 0};
+static swig_type_info _swigt__p_CEGUI__KeyEventArgs = {"_p_CEGUI__KeyEventArgs", "CEGUI::KeyEventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_KeyEventArgs, 0};
+static swig_type_info _swigt__p_CEGUI__MouseCursorEventArgs = {"_p_CEGUI__MouseCursorEventArgs", "CEGUI::MouseCursorEventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_MouseCursorEventArgs, 0};
+static swig_type_info _swigt__p_CEGUI__MouseEventArgs = {"_p_CEGUI__MouseEventArgs", "CEGUI::MouseEventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_MouseEventArgs, 0};
+static swig_type_info _swigt__p_CEGUI__WindowEventArgs = {"_p_CEGUI__WindowEventArgs", "CEGUI::WindowEventArgs *", 0, 0, (void*)&_wrap_class_CEGUI_WindowEventArgs, 0};
+static swig_type_info _swigt__p_DragContainer = {"_p_DragContainer", "DragContainer *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Image = {"_p_Image", "Image *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MouseCursor = {"_p_MouseCursor", "MouseCursor *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Point = {"_p_Point", "Point *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Vector2 = {"_p_Vector2", "Vector2 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Window = {"_p_Window", "Window *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_first_type = {"_p_first_type", "first_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_second_type = {"_p_second_type", "second_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *|CEGUI::OutStream *", 0, 0, (void*)0, 0};
@@ -1722,8 +3207,26 @@ static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned c
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|CEGUI::uint32 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "unsigned long *|CEGUI::ulong *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned short *|CEGUI::uint16 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_utf32 = {"_p_utf32", "utf32 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__utf32 = {"_utf32", "utf32", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__Point,
+  &_swigt__Vector2,
+  &_swigt__p_CEGUI__ActivationEventArgs,
+  &_swigt__p_CEGUI__DragDropEventArgs,
+  &_swigt__p_CEGUI__EventArgs,
+  &_swigt__p_CEGUI__Key,
+  &_swigt__p_CEGUI__KeyEventArgs,
+  &_swigt__p_CEGUI__MouseCursorEventArgs,
+  &_swigt__p_CEGUI__MouseEventArgs,
+  &_swigt__p_CEGUI__WindowEventArgs,
+  &_swigt__p_DragContainer,
+  &_swigt__p_Image,
+  &_swigt__p_MouseCursor,
+  &_swigt__p_Point,
+  &_swigt__p_Vector2,
+  &_swigt__p_Window,
   &_swigt__p_first_type,
   &_swigt__p_second_type,
   &_swigt__p_std__ostream,
@@ -1732,8 +3235,26 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
   &_swigt__p_unsigned_short,
+  &_swigt__p_utf32,
+  &_swigt__utf32,
 };
 
+static swig_cast_info _swigc__Point[] = {  {&_swigt__Point, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__Vector2[] = {  {&_swigt__Vector2, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__ActivationEventArgs[] = {  {&_swigt__p_CEGUI__ActivationEventArgs, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__DragDropEventArgs[] = {  {&_swigt__p_CEGUI__DragDropEventArgs, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__EventArgs[] = {  {&_swigt__p_CEGUI__EventArgs, 0, 0, 0},  {&_swigt__p_CEGUI__WindowEventArgs, _p_CEGUI__WindowEventArgsTo_p_CEGUI__EventArgs, 0, 0},  {&_swigt__p_CEGUI__MouseEventArgs, _p_CEGUI__MouseEventArgsTo_p_CEGUI__EventArgs, 0, 0},  {&_swigt__p_CEGUI__KeyEventArgs, _p_CEGUI__KeyEventArgsTo_p_CEGUI__EventArgs, 0, 0},  {&_swigt__p_CEGUI__ActivationEventArgs, _p_CEGUI__ActivationEventArgsTo_p_CEGUI__EventArgs, 0, 0},  {&_swigt__p_CEGUI__DragDropEventArgs, _p_CEGUI__DragDropEventArgsTo_p_CEGUI__EventArgs, 0, 0},  {&_swigt__p_CEGUI__MouseCursorEventArgs, _p_CEGUI__MouseCursorEventArgsTo_p_CEGUI__EventArgs, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__Key[] = {  {&_swigt__p_CEGUI__Key, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__KeyEventArgs[] = {  {&_swigt__p_CEGUI__KeyEventArgs, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__MouseCursorEventArgs[] = {  {&_swigt__p_CEGUI__MouseCursorEventArgs, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__MouseEventArgs[] = {  {&_swigt__p_CEGUI__MouseEventArgs, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEGUI__WindowEventArgs[] = {  {&_swigt__p_CEGUI__WindowEventArgs, 0, 0, 0},  {&_swigt__p_CEGUI__MouseEventArgs, _p_CEGUI__MouseEventArgsTo_p_CEGUI__WindowEventArgs, 0, 0},  {&_swigt__p_CEGUI__KeyEventArgs, _p_CEGUI__KeyEventArgsTo_p_CEGUI__WindowEventArgs, 0, 0},  {&_swigt__p_CEGUI__ActivationEventArgs, _p_CEGUI__ActivationEventArgsTo_p_CEGUI__WindowEventArgs, 0, 0},  {&_swigt__p_CEGUI__DragDropEventArgs, _p_CEGUI__DragDropEventArgsTo_p_CEGUI__WindowEventArgs, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_DragContainer[] = {  {&_swigt__p_DragContainer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Image[] = {  {&_swigt__p_Image, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MouseCursor[] = {  {&_swigt__p_MouseCursor, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Point[] = {  {&_swigt__p_Point, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Vector2[] = {  {&_swigt__p_Vector2, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Window[] = {  {&_swigt__p_Window, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_first_type[] = {  {&_swigt__p_first_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_second_type[] = {  {&_swigt__p_second_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
@@ -1742,8 +3263,26 @@ static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_utf32[] = {  {&_swigt__p_utf32, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__utf32[] = {  {&_swigt__utf32, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__Point,
+  _swigc__Vector2,
+  _swigc__p_CEGUI__ActivationEventArgs,
+  _swigc__p_CEGUI__DragDropEventArgs,
+  _swigc__p_CEGUI__EventArgs,
+  _swigc__p_CEGUI__Key,
+  _swigc__p_CEGUI__KeyEventArgs,
+  _swigc__p_CEGUI__MouseCursorEventArgs,
+  _swigc__p_CEGUI__MouseEventArgs,
+  _swigc__p_CEGUI__WindowEventArgs,
+  _swigc__p_DragContainer,
+  _swigc__p_Image,
+  _swigc__p_MouseCursor,
+  _swigc__p_Point,
+  _swigc__p_Vector2,
+  _swigc__p_Window,
   _swigc__p_first_type,
   _swigc__p_second_type,
   _swigc__p_std__ostream,
@@ -1752,6 +3291,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
   _swigc__p_unsigned_short,
+  _swigc__p_utf32,
+  _swigc__utf32,
 };
 
 

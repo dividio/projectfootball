@@ -25,6 +25,8 @@ using namespace CEGUI;
 //%include cegui/elements/CEGUIButtonBase.i
 
 %include cegui/CEGUISingleton.i
+%include cegui/CEGUIEventArgs.i
+%include cegui/CEGUIInputEvent.i
 //%include cegui/CEGUISchemeManager.i
 //%include cegui/CEGUIScheme.i
 //%include cegui/CEGUIString.i
