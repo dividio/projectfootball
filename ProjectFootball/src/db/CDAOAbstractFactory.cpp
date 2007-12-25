@@ -35,10 +35,8 @@ CDAOAbstractFactory::~CDAOAbstractFactory()
 }
 
 
-IDAOFactory* CDAOAbstractFactory::getIDAOFactory(CPfSavedGames* sg)
+IDAOFactory* CDAOAbstractFactory::getIDAOFactory(std::string driver, std::string connection)
 {
-    std::string driver = sg->getSDriver()->c_str();
-    std::string connection = sg->getSConnectionString()->c_str();
     IDAOFactory *factory = NULL;
 
     if(driver == "SQLite") {

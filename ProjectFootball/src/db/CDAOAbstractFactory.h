@@ -28,13 +28,13 @@
 
 class CDAOAbstractFactory
 {
-private:
-    CDAOAbstractFactory();
-
 public:
   virtual ~CDAOAbstractFactory();
 
-  static IDAOFactory* getIDAOFactory(CPfSavedGames* sg);
+  static IDAOFactory* getIDAOFactory(std::string driver, std::string connection);
+
+private:
+    CDAOAbstractFactory();
 
 };
 #endif // __CDAOAbstractFactory_H__
