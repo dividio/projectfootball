@@ -1415,11 +1415,10 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_IDAOFactory swig_types[10]
 #define SWIGTYPE_p_IPfEquiposDAO swig_types[11]
 #define SWIGTYPE_p_Ogre__FrameEvent swig_types[12]
-#define SWIGTYPE_p_Ogre__Real swig_types[13]
-#define SWIGTYPE_p_std__string swig_types[14]
-#define SWIGTYPE_p_std__vectorTCPfEquipos_p_t swig_types[15]
-static swig_type_info *swig_types[17];
-static swig_module_info swig_module = {swig_types, 16, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__string swig_types[13]
+#define SWIGTYPE_p_std__vectorTCPfEquipos_p_t swig_types[14]
+static swig_type_info *swig_types[16];
+static swig_module_info swig_module = {swig_types, 15, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1726,16 +1725,15 @@ fail:
 
 static int _wrap_CDAOAbstractFactory_getIDAOFactory(lua_State* L) {
   int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
+  std::string arg1 ;
+  std::string arg2 ;
   IDAOFactory *result = 0 ;
   
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CDAOAbstractFactory_getIDAOFactory",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (IDAOFactory *)CDAOAbstractFactory::getIDAOFactory(arg1);
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  result = (IDAOFactory *)CDAOAbstractFactory::getIDAOFactory(arg1,arg2);
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_IDAOFactory,0); SWIG_arg++; 
   return SWIG_arg;
@@ -3231,7 +3229,7 @@ fail:
 static int _wrap_CStateManager_getTimeSinceLastFrame(lua_State* L) {
   int SWIG_arg = -1;
   CStateManager *arg1 = (CStateManager *) 0 ;
-  Ogre::Real result;
+  float result;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
   
@@ -3239,12 +3237,9 @@ static int _wrap_CStateManager_getTimeSinceLastFrame(lua_State* L) {
     SWIG_fail_ptr("CStateManager_getTimeSinceLastFrame",1,SWIGTYPE_p_CStateManager);
   }
   
-  result = (arg1)->getTimeSinceLastFrame();
+  result = (float)(arg1)->getTimeSinceLastFrame();
   SWIG_arg=0;
-  {
-    Ogre::Real * resultptr = new Ogre::Real((Ogre::Real &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Ogre__Real,1); SWIG_arg++;
-  }
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -3941,7 +3936,6 @@ static swig_type_info _swigt__p_CStateMonitor = {"_p_CStateMonitor", "CStateMoni
 static swig_type_info _swigt__p_IDAOFactory = {"_p_IDAOFactory", "IDAOFactory *", 0, 0, (void*)&_wrap_class_IDAOFactory, 0};
 static swig_type_info _swigt__p_IPfEquiposDAO = {"_p_IPfEquiposDAO", "IPfEquiposDAO *", 0, 0, (void*)&_wrap_class_IPfEquiposDAO, 0};
 static swig_type_info _swigt__p_Ogre__FrameEvent = {"_p_Ogre__FrameEvent", "Ogre::FrameEvent *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Ogre__Real = {"_p_Ogre__Real", "Ogre::Real *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)&_wrap_class_std_string, 0};
 static swig_type_info _swigt__p_std__vectorTCPfEquipos_p_t = {"_p_std__vectorTCPfEquipos_p_t", "std::vector<CPfEquipos * > *", 0, 0, (void*)0, 0};
 
@@ -3959,7 +3953,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_IDAOFactory,
   &_swigt__p_IPfEquiposDAO,
   &_swigt__p_Ogre__FrameEvent,
-  &_swigt__p_Ogre__Real,
   &_swigt__p_std__string,
   &_swigt__p_std__vectorTCPfEquipos_p_t,
 };
@@ -3977,7 +3970,6 @@ static swig_cast_info _swigc__p_CStateMonitor[] = {  {&_swigt__p_CStateMonitor, 
 static swig_cast_info _swigc__p_IDAOFactory[] = {  {&_swigt__p_IDAOFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfEquiposDAO[] = {  {&_swigt__p_IPfEquiposDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__FrameEvent[] = {  {&_swigt__p_Ogre__FrameEvent, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Ogre__Real[] = {  {&_swigt__p_Ogre__Real, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorTCPfEquipos_p_t[] = {  {&_swigt__p_std__vectorTCPfEquipos_p_t, 0, 0, 0},{0, 0, 0, 0}};
 
@@ -3995,7 +3987,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_IDAOFactory,
   _swigc__p_IPfEquiposDAO,
   _swigc__p_Ogre__FrameEvent,
-  _swigc__p_Ogre__Real,
   _swigc__p_std__string,
   _swigc__p_std__vectorTCPfEquipos_p_t,
 };
