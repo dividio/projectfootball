@@ -29,7 +29,8 @@
 
 #include "../IAudioFile.h"
 
-#define BUFFER_SIZE (4096 * 8)
+#define BUFFER_SIZE     (4096 * 8)
+#define N_BUFFERS       2
 
 class CAudioFileOGGOpenAL : public IAudioFile
 {
@@ -46,14 +47,15 @@ public:
 
 private:
 	void checkOpenALError();
-	void fillDataBuffer(ALuint buffer);
+	bool fillBuffer(ALuint buffer);
+    void reset();
 
 	std::string		m_filepath;
 	OggVorbis_File 	m_oggStream;
 	vorbis_info		*m_vorbisInfo;
 	vorbis_comment	*m_vorbisComment;
 
-    ALuint 			m_buffers[2];
+    ALuint 			m_buffers[N_BUFFERS];
     ALuint 			m_source;
     ALenum			m_format;
 

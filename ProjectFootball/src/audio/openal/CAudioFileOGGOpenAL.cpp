@@ -62,7 +62,7 @@ CAudioFileOGGOpenAL::CAudioFileOGGOpenAL( std::string filepath )
     }
 
     checkOpenALError();
-    alGenBuffers(2, m_buffers);
+    alGenBuffers(N_BUFFERS, m_buffers);
     checkOpenALError();
     alGenSources(1, &m_source);
     checkOpenALError();
@@ -78,10 +78,9 @@ CAudioFileOGGOpenAL::~CAudioFileOGGOpenAL()
 {
 	stop();
 
-
     alDeleteSources(1, &m_source);
     checkOpenALError();
-    alDeleteBuffers(2, m_buffers);
+    alDeleteBuffers(N_BUFFERS, m_buffers);
     checkOpenALError();
 
     ov_clear(&m_oggStream);
@@ -122,36 +121,69 @@ void CAudioFileOGGOpenAL::pause()
 
 void CAudioFileOGGOpenAL::play()
 {
-    if( isPlaying() ){
-    	stop();
-    	play();
-    }else if( isPaused() ){
+    if( isPaused() ){
     	pause();
     }else{
-    	fillDataBuffer(m_buffers[0]);
-    	fillDataBuffer(m_buffers[1]);
-        alSourceQueueBuffers(m_source, 2, m_buffers);
+        reset();
+
+        CLog::getInstance()->info("Playing OGG File... [%s]", m_filepath.c_str());
+
+        for( int j=0; j<m_vorbisComment->comments; j++ ){
+            CLog::getInstance()->info("   - %s", m_vorbisComment->user_comments[j]);
+        }
+
+        for( int i=0; i<N_BUFFERS; i++ ){
+            bool moreData = fillBuffer(m_buffers[i]);
+            if( moreData ){
+                alSourceQueueBuffers(m_source, 1, &m_buffers[i]);
+            }
+        }
         alSourcePlay(m_source);
     }
 }
 
 void CAudioFileOGGOpenAL::stop()
 {
-	if( isPlaying() || isPaused() ){
-		alSourceStop(m_source);
-		ov_time_seek(&m_oggStream, 0.0);
+    if( isPlaying() || isPaused() ){
+        alSourceStop(m_source);
+    }
 
-	    // unqueue remaining buffers in source
-	    int queued = 0;
-	    alGetSourcei(m_source, AL_BUFFERS_QUEUED, &queued);
-	    while(queued>0)
-	    {
-	        ALuint buffer;
-	        alSourceUnqueueBuffers(m_source, 1, &buffer);
-	        checkOpenALError();
-	        queued--;
-	    }
-	}
+    reset();
+}
+
+void CAudioFileOGGOpenAL::reset()
+{
+    int result = ov_time_seek(&m_oggStream, 0.0);
+    if( result!=0 ){
+        switch( result ){
+        case OV_ENOSEEK:
+            CLog::getInstance()->error("CAudioFileOGGOpenAL::stop[filepath: %s]: Bitstream is not seekable.", m_filepath.c_str());
+            break;
+        case OV_EINVAL:
+            CLog::getInstance()->error("CAudioFileOGGOpenAL::stop[filepath: %s]: Invalid argument value; possibly called with an OggVorbis_File structure that isn't open.", m_filepath.c_str());
+            break;
+        case OV_EREAD:
+            CLog::getInstance()->error("CAudioFileOGGOpenAL::stop[filepath: %s]: A read from media returned an error.", m_filepath.c_str());
+            break;
+        case OV_EFAULT:
+            CLog::getInstance()->error("CAudioFileOGGOpenAL::stop[filepath: %s]: Internal logic fault; indicates a bug or heap/stack corruption.", m_filepath.c_str());
+            break;
+        case OV_EBADLINK:
+            CLog::getInstance()->error("CAudioFileOGGOpenAL::stop[filepath: %s]: Invalid stream section supplied to libvorbisfile, or the requested link is corrupt.", m_filepath.c_str());
+            break;
+        }
+    }
+
+    // unqueue remaining buffers in source
+    int queued = 0;
+    alGetSourcei(m_source, AL_BUFFERS_QUEUED, &queued);
+    while(queued>0)
+    {
+        ALuint buffer;
+        alSourceUnqueueBuffers(m_source, 1, &buffer);
+        checkOpenALError();
+        queued--;
+    }
 }
 
 void CAudioFileOGGOpenAL::update()
@@ -169,16 +201,17 @@ void CAudioFileOGGOpenAL::update()
 	        alSourceUnqueueBuffers(m_source, 1, &buffer);
 	        checkOpenALError();
 
-	        fillDataBuffer(buffer);
-
-	        checkOpenALError();
-	        alSourceQueueBuffers(m_source, 1, &buffer);
-	        checkOpenALError();
+	        bool moreData = fillBuffer(buffer);
+	        if( moreData ){
+	            checkOpenALError();
+	            alSourceQueueBuffers(m_source, 1, &buffer);
+	            checkOpenALError();
+	        }
 	    }
 	}
 }
 
-void CAudioFileOGGOpenAL::fillDataBuffer( ALuint buffer )
+bool CAudioFileOGGOpenAL::fillBuffer( ALuint buffer )
 {
     char data[BUFFER_SIZE];
     int  size = 0;
@@ -207,9 +240,13 @@ void CAudioFileOGGOpenAL::fillDataBuffer( ALuint buffer )
         }
     }
 
-    if(size>0){
+    if( size==0 ){
+        return false;
+    }else if( size>0 ){
     	checkOpenALError();
     	alBufferData(buffer, m_format, data, size, m_vorbisInfo->rate);
     	checkOpenALError();
+
+    	return true;
     }
 }

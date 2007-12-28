@@ -29,12 +29,16 @@ CAudioFactoryOpenAL::CAudioFactoryOpenAL()
 	: m_audioFileList()
 {
 	//Initialization
+    CLog::getInstance()->debug("Initialising OpenAL ...");
+    CLog::getInstance()->info("Setting up default OpenAL device [%s]", alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER));
+
     m_device = alcOpenDevice(NULL);
 
     if(m_device) {
-      m_context = alcCreateContext(m_device, NULL);
-      alcMakeContextCurrent(m_context);
+        m_context = alcCreateContext(m_device, NULL);
+        alcMakeContextCurrent(m_context);
     }
+    CLog::getInstance()->debug("OpenAL initialised");
 }
 
 
