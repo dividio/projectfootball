@@ -25,16 +25,13 @@
 
 class CAudioSystem
 {
-private:
-    static CAudioSystem* m_instance;
-
-    CAudioSystem();
-
-
 public:
     static CAudioSystem* getInstance();
     virtual ~CAudioSystem();
-    static const IAudioFile* CLICK;
+    static IAudioFile* CLICK;
+
+private:
+    CAudioSystem();
 
 };
 #endif // __CAudioSystem_H__

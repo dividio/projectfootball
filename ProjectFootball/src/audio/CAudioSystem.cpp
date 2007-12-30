@@ -22,27 +22,19 @@
 #include "CAudioAbstractFactory.h"
 
 
-
-CAudioSystem* CAudioSystem::m_instance = 0;
-
-
+IAudioFile* CAudioSystem::CLICK = CAudioAbstractFactory::getIAudioFactory()->createSampleAudioFile("data/audio/click.ogg");
 
 CAudioSystem::CAudioSystem()
 {
-  //CAudioSystem::CLICK = CAudioAbstractFactory::getIAudioFactory()->createAudioFile("click.wav");
-}
-
-
-CAudioSystem* CAudioSystem::getInstance()
-{
-    if(m_instance == 0) {
-      m_instance = new CAudioSystem();
-    }
-
-    return m_instance;
 }
 
 CAudioSystem::~CAudioSystem()
 {
 
+}
+
+CAudioSystem* CAudioSystem::getInstance()
+{
+    static CAudioSystem instance;
+    return &instance;
 }
