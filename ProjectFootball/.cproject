@@ -39,11 +39,9 @@
 <tool id="cdt.managedbuild.tool.gnu.c.linker.base.330360968" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1131655999" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.1331932228" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-<listOptionValue builtIn="false" value="vorbisfile"/>
 <listOptionValue builtIn="false" value="SDL_mixer"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua5.1"/>
-<listOptionValue builtIn="false" value="openal"/>
 <listOptionValue builtIn="false" value="OIS"/>
 <listOptionValue builtIn="false" value="CEGUIBase"/>
 <listOptionValue builtIn="false" value="OgreMain"/>
