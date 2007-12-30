@@ -21,8 +21,9 @@
 #include "CAudioAbstractFactory.h"
 #include "IAudioFactory.h"
 #include "openal/CAudioFactoryOpenAL.h"
+#include "sdl/CSDLAudioFactory.h"
 
-IAudioFactory* CAudioAbstractFactory::m_instance = 0;
+IAudioFactory* CAudioAbstractFactory::m_instance = NULL;
 
 CAudioAbstractFactory::CAudioAbstractFactory()
 {
@@ -38,14 +39,17 @@ CAudioAbstractFactory::~CAudioAbstractFactory()
 
 IAudioFactory* CAudioAbstractFactory::getIAudioFactory()
 {
-    int type = 1;
-    if (m_instance==0) {
+    int type = 2;
+    if (m_instance==NULL) {
         switch (type) {
             case 1:
                 m_instance = CAudioFactoryOpenAL::getInstance();
                 break;
+            case 2:
+                m_instance = CSDLAudioFactory::getInstance();
+                break;
             default:
-                m_instance = CAudioFactoryOpenAL::getInstance();
+                m_instance = CSDLAudioFactory::getInstance();
         }
     }
     return m_instance;
