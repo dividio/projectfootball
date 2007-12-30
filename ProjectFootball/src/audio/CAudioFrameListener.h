@@ -18,22 +18,24 @@
 *                                                                             *
 ******************************************************************************/
 
+
 #ifndef CAUDIOFRAMELISTENER_H_
 #define CAUDIOFRAMELISTENER_H_
 
 #include <Ogre.h>
+#include "IUpdatableAudioFactory.h"
 
 class CAudioFrameListener : public Ogre::FrameListener
 {
 public:
+    CAudioFrameListener(IUpdatableAudioFactory* factory);
 	virtual ~CAudioFrameListener();
-	static CAudioFrameListener* getInstance();
 
 	bool frameEnded(const Ogre::FrameEvent& evt);
     bool frameStarted(const Ogre::FrameEvent& evt);
 
-protected:
-    CAudioFrameListener();
+private:
+    IUpdatableAudioFactory* m_factory;
 
 };
 

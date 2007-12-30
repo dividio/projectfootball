@@ -18,25 +18,16 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CAudioFrameListener.h"
+#ifndef IUPDATABLEAUDIOFACTORY_H_
+#define IUPDATABLEAUDIOFACTORY_H_
 
-CAudioFrameListener::CAudioFrameListener(IUpdatableAudioFactory* factory)
-{
-    m_factory = factory;
-}
+#include "IAudioFactory.h"
 
-CAudioFrameListener::~CAudioFrameListener()
+class IUpdatableAudioFactory : public IAudioFactory
 {
-}
+public:
+	virtual ~IUpdatableAudioFactory() {};
+	virtual void updateIAudioFiles() =0;
+};
 
-bool CAudioFrameListener::frameStarted(const Ogre::FrameEvent& evt)
-{
-    // Update playing IAudioFile
-    m_factory->updateIAudioFiles();
-    return true;
-}
-
-bool CAudioFrameListener::frameEnded(const Ogre::FrameEvent& evt)
-{
-    return true;
-}
+#endif /*IUPDATABLEAUDIOFACTORY_H_*/
