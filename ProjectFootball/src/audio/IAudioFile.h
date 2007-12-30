@@ -25,7 +25,6 @@ class IAudioFile
 {
 public:
 	IAudioFile() { }
-
 	virtual ~IAudioFile() { }
 
 	virtual bool isPaused() =0;
@@ -33,6 +32,5 @@ public:
 	virtual void pause() =0;
 	virtual void play() =0;
 	virtual void stop() =0;
-	virtual void update() =0;
 };
 #endif // __IAudioFile_H__
