@@ -25,12 +25,14 @@
 #include <iostream>
 
 #include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
 #include <vorbis/vorbisfile.h>
 
 #include "../IAudioFile.h"
 
 #define BUFFER_SIZE     (4096 * 8)
-#define N_BUFFERS       2
+#define N_BUFFERS       4
 
 class CAudioFileOGGOpenAL : public IAudioFile
 {
@@ -57,8 +59,6 @@ private:
 
     ALuint 			m_buffers[N_BUFFERS];
     ALuint 			m_source;
-    ALenum			m_format;
-
 };
 
 #endif /*CAUDIOFILEOGGOPENAL_H_*/

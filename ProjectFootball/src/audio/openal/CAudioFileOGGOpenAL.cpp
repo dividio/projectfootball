@@ -55,17 +55,20 @@ CAudioFileOGGOpenAL::CAudioFileOGGOpenAL( std::string filepath )
     m_vorbisInfo	= ov_info(&m_oggStream, -1);
     m_vorbisComment = ov_comment(&m_oggStream, -1);
 
-    if(m_vorbisInfo->channels == 1){
-        m_format = AL_FORMAT_MONO16;
-    }else{
-        m_format = AL_FORMAT_STEREO16;
-    }
 
     checkOpenALError();
     alGenBuffers(N_BUFFERS, m_buffers);
     checkOpenALError();
     alGenSources(1, &m_source);
     checkOpenALError();
+
+//    for( int i=0; i<N_BUFFERS; i++ ){
+//        if( m_vorbisInfo->channels==1 ){
+//            alBufferi_LOKI(m_buffers[i], AL_CHANNELS, 1);
+//        }else{
+//            alBufferi_LOKI(m_buffers[i], AL_CHANNELS, 2);
+//        }
+//    }
 
     alSource3f(m_source, AL_POSITION,        0.0, 0.0, 0.0);
     alSource3f(m_source, AL_VELOCITY,        0.0, 0.0, 0.0);
@@ -243,9 +246,17 @@ bool CAudioFileOGGOpenAL::fillBuffer( ALuint buffer )
     if( size==0 ){
         return false;
     }else if( size>0 ){
-    	checkOpenALError();
-    	alBufferData(buffer, m_format, data, size, m_vorbisInfo->rate);
-    	checkOpenALError();
+        if(m_vorbisInfo->channels == 1){
+            checkOpenALError();
+            alBufferData(buffer, AL_FORMAT_MONO16, data, size, m_vorbisInfo->rate);
+            checkOpenALError();
+        }else{
+            checkOpenALError();
+            alBufferData(buffer, AL_FORMAT_STEREO16, data, size, m_vorbisInfo->rate);
+//            alBufferWriteData_LOKI(buffer, AL_FORMAT_STEREO16, data, size, m_vorbisInfo->rate, AL_FORMAT_STEREO16);
+            checkOpenALError();
+        }
+
 
     	return true;
     }

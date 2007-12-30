@@ -27,26 +27,32 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
-#include "../IAudioFile.h"
-#include "../IAudioFactory.h"
+#include "CAudioFileOGGOpenAL.h"
+#include "../CAudioFrameListener.h"
+#include "../CDummyAudioFile.h"
+#include "../IUpdatableAudioFactory.h"
 
-class CAudioFactoryOpenAL : public IAudioFactory
+class CAudioFactoryOpenAL : public IUpdatableAudioFactory
 {
 friend class CAudioAbstractFactory;
 public:
 	virtual ~CAudioFactoryOpenAL();
-	virtual IAudioFile * createAudioFile(std::string filepath);
+    virtual IAudioFile* createSampleAudioFile(std::string filepath);
+    virtual IAudioFile* createMusicAudioFile(std::string filepath);
 	virtual void updateIAudioFiles();
 
 private:
     CAudioFactoryOpenAL();
+    virtual IAudioFile * createAudioFile(std::string filepath);
     IAudioFile* createDummyAudioFile();
     IAudioFile* createOGGAudioFile( std::string filepath );
 
     static CAudioFactoryOpenAL* getInstance();
 
-    ALCdevice *m_device;
-    ALCcontext *m_context;
-    std::list<IAudioFile*> m_audioFileList;
+    ALCdevice                       *m_device;
+    ALCcontext                      *m_context;
+    CAudioFrameListener             *m_frameListener;
+    std::list<CAudioFileOGGOpenAL*> m_audioFileList;
+    std::list<CDummyAudioFile*>     m_dummyAudioFileList;
 };
 #endif // __CAudioFactoryOpenAL_H__

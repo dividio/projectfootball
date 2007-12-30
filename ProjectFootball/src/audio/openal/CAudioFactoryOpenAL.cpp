@@ -19,36 +19,53 @@
 ******************************************************************************/
 
 #include "CAudioFactoryOpenAL.h"
-#include "../CDummyAudioFile.h"
-#include "CAudioFileOGGOpenAL.h"
+#include "../../CApplication.h"
 #include "../../utils/CLog.h"
 
 using namespace std;
 
 CAudioFactoryOpenAL::CAudioFactoryOpenAL()
-	: m_audioFileList()
+	: m_audioFileList(), m_dummyAudioFileList()
 {
 	//Initialization
     CLog::getInstance()->debug("Initialising OpenAL ...");
-    CLog::getInstance()->info("Setting up default OpenAL device [%s]", alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER));
 
     m_device = alcOpenDevice(NULL);
+    CLog::getInstance()->info("Setting up default OpenAL device [%s]", alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER));
+
 
     if(m_device) {
-        m_context = alcCreateContext(m_device, NULL);
+        ALCint attribs[] = {ALC_STEREO_SOURCES, 32, 0};
+        m_context = alcCreateContext(m_device, attribs);
         alcMakeContextCurrent(m_context);
     }
-    CLog::getInstance()->debug("OpenAL initialised");
+    CLog::getInstance()->info("Audio enabled. OpenAL information:");
+    CLog::getInstance()->info("  Version:    %s", alGetString(AL_VERSION));
+    CLog::getInstance()->info("  Renderer:   %s", alGetString(AL_RENDERER));
+    CLog::getInstance()->info("  Vendor:     %s", alGetString(AL_VENDOR));
+    CLog::getInstance()->info("  Extensions: %s", alGetString(AL_EXTENSIONS));
+
+    m_frameListener = new CAudioFrameListener(this);
+    CApplication::getInstance()->addFrameListener(m_frameListener);
 }
 
 
 CAudioFactoryOpenAL::~CAudioFactoryOpenAL()
 {
-	for( std::list<IAudioFile*>::iterator itAudioFiles = m_audioFileList.begin(); itAudioFiles!=m_audioFileList.end(); itAudioFiles++ ){
+    CApplication::getInstance()->removeFrameListener(m_frameListener);
+    delete m_frameListener;
+
+	for( std::list<CAudioFileOGGOpenAL*>::iterator itAudioFiles = m_audioFileList.begin(); itAudioFiles!=m_audioFileList.end(); itAudioFiles++ ){
 		IAudioFile *audioFile = *itAudioFiles;
 		delete audioFile;
 	}
 	m_audioFileList.clear();
+
+	for( std::list<CDummyAudioFile*>::iterator itDummyAudioFiles = m_dummyAudioFileList.begin(); itDummyAudioFiles!=m_dummyAudioFileList.end(); itDummyAudioFiles++ ){
+        IAudioFile *dummyAudioFile = *itDummyAudioFiles;
+        delete dummyAudioFile;
+    }
+    m_dummyAudioFileList.clear();
 
     alcMakeContextCurrent(NULL);
     alcDestroyContext(m_context);
@@ -65,12 +82,22 @@ CAudioFactoryOpenAL* CAudioFactoryOpenAL::getInstance()
 
 void CAudioFactoryOpenAL::updateIAudioFiles()
 {
-    for( std::list<IAudioFile*>::iterator itAudioFiles = m_audioFileList.begin(); itAudioFiles!=m_audioFileList.end(); itAudioFiles++ ){
-        IAudioFile *audioFile = *itAudioFiles;
+    for( std::list<CAudioFileOGGOpenAL*>::iterator itAudioFiles = m_audioFileList.begin(); itAudioFiles!=m_audioFileList.end(); itAudioFiles++ ){
+        CAudioFileOGGOpenAL *audioFile = *itAudioFiles;
         if( audioFile->isPlaying() ){
             audioFile->update();
         }
     }
+}
+
+IAudioFile * CAudioFactoryOpenAL::createMusicAudioFile(std::string filepath )
+{
+    return createAudioFile(filepath);
+}
+
+IAudioFile * CAudioFactoryOpenAL::createSampleAudioFile( std::string filepath )
+{
+    return createAudioFile(filepath);
 }
 
 
@@ -93,14 +120,14 @@ IAudioFile * CAudioFactoryOpenAL::createAudioFile( std::string filepath )
 
 IAudioFile * CAudioFactoryOpenAL::createDummyAudioFile()
 {
-	IAudioFile *audioFile = new CDummyAudioFile();
-	m_audioFileList.push_back(audioFile);
+	CDummyAudioFile *audioFile = new CDummyAudioFile();
+	m_dummyAudioFileList.push_back(audioFile);
 	return audioFile;
 }
 
 IAudioFile* CAudioFactoryOpenAL::createOGGAudioFile( std::string filepath )
 {
-	IAudioFile* audioFile = NULL;
+    CAudioFileOGGOpenAL* audioFile = NULL;
 	try{
 		audioFile = new CAudioFileOGGOpenAL(filepath);
 		m_audioFileList.push_back(audioFile);
