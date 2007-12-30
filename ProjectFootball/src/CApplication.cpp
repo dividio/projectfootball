@@ -21,7 +21,6 @@
 #include <stdio.h>
 
 #include "CApplication.h"
-#include "audio/CAudioFrameListener.h"
 #include "state/CStateManager.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
@@ -232,8 +231,17 @@ void CApplication::setupCEGUI()
 
 void CApplication::createFrameListeners()
 {
-    m_root->addFrameListener(CStateManager::getInstance());
-    m_root->addFrameListener(CAudioFrameListener::getInstance());
+    addFrameListener( CStateManager::getInstance() );
+}
+
+void CApplication::addFrameListener( FrameListener *frameListener )
+{
+    m_root->addFrameListener(frameListener);
+}
+
+void CApplication::removeFrameListener( FrameListener *frameListener )
+{
+    m_root->removeFrameListener(frameListener);
 }
 
 void CApplication::startRenderLoop()

@@ -39,6 +39,8 @@ public:
     void exit();
     OIS::Mouse* getMouse();
     OIS::Keyboard* getKeyboard();
+    void addFrameListener(FrameListener* frameListener);
+    void removeFrameListener(FrameListener* frameListener);
 
 protected:
   CApplication();
