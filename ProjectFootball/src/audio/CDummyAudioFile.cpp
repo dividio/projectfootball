@@ -20,13 +20,9 @@
 
 #include "CDummyAudioFile.h"
 
-CDummyAudioFile::CDummyAudioFile()
-{
-}
+CDummyAudioFile::CDummyAudioFile(){}
 
-CDummyAudioFile::~CDummyAudioFile()
-{
-}
+CDummyAudioFile::~CDummyAudioFile(){}
 
 bool CDummyAudioFile::isPaused(){ return false; }
 
