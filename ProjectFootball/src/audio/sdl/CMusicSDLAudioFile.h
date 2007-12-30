@@ -23,7 +23,7 @@
 
 #include <string>
 
-#include <SDL/SDL_mixer.h>
+#include "SDL/SDL_mixer.h"
 #include "../IAudioFile.h"
 
 class CMusicSDLAudioFile : public IAudioFile
