@@ -6,20 +6,53 @@
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Window Type="TaharezLook/StaticImage" Name="Monitor/Background" >
+            <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
             <Property Name="Image" Value="set:Background image:Background" />
-            <Property Name="FrameEnabled" Value="false" />
             <Window Type="TaharezLook/Button" Name="Monitor/BackButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="Back" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.340404,0},{0.908109,0},{0.620707,0},{0.970609,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.460404,0},{0.908109,0},{0.740708,0},{0.970609,0}}" />
                 <Event Name="Clicked" Function="cmd_back" />
             </Window>
             <Window Type="TaharezLook/StaticImage" Name="Monitor/Image" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.382323,0},{0.124662,0},{0.984596,0},{0.624662,0}}" />
+            </Window>
+            <Window Type="TaharezLook/Button" Name="Monitor/2DButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="2D View" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.04,0},{0.8,0},{0.1,0}}" />
+                <Event Name="Clicked" Function="cmd_switchTo2DView" />
+            </Window>
+            <Window Type="TaharezLook/Button" Name="Monitor/3DButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="3D View" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.04,0},{0.95,0},{0.1,0}}" />
+                <Event Name="Clicked" Function="cmd_switchTo3DView" />
+            </Window>
+            <Window Type="TaharezLook/TabControl" Name="Monitor/TabControl" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="TabHeight" Value="{0,38}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TabPanePosition" Value="Top" />
+                <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.063333,0},{0.37375,0},{0.964999,0}}" />
+                <Window Type="DefaultWindow" Name="Monitor/TabControl/Tab1" >
+                    <Property Name="Text" Value="Team" />
+                    <Property Name="Visible" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                </Window>
+                <Window Type="DefaultWindow" Name="Monitor/TabControl/Tab2" >
+                    <Property Name="Text" Value="Tactic" />
+                    <Property Name="Visible" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                </Window>
             </Window>
         </Window>
     </Window>

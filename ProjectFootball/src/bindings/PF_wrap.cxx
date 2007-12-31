@@ -3654,6 +3654,48 @@ fail:
 }
 
 
+static int _wrap_CStateMonitor_switchTo2DView(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
+    SWIG_fail_ptr("CStateMonitor_switchTo2DView",1,SWIGTYPE_p_CStateMonitor);
+  }
+  
+  (arg1)->switchTo2DView();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateMonitor_switchTo3DView(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
+    SWIG_fail_ptr("CStateMonitor_switchTo3DView",1,SWIGTYPE_p_CStateMonitor);
+  }
+  
+  (arg1)->switchTo3DView();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CStateMonitor(void *obj) {
 CStateMonitor *arg1 = (CStateMonitor *) obj;
 delete arg1;
@@ -3663,6 +3705,8 @@ static swig_lua_method swig_CStateMonitor_methods[] = {
     {"forcedLeave", _wrap_CStateMonitor_forcedLeave}, 
     {"leave", _wrap_CStateMonitor_leave}, 
     {"update", _wrap_CStateMonitor_update}, 
+    {"switchTo2DView", _wrap_CStateMonitor_switchTo2DView}, 
+    {"switchTo3DView", _wrap_CStateMonitor_switchTo3DView}, 
     {0,0}
 };
 static swig_lua_attribute swig_CStateMonitor_attributes[] = {
@@ -3895,6 +3939,8 @@ static const struct luaL_reg swig_commands[] = {
     { "CStateMonitor_forcedLeave", _wrap_CStateMonitor_forcedLeave},
     { "CStateMonitor_leave", _wrap_CStateMonitor_leave},
     { "CStateMonitor_update", _wrap_CStateMonitor_update},
+    { "CStateMonitor_switchTo2DView", _wrap_CStateMonitor_switchTo2DView},
+    { "CStateMonitor_switchTo3DView", _wrap_CStateMonitor_switchTo3DView},
     { "CStateCredits_getInstance", _wrap_CStateCredits_getInstance},
     { "delete_CStateCredits", _wrap_delete_CStateCredits},
     { "CStateCredits_enter", _wrap_CStateCredits_enter},

@@ -39,5 +39,12 @@ end
 
 -- cmd_back
 
+function cmd_switchTo2DView()
+    PF.CStateMonitor_getInstance():switchTo2DView()
+end
+
+function cmd_switchTo3DView()
+    PF.CStateMonitor_getInstance():switchTo3DView()
+end
 
 -- End Script

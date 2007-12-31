@@ -41,18 +41,23 @@ public:
     virtual bool leave();
     virtual void update();
 
+    void switchTo2DView();
+    void switchTo3DView();
+
 protected:
     CStateMonitor();
 
 private:
-    //Ogre::RenderTexture *m_tex;
 
     Ogre::Camera *m_cam;
     Ogre::Vector3 m_direction;
-
+    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
+    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
+    
     void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
+    bool clickAudioEvent(const CEGUI::EventArgs &e);
 
 };
 

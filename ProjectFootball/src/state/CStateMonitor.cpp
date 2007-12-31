@@ -22,6 +22,7 @@
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
+#include "../audio/CAudioSystem.h"
 #include "../utils/CLog.h"
 
 
@@ -32,47 +33,30 @@ CStateMonitor::CStateMonitor()
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"monitor.layout");
 
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    m_cam = mgr->createCamera("RttCam");
+    m_sceneMgr = m_root->getSceneManager("Default SceneManager");
+    m_cam = m_sceneMgr->createCamera("RttCam");
+    m_cam->setNearClipDistance(5);
     m_direction = Ogre::Vector3::ZERO;
 
     CEGUI::Window *si = CEGUI::WindowManager::getSingleton().getWindow("Monitor/Image");
-
-//    si->getPixelSize().d_width;
-//    double  right = 50,
-//            left = -50,
-//            top = -25,
-//            bottom = 25,
-//            far = 1000,
-//            near = 500;
-//    Ogre::Matrix4 projectionMatrix(
-//            2/(right-left), 0, 0, -(right+left)/(right-left),
-//            0, 2/(top-bottom), 0, -(top+bottom)/(top-bottom),
-//            0, 0, -2/(far-near), -(far+near)/(far-near),
-//            0, 0, 0, 1
-//            );
-//    m_cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
-//    m_cam->setCustomProjectionMatrix(true,  projectionMatrix);
-//    m_cam->setCustomProjectionMatrix(true);
-//    m_cam->setPosition(0,100,0);
-//    m_cam->lookAt(0,0,-1);
-
-    m_cam->setPosition(Ogre::Vector3(0,15,80));
-    m_cam->lookAt(Ogre::Vector3(0,0,0));
-    m_cam->setNearClipDistance(5);
-
     renderImage(m_cam, si);
-
-    Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
-    Ogre::MeshManager::getSingleton().createPlane("ground",
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-        100,100,1,1,false,1,1,1,Ogre::Vector3::NEGATIVE_UNIT_Z);
 
     CEGUI::Window *w = CEGUI::WindowManager::getSingleton().getWindow("Monitor");
     w->subscribeEvent(CEGUI::Window::EventKeyDown,
             CEGUI::Event::Subscriber(&CStateMonitor::keyDownHandler, this));
     w->subscribeEvent(CEGUI::Window::EventKeyUp,
             CEGUI::Event::Subscriber(&CStateMonitor::keyUpHandler, this));
+
+    CEGUI::WindowManager::WindowIterator i =  CEGUI::WindowManager::getSingleton().getIterator();
+
+    while (!i.isAtEnd())
+    {
+        if(i.getCurrentValue()) {
+            i.getCurrentValue()->subscribeEvent(CEGUI::PushButton::EventClicked,
+                    CEGUI::Event::Subscriber(&CStateMonitor::clickAudioEvent, this));
+        }
+        ++i;
+    }
 }
 
 
@@ -151,25 +135,44 @@ bool CStateMonitor::keyUpHandler(const CEGUI::EventArgs& e)
 }
 
 
+bool CStateMonitor::clickAudioEvent(const CEGUI::EventArgs &e)
+{
+    CAudioSystem::CLICK->play();
+    return true;
+}
+
+
 void CStateMonitor::enter()
 {
     m_system->setGUISheet(m_sheet);
 
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
+    m_sceneMgr = m_root->getSceneManager("Default SceneManager");
+    m_sceneMgr->clearScene();
 
-    mgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
-    Ogre::Entity* ogreObject = mgr->createEntity("Cylinder", "Cylinder.mesh");
-    Ogre::Entity* ogreObject2 = mgr->createEntity("Cylinder2", "Cylinder.mesh");
-    Ogre::SceneNode* node1 = mgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
-    Ogre::SceneNode* node2 = mgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(-30, 0, 0));
-    node1->attachObject(ogreObject);
-    node2->attachObject(ogreObject2);
-    Ogre::Entity* ent = mgr->createEntity("GroundEntity", "ground");
-    mgr->getRootSceneNode()->createChildSceneNode()->attachObject(ent);
-    ent->setMaterialName("Grass");
-    ent->setCastShadows(false);
+    m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+    Ogre::Entity* ogreObject = m_sceneMgr->createEntity("Cylinder", "Cylinder.mesh");
+    Ogre::Entity* ogreObject2 = m_sceneMgr->createEntity("Cylinder2", "Cylinder.mesh");
+    Ogre::Entity* ogreObject3 = m_sceneMgr->createEntity("Field", "Field.mesh");
 
+    Ogre::SceneNode* node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
+    node->attachObject(ogreObject);
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(-30, 0, -20));
+    node->attachObject(ogreObject2);
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
+    node->attachObject(ogreObject3);
+
+    // Create the scene node
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode1", Ogre::Vector3(0, 100, 0));
+    // Make it look towards origin
+    node->pitch(Ogre::Degree(-90));
+
+    node->attachObject(m_cam);
+
+    // create the second camera node/pitch node
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode2", Ogre::Vector3(-15, 30, 70));
+    node->pitch(Ogre::Degree(-25));
+
+    switchTo2DView();
 }
 
 
@@ -216,5 +219,54 @@ bool CStateMonitor::leave()
 void CStateMonitor::update()
 {
     float t = CStateManager::getInstance()->getTimeSinceLastFrame();
-    m_cam->moveRelative(m_direction * t);
+    m_camNode->translate(m_direction * t, Ogre::Node::TS_LOCAL);
 }
+
+
+void CStateMonitor::switchTo2DView()
+{
+    int width = 120;
+    int height = 90;
+    double  right = width/2.0,
+            left = -width/2.0,
+            top = height/2.0,
+            bottom = -height/2.0,
+            far = 100,
+            near = 10;
+    Ogre::Matrix4 projectionMatrix(
+            2/(right-left), 0, 0, -(right+left)/(right-left),
+            0, 2/(top-bottom), 0, -(top+bottom)/(top-bottom),
+            0, 0, -2/(far-near), -(far+near)/(far-near),
+            0, 0, 0, 1
+            );
+    m_cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+    m_cam->setCustomProjectionMatrix(true,  projectionMatrix);
+
+    m_cam->getParentSceneNode()->detachObject(m_cam);
+    m_camNode = m_sceneMgr->getSceneNode("CamNode1");
+    m_camNode->attachObject(m_cam);
+
+//    m_cam->setPosition(0,50,0);
+
+//    m_cam->setFixedYawAxis(false);
+    //m_cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+    //m_cam->setPosition(0,20,0);
+//    m_cam->lookAt(0,0,0);
+    //m_cam->setNearClipDistance(100);
+}
+
+
+void CStateMonitor::switchTo3DView()
+{
+    m_cam->setProjectionType(Ogre::PT_PERSPECTIVE);
+    m_cam->setCustomProjectionMatrix(false);
+    m_cam->setNearClipDistance(5);
+    m_cam->getParentSceneNode()->detachObject(m_cam);
+    m_camNode = m_sceneMgr->getSceneNode("CamNode2");
+    m_camNode->attachObject(m_cam);
+
+//    m_cam->setPosition(Ogre::Vector3(0,15,80));
+//    m_cam->lookAt(Ogre::Vector3(0,0,-1));
+//    m_cam->setNearClipDistance(5);
+}
+
