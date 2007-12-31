@@ -38,6 +38,7 @@ CStateMonitor::CStateMonitor()
     m_cam->setNearClipDistance(5);
     m_direction = Ogre::Vector3::ZERO;
 
+
     CEGUI::Window *si = CEGUI::WindowManager::getSingleton().getWindow("Monitor/Image");
     renderImage(m_cam, si);
 
@@ -191,9 +192,6 @@ void CStateMonitor::renderImage(Ogre::Camera *cam, CEGUI::Window *si)
     v->setOverlaysEnabled(false);
     v->setClearEveryFrame(true);
     v->setBackgroundColour(Ogre::ColourValue::Black);
-    // Alter the camera aspect ratio to match the viewport
-    cam->setAspectRatio(Ogre::Real(v->getActualWidth()) / Ogre::Real(v->getActualHeight()));
-
 
     CEGUI::Texture *cTex = m_renderer->createTexture((CEGUI::utf8*)"RttTex");
 
@@ -250,14 +248,6 @@ void CStateMonitor::switchTo2DView()
     m_cam->getParentSceneNode()->detachObject(m_cam);
     m_camNode = m_sceneMgr->getSceneNode("CamNode1");
     m_camNode->attachObject(m_cam);
-
-//    m_cam->setPosition(0,50,0);
-
-//    m_cam->setFixedYawAxis(false);
-    //m_cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
-    //m_cam->setPosition(0,20,0);
-//    m_cam->lookAt(0,0,0);
-    //m_cam->setNearClipDistance(100);
 }
 
 
@@ -270,9 +260,5 @@ void CStateMonitor::switchTo3DView()
     m_cam->getParentSceneNode()->detachObject(m_cam);
     m_camNode = m_sceneMgr->getSceneNode("CamNode2");
     m_camNode->attachObject(m_cam);
-
-//    m_cam->setPosition(Ogre::Vector3(0,15,80));
-//    m_cam->lookAt(Ogre::Vector3(0,0,-1));
-//    m_cam->setNearClipDistance(5);
 }
 
