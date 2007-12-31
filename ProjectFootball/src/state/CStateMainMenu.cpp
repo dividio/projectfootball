@@ -24,6 +24,7 @@
 #include "CStateManager.h"
 #include "../utils/CLog.h"
 #include "../utils/CLuaManager.h"
+#include "../audio/CAudioSystem.h"
 
 
 CStateMainMenu::CStateMainMenu()
@@ -73,8 +74,8 @@ void CStateMainMenu::enter()
 
 bool CStateMainMenu::clickAudioEvent(const CEGUI::EventArgs &e)
 {
-    //CAudioSystem::CLICK.play();
-    //cout << "CLICK" << endl;
+    CAudioSystem::CLICK->play();
+    
     return true;
 }
 
