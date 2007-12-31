@@ -53,7 +53,8 @@ private:
     Ogre::Vector3 m_direction;
     Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
     Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    
+    bool m_mode3D;
+
     void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);

@@ -77,28 +77,30 @@ bool CStateMonitor::keyDownHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
     int move = 15;
-    switch (ke.scancode)
-    {
-    case CEGUI::Key::W:
-        m_direction.z -= move;
-        break;
-    case CEGUI::Key::S:
-        m_direction.z += move;
-        break;
-    case CEGUI::Key::A:
-        m_direction.x -= move;
-        break;
-    case CEGUI::Key::D:
-        m_direction.x += move;
-        break;
-    case CEGUI::Key::PageDown:
-        m_direction.y -= move;
-        break;
-    case CEGUI::Key::PageUp:
-        m_direction.y += move;
-        break;
-    default:
-        return false;
+    if(m_mode3D) {
+        switch (ke.scancode)
+        {
+        case CEGUI::Key::W:
+            m_direction.z -= move;
+            break;
+        case CEGUI::Key::S:
+            m_direction.z += move;
+            break;
+        case CEGUI::Key::A:
+            m_direction.x -= move;
+            break;
+        case CEGUI::Key::D:
+            m_direction.x += move;
+            break;
+        case CEGUI::Key::PageDown:
+            m_direction.y -= move;
+            break;
+        case CEGUI::Key::PageUp:
+            m_direction.y += move;
+            break;
+        default:
+            return false;
+        }
     }
     return true;
 }
@@ -108,28 +110,30 @@ bool CStateMonitor::keyUpHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
     int move = 15;
-    switch (ke.scancode)
-    {
-    case CEGUI::Key::W:
-        m_direction.z += move;
-        break;
-    case CEGUI::Key::S:
-        m_direction.z -= move;
-        break;
-    case CEGUI::Key::A:
-        m_direction.x += move;
-        break;
-    case CEGUI::Key::D:
-        m_direction.x -= move;
-        break;
-    case CEGUI::Key::PageDown:
-        m_direction.y += move;
-        break;
-    case CEGUI::Key::PageUp:
-        m_direction.y -= move;
-        break;
-    default:
-        return false;
+    if(m_mode3D) {
+        switch (ke.scancode)
+        {
+        case CEGUI::Key::W:
+            m_direction.z += move;
+            break;
+        case CEGUI::Key::S:
+            m_direction.z -= move;
+            break;
+        case CEGUI::Key::A:
+            m_direction.x += move;
+            break;
+        case CEGUI::Key::D:
+            m_direction.x -= move;
+            break;
+        case CEGUI::Key::PageDown:
+            m_direction.y += move;
+            break;
+        case CEGUI::Key::PageUp:
+            m_direction.y -= move;
+            break;
+        default:
+            return false;
+        }
     }
     return true;
 }
@@ -227,6 +231,7 @@ void CStateMonitor::switchTo2DView()
 {
     int width = 120;
     int height = 90;
+    m_mode3D = false;
     double  right = width/2.0,
             left = -width/2.0,
             top = height/2.0,
@@ -258,6 +263,7 @@ void CStateMonitor::switchTo2DView()
 
 void CStateMonitor::switchTo3DView()
 {
+    m_mode3D = true;
     m_cam->setProjectionType(Ogre::PT_PERSPECTIVE);
     m_cam->setCustomProjectionMatrix(false);
     m_cam->setNearClipDistance(5);
