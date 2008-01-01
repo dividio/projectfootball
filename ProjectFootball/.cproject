@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 4.0.0?>
 
 <cproject>
@@ -54,6 +54,29 @@
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.base.1966367552" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
 <inputType id="cdt.managedbuild.tool.gnu.assembler.input.1723464983" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+</tool>
+</toolChain>
+</folderInfo>
+<folderInfo id="cdt.managedbuild.toolchain.gnu.base.416640397.237775231" name="/" resourcePath="src/bullet">
+<toolChain id="cdt.managedbuild.toolchain.gnu.base.429401435" name="cdt.managedbuild.toolchain.gnu.base" superClass="cdt.managedbuild.toolchain.gnu.base">
+<tool id="cdt.managedbuild.tool.gnu.archiver.base.1082698211" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.864616537"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.367311437" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base.277299267">
+<option id="gnu.cpp.compiler.option.include.paths.1601352270" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
+<listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
+<listOptionValue builtIn="false" value="/usr/include/OGRE"/>
+<listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
+</option>
+<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1470430713" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.1539783081" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base.243719385">
+<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.31962979" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.base.1091114241" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base.330360968"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.714014068" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base.1131655999"/>
+<tool id="cdt.managedbuild.tool.gnu.assembler.base.1163906473" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base.1966367552">
+<inputType id="cdt.managedbuild.tool.gnu.assembler.input.482445371" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 </tool>
 </toolChain>
 </folderInfo>
