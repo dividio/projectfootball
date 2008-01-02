@@ -22,7 +22,6 @@
 #define __CStateCredits_H__
 
 #include <Ogre.h>
-#include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 

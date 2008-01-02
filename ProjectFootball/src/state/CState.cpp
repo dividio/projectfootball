@@ -18,8 +18,6 @@
 *                                                                             *
 ******************************************************************************/
 
-#include <stdio.h>
-
 #include "CState.h"
 #include "CStateManager.h"
 #include "../utils/CLog.h"
