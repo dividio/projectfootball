@@ -23,7 +23,6 @@
 #define __CStateMainMenu_H__
 
 #include <Ogre.h>
-#include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
@@ -44,6 +43,5 @@ public:
 
 protected:
     CStateMainMenu();
-    bool clickAudioEvent(const CEGUI::EventArgs &e);
 };
 #endif // __CStateMainMenu_H__

@@ -21,6 +21,7 @@
 #include <stdio.h>
 
 #include "CApplication.h"
+#include "audio/CAudioSystem.h"
 #include "state/CStateManager.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
@@ -207,6 +208,12 @@ void CApplication::setupInputSystem()
     }
 }
 
+bool clickAudioEvent(const CEGUI::EventArgs &e)
+{
+    CAudioSystem::CLICK->play();
+    return true;
+}
+
 void CApplication::setupCEGUI()
 {
     SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
@@ -227,6 +234,11 @@ void CApplication::setupCEGUI()
     int mouseVelocity = COptionManager::getInstance()->getIntOption("GUI", "MouseVelocity", 50);
     float mouseScale = 1.0f + (mouseVelocity/100);
     m_system->setMouseMoveScaling(mouseScale);
+
+    CEGUI::GlobalEventSet::getSingleton().subscribeEvent(
+       CEGUI::PushButton::EventNamespace+"/"+CEGUI::PushButton::EventClicked,
+       CEGUI::Event::Subscriber(&clickAudioEvent)
+    );
 }
 
 void CApplication::createFrameListeners()

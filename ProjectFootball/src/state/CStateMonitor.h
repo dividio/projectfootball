@@ -23,7 +23,6 @@
 #define __CStateMonitor_H__
 
 #include <Ogre.h>
-#include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
@@ -58,8 +57,6 @@ private:
     void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool clickAudioEvent(const CEGUI::EventArgs &e);
-
 };
 
 #endif // __CStateMonitor_H__

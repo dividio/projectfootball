@@ -23,8 +23,6 @@
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
 #include "../utils/CLog.h"
-#include "../utils/CLuaManager.h"
-#include "../audio/CAudioSystem.h"
 
 
 CStateMainMenu::CStateMainMenu()
@@ -33,21 +31,6 @@ CStateMainMenu::CStateMainMenu()
     CLog::getInstance()->debug("CStateMainMenu()");
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"mainMenu.layout");
-
-    // Maybe using CEGUI::GlobalEventSet ?
-    CEGUI::WindowManager::WindowIterator i =  CEGUI::WindowManager::getSingleton().getIterator();
-
-    while (!i.isAtEnd())
-    {
-        if(i.getCurrentValue()) {
-            i.getCurrentValue()->subscribeEvent(CEGUI::PushButton::EventClicked,
-                    CEGUI::Event::Subscriber(&CStateMainMenu::clickAudioEvent, this));
-        }
-        ++i;
-    }
-
-//    CEGUI::Imageset* menuImageset = CEGUI::ImagesetManager::getSingletonPtr()->createImagesetFromImageFile("Background","background.tga");
-//    menuImageset->defineImage("Background", CEGUI::Point(0.0f,0.0f), CEGUI::Size( 1.0f, 1.0f ), CEGUI::Point(0.0f,0.0f)); // Whole Image
 }
 
 
@@ -71,13 +54,6 @@ void CStateMainMenu::enter()
     mgr->clearScene();
 }
 
-
-bool CStateMainMenu::clickAudioEvent(const CEGUI::EventArgs &e)
-{
-    CAudioSystem::CLICK->play();
-    
-    return true;
-}
 
 void CStateMainMenu::forcedLeave()
 {

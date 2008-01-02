@@ -22,7 +22,6 @@
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
-#include "../audio/CAudioSystem.h"
 #include "../utils/CLog.h"
 
 
@@ -47,17 +46,6 @@ CStateMonitor::CStateMonitor()
             CEGUI::Event::Subscriber(&CStateMonitor::keyDownHandler, this));
     w->subscribeEvent(CEGUI::Window::EventKeyUp,
             CEGUI::Event::Subscriber(&CStateMonitor::keyUpHandler, this));
-
-    CEGUI::WindowManager::WindowIterator i =  CEGUI::WindowManager::getSingleton().getIterator();
-
-    while (!i.isAtEnd())
-    {
-        if(i.getCurrentValue()) {
-            i.getCurrentValue()->subscribeEvent(CEGUI::PushButton::EventClicked,
-                    CEGUI::Event::Subscriber(&CStateMonitor::clickAudioEvent, this));
-        }
-        ++i;
-    }
 }
 
 
@@ -136,13 +124,6 @@ bool CStateMonitor::keyUpHandler(const CEGUI::EventArgs& e)
             return false;
         }
     }
-    return true;
-}
-
-
-bool CStateMonitor::clickAudioEvent(const CEGUI::EventArgs &e)
-{
-    CAudioSystem::CLICK->play();
     return true;
 }
 
