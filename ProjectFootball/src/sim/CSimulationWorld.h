@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -19,48 +19,30 @@
 ******************************************************************************/
 
 
-#ifndef __CStateMonitor_H__
-#define __CStateMonitor_H__
+#ifndef __CSimulationWorld_H__
+#define __CSimulationWorld_H__
 
-#include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-#include "CState.h"
-#include "sim/CSimulationManager.h"
+#include "bullet/btBulletDynamicsCommon.h"
+#include "CObject.h"
 
-class CStateMonitor : public CState
+
+class CSimulationWorld
 {
 public:
-    static CStateMonitor* getInstance();
+    CSimulationWorld();
+    ~CSimulationWorld();
 
-    virtual ~CStateMonitor();
-
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
-
-    void switchTo2DView();
-    void switchTo3DView();
-
-protected:
-    CStateMonitor();
-
+    void update();
+    void addObject(CObject *object);
 private:
-
-    Ogre::Camera *m_cam;
-    Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
-    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    bool m_mode3D;
-    CSimulationManager *m_simulator;
-
-
-    void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
-    bool keyDownHandler(const CEGUI::EventArgs& e);
-    bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool startMatchHandler(const CEGUI::EventArgs& e);
+    //Bullet Objects
+    btCollisionConfiguration *m_collisionConfiguration;
+    btCollisionDispatcher *m_dispatcher;
+    btSequentialImpulseConstraintSolver* m_solver;
+    btBroadphaseInterface *m_broadphase;
+    btDiscreteDynamicsWorld* m_world;
+    btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 };
 
-#endif // __CStateMonitor_H__
+#endif // __CSimulationWorld_H__

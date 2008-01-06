@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -19,48 +19,41 @@
 ******************************************************************************/
 
 
-#ifndef __CStateMonitor_H__
-#define __CStateMonitor_H__
+#ifndef __CSimulationManager_H__
+#define __CSimulationManager_H__
 
+
+#include <string>
+#include <vector>
 #include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-#include "CState.h"
-#include "sim/CSimulationManager.h"
+#include "CFootballPlayer.h"
+#include "CSimulationWorld.h"
 
-class CStateMonitor : public CState
+
+class CSimulationManager
 {
 public:
-    static CStateMonitor* getInstance();
+    CSimulationManager(Ogre::SceneManager *scnMgr);
+    ~CSimulationManager();
 
-    virtual ~CStateMonitor();
+    void update();
 
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
-
-    void switchTo2DView();
-    void switchTo3DView();
-
-protected:
-    CStateMonitor();
+    bool isPlayOn();
+    bool isBeforeStart();
+    void startMatch();
+    void dash(CFootballPlayer *player, int power);
 
 private:
-
-    Ogre::Camera *m_cam;
-    Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
-    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    bool m_mode3D;
-    CSimulationManager *m_simulator;
-
-
-    void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
-    bool keyDownHandler(const CEGUI::EventArgs& e);
-    bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool startMatchHandler(const CEGUI::EventArgs& e);
+    int m_homeScore;
+    int m_awayScore;
+    bool m_isPlayOn;
+    bool m_isBeforeStart;
+    std::string m_homeTeamName;
+    std::string m_awayTeamName;
+    std::vector<CFootballPlayer*> m_homePlayers;
+    std::vector<CFootballPlayer*> m_awayPlayers;
+    CSimulationWorld *m_simWorld;
 };
 
-#endif // __CStateMonitor_H__
+#endif // __CSimulationManager_H__

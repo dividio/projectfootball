@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -19,48 +19,39 @@
 ******************************************************************************/
 
 
-#ifndef __CStateMonitor_H__
-#define __CStateMonitor_H__
+#ifndef __CObject_H__
+#define __CObject_H__
 
 #include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-#include "CState.h"
-#include "sim/CSimulationManager.h"
+#include "bullet/btBulletDynamicsCommon.h"
 
-class CStateMonitor : public CState
+class CObject: public btMotionState
 {
 public:
-    static CStateMonitor* getInstance();
 
-    virtual ~CStateMonitor();
+    CObject();
+    ~CObject();
 
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
+    ///synchronizes world transform from user to physics
+    virtual void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
 
-    void switchTo2DView();
-    void switchTo3DView();
+    ///synchronizes world transform from physics to user
+    ///Bullet only calls the update of worldtransform for active objects
+    virtual void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
+
+    btTransform getGraphicTrans() const;
+    void setGraphicTrans(btTransform trans);
+    btCollisionShape* getShape();
+    btRigidBody* getBody();
+    void setPosition(float x, float y, float z);
 
 protected:
-    CStateMonitor();
-
-private:
-
-    Ogre::Camera *m_cam;
-    Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
-    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    bool m_mode3D;
-    CSimulationManager *m_simulator;
-
-
-    void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
-    bool keyDownHandler(const CEGUI::EventArgs& e);
-    bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool startMatchHandler(const CEGUI::EventArgs& e);
+    Ogre::Entity *m_entity;
+    Ogre::SceneNode *m_node;
+    btCollisionShape *m_shape;
+    btRigidBody* m_body;
+    btTransform m_centerOfMassOffset;
 };
 
-#endif // __CStateMonitor_H__
+#endif // __CObject_H__

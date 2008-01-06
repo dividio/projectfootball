@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -19,48 +19,25 @@
 ******************************************************************************/
 
 
-#ifndef __CStateMonitor_H__
-#define __CStateMonitor_H__
+#ifndef __CFootballPlayer_H__
+#define __CFootballPlayer_H__
+
 
 #include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-#include "CState.h"
-#include "sim/CSimulationManager.h"
+#include "CObject.h"
 
-class CStateMonitor : public CState
+
+class CFootballPlayer: public CObject
 {
 public:
-    static CStateMonitor* getInstance();
+    CFootballPlayer(Ogre::String id, Ogre::SceneManager *scnMgr, float x, float y, float z);
+    ~CFootballPlayer();
 
-    virtual ~CStateMonitor();
-
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
-
-    void switchTo2DView();
-    void switchTo3DView();
-
-protected:
-    CStateMonitor();
+    void update();
 
 private:
 
-    Ogre::Camera *m_cam;
-    Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
-    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    bool m_mode3D;
-    CSimulationManager *m_simulator;
-
-
-    void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
-    bool keyDownHandler(const CEGUI::EventArgs& e);
-    bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool startMatchHandler(const CEGUI::EventArgs& e);
 };
 
-#endif // __CStateMonitor_H__
+#endif // __CFootballPlayer_H__

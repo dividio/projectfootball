@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?fileVersion 4.0.0?>
 
 <cproject>
@@ -24,6 +24,8 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.277299267" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.63830879" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
@@ -59,9 +61,10 @@
 </folderInfo>
 <folderInfo id="cdt.managedbuild.toolchain.gnu.base.416640397.237775231" name="/" resourcePath="src/bullet">
 <toolChain id="cdt.managedbuild.toolchain.gnu.base.429401435" name="cdt.managedbuild.toolchain.gnu.base" superClass="cdt.managedbuild.toolchain.gnu.base">
+<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.target.gnu.platform.base" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.gnu.platform.base"/>
 <tool id="cdt.managedbuild.tool.gnu.archiver.base.1082698211" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.864616537"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.367311437" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base.277299267">
-<option id="gnu.cpp.compiler.option.include.paths.1601352270" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<option id="gnu.cpp.compiler.option.include.paths.1601352270" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/lua5.1"/>

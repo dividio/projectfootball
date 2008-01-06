@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -19,48 +19,39 @@
 ******************************************************************************/
 
 
-#ifndef __CStateMonitor_H__
-#define __CStateMonitor_H__
+#include "CFootballPlayer.h"
 
-#include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-#include "CState.h"
-#include "sim/CSimulationManager.h"
-
-class CStateMonitor : public CState
+CFootballPlayer::CFootballPlayer(Ogre::String id, Ogre::SceneManager *scnMgr, float x, float y, float z)
+:CObject()
 {
-public:
-    static CStateMonitor* getInstance();
+    m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
+    m_entity = scnMgr->createEntity("Cylinder"+id, "Cylinder.mesh");
+    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("PlayerNode"+id, Ogre::Vector3(x, y, z));
+    m_node->attachObject(m_entity);
+    m_shape = new btCylinderShape(btVector3(btScalar(1.),btScalar(1.),btScalar(1.)));
+    btScalar mass(1.);
 
-    virtual ~CStateMonitor();
+    //rigidbody is dynamic if and only if mass is non zero, otherwise static
+    bool isDynamic = (mass != 0.f);
 
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
-
-    void switchTo2DView();
-    void switchTo3DView();
-
-protected:
-    CStateMonitor();
-
-private:
-
-    Ogre::Camera *m_cam;
-    Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
-    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    bool m_mode3D;
-    CSimulationManager *m_simulator;
+    btVector3 localInertia(0,0,0);
+    if (isDynamic)
+        m_shape->calculateLocalInertia(mass,localInertia);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
+    m_body = new btRigidBody(rbInfo);
+}
 
 
-    void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
-    bool keyDownHandler(const CEGUI::EventArgs& e);
-    bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool startMatchHandler(const CEGUI::EventArgs& e);
-};
+CFootballPlayer::~CFootballPlayer()
+{
 
-#endif // __CStateMonitor_H__
+}
+
+
+void CFootballPlayer::update()
+{
+//    if(m_sim->isPlayOn()) {
+//        m_sim->dash(this, 100);
+//    }
+}

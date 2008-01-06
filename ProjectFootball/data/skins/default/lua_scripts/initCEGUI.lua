@@ -39,6 +39,10 @@ end
 
 -- cmd_back
 
+function cmd_startSimulation()
+
+end
+
 function cmd_switchTo2DView()
     PF.CStateMonitor_getInstance():switchTo2DView()
 end

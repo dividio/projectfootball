@@ -21,6 +21,13 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.395,0},{0.12,0},{0.995,0},{0.72,0}}" />
             </Window>
+            <Window Type="TaharezLook/Button" Name="Monitor/StartButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Start" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.55,0},{0.04,0},{0.65,0},{0.1,0}}" />
+                <Event Name="Clicked" Function="cmd_startSimulation" />
+            </Window>
             <Window Type="TaharezLook/Button" Name="Monitor/2DButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="2D View" />

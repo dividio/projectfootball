@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -22,7 +22,7 @@
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
-#include "../utils/CLog.h"
+#include "utils/CLog.h"
 
 
 CStateMonitor::CStateMonitor()
@@ -32,7 +32,7 @@ CStateMonitor::CStateMonitor()
 
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"monitor.layout");
 
-    m_sceneMgr = m_root->getSceneManager("Default SceneManager");
+    m_sceneMgr = m_root->createSceneManager(Ogre::ST_GENERIC, "Simulation SceneManager");
     m_cam = m_sceneMgr->createCamera("RttCam");
     m_cam->setNearClipDistance(5);
     m_direction = Ogre::Vector3::ZERO;
@@ -46,21 +46,33 @@ CStateMonitor::CStateMonitor()
             CEGUI::Event::Subscriber(&CStateMonitor::keyDownHandler, this));
     w->subscribeEvent(CEGUI::Window::EventKeyUp,
             CEGUI::Event::Subscriber(&CStateMonitor::keyUpHandler, this));
+
+    w = CEGUI::WindowManager::getSingleton().getWindow("Monitor/StartButton");
+    w->subscribeEvent(CEGUI::Window::EventMouseClick,
+            CEGUI::Event::Subscriber(&CStateMonitor::startMatchHandler, this));
 }
 
 
 CStateMonitor* CStateMonitor::getInstance()
 {
-  static CStateMonitor instance;
-  return &instance;
+    static CStateMonitor instance;
+    return &instance;
 }
 
 
 CStateMonitor::~CStateMonitor()
 {
-  CLog::getInstance()->debug("~CStateMonitor()");
+    CLog::getInstance()->debug("~CStateMonitor()");
+    if(m_simulator != NULL) {
+        delete m_simulator;
+    }
 }
 
+
+bool CStateMonitor::startMatchHandler(const CEGUI::EventArgs& e)
+{
+    m_simulator->startMatch();
+}
 
 bool CStateMonitor::keyDownHandler(const CEGUI::EventArgs& e)
 {
@@ -132,20 +144,13 @@ void CStateMonitor::enter()
 {
     m_system->setGUISheet(m_sheet);
 
-    m_sceneMgr = m_root->getSceneManager("Default SceneManager");
     m_sceneMgr->clearScene();
+    m_simulator = new CSimulationManager(m_sceneMgr);
 
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
-    Ogre::Entity* ogreObject = m_sceneMgr->createEntity("Cylinder", "Cylinder.mesh");
-    Ogre::Entity* ogreObject2 = m_sceneMgr->createEntity("Cylinder2", "Cylinder.mesh");
-    Ogre::Entity* ogreObject3 = m_sceneMgr->createEntity("Field", "Field.mesh");
-
+    Ogre::Entity* ogreObject = m_sceneMgr->createEntity("Field", "Field.mesh");
     Ogre::SceneNode* node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
     node->attachObject(ogreObject);
-    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(-30, 0, -20));
-    node->attachObject(ogreObject2);
-    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
-    node->attachObject(ogreObject3);
 
     // Create the scene node
     node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode1", Ogre::Vector3(0, 100, 0));
@@ -158,7 +163,7 @@ void CStateMonitor::enter()
     node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode2", Ogre::Vector3(-15, 30, 70));
     node->pitch(Ogre::Degree(-25));
 
-    switchTo2DView();
+    switchTo3DView();
 }
 
 
@@ -189,12 +194,18 @@ void CStateMonitor::renderImage(Ogre::Camera *cam, CEGUI::Window *si)
 
 void CStateMonitor::forcedLeave()
 {
-
+    if(m_simulator != NULL) {
+        delete m_simulator;
+    }
 }
 
 
 bool CStateMonitor::leave()
 {
+    if(m_simulator != NULL) {
+        delete m_simulator;
+        m_simulator = NULL;
+    }
     return true;
 }
 
@@ -203,6 +214,7 @@ void CStateMonitor::update()
 {
     float t = CStateManager::getInstance()->getTimeSinceLastFrame();
     m_camNode->translate(m_direction * t, Ogre::Node::TS_LOCAL);
+    m_simulator->update();
 }
 
 
@@ -224,7 +236,7 @@ void CStateMonitor::switchTo2DView()
             0, 0, 0, 1
             );
     m_cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
-    m_cam->setCustomProjectionMatrix(true,  projectionMatrix);
+    m_cam->setCustomProjectionMatrix(true, projectionMatrix);
 
     m_cam->getParentSceneNode()->detachObject(m_cam);
     m_camNode = m_sceneMgr->getSceneNode("CamNode1");
