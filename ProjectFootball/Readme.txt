@@ -1,0 +1,71 @@
+-----------------------
+Project Football README
+-----------------------
+
+Indice:
+
+1- Licencia del software
+2- Dependencias de ejecución
+3- Instrucciones de compilación
+4- Más información
+
+
+
+
+-----------------------------
+1- Licencia del software:
+-----------------------------
+
++ El código fuente de este software se distribuye bajo la licencia GPL
+versión 2, excepto el código fuente incluido en el directório src/bullet,
+el cual se distribuye bajo la licencia Zlib.
+
++ El contenido de la licencia GPL 2 puede consultarse en el fichero COPYRIGHT.txt
+
++ El contenido de licencia Zlib para la librería Bullet en el directorio src/bullet, se encuentra
+en el fichero BulletLicense.txt
+
+
+
+-----------------------------
+2- Dependencias de ejecución:
+-----------------------------
+
+Para ejecutar Project Football es necesario tener las siguientes librerías:
+
+- Ogre 1.4.3 (libogre14)
+- Cegui 0.5.0 (libcegui-mk2-1)
+- OIS (libois1)
+- Sqlite 3 (libsqlite3-0)
+- SDL_mixer (libsdl-mixer1.2)
+- Lua 5.1 (liblua5.1-0)
+
+Entre paréntesis está el nombre del paquete que es necesario instalar en Debian y Ubuntu.
+
+
+
+--------------------------------
+3- Instrucciones de compilación:
+--------------------------------
+
+- En sistemas Debian y Ubuntu hay que instalar primero los siguientes paquetes:
+
+libogre-dev libcegui-mk2-dev libois-dev libsqlite3-dev
+libsdl-mixer1.2-dev liblua5.1-0-dev
+
+- Para compilar, ejecutar desde el directorio ProjectFootball el siguiente comando:
+sh build.sh
+
+- Para ejecutar Project Football, ejecutar el comando:
+./ProjectFootball
+
+
+
+---------------
+4- Más información
+---------------
+
+Visita Ikaro Games para conocer las últimas novedades sobre Project Football:
+
+http://www.ikarogames.com
+
