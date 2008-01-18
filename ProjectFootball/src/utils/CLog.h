@@ -86,6 +86,17 @@ public:
     void exception( const char *format, ... );
 
 
+    bool isDebugActive();
+    bool isInfoActive();
+    bool isWarningActive();
+    bool isErrorActive();
+
+    void setDebugActive( bool active );
+    void setInfoActive( bool active );
+    void setWarningActive( bool active );
+    void setErrorActive( bool active );
+
+
 private:
 
 	/**
@@ -107,6 +118,11 @@ private:
 private:
 
     FILE    *m_log;
+    bool    m_debug;
+    bool    m_info;
+    bool    m_warning;
+    bool    m_error;
+
 };
 
 #endif // __CLOG_H__

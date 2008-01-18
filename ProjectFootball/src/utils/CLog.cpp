@@ -30,6 +30,12 @@ CLog::CLog()
     	m_log = stdout;
         error( "Error at open the log file. Redirecting to stdout." );
     }
+
+    m_debug     = true;
+    m_info      = true;
+    m_warning   = true;
+    m_error     = true;
+
     info( "Log initialized" );
 }
 
@@ -52,45 +58,53 @@ CLog* CLog::getInstance()
 
 void CLog::debug( const char *format, ... )
 {
-    va_list listArguments;
-    va_start( listArguments, format );
+    if( m_debug ){
+        va_list listArguments;
+        va_start( listArguments, format );
 
-    printLog( "[DEBUG]", format, listArguments );
+        printLog( "[DEBUG]", format, listArguments );
 
-    va_end( listArguments );
+        va_end( listArguments );
+    }
 }
 
 
 void CLog::info( const char *format, ... )
 {
-    va_list listArguments;
-    va_start( listArguments, format );
+    if( m_info ){
+        va_list listArguments;
+        va_start( listArguments, format );
 
-    printLog( "[INFO]", format, listArguments );
+        printLog( "[INFO]", format, listArguments );
 
-    va_end( listArguments );
+        va_end( listArguments );
+    }
 }
 
 
 void CLog::warning( const char *format, ... )
 {
-    va_list listArguments;
-    va_start( listArguments, format );
+    if( m_warning ){
+        va_list listArguments;
+        va_start( listArguments, format );
 
-    printLog( "[WARNING]", format, listArguments );
+        printLog( "[WARNING]", format, listArguments );
 
-    va_end( listArguments );
+        va_end( listArguments );
+    }
 }
 
 
 void CLog::error( const char *format, ... )
 {
-    va_list listArguments;
-    va_start( listArguments, format );
+    if( m_error ){
+        va_list listArguments;
+        va_start( listArguments, format );
 
-    printLog( "[ERROR]", format, listArguments );
+        printLog( "[ERROR]", format, listArguments );
 
-    va_end( listArguments );
+        va_end( listArguments );
+    }
 }
 
 
@@ -115,3 +129,14 @@ void CLog::printLog( const char *label, const char *format, va_list listArgument
 
     fflush(m_log);
 }
+
+
+bool CLog::isDebugActive(){       return m_debug; }
+bool CLog::isInfoActive(){        return m_info; }
+bool CLog::isWarningActive(){     return m_warning; }
+bool CLog::isErrorActive(){       return m_error; }
+
+void CLog::setDebugActive( bool active ){     m_debug     = active; }
+void CLog::setInfoActive( bool active ){      m_info      = active; }
+void CLog::setWarningActive( bool active ){   m_warning   = active; }
+void CLog::setErrorActive( bool active ){     m_error     = active; }
