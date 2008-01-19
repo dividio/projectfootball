@@ -74,7 +74,7 @@ void CSampleSDLAudioFile::play()
 {
     if( m_channel==-1 ){
         m_channel = Mix_PlayChannel(-1, m_chunk, 0);
-        CLog::getInstance()->info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
+//        CLog::getInstance()->info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
     }else{
         if( isPlaying() ){
             stop();
@@ -83,7 +83,7 @@ void CSampleSDLAudioFile::play()
             pause();
         }else{
             Mix_PlayChannel(m_channel, m_chunk, 0);
-            CLog::getInstance()->info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
+//            CLog::getInstance()->info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
         }
     }
 }
