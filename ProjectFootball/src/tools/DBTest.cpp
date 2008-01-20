@@ -19,14 +19,14 @@
 ******************************************************************************/
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-
-#include "../db/CDAOAbstractFactory.h"
-#include "../db/IDAOFactory.h"
-#include "../db/IPfEquiposDAO.h"
-
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <iostream>
+//
+//#include "../db/CDAOAbstractFactory.h"
+//#include "../db/IDAOFactory.h"
+//#include "../db/IPfEquiposDAO.h"
+//
 //int main(void) {
 //	cout << "Aplicación test:" << endl;
 //	CPfEquipos *equipo;
