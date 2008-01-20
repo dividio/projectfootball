@@ -22,9 +22,7 @@
 #ifndef __CDAOAbstractFactory_H__
 #define __CDAOAbstractFactory_H__
 
-#include "IDAOFactory.h"
-#include "CDAOFactorySqlite.h"
-#include "CPfSavedGames.h"
+#include "dao/factory/IDAOFactory.h"
 
 class CDAOAbstractFactory
 {

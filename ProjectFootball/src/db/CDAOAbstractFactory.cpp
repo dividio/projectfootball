@@ -20,6 +20,7 @@
 
 
 #include "CDAOAbstractFactory.h"
+#include "sqlite/dao/factory/CDAOFactorySQLite.h"
 #include "../utils/CLog.h"
 
 
@@ -40,7 +41,7 @@ IDAOFactory* CDAOAbstractFactory::getIDAOFactory(std::string driver, std::string
     IDAOFactory *factory = NULL;
 
     if(driver == "SQLite") {
-        factory = new CDAOFactorySqlite(connection);
+        factory = new CDAOFactorySQLite(connection);
     } else {
         CLog::getInstance()->exception("Unknown database driver: %s", driver.c_str());
     }

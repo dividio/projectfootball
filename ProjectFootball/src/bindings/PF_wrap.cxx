@@ -1405,20 +1405,18 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_CDAOAbstractFactory swig_types[0]
 #define SWIGTYPE_p_CLog swig_types[1]
 #define SWIGTYPE_p_CPfEquipos swig_types[2]
-#define SWIGTYPE_p_CPfSavedGames swig_types[3]
-#define SWIGTYPE_p_CPfSavedGamesDAO swig_types[4]
-#define SWIGTYPE_p_CState swig_types[5]
-#define SWIGTYPE_p_CStateCredits swig_types[6]
-#define SWIGTYPE_p_CStateMainMenu swig_types[7]
-#define SWIGTYPE_p_CStateManager swig_types[8]
-#define SWIGTYPE_p_CStateMonitor swig_types[9]
-#define SWIGTYPE_p_IDAOFactory swig_types[10]
-#define SWIGTYPE_p_IPfEquiposDAO swig_types[11]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[12]
-#define SWIGTYPE_p_std__string swig_types[13]
-#define SWIGTYPE_p_std__vectorTCPfEquipos_p_t swig_types[14]
-static swig_type_info *swig_types[16];
-static swig_module_info swig_module = {swig_types, 15, 0, 0, 0, 0};
+#define SWIGTYPE_p_CState swig_types[3]
+#define SWIGTYPE_p_CStateCredits swig_types[4]
+#define SWIGTYPE_p_CStateMainMenu swig_types[5]
+#define SWIGTYPE_p_CStateManager swig_types[6]
+#define SWIGTYPE_p_CStateMonitor swig_types[7]
+#define SWIGTYPE_p_IDAOFactory swig_types[8]
+#define SWIGTYPE_p_IPfEquiposDAO swig_types[9]
+#define SWIGTYPE_p_IPfPaisesDAO swig_types[10]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[11]
+#define SWIGTYPE_p_std__string swig_types[12]
+static swig_type_info *swig_types[14];
+static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1433,11 +1431,9 @@ static swig_module_info swig_module = {swig_types, 15, 0, 0, 0, 0};
 
 
 #include "../db/CDAOAbstractFactory.h"
-#include "../db/CPfEquipos.h"
-#include "../db/IDAOFactory.h"
-#include "../db/IPfEquiposDAO.h"
-#include "../db/CPfSavedGames.h"
-#include "../db/CPfSavedGamesDAO.h"
+#include "../db/bean/CPfEquipos.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../db/dao/IPfEquiposDAO.h"
 
 
 	#include <string>
@@ -1757,7 +1753,7 @@ static swig_lua_attribute swig_CDAOAbstractFactory_attributes[] = {
 static swig_lua_class *swig_CDAOAbstractFactory_bases[] = {0};
 swig_lua_class _wrap_class_CDAOAbstractFactory = { "CDAOAbstractFactory", &SWIGTYPE_p_CDAOAbstractFactory,0, swig_delete_CDAOAbstractFactory, swig_CDAOAbstractFactory_methods, swig_CDAOAbstractFactory_attributes, swig_CDAOAbstractFactory_bases };
 
-static int _wrap_new_CPfEquipos__SWIG_0(lua_State* L) {
+static int _wrap_new_CPfEquipos(lua_State* L) {
   int SWIG_arg = -1;
   CPfEquipos *result = 0 ;
   
@@ -1769,73 +1765,6 @@ static int _wrap_new_CPfEquipos__SWIG_0(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_new_CPfEquipos__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string arg1 ;
-  std::string arg2 ;
-  std::string arg3 ;
-  std::string arg4 ;
-  CPfEquipos *result = 0 ;
-  
-  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
-  if(!lua_isstring(L,4)) SWIG_fail_arg(4);
-  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (&arg3)->assign(lua_tostring(L,3),lua_strlen(L,3));
-  (&arg4)->assign(lua_tostring(L,4),lua_strlen(L,4));
-  result = (CPfEquipos *)new CPfEquipos(arg1,arg2,arg3,arg4);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_CPfEquipos(lua_State* L) {
-  int argc;
-  int argv[5]={
-    1,2,3,4,5
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 0) {
-    return _wrap_new_CPfEquipos__SWIG_0(L);
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isstring(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isstring(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_new_CPfEquipos__SWIG_1(L);
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'new_CPfEquipos'");
-  lua_error(L);return 0;
 }
 
 
@@ -1861,94 +1790,20 @@ fail:
 }
 
 
-static int _wrap_CPfEquipos_setXFkPais(lua_State* L) {
+static int _wrap_CPfEquipos_getXFkPais_int(lua_State* L) {
   int SWIG_arg = -1;
   CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
+  int result;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setXFkPais",1,SWIGTYPE_p_CPfEquipos);
+    SWIG_fail_ptr("CPfEquipos_getXFkPais_int",1,SWIGTYPE_p_CPfEquipos);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setXFkPais(arg2);
+  result = (int)(arg1)->getXFkPais_int();
   SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_setXEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setXEquipo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setXEquipo(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_setSEquipo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setSEquipo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSEquipo(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfEquipos_setSRutaEscudo(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("CPfEquipos_setSRutaEscudo",1,SWIGTYPE_p_CPfEquipos);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSRutaEscudo(arg2);
-  SWIG_arg=0;
-  
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -1971,6 +1826,28 @@ static int _wrap_CPfEquipos_getXFkPais(lua_State* L) {
   result = (std::string *)(arg1)->getXFkPais();
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfEquipos_getXEquipo_int(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_getXEquipo_int",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  result = (int)(arg1)->getXEquipo_int();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -2045,19 +1922,267 @@ fail:
 }
 
 
+static int _wrap_CPfEquipos_setXFkPais__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  int arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_setXFkPais",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setXFkPais(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfEquipos_setXFkPais__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_setXFkPais",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setXFkPais(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfEquipos_setXFkPais(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfEquipos, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_CPfEquipos_setXFkPais__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfEquipos, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_CPfEquipos_setXFkPais__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'CPfEquipos_setXFkPais'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_CPfEquipos_setXEquipo__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  int arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_setXEquipo",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setXEquipo(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfEquipos_setXEquipo__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_setXEquipo",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setXEquipo(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfEquipos_setXEquipo(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfEquipos, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_CPfEquipos_setXEquipo__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfEquipos, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_CPfEquipos_setXEquipo__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'CPfEquipos_setXEquipo'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_CPfEquipos_setSEquipo(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_setSEquipo",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setSEquipo(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfEquipos_setSRutaEscudo(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfEquipos *arg1 = (CPfEquipos *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfEquipos,0))){
+    SWIG_fail_ptr("CPfEquipos_setSRutaEscudo",1,SWIGTYPE_p_CPfEquipos);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setSRutaEscudo(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CPfEquipos(void *obj) {
 CPfEquipos *arg1 = (CPfEquipos *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CPfEquipos_methods[] = {
+    {"getXFkPais_int", _wrap_CPfEquipos_getXFkPais_int}, 
+    {"getXFkPais", _wrap_CPfEquipos_getXFkPais}, 
+    {"getXEquipo_int", _wrap_CPfEquipos_getXEquipo_int}, 
+    {"getXEquipo", _wrap_CPfEquipos_getXEquipo}, 
+    {"getSEquipo", _wrap_CPfEquipos_getSEquipo}, 
+    {"getSRutaEscudo", _wrap_CPfEquipos_getSRutaEscudo}, 
     {"setXFkPais", _wrap_CPfEquipos_setXFkPais}, 
     {"setXEquipo", _wrap_CPfEquipos_setXEquipo}, 
     {"setSEquipo", _wrap_CPfEquipos_setSEquipo}, 
     {"setSRutaEscudo", _wrap_CPfEquipos_setSRutaEscudo}, 
-    {"getXFkPais", _wrap_CPfEquipos_getXFkPais}, 
-    {"getXEquipo", _wrap_CPfEquipos_getXEquipo}, 
-    {"getSEquipo", _wrap_CPfEquipos_getSEquipo}, 
-    {"getSRutaEscudo", _wrap_CPfEquipos_getSRutaEscudo}, 
     {0,0}
 };
 static swig_lua_attribute swig_CPfEquipos_attributes[] = {
@@ -2080,6 +2205,28 @@ static int _wrap_delete_IDAOFactory(lua_State* L) {
   
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IDAOFactory_getIPfPaisesDAO(lua_State* L) {
+  int SWIG_arg = -1;
+  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
+  IPfPaisesDAO *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
+    SWIG_fail_ptr("IDAOFactory_getIPfPaisesDAO",1,SWIGTYPE_p_IDAOFactory);
+  }
+  
+  result = (IPfPaisesDAO *)(arg1)->getIPfPaisesDAO();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IPfPaisesDAO,0); SWIG_arg++; 
   return SWIG_arg;
   
 fail:
@@ -2115,6 +2262,7 @@ IDAOFactory *arg1 = (IDAOFactory *) obj;
 delete arg1;
 }
 static swig_lua_method swig_IDAOFactory_methods[] = {
+    {"getIPfPaisesDAO", _wrap_IDAOFactory_getIPfPaisesDAO}, 
     {"getIPfEquiposDAO", _wrap_IDAOFactory_getIPfEquiposDAO}, 
     {0,0}
 };
@@ -2175,7 +2323,7 @@ fail:
 }
 
 
-static int _wrap_IPfEquiposDAO_insert(lua_State* L) {
+static int _wrap_IPfEquiposDAO_insertReg(lua_State* L) {
   int SWIG_arg = -1;
   IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
   CPfEquipos *arg2 = (CPfEquipos *) 0 ;
@@ -2185,15 +2333,15 @@ static int _wrap_IPfEquiposDAO_insert(lua_State* L) {
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_insert",1,SWIGTYPE_p_IPfEquiposDAO);
+    SWIG_fail_ptr("IPfEquiposDAO_insertReg",1,SWIGTYPE_p_IPfEquiposDAO);
   }
   
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_insert",2,SWIGTYPE_p_CPfEquipos);
+    SWIG_fail_ptr("IPfEquiposDAO_insertReg",2,SWIGTYPE_p_CPfEquipos);
   }
   
-  result = (bool)(arg1)->insert(arg2);
+  result = (bool)(arg1)->insertReg(arg2);
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
@@ -2204,7 +2352,7 @@ fail:
 }
 
 
-static int _wrap_IPfEquiposDAO_update(lua_State* L) {
+static int _wrap_IPfEquiposDAO_updateReg(lua_State* L) {
   int SWIG_arg = -1;
   IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
   CPfEquipos *arg2 = (CPfEquipos *) 0 ;
@@ -2214,15 +2362,15 @@ static int _wrap_IPfEquiposDAO_update(lua_State* L) {
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_update",1,SWIGTYPE_p_IPfEquiposDAO);
+    SWIG_fail_ptr("IPfEquiposDAO_updateReg",1,SWIGTYPE_p_IPfEquiposDAO);
   }
   
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfEquipos,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_update",2,SWIGTYPE_p_CPfEquipos);
+    SWIG_fail_ptr("IPfEquiposDAO_updateReg",2,SWIGTYPE_p_CPfEquipos);
   }
   
-  result = (bool)(arg1)->update(arg2);
+  result = (bool)(arg1)->updateReg(arg2);
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
@@ -2233,23 +2381,48 @@ fail:
 }
 
 
-static int _wrap_IPfEquiposDAO_findVectorByXFkPais(lua_State* L) {
+static int _wrap_IPfEquiposDAO_findByXFkPais__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
+  int arg2 ;
+  CPfEquipos *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
+    SWIG_fail_ptr("IPfEquiposDAO_findByXFkPais",1,SWIGTYPE_p_IPfEquiposDAO);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (CPfEquipos *)(arg1)->findByXFkPais(arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IPfEquiposDAO_findByXFkPais__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
   std::string arg2 ;
-  std::vector<CPfEquipos * > *result = 0 ;
+  CPfEquipos *result = 0 ;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
-    SWIG_fail_ptr("IPfEquiposDAO_findVectorByXFkPais",1,SWIGTYPE_p_IPfEquiposDAO);
+    SWIG_fail_ptr("IPfEquiposDAO_findByXFkPais",1,SWIGTYPE_p_IPfEquiposDAO);
   }
   
   (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  result = (std::vector<CPfEquipos * > *)(arg1)->findVectorByXFkPais(arg2);
+  result = (CPfEquipos *)(arg1)->findByXFkPais(arg2);
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCPfEquipos_p_t,0); SWIG_arg++; 
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,0); SWIG_arg++; 
   return SWIG_arg;
   
 fail:
@@ -2258,7 +2431,83 @@ fail:
 }
 
 
-static int _wrap_IPfEquiposDAO_findByXEquipo(lua_State* L) {
+static int _wrap_IPfEquiposDAO_findByXFkPais(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_IPfEquiposDAO, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_IPfEquiposDAO_findByXFkPais__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_IPfEquiposDAO, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_IPfEquiposDAO_findByXFkPais__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'IPfEquiposDAO_findByXFkPais'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_IPfEquiposDAO_findByXEquipo__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
+  int arg2 ;
+  CPfEquipos *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfEquiposDAO,0))){
+    SWIG_fail_ptr("IPfEquiposDAO_findByXEquipo",1,SWIGTYPE_p_IPfEquiposDAO);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (CPfEquipos *)(arg1)->findByXEquipo(arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfEquipos,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IPfEquiposDAO_findByXEquipo__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   IPfEquiposDAO *arg1 = (IPfEquiposDAO *) 0 ;
   std::string arg2 ;
@@ -2283,15 +2532,66 @@ fail:
 }
 
 
+static int _wrap_IPfEquiposDAO_findByXEquipo(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_IPfEquiposDAO, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_IPfEquiposDAO_findByXEquipo__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_IPfEquiposDAO, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_IPfEquiposDAO_findByXEquipo__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'IPfEquiposDAO_findByXEquipo'");
+  lua_error(L);return 0;
+}
+
+
 static void swig_delete_IPfEquiposDAO(void *obj) {
 IPfEquiposDAO *arg1 = (IPfEquiposDAO *) obj;
 delete arg1;
 }
 static swig_lua_method swig_IPfEquiposDAO_methods[] = {
     {"deleteReg", _wrap_IPfEquiposDAO_deleteReg}, 
-    {"insert", _wrap_IPfEquiposDAO_insert}, 
-    {"update", _wrap_IPfEquiposDAO_update}, 
-    {"findVectorByXFkPais", _wrap_IPfEquiposDAO_findVectorByXFkPais}, 
+    {"insertReg", _wrap_IPfEquiposDAO_insertReg}, 
+    {"updateReg", _wrap_IPfEquiposDAO_updateReg}, 
+    {"findByXFkPais", _wrap_IPfEquiposDAO_findByXFkPais}, 
     {"findByXEquipo", _wrap_IPfEquiposDAO_findByXEquipo}, 
     {0,0}
 };
@@ -2300,537 +2600,6 @@ static swig_lua_attribute swig_IPfEquiposDAO_attributes[] = {
 };
 static swig_lua_class *swig_IPfEquiposDAO_bases[] = {0};
 swig_lua_class _wrap_class_IPfEquiposDAO = { "IPfEquiposDAO", &SWIGTYPE_p_IPfEquiposDAO,0, swig_delete_IPfEquiposDAO, swig_IPfEquiposDAO_methods, swig_IPfEquiposDAO_attributes, swig_IPfEquiposDAO_bases };
-
-static int _wrap_new_CPfSavedGames__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *result = 0 ;
-  
-  result = (CPfSavedGames *)new CPfSavedGames();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGames,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_CPfSavedGames__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string arg1 ;
-  std::string arg2 ;
-  std::string arg3 ;
-  std::string arg4 ;
-  std::string arg5 ;
-  CPfSavedGames *result = 0 ;
-  
-  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
-  if(!lua_isstring(L,4)) SWIG_fail_arg(4);
-  if(!lua_isstring(L,5)) SWIG_fail_arg(5);
-  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (&arg3)->assign(lua_tostring(L,3),lua_strlen(L,3));
-  (&arg4)->assign(lua_tostring(L,4),lua_strlen(L,4));
-  (&arg5)->assign(lua_tostring(L,5),lua_strlen(L,5));
-  result = (CPfSavedGames *)new CPfSavedGames(arg1,arg2,arg3,arg4,arg5);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGames,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_CPfSavedGames(lua_State* L) {
-  int argc;
-  int argv[6]={
-    1,2,3,4,5,6
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 0) {
-    return _wrap_new_CPfSavedGames__SWIG_0(L);
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isstring(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isstring(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isstring(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_new_CPfSavedGames__SWIG_1(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'new_CPfSavedGames'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_delete_CPfSavedGames(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("delete_CPfSavedGames",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_setSUser(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_setSUser",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSUser(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_setSConnectionString(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_setSConnectionString",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSConnectionString(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_setSSavedGame(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_setSSavedGame",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSSavedGame(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_setXSavedGame(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_setXSavedGame",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setXSavedGame(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_setSDriver(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_setSDriver",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setSDriver(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_getSUser(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_getSUser",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (std::string *)(arg1)->getSUser();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_getSConnectionString(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_getSConnectionString",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (std::string *)(arg1)->getSConnectionString();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_getSSavedGame(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_getSSavedGame",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (std::string *)(arg1)->getSSavedGame();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_getXSavedGame(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_getXSavedGame",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (std::string *)(arg1)->getXSavedGame();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGames_getSDriver(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGames *arg1 = (CPfSavedGames *) 0 ;
-  std::string *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGames_getSDriver",1,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (std::string *)(arg1)->getSDriver();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CPfSavedGames(void *obj) {
-CPfSavedGames *arg1 = (CPfSavedGames *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CPfSavedGames_methods[] = {
-    {"setSUser", _wrap_CPfSavedGames_setSUser}, 
-    {"setSConnectionString", _wrap_CPfSavedGames_setSConnectionString}, 
-    {"setSSavedGame", _wrap_CPfSavedGames_setSSavedGame}, 
-    {"setXSavedGame", _wrap_CPfSavedGames_setXSavedGame}, 
-    {"setSDriver", _wrap_CPfSavedGames_setSDriver}, 
-    {"getSUser", _wrap_CPfSavedGames_getSUser}, 
-    {"getSConnectionString", _wrap_CPfSavedGames_getSConnectionString}, 
-    {"getSSavedGame", _wrap_CPfSavedGames_getSSavedGame}, 
-    {"getXSavedGame", _wrap_CPfSavedGames_getXSavedGame}, 
-    {"getSDriver", _wrap_CPfSavedGames_getSDriver}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CPfSavedGames_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CPfSavedGames_bases[] = {0};
-swig_lua_class _wrap_class_CPfSavedGames = { "CPfSavedGames", &SWIGTYPE_p_CPfSavedGames,_wrap_new_CPfSavedGames, swig_delete_CPfSavedGames, swig_CPfSavedGames_methods, swig_CPfSavedGames_attributes, swig_CPfSavedGames_bases };
-
-static int _wrap_delete_CPfSavedGamesDAO(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
-    SWIG_fail_ptr("delete_CPfSavedGamesDAO",1,SWIGTYPE_p_CPfSavedGamesDAO);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGamesDAO_getInstance(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGamesDAO *result = 0 ;
-  
-  result = (CPfSavedGamesDAO *)CPfSavedGamesDAO::getInstance();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGamesDAO,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGamesDAO_deleteReg(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
-  CPfSavedGames *arg2 = (CPfSavedGames *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_deleteReg",1,SWIGTYPE_p_CPfSavedGamesDAO);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_deleteReg",2,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (bool)(arg1)->deleteReg(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGamesDAO_insert(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
-  CPfSavedGames *arg2 = (CPfSavedGames *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_insert",1,SWIGTYPE_p_CPfSavedGamesDAO);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_insert",2,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (bool)(arg1)->insert(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGamesDAO_update(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
-  CPfSavedGames *arg2 = (CPfSavedGames *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_update",1,SWIGTYPE_p_CPfSavedGamesDAO);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfSavedGames,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_update",2,SWIGTYPE_p_CPfSavedGames);
-  }
-  
-  result = (bool)(arg1)->update(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CPfSavedGamesDAO_findByXSavedGame(lua_State* L) {
-  int SWIG_arg = -1;
-  CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) 0 ;
-  std::string arg2 ;
-  CPfSavedGames *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfSavedGamesDAO,0))){
-    SWIG_fail_ptr("CPfSavedGamesDAO_findByXSavedGame",1,SWIGTYPE_p_CPfSavedGamesDAO);
-  }
-  
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  result = (CPfSavedGames *)(arg1)->findByXSavedGame(arg2);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfSavedGames,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CPfSavedGamesDAO(void *obj) {
-CPfSavedGamesDAO *arg1 = (CPfSavedGamesDAO *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CPfSavedGamesDAO_methods[] = {
-    {"deleteReg", _wrap_CPfSavedGamesDAO_deleteReg}, 
-    {"insert", _wrap_CPfSavedGamesDAO_insert}, 
-    {"update", _wrap_CPfSavedGamesDAO_update}, 
-    {"findByXSavedGame", _wrap_CPfSavedGamesDAO_findByXSavedGame}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CPfSavedGamesDAO_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CPfSavedGamesDAO_bases[] = {0};
-swig_lua_class _wrap_class_CPfSavedGamesDAO = { "CPfSavedGamesDAO", &SWIGTYPE_p_CPfSavedGamesDAO,0, swig_delete_CPfSavedGamesDAO, swig_CPfSavedGamesDAO_methods, swig_CPfSavedGamesDAO_attributes, swig_CPfSavedGamesDAO_bases };
 
 static int _wrap_delete_CLog(lua_State* L) {
   int SWIG_arg = -1;
@@ -2994,6 +2763,190 @@ fail:
 }
 
 
+static int _wrap_CLog_isDebugActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_isDebugActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  result = (bool)(arg1)->isDebugActive();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_isInfoActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_isInfoActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  result = (bool)(arg1)->isInfoActive();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_isWarningActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_isWarningActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  result = (bool)(arg1)->isWarningActive();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_isErrorActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_isErrorActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  result = (bool)(arg1)->isErrorActive();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_setDebugActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_setDebugActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setDebugActive(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_setInfoActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_setInfoActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setInfoActive(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_setWarningActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_setWarningActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setWarningActive(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CLog_setErrorActive(lua_State* L) {
+  int SWIG_arg = -1;
+  CLog *arg1 = (CLog *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CLog,0))){
+    SWIG_fail_ptr("CLog_setErrorActive",1,SWIGTYPE_p_CLog);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setErrorActive(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CLog(void *obj) {
 CLog *arg1 = (CLog *) obj;
 delete arg1;
@@ -3004,6 +2957,14 @@ static swig_lua_method swig_CLog_methods[] = {
     {"warning", _wrap_CLog_warning}, 
     {"error", _wrap_CLog_error}, 
     {"exception", _wrap_CLog_exception}, 
+    {"isDebugActive", _wrap_CLog_isDebugActive}, 
+    {"isInfoActive", _wrap_CLog_isInfoActive}, 
+    {"isWarningActive", _wrap_CLog_isWarningActive}, 
+    {"isErrorActive", _wrap_CLog_isErrorActive}, 
+    {"setDebugActive", _wrap_CLog_setDebugActive}, 
+    {"setInfoActive", _wrap_CLog_setInfoActive}, 
+    {"setWarningActive", _wrap_CLog_setWarningActive}, 
+    {"setErrorActive", _wrap_CLog_setErrorActive}, 
     {0,0}
 };
 static swig_lua_attribute swig_CLog_attributes[] = {
@@ -3869,42 +3830,27 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_string", _wrap_delete_string},
     { "delete_CDAOAbstractFactory", _wrap_delete_CDAOAbstractFactory},
     { "CDAOAbstractFactory_getIDAOFactory", _wrap_CDAOAbstractFactory_getIDAOFactory},
-    { "new_CPfEquipos",_wrap_new_CPfEquipos},
+    { "new_CPfEquipos", _wrap_new_CPfEquipos},
     { "delete_CPfEquipos", _wrap_delete_CPfEquipos},
-    { "CPfEquipos_setXFkPais", _wrap_CPfEquipos_setXFkPais},
-    { "CPfEquipos_setXEquipo", _wrap_CPfEquipos_setXEquipo},
-    { "CPfEquipos_setSEquipo", _wrap_CPfEquipos_setSEquipo},
-    { "CPfEquipos_setSRutaEscudo", _wrap_CPfEquipos_setSRutaEscudo},
+    { "CPfEquipos_getXFkPais_int", _wrap_CPfEquipos_getXFkPais_int},
     { "CPfEquipos_getXFkPais", _wrap_CPfEquipos_getXFkPais},
+    { "CPfEquipos_getXEquipo_int", _wrap_CPfEquipos_getXEquipo_int},
     { "CPfEquipos_getXEquipo", _wrap_CPfEquipos_getXEquipo},
     { "CPfEquipos_getSEquipo", _wrap_CPfEquipos_getSEquipo},
     { "CPfEquipos_getSRutaEscudo", _wrap_CPfEquipos_getSRutaEscudo},
+    { "CPfEquipos_setXFkPais",_wrap_CPfEquipos_setXFkPais},
+    { "CPfEquipos_setXEquipo",_wrap_CPfEquipos_setXEquipo},
+    { "CPfEquipos_setSEquipo", _wrap_CPfEquipos_setSEquipo},
+    { "CPfEquipos_setSRutaEscudo", _wrap_CPfEquipos_setSRutaEscudo},
     { "delete_IDAOFactory", _wrap_delete_IDAOFactory},
+    { "IDAOFactory_getIPfPaisesDAO", _wrap_IDAOFactory_getIPfPaisesDAO},
     { "IDAOFactory_getIPfEquiposDAO", _wrap_IDAOFactory_getIPfEquiposDAO},
     { "delete_IPfEquiposDAO", _wrap_delete_IPfEquiposDAO},
     { "IPfEquiposDAO_deleteReg", _wrap_IPfEquiposDAO_deleteReg},
-    { "IPfEquiposDAO_insert", _wrap_IPfEquiposDAO_insert},
-    { "IPfEquiposDAO_update", _wrap_IPfEquiposDAO_update},
-    { "IPfEquiposDAO_findVectorByXFkPais", _wrap_IPfEquiposDAO_findVectorByXFkPais},
-    { "IPfEquiposDAO_findByXEquipo", _wrap_IPfEquiposDAO_findByXEquipo},
-    { "new_CPfSavedGames",_wrap_new_CPfSavedGames},
-    { "delete_CPfSavedGames", _wrap_delete_CPfSavedGames},
-    { "CPfSavedGames_setSUser", _wrap_CPfSavedGames_setSUser},
-    { "CPfSavedGames_setSConnectionString", _wrap_CPfSavedGames_setSConnectionString},
-    { "CPfSavedGames_setSSavedGame", _wrap_CPfSavedGames_setSSavedGame},
-    { "CPfSavedGames_setXSavedGame", _wrap_CPfSavedGames_setXSavedGame},
-    { "CPfSavedGames_setSDriver", _wrap_CPfSavedGames_setSDriver},
-    { "CPfSavedGames_getSUser", _wrap_CPfSavedGames_getSUser},
-    { "CPfSavedGames_getSConnectionString", _wrap_CPfSavedGames_getSConnectionString},
-    { "CPfSavedGames_getSSavedGame", _wrap_CPfSavedGames_getSSavedGame},
-    { "CPfSavedGames_getXSavedGame", _wrap_CPfSavedGames_getXSavedGame},
-    { "CPfSavedGames_getSDriver", _wrap_CPfSavedGames_getSDriver},
-    { "delete_CPfSavedGamesDAO", _wrap_delete_CPfSavedGamesDAO},
-    { "CPfSavedGamesDAO_getInstance", _wrap_CPfSavedGamesDAO_getInstance},
-    { "CPfSavedGamesDAO_deleteReg", _wrap_CPfSavedGamesDAO_deleteReg},
-    { "CPfSavedGamesDAO_insert", _wrap_CPfSavedGamesDAO_insert},
-    { "CPfSavedGamesDAO_update", _wrap_CPfSavedGamesDAO_update},
-    { "CPfSavedGamesDAO_findByXSavedGame", _wrap_CPfSavedGamesDAO_findByXSavedGame},
+    { "IPfEquiposDAO_insertReg", _wrap_IPfEquiposDAO_insertReg},
+    { "IPfEquiposDAO_updateReg", _wrap_IPfEquiposDAO_updateReg},
+    { "IPfEquiposDAO_findByXFkPais",_wrap_IPfEquiposDAO_findByXFkPais},
+    { "IPfEquiposDAO_findByXEquipo",_wrap_IPfEquiposDAO_findByXEquipo},
     { "delete_CLog", _wrap_delete_CLog},
     { "CLog_getInstance", _wrap_CLog_getInstance},
     { "CLog_debug", _wrap_CLog_debug},
@@ -3912,6 +3858,14 @@ static const struct luaL_reg swig_commands[] = {
     { "CLog_warning", _wrap_CLog_warning},
     { "CLog_error", _wrap_CLog_error},
     { "CLog_exception", _wrap_CLog_exception},
+    { "CLog_isDebugActive", _wrap_CLog_isDebugActive},
+    { "CLog_isInfoActive", _wrap_CLog_isInfoActive},
+    { "CLog_isWarningActive", _wrap_CLog_isWarningActive},
+    { "CLog_isErrorActive", _wrap_CLog_isErrorActive},
+    { "CLog_setDebugActive", _wrap_CLog_setDebugActive},
+    { "CLog_setInfoActive", _wrap_CLog_setInfoActive},
+    { "CLog_setWarningActive", _wrap_CLog_setWarningActive},
+    { "CLog_setErrorActive", _wrap_CLog_setErrorActive},
     { "delete_CStateManager", _wrap_delete_CStateManager},
     { "CStateManager_getInstance", _wrap_CStateManager_getInstance},
     { "CStateManager_forcedPopStack", _wrap_CStateManager_forcedPopStack},
@@ -3972,8 +3926,6 @@ static void *_p_CStateCreditsTo_p_CState(void *x) {
 static swig_type_info _swigt__p_CDAOAbstractFactory = {"_p_CDAOAbstractFactory", "CDAOAbstractFactory *", 0, 0, (void*)&_wrap_class_CDAOAbstractFactory, 0};
 static swig_type_info _swigt__p_CLog = {"_p_CLog", "CLog *", 0, 0, (void*)&_wrap_class_CLog, 0};
 static swig_type_info _swigt__p_CPfEquipos = {"_p_CPfEquipos", "CPfEquipos *", 0, 0, (void*)&_wrap_class_CPfEquipos, 0};
-static swig_type_info _swigt__p_CPfSavedGames = {"_p_CPfSavedGames", "CPfSavedGames *", 0, 0, (void*)&_wrap_class_CPfSavedGames, 0};
-static swig_type_info _swigt__p_CPfSavedGamesDAO = {"_p_CPfSavedGamesDAO", "CPfSavedGamesDAO *", 0, 0, (void*)&_wrap_class_CPfSavedGamesDAO, 0};
 static swig_type_info _swigt__p_CState = {"_p_CState", "CState *", 0, 0, (void*)&_wrap_class_CState, 0};
 static swig_type_info _swigt__p_CStateCredits = {"_p_CStateCredits", "CStateCredits *", 0, 0, (void*)&_wrap_class_CStateCredits, 0};
 static swig_type_info _swigt__p_CStateMainMenu = {"_p_CStateMainMenu", "CStateMainMenu *", 0, 0, (void*)&_wrap_class_CStateMainMenu, 0};
@@ -3981,16 +3933,14 @@ static swig_type_info _swigt__p_CStateManager = {"_p_CStateManager", "CStateMana
 static swig_type_info _swigt__p_CStateMonitor = {"_p_CStateMonitor", "CStateMonitor *", 0, 0, (void*)&_wrap_class_CStateMonitor, 0};
 static swig_type_info _swigt__p_IDAOFactory = {"_p_IDAOFactory", "IDAOFactory *", 0, 0, (void*)&_wrap_class_IDAOFactory, 0};
 static swig_type_info _swigt__p_IPfEquiposDAO = {"_p_IPfEquiposDAO", "IPfEquiposDAO *", 0, 0, (void*)&_wrap_class_IPfEquiposDAO, 0};
+static swig_type_info _swigt__p_IPfPaisesDAO = {"_p_IPfPaisesDAO", "IPfPaisesDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__FrameEvent = {"_p_Ogre__FrameEvent", "Ogre::FrameEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)&_wrap_class_std_string, 0};
-static swig_type_info _swigt__p_std__vectorTCPfEquipos_p_t = {"_p_std__vectorTCPfEquipos_p_t", "std::vector<CPfEquipos * > *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CDAOAbstractFactory,
   &_swigt__p_CLog,
   &_swigt__p_CPfEquipos,
-  &_swigt__p_CPfSavedGames,
-  &_swigt__p_CPfSavedGamesDAO,
   &_swigt__p_CState,
   &_swigt__p_CStateCredits,
   &_swigt__p_CStateMainMenu,
@@ -3998,16 +3948,14 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CStateMonitor,
   &_swigt__p_IDAOFactory,
   &_swigt__p_IPfEquiposDAO,
+  &_swigt__p_IPfPaisesDAO,
   &_swigt__p_Ogre__FrameEvent,
   &_swigt__p_std__string,
-  &_swigt__p_std__vectorTCPfEquipos_p_t,
 };
 
 static swig_cast_info _swigc__p_CDAOAbstractFactory[] = {  {&_swigt__p_CDAOAbstractFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CLog[] = {  {&_swigt__p_CLog, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfEquipos[] = {  {&_swigt__p_CPfEquipos, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CPfSavedGames[] = {  {&_swigt__p_CPfSavedGames, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CPfSavedGamesDAO[] = {  {&_swigt__p_CPfSavedGamesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateCredits[] = {  {&_swigt__p_CStateCredits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMainMenu[] = {  {&_swigt__p_CStateMainMenu, 0, 0, 0},{0, 0, 0, 0}};
@@ -4015,16 +3963,14 @@ static swig_cast_info _swigc__p_CStateManager[] = {  {&_swigt__p_CStateManager, 
 static swig_cast_info _swigc__p_CStateMonitor[] = {  {&_swigt__p_CStateMonitor, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IDAOFactory[] = {  {&_swigt__p_IDAOFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfEquiposDAO[] = {  {&_swigt__p_IPfEquiposDAO, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IPfPaisesDAO[] = {  {&_swigt__p_IPfPaisesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__FrameEvent[] = {  {&_swigt__p_Ogre__FrameEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorTCPfEquipos_p_t[] = {  {&_swigt__p_std__vectorTCPfEquipos_p_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CDAOAbstractFactory,
   _swigc__p_CLog,
   _swigc__p_CPfEquipos,
-  _swigc__p_CPfSavedGames,
-  _swigc__p_CPfSavedGamesDAO,
   _swigc__p_CState,
   _swigc__p_CStateCredits,
   _swigc__p_CStateMainMenu,
@@ -4032,9 +3978,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CStateMonitor,
   _swigc__p_IDAOFactory,
   _swigc__p_IPfEquiposDAO,
+  _swigc__p_IPfPaisesDAO,
   _swigc__p_Ogre__FrameEvent,
   _swigc__p_std__string,
-  _swigc__p_std__vectorTCPfEquipos_p_t,
 };
 
 
