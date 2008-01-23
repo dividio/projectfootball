@@ -1,27 +1,13 @@
-material sphere1_auv
-{
-	technique
-	{
-		pass
-		{
-			texture_unit
-			{
-				texture sphere1_auv.png
-			}
-		}
-	}
-}
-
 material icosahedron1_auv
 {
-	technique
-	{
-		pass
-		{
-			texture_unit
-			{
-				texture icosahedron1_auv.png
-			}
-		}
-	}
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture icosahedron1_auv.png
+      }
+    }
+  }
 }
