@@ -1,0 +1,69 @@
+material player_red
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture player_red.png
+			}
+		}
+	}
+}
+
+material goalie_red
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture goalie_red.png
+			}
+		}
+	}
+}
+
+material player_yellow
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture player_yellow.png
+			}
+		}
+	}
+}
+
+material goalie_yellow
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture goalie_yellow.png
+			}
+		}
+	}
+}
+
+material referee
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture referee.png
+			}
+		}
+	}
+}
