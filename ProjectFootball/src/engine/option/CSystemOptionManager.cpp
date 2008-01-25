@@ -27,8 +27,8 @@
 #include <string.h>
 #include <sstream>
 
-#include "COptionManager.h"
-#include "CLog.h"
+#include "CSystemOptionManager.h"
+#include "../../utils/CLog.h"
 
 
 char * trim( char *s )
@@ -94,7 +94,7 @@ void getAssignment( char *attribute, char *value, const char *sentence )
 
 
 
-COptionManager::COptionManager()
+CSystemOptionManager::CSystemOptionManager()
    : m_categoriesList()
 {
     // Open the config file
@@ -144,7 +144,7 @@ COptionManager::COptionManager()
 }
 
 
-COptionManager::~COptionManager()
+CSystemOptionManager::~CSystemOptionManager()
 {
     // Para desincializar el gestor, se va recorriendo las distintas opciones
     // a traves de las distintas categorias escribiendolas en el fichero de
@@ -198,14 +198,14 @@ COptionManager::~COptionManager()
 }
 
 
-COptionManager* COptionManager::getInstance()
+CSystemOptionManager* CSystemOptionManager::getInstance()
 {
-  static COptionManager instance;
+  static CSystemOptionManager instance;
   return &instance;
 }
 
 
-const char * COptionManager::getStringOption( const char *category, const char *option, const char *defaultValue )
+const char * CSystemOptionManager::getStringOption( const char *category, const char *option, const char *defaultValue )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
@@ -226,7 +226,7 @@ const char * COptionManager::getStringOption( const char *category, const char *
 }
 
 
-int COptionManager::getIntOption( const char *category, const char *option, int defaultValue )
+int CSystemOptionManager::getIntOption( const char *category, const char *option, int defaultValue )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
@@ -249,7 +249,7 @@ int COptionManager::getIntOption( const char *category, const char *option, int 
 }
 
 
-bool COptionManager::getBooleanOption( const char *category, const char *option, bool defaultValue )
+bool CSystemOptionManager::getBooleanOption( const char *category, const char *option, bool defaultValue )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
@@ -274,7 +274,7 @@ bool COptionManager::getBooleanOption( const char *category, const char *option,
 }
 
 
-void COptionManager::setStringOption( const char *category, const char *option, const char *value )
+void CSystemOptionManager::setStringOption( const char *category, const char *option, const char *value )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
@@ -299,7 +299,7 @@ void COptionManager::setStringOption( const char *category, const char *option, 
 }
 
 
-void COptionManager::setIntOption( const char *category, const char *option, int value )
+void CSystemOptionManager::setIntOption( const char *category, const char *option, int value )
 {
     char buffer[50];
     sprintf( buffer, "%d", value );
@@ -308,7 +308,7 @@ void COptionManager::setIntOption( const char *category, const char *option, int
 }
 
 
-void COptionManager::setBooleanOption( const char *category, const char *option, bool value )
+void CSystemOptionManager::setBooleanOption( const char *category, const char *option, bool value )
 {
     if( value ){
       setStringOption( category, option, "true" );
@@ -318,7 +318,7 @@ void COptionManager::setBooleanOption( const char *category, const char *option,
 }
 
 
-std::map<const char *, const char *> * COptionManager::searchCategory( const char *category )
+std::map<const char *, const char *> * CSystemOptionManager::searchCategory( const char *category )
 {
     bool found = false;
     std::map< const char *, std::map<const char *, const char *>* >::iterator it;
@@ -341,7 +341,7 @@ std::map<const char *, const char *> * COptionManager::searchCategory( const cha
 }
 
 
-const char * COptionManager::searchOption( std::map<const char *, const char *> *map, const char *option )
+const char * CSystemOptionManager::searchOption( std::map<const char *, const char *> *map, const char *option )
 {
     bool found = false;
     std::map<const char *, const char *>::iterator it;
@@ -364,7 +364,7 @@ const char * COptionManager::searchOption( std::map<const char *, const char *> 
 }
 
 
-std::map<const char *, const char *> * COptionManager::createCategory( const char *category )
+std::map<const char *, const char *> * CSystemOptionManager::createCategory( const char *category )
 {
     // First, create the new options list
     std::map<const char *, const char *> *optionsList = new std::map<const char *, const char *>();
@@ -379,7 +379,7 @@ std::map<const char *, const char *> * COptionManager::createCategory( const cha
 }
 
 
-const char * COptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
+const char * CSystemOptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
 {
     // First, copu the option and the value
     char *o = new char[strlen(option)+1];

@@ -18,26 +18,26 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __COPTIONMANAGER_H__
-#define __COPTIONMANAGER_H__
+#ifndef CSYSTEMOPTIONMANAGER_H_
+#define CSYSTEMOPTIONMANAGER_H_
 
 
 #include <map>
 
-class COptionManager
+class CSystemOptionManager
 {
 public:
 	/**
 	 * Destructor
 	 */
-	~COptionManager();
+	~CSystemOptionManager();
 
 
 	/**
 	 * Return the unique instance of the option manager
 	 * @return The unique instance of the option managre
 	 */
-	static COptionManager* getInstance();
+	static CSystemOptionManager* getInstance();
 
 
     /**
@@ -113,7 +113,7 @@ private:
 	/**
 	 * Default constructor
 	 */
-	COptionManager();
+    CSystemOptionManager();
 
 
     /**
@@ -167,4 +167,4 @@ private:
     std::map< const char *, std::map<const char *, const char *>* > m_categoriesList;
 };
 
-#endif // __COPTIONMANAGER_H__
+#endif /*CSYSTEMOPTIONMANAGER_H_*/

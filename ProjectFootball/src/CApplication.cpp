@@ -25,7 +25,7 @@
 #include "state/CStateManager.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
-#include "utils/COptionManager.h"
+#include "engine/option/CSystemOptionManager.h"
 #include "utils/CLog.h"
 
 
@@ -99,7 +99,7 @@ void CApplication::defineResources()
     ConfigFile cf;
     cf.load("resources.cfg");
 
-    Ogre::String skin = COptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
+    Ogre::String skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
     ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements()) {
         secName = seci.peekNextKey();
@@ -121,7 +121,7 @@ void CApplication::setupRenderSystem()
     Ogre::RenderSystemList *renderSystems = NULL;
     Ogre::RenderSystemList::iterator r_it;
 
-    COptionManager *op = COptionManager::getInstance();
+    CSystemOptionManager *op = CSystemOptionManager::getInstance();
     std::string val = op->getStringOption("Video","RenderSystem", "OpenGL Rendering Subsystem");
     renderSystems = m_root->getAvailableRenderers();
 
@@ -147,7 +147,7 @@ void CApplication::setupRenderSystem()
 void CApplication::createRenderWindow()
 {
     Ogre::NameValuePairList opts;
-    COptionManager *op = COptionManager::getInstance();
+    CSystemOptionManager *op = CSystemOptionManager::getInstance();
     int width = op->getIntOption("Video","Width", 800);
     int height = op->getIntOption("Video","Height", 600);
     bool fullscreen = op->getBooleanOption("Video","Fullscreen", false);
@@ -169,7 +169,7 @@ void CApplication::createRenderWindow()
 void CApplication::initializeResourceGroups()
 {
     TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    std::string skin = COptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
+    std::string skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
     ResourceGroupManager::getSingleton().initialiseResourceGroup("General");
     ResourceGroupManager::getSingleton().initialiseResourceGroup(skin.c_str());
 }
@@ -231,7 +231,7 @@ void CApplication::setupCEGUI()
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 
-    int mouseVelocity = COptionManager::getInstance()->getIntOption("GUI", "MouseVelocity", 50);
+    int mouseVelocity = CSystemOptionManager::getInstance()->getIntOption("GUI", "MouseVelocity", 50);
     float mouseScale = 1.0f + (mouseVelocity/100);
     m_system->setMouseMoveScaling(mouseScale);
 
