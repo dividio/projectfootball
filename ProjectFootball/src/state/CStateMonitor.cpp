@@ -225,12 +225,12 @@ void CStateMonitor::switchTo2DView()
             left = -width/2.0,
             top = height/2.0,
             bottom = -height/2.0,
-            far = 100.0,
-            near = 10.0;
+            farZ = 100.0,
+            nearZ = 10.0;
     Ogre::Matrix4 projectionMatrix(
             2/(right-left), 0, 0, -(right+left)/(right-left),
             0, 2/(top-bottom), 0, -(top+bottom)/(top-bottom),
-            0, 0, -2/(far-near), -(far+near)/(far-near),
+            0, 0, -2/(farZ-nearZ), -(farZ+nearZ)/(farZ-nearZ),
             0, 0, 0, 1
             );
     m_cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
