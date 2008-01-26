@@ -1,5 +1,5 @@
 #!/bin/sh
-cd "Linux GCC"
+cd "Release"
 make all
 mv ./ProjectFootball ../
 cd ..
