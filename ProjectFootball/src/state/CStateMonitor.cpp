@@ -22,7 +22,7 @@
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
-#include "utils/CLog.h"
+#include "../utils/CLog.h"
 
 
 CStateMonitor::CStateMonitor()
@@ -142,15 +142,13 @@ bool CStateMonitor::keyUpHandler(const CEGUI::EventArgs& e)
 
 void CStateMonitor::enter()
 {
+    Ogre::SceneNode* node;
     m_system->setGUISheet(m_sheet);
 
     m_sceneMgr->clearScene();
     m_simulator = new CSimulationManager(m_sceneMgr);
 
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
-    Ogre::Entity* ogreObject = m_sceneMgr->createEntity("Field", "Field.mesh");
-    Ogre::SceneNode* node = m_sceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
-    node->attachObject(ogreObject);
 
     // Create the scene node
     node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode1", Ogre::Vector3(0, 100, 0));
@@ -160,8 +158,8 @@ void CStateMonitor::enter()
     node->attachObject(m_cam);
 
     // create the second camera node/pitch node
-    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode2", Ogre::Vector3(-15, 30, 70));
-    node->pitch(Ogre::Degree(-25));
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode2", Ogre::Vector3(-15, 5, 70));
+    node->pitch(Ogre::Degree(0));
 
     switchTo3DView();
 }
@@ -227,8 +225,8 @@ void CStateMonitor::switchTo2DView()
             left = -width/2.0,
             top = height/2.0,
             bottom = -height/2.0,
-            far = 100,
-            near = 10;
+            far = 100.0,
+            near = 10.0;
     Ogre::Matrix4 projectionMatrix(
             2/(right-left), 0, 0, -(right+left)/(right-left),
             0, 2/(top-bottom), 0, -(top+bottom)/(top-bottom),
@@ -255,3 +253,8 @@ void CStateMonitor::switchTo3DView()
     m_camNode->attachObject(m_cam);
 }
 
+
+CSimulationManager* CStateMonitor::getSimulationManager()
+{
+    return m_simulator;
+}

@@ -27,7 +27,7 @@
 #include <OgreCEGUIRenderer.h>
 
 #include "CState.h"
-#include "sim/CSimulationManager.h"
+#include "../sim/CSimulationManager.h"
 
 class CStateMonitor : public CState
 {
@@ -43,6 +43,7 @@ public:
 
     void switchTo2DView();
     void switchTo3DView();
+    CSimulationManager* getSimulationManager();
 
 protected:
     CStateMonitor();
