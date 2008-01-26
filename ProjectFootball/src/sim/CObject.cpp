@@ -20,7 +20,7 @@
 
 
 #include "CObject.h"
-#include "utils/CLog.h"
+#include "../utils/CLog.h"
 
 
 CObject::CObject()
@@ -85,7 +85,20 @@ btRigidBody* CObject::getBody()
 }
 
 
+btVector3 CObject::getPosition()
+{
+    Ogre::Vector3 v(m_node->getWorldPosition());
+    return btVector3(v.x,v.y,v.z);
+}
+
+
 void CObject::setPosition(float x, float y, float z)
 {
-    m_node->setPosition(x,y,z);
+    btVector3 pos = getPosition();
+    btVector3 desp(-pos.getX() + x, -pos.getY() + y, -pos.getZ() + z);
+    m_body->translate(desp);
+    m_body->clearForces();
+    m_body->setAngularVelocity(btVector3(0,0,0));
+    m_body->setLinearVelocity(btVector3(0,0,0));
+    m_body->setInvInertiaDiagLocal(btVector3(0,0,0));
 }

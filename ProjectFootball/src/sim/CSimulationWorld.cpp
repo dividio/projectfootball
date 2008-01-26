@@ -20,7 +20,7 @@
 
 
 #include "CSimulationWorld.h"
-#include "utils/CLog.h"
+#include "../utils/CLog.h"
 
 
 CSimulationWorld::CSimulationWorld()
@@ -37,39 +37,7 @@ CSimulationWorld::CSimulationWorld()
     m_solver = new btSequentialImpulseConstraintSolver();
 
     m_world = new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
-    m_world->setGravity(btVector3(0,-10,0));
-
-
-    ///create a few basic rigid bodies
-    btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(60.),btScalar(1.),btScalar(45.)));
-
-    //keep track of the shapes, we release memory at exit.
-    //make sure to re-use collision shapes among rigid bodies whenever possible!
-
-    m_collisionShapes.push_back(groundShape);
-
-    btTransform groundTransform;
-    groundTransform.setIdentity();
-    groundTransform.setOrigin(btVector3(0,-1,0));
-
-    {
-        btScalar mass(0.);
-
-        //rigidbody is dynamic if and only if mass is non zero, otherwise static
-        bool isDynamic = (mass != 0.f);
-
-        btVector3 localInertia(0,0,0);
-        if (isDynamic)
-            groundShape->calculateLocalInertia(mass,localInertia);
-
-        //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-        btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
-        btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,myMotionState,groundShape,localInertia);
-        btRigidBody* body = new btRigidBody(rbInfo);
-
-        //add the body to the dynamics world
-        m_world->addRigidBody(body);
-    }
+    m_world->setGravity(btVector3(0,-9.8,0));
 }
 
 
@@ -114,3 +82,17 @@ void CSimulationWorld::addObject(CObject *object)
 {
     m_world->addRigidBody(object->getBody());
 }
+
+
+void CSimulationWorld::addBall(CBall *object)
+{
+    addObject((CObject*)object);
+    m_ball = object;
+}
+
+
+void CSimulationWorld::addFootballPlayer(CFootballPlayer *object)
+{
+    addObject((CObject*) object);
+}
+

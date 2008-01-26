@@ -19,42 +19,31 @@
 ******************************************************************************/
 
 
-#ifndef __CObject_H__
-#define __CObject_H__
+#include "CBall.h"
 
-#include <Ogre.h>
-
-#include "../bullet/btBulletDynamicsCommon.h"
-
-class CObject: public btMotionState
+CBall::CBall(Ogre::SceneManager *scnMgr)
 {
-public:
+    m_centerOfMassOffset.setOrigin(btVector3(0,-0.5,0));
+    m_entity = scnMgr->createEntity("Ball", "Ball.mesh");
+    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("BallNode", Ogre::Vector3(0, 0, 0));
+    m_node->attachObject(m_entity);
+    //m_shape = new btCylinderShape(btVector3(btScalar(0.5),btScalar(0.5),btScalar(0.5)));
+    m_shape = new btSphereShape(btScalar(0.5));
+    btScalar mass(0.5);
 
-    CObject();
-    ~CObject();
+    //rigidbody is dynamic if and only if mass is non zero, otherwise static
+    bool isDynamic = (mass != 0.f);
 
-    ///synchronizes world transform from user to physics
-    virtual void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
-
-    ///synchronizes world transform from physics to user
-    ///Bullet only calls the update of worldtransform for active objects
-    virtual void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
-
-    btCollisionShape* getShape();
-    btRigidBody* getBody();
-    btVector3 getPosition();
-    void setPosition(float x, float y, float z);
+    btVector3 localInertia(0,0,0);
+    if (isDynamic)
+        m_shape->calculateLocalInertia(mass,localInertia);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
+    rbInfo.m_restitution = btScalar(0.8);
+    m_body = new btRigidBody(rbInfo);
+    m_body->setActivationState(DISABLE_DEACTIVATION);
+}
 
 
-protected:
-    Ogre::Entity *m_entity;
-    Ogre::SceneNode *m_node;
-    btCollisionShape *m_shape;
-    btRigidBody* m_body;
-    btTransform m_centerOfMassOffset;
-
-    btTransform getGraphicTrans() const;
-    void setGraphicTrans(btTransform trans);
-};
-
-#endif // __CObject_H__
+CBall::~CBall()
+{
+}

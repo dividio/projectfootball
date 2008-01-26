@@ -22,9 +22,12 @@
 #ifndef __CSimulationWorld_H__
 #define __CSimulationWorld_H__
 
+#include <vector>
 
-#include "bullet/btBulletDynamicsCommon.h"
+#include "../bullet/btBulletDynamicsCommon.h"
 #include "CObject.h"
+#include "CBall.h"
+#include "CFootballPlayer.h"
 
 
 class CSimulationWorld
@@ -35,6 +38,9 @@ public:
 
     void update();
     void addObject(CObject *object);
+    void addBall(CBall *object);
+    void addFootballPlayer(CFootballPlayer *object);
+
 private:
     //Bullet Objects
     btCollisionConfiguration *m_collisionConfiguration;
@@ -43,6 +49,9 @@ private:
     btBroadphaseInterface *m_broadphase;
     btDiscreteDynamicsWorld* m_world;
     btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
+
+    //Simulation Objects
+    CBall *m_ball;
 };
 
 #endif // __CSimulationWorld_H__

@@ -28,6 +28,8 @@
 #include <Ogre.h>
 
 #include "CFootballPlayer.h"
+#include "CReferee.h"
+#include "CBall.h"
 #include "CSimulationWorld.h"
 
 
@@ -42,7 +44,21 @@ public:
     bool isPlayOn();
     bool isBeforeStart();
     void startMatch();
+    CSimulationWorld* getSimulationWorld();
+    CReferee* getReferee();
+    CBall* getBall();
+    void changePlayersSide();
+
+    //Information Methods
+    btVector3 getBallPosition() const;
+    bool isNearestPlayerToBall(CFootballPlayer* player) const;
+    bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
+
+    // Soccer Commands
     void dash(CFootballPlayer *player, int power);
+    void move(CFootballPlayer *player, int x, int z);
+    void kick(CFootballPlayer *player, int power, btVector3 direction);
+    void turn(CFootballPlayer *player, int moment);
 
 private:
     int m_homeScore;
@@ -53,7 +69,15 @@ private:
     std::string m_awayTeamName;
     std::vector<CFootballPlayer*> m_homePlayers;
     std::vector<CFootballPlayer*> m_awayPlayers;
+    CReferee *m_referee;
+    CBall *m_ball;
     CSimulationWorld *m_simWorld;
+
+    CFootballPlayer *m_homeNearestPlayer;
+    CFootballPlayer *m_awayNearestPlayer;
+    CFootballPlayer *m_nearestPlayer;
+
+    void setNearestPlayersToBall();
 };
 
 #endif // __CSimulationManager_H__

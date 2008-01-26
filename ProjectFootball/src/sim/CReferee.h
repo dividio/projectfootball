@@ -19,42 +19,40 @@
 ******************************************************************************/
 
 
-#ifndef __CObject_H__
-#define __CObject_H__
+#ifndef __CReferee_H__
+#define __CReferee_H__
 
 #include <Ogre.h>
+#include <string>
 
-#include "../bullet/btBulletDynamicsCommon.h"
+#include "CObject.h"
+#include "CFootballPlayer.h"
 
-class CObject: public btMotionState
+enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
+    ,KICK_OFF_LEFT,KICK_OFF_RIGHT
+    ,KICK_IN_LEFT,KICK_IN_RIGHT
+    ,CORNER_KICK_LEFT,CORNER_KICK_RIGHT
+    ,GOAL_KICK_LEFT,GOAL_KICK_RIGHT};
+
+class CReferee: public CObject
 {
 public:
+    CReferee(Ogre::SceneManager *scnMgr);
+    ~CReferee();
 
-    CObject();
-    ~CObject();
+    void update();
+    void startMatchEvent();
+    void playerKickEvent(CFootballPlayer *player);
+    bool isMoveLegal();
+    GameMode getGameMode();
+    std::string getGameModeString();
+private:
+    int m_cycle;
+    GameMode m_currentGameMode;
+    CFootballPlayer *m_lastPlayerKick;
 
-    ///synchronizes world transform from user to physics
-    virtual void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
-
-    ///synchronizes world transform from physics to user
-    ///Bullet only calls the update of worldtransform for active objects
-    virtual void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
-
-    btCollisionShape* getShape();
-    btRigidBody* getBody();
-    btVector3 getPosition();
-    void setPosition(float x, float y, float z);
-
-
-protected:
-    Ogre::Entity *m_entity;
-    Ogre::SceneNode *m_node;
-    btCollisionShape *m_shape;
-    btRigidBody* m_body;
-    btTransform m_centerOfMassOffset;
-
-    btTransform getGraphicTrans() const;
-    void setGraphicTrans(btTransform trans);
+    bool verifyBallPosition();
+    void setGameMode(GameMode newGameMode);
 };
 
-#endif // __CObject_H__
+#endif // __CReferee_H__

@@ -19,42 +19,16 @@
 ******************************************************************************/
 
 
-#ifndef __CObject_H__
-#define __CObject_H__
+#ifndef __CField_H__
+#define __CField_H__
 
-#include <Ogre.h>
+#include "CObject.h"
 
-#include "../bullet/btBulletDynamicsCommon.h"
-
-class CObject: public btMotionState
+class CField : public CObject
 {
 public:
-
-    CObject();
-    ~CObject();
-
-    ///synchronizes world transform from user to physics
-    virtual void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
-
-    ///synchronizes world transform from physics to user
-    ///Bullet only calls the update of worldtransform for active objects
-    virtual void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
-
-    btCollisionShape* getShape();
-    btRigidBody* getBody();
-    btVector3 getPosition();
-    void setPosition(float x, float y, float z);
-
-
-protected:
-    Ogre::Entity *m_entity;
-    Ogre::SceneNode *m_node;
-    btCollisionShape *m_shape;
-    btRigidBody* m_body;
-    btTransform m_centerOfMassOffset;
-
-    btTransform getGraphicTrans() const;
-    void setGraphicTrans(btTransform trans);
+    CField(Ogre::SceneManager *scnMgr);
+    ~CField();
 };
 
-#endif // __CObject_H__
+#endif // __CField_H__
