@@ -25,7 +25,6 @@
 <option id="gnu.cpp.compiler.option.include.paths.63830879" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
@@ -33,6 +32,8 @@
 <option id="gnu.cpp.compiler.option.other.other.859893827" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -fexceptions -fident" valueType="string"/>
 <option id="gnu.cpp.compiler.option.warnings.allwarn.2128666569" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
 <option id="gnu.cpp.compiler.option.warnings.syntax.990634882" name="Check syntax only (-fsyntax-only)" superClass="gnu.cpp.compiler.option.warnings.syntax" value="false" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.optimization.level.1149943786" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+<option id="gnu.cpp.compiler.option.optimization.flags.1018134469" name="Other optimization flags" superClass="gnu.cpp.compiler.option.optimization.flags" value="-pipe" valueType="string"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.452709123" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.compiler.base.243719385" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
@@ -341,7 +342,7 @@
 </storageModule>
 </cconfiguration>
 <cconfiguration id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994">
-<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994" moduleId="org.eclipse.cdt.core.settings" name="Release static">
+<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994" moduleId="org.eclipse.cdt.core.settings" name="Release">
 <externalSettings/>
 <extensions>
 <extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -352,7 +353,7 @@
 </extensions>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-<configuration artifactExtension="" artifactName="ProjectFootball" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" description="" id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994" name="Release static" parent="org.eclipse.cdt.build.core.emptycfg" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
+<configuration artifactExtension="" artifactName="ProjectFootball" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" description="" id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994" name="Release" parent="org.eclipse.cdt.build.core.emptycfg" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
 <folderInfo id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994." name="/" resourcePath="">
 <toolChain id="cdt.managedbuild.toolchain.gnu.base.1945304777" name="cdt.managedbuild.toolchain.gnu.base" superClass="cdt.managedbuild.toolchain.gnu.base">
 <targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.target.gnu.platform.base.882326615" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.gnu.platform.base"/>
@@ -361,6 +362,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.819665685" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.739835718" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
@@ -368,6 +370,9 @@
 <option id="gnu.cpp.compiler.option.other.other.1069607948" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -fexceptions -fident" valueType="string"/>
 <option id="gnu.cpp.compiler.option.warnings.allwarn.1634966964" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
 <option id="gnu.cpp.compiler.option.warnings.syntax.1889640017" name="Check syntax only (-fsyntax-only)" superClass="gnu.cpp.compiler.option.warnings.syntax" value="false" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.debugging.level.1809741551" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
+<option id="gnu.cpp.compiler.option.optimization.level.2028761150" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.more" valueType="enumerated"/>
+<option id="gnu.cpp.compiler.option.optimization.flags.1906638658" name="Other optimization flags" superClass="gnu.cpp.compiler.option.optimization.flags" value="-pipe -fomit-frame-pointer" valueType="string"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1320644138" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.compiler.base.741144850" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
@@ -376,16 +381,15 @@
 <tool id="cdt.managedbuild.tool.gnu.c.linker.base.1226444693" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1640002519" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.219275127" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-<listOptionValue builtIn="false" value="vorbisfile"/>
+<listOptionValue builtIn="false" value="SDL_mixer"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua5.1"/>
-<listOptionValue builtIn="false" value="openal"/>
 <listOptionValue builtIn="false" value="OIS"/>
 <listOptionValue builtIn="false" value="OgreMain"/>
 <listOptionValue builtIn="false" value="CEGUIOgreRenderer"/>
 <listOptionValue builtIn="false" value="CEGUIBase"/>
 </option>
-<option id="gnu.cpp.link.option.flags.1704426005" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-static" valueType="string"/>
+<option id="gnu.cpp.link.option.flags.1704426005" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="" valueType="string"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.765070753" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>
