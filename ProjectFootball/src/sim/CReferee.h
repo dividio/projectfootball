@@ -49,6 +49,9 @@ public:
 private:
     int m_cycle;
     GameMode m_currentGameMode;
+    int m_homeScore;
+    int m_awayScore;
+    bool m_homeSideLeft;
     CFootballPlayer *m_lastPlayerKick;
 
     bool verifyBallPosition();

@@ -41,8 +41,6 @@ public:
 
     void update();
 
-    bool isPlayOn();
-    bool isBeforeStart();
     void startMatch();
     CSimulationWorld* getSimulationWorld();
     CReferee* getReferee();
@@ -50,6 +48,8 @@ public:
     void changePlayersSide();
 
     //Information Methods
+    std::string* getHomeTeamName();
+    std::string* getAwayTeamName();
     btVector3 getBallPosition() const;
     bool isNearestPlayerToBall(CFootballPlayer* player) const;
     bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
@@ -61,10 +61,7 @@ public:
     void turn(CFootballPlayer *player, int moment);
 
 private:
-    int m_homeScore;
-    int m_awayScore;
-    bool m_isPlayOn;
-    bool m_isBeforeStart;
+    int m_timer;
     std::string m_homeTeamName;
     std::string m_awayTeamName;
     std::vector<CFootballPlayer*> m_homePlayers;

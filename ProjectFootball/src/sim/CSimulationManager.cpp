@@ -28,10 +28,7 @@
 CSimulationManager::CSimulationManager(Ogre::SceneManager *scnMgr)
 {
     CLog::getInstance()->debug("CSimulationManager()");
-    m_homeScore = 0;
-    m_awayScore = 0;
-    m_isPlayOn = false;
-    m_isBeforeStart = true;
+    m_timer = 1;
     m_homeTeamName = "Luí TM";
     m_awayTeamName = "Aceitunas Pacheco";
     m_simWorld = new CSimulationWorld();
@@ -60,19 +57,52 @@ CSimulationManager::CSimulationManager(Ogre::SceneManager *scnMgr)
     m_ball = new CBall(scnMgr);
     m_simWorld->addBall(m_ball);
 
-    CFootballPlayer *player = new CFootballPlayer(1, m_homeTeamName, scnMgr, -55, 0, 0, true);
+    CFootballPlayer *player = new CFootballPlayer(1, m_homeTeamName, scnMgr, -54, 0, 0, true);
     m_homePlayers.push_back(player);
     m_simWorld->addFootballPlayer(player);
 
-    player = new CFootballPlayer(2, m_homeTeamName, scnMgr, -30, 0, 10, true);
+    player = new CFootballPlayer(2, m_homeTeamName, scnMgr, -30, 0, 25, true);
     m_homePlayers.push_back(player);
     m_simWorld->addFootballPlayer(player);
 
-    player = new CFootballPlayer(3, m_homeTeamName, scnMgr, -10, 0, 0, true);
+    player = new CFootballPlayer(3, m_homeTeamName, scnMgr, -30, 0, -25, true);
     m_homePlayers.push_back(player);
     m_simWorld->addFootballPlayer(player);
 
-    player = new CFootballPlayer(1, m_awayTeamName, scnMgr, -55, 0, 0, false);
+    player = new CFootballPlayer(4, m_homeTeamName, scnMgr, -35, 0, 5, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(5, m_homeTeamName, scnMgr, -35, 0, -5, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(6, m_homeTeamName, scnMgr, -20, 0, 0, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(7, m_homeTeamName, scnMgr, -20, 0, 20, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(8, m_homeTeamName, scnMgr, -20, 0, -20, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(9, m_homeTeamName, scnMgr, -10, 0, 0, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(10, m_homeTeamName, scnMgr, -5, 0, 20, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(11, m_homeTeamName, scnMgr, -5, 0, -20, true);
+    m_homePlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+
+    player = new CFootballPlayer(1, m_awayTeamName, scnMgr, -54, 0, 0, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addFootballPlayer(player);
 
@@ -81,6 +111,14 @@ CSimulationManager::CSimulationManager(Ogre::SceneManager *scnMgr)
     m_simWorld->addFootballPlayer(player);
 
     player = new CFootballPlayer(3, m_awayTeamName, scnMgr, -25, 0, 0, false);
+    m_awayPlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(4, m_awayTeamName, scnMgr, -17, 0, 21, false);
+    m_awayPlayers.push_back(player);
+    m_simWorld->addFootballPlayer(player);
+
+    player = new CFootballPlayer(5, m_awayTeamName, scnMgr, -17, 0, -21, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addFootballPlayer(player);
 
@@ -109,13 +147,21 @@ CSimulationManager::~CSimulationManager()
 
 void CSimulationManager::update()
 {
-    m_referee->update();
-    for(int i = 0; i < m_homePlayers.size(); i++) {
-        m_homePlayers[i]->update();
-        m_awayPlayers[i]->update();
+    if(m_timer == 1) {
+        std::vector<CFootballPlayer*>::iterator it;
+        m_referee->update();
+        for(it = m_homePlayers.begin(); it!=m_homePlayers.end(); it++) {
+            (*it)->update();
+        }
+        for(it = m_awayPlayers.begin(); it!=m_awayPlayers.end(); it++) {
+            (*it)->update();
+        }
+    } if(m_timer == 3) {
+        m_timer = 0;
     }
     m_simWorld->update();
     setNearestPlayersToBall();
+    m_timer++;
 }
 
 
@@ -154,6 +200,18 @@ void CSimulationManager::changePlayersSide()
 void CSimulationManager::startMatch()
 {
     m_referee->startMatchEvent();
+}
+
+
+std::string* CSimulationManager::getHomeTeamName()
+{
+    return &m_homeTeamName;
+}
+
+
+std::string* CSimulationManager::getAwayTeamName()
+{
+    return &m_awayTeamName;
 }
 
 
@@ -255,10 +313,11 @@ void CSimulationManager::move(CFootballPlayer *player, int x, int z)
 void CSimulationManager::kick(CFootballPlayer *player, int power, btVector3 direction)
 {
     btRigidBody *ballBody = m_ball->getBody();
-    ballBody->applyImpulse(btVector3(power/100,0,0),btVector3(0,0,0));
+    btVector3 dir = (direction.normalize() * power) / 10.0;
+    ballBody->applyImpulse(dir ,btVector3(0,0,0));
     m_referee->playerKickEvent(player);
     CAudioSystem::LOW_KICK->play();
-    printf("  ----->           LOW_KICK\n");
+    //printf("  ----->           LOW_KICK\n");
 }
 
 
