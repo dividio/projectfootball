@@ -42,7 +42,18 @@ Para ejecutar Project Football es necesario tener las siguientes librerías:
 
 Entre paréntesis está el nombre del paquete que es necesario instalar en Debian y Ubuntu.
 
+Según algunas pruebas realizadas en distintos sistemas, parece que en determinadas
+distribuciones hace falta instalar algún paquete adicional. A continuación podéis encontrar
+los casos especiales conocidos.
 
++ Debian Unstable:
+- Instalar las librerías arriba indicadas.
+- Instalar el paquete libceguiogre14 para probar el binario y libceguiogre-dev para poder
+compilar el código fuente.
+
++ Ubuntu 7.10:
+- Instalar las librerías arriba indicadas.
+- Instalar el paquete libcegui-mk2-dev
 
 --------------------------------
 3- Instrucciones de compilación:
@@ -52,6 +63,8 @@ Entre paréntesis está el nombre del paquete que es necesario instalar en Debia
 
 libogre-dev libcegui-mk2-dev libois-dev libsqlite3-dev
 libsdl-mixer1.2-dev liblua5.1-0-dev
+
+- En Debian Unstable hay que añadir también libceguiogre-dev
 
 - Para compilar, ejecutar desde el directorio ProjectFootball el siguiente comando:
 sh build.sh
