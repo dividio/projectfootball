@@ -40,9 +40,9 @@ public:
     btVector3 getDirection() const;
     std::string getIdent() const;
     std::string getTeamName() const;
-    bool isTeamLeft() const;
     void changeSide();
 
+    bool isTeamLeft() const;
 
     //Low-Level Skills
     void turnBodyToPoint(btVector3 pos, int cycles = 1);

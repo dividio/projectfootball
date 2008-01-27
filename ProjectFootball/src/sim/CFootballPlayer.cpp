@@ -107,7 +107,8 @@ void CFootballPlayer::update()
         if(mode != BEFORE_START && mode != HALF_TIME && mode != END) {
             if(simulator->isNearestPlayerToBall(this)) {
                 if(getPosition().distance(simulator->getBallPosition()) < 2) {
-                    simulator->kick(this, 100, btVector3(0,0,0));
+                    btVector3 direction = (btVector3(55,0,0) - getPosition());
+                    simulator->kick(this, 100, direction);
                 } else {
                     simulator->dash(this, 50);
                 }
@@ -123,7 +124,13 @@ void CFootballPlayer::update()
                 simulator->dash(this, 50);
             }
         } else {
-            simulator->kick(this, 100, btVector3(0,0,0));
+            if(m_sideLeft) {
+                btVector3 direction = (btVector3(55,0,0) - getPosition());
+                simulator->kick(this, 100, direction);
+            } else {
+                btVector3 direction = (btVector3(-55,0,0) - getPosition());
+                simulator->kick(this, 100, direction);
+            }
         }
     }
 }
