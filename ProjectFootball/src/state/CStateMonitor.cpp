@@ -151,17 +151,17 @@ void CStateMonitor::enter()
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
     // Create the scene node
-    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode1", Ogre::Vector3(0, 100, 0));
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode2D", Ogre::Vector3(0, 100, 0));
     // Make it look towards origin
     node->pitch(Ogre::Degree(-90));
 
     node->attachObject(m_cam);
 
     // create the second camera node/pitch node
-    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode2", Ogre::Vector3(-15, 5, 70));
+    node = m_sceneMgr->getRootSceneNode()->createChildSceneNode("CamNode3D", Ogre::Vector3(0, 25, 100));
     node->pitch(Ogre::Degree(0));
 
-    switchTo3DView();
+    switchTo2DView();
 }
 
 
@@ -237,7 +237,7 @@ void CStateMonitor::switchTo2DView()
     m_cam->setCustomProjectionMatrix(true, projectionMatrix);
 
     m_cam->getParentSceneNode()->detachObject(m_cam);
-    m_camNode = m_sceneMgr->getSceneNode("CamNode1");
+    m_camNode = m_sceneMgr->getSceneNode("CamNode2D");
     m_camNode->attachObject(m_cam);
 }
 
@@ -249,7 +249,7 @@ void CStateMonitor::switchTo3DView()
     m_cam->setCustomProjectionMatrix(false);
     m_cam->setNearClipDistance(5);
     m_cam->getParentSceneNode()->detachObject(m_cam);
-    m_camNode = m_sceneMgr->getSceneNode("CamNode2");
+    m_camNode = m_sceneMgr->getSceneNode("CamNode3D");
     m_camNode->attachObject(m_cam);
 }
 
