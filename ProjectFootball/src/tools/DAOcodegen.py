@@ -447,31 +447,31 @@ class CDAOFactorySQLiteRenderer(UtilRenderer) :
       coma      = ""
       klass     = klasses[k]
       tableName = klass.name.upper();
-      create = create +"    sql += \"CREATE TABLE "+tableName+"\";\n"
-      create = create +"    sql += \"(\";\n"
+      create = create +"    sql += \"CREATE TABLE "+tableName+""
+      create = create +"("
       for a in klass.attributes.keys() :
         t, v = klass.attributes[a]
         if a[:2]=="X_" and a[:4]!="X_FK" :
           if t=="TEXT" :
-            create = create+"    sql += \"  "+coma+a.upper()+" TEXT PRIMARY KEY\";\n"
+            create = create+coma+a.upper()+" TEXT PRIMARY KEY"
             coma=","
           elif t=="INTEGER" :
-            create = create+"    sql += \"  "+coma+a.upper()+" INTEGER PRIMARY KEY AUTOINCREMENT\";\n"
+            create = create+coma+a.upper()+" INTEGER PRIMARY KEY AUTOINCREMENT"
             coma=","
           elif t=="DOUBLE" :
-            create = create+"    sql += \"  "+coma+a.upper()+" REAL PRIMARY KEY\";\n"
+            create = create+coma+a.upper()+" REAL PRIMARY KEY"
             coma=","
         else :
           if t=="TEXT" :
-            create = create+"    sql += \"  "+coma+a.upper()+" TEXT\";\n"
+            create = create+coma+a.upper()+" TEXT"
             coma=","
           elif t=="INTEGER" :
-            create = create+"    sql += \"  "+coma+a.upper()+" INTEGER\";\n"
+            create = create+coma+a.upper()+" INTEGER"
             coma=","
           elif t=="DOUBLE" :
-            create = create+"    sql += \"  "+coma+a.upper()+" REAL\";\n"
+            create = create+coma+a.upper()+" REAL"
             coma=","
-      create = create+"    sql += \");\";\n"
+      create = create+");\";\n"
     for k in klasses.keys() :
       klass     = klasses[k]
       tableName = klass.name.upper();
