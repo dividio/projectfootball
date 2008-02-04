@@ -53,10 +53,20 @@ CDate::CDate(int day, int month, int year, int hour, int minutes, int seconds)
     mktime(&m_tm);
 }
 
+CDate::CDate(const std::string &timestamp)
+{
+    memset(&m_tm, 0, sizeof(m_tm));
+    if( timestamp!="" ){
+        strptime(timestamp.c_str(), "%s", &m_tm);
+    }
+}
+
 CDate::CDate(const std::string &str, const std::string &format)
 {
     memset(&m_tm, 0, sizeof(m_tm));
-    strptime(str.c_str(), format.c_str(), &m_tm);
+    if( str!="" && format!="" ){
+        strptime(str.c_str(), format.c_str(), &m_tm);
+    }
 }
 
 CDate::~CDate()
@@ -65,14 +75,28 @@ CDate::~CDate()
 
 std::string CDate::format(const std::string &format)
 {
+    if( !isValid() || format=="" ){
+        return "";
+    }
+
     char buffer[255];
     strftime(buffer, sizeof(buffer), format.c_str(), &m_tm);
     return buffer;
 }
 
-void CDate::parse(const std::string &str, const std::string &format)
+std::string CDate::getTimestamp()
 {
-    strptime(str.c_str(), format.c_str(), &m_tm);
+    return format("%s");
+}
+
+bool CDate::isValid()
+{
+    return  m_tm.tm_mday>=1 && m_tm.tm_mday<=31
+            && m_tm.tm_mon>=0 && m_tm.tm_mon<=11
+            && m_tm.tm_year>=0
+            && m_tm.tm_hour>=0 && m_tm.tm_hour<=23
+            && m_tm.tm_min>=0 && m_tm.tm_min<=59
+            && m_tm.tm_sec>=0 && m_tm.tm_sec<=59;
 }
 
 int CDate::getYear()
