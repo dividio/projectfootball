@@ -19,25 +19,21 @@
 ******************************************************************************/
 
 
-#include "CField.h"
+#include "CBall.h"
+#include "../../state/CStateMonitor.h"
 
 
-CField::CField(Ogre::SceneManager *scnMgr)
+CBall::CBall()
+: CMovingEntity()
 {
-    m_centerOfMassOffset.setOrigin(btVector3(0,1,0));
-    m_entity = scnMgr->createEntity("Field", "Field.mesh");
-    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("FieldNode", Ogre::Vector3(0, 0, 0));
+    Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
+    m_centerOfMassOffset.setOrigin(btVector3(0,-0.5,0));
+    m_entity = scnMgr->createEntity("Ball", "Ball.mesh");
+    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("BallNode", Ogre::Vector3(0, 0, 0));
     m_node->attachObject(m_entity);
-
-    Ogre::Entity *goal = scnMgr->createEntity("Goal_left", "Goal.mesh");
-    Ogre::SceneNode *node = m_node->createChildSceneNode("GoalLeftNode", Ogre::Vector3(-55,0,0));
-    node->attachObject(goal);
-    goal = scnMgr->createEntity("Goal_right", "Goal.mesh");
-    node = m_node->createChildSceneNode("GoalRightNode", Ogre::Vector3(55,0,0));
-    node->attachObject(goal);
-
-    m_shape = new btBoxShape(btVector3(btScalar(60.0),btScalar(1.0),btScalar(45.0)));
-    btScalar mass(0);
+    //m_shape = new btCylinderShape(btVector3(btScalar(0.5),btScalar(0.5),btScalar(0.5)));
+    m_shape = new btSphereShape(btScalar(0.5));
+    btScalar mass(0.5);
 
     //rigidbody is dynamic if and only if mass is non zero, otherwise static
     bool isDynamic = (mass != 0.f);
@@ -46,10 +42,12 @@ CField::CField(Ogre::SceneManager *scnMgr)
     if (isDynamic)
         m_shape->calculateLocalInertia(mass,localInertia);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
+    rbInfo.m_restitution = btScalar(0.8);
     m_body = new btRigidBody(rbInfo);
+    m_body->setActivationState(DISABLE_DEACTIVATION);
 }
 
 
-CField::~CField()
+CBall::~CBall()
 {
 }

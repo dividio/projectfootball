@@ -78,21 +78,7 @@ void CSimulationWorld::update()
 }
 
 
-void CSimulationWorld::addObject(CObject *object)
+void CSimulationWorld::addObject(CBaseGameEntity *object)
 {
     m_world->addRigidBody(object->getBody());
 }
-
-
-void CSimulationWorld::addBall(CBall *object)
-{
-    addObject((CObject*)object);
-    m_ball = object;
-}
-
-
-void CSimulationWorld::addFootballPlayer(CFootballPlayer *object)
-{
-    addObject((CObject*) object);
-}
-

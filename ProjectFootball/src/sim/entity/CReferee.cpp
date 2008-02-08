@@ -20,12 +20,15 @@
 
 
 #include "CReferee.h"
-#include "CSimulationManager.h"
-#include "../state/CStateMonitor.h"
-#include "../utils/CLog.h"
+#include "../CSimulationManager.h"
+#include "../message/MessageTypes.h"
+#include "../../state/CStateMonitor.h"
+#include "../../utils/CLog.h"
 
-CReferee::CReferee(Ogre::SceneManager *scnMgr)
+CReferee::CReferee()
+: CMovingEntity()
 {
+    Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     m_homeScore = 0;
     m_awayScore = 0;
     m_homeSideLeft = true;
@@ -35,7 +38,7 @@ CReferee::CReferee(Ogre::SceneManager *scnMgr)
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("RefereeNode", Ogre::Vector3(0, 0, -38));
     m_node->attachObject(m_entity);
     m_shape = new btCylinderShape(btVector3(btScalar(1.),btScalar(1.),btScalar(1.)));
-    btScalar mass(1.);
+    btScalar mass(80.0);
 
     //rigidbody is dynamic if and only if mass is non zero, otherwise static
     bool isDynamic = (mass != 0.f);
@@ -53,6 +56,25 @@ CReferee::CReferee(Ogre::SceneManager *scnMgr)
 
 CReferee::~CReferee()
 {
+}
+
+
+bool CReferee::handleMessage(const CMessage &msg)
+{
+    bool handle = false;
+    switch(msg.Msg) {
+        case Msg_StartMatch:
+            if(m_currentGameMode == BEFORE_START) {
+                setGameMode(KICK_OFF_LEFT);
+            } else if(m_currentGameMode == HALF_TIME) {
+                setGameMode(KICK_OFF_LEFT);
+            }
+            handle = true;
+            break;
+        default:
+            break;
+    }
+    return handle;
 }
 
 
@@ -81,16 +103,6 @@ void CReferee::update()
             CLog::getInstance()->info("Half Time");
             CLog::getInstance()->info("%s %d - %d %s", sim->getHomeTeamName()->c_str(), m_homeScore, m_awayScore, sim->getAwayTeamName()->c_str());
         }
-    }
-}
-
-
-void CReferee::startMatchEvent()
-{
-    if(m_currentGameMode == BEFORE_START) {
-        setGameMode(KICK_OFF_LEFT);
-    } else if(m_currentGameMode == HALF_TIME) {
-        setGameMode(KICK_OFF_LEFT);
     }
 }
 

@@ -24,12 +24,12 @@
 
 #include <Ogre.h>
 
-#include "CObject.h"
+#include "CMovingEntity.h"
 
-class CBall : public CObject
+class CBall : public CMovingEntity
 {
 public:
-  CBall(Ogre::SceneManager *scnMgr);
+  CBall();
   ~CBall();
 };
 

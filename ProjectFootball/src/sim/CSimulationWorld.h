@@ -25,9 +25,7 @@
 #include <vector>
 
 #include "../bullet/btBulletDynamicsCommon.h"
-#include "CObject.h"
-#include "CBall.h"
-#include "CFootballPlayer.h"
+#include "entity/CBaseGameEntity.h"
 
 
 class CSimulationWorld
@@ -37,9 +35,7 @@ public:
     ~CSimulationWorld();
 
     void update();
-    void addObject(CObject *object);
-    void addBall(CBall *object);
-    void addFootballPlayer(CFootballPlayer *object);
+    void addObject(CBaseGameEntity *object);
 
 private:
     //Bullet Objects
@@ -50,8 +46,6 @@ private:
     btDiscreteDynamicsWorld* m_world;
     btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 
-    //Simulation Objects
-    CBall *m_ball;
 };
 
 #endif // __CSimulationWorld_H__

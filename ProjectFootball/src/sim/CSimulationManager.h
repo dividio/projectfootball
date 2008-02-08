@@ -25,18 +25,17 @@
 
 #include <string>
 #include <vector>
-#include <Ogre.h>
 
-#include "CFootballPlayer.h"
-#include "CReferee.h"
-#include "CBall.h"
+#include "entity/CFootballPlayer.h"
+#include "entity/CReferee.h"
+#include "entity/CBall.h"
 #include "CSimulationWorld.h"
 
 
 class CSimulationManager
 {
 public:
-    CSimulationManager(Ogre::SceneManager *scnMgr);
+    CSimulationManager();
     ~CSimulationManager();
 
     void update();

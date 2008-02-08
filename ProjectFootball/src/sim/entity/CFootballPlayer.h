@@ -19,16 +19,49 @@
 ******************************************************************************/
 
 
-#ifndef __CField_H__
-#define __CField_H__
+#ifndef __CFootballPlayer_H__
+#define __CFootballPlayer_H__
 
-#include "CObject.h"
 
-class CField : public CObject
+#include <string>
+
+#include "CMovingEntity.h"
+
+
+class CFootballPlayer: public CMovingEntity
 {
 public:
-    CField(Ogre::SceneManager *scnMgr);
-    ~CField();
+    CFootballPlayer(int number, std::string teamName, int x, int y, int z, bool sideLeft);
+    ~CFootballPlayer();
+
+    void update();
+    bool canDoActions();
+    btVector3 getDirection() const;
+    std::string getIdent() const;
+    std::string getTeamName() const;
+    void changeSide();
+
+    bool isTeamLeft() const;
+
+    //Low-Level Skills
+    void turnBodyToPoint(btVector3 pos, int cycles = 1);
+
+    //Intermediate Level Skills
+    //void turnBodyToObject(CObject o);
+    void moveToPos(btVector3 pos, int angle);
+
+
+private:
+    bool m_canDoActions;
+    int m_strategicX;
+    int m_strategicZ;
+    bool m_sideLeft;
+    std::string m_teamName;
+    int m_number;
+    std::string m_ident;
+    btVector3 m_direction;
+    btQuaternion m_rotation;
+
 };
 
-#endif // __CField_H__
+#endif // __CFootballPlayer_H__

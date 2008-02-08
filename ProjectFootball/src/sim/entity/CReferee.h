@@ -22,10 +22,9 @@
 #ifndef __CReferee_H__
 #define __CReferee_H__
 
-#include <Ogre.h>
 #include <string>
 
-#include "CObject.h"
+#include "CMovingEntity.h"
 #include "CFootballPlayer.h"
 
 enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
@@ -34,18 +33,19 @@ enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
     ,CORNER_KICK_LEFT,CORNER_KICK_RIGHT
     ,GOAL_KICK_LEFT,GOAL_KICK_RIGHT};
 
-class CReferee: public CObject
+class CReferee: public CMovingEntity
 {
 public:
-    CReferee(Ogre::SceneManager *scnMgr);
+    CReferee();
     ~CReferee();
 
+    bool handleMessage(const CMessage &msg);
     void update();
-    void startMatchEvent();
     void playerKickEvent(CFootballPlayer *player);
     bool isMoveLegal();
     GameMode getGameMode();
     std::string getGameModeString();
+
 private:
     int m_cycle;
     GameMode m_currentGameMode;

@@ -20,14 +20,15 @@
 
 
 #include "CFootballPlayer.h"
-#include "CSimulationManager.h"
+#include "../CSimulationManager.h"
 #include "CReferee.h"
-#include "../state/CStateMonitor.h"
+#include "../../state/CStateMonitor.h"
 
 
-CFootballPlayer::CFootballPlayer(int number, std::string teamName, Ogre::SceneManager *scnMgr, int x, int y, int z, bool sideLeft)
-:CObject()
+CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y, int z, bool sideLeft)
+:CMovingEntity()
 {
+    Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     Ogre::String id;
     char charId[20];
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
@@ -184,10 +185,10 @@ void CFootballPlayer::moveToPos(btVector3 pos, int angle)
 }
 
 
-void CFootballPlayer::turnBodyToObject(CObject o)
-{
-
-}
+//void CFootballPlayer::turnBodyToObject(CObject o)
+//{
+//
+//}
 
 
 void CFootballPlayer::turnBodyToPoint(btVector3 pos, int cycles)

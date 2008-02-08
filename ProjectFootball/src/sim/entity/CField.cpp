@@ -19,42 +19,40 @@
 ******************************************************************************/
 
 
-#ifndef __CObject_H__
-#define __CObject_H__
+#include "CField.h"
+#include "../../state/CStateMonitor.h"
 
-#include <Ogre.h>
 
-#include "../bullet/btBulletDynamicsCommon.h"
-
-class CObject: public btMotionState
+CField::CField()
+: CBaseGameEntity()
 {
-public:
+    Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
+    m_centerOfMassOffset.setOrigin(btVector3(0,1,0));
+    m_entity = scnMgr->createEntity("Field", "Field.mesh");
+    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("FieldNode", Ogre::Vector3(0, 0, 0));
+    m_node->attachObject(m_entity);
 
-    CObject();
-    ~CObject();
+    Ogre::Entity *goal = scnMgr->createEntity("Goal_left", "Goal.mesh");
+    Ogre::SceneNode *node = m_node->createChildSceneNode("GoalLeftNode", Ogre::Vector3(-55,0,0));
+    node->attachObject(goal);
+    goal = scnMgr->createEntity("Goal_right", "Goal.mesh");
+    node = m_node->createChildSceneNode("GoalRightNode", Ogre::Vector3(55,0,0));
+    node->attachObject(goal);
 
-    ///synchronizes world transform from user to physics
-    virtual void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
+    m_shape = new btBoxShape(btVector3(btScalar(60.0),btScalar(1.0),btScalar(45.0)));
+    btScalar mass(0);
 
-    ///synchronizes world transform from physics to user
-    ///Bullet only calls the update of worldtransform for active objects
-    virtual void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
+    //rigidbody is dynamic if and only if mass is non zero, otherwise static
+    bool isDynamic = (mass != 0.f);
 
-    btCollisionShape* getShape();
-    btRigidBody* getBody();
-    btVector3 getPosition();
-    void setPosition(float x, float y, float z);
+    btVector3 localInertia(0,0,0);
+    if (isDynamic)
+        m_shape->calculateLocalInertia(mass,localInertia);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
+    m_body = new btRigidBody(rbInfo);
+}
 
 
-protected:
-    Ogre::Entity *m_entity;
-    Ogre::SceneNode *m_node;
-    btCollisionShape *m_shape;
-    btRigidBody* m_body;
-    btTransform m_centerOfMassOffset;
-
-    btTransform getGraphicTrans() const;
-    void setGraphicTrans(btTransform trans);
-};
-
-#endif // __CObject_H__
+CField::~CField()
+{
+}
