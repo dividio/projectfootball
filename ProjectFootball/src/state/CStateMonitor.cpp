@@ -146,7 +146,7 @@ void CStateMonitor::enter()
     m_system->setGUISheet(m_sheet);
 
     m_sceneMgr->clearScene();
-    m_simulator = new CSimulationManager(m_sceneMgr);
+    m_simulator = new CSimulationManager();
 
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
@@ -257,4 +257,10 @@ void CStateMonitor::switchTo3DView()
 CSimulationManager* CStateMonitor::getSimulationManager()
 {
     return m_simulator;
+}
+
+
+Ogre::SceneManager* CStateMonitor::getSimulationSceneManager()
+{
+    return m_sceneMgr;
 }

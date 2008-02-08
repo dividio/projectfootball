@@ -44,6 +44,7 @@ public:
     void switchTo2DView();
     void switchTo3DView();
     CSimulationManager* getSimulationManager();
+    Ogre::SceneManager* getSimulationSceneManager();
 
 protected:
     CStateMonitor();
@@ -52,7 +53,7 @@ private:
 
     Ogre::Camera *m_cam;
     Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The current SceneManager
+    Ogre::SceneManager *m_sceneMgr;   // The simulation SceneManager
     Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
     bool m_mode3D;
     CSimulationManager *m_simulator;
