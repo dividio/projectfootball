@@ -22,11 +22,36 @@
 #ifndef __CStateMachine_H__
 #define __CStateMachine_H__
 
+#include "IState.h"
+
+template <class entity_type>
 class CStateMachine
 {
 public:
-  CStateMachine();
+  CStateMachine(entity_type *owner);
   ~CStateMachine();
+
+  void setCurrentState(IState<entity_type> *state);
+  void setGlobalState(IState<entity_type> *state);
+  void setPreviousState(IState<entity_type> *state);
+
+  void update() const;
+  void changeState(IState<entity_type> *newState);
+  void revertToPreviousState();
+
+  IState<entity_type>* currentState() const;
+  IState<entity_type>* previousState() const;
+  IState<entity_type>* globalState() const;
+
+  bool isInState(const IState<entity_type> &state) const;
+
+private:
+
+	entity_type *m_owner;
+
+    IState<entity_type> *m_globalState;
+    IState<entity_type> *m_currentState;
+    IState<entity_type> *m_previousState;
 };
 
 #endif // __CStateMachine_H__

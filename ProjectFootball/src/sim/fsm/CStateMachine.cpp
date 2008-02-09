@@ -20,11 +20,74 @@
 
 
 #include "CStateMachine.h"
+template <class entity_type>
 
-CStateMachine::CStateMachine()
+CStateMachine::CStateMachine(entity_type *owner)
 {
+    m_owner = owner;
 }
+
 
 CStateMachine::~CStateMachine()
 {
+}
+
+
+void CStateMachine::setCurrentState(IState<entity_type> *state)
+{
+    m_currentState = state;
+}
+
+
+void CStateMachine::setGlobalState(IState<entity_type> *state)
+{
+    m_globalState = state;
+}
+
+
+void CStateMachine::setPreviousState(IState<entity_type> *state)
+{
+    m_previousState = state;
+}
+
+
+void CStateMachine::update() const
+{
+
+}
+
+
+void CStateMachine::changeState(IState<entity_type> *newState)
+{
+
+}
+
+
+void CStateMachine::revertToPreviousState()
+{
+
+}
+
+
+IState<entity_type>* CStateMachine::currentState() const
+{
+	return m_currentState;
+}
+
+
+IState<entity_type>* CStateMachine::previousState() const
+{
+	return m_currentState;
+}
+
+
+IState<entity_type>* CStateMachine::globalState() const
+{
+	return m_currentState;
+}
+
+
+bool CStateMachine::isInState(const IState<entity_type> &state) const
+{
+
 }

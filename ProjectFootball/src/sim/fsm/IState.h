@@ -22,11 +22,18 @@
 #ifndef __IState_H__
 #define __IState_H__
 
+template <class entity_type>
 class IState
 {
 public:
-  IState();
-  ~IState();
+
+    virtual void enter(entity_type*) = 0;
+
+    virtual void execute(entity_type*) = 0;
+
+    virtual void exit(entity_type*) = 0;
+
+    virtual ~IState(){};
 };
 
 #endif // __IState_H__

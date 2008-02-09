@@ -25,6 +25,3 @@ IState::IState()
 {
 }
 
-IState::~IState()
-{
-}

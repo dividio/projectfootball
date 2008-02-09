@@ -26,6 +26,7 @@
 
 #include "CMovingEntity.h"
 #include "CFootballPlayer.h"
+#include "../fsm/CStateMachine.h"
 
 enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
     ,KICK_OFF_LEFT,KICK_OFF_RIGHT
@@ -41,6 +42,7 @@ public:
 
     bool handleMessage(const CMessage &msg);
     void update();
+
     void playerKickEvent(CFootballPlayer *player);
     bool isMoveLegal();
     GameMode getGameMode();
@@ -53,6 +55,8 @@ private:
     int m_awayScore;
     bool m_homeSideLeft;
     CFootballPlayer *m_lastPlayerKick;
+
+    CStateMachine<Referee> m_stateMachine;
 
     bool verifyBallPosition();
     void setGameMode(GameMode newGameMode);
