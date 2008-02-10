@@ -20,49 +20,91 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#include <iostream>
+#include <sstream>
 
-#include <sqlite3.h>
-#include <string>
+#include "CPfGameOptions.h"
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+CPfGameOptions::CPfGameOptions()
 {
-public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    m_SCategory = "";
+    m_XOption = "0";
+    m_SValue = "";
+    m_SAttribute = "";
+}
 
-    virtual bool createSchema();
+CPfGameOptions::~CPfGameOptions()
+{
+}
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+const std::string& CPfGameOptions::getSCategory()
+{
+    return m_SCategory;
+}
 
+const std::string& CPfGameOptions::getSCategory_str()
+{
+    return m_SCategory;
+}
 
-private:
-    sqlite3 *m_database;
+int CPfGameOptions::getXOption()
+{
+    if( m_XOption=="" ){
+        return 0;
+    }else{
+        return atoi(m_XOption.c_str());
+    }
+}
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+const std::string& CPfGameOptions::getXOption_str()
+{
+    return m_XOption;
+}
 
-};
-#endif /*CDAOFACTORYSQLITE_H_*/
+const std::string& CPfGameOptions::getSValue()
+{
+    return m_SValue;
+}
+
+const std::string& CPfGameOptions::getSValue_str()
+{
+    return m_SValue;
+}
+
+const std::string& CPfGameOptions::getSAttribute()
+{
+    return m_SAttribute;
+}
+
+const std::string& CPfGameOptions::getSAttribute_str()
+{
+    return m_SAttribute;
+}
+
+void CPfGameOptions::setSCategory(const std::string &SCategory)
+{
+    m_SCategory = SCategory;
+}
+
+void CPfGameOptions::setXOption(int XOption)
+{
+    std::ostringstream stream;
+    stream << XOption;
+    m_XOption = stream.str();
+}
+
+void CPfGameOptions::setXOption(const std::string &XOption)
+{
+    m_XOption = XOption;
+}
+
+void CPfGameOptions::setSValue(const std::string &SValue)
+{
+    m_SValue = SValue;
+}
+
+void CPfGameOptions::setSAttribute(const std::string &SAttribute)
+{
+    m_SAttribute = SAttribute;
+}
+

@@ -20,49 +20,38 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#ifndef CPFGOALSDAOSQLITEENTITY_H_
+#define CPFGOALSDAOSQLITEENTITY_H_
 
-#include <sqlite3.h>
 #include <string>
+#include <vector>
+#include <sqlite3.h>
 
-#include "../../../dao/factory/IDAOFactory.h"
-
+#include "../../../bean/CPfGoals.h"
 #include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
 
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+class CPfGoalsDAOSQLiteEntity : public IPfGoalsDAO
 {
 public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    CPfGoalsDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfGoalsDAOSQLiteEntity();
 
-    virtual bool createSchema();
+    virtual bool deleteReg(CPfGoals *reg);
+    virtual bool insertReg(CPfGoals *reg);
+    virtual bool updateReg(CPfGoals *reg);
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+    virtual void freeVector(std::vector<CPfGoals*>* vector);
 
+protected:
+    CPfGoals* loadRegister(std::string sql);
+    std::vector<CPfGoals*>* loadVector(std::string sql);
 
 private:
+    bool exec(std::string sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
     sqlite3 *m_database;
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
-
 };
-#endif /*CDAOFACTORYSQLITE_H_*/
+#endif /*CPFGOALSDAOSQLITEENTITY_H_*/

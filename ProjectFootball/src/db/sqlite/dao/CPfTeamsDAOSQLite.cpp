@@ -20,49 +20,31 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#include <iostream>
+#include <sstream>
 
-#include <sqlite3.h>
-#include <string>
+#include "CPfTeamsDAOSQLite.h"
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+CPfTeamsDAOSQLite::CPfTeamsDAOSQLite(sqlite3 *database)
+  : CPfTeamsDAOSQLiteEntity(database)
 {
-public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+}
 
-    virtual bool createSchema();
+CPfTeamsDAOSQLite::~CPfTeamsDAOSQLite()
+{
+}
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+CPfTeams* CPfTeamsDAOSQLite::findByXTeam(int XTeam)
+{
+    std::ostringstream stream;
+    stream << XTeam;
+    return findByXTeam(stream.str());
+}
 
+CPfTeams* CPfTeamsDAOSQLite::findByXTeam(const std::string &XTeam)
+{
+    std::string sql("SELECT * FROM PF_TEAMS WHERE ");
+    sql = sql+"X_TEAM='"+XTeam+"'";
+    return loadRegister(sql);
+}
 
-private:
-    sqlite3 *m_database;
-
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
-
-};
-#endif /*CDAOFACTORYSQLITE_H_*/

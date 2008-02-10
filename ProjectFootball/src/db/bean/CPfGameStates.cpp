@@ -20,49 +20,75 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#include <iostream>
+#include <sstream>
 
-#include <sqlite3.h>
-#include <string>
+#include "CPfGameStates.h"
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+CPfGameStates::CPfGameStates()
 {
-public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    m_SState = "";
+    m_XState = "0";
+    m_SValue = "";
+}
 
-    virtual bool createSchema();
+CPfGameStates::~CPfGameStates()
+{
+}
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+const std::string& CPfGameStates::getSState()
+{
+    return m_SState;
+}
 
+const std::string& CPfGameStates::getSState_str()
+{
+    return m_SState;
+}
 
-private:
-    sqlite3 *m_database;
+int CPfGameStates::getXState()
+{
+    if( m_XState=="" ){
+        return 0;
+    }else{
+        return atoi(m_XState.c_str());
+    }
+}
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+const std::string& CPfGameStates::getXState_str()
+{
+    return m_XState;
+}
 
-};
-#endif /*CDAOFACTORYSQLITE_H_*/
+const std::string& CPfGameStates::getSValue()
+{
+    return m_SValue;
+}
+
+const std::string& CPfGameStates::getSValue_str()
+{
+    return m_SValue;
+}
+
+void CPfGameStates::setSState(const std::string &SState)
+{
+    m_SState = SState;
+}
+
+void CPfGameStates::setXState(int XState)
+{
+    std::ostringstream stream;
+    stream << XState;
+    m_XState = stream.str();
+}
+
+void CPfGameStates::setXState(const std::string &XState)
+{
+    m_XState = XState;
+}
+
+void CPfGameStates::setSValue(const std::string &SValue)
+{
+    m_SValue = SValue;
+}
+

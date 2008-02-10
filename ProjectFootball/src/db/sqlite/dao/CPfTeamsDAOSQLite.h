@@ -20,49 +20,23 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#ifndef CPFTEAMSDAOSQLITE_H_
+#define CPFTEAMSDAOSQLITE_H_
 
-#include <sqlite3.h>
 #include <string>
+#include <sqlite3.h>
 
-#include "../../../dao/factory/IDAOFactory.h"
+#include "entity/CPfTeamsDAOSQLiteEntity.h"
+#include "../../bean/CPfTeams.h"
 
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+class CPfTeamsDAOSQLite : public CPfTeamsDAOSQLiteEntity
 {
 public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    CPfTeamsDAOSQLite(sqlite3 *database);
+    virtual ~CPfTeamsDAOSQLite();
 
-    virtual bool createSchema();
-
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
-
-
-private:
-    sqlite3 *m_database;
-
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    virtual CPfTeams* findByXTeam(int XTeam);
+    virtual CPfTeams* findByXTeam(const std::string &XTeam);
 
 };
-#endif /*CDAOFACTORYSQLITE_H_*/
+#endif /*CPFTEAMSDAOSQLITE_H_*/

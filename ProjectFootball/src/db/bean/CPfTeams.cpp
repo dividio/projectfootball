@@ -20,49 +20,59 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#include <iostream>
+#include <sstream>
 
-#include <sqlite3.h>
-#include <string>
+#include "CPfTeams.h"
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+CPfTeams::CPfTeams()
 {
-public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    m_XTeam = "0";
+    m_STeam = "";
+}
 
-    virtual bool createSchema();
+CPfTeams::~CPfTeams()
+{
+}
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+int CPfTeams::getXTeam()
+{
+    if( m_XTeam=="" ){
+        return 0;
+    }else{
+        return atoi(m_XTeam.c_str());
+    }
+}
 
+const std::string& CPfTeams::getXTeam_str()
+{
+    return m_XTeam;
+}
 
-private:
-    sqlite3 *m_database;
+const std::string& CPfTeams::getSTeam()
+{
+    return m_STeam;
+}
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+const std::string& CPfTeams::getSTeam_str()
+{
+    return m_STeam;
+}
 
-};
-#endif /*CDAOFACTORYSQLITE_H_*/
+void CPfTeams::setXTeam(int XTeam)
+{
+    std::ostringstream stream;
+    stream << XTeam;
+    m_XTeam = stream.str();
+}
+
+void CPfTeams::setXTeam(const std::string &XTeam)
+{
+    m_XTeam = XTeam;
+}
+
+void CPfTeams::setSTeam(const std::string &STeam)
+{
+    m_STeam = STeam;
+}
+

@@ -20,49 +20,32 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#ifndef IPFGOALSDAO_H_
+#define IPFGOALSDAO_H_
 
-#include <sqlite3.h>
 #include <string>
+#include <vector>
 
-#include "../../../dao/factory/IDAOFactory.h"
+#include "../bean/CPfGoals.h"
 
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+class IPfGoalsDAO
 {
 public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    IPfGoalsDAO(){}
+    virtual ~IPfGoalsDAO(){}
 
-    virtual bool createSchema();
+    virtual bool deleteReg(CPfGoals *reg) =0;
+    virtual bool insertReg(CPfGoals *reg) =0;
+    virtual bool updateReg(CPfGoals *reg) =0;
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+    virtual void freeVector(std::vector<CPfGoals*>* vector) =0;
 
-
-private:
-    sqlite3 *m_database;
-
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    virtual CPfGoals* findByXFkTeamScorer(int XFkTeamScorer) =0;
+    virtual CPfGoals* findByXFkTeamScorer(const std::string &XFkTeamScorer) =0;
+    virtual CPfGoals* findByXGoal(int XGoal) =0;
+    virtual CPfGoals* findByXGoal(const std::string &XGoal) =0;
+    virtual CPfGoals* findByXFkMatch(int XFkMatch) =0;
+    virtual CPfGoals* findByXFkMatch(const std::string &XFkMatch) =0;
 
 };
-#endif /*CDAOFACTORYSQLITE_H_*/
+#endif /*IPFGOALSDAO_H_*/

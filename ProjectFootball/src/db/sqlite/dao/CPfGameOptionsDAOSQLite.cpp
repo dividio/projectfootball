@@ -20,49 +20,43 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#include <iostream>
+#include <sstream>
 
-#include <sqlite3.h>
-#include <string>
+#include "CPfGameOptionsDAOSQLite.h"
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+CPfGameOptionsDAOSQLite::CPfGameOptionsDAOSQLite(sqlite3 *database)
+  : CPfGameOptionsDAOSQLiteEntity(database)
 {
-public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+}
 
-    virtual bool createSchema();
+CPfGameOptionsDAOSQLite::~CPfGameOptionsDAOSQLite()
+{
+}
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+std::vector<CPfGameOptions*>* CPfGameOptionsDAOSQLite::findAll()
+{
+    return loadVector("SELECT * FROM PF_GAME_OPTIONS");
+}
 
+CPfGameOptions* CPfGameOptionsDAOSQLite::findBySCategoryAndSAttribute(const std::string &SCategory, const std::string &SAttribute)
+{
+    std::string sql("SELECT * FROM PF_GAME_OPTIONS WHERE ");
+    sql = sql+"S_CATEGORY='"+SCategory+"' AND S_ATTRIBUTE='"+SAttribute+"'";
+    return loadRegister(sql);
+}
 
-private:
-    sqlite3 *m_database;
+CPfGameOptions* CPfGameOptionsDAOSQLite::findByXOption(int XOption)
+{
+    std::ostringstream stream;
+    stream << XOption;
+    return findByXOption(stream.str());
+}
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+CPfGameOptions* CPfGameOptionsDAOSQLite::findByXOption(const std::string &XOption)
+{
+    std::string sql("SELECT * FROM PF_GAME_OPTIONS WHERE ");
+    sql = sql+"X_OPTION='"+XOption+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*CDAOFACTORYSQLITE_H_*/

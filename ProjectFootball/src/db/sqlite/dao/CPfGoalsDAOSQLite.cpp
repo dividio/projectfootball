@@ -20,49 +20,59 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#include <iostream>
+#include <sstream>
 
-#include <sqlite3.h>
-#include <string>
+#include "CPfGoalsDAOSQLite.h"
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+CPfGoalsDAOSQLite::CPfGoalsDAOSQLite(sqlite3 *database)
+  : CPfGoalsDAOSQLiteEntity(database)
 {
-public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+}
 
-    virtual bool createSchema();
+CPfGoalsDAOSQLite::~CPfGoalsDAOSQLite()
+{
+}
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+CPfGoals* CPfGoalsDAOSQLite::findByXFkTeamScorer(int XFkTeamScorer)
+{
+    std::ostringstream stream;
+    stream << XFkTeamScorer;
+    return findByXFkTeamScorer(stream.str());
+}
 
+CPfGoals* CPfGoalsDAOSQLite::findByXFkTeamScorer(const std::string &XFkTeamScorer)
+{
+    std::string sql("SELECT * FROM PF_GOALS WHERE ");
+    sql = sql+"X_FK_TEAM_SCORER='"+XFkTeamScorer+"'";
+    return loadRegister(sql);
+}
 
-private:
-    sqlite3 *m_database;
+CPfGoals* CPfGoalsDAOSQLite::findByXGoal(int XGoal)
+{
+    std::ostringstream stream;
+    stream << XGoal;
+    return findByXGoal(stream.str());
+}
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+CPfGoals* CPfGoalsDAOSQLite::findByXGoal(const std::string &XGoal)
+{
+    std::string sql("SELECT * FROM PF_GOALS WHERE ");
+    sql = sql+"X_GOAL='"+XGoal+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*CDAOFACTORYSQLITE_H_*/
+CPfGoals* CPfGoalsDAOSQLite::findByXFkMatch(int XFkMatch)
+{
+    std::ostringstream stream;
+    stream << XFkMatch;
+    return findByXFkMatch(stream.str());
+}
+
+CPfGoals* CPfGoalsDAOSQLite::findByXFkMatch(const std::string &XFkMatch)
+{
+    std::string sql("SELECT * FROM PF_GOALS WHERE ");
+    sql = sql+"X_FK_MATCH='"+XFkMatch+"'";
+    return loadRegister(sql);
+}
+

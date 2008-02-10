@@ -20,49 +20,25 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#ifndef CPFGAMEOPTIONSDAOSQLITE_H_
+#define CPFGAMEOPTIONSDAOSQLITE_H_
 
-#include <sqlite3.h>
 #include <string>
+#include <sqlite3.h>
 
-#include "../../../dao/factory/IDAOFactory.h"
+#include "entity/CPfGameOptionsDAOSQLiteEntity.h"
+#include "../../bean/CPfGameOptions.h"
 
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+class CPfGameOptionsDAOSQLite : public CPfGameOptionsDAOSQLiteEntity
 {
 public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    CPfGameOptionsDAOSQLite(sqlite3 *database);
+    virtual ~CPfGameOptionsDAOSQLite();
 
-    virtual bool createSchema();
-
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
-
-
-private:
-    sqlite3 *m_database;
-
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    virtual std::vector<CPfGameOptions*>* findAll();
+    virtual CPfGameOptions* findBySCategoryAndSAttribute(const std::string &SCategory, const std::string &SAttribute);
+    virtual CPfGameOptions* findByXOption(int XOption);
+    virtual CPfGameOptions* findByXOption(const std::string &XOption);
 
 };
-#endif /*CDAOFACTORYSQLITE_H_*/
+#endif /*CPFGAMEOPTIONSDAOSQLITE_H_*/

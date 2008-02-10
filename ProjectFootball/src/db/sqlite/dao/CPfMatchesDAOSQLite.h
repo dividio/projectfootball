@@ -20,49 +20,27 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#ifndef CPFMATCHESDAOSQLITE_H_
+#define CPFMATCHESDAOSQLITE_H_
 
-#include <sqlite3.h>
 #include <string>
+#include <sqlite3.h>
 
-#include "../../../dao/factory/IDAOFactory.h"
+#include "entity/CPfMatchesDAOSQLiteEntity.h"
+#include "../../bean/CPfMatches.h"
 
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+class CPfMatchesDAOSQLite : public CPfMatchesDAOSQLiteEntity
 {
 public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    CPfMatchesDAOSQLite(sqlite3 *database);
+    virtual ~CPfMatchesDAOSQLite();
 
-    virtual bool createSchema();
-
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
-
-
-private:
-    sqlite3 *m_database;
-
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    virtual CPfMatches* findByXFkTeamHome(int XFkTeamHome);
+    virtual CPfMatches* findByXFkTeamHome(const std::string &XFkTeamHome);
+    virtual CPfMatches* findByXMatch(int XMatch);
+    virtual CPfMatches* findByXMatch(const std::string &XMatch);
+    virtual CPfMatches* findByXFkTeamAway(int XFkTeamAway);
+    virtual CPfMatches* findByXFkTeamAway(const std::string &XFkTeamAway);
 
 };
-#endif /*CDAOFACTORYSQLITE_H_*/
+#endif /*CPFMATCHESDAOSQLITE_H_*/

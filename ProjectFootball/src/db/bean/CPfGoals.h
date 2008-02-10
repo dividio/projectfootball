@@ -20,49 +20,45 @@
 *       Version: 1.10                                                          *
 ******************************************************************************/
 
-#ifndef CDAOFACTORYSQLITE_H_
-#define CDAOFACTORYSQLITE_H_
+#ifndef CPFGOALS_H_
+#define CPFGOALS_H_
 
-#include <sqlite3.h>
 #include <string>
 
-#include "../../../dao/factory/IDAOFactory.h"
-
-#include "../../../dao/IPfGoalsDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-
-#include "../CPfGoalsDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-
-class CDAOFactorySQLite : public IDAOFactory
+class CPfGoals
 {
 public:
-    CDAOFactorySQLite(std::string file);
-    virtual ~CDAOFactorySQLite();
+    CPfGoals();
+    virtual ~CPfGoals();
 
-    virtual bool createSchema();
+    int getXFkTeamScorer();
+    const std::string& getXFkTeamScorer_str();
+    int getXGoal();
+    const std::string& getXGoal_str();
+    int getNMinute();
+    const std::string& getNMinute_str();
+    int getXFkMatch();
+    const std::string& getXFkMatch_str();
+    bool getLOwnGoal();
+    const std::string& getLOwnGoal_str();
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
-
+    void setXFkTeamScorer(int XFkTeamScorer);
+    void setXFkTeamScorer(const std::string &XFkTeamScorer);
+    void setXGoal(int XGoal);
+    void setXGoal(const std::string &XGoal);
+    void setNMinute(int NMinute);
+    void setNMinute(const std::string &NMinute);
+    void setXFkMatch(int XFkMatch);
+    void setXFkMatch(const std::string &XFkMatch);
+    void setLOwnGoal(bool LOwnGoal);
+    void setLOwnGoal(const std::string &LOwnGoal);
 
 private:
-    sqlite3 *m_database;
-
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    std::string m_XFkTeamScorer;
+    std::string m_XGoal;
+    std::string m_NMinute;
+    std::string m_XFkMatch;
+    std::string m_LOwnGoal;
 
 };
-#endif /*CDAOFACTORYSQLITE_H_*/
+#endif /*CPFGOALS_H_*/
