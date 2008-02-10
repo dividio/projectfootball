@@ -24,13 +24,12 @@
 #include "../CGameEngine.h"
 #include "../../utils/CLog.h"
 
-CGameOptionManager::CGameOptionManager(const std::string &XGame)
+CGameOptionManager::CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
    : m_categoriesList()
 {
-    m_XGame = XGame;
+    m_gameOptionsDAO = gameOptionsDAO;
 
-    IPfGameOptionsDAO                       *gameOptionsDAO     = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGameOptionsDAO();
-    std::vector<CPfGameOptions*>            *gameOptionsVector  = gameOptionsDAO->findByXFkGame(m_XGame);
+    std::vector<CPfGameOptions*>            *gameOptionsVector  = gameOptionsDAO->findAll();
     std::vector<CPfGameOptions*>::iterator  itGameOptions;
 
     for( itGameOptions=gameOptionsVector->begin(); itGameOptions!=gameOptionsVector->end(); itGameOptions++ ){
@@ -40,14 +39,12 @@ CGameOptionManager::CGameOptionManager(const std::string &XGame)
 
     gameOptionsDAO->freeVector(gameOptionsVector);
 
-    CLog::getInstance()->info("Game Option manager initialized: <-- xGame:\"%s\"", m_XGame.c_str());
+    CLog::getInstance()->info("Game Option manager initialized");
 }
 
 
 CGameOptionManager::~CGameOptionManager()
 {
-    IPfGameOptionsDAO *gameOptionsDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGameOptionsDAO();
-
     std::map<const char *, std::map<const char *, const char *>* >::iterator itCategories;
 
     for( itCategories=m_categoriesList.begin(); itCategories!=m_categoriesList.end(); itCategories++ ){
@@ -59,18 +56,17 @@ CGameOptionManager::~CGameOptionManager()
             const char *option = itOptions->first;
             const char *value  = itOptions->second;
 
-            CPfGameOptions *gameOption = gameOptionsDAO->findByXFkGameAndSCategoryAndSAttribute(m_XGame, category, option);
-            if( gameOption->getXOption()=="" ){
+            CPfGameOptions *gameOption = m_gameOptionsDAO->findBySCategoryAndSAttribute(category, option);
+            if( gameOption->getXOption_str()=="" ){
                 // Don't exists this option
-                gameOption->setXFkGame(m_XGame);
                 gameOption->setSCategory(category);
                 gameOption->setSAttribute(option);
                 gameOption->setSValue(value);
-                gameOptionsDAO->insertReg(gameOption);
+                m_gameOptionsDAO->insertReg(gameOption);
             }else{
                 // Exists this option
                 gameOption->setSValue(value);
-                gameOptionsDAO->updateReg(gameOption);
+                m_gameOptionsDAO->updateReg(gameOption);
             }
 
             // Free memory
@@ -86,7 +82,7 @@ CGameOptionManager::~CGameOptionManager()
     }
     m_categoriesList.clear();
 
-    CLog::getInstance()->info("Game Option manager deinitialized: --> xGame:\"%s\"", m_XGame.c_str());
+    CLog::getInstance()->info("Game Option manager deinitialized");
 }
 
 

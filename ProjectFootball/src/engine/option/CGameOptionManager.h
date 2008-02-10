@@ -21,8 +21,8 @@
 #ifndef CGAMEOPTIONMANAGER_H_
 #define CGAMEOPTIONMANAGER_H_
 
-
 #include <map>
+#include "../../db/dao/IPfGameOptionsDAO.h"
 
 class CGameOptionManager
 {
@@ -30,7 +30,7 @@ public:
 	/**
 	 * Constructor/Destructor
 	 */
-    CGameOptionManager(const std::string &XGame);
+    CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO);
 	~CGameOptionManager();
 
 
@@ -152,7 +152,7 @@ private:
 
 private:
 
-    std::string                                                     m_XGame;
+    IPfGameOptionsDAO                                               *m_gameOptionsDAO;
     std::map< const char *, std::map<const char *, const char *>* > m_categoriesList;
 };
 
