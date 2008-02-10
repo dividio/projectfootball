@@ -56,7 +56,7 @@ private:
     bool m_homeSideLeft;
     CFootballPlayer *m_lastPlayerKick;
 
-    CStateMachine<Referee> m_stateMachine;
+    CStateMachine<CReferee> *m_stateMachine;
 
     bool verifyBallPosition();
     void setGameMode(GameMode newGameMode);

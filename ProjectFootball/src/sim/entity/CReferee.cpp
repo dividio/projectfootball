@@ -22,6 +22,7 @@
 #include "CReferee.h"
 #include "../CSimulationManager.h"
 #include "../message/MessageTypes.h"
+#include "../fsm/CStateMachine.h"
 #include "../../state/CStateMonitor.h"
 #include "../../utils/CLog.h"
 
@@ -29,6 +30,7 @@ CReferee::CReferee()
 : CMovingEntity()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
+    m_stateMachine = new CStateMachine<CReferee>(this);
     m_homeScore = 0;
     m_awayScore = 0;
     m_homeSideLeft = true;
@@ -56,6 +58,9 @@ CReferee::CReferee()
 
 CReferee::~CReferee()
 {
+    if(m_stateMachine != 0) {
+        delete m_stateMachine;
+    }
 }
 
 

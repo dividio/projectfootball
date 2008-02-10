@@ -28,26 +28,26 @@ template <class entity_type>
 class CStateMachine
 {
 public:
-  CStateMachine(entity_type *owner);
-  ~CStateMachine();
+    CStateMachine(entity_type *owner) {m_owner = owner;};
+    ~CStateMachine(){};
 
-  void setCurrentState(IState<entity_type> *state);
-  void setGlobalState(IState<entity_type> *state);
-  void setPreviousState(IState<entity_type> *state);
+    void setCurrentState(IState<entity_type> *state) {m_currentState = state;};
+    void setGlobalState(IState<entity_type> *state) {m_globalState = state;};
+    void setPreviousState(IState<entity_type> *state) {m_previousState = state;};
 
-  void update() const;
-  void changeState(IState<entity_type> *newState);
-  void revertToPreviousState();
+    void update() const {};
+    void changeState(IState<entity_type> *newState) {};
+    void revertToPreviousState() {};
 
-  IState<entity_type>* currentState() const;
-  IState<entity_type>* previousState() const;
-  IState<entity_type>* globalState() const;
+    IState<entity_type>* currentState() const {return m_currentState;};
+    IState<entity_type>* previousState() const {return m_previousState;};
+    IState<entity_type>* globalState() const {return m_globalState;};
 
-  bool isInState(const IState<entity_type> &state) const;
+    bool isInState(const IState<entity_type> &state) const {};
 
 private:
 
-	entity_type *m_owner;
+    entity_type *m_owner;
 
     IState<entity_type> *m_globalState;
     IState<entity_type> *m_currentState;
