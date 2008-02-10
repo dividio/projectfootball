@@ -32,7 +32,6 @@ CMasterDAOFactorySQLite::CMasterDAOFactorySQLite(std::string file)
         CLog::getInstance()->exception("Can't open database file: \"%s\" --> \"%s\"", file.c_str(), sqlite3_errmsg(m_database));
     }
 
-    m_PfGameOptionsDAOSQLite = new CPfGameOptionsDAOSQLite(m_database);
     m_PfGamesDAOSQLite = new CPfGamesDAOSQLite(m_database);
     m_PfUsersDAOSQLite = new CPfUsersDAOSQLite(m_database);
 
@@ -41,7 +40,6 @@ CMasterDAOFactorySQLite::CMasterDAOFactorySQLite(std::string file)
 
 CMasterDAOFactorySQLite::~CMasterDAOFactorySQLite()
 {
-    delete m_PfGameOptionsDAOSQLite;
     delete m_PfGamesDAOSQLite;
     delete m_PfUsersDAOSQLite;
 
@@ -53,14 +51,6 @@ bool CMasterDAOFactorySQLite::createSchema()
 {
     std::string sql = "";
     sql += "BEGIN TRANSACTION;";
-    sql += "CREATE TABLE PF_GAME_OPTIONS";
-    sql += "(";
-    sql += "  S_CATEGORY TEXT";
-    sql += "  ,X_FK_GAME INTEGER";
-    sql += "  ,X_OPTION INTEGER PRIMARY KEY AUTOINCREMENT";
-    sql += "  ,S_VALUE TEXT";
-    sql += "  ,S_ATTRIBUTE TEXT";
-    sql += ");";
     sql += "CREATE TABLE PF_GAMES";
     sql += "(";
     sql += "  X_FK_USER INTEGER";
@@ -74,8 +64,6 @@ bool CMasterDAOFactorySQLite::createSchema()
     sql += "  X_USER INTEGER PRIMARY KEY AUTOINCREMENT";
     sql += "  ,S_USER TEXT";
     sql += ");";
-    sql += "CREATE INDEX PF_GAME_OPTIONS_X_FK_GAME ON PF_GAME_OPTIONS (X_FK_GAME);";
-    sql += "CREATE INDEX PF_GAME_OPTIONS_X_OPTION ON PF_GAME_OPTIONS (X_OPTION);";
     sql += "CREATE INDEX PF_GAMES_X_FK_USER ON PF_GAMES (X_FK_USER);";
     sql += "CREATE INDEX PF_GAMES_X_GAME ON PF_GAMES (X_GAME);";
     sql += "CREATE INDEX PF_USERS_X_USER ON PF_USERS (X_USER);";
@@ -89,11 +77,6 @@ bool CMasterDAOFactorySQLite::createSchema()
         correct = false;
     }
     return correct;
-}
-
-IPfGameOptionsDAO* CMasterDAOFactorySQLite::getIPfGameOptionsDAO()
-{
-    return m_PfGameOptionsDAOSQLite;
 }
 
 IPfGamesDAO* CMasterDAOFactorySQLite::getIPfGamesDAO()

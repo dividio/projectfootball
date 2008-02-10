@@ -23,7 +23,6 @@
 #ifndef IDAOFACTORY_H_
 #define IDAOFACTORY_H_
 
-#include "../IPfGameOptionsDAO.h"
 #include "../IPfGamesDAO.h"
 #include "../IPfUsersDAO.h"
 
@@ -35,7 +34,6 @@ public:
 
     virtual bool createSchema() =0;
 
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
     virtual IPfGamesDAO* getIPfGamesDAO() =0;
     virtual IPfUsersDAO* getIPfUsersDAO() =0;
 

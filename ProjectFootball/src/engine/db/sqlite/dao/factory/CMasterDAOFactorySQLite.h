@@ -28,11 +28,9 @@
 
 #include "../../../dao/factory/IDAOFactory.h"
 
-#include "../../../dao/IPfGameOptionsDAO.h"
 #include "../../../dao/IPfGamesDAO.h"
 #include "../../../dao/IPfUsersDAO.h"
 
-#include "../CPfGameOptionsDAOSQLite.h"
 #include "../CPfGamesDAOSQLite.h"
 #include "../CPfUsersDAOSQLite.h"
 
@@ -44,7 +42,6 @@ public:
 
     virtual bool createSchema();
 
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
     virtual IPfGamesDAO* getIPfGamesDAO();
     virtual IPfUsersDAO* getIPfUsersDAO();
 
@@ -52,7 +49,6 @@ public:
 private:
     sqlite3 *m_database;
 
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
     CPfGamesDAOSQLite *m_PfGamesDAOSQLite;
     CPfUsersDAOSQLite *m_PfUsersDAOSQLite;
 
