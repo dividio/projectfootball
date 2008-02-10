@@ -20,17 +20,17 @@
 *       Version: 1.8                                                          *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef IMASTERDAOFACTORY_H_
+#define IMASTERDAOFACTORY_H_
 
 #include "../IPfGamesDAO.h"
 #include "../IPfUsersDAO.h"
 
-class IDAOFactory
+class IMasterDAOFactory
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    IMasterDAOFactory(){}
+    virtual ~IMasterDAOFactory(){}
 
     virtual bool createSchema() =0;
 
@@ -38,4 +38,4 @@ public:
     virtual IPfUsersDAO* getIPfUsersDAO() =0;
 
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*IMASTERDAOFACTORY_H_*/

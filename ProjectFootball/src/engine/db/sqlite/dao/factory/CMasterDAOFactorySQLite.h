@@ -26,7 +26,7 @@
 #include <sqlite3.h>
 #include <string>
 
-#include "../../../dao/factory/IDAOFactory.h"
+#include "../../../dao/factory/IMasterDAOFactory.h"
 
 #include "../../../dao/IPfGamesDAO.h"
 #include "../../../dao/IPfUsersDAO.h"
@@ -34,7 +34,7 @@
 #include "../CPfGamesDAOSQLite.h"
 #include "../CPfUsersDAOSQLite.h"
 
-class CMasterDAOFactorySQLite : public IDAOFactory
+class CMasterDAOFactorySQLite : public IMasterDAOFactory
 {
 public:
     CMasterDAOFactorySQLite(std::string file);
