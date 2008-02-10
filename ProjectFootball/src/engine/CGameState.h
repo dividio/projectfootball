@@ -27,12 +27,15 @@
 #include "CGameReportRegister.h"
 #include "event/strategy/IGameEventStrategy.h"
 #include "option/CGameOptionManager.h"
+#include "db/bean/CPfGames.h"
 
 class CGameState
 {
 public:
-	CGameState(std::string idGameState, IDAOFactory *daoFactory, CGameReportRegister *reportRegister, IGameEventStrategy *eventStrategy);
+	CGameState(std::string xGame);
 	virtual ~CGameState();
+
+	virtual void save();
 
     IDAOFactory*           getIDAOFactory();
     IGameEventStrategy*    getIGameEventStrategy();
@@ -40,7 +43,7 @@ public:
 	CGameOptionManager*    getCGameOptionManager();
 
 private:
-    std::string          m_idGameState;
+    CPfGames            *m_game;
     IDAOFactory         *m_daoFactory;
     IGameEventStrategy  *m_eventStrategy;
     CGameReportRegister *m_reportRegister;

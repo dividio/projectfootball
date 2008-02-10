@@ -33,9 +33,9 @@ public:
 	static CGameEngine* getInstance();
 	CGameState* getCurrentGame();
 	CMasterDAOFactorySQLite* getCMasterDAOFactory();
-	void newGame();
-	void loadGame(std::string idGameState);
-	void saveGame(std::string idGameState);
+	void newGame(int xFkUser, const std::string &gameName);
+	void loadGame(const std::string &xGame);
+	void saveGame();
 	void unloadCurrentGame();
 
 private:

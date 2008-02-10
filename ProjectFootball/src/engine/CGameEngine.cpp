@@ -18,8 +18,13 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <time.h>
+#include <stdlib.h>
+
 #include "option/CSystemOptionManager.h"
 #include "CGameEngine.h"
+
+#include "../db/sqlite/dao/factory/CDAOFactorySQLite.h"
 
 CGameEngine::CGameEngine()
 {
@@ -54,22 +59,46 @@ CMasterDAOFactorySQLite* CGameEngine::getCMasterDAOFactory()
     return m_masterDatabase;
 }
 
-void CGameEngine::newGame()
+void CGameEngine::newGame(int xFkUser, const std::string &gameName)
 {
+    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    std::string filename = "data/database/";
 
+    srand(time(NULL));
+    for( int i=0; i<8; i++ ){
+        filename += str[rand()%52];
+    }
+    filename += ".sql3";
+
+    CPfGames game;
+    game.setSDriverName("SQLite");
+    game.setSConnectionString(filename);
+    game.setSGameName(gameName);
+    game.setXFkUser(xFkUser);
+    m_masterDatabase->getIPfGamesDAO()->insertReg(&game);
+
+    CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
+    daoFactory->createSchema();
+    delete daoFactory;
 }
 
-void CGameEngine::loadGame(std::string idGameState)
+void CGameEngine::loadGame(const std::string &xGame)
 {
-
+    unloadCurrentGame();
+    m_gameState = new CGameState(xGame);
 }
 
-void CGameEngine::saveGame(std::string idGameState)
+void CGameEngine::saveGame()
 {
-
+    if(m_gameState!=NULL){
+        m_gameState->save();
+    }
 }
 
 void CGameEngine::unloadCurrentGame()
 {
-
+    if(m_gameState!=NULL){
+        delete m_gameState;
+        m_gameState = NULL;
+    }
 }

@@ -19,19 +19,37 @@
 ******************************************************************************/
 
 #include "CGameState.h"
+#include "CGameEngine.h"
+#include "../db/CDAOAbstractFactory.h"
+#include "event/strategy/CSingleMatchEventStrategy.h"
 
-CGameState::CGameState(std::string xGame, IDAOFactory *daoFactory, CGameReportRegister *reportRegister, IGameEventStrategy *eventStrategy)
+CGameState::CGameState(std::string xGame)
 {
-    m_idGameState       = xGame;
-    m_daoFactory        = daoFactory;
-    m_eventStrategy     = eventStrategy;
-    m_reportRegister    = reportRegister;
-    m_optionManager     = new CGameOptionManager(xGame);
+    IPfGamesDAO *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    m_game                  = gamesDAO->findByXGame(xGame);
+    m_daoFactory            = CDAOAbstractFactory::getIDAOFactory(m_game->getSDriverName(), m_game->getSConnectionString());
+    m_eventStrategy         = new CSingleMatchEventStrategy("");
+    m_reportRegister        = new CGameReportRegister();
+    m_optionManager         = new CGameOptionManager(m_daoFactory->getIPfGameOptionsDAO());
+
+    m_daoFactory->beginTransaction();
 }
 
 CGameState::~CGameState()
 {
+    m_daoFactory->rollback();
+
     delete m_optionManager;
+    delete m_reportRegister;
+    delete m_eventStrategy;
+    delete m_daoFactory;
+    delete m_game;
+}
+
+void CGameState::save()
+{
+    m_daoFactory->commit();
+    m_daoFactory->beginTransaction();
 }
 
 IDAOFactory* CGameState::getIDAOFactory()
