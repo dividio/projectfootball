@@ -18,25 +18,25 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSINGLEMATCHEVENTSTATEGY_H_
-#define CSINGLEMATCHEVENTSTATEGY_H_
+#ifndef CSINGLEMATCHEVENTSTRATEGY_H_
+#define CSINGLEMATCHEVENTSTRATEGY_H_
 
 #include <string>
 
 #include "IGameEventStrategy.h"
 
-class CSingleMatchEventStategy : IGameEventStrategy
+class CSingleMatchEventStrategy : public IGameEventStrategy
 {
 public:
-	CSingleMatchEventStategy(std::string idMatch);
-	virtual ~CSingleMatchEventStategy();
+	CSingleMatchEventStrategy(const std::string &xMatch);
+	virtual ~CSingleMatchEventStrategy();
 
     virtual void process(CStartMatchEvent *event);
     virtual void process(CEndMatchEvent *event);
     virtual void process(CGoalMatchEvent *event);
 
 private:
-    std::string m_idMatch;
+    std::string m_xMatch;
     bool        m_started;
     bool        m_ended;
 };

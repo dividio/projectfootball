@@ -18,36 +18,36 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CSingleMatchEventStategy.h"
+#include "CSingleMatchEventStrategy.h"
 
-CSingleMatchEventStategy::CSingleMatchEventStategy(std::string idMatch)
+CSingleMatchEventStrategy::CSingleMatchEventStrategy(const std::string &xMatch)
 {
-    m_idMatch   = idMatch;
+    m_xMatch    = xMatch;
     m_started   = false;
     m_ended     = false;
 }
 
-CSingleMatchEventStategy::~CSingleMatchEventStategy()
+CSingleMatchEventStrategy::~CSingleMatchEventStrategy()
 {
 }
 
-void CSingleMatchEventStategy::process(CStartMatchEvent *event)
+void CSingleMatchEventStrategy::process(CStartMatchEvent *event)
 {
-    if( event && event->getIdMatch()==m_idMatch && !m_started ){
+    if( event && event->getIdMatch()==m_xMatch && !m_started ){
         m_started = true;
     }
 }
 
-void CSingleMatchEventStategy::process(CEndMatchEvent *event)
+void CSingleMatchEventStrategy::process(CEndMatchEvent *event)
 {
-    if( event && event->getIdMatch()==m_idMatch && m_started && !m_ended){
+    if( event && event->getIdMatch()==m_xMatch && m_started && !m_ended){
         m_ended = true;
     }
 }
 
-void CSingleMatchEventStategy::process(CGoalMatchEvent *event)
+void CSingleMatchEventStrategy::process(CGoalMatchEvent *event)
 {
-    if( event && event->getIdMatch()==m_idMatch && m_started && !m_ended){
+    if( event && event->getIdMatch()==m_xMatch && m_started && !m_ended){
 
     }
 }
