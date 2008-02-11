@@ -27,10 +27,14 @@
 class CMovingEntity : public CBaseGameEntity
 {
 public:
-  CMovingEntity();
-  ~CMovingEntity();
+    CMovingEntity();
+    ~CMovingEntity();
 
-  void setPosition(float x, float y, float z);
+    void setPosition(float x, float y, float z);
+    double getMaxVelocity() const;
+
+private:
+    double m_maxVelocity;
 };
 
 #endif // __CMovingEntity_H__

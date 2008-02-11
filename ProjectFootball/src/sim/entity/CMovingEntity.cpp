@@ -24,6 +24,7 @@
 CMovingEntity::CMovingEntity()
 : CBaseGameEntity()
 {
+    m_maxVelocity = 10;
 }
 
 CMovingEntity::~CMovingEntity()
@@ -37,4 +38,10 @@ void CMovingEntity::setPosition(float x, float y, float z)
     m_body->setAngularVelocity(btVector3(0,0,0));
     m_body->setLinearVelocity(btVector3(0,0,0));
     m_body->setInvInertiaDiagLocal(btVector3(0,0,0));
+}
+
+
+double CMovingEntity::getMaxVelocity() const
+{
+    return m_maxVelocity;
 }
