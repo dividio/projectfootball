@@ -24,7 +24,7 @@
 
 #include <string>
 
-#include "CMovingEntity.h"
+#include "CBaseAgent.h"
 #include "CFootballPlayer.h"
 #include "../fsm/CStateMachine.h"
 
@@ -34,7 +34,7 @@ enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
     ,CORNER_KICK_LEFT,CORNER_KICK_RIGHT
     ,GOAL_KICK_LEFT,GOAL_KICK_RIGHT};
 
-class CReferee: public CMovingEntity
+class CReferee: public CBaseAgent
 {
 public:
     CReferee();
@@ -46,7 +46,10 @@ public:
     void playerKickEvent(CFootballPlayer *player);
     bool isMoveLegal();
     GameMode getGameMode();
+    int getCycle();
     std::string getGameModeString();
+    int getHomeScore();
+    int getAwayScore();
 
 private:
     int m_cycle;
