@@ -38,6 +38,45 @@ CSimulationWorld::CSimulationWorld()
 
     m_world = new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
     m_world->setGravity(btVector3(0,-9.8,0));
+
+
+    // WALLS
+    btBoxShape *wallShape = new btBoxShape(btVector3(btScalar(60.0),btScalar(10.0),btScalar(1.0)));
+    btScalar mass(0);
+    btTransform trans;
+    trans.setIdentity();
+    trans.setOrigin(btVector3(0,0,-46));
+
+    btVector3 localInertia(0,0,0);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,0,wallShape,localInertia);
+    rbInfo.m_friction = 0.2;
+    rbInfo.m_startWorldTransform = trans;
+    btRigidBody *wallBody = new btRigidBody(rbInfo);
+    m_world->addRigidBody(wallBody);
+
+    wallShape = new btBoxShape(btVector3(btScalar(60.0),btScalar(10.0),btScalar(1.0)));
+    rbInfo.m_collisionShape = wallShape;
+    trans.setIdentity();
+    trans.setOrigin(btVector3(0,0,46));
+    rbInfo.m_startWorldTransform = trans;
+    wallBody = new btRigidBody(rbInfo);
+    m_world->addRigidBody(wallBody);
+
+    wallShape = new btBoxShape(btVector3(btScalar(1.0),btScalar(10.0),btScalar(45.0)));
+    rbInfo.m_collisionShape = wallShape;
+    trans.setIdentity();
+    trans.setOrigin(btVector3(-61,0,0));
+    rbInfo.m_startWorldTransform = trans;
+    wallBody = new btRigidBody(rbInfo);
+    m_world->addRigidBody(wallBody);
+
+    wallShape = new btBoxShape(btVector3(btScalar(1.0),btScalar(10.0),btScalar(45.0)));
+    rbInfo.m_collisionShape = wallShape;
+    trans.setIdentity();
+    trans.setOrigin(btVector3(61,0,0));
+    rbInfo.m_startWorldTransform = trans;
+    wallBody = new btRigidBody(rbInfo);
+    m_world->addRigidBody(wallBody);
 }
 
 
