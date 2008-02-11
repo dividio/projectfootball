@@ -25,10 +25,11 @@
 
 #include <string>
 
-#include "CMovingEntity.h"
+#include "CBaseAgent.h"
+#include "../CSteeringBehaviors.h"
 
 
-class CFootballPlayer: public CMovingEntity
+class CFootballPlayer: public CBaseAgent
 {
 public:
     CFootballPlayer(int number, std::string teamName, int x, int y, int z, bool sideLeft);
@@ -36,6 +37,7 @@ public:
 
     void update();
     bool canDoActions();
+    bool canKickBall(int cycle);
     btVector3 getDirection() const;
     std::string getIdent() const;
     std::string getTeamName() const;
@@ -53,6 +55,7 @@ public:
 
 private:
     bool m_canDoActions;
+    int m_lastKickBallCycle;
     int m_strategicX;
     int m_strategicZ;
     bool m_sideLeft;
@@ -61,6 +64,7 @@ private:
     std::string m_ident;
     btVector3 m_direction;
     btQuaternion m_rotation;
+    CSteeringBehaviors *m_steeringBehavior;
 
 };
 

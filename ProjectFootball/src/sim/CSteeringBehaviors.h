@@ -22,11 +22,41 @@
 #ifndef __CSteeringBehaviors_H__
 #define __CSteeringBehaviors_H__
 
+
+#include "entity/CBaseAgent.h"
+#include "entity/CBall.h"
+#include "../bullet/LinearMath/btVector3.h"
+
 class CSteeringBehaviors
 {
 public:
-  CSteeringBehaviors();
-  ~CSteeringBehaviors();
+    CSteeringBehaviors(CBaseAgent *agent);
+    ~CSteeringBehaviors();
+
+    void setTarget(const btVector3 target);
+    btVector3 getTarget() const;
+
+    btVector3 force() const;
+    btVector3 calculate();
+    btVector3 sumForces();
+    double forwardComponent() const;
+    double sideComponent() const;
+
+
+private:
+    CBaseAgent *m_agent;
+    //CBall *m_ball;
+
+    btVector3 m_steeringForce;
+    btVector3 m_target;
+
+    enum Deceleration{slow = 3, normal = 2, fast = 1};
+
+    btVector3 seek(btVector3 target);
+    btVector3 arrive(btVector3 target, Deceleration decel);
+
+
+
 };
 
 #endif // __CSteeringBehaviors_H__

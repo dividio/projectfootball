@@ -26,7 +26,7 @@
 
 
 CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y, int z, bool sideLeft)
-:CMovingEntity()
+:CBaseAgent()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     Ogre::String id;
@@ -38,20 +38,15 @@ CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y,
     m_direction = btVector3(btScalar(1.0),btScalar(0.0),btScalar(0.0));
 
     if(m_sideLeft) {
-        m_direction = m_direction.rotate(btVector3(0,1,0), btScalar(0.0));
-        m_rotation.setRotation(btVector3(0,1,0), btScalar(0.0));
         m_strategicX = x;
         m_strategicZ = z;
     } else {
-        m_direction = m_direction.rotate(btVector3(0,1,0), btScalar(90.0));
-        m_rotation.setRotation(btVector3(0,1,0), btScalar(90.0));
         m_strategicX = -x;
         m_strategicZ = -z;
     }
     //m_direction.normalize();
     sprintf(charId,"%s%d", m_teamName.c_str(), number);
     m_ident = charId;
-    printf("Jugador:%s x:%f y:%f z:%f\n", charId, m_direction.x(), m_direction.y(), m_direction.z());
     id = charId;
     m_entity = scnMgr->createEntity("Cylinder"+id, "Cylinder.mesh");
     if(sideLeft) {
@@ -83,12 +78,7 @@ CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y,
     m_body->setAngularFactor(btScalar(0));
     m_body->setActivationState(DISABLE_DEACTIVATION);
 
-    btTransform t = m_body->getCenterOfMassTransform();
-    //t.setIdentity();
-    btQuaternion aux = t.getRotation();
-    //getWorldTransform(t);
-    t.setRotation(aux * m_rotation);
-    m_body->setCenterOfMassTransform(t);
+    m_steeringBehavior = new CSteeringBehaviors(this);
 }
 
 
@@ -108,29 +98,44 @@ void CFootballPlayer::update()
         if(mode != BEFORE_START && mode != HALF_TIME && mode != END) {
             if(simulator->isNearestPlayerToBall(this)) {
                 if(getPosition().distance(simulator->getBallPosition()) < 2) {
-                    btVector3 direction = (btVector3(55,0,0) - getPosition());
-                    simulator->kick(this, 100, direction);
+                    if(m_sideLeft) {
+                        btVector3 direction = (btVector3(55,0,0) - getPosition());
+                        simulator->kick(this, direction);
+                    } else {
+                        btVector3 direction = (btVector3(-55,0,0) - getPosition());
+                        simulator->kick(this, direction);
+                    }
                 } else {
-                    simulator->dash(this, 50);
+                    m_steeringBehavior->setTarget(simulator->getBallPosition());
+                    simulator->dash(this, m_steeringBehavior->calculate());
                 }
             } else {
-                simulator->move(this, m_strategicX, m_strategicZ);
+                if((getPosition().x() > m_strategicX + 1 || getPosition().x() < m_strategicX - 1) &&
+                        (getPosition().z() > m_strategicZ + 1 || getPosition().z() < m_strategicZ - 1)) {
+                    m_steeringBehavior->setTarget(btVector3(m_strategicX, 0, m_strategicZ));
+                    simulator->dash(this, m_steeringBehavior->calculate());
+                }
             }
         } else {
             simulator->move(this, m_strategicX, m_strategicZ);
         }
     } else {
-        if(getPosition().distance(simulator->getBallPosition()) > 2) {
+        if(getPosition().distance(simulator->getBallPosition()) > 2.2) {
             if(simulator->isNearestTeamMatePlayerToBall(this)) {
-                simulator->dash(this, 50);
+                m_steeringBehavior->setTarget(simulator->getBallPosition());
+                simulator->dash(this, m_steeringBehavior->calculate());
+            } else if((getPosition().x() > m_strategicX + 1 || getPosition().x() < m_strategicX - 1) &&
+                    (getPosition().z() > m_strategicZ + 1 || getPosition().z() < m_strategicZ - 1)) {
+                m_steeringBehavior->setTarget(btVector3(m_strategicX, 0, m_strategicZ));
+                simulator->dash(this, m_steeringBehavior->calculate());
             }
         } else {
             if(m_sideLeft) {
                 btVector3 direction = (btVector3(55,0,0) - getPosition());
-                simulator->kick(this, 100, direction);
+                simulator->kick(this, direction);
             } else {
                 btVector3 direction = (btVector3(-55,0,0) - getPosition());
-                simulator->kick(this, 100, direction);
+                simulator->kick(this, direction);
             }
         }
     }
@@ -142,6 +147,16 @@ bool CFootballPlayer::canDoActions()
     bool aux = m_canDoActions;
     m_canDoActions = false;
     return aux;
+}
+
+
+bool CFootballPlayer::canKickBall(int cycle)
+{
+    if((cycle - m_lastKickBallCycle) > 3) {
+        m_lastKickBallCycle = cycle;
+        return true;
+    }
+    return false;
 }
 
 

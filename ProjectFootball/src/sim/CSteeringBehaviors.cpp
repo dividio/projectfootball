@@ -21,10 +21,81 @@
 
 #include "CSteeringBehaviors.h"
 
-CSteeringBehaviors::CSteeringBehaviors()
+
+CSteeringBehaviors::CSteeringBehaviors(CBaseAgent *agent)
 {
+    m_agent = agent;
+    //m_ball = ball;
+    m_steeringForce = btVector3(0,0,0);
 }
+
 
 CSteeringBehaviors::~CSteeringBehaviors()
 {
+}
+
+
+btVector3 CSteeringBehaviors::getTarget() const
+{
+    return m_target;
+}
+
+
+void CSteeringBehaviors::setTarget(const btVector3 target)
+{
+    m_target = target;
+}
+
+
+btVector3 CSteeringBehaviors::force() const
+{
+    return m_steeringForce;
+}
+
+btVector3 CSteeringBehaviors::calculate()
+{
+    m_steeringForce = btVector3(0,0,0);
+    m_steeringForce = sumForces();
+//    truncateVector(m_steeringForce, maxForce);
+    return m_steeringForce;
+}
+
+
+btVector3 CSteeringBehaviors::sumForces()
+{
+    btVector3 sum;
+    sum = arrive(m_target, normal);
+    return sum;
+}
+
+
+btVector3 CSteeringBehaviors::seek(btVector3 target)
+{
+    btVector3 desiredVelocity = btVector3(target - m_agent->getPosition());
+    desiredVelocity.normalize();
+    desiredVelocity *= m_agent->getMaxVelocity();
+    return (desiredVelocity - m_agent->getBody()->getLinearVelocity());
+}
+
+
+btVector3 CSteeringBehaviors::arrive(btVector3 target, Deceleration decel)
+{
+    btVector3 steer(0,0,0);
+    btVector3 toTarget = target - m_agent->getPosition();
+
+    double dist = toTarget.length();
+
+    if(dist > 0) {
+
+        double tweaker = 0.3;
+        double speed =  dist / ((double)decel * tweaker);
+        if(speed > m_agent->getMaxVelocity()) {
+            speed = m_agent->getMaxVelocity();
+        }
+
+        btVector3 desiredVelocity =  toTarget * speed / dist;
+        steer = desiredVelocity - m_agent->getBody()->getLinearVelocity();
+    }
+
+    return steer;
 }
