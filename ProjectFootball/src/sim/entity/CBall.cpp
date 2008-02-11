@@ -43,6 +43,7 @@ CBall::CBall()
         m_shape->calculateLocalInertia(mass,localInertia);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
     rbInfo.m_restitution = btScalar(0.8);
+    rbInfo.m_friction = 0.5;
     m_body = new btRigidBody(rbInfo);
     m_body->setActivationState(DISABLE_DEACTIVATION);
 }

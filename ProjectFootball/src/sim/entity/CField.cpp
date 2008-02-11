@@ -49,6 +49,7 @@ CField::CField()
     if (isDynamic)
         m_shape->calculateLocalInertia(mass,localInertia);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
+    rbInfo.m_friction = 0.2;
     m_body = new btRigidBody(rbInfo);
 }
 
