@@ -203,6 +203,9 @@ bool CStateMonitor::leave()
     if(m_simulator != NULL) {
         delete m_simulator;
         m_simulator = NULL;
+        CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
+        CEGUI::Listbox* logHistory = static_cast<CEGUI::Listbox*> (winMgr.getWindow("Monitor/Log"));
+        logHistory->resetList();
     }
     return true;
 }
@@ -212,6 +215,7 @@ void CStateMonitor::update()
 {
     float t = CStateManager::getInstance()->getTimeSinceLastFrame();
     m_camNode->translate(m_direction * t, Ogre::Node::TS_LOCAL);
+    updateScore();
     m_simulator->update();
 }
 
@@ -263,4 +267,47 @@ CSimulationManager* CStateMonitor::getSimulationManager()
 Ogre::SceneManager* CStateMonitor::getSimulationSceneManager()
 {
     return m_sceneMgr;
+}
+
+
+void CStateMonitor::addToLog(std::string text)
+{
+    CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
+    CEGUI::Listbox* logHistory = static_cast<CEGUI::Listbox*> (winMgr.getWindow("Monitor/Log"));
+    int historySize = 5;
+
+    // If there's text then add it
+    if(text.size())
+    {
+        // Add the Editbox text to the history Listbox
+        CEGUI::ListboxTextItem* logItem;
+        if(logHistory->getItemCount() == historySize)
+        {
+            /* We have reached the capacity of the Listbox so re-use the first Listbox item.
+               This code is a little crafty.  By default the ListboxTextItem is created with
+               the auto-delete flag set to true, which results in its automatic deletion when
+               removed from the Listbox.  So we change that flag to false, extract the item
+               from the Listbox, change its text, put the auto-delete flag back to true, and
+               finally put the item back into the Listbox. */
+            logItem = static_cast<CEGUI::ListboxTextItem*>(logHistory->getListboxItemFromIndex(0));
+            logItem->setAutoDeleted(false);
+            logHistory->removeItem(logItem);
+            logItem->setAutoDeleted(true);
+            logItem->setText(text);
+        }
+        else
+        {
+            // Create a new listbox item
+            logItem = new CEGUI::ListboxTextItem(text);
+        }
+        logHistory->addItem(logItem);
+        logHistory->ensureItemIsVisible(logHistory->getItemCount());
+    }
+}
+
+
+void CStateMonitor::updateScore()
+{
+//    CEGUI::Window *w = CEGUI::WindowManager::getSingleton().getWindow("Monitor/TabControl2/Tab1");
+//    m_simulator->getReferee()->getGameModeString();
 }

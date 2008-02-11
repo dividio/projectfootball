@@ -45,6 +45,7 @@ public:
     void switchTo3DView();
     CSimulationManager* getSimulationManager();
     Ogre::SceneManager* getSimulationSceneManager();
+    void addToLog(std::string text);
 
 protected:
     CStateMonitor();
@@ -63,6 +64,7 @@ private:
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
     bool startMatchHandler(const CEGUI::EventArgs& e);
+    void updateScore();
 };
 
 #endif // __CStateMonitor_H__
