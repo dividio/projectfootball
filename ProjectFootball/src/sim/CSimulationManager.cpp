@@ -31,24 +31,9 @@ CSimulationManager::CSimulationManager()
 {
     CLog::getInstance()->debug("CSimulationManager()");
     m_timer = 1;
-    m_homeTeamName = "Luí TM";
+    m_homeTeamName = "Lui TM";
     m_awayTeamName = "Aceitunas Pacheco";
     m_simWorld = new CSimulationWorld();
-
-//    for(int i = 0; i < 11; i++) {
-//        char auxhome[20];
-//        char auxaway[20];
-//        sprintf(auxhome,"h%d",i);
-//        sprintf(auxaway,"a%d",i);
-//        CFootballPlayer *player = new CFootballPlayer(auxhome, scnMgr, i*2, 50, i);
-//        m_homePlayers.push_back(player);
-//        m_simWorld->addObject((CObject*)player);
-//
-//        player = new CFootballPlayer(auxaway, scnMgr, -i*2, 0, i);
-//        m_awayPlayers.push_back(player);
-//        m_simWorld->addObject((CObject*)player);
-//    }
-
 
     CField *field = new CField();
     m_simWorld->addObject(field);
@@ -108,19 +93,19 @@ CSimulationManager::CSimulationManager()
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
-    player = new CFootballPlayer(2, m_awayTeamName, -45, 0, 10, false);
+    player = new CFootballPlayer(2, m_awayTeamName, -40, 0, 10, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
-    player = new CFootballPlayer(3, m_awayTeamName, -45, 0, -10, false);
+    player = new CFootballPlayer(3, m_awayTeamName, -40, 0, -10, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
-    player = new CFootballPlayer(4, m_awayTeamName, -40, 0, 20, false);
+    player = new CFootballPlayer(4, m_awayTeamName, -35, 0, 20, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
-    player = new CFootballPlayer(5, m_awayTeamName, -40, 0, -20, false);
+    player = new CFootballPlayer(5, m_awayTeamName, -35, 0, -20, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
@@ -132,7 +117,7 @@ CSimulationManager::CSimulationManager()
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
-    player = new CFootballPlayer(8, m_awayTeamName, -15, 0, 0, false);
+    player = new CFootballPlayer(8, m_awayTeamName, -25, 0, 0, false);
     m_awayPlayers.push_back(player);
     m_simWorld->addObject(player);
 
@@ -149,7 +134,6 @@ CSimulationManager::CSimulationManager()
     m_simWorld->addObject(player);
 
     setNearestPlayersToBall();
-
 }
 
 CSimulationManager::~CSimulationManager()
@@ -305,22 +289,20 @@ bool CSimulationManager::isNearestTeamMatePlayerToBall(CFootballPlayer* player) 
 }
 
 
-void CSimulationManager::dash(CFootballPlayer *player, int power)
+void CSimulationManager::dash(CFootballPlayer *player, btVector3 power)
 {
     btVector3 impulse;
-    int maxDash = 100;
+    double maxDash = 10.0;
     btRigidBody *body = player->getBody();
-    if(player->canDoActions() && body->getLinearVelocity().length() < 10) {
-        if(power > maxDash) {
-            impulse = maxDash * player->getDirection();
-        } else {
-            impulse = power * player->getDirection();
-        }
-        body->applyCentralImpulse(impulse);
-        //printf("x:%f y:%f z:%f\n", impulse.x(), impulse.y(), impulse.z());
-
-        //body->applyCentralImpulse(btVector3(70,0,0));
+    btVector3 currentVelocity = body->getLinearVelocity();
+    btVector3 newVelocity = currentVelocity;
+    if(player->canDoActions()) {
+        newVelocity += power;
+        truncateVector(&newVelocity, maxDash);
+        //printf("Cycle: %d Player: %s Power: %f Mass: %f NewVelocity: %f\n", m_referee->getCycle(), player->getIdent().c_str(), power.length(), 1.0/body->getInvMass(), newVelocity.length());
+        body->setLinearVelocity(newVelocity);
     }
+
 }
 
 
@@ -336,14 +318,22 @@ void CSimulationManager::move(CFootballPlayer *player, int x, int z)
 }
 
 
-void CSimulationManager::kick(CFootballPlayer *player, int power, btVector3 direction)
+void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 {
+    btVector3 impulse;
+    double maxKick = 25.0;
     btRigidBody *ballBody = m_ball->getBody();
-    btVector3 dir = (direction.normalize() * power) / 10.0;
-    ballBody->applyImpulse(dir ,btVector3(0,0,0));
-    m_referee->playerKickEvent(player);
-    CAudioSystem::LOW_KICK->play();
-    //printf("  ----->           LOW_KICK\n");
+    btRigidBody *body = player->getBody();
+    btVector3 currentVelocity = ballBody->getLinearVelocity();
+    btVector3 newVelocity = currentVelocity;
+    if(player->canDoActions() && player->canKickBall(m_referee->getCycle())) {
+        truncateVector(&power, maxKick);
+        newVelocity += power;
+        truncateVector(&newVelocity, maxKick);
+        ballBody->setLinearVelocity(newVelocity);
+        m_referee->playerKickEvent(player);
+        CAudioSystem::LOW_KICK->play();
+    }
 }
 
 
@@ -352,5 +342,14 @@ void CSimulationManager::turn(CFootballPlayer *player, int moment)
     if(player->canDoActions()) {
         btRigidBody *body = player->getBody();
         body->setAngularVelocity(btVector3(0,moment,0));
+    }
+}
+
+
+void CSimulationManager::truncateVector(btVector3 *v, double max)
+{
+    if (v->length() > max) {
+        v->normalize();
+        v->operator *=(max);
     }
 }

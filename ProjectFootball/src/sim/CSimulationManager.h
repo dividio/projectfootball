@@ -54,9 +54,9 @@ public:
     bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
 
     // Soccer Commands
-    void dash(CFootballPlayer *player, int power);
+    void dash(CFootballPlayer *player, btVector3 power);
     void move(CFootballPlayer *player, int x, int z);
-    void kick(CFootballPlayer *player, int power, btVector3 direction);
+    void kick(CFootballPlayer *player, btVector3 power);
     void turn(CFootballPlayer *player, int moment);
 
 private:
@@ -74,6 +74,7 @@ private:
     CFootballPlayer *m_nearestPlayer;
 
     void setNearestPlayersToBall();
+    void truncateVector(btVector3 *v, double max);
 };
 
 #endif // __CSimulationManager_H__
