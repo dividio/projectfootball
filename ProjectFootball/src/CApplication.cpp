@@ -152,6 +152,10 @@ void CApplication::createRenderWindow()
     int height = op->getIntOption("Video","Height", 600);
     bool fullscreen = op->getBooleanOption("Video","Fullscreen", false);
     bool vsync = op->getBooleanOption("Video", "VSync", false);
+    bool copyMode = op->getBooleanOption("Video", "RTTCopyMode", false);
+    if(copyMode) {
+        m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode","Copy");
+    }
     m_root->initialise(false);
     if(vsync) {
         opts["vsync"] = "true";
@@ -159,10 +163,19 @@ void CApplication::createRenderWindow()
             // TODO Nvidia and Ati check
             putenv("__GL_SYNC_TO_VBLANK=1");
         #endif
-            m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
+        m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
     } else {
         opts["vsync"] = "false";
         m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
+    }
+    try {
+        CLog::getInstance()->debug("Creating debug texture.");
+        m_root->getRenderSystem()->createRenderTexture("DebugText", 2, 2, Ogre::TEX_TYPE_2D, Ogre::PF_R8G8B8);
+        m_root->getRenderSystem()->destroyRenderTexture("DebugText");
+        CLog::getInstance()->debug("Debug texture created.");
+    } catch (Ogre::RenderingAPIException &e){
+        CLog::getInstance()->error("Error creating debug texture, using Copy mode now. Please restart the application.");
+        CSystemOptionManager::getInstance()->setBooleanOption("Video", "RTTCopyMode", true);
     }
 }
 
