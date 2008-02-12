@@ -35,6 +35,7 @@ CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y,
     m_sideLeft = sideLeft;
     m_teamName = teamName;
     m_number = number;
+    m_lastKickBallCycle = -1;
     m_direction = btVector3(btScalar(1.0),btScalar(0.0),btScalar(0.0));
 
     if(m_sideLeft) {
