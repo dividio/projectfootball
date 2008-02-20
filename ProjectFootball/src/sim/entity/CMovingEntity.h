@@ -31,9 +31,16 @@ public:
     ~CMovingEntity();
 
     void setPosition(float x, float y, float z);
+    btVector3 futurePosition(double time) const;
     double getMaxVelocity() const;
+    btVector3 getHeading() const;
+    btVector3 getSide() const;
 
-private:
+
+protected:
+    btVector3 m_heading;
+    btVector3 m_side;
+
     double m_maxVelocity;
 };
 

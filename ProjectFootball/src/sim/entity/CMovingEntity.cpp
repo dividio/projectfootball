@@ -25,6 +25,8 @@ CMovingEntity::CMovingEntity()
 : CBaseGameEntity()
 {
     m_maxVelocity = 10;
+    m_heading = btVector3(1,0,0);
+    m_side = btVector3(0,0,1);
 }
 
 CMovingEntity::~CMovingEntity()
@@ -38,6 +40,28 @@ void CMovingEntity::setPosition(float x, float y, float z)
     m_body->setAngularVelocity(btVector3(0,0,0));
     m_body->setLinearVelocity(btVector3(0,0,0));
     m_body->setInvInertiaDiagLocal(btVector3(0,0,0));
+}
+
+
+btVector3 CMovingEntity::futurePosition(double time) const
+{
+    btVector3 vt = m_body->getLinearVelocity() * time;
+
+    btVector3 coef = m_body->getLinearVelocity().normalized() * 0.5 * time * time;
+
+    return getPosition() + vt + coef;
+}
+
+
+btVector3 CMovingEntity::getHeading() const
+{
+    return m_heading;
+}
+
+
+btVector3 CMovingEntity::getSide() const
+{
+    return m_side;
 }
 
 
