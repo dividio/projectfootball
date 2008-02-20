@@ -26,6 +26,7 @@
 
 #include "CMessage.h"
 #include "../entity/CBaseGameEntity.h"
+#include "../../utils/CTimer.h"
 
 class CMessageDispatcher
 {
@@ -41,9 +42,11 @@ public:
                      void*       info);
 
     void dispatchDelayedMessages();
+    void reset();
 
 private:
     std::set<CMessage> m_priorityQueue;
+    CTimer *m_timer;
 
     CMessageDispatcher();
 

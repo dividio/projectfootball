@@ -35,12 +35,16 @@ CMessageDispatcher* CMessageDispatcher::getInstance()
 CMessageDispatcher::CMessageDispatcher()
 {
     CLog::getInstance()->debug("CMessageDispatcher()");
+    m_timer = new CTimer();
 }
 
 
 CMessageDispatcher::~CMessageDispatcher()
 {
     CLog::getInstance()->debug("~CMessageDispatcher()");
+    if(m_timer != 0) {
+        delete m_timer;
+    }
 }
 
 
@@ -57,14 +61,33 @@ void CMessageDispatcher::dispatchMsg(double delay, int sender, int receiver, int
     if(delay <= 0.0) {
         discharge(entity, message);
     } else {
+        message.DispatchTime = m_timer->getTime() + delay;
         m_priorityQueue.insert(message);
     }
 }
 
-
 void CMessageDispatcher::dispatchDelayedMessages()
 {
+    m_timer->nextTick();
+    double time = m_timer->getTime();
+    while(!m_priorityQueue.empty() &&
+            (m_priorityQueue.begin()->DispatchTime < time) &&
+            (m_priorityQueue.begin()->DispatchTime > 0)) {
 
+        const CMessage &message = *m_priorityQueue.begin();
+        CBaseGameEntity *receiver = CEntityManager::getInstance()->getEntityFromID(message.Receiver);
+
+        discharge(receiver, message);
+
+        m_priorityQueue.erase(m_priorityQueue.begin());
+    }
+}
+
+
+void CMessageDispatcher::reset()
+{
+    m_timer->reset();
+    m_priorityQueue.clear();
 }
 
 
