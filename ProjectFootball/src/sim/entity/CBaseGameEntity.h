@@ -49,7 +49,7 @@ public:
 
     btCollisionShape* getShape();
     btRigidBody* getBody();
-    btVector3 getPosition();
+    btVector3 getPosition() const;
     void setPosition(float x, float y, float z);
 
 

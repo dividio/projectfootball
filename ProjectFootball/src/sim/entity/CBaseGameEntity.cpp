@@ -93,7 +93,7 @@ btRigidBody* CBaseGameEntity::getBody()
 }
 
 
-btVector3 CBaseGameEntity::getPosition()
+btVector3 CBaseGameEntity::getPosition() const
 {
     Ogre::Vector3 v(m_node->getWorldPosition());
     return btVector3(v.x,v.y,v.z);
