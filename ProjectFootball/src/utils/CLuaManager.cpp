@@ -269,3 +269,9 @@ void CLuaManager::runScript(char* file)
       CLog::getInstance()->error("Unable to load %s", file);
     }
 }
+
+
+lua_State* CLuaManager::getLuaVM()
+{
+    return m_luaVM;
+}

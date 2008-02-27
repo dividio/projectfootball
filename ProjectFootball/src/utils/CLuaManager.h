@@ -50,9 +50,9 @@ public:
         const CEGUI::String& name, CEGUI::Event::Group group, const CEGUI::String& subscriber_name);
     void createBindings(void);
     void destroyBindings(void);
-
     void runScript(char* file);
 
+    lua_State* getLuaVM();
 protected:
     lua_State* m_luaVM;
 
