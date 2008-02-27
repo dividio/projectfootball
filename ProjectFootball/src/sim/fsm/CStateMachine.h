@@ -22,36 +22,110 @@
 #ifndef __CStateMachine_H__
 #define __CStateMachine_H__
 
-#include "IState.h"
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
+#include <string>
+
+#include "../../utils/CLog.h"
+#include "../../utils/CLuaManager.h"
+
+template <class T>
+void callFunction(const char *state, const char *function, T *entity)
+{
+    lua_State *luaVM = CLuaManager::getInstance()->getLuaVM();
+    lua_settop(luaVM, 0);
+    lua_getglobal(luaVM, state);
+    if(!lua_istable(luaVM, -1)) {
+        CLog::getInstance()->error("Scripted state \"%s\" doesn't exist", state);
+    } else {
+        lua_pushstring(luaVM, function);
+        lua_gettable(luaVM, -2);
+        if(!lua_isfunction(luaVM, -1)) {
+            CLog::getInstance()->error("Function \"%s\" in state \"%s\" doesn't exist", function, state);
+        } else {
+            lua_pushlightuserdata(luaVM, entity);
+            int error = lua_pcall(luaVM, 1, 0, 0);
+            // handle errors
+            switch (error) {
+                case LUA_ERRRUN:
+                    CLog::getInstance()->error("Runtime error in \"%s\" function at state \"%s\" ", function, state);
+                    lua_pop(luaVM, 1);
+                    break;
+                case LUA_ERRMEM:
+                    CLog::getInstance()->error("Memory alocation error in \"%s\" function at state \"%s\" ", function, state);
+                    lua_pop(luaVM, 1);
+                    break;
+                case LUA_ERRERR:
+                    CLog::getInstance()->error("Error handler error in \"%s\" function at state \"%s\" ", function, state);
+                    lua_pop(luaVM, 1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    lua_pop(luaVM, 1);
+}
 
 template <class entity_type>
 class CStateMachine
 {
 public:
-    CStateMachine(entity_type *owner) {m_owner = owner;};
+    CStateMachine(entity_type *owner)
+    {
+        m_owner = owner;
+        m_globalState = "";
+        m_currentState = "";
+        m_previousState = "";
+    };
+
     ~CStateMachine(){};
 
-    void setCurrentState(IState<entity_type> *state) {m_currentState = state;};
-    void setGlobalState(IState<entity_type> *state) {m_globalState = state;};
-    void setPreviousState(IState<entity_type> *state) {m_previousState = state;};
+    void setCurrentState(std::string state) {m_currentState = state;};
+    void setGlobalState(std::string state) {m_globalState = state;};
+    void setPreviousState(std::string state) {m_previousState = state;};
 
-    void update() const {};
-    void changeState(IState<entity_type> *newState) {};
-    void revertToPreviousState() {};
 
-    IState<entity_type>* currentState() const {return m_currentState;};
-    IState<entity_type>* previousState() const {return m_previousState;};
-    IState<entity_type>* globalState() const {return m_globalState;};
 
-    bool isInState(const IState<entity_type> &state) const {};
+    void update()
+    {
+        if(!m_globalState.empty()) {
+            callFunction<entity_type>(m_globalState.c_str(), "Execute", m_owner);
+        }
+        if(!m_currentState.empty()) {
+            callFunction<entity_type>(m_currentState.c_str(), "Execute", m_owner);
+        }
+    };
+
+    void changeState(std::string newState)
+    {
+        if(!newState.empty()) {
+            m_previousState = m_currentState;
+            callFunction<entity_type>(m_currentState.c_str(), "Exit", m_owner);
+            m_currentState = newState;
+            callFunction<entity_type>(m_currentState.c_str(), "Enter", m_owner);
+        } else {
+            CLog::getInstance()->error("Can not change to empty state.");
+        }
+    };
+
+    void revertToPreviousState() {changeState(m_previousState);};
+
+    std::string currentState() const {return m_currentState;};
+    std::string previousState() const {return m_previousState;};
+    std::string globalState() const {return m_globalState;};
+
+    bool isInState(const std::string state) const { return (m_currentState == state);};
+
 
 private:
-
     entity_type *m_owner;
-
-    IState<entity_type> *m_globalState;
-    IState<entity_type> *m_currentState;
-    IState<entity_type> *m_previousState;
+    std::string m_globalState;
+    std::string m_currentState;
+    std::string m_previousState;
 };
 
 #endif // __CStateMachine_H__
