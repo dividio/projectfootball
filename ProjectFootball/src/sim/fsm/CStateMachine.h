@@ -31,6 +31,7 @@ extern "C" {
 
 #include "../../utils/CLog.h"
 #include "../../utils/CLuaManager.h"
+#include "../message/CMessage.h"
 
 template <class T>
 void callFunction(const char *state, const char *function, T *entity)
@@ -68,6 +69,51 @@ void callFunction(const char *state, const char *function, T *entity)
         }
     }
     lua_pop(luaVM, 1);
+}
+
+template <class T>
+bool messageFunction(const char *state, const CMessage &message, T *entity)
+{
+    bool result = false;
+    CMessage msg = message;
+    lua_State *luaVM = CLuaManager::getInstance()->getLuaVM();
+    lua_settop(luaVM, 0);
+    lua_getglobal(luaVM, state);
+    if(!lua_istable(luaVM, -1)) {
+        CLog::getInstance()->error("Scripted state \"%s\" doesn't exist", state);
+    } else {
+        lua_pushstring(luaVM, "OnMessage");
+        lua_gettable(luaVM, -2);
+        if(!lua_isfunction(luaVM, -1)) {
+            CLog::getInstance()->error("Function \"OnMessage\" in state \"%s\" doesn't exist", state);
+        } else {
+            lua_pushlightuserdata(luaVM, entity);
+            lua_pushlightuserdata(luaVM, &msg);
+            int error = lua_pcall(luaVM, 2, 1, 0);
+            if(lua_isboolean(luaVM, -1)) {
+                result = lua_toboolean(luaVM, -1);
+            }
+            // handle errors
+            switch (error) {
+                case LUA_ERRRUN:
+                    CLog::getInstance()->error("Runtime error in \"OnMessage\" function at state \"%s\" ", state);
+                    lua_pop(luaVM, 1);
+                    break;
+                case LUA_ERRMEM:
+                    CLog::getInstance()->error("Memory alocation error in \"OnMessage\" function at state \"%s\" ", state);
+                    lua_pop(luaVM, 1);
+                    break;
+                case LUA_ERRERR:
+                    CLog::getInstance()->error("Error handler error in \"OnMessage\" function at state \"%s\" ", state);
+                    lua_pop(luaVM, 1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    lua_pop(luaVM, 1);
+    return result;
 }
 
 template <class entity_type>
@@ -110,6 +156,21 @@ public:
         } else {
             CLog::getInstance()->error("Can not change to empty state.");
         }
+    };
+
+    bool handleMessage(const CMessage &message)
+    {
+        int result = false;
+        if(!m_currentState.empty() &&
+            messageFunction<entity_type>(m_currentState.c_str(), message, m_owner)) {
+            result = true;
+        }
+
+        if(!m_globalState.empty() &&
+            messageFunction<entity_type>(m_globalState.c_str(), message, m_owner)) {
+            result = true;
+        }
+        return result;
     };
 
     void revertToPreviousState() {changeState(m_previousState);};
