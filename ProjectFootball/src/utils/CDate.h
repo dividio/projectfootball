@@ -32,7 +32,6 @@ public:
     CDate(int day, int month, int year);
     CDate(int day, int month, int year, int hour, int minutes, int seconds);
     CDate(const std::string &timestamp);
-	CDate(const std::string &str, const std::string &format);
 	virtual ~CDate();
 
 	std::string format(const std::string &format);

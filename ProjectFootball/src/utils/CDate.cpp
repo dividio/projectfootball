@@ -24,7 +24,7 @@ CDate::CDate()
 {
     memset(&m_tm, 0, sizeof(m_tm));
     time_t now = time(NULL);
-    localtime_r(&now, &m_tm);
+    memcpy(&m_tm, localtime(&now), sizeof(m_tm));
 }
 
 CDate::CDate(const CDate &date)
@@ -57,15 +57,13 @@ CDate::CDate(const std::string &timestamp)
 {
     memset(&m_tm, 0, sizeof(m_tm));
     if( timestamp!="" ){
-        strptime(timestamp.c_str(), "%s", &m_tm);
-    }
-}
-
-CDate::CDate(const std::string &str, const std::string &format)
-{
-    memset(&m_tm, 0, sizeof(m_tm));
-    if( str!="" && format!="" ){
-        strptime(str.c_str(), format.c_str(), &m_tm);
+        int     pos     = 0;
+        time_t  secs    = 0;
+        for( pos=0; pos<timestamp.length() && timestamp[pos]>='0' && timestamp[pos]<='9'; pos++ ){
+            secs *= 10;
+            secs += timestamp[pos]-'0';
+        }
+        memcpy(&m_tm, localtime(&secs), sizeof(m_tm));
     }
 }
 
