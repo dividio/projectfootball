@@ -21,8 +21,6 @@
 #ifndef IMATCHEVENT_H_
 #define IMATCHEVENT_H_
 
-#include <string>
-
 #include "../IGameEvent.h"
 
 class IMatchEvent : public IGameEvent
@@ -31,9 +29,7 @@ public:
 	IMatchEvent();
 	virtual ~IMatchEvent();
 
-	virtual std::string getIdMatch() =0;
-	virtual std::string getIdLocalTeam() =0;
-	virtual std::string getIdVisitorTeam() =0;
+	virtual int getXMatch() =0;
 };
 
 #endif /*IMATCHEVENT_H_*/

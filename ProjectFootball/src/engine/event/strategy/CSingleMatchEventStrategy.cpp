@@ -19,10 +19,11 @@
 ******************************************************************************/
 
 #include "CSingleMatchEventStrategy.h"
+#include "../../CGameEngine.h"
 
-CSingleMatchEventStrategy::CSingleMatchEventStrategy(const std::string &xMatch)
+CSingleMatchEventStrategy::CSingleMatchEventStrategy()
 {
-    m_xMatch    = xMatch;
+    m_xMatch    = -1;
     m_started   = false;
     m_ended     = false;
 }
@@ -31,23 +32,63 @@ CSingleMatchEventStrategy::~CSingleMatchEventStrategy()
 {
 }
 
-void CSingleMatchEventStrategy::process(CStartMatchEvent *event)
+void CSingleMatchEventStrategy::process(CStartMatchEvent &event)
 {
-    if( event && event->getIdMatch()==m_xMatch && !m_started ){
+    if( !m_started )
+    {
+        m_xMatch = event.getXMatch();
+
+        // Delete posible previous goals
+        IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+        std::vector<CPfGoals*> * goalsList = goalsDAO->findByXFkMatch(m_xMatch);
+        std::vector<CPfGoals*>::iterator it;
+        for( it=goalsList->begin(); it!=goalsList->end(); it++ ){
+            goalsDAO->deleteReg(*it);
+        }
+        goalsDAO->freeVector(goalsList);
+
         m_started = true;
     }
 }
 
-void CSingleMatchEventStrategy::process(CEndMatchEvent *event)
+void CSingleMatchEventStrategy::process(CEndMatchEvent &event)
 {
-    if( event && event->getIdMatch()==m_xMatch && m_started && !m_ended){
+    if( m_started && !m_ended && m_xMatch==event.getXMatch() )
+    {
         m_ended = true;
+
+        // Save match result
+        IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+        std::vector<CPfGoals*>::iterator it;
+        for( it=m_goalsList.begin(); it!=m_goalsList.end(); it++ ){
+            goalsDAO->insertReg(*it);
+        }
+
+        // Generate match report
+        CGameEngine::getInstance()->getCurrentGame()->getCGameReportRegister()->generateMatchReport(m_xMatch);
+
+        // Reset SingleMatchEventStrategy state
+        for( it=m_goalsList.begin(); it!=m_goalsList.end(); it++ ){
+            delete (*it);
+        }
+        m_goalsList.clear();
+
+        m_xMatch    = -1;
+        m_started   = false;
+        m_ended     = false;
     }
 }
 
-void CSingleMatchEventStrategy::process(CGoalMatchEvent *event)
+void CSingleMatchEventStrategy::process(CGoalMatchEvent &event)
 {
-    if( event && event->getIdMatch()==m_xMatch && m_started && !m_ended){
+    if( m_started && !m_ended && m_xMatch==event.getXMatch() )
+    {
+        CPfGoals *goal = new CPfGoals();
+        goal->setLOwnGoal(event.getLOwnGoal());
+        goal->setNMinute(event.getNMinute());
+        goal->setXFkMatch(event.getXMatch());
+        goal->setXFkTeamScorer(event.getXTeamScorer());
 
+        m_goalsList.push_back(goal);
     }
 }

@@ -26,15 +26,15 @@
 class CGameEventRegisterStrategy : public IGameEventStrategy
 {
 public:
-	CGameEventRegisterStrategy(IGameEventStrategy *delegatedEventStrategy);
+	CGameEventRegisterStrategy(IGameEventStrategy &delegatedEventStrategy);
 	virtual ~CGameEventRegisterStrategy();
 
-	virtual void process(CStartMatchEvent *event);
-    virtual void process(CEndMatchEvent *event);
-    virtual void process(CGoalMatchEvent *event);
+	virtual void process(CStartMatchEvent &event);
+    virtual void process(CEndMatchEvent   &event);
+    virtual void process(CGoalMatchEvent  &event);
 
 private:
-    IGameEventStrategy  *m_delegatedEventStrategy;
+    IGameEventStrategy  &m_delegatedEventStrategy;
 };
 
 #endif /*CGAMEEVENTREGISTERSTRATEGY_H_*/

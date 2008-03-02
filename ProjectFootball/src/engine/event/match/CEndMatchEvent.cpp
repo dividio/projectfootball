@@ -20,10 +20,16 @@
 
 #include "CEndMatchEvent.h"
 
-CEndMatchEvent::CEndMatchEvent()
+CEndMatchEvent::CEndMatchEvent(int xMatch)
 {
+    m_xMatch = xMatch;
 }
 
 CEndMatchEvent::~CEndMatchEvent()
 {
+}
+
+int CEndMatchEvent::getXMatch()
+{
+    return m_xMatch;
 }

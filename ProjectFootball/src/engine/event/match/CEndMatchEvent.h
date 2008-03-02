@@ -26,8 +26,13 @@
 class CEndMatchEvent : public IMatchEvent
 {
 public:
-	CEndMatchEvent();
+	CEndMatchEvent(int xMatch);
 	virtual ~CEndMatchEvent();
+
+    virtual int getXMatch();
+
+private:
+    int m_xMatch;
 };
 
 #endif /*CENDMATCHEVENT_H_*/

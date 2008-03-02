@@ -21,24 +21,26 @@
 #ifndef CSINGLEMATCHEVENTSTRATEGY_H_
 #define CSINGLEMATCHEVENTSTRATEGY_H_
 
-#include <string>
+#include <vector>
 
 #include "IGameEventStrategy.h"
+#include "../../../db/bean/CPfGoals.h"
 
 class CSingleMatchEventStrategy : public IGameEventStrategy
 {
 public:
-	CSingleMatchEventStrategy(const std::string &xMatch);
+	CSingleMatchEventStrategy();
 	virtual ~CSingleMatchEventStrategy();
 
-    virtual void process(CStartMatchEvent *event);
-    virtual void process(CEndMatchEvent *event);
-    virtual void process(CGoalMatchEvent *event);
+    virtual void process(CStartMatchEvent &event);
+    virtual void process(CEndMatchEvent   &event);
+    virtual void process(CGoalMatchEvent  &event);
 
 private:
-    std::string m_xMatch;
-    bool        m_started;
-    bool        m_ended;
+    int     m_xMatch;
+    bool    m_started;
+    bool    m_ended;
+    std::vector<CPfGoals *> m_goalsList;
 };
 
 #endif /*CSINGLEMATCHEVENTSTATEGY_H_*/

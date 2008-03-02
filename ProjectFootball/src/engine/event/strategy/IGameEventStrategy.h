@@ -33,9 +33,9 @@ public:
 	virtual ~IGameEventStrategy() {}
 
 	// Match events
-	virtual void process(CStartMatchEvent *event) =0;
-	virtual void process(CEndMatchEvent *event) =0;
-	virtual void process(CGoalMatchEvent *event) =0;
+	virtual void process(CStartMatchEvent &event) =0;
+	virtual void process(CEndMatchEvent   &event) =0;
+	virtual void process(CGoalMatchEvent  &event) =0;
 };
 
 #endif /*IGAMEEVENTSTRATEGY_H_*/

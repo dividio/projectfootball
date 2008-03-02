@@ -20,10 +20,16 @@
 
 #include "CStartMatchEvent.h"
 
-CStartMatchEvent::CStartMatchEvent()
+CStartMatchEvent::CStartMatchEvent(int xMatch)
 {
+    m_xMatch = xMatch;
 }
 
 CStartMatchEvent::~CStartMatchEvent()
 {
+}
+
+int CStartMatchEvent::getXMatch()
+{
+    return m_xMatch;
 }

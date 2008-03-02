@@ -26,8 +26,13 @@
 class CStartMatchEvent : public IMatchEvent
 {
 public:
-	CStartMatchEvent();
+	CStartMatchEvent(int xMatch);
 	virtual ~CStartMatchEvent();
+
+	virtual int getXMatch();
+
+private:
+    int m_xMatch;
 };
 
 #endif /*CSTARTMATCHEVENT_H_*/

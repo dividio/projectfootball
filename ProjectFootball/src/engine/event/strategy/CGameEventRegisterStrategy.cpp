@@ -20,32 +20,29 @@
 
 #include "CGameEventRegisterStrategy.h"
 
-CGameEventRegisterStrategy::CGameEventRegisterStrategy(IGameEventStrategy *delegatedEventStrategy)
+CGameEventRegisterStrategy::CGameEventRegisterStrategy(IGameEventStrategy &delegatedEventStrategy)
+    : m_delegatedEventStrategy(delegatedEventStrategy)
 {
-    m_delegatedEventStrategy = delegatedEventStrategy;
 }
 
 CGameEventRegisterStrategy::~CGameEventRegisterStrategy()
 {
 }
 
-void CGameEventRegisterStrategy::process(CEndMatchEvent *event)
+void CGameEventRegisterStrategy::process(CEndMatchEvent &event)
 {
-    if( m_delegatedEventStrategy ){
-        m_delegatedEventStrategy->process(event);
-    }
+    m_delegatedEventStrategy.process(event);
+    // TODO: Register event
 }
 
-void CGameEventRegisterStrategy::process(CGoalMatchEvent *event)
+void CGameEventRegisterStrategy::process(CGoalMatchEvent &event)
 {
-    if( m_delegatedEventStrategy ){
-        m_delegatedEventStrategy->process(event);
-    }
+    m_delegatedEventStrategy.process(event);
+    // TODO: Register event
 }
 
-void CGameEventRegisterStrategy::process(CStartMatchEvent *event)
+void CGameEventRegisterStrategy::process(CStartMatchEvent &event)
 {
-    if( m_delegatedEventStrategy ){
-        m_delegatedEventStrategy->process(event);
-    }
+    m_delegatedEventStrategy.process(event);
+    // TODO: Register event
 }
