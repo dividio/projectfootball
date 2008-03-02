@@ -21,11 +21,18 @@
 #ifndef IGAMEREPORT_H_
 #define IGAMEREPORT_H_
 
+enum report_type {
+    MATCH_REPORT = 1,
+    OFFER_REPORT,
+    SANCTION_REPORT,
+    TRAINING_REPORT
+};
+
 class IGameReport
 {
 public:
-	IGameReport();
-	virtual ~IGameReport();
+	IGameReport() {}
+	virtual ~IGameReport() {}
 
 	virtual int getType() =0;
 };

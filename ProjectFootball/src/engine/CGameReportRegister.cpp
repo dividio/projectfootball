@@ -22,8 +22,25 @@
 
 CGameReportRegister::CGameReportRegister()
 {
+    m_matchReportList = new std::vector<CMatchReport*>();
 }
 
 CGameReportRegister::~CGameReportRegister()
 {
+    std::vector<CMatchReport*>::iterator it;
+    for( it=m_matchReportList->begin(); it!=m_matchReportList->end(); it++ ){
+        delete (*it);
+    }
+    delete m_matchReportList;
+}
+
+void CGameReportRegister::generateMatchReport(int xMatch)
+{
+    CMatchReport *matchReport = new CMatchReport(xMatch);
+    m_matchReportList->push_back(matchReport);
+}
+
+std::vector<CMatchReport*>* CGameReportRegister::getMatchReportList()
+{
+    return m_matchReportList;
 }

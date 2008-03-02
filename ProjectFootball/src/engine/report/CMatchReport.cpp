@@ -19,11 +19,70 @@
 ******************************************************************************/
 
 #include "CMatchReport.h"
+#include "../CGameEngine.h"
 
-CMatchReport::CMatchReport()
+CMatchReport::CMatchReport(int xMatch)
 {
+    IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+    m_match = matchesDAO->findByXMatch(xMatch);
+
+    IPfTeamsDAO *teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
+    m_teamAway = teamsDAO->findByXTeam(m_match->getXFkTeamAway());
+    m_teamHome = teamsDAO->findByXTeam(m_match->getXFkTeamHome());
+
+    IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+    m_goalsAwayList = goalsDAO->findByXFkMatchAndXFkTeamScorer(m_match->getXMatch(), m_teamAway->getXTeam());
+    m_goalsHomeList = goalsDAO->findByXFkMatchAndXFkTeamScorer(m_match->getXMatch(), m_teamHome->getXTeam());
 }
 
 CMatchReport::~CMatchReport()
 {
+    IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+    goalsDAO->freeVector(m_goalsAwayList);
+    goalsDAO->freeVector(m_goalsHomeList);
+
+    delete m_teamAway;
+    delete m_teamHome;
+
+    delete m_match;
+}
+
+int CMatchReport::getType()
+{
+    return MATCH_REPORT;
+}
+
+CPfMatches* CMatchReport::getMatch()
+{
+    return m_match;
+}
+
+CPfTeams * CMatchReport::getTeamAway()
+{
+    return m_teamAway;
+}
+
+CPfTeams * CMatchReport::getTeamHome()
+{
+    return m_teamHome;
+}
+
+int CMatchReport::getNGoalsAway()
+{
+    return m_goalsAwayList->size();
+}
+
+int CMatchReport::getNGoalsHome()
+{
+    return m_goalsHomeList->size();
+}
+
+std::vector<CPfGoals*>* CMatchReport::getGoalsAway()
+{
+    return m_goalsAwayList;
+}
+
+std::vector<CPfGoals*>* CMatchReport::getGoalsHome()
+{
+    return m_goalsHomeList;
 }

@@ -21,11 +21,21 @@
 #ifndef CGAMEREPORTREGISTER_H_
 #define CGAMEREPORTREGISTER_H_
 
+#include <vector>
+
+#include "report/CMatchReport.h"
+
 class CGameReportRegister
 {
 public:
 	CGameReportRegister();
 	virtual ~CGameReportRegister();
+
+	void generateMatchReport(int xMatch);
+	std::vector<CMatchReport*>* getMatchReportList();
+
+private:
+    std::vector<CMatchReport*>* m_matchReportList;
 };
 
 #endif /*CGAMEREPORTREGISTER_H_*/

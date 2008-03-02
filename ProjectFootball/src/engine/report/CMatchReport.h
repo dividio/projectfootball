@@ -21,11 +21,35 @@
 #ifndef CMATCHREPORT_H_
 #define CMATCHREPORT_H_
 
-class CMatchReport
+#include <vector>
+
+#include "IGameReport.h"
+#include "../../db/bean/CPfGoals.h"
+#include "../../db/bean/CPfMatches.h"
+#include "../../db/bean/CPfTeams.h"
+
+class CMatchReport : public IGameReport
 {
 public:
-	CMatchReport();
+	CMatchReport(int xMatch);
 	virtual ~CMatchReport();
+
+	virtual int getType();
+
+	CPfMatches*    getMatch();
+	CPfTeams *     getTeamHome();
+	CPfTeams *     getTeamAway();
+	int            getNGoalsHome();
+	int            getNGoalsAway();
+	std::vector<CPfGoals*>* getGoalsHome();
+	std::vector<CPfGoals*>* getGoalsAway();
+
+private:
+    std::vector<CPfGoals*>  *m_goalsHomeList;
+    std::vector<CPfGoals*>  *m_goalsAwayList;
+    CPfMatches              *m_match;
+    CPfTeams                *m_teamHome;
+    CPfTeams                *m_teamAway;
 };
 
 #endif /*CMATCHREPORT_H_*/
