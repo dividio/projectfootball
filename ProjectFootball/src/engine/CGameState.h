@@ -32,7 +32,7 @@
 class CGameState
 {
 public:
-	CGameState(std::string xGame);
+	CGameState(int xGame);
 	virtual ~CGameState();
 
 	virtual void save();

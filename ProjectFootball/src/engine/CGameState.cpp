@@ -23,12 +23,12 @@
 #include "../db/CDAOAbstractFactory.h"
 #include "event/strategy/CSingleMatchEventStrategy.h"
 
-CGameState::CGameState(std::string xGame)
+CGameState::CGameState(int xGame)
 {
     IPfGamesDAO *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
     m_game                  = gamesDAO->findByXGame(xGame);
     m_daoFactory            = CDAOAbstractFactory::getIDAOFactory(m_game->getSDriverName(), m_game->getSConnectionString());
-    m_eventStrategy         = new CSingleMatchEventStrategy("");
+    m_eventStrategy         = new CSingleMatchEventStrategy();
     m_reportRegister        = new CGameReportRegister();
     m_optionManager         = new CGameOptionManager(m_daoFactory->getIPfGameOptionsDAO());
 
