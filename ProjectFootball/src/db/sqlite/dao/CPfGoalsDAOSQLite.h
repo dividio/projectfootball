@@ -35,12 +35,14 @@ public:
     CPfGoalsDAOSQLite(sqlite3 *database);
     virtual ~CPfGoalsDAOSQLite();
 
-    virtual CPfGoals* findByXFkTeamScorer(int XFkTeamScorer);
-    virtual CPfGoals* findByXFkTeamScorer(const std::string &XFkTeamScorer);
+    virtual std::vector<CPfGoals*>* findByXFkTeamScorer(int XFkTeamScorer);
+    virtual std::vector<CPfGoals*>* findByXFkTeamScorer(const std::string &XFkTeamScorer);
     virtual CPfGoals* findByXGoal(int XGoal);
     virtual CPfGoals* findByXGoal(const std::string &XGoal);
-    virtual CPfGoals* findByXFkMatch(int XFkMatch);
-    virtual CPfGoals* findByXFkMatch(const std::string &XFkMatch);
+    virtual std::vector<CPfGoals*>* findByXFkMatch(int XFkMatch);
+    virtual std::vector<CPfGoals*>* findByXFkMatch(const std::string &XFkMatch);
+    virtual std::vector<CPfGoals*>* findByXFkMatchAndXFkTeamScorer(int XFkMatch, int XFkTeamScorer);
+    virtual std::vector<CPfGoals*>* findByXFkMatchAndXFkTeamScorer(const std::string &XFkMatch, const std::string &XFkTeamScorer);
 
 };
 #endif /*CPFGOALSDAOSQLITE_H_*/

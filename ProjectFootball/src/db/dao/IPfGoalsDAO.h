@@ -40,12 +40,14 @@ public:
 
     virtual void freeVector(std::vector<CPfGoals*>* vector) =0;
 
-    virtual CPfGoals* findByXFkTeamScorer(int XFkTeamScorer) =0;
-    virtual CPfGoals* findByXFkTeamScorer(const std::string &XFkTeamScorer) =0;
+    virtual std::vector<CPfGoals*>* findByXFkTeamScorer(int XFkTeamScorer) =0;
+    virtual std::vector<CPfGoals*>* findByXFkTeamScorer(const std::string &XFkTeamScorer) =0;
     virtual CPfGoals* findByXGoal(int XGoal) =0;
     virtual CPfGoals* findByXGoal(const std::string &XGoal) =0;
-    virtual CPfGoals* findByXFkMatch(int XFkMatch) =0;
-    virtual CPfGoals* findByXFkMatch(const std::string &XFkMatch) =0;
+    virtual std::vector<CPfGoals*>* findByXFkMatch(int XFkMatch) =0;
+    virtual std::vector<CPfGoals*>* findByXFkMatch(const std::string &XFkMatch) =0;
+    virtual std::vector<CPfGoals*>* findByXFkMatchAndXFkTeamScorer(int XFkMatch, int XFkTeamScorer) =0;
+    virtual std::vector<CPfGoals*>* findByXFkMatchAndXFkTeamScorer(const std::string &XFkMatch, const std::string &XFkTeamScorer) =0;
 
 };
 #endif /*IPFGOALSDAO_H_*/

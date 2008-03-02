@@ -34,18 +34,18 @@ CPfGoalsDAOSQLite::~CPfGoalsDAOSQLite()
 {
 }
 
-CPfGoals* CPfGoalsDAOSQLite::findByXFkTeamScorer(int XFkTeamScorer)
+std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkTeamScorer(int XFkTeamScorer)
 {
     std::ostringstream stream;
     stream << XFkTeamScorer;
     return findByXFkTeamScorer(stream.str());
 }
 
-CPfGoals* CPfGoalsDAOSQLite::findByXFkTeamScorer(const std::string &XFkTeamScorer)
+std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkTeamScorer(const std::string &XFkTeamScorer)
 {
     std::string sql("SELECT * FROM PF_GOALS WHERE ");
     sql = sql+"X_FK_TEAM_SCORER='"+XFkTeamScorer+"'";
-    return loadRegister(sql);
+    return loadVector(sql);
 }
 
 CPfGoals* CPfGoalsDAOSQLite::findByXGoal(int XGoal)
@@ -62,17 +62,32 @@ CPfGoals* CPfGoalsDAOSQLite::findByXGoal(const std::string &XGoal)
     return loadRegister(sql);
 }
 
-CPfGoals* CPfGoalsDAOSQLite::findByXFkMatch(int XFkMatch)
+std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatch(int XFkMatch)
 {
     std::ostringstream stream;
     stream << XFkMatch;
     return findByXFkMatch(stream.str());
 }
 
-CPfGoals* CPfGoalsDAOSQLite::findByXFkMatch(const std::string &XFkMatch)
+std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatch(const std::string &XFkMatch)
 {
     std::string sql("SELECT * FROM PF_GOALS WHERE ");
     sql = sql+"X_FK_MATCH='"+XFkMatch+"'";
-    return loadRegister(sql);
+    return loadVector(sql);
 }
 
+std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatchAndXFkTeamScorer(int XFkMatch, int XFkTeamScorer)
+{
+    std::ostringstream streamMatch;
+    streamMatch << XFkMatch;
+    std::ostringstream streamTeam;
+    streamTeam << XFkMatch;
+    return findByXFkMatchAndXFkTeamScorer(streamMatch.str(), streamTeam.str());
+}
+
+std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatchAndXFkTeamScorer(const std::string &XFkMatch, const std::string &XFkTeamScorer)
+{
+    std::string sql("SELECT * FROM PF_GOALS WHERE ");
+    sql = sql+"X_FK_MATCH='"+XFkMatch+"' AND X_FK_TEAM_SCORER='"+XFkTeamScorer+"'";
+    return loadVector(sql);
+}
