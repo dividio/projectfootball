@@ -82,7 +82,7 @@ void CGameEngine::newGame(int xFkUser, const std::string &gameName)
     delete daoFactory;
 }
 
-void CGameEngine::loadGame(const std::string &xGame)
+void CGameEngine::loadGame(int xGame)
 {
     unloadCurrentGame();
     m_gameState = new CGameState(xGame);

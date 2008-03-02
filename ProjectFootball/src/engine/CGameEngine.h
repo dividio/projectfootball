@@ -34,7 +34,7 @@ public:
 	CGameState* getCurrentGame();
 	CMasterDAOFactorySQLite* getCMasterDAOFactory();
 	void newGame(int xFkUser, const std::string &gameName);
-	void loadGame(const std::string &xGame);
+	void loadGame(int xGame);
 	void saveGame();
 	void unloadCurrentGame();
 
