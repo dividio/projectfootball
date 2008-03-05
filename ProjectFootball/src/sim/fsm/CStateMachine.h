@@ -33,6 +33,19 @@ extern "C" {
 #include "../../utils/CLuaManager.h"
 #include "../message/CMessage.h"
 
+
+template <class T>
+void pushObjectInLua(lua_State *luaVM, T *object)
+{
+    lua_getglobal(luaVM, "PF"); // push modulename
+    lua_pushstring(luaVM, object->m_pCtorName);
+    lua_gettable(luaVM, -2);
+    lua_remove(luaVM, -2);     //remove table
+    lua_pushlightuserdata(luaVM, (void *) object);
+    lua_call(luaVM,1,1); // Ta-Da! swig-wrapped class pointer on the stack
+}
+
+
 template <class T>
 void callFunction(const char *state, const char *function, T *entity)
 {
@@ -47,7 +60,7 @@ void callFunction(const char *state, const char *function, T *entity)
         if(!lua_isfunction(luaVM, -1)) {
             CLog::getInstance()->error("Function \"%s\" in state \"%s\" doesn't exist", function, state);
         } else {
-            lua_pushlightuserdata(luaVM, entity);
+            pushObjectInLua(luaVM, entity);
             int error = lua_pcall(luaVM, 1, 0, 0);
             // handle errors
             switch (error) {
@@ -71,6 +84,7 @@ void callFunction(const char *state, const char *function, T *entity)
     lua_pop(luaVM, 1);
 }
 
+
 template <class T>
 bool messageFunction(const char *state, const CMessage &message, T *entity)
 {
@@ -87,8 +101,8 @@ bool messageFunction(const char *state, const CMessage &message, T *entity)
         if(!lua_isfunction(luaVM, -1)) {
             CLog::getInstance()->error("Function \"OnMessage\" in state \"%s\" doesn't exist", state);
         } else {
-            lua_pushlightuserdata(luaVM, entity);
-            lua_pushlightuserdata(luaVM, &msg);
+            pushObjectInLua(luaVM, entity);
+            pushObjectInLua(luaVM, &msg);
             int error = lua_pcall(luaVM, 2, 1, 0);
             if(lua_isboolean(luaVM, -1)) {
                 result = lua_toboolean(luaVM, -1);
@@ -115,6 +129,10 @@ bool messageFunction(const char *state, const CMessage &message, T *entity)
     lua_pop(luaVM, 1);
     return result;
 }
+
+
+
+
 
 template <class entity_type>
 class CStateMachine
@@ -149,8 +167,10 @@ public:
     void changeState(std::string newState)
     {
         if(!newState.empty()) {
-            m_previousState = m_currentState;
-            callFunction<entity_type>(m_currentState.c_str(), "Exit", m_owner);
+            if(!m_currentState.empty()) {
+                m_previousState = m_currentState;
+                callFunction<entity_type>(m_currentState.c_str(), "Exit", m_owner);
+            }
             m_currentState = newState;
             callFunction<entity_type>(m_currentState.c_str(), "Enter", m_owner);
         } else {
