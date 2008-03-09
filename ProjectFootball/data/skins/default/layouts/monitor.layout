@@ -27,21 +27,21 @@
                 <Property Name="Text" Value="Start" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.55,0},{0.04,0},{0.65,0},{0.1,0}}" />
-                <Event Name="Clicked" Function="cmd_startSimulation" />
+                <Event Name="Clicked" Function="cmd_Monitor_StartSimulation" />
             </Window>
             <Window Type="TaharezLook/Button" Name="Monitor/2DButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="2D View" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.04,0},{0.8,0},{0.1,0}}" />
-                <Event Name="Clicked" Function="cmd_switchTo2DView" />
+                <Event Name="Clicked" Function="cmd_Monitor_SwitchTo2DView" />
             </Window>
             <Window Type="TaharezLook/Button" Name="Monitor/3DButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="3D View" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.04,0},{0.95,0},{0.1,0}}" />
-                <Event Name="Clicked" Function="cmd_switchTo3DView" />
+                <Event Name="Clicked" Function="cmd_Monitor_SwitchTo3DView" />
             </Window>
             <Window Type="TaharezLook/TabControl" Name="Monitor/TabControl" >
                 <Property Name="Font" Value="DejaVuSans-10" />
