@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="TaharezLook/StaticImage" Name="Game" >
+        <Property Name="FrameEnabled" Value="False" />
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
+        <Window Type="TaharezLook/Button" Name="Game/MainMenuButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="Return to Main Menu" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.3,0},{0.94,0}}" />
+            <Event Name="Clicked" Function="cmd_back" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="Game/PlayButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="Play" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.94,0}}" />
+            <Event Name="Clicked" Function="cmd_Game_Play" />
+        </Window>
+    </Window>
+</GUILayout>
