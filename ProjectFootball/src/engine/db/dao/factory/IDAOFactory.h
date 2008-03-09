@@ -20,31 +20,26 @@
 *       Version: 1.11                                                          *
 ******************************************************************************/
 
-#include <iostream>
-#include <sstream>
+#ifndef IDAOFACTORY_H_
+#define IDAOFACTORY_H_
 
-#include "CPfUsersDAOSQLite.h"
+#include "../IPfGamesDAO.h"
+#include "../IPfUsersDAO.h"
 
-CPfUsersDAOSQLite::CPfUsersDAOSQLite(sqlite3 *database)
-  : CPfUsersDAOSQLiteEntity(database)
+class IDAOFactory
 {
-}
+public:
+    IDAOFactory(){}
+    virtual ~IDAOFactory(){}
 
-CPfUsersDAOSQLite::~CPfUsersDAOSQLite()
-{
-}
+    virtual bool createSchema() =0;
 
-CPfUsers* CPfUsersDAOSQLite::findByXUser(int XUser)
-{
-    std::ostringstream stream;
-    stream << XUser;
-    return findByXUser(stream.str());
-}
+    virtual bool beginTransaction() =0;
+    virtual bool commit() =0;
+    virtual bool rollback() =0;
 
-CPfUsers* CPfUsersDAOSQLite::findByXUser(const std::string &XUser)
-{
-    std::string sql("SELECT * FROM PF_USERS WHERE ");
-    sql = sql+"X_USER='"+XUser+"'";
-    return loadRegister(sql);
-}
+    virtual IPfGamesDAO* getIPfGamesDAO() =0;
+    virtual IPfUsersDAO* getIPfUsersDAO() =0;
 
+};
+#endif /*IDAOFACTORY_H_*/
