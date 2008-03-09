@@ -12,8 +12,14 @@ end
 ---------------------------
 -- CStateMainMenu functions
 ---------------------------
-function cmd_Menu_Quit()
-    PF.CStateManager_getInstance():popStack()
+function cmd_Menu_QuickPlay()
+    local state = PF.CStateMonitor_getInstance()
+    PF.CStateManager_getInstance():pushState(state)
+end
+
+function cmd_Menu_Load()
+    local state = PF.CStateLoadGame_getInstance()
+    PF.CStateManager_getInstance():pushState(state)
 end
 
 function cmd_Menu_Credits()
@@ -21,9 +27,8 @@ function cmd_Menu_Credits()
     PF.CStateManager_getInstance():pushState(state)
 end
 
-function cmd_Menu_Load()
-    local state = PF.CStateLoadGame_getInstance()
-    PF.CStateManager_getInstance():pushState(state)
+function cmd_Menu_Quit()
+    PF.CStateManager_getInstance():popStack()
 end
 
 
