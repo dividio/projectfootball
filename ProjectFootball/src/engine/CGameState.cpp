@@ -48,6 +48,11 @@ CGameState::~CGameState()
 
 void CGameState::save()
 {
+    CDate nowDate;
+    m_game->setDLastSaved(nowDate);
+    IPfGamesDAO *gamesDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    gamesDAO->updateReg(m_game);
+
     m_daoFactory->commit();
     m_daoFactory->beginTransaction();
 }
