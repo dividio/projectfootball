@@ -70,7 +70,9 @@ void CGameEngine::newGame(int xFkUser, const std::string &gameName)
     }
     filename += ".sql3";
 
+    CDate nowDate;
     CPfGames game;
+    game.setDLastSaved(nowDate);
     game.setSDriverName("SQLite");
     game.setSConnectionString(filename);
     game.setSGameName(gameName);
