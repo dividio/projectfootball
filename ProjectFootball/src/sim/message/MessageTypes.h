@@ -25,6 +25,7 @@
 enum MessageType
 {
     Msg_StartMatch,
+    Msg_KickOff,
     Msg_TouchBall,
     Msg_ReceiveBall,
     Msg_PassToMe,
