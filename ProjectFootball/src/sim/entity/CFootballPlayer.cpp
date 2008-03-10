@@ -21,23 +21,34 @@
 
 #include "CFootballPlayer.h"
 #include "../CSimulationManager.h"
+#include "CTeam.h"
 #include "CReferee.h"
 #include "../../state/CStateMonitor.h"
 
 
-CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y, int z, bool sideLeft)
+char* CFootballPlayer::m_pCtorName = "CFootballPlayer_p_ctor";
+
+CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
+{
+    return (CFootballPlayer*) player;
+}
+
+
+CFootballPlayer::CFootballPlayer(int number, CTeam *team, int x, int y, int z, bool sideLeft)
 :CBaseAgent()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    m_stateMachine = new CStateMachine<CFootballPlayer>(this);
+    m_stateMachine->setGlobalState("SPl_Global");
+    m_stateMachine->changeState("SPl_Wait");
     Ogre::String id;
     char charId[20];
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
     m_sideLeft = sideLeft;
-    m_teamName = teamName;
+    m_team = team;
     m_number = number;
     m_lastKickBallCycle = -1;
-    m_direction = btVector3(btScalar(1.0),btScalar(0.0),btScalar(0.0));
-
     if(m_sideLeft) {
         m_strategicX = x;
         m_strategicZ = z;
@@ -46,7 +57,7 @@ CFootballPlayer::CFootballPlayer(int number, std::string teamName, int x, int y,
         m_strategicZ = -z;
     }
     //m_direction.normalize();
-    sprintf(charId,"%s%d", m_teamName.c_str(), number);
+    sprintf(charId,"%s%d", team->getName()->c_str(), number);
     m_ident = charId;
     id = charId;
     m_entity = scnMgr->createEntity("Cylinder"+id, "Cylinder.mesh");
@@ -89,57 +100,28 @@ CFootballPlayer::~CFootballPlayer()
 }
 
 
+bool CFootballPlayer::handleMessage(const CMessage &msg)
+{
+    return m_stateMachine->handleMessage(msg);
+}
+
+
 void CFootballPlayer::update()
 {
     m_canDoActions = true;
     CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
     CReferee *referee = simulator->getReferee();
     GameMode mode = referee->getGameMode();
-    if(mode != PLAY_ON) {
-        if(mode != BEFORE_START && mode != HALF_TIME && mode != END) {
-            if(simulator->isNearestPlayerToBall(this)) {
-                if(getPosition().distance(simulator->getBallPosition()) < 2) {
-                    if(m_sideLeft) {
-                        btVector3 direction = (btVector3(55,0,0) - getPosition());
-                        simulator->kick(this, direction);
-                    } else {
-                        btVector3 direction = (btVector3(-55,0,0) - getPosition());
-                        simulator->kick(this, direction);
-                    }
-                } else {
-                    m_steeringBehavior->setTarget(simulator->getBallPosition());
-                    simulator->dash(this, m_steeringBehavior->calculate());
-                }
-            } else {
-                if((getPosition().x() > m_strategicX + 1 || getPosition().x() < m_strategicX - 1) &&
-                        (getPosition().z() > m_strategicZ + 1 || getPosition().z() < m_strategicZ - 1)) {
-                    m_steeringBehavior->setTarget(btVector3(m_strategicX, 0, m_strategicZ));
-                    simulator->dash(this, m_steeringBehavior->calculate());
-                }
-            }
-        } else {
-            simulator->move(this, m_strategicX, m_strategicZ);
-        }
-    } else {
-        if(getPosition().distance(simulator->getBallPosition()) > 2.2) {
-            if(simulator->isNearestTeamMatePlayerToBall(this)) {
-                m_steeringBehavior->setTarget(simulator->getBallPosition());
-                simulator->dash(this, m_steeringBehavior->calculate());
-            } else if((getPosition().x() > m_strategicX + 1 || getPosition().x() < m_strategicX - 1) &&
-                    (getPosition().z() > m_strategicZ + 1 || getPosition().z() < m_strategicZ - 1)) {
-                m_steeringBehavior->setTarget(btVector3(m_strategicX, 0, m_strategicZ));
-                simulator->dash(this, m_steeringBehavior->calculate());
-            }
-        } else {
-            if(m_sideLeft) {
-                btVector3 direction = (btVector3(55,0,0) - getPosition());
-                simulator->kick(this, direction);
-            } else {
-                btVector3 direction = (btVector3(-55,0,0) - getPosition());
-                simulator->kick(this, direction);
-            }
-        }
-    }
+    m_steeringBehavior->setTargetEntity(simulator->getBall());
+    m_heading = m_body->getLinearVelocity().normalized();
+    m_side = btVector3(-(m_heading.z()), m_heading.y(), m_heading.getX());
+    m_stateMachine->update();
+}
+
+
+CStateMachine<CFootballPlayer>* CFootballPlayer::getFSM()
+{
+    return m_stateMachine;
 }
 
 
@@ -161,27 +143,39 @@ bool CFootballPlayer::canKickBall(int cycle)
 }
 
 
-btVector3 CFootballPlayer::getDirection() const
-{
-    return m_direction;
-}
-
-
 std::string CFootballPlayer::getIdent() const
 {
     return m_ident;
 }
 
 
-std::string CFootballPlayer::getTeamName() const
+btVector3 CFootballPlayer::getStrategicPosition() const
 {
-    return m_teamName;
+    return btVector3(m_strategicX, 0, m_strategicZ);
+}
+
+CTeam* CFootballPlayer::getTeam()
+{
+    return m_team;
+}
+
+
+CSteeringBehaviors* CFootballPlayer::getSteering()
+{
+    return m_steeringBehavior;
 }
 
 
 bool CFootballPlayer::isTeamLeft() const
 {
     return m_sideLeft;
+}
+
+
+bool CFootballPlayer::isBallKickable() const
+{
+    CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
+    return (getPosition().distance(simulator->getBallPosition()) < 2.2);
 }
 
 
@@ -193,22 +187,3 @@ void CFootballPlayer::changeSide()
     m_strategicZ = -m_strategicZ;
     simulator->move(this, m_strategicX, m_strategicZ);
 }
-
-
-void CFootballPlayer::moveToPos(btVector3 pos, int angle)
-{
-
-}
-
-
-//void CFootballPlayer::turnBodyToObject(CObject o)
-//{
-//
-//}
-
-
-void CFootballPlayer::turnBodyToPoint(btVector3 pos, int cycles)
-{
-
-}
-

@@ -1402,34 +1402,57 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_CDAOAbstractFactory swig_types[0]
-#define SWIGTYPE_p_CDate swig_types[1]
-#define SWIGTYPE_p_CLog swig_types[2]
-#define SWIGTYPE_p_CPfGoals swig_types[3]
-#define SWIGTYPE_p_CPfMatches swig_types[4]
-#define SWIGTYPE_p_CPfTeams swig_types[5]
-#define SWIGTYPE_p_CSimulationManager swig_types[6]
-#define SWIGTYPE_p_CState swig_types[7]
-#define SWIGTYPE_p_CStateCredits swig_types[8]
-#define SWIGTYPE_p_CStateGame swig_types[9]
-#define SWIGTYPE_p_CStateLoadGame swig_types[10]
-#define SWIGTYPE_p_CStateMainMenu swig_types[11]
-#define SWIGTYPE_p_CStateManager swig_types[12]
-#define SWIGTYPE_p_CStateMonitor swig_types[13]
-#define SWIGTYPE_p_IDAOFactory swig_types[14]
-#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[15]
-#define SWIGTYPE_p_IPfGameStatesDAO swig_types[16]
-#define SWIGTYPE_p_IPfGoalsDAO swig_types[17]
-#define SWIGTYPE_p_IPfMatchesDAO swig_types[18]
-#define SWIGTYPE_p_IPfTeamsDAO swig_types[19]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[20]
-#define SWIGTYPE_p_Ogre__SceneManager swig_types[21]
-#define SWIGTYPE_p_std__string swig_types[22]
-#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[23]
-#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[24]
-#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[25]
-static swig_type_info *swig_types[27];
-static swig_module_info swig_module = {swig_types, 26, 0, 0, 0, 0};
+#define SWIGTYPE_btVector3 swig_types[0]
+#define SWIGTYPE_p_CBall swig_types[1]
+#define SWIGTYPE_p_CBaseAgent swig_types[2]
+#define SWIGTYPE_p_CBaseGameEntity swig_types[3]
+#define SWIGTYPE_p_CDAOAbstractFactory swig_types[4]
+#define SWIGTYPE_p_CDate swig_types[5]
+#define SWIGTYPE_p_CEntityManager swig_types[6]
+#define SWIGTYPE_p_CFootballPlayer swig_types[7]
+#define SWIGTYPE_p_CLog swig_types[8]
+#define SWIGTYPE_p_CMessage swig_types[9]
+#define SWIGTYPE_p_CMessageDispatcher swig_types[10]
+#define SWIGTYPE_p_CMovingEntity swig_types[11]
+#define SWIGTYPE_p_CPfGoals swig_types[12]
+#define SWIGTYPE_p_CPfMatches swig_types[13]
+#define SWIGTYPE_p_CPfTeams swig_types[14]
+#define SWIGTYPE_p_CReferee swig_types[15]
+#define SWIGTYPE_p_CSimulationManager swig_types[16]
+#define SWIGTYPE_p_CSimulationWorld swig_types[17]
+#define SWIGTYPE_p_CState swig_types[18]
+#define SWIGTYPE_p_CStateCredits swig_types[19]
+#define SWIGTYPE_p_CStateGame swig_types[20]
+#define SWIGTYPE_p_CStateLoadGame swig_types[21]
+#define SWIGTYPE_p_CStateMachineTCFootballPlayer_t swig_types[22]
+#define SWIGTYPE_p_CStateMachineTCReferee_t swig_types[23]
+#define SWIGTYPE_p_CStateMachineTCTeam_t swig_types[24]
+#define SWIGTYPE_p_CStateMainMenu swig_types[25]
+#define SWIGTYPE_p_CStateManager swig_types[26]
+#define SWIGTYPE_p_CStateMonitor swig_types[27]
+#define SWIGTYPE_p_CSteeringBehaviors swig_types[28]
+#define SWIGTYPE_p_CTeam swig_types[29]
+#define SWIGTYPE_p_IDAOFactory swig_types[30]
+#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[31]
+#define SWIGTYPE_p_IPfGameStatesDAO swig_types[32]
+#define SWIGTYPE_p_IPfGoalsDAO swig_types[33]
+#define SWIGTYPE_p_IPfMatchesDAO swig_types[34]
+#define SWIGTYPE_p_IPfTeamsDAO swig_types[35]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[36]
+#define SWIGTYPE_p_Ogre__SceneManager swig_types[37]
+#define SWIGTYPE_p_btCollisionShape swig_types[38]
+#define SWIGTYPE_p_btRigidBody swig_types[39]
+#define SWIGTYPE_p_btTransform swig_types[40]
+#define SWIGTYPE_p_btVector3 swig_types[41]
+#define SWIGTYPE_p_float swig_types[42]
+#define SWIGTYPE_p_std__string swig_types[43]
+#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[44]
+#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[45]
+#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[46]
+#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[47]
+#define SWIGTYPE_p_void swig_types[48]
+static swig_type_info *swig_types[50];
+static swig_module_info swig_module = {swig_types, 49, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1480,6 +1503,70 @@ static swig_module_info swig_module = {swig_types, 26, 0, 0, 0, 0};
 #include "../state/CStateGame.h"
 #include "../state/CStateLoadGame.h"
 
+
+#include "../sim/CSimulationManager.h"
+#include "../sim/CSteeringBehaviors.h"
+#include "../sim/message/CMessage.h"
+#include "../sim/message/MessageTypes.h"
+#include "../sim/message/CMessageDispatcher.h"
+#include "../sim/fsm/CStateMachine.h"
+#include "../sim/entity/CReferee.h"
+#include "../sim/entity/CTeam.h"
+#include "../sim/entity/CFootballPlayer.h"
+#include "../sim/entity/CBaseGameEntity.h"
+#include "../sim/entity/CBaseAgent.h"
+#include "../sim/entity/CBall.h"
+#include "../sim/entity/CMovingEntity.h"
+#include "../sim/entity/CEntityManager.h"
+
+
+    CMessage *CMessage_p_ctor(CMessage
+*pclass) {
+        return pclass;
+    }
+
+
+    CReferee *CReferee_p_ctor(CReferee
+*pclass) {
+        return pclass;
+    }
+
+
+    CTeam *CTeam_p_ctor(CTeam
+*pclass) {
+        return pclass;
+    }
+
+
+    CFootballPlayer *CFootballPlayer_p_ctor(CFootballPlayer
+*pclass) {
+        return pclass;
+    }
+
+SWIGINTERN CFootballPlayer *std_vector_Sl_CFootballPlayer_Sm__Sg____getitem__(std::vector<CFootballPlayer * > *self,unsigned int idx){
+				if (idx>=self->size())
+					throw std::out_of_range("in vector::__getitem__()");
+				return (*self)[idx];
+			}
+SWIGINTERN void std_vector_Sl_CFootballPlayer_Sm__Sg____setitem__(std::vector<CFootballPlayer * > *self,unsigned int idx,CFootballPlayer *val){
+				if (idx>=self->size())
+					throw std::out_of_range("in vector::__setitem__()");
+				(*self)[idx]=val;
+			}
+
+#include "../bullet/LinearMath/btVector3.h"
+#include "../bullet/LinearMath/btQuadWord.h"
+#include "../bullet/LinearMath/btScalar.h"
+
+
+typedef float btScalar;
+
+SWIGINTERN btVector3 btVector3_operator_Ss_(btVector3 *self,btVector3 const &v){
+        return btVector3(self->x() - v.x(), self->y() - v.y(), self->z() - v.z());
+    }
+SWIGINTERN btVector3 btVector3_operator_Sa_(btVector3 *self,btVector3 const &v){
+        return btVector3(self->x() + v.x(), self->y() + v.y(), self->z() + v.z());
+    }
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -6071,6 +6158,27 @@ fail:
 }
 
 
+static int _wrap_CStateMonitor_toogleSimulationView(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMonitor *arg1 = (CStateMonitor *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMonitor,0))){
+    SWIG_fail_ptr("CStateMonitor_toogleSimulationView",1,SWIGTYPE_p_CStateMonitor);
+  }
+  
+  (arg1)->toogleSimulationView();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CStateMonitor_switchTo2DView(lua_State* L) {
   int SWIG_arg = -1;
   CStateMonitor *arg1 = (CStateMonitor *) 0 ;
@@ -6190,6 +6298,7 @@ static swig_lua_method swig_CStateMonitor_methods[] = {
     {"forcedLeave", _wrap_CStateMonitor_forcedLeave}, 
     {"leave", _wrap_CStateMonitor_leave}, 
     {"update", _wrap_CStateMonitor_update}, 
+    {"toogleSimulationView", _wrap_CStateMonitor_toogleSimulationView}, 
     {"switchTo2DView", _wrap_CStateMonitor_switchTo2DView}, 
     {"switchTo3DView", _wrap_CStateMonitor_switchTo3DView}, 
     {"getSimulationManager", _wrap_CStateMonitor_getSimulationManager}, 
@@ -6664,6 +6773,5755 @@ static swig_lua_attribute swig_CStateLoadGame_attributes[] = {
 static swig_lua_class *swig_CStateLoadGame_bases[] = {&_wrap_class_CState,0};
 swig_lua_class _wrap_class_CStateLoadGame = { "CStateLoadGame", &SWIGTYPE_p_CStateLoadGame,0, swig_delete_CStateLoadGame, swig_CStateLoadGame_methods, swig_CStateLoadGame_attributes, swig_CStateLoadGame_bases };
 
+static int _wrap_CMessage_p_ctor(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  CMessage *result = 0 ;
+  
+  if(!lua_islightuserdata(L,1)) SWIG_fail_arg(1);
+  
+  arg1 = (CMessage *)lua_touserdata(L, 1);
+  
+  result = (CMessage *)CMessage_p_ctor(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMessage,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SMALLEST_DELAY_get(lua_State* L) {
+  int SWIG_arg = -1;
+  double result;
+  
+  result = (double)(double)SMALLEST_DELAY;
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_m_pCtorName_set(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  arg1 = (char *)lua_tostring(L, 1);
+  {
+    if (CMessage::m_pCtorName) delete [] CMessage::m_pCtorName;
+    if (arg1) {
+      CMessage::m_pCtorName = (char *) (new char[strlen((const char *)arg1)+1]);
+      strcpy((char *)CMessage::m_pCtorName, (const char *)arg1);
+    } else {
+      CMessage::m_pCtorName = 0;
+    }
+  }
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_m_pCtorName_get(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  result = (char *)CMessage::m_pCtorName;
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_Sender_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  int arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_Sender_set",1,SWIGTYPE_p_CMessage);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->Sender = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_Sender_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_Sender_get",1,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (int) ((arg1)->Sender);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_Receiver_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  int arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_Receiver_set",1,SWIGTYPE_p_CMessage);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->Receiver = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_Receiver_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_Receiver_get",1,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (int) ((arg1)->Receiver);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_Msg_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  int arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_Msg_set",1,SWIGTYPE_p_CMessage);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->Msg = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_Msg_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_Msg_get",1,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (int) ((arg1)->Msg);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_DispatchTime_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  double arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_DispatchTime_set",1,SWIGTYPE_p_CMessage);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  if (arg1) (arg1)->DispatchTime = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_DispatchTime_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  double result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_DispatchTime_get",1,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (double) ((arg1)->DispatchTime);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_ExtraInfo_set(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  void *arg2 = (void *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_ExtraInfo_set",1,SWIGTYPE_p_CMessage);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"CMessage_ExtraInfo_set");
+  if (arg1) (arg1)->ExtraInfo = arg2;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage_ExtraInfo_get(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  void *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage_ExtraInfo_get",1,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (void *) ((arg1)->ExtraInfo);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_void,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CMessage__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *result = 0 ;
+  
+  result = (CMessage *)new CMessage();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMessage,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CMessage__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  double arg1 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  void *arg5 = (void *) 0 ;
+  CMessage *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!SWIG_isptrtype(L,5)) SWIG_fail_arg(5);
+  arg1 = (double)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5=(void *)SWIG_MustGetPtr(L,5,0,0,5,"new_CMessage");
+  result = (CMessage *)new CMessage(arg1,arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMessage,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CMessage__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  double arg1 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  CMessage *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1 = (double)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  result = (CMessage *)new CMessage(arg1,arg2,arg3,arg4);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMessage,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CMessage(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_CMessage__SWIG_0(L);
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_CMessage__SWIG_2(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              void *ptr;
+              if (SWIG_isptrtype(L,argv[4])==0 || SWIG_ConvertPtr(L,argv[4], (void **) &ptr, 0, 0)) {
+                _v = 0;
+              } else {
+                _v = 1;
+              }
+            }
+            if (_v) {
+              return _wrap_new_CMessage__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_CMessage'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_delete_CMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("delete_CMessage",1,SWIGTYPE_p_CMessage);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage___call(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage___call",1,SWIGTYPE_p_CMessage);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage___call",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)((CMessage const *)arg1)->operator ()((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage___eq(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage___eq",1,SWIGTYPE_p_CMessage);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage___eq",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)((CMessage const *)arg1)->operator ==((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessage___lt(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessage *arg1 = (CMessage *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage___lt",1,SWIGTYPE_p_CMessage);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CMessage___lt",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)((CMessage const *)arg1)->operator <((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CMessage(void *obj) {
+CMessage *arg1 = (CMessage *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CMessage_methods[] = {
+    {"__call", _wrap_CMessage___call}, 
+    {"__eq", _wrap_CMessage___eq}, 
+    {"__lt", _wrap_CMessage___lt}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CMessage_attributes[] = {
+    { "Sender",_wrap_CMessage_Sender_get, _wrap_CMessage_Sender_set},
+    { "Receiver",_wrap_CMessage_Receiver_get, _wrap_CMessage_Receiver_set},
+    { "Msg",_wrap_CMessage_Msg_get, _wrap_CMessage_Msg_set},
+    { "DispatchTime",_wrap_CMessage_DispatchTime_get, _wrap_CMessage_DispatchTime_set},
+    { "ExtraInfo",_wrap_CMessage_ExtraInfo_get, _wrap_CMessage_ExtraInfo_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_CMessage_bases[] = {0};
+swig_lua_class _wrap_class_CMessage = { "CMessage", &SWIGTYPE_p_CMessage,_wrap_new_CMessage, swig_delete_CMessage, swig_CMessage_methods, swig_CMessage_attributes, swig_CMessage_bases };
+
+static int _wrap_CMessageDispatcher_getInstance(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessageDispatcher *result = 0 ;
+  
+  result = (CMessageDispatcher *)CMessageDispatcher::getInstance();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMessageDispatcher,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CMessageDispatcher(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessageDispatcher *arg1 = (CMessageDispatcher *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessageDispatcher,0))){
+    SWIG_fail_ptr("delete_CMessageDispatcher",1,SWIGTYPE_p_CMessageDispatcher);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessageDispatcher_dispatchMsg(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessageDispatcher *arg1 = (CMessageDispatcher *) 0 ;
+  double arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  void *arg6 = (void *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  if(!SWIG_isptrtype(L,6)) SWIG_fail_arg(6);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessageDispatcher,0))){
+    SWIG_fail_ptr("CMessageDispatcher_dispatchMsg",1,SWIGTYPE_p_CMessageDispatcher);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  arg6=(void *)SWIG_MustGetPtr(L,6,0,0,6,"CMessageDispatcher_dispatchMsg");
+  (arg1)->dispatchMsg(arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessageDispatcher_dispatchDelayedMessages(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessageDispatcher *arg1 = (CMessageDispatcher *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessageDispatcher,0))){
+    SWIG_fail_ptr("CMessageDispatcher_dispatchDelayedMessages",1,SWIGTYPE_p_CMessageDispatcher);
+  }
+  
+  (arg1)->dispatchDelayedMessages();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMessageDispatcher_reset(lua_State* L) {
+  int SWIG_arg = -1;
+  CMessageDispatcher *arg1 = (CMessageDispatcher *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMessageDispatcher,0))){
+    SWIG_fail_ptr("CMessageDispatcher_reset",1,SWIGTYPE_p_CMessageDispatcher);
+  }
+  
+  (arg1)->reset();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CMessageDispatcher(void *obj) {
+CMessageDispatcher *arg1 = (CMessageDispatcher *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CMessageDispatcher_methods[] = {
+    {"dispatchMsg", _wrap_CMessageDispatcher_dispatchMsg}, 
+    {"dispatchDelayedMessages", _wrap_CMessageDispatcher_dispatchDelayedMessages}, 
+    {"reset", _wrap_CMessageDispatcher_reset}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CMessageDispatcher_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CMessageDispatcher_bases[] = {0};
+swig_lua_class _wrap_class_CMessageDispatcher = { "CMessageDispatcher", &SWIGTYPE_p_CMessageDispatcher,0, swig_delete_CMessageDispatcher, swig_CMessageDispatcher_methods, swig_CMessageDispatcher_attributes, swig_CMessageDispatcher_bases };
+
+static int _wrap_new_CSimulationManager(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *result = 0 ;
+  
+  result = (CSimulationManager *)new CSimulationManager();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationManager,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CSimulationManager(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("delete_CSimulationManager",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_update",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_startMatch(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_startMatch",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  (arg1)->startMatch();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getSimulationWorld(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CSimulationWorld *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getSimulationWorld",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (CSimulationWorld *)(arg1)->getSimulationWorld();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationWorld,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getReferee(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CReferee *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getReferee",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (CReferee *)(arg1)->getReferee();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CReferee,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CBall *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getBall",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (CBall *)(arg1)->getBall();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CBall,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getHomeTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getHomeTeam",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (CTeam *)(arg1)->getHomeTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getAwayTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getAwayTeam",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (CTeam *)(arg1)->getAwayTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_changePlayersSide(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_changePlayersSide",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  (arg1)->changePlayersSide();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getHomeTeamName(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getHomeTeamName",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (std::string *)(arg1)->getHomeTeamName();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getAwayTeamName(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getAwayTeamName",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (std::string *)(arg1)->getAwayTeamName();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_getBallPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_getBallPosition",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = ((CSimulationManager const *)arg1)->getBallPosition();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_dash(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  btVector3 arg3 ;
+  btVector3 *argp3 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg(3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_dash",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CSimulationManager_dash",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("CSimulationManager_dash",3,SWIGTYPE_btVector3);
+  }
+  arg3 = *argp3;
+  
+  (arg1)->dash(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_move(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_move",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CSimulationManager_move",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  (arg1)->move(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_kick(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  btVector3 arg3 ;
+  btVector3 *argp3 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg(3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_kick",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CSimulationManager_kick",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("CSimulationManager_kick",3,SWIGTYPE_btVector3);
+  }
+  arg3 = *argp3;
+  
+  (arg1)->kick(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_turn(lua_State* L) {
+  int SWIG_arg = -1;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  int arg3 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_turn",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CSimulationManager_turn",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  arg3 = (int)lua_tonumber(L, 3);
+  (arg1)->turn(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CSimulationManager(void *obj) {
+CSimulationManager *arg1 = (CSimulationManager *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CSimulationManager_methods[] = {
+    {"update", _wrap_CSimulationManager_update}, 
+    {"startMatch", _wrap_CSimulationManager_startMatch}, 
+    {"getSimulationWorld", _wrap_CSimulationManager_getSimulationWorld}, 
+    {"getReferee", _wrap_CSimulationManager_getReferee}, 
+    {"getBall", _wrap_CSimulationManager_getBall}, 
+    {"getHomeTeam", _wrap_CSimulationManager_getHomeTeam}, 
+    {"getAwayTeam", _wrap_CSimulationManager_getAwayTeam}, 
+    {"changePlayersSide", _wrap_CSimulationManager_changePlayersSide}, 
+    {"getHomeTeamName", _wrap_CSimulationManager_getHomeTeamName}, 
+    {"getAwayTeamName", _wrap_CSimulationManager_getAwayTeamName}, 
+    {"getBallPosition", _wrap_CSimulationManager_getBallPosition}, 
+    {"dash", _wrap_CSimulationManager_dash}, 
+    {"move", _wrap_CSimulationManager_move}, 
+    {"kick", _wrap_CSimulationManager_kick}, 
+    {"turn", _wrap_CSimulationManager_turn}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CSimulationManager_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CSimulationManager_bases[] = {0};
+swig_lua_class _wrap_class_CSimulationManager = { "CSimulationManager", &SWIGTYPE_p_CSimulationManager,_wrap_new_CSimulationManager, swig_delete_CSimulationManager, swig_CSimulationManager_methods, swig_CSimulationManager_attributes, swig_CSimulationManager_bases };
+
+static int _wrap_new_CSteeringBehaviors(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  CSteeringBehaviors *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("new_CSteeringBehaviors",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  result = (CSteeringBehaviors *)new CSteeringBehaviors(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSteeringBehaviors,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CSteeringBehaviors(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("delete_CSteeringBehaviors",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_setTargetPoint(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  btVector3 arg2 ;
+  btVector3 *argp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_setTargetPoint",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_setTargetPoint",2,SWIGTYPE_btVector3);
+  }
+  arg2 = *argp2;
+  
+  (arg1)->setTargetPoint(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_setTargetEntity(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  CMovingEntity *arg2 = (CMovingEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_setTargetEntity",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_setTargetEntity",2,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  (arg1)->setTargetEntity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_getTarget(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_getTarget",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  result = ((CSteeringBehaviors const *)arg1)->getTarget();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_force(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_force",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  result = ((CSteeringBehaviors const *)arg1)->force();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_calculate(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_calculate",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  result = (arg1)->calculate();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_sumForces(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_sumForces",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  result = (arg1)->sumForces();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_forwardComponent(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  double result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_forwardComponent",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  result = (double)((CSteeringBehaviors const *)arg1)->forwardComponent();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_sideComponent(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  double result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_sideComponent",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  result = (double)((CSteeringBehaviors const *)arg1)->sideComponent();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_seekOn(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_seekOn",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->seekOn();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_arriveOn(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_arriveOn",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->arriveOn();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_pursuitOn(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_pursuitOn",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->pursuitOn();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_interposeOn(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_interposeOn",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->interposeOn();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_seekOff(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_seekOff",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->seekOff();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_arriveOff(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_arriveOff",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->arriveOff();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_pursuitOff(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_pursuitOff",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->pursuitOff();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_interposeOff(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_interposeOff",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->interposeOff();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CSteeringBehaviors(void *obj) {
+CSteeringBehaviors *arg1 = (CSteeringBehaviors *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CSteeringBehaviors_methods[] = {
+    {"setTargetPoint", _wrap_CSteeringBehaviors_setTargetPoint}, 
+    {"setTargetEntity", _wrap_CSteeringBehaviors_setTargetEntity}, 
+    {"getTarget", _wrap_CSteeringBehaviors_getTarget}, 
+    {"force", _wrap_CSteeringBehaviors_force}, 
+    {"calculate", _wrap_CSteeringBehaviors_calculate}, 
+    {"sumForces", _wrap_CSteeringBehaviors_sumForces}, 
+    {"forwardComponent", _wrap_CSteeringBehaviors_forwardComponent}, 
+    {"sideComponent", _wrap_CSteeringBehaviors_sideComponent}, 
+    {"seekOn", _wrap_CSteeringBehaviors_seekOn}, 
+    {"arriveOn", _wrap_CSteeringBehaviors_arriveOn}, 
+    {"pursuitOn", _wrap_CSteeringBehaviors_pursuitOn}, 
+    {"interposeOn", _wrap_CSteeringBehaviors_interposeOn}, 
+    {"seekOff", _wrap_CSteeringBehaviors_seekOff}, 
+    {"arriveOff", _wrap_CSteeringBehaviors_arriveOff}, 
+    {"pursuitOff", _wrap_CSteeringBehaviors_pursuitOff}, 
+    {"interposeOff", _wrap_CSteeringBehaviors_interposeOff}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CSteeringBehaviors_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CSteeringBehaviors_bases[] = {0};
+swig_lua_class _wrap_class_CSteeringBehaviors = { "CSteeringBehaviors", &SWIGTYPE_p_CSteeringBehaviors,_wrap_new_CSteeringBehaviors, swig_delete_CSteeringBehaviors, swig_CSteeringBehaviors_methods, swig_CSteeringBehaviors_attributes, swig_CSteeringBehaviors_bases };
+
+static int _wrap_delete_CBaseGameEntity(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("delete_CBaseGameEntity",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_update",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_getID(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_getID",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  result = (int)((CBaseGameEntity const *)arg1)->getID();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_resetNextID(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  CBaseGameEntity::resetNextID();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_handleMessage",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CBaseGameEntity_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_getWorldTransform(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  btTransform *arg2 = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_getWorldTransform",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btTransform,0))){
+    SWIG_fail_ptr("CBaseGameEntity_getWorldTransform",2,SWIGTYPE_p_btTransform);
+  }
+  
+  ((CBaseGameEntity const *)arg1)->getWorldTransform(*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_setWorldTransform(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  btTransform *arg2 = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_setWorldTransform",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btTransform,0))){
+    SWIG_fail_ptr("CBaseGameEntity_setWorldTransform",2,SWIGTYPE_p_btTransform);
+  }
+  
+  (arg1)->setWorldTransform((btTransform const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_getShape(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  btCollisionShape *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_getShape",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  result = (btCollisionShape *)(arg1)->getShape();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_btCollisionShape,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_getBody(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  btRigidBody *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_getBody",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  result = (btRigidBody *)(arg1)->getBody();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_btRigidBody,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_getPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_getPosition",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  result = ((CBaseGameEntity const *)arg1)->getPosition();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBaseGameEntity_setPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CBaseGameEntity_setPosition",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  (arg1)->setPosition(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CBaseGameEntity(void *obj) {
+CBaseGameEntity *arg1 = (CBaseGameEntity *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CBaseGameEntity_methods[] = {
+    {"update", _wrap_CBaseGameEntity_update}, 
+    {"getID", _wrap_CBaseGameEntity_getID}, 
+    {"handleMessage", _wrap_CBaseGameEntity_handleMessage}, 
+    {"getWorldTransform", _wrap_CBaseGameEntity_getWorldTransform}, 
+    {"setWorldTransform", _wrap_CBaseGameEntity_setWorldTransform}, 
+    {"getShape", _wrap_CBaseGameEntity_getShape}, 
+    {"getBody", _wrap_CBaseGameEntity_getBody}, 
+    {"getPosition", _wrap_CBaseGameEntity_getPosition}, 
+    {"setPosition", _wrap_CBaseGameEntity_setPosition}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CBaseGameEntity_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CBaseGameEntity_bases[] = {0};
+swig_lua_class _wrap_class_CBaseGameEntity = { "CBaseGameEntity", &SWIGTYPE_p_CBaseGameEntity,0, swig_delete_CBaseGameEntity, swig_CBaseGameEntity_methods, swig_CBaseGameEntity_attributes, swig_CBaseGameEntity_bases };
+
+static int _wrap_new_CMovingEntity(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *result = 0 ;
+  
+  result = (CMovingEntity *)new CMovingEntity();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMovingEntity,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CMovingEntity(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("delete_CMovingEntity",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMovingEntity_setPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_setPosition",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  (arg1)->setPosition(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMovingEntity_futurePosition(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  double arg2 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_futurePosition",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  result = ((CMovingEntity const *)arg1)->futurePosition(arg2);
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMovingEntity_getMaxVelocity(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  double result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_getMaxVelocity",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  result = (double)((CMovingEntity const *)arg1)->getMaxVelocity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMovingEntity_getHeading(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_getHeading",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  result = ((CMovingEntity const *)arg1)->getHeading();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMovingEntity_getSide(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_getSide",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  result = ((CMovingEntity const *)arg1)->getSide();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CMovingEntity(void *obj) {
+CMovingEntity *arg1 = (CMovingEntity *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CMovingEntity_methods[] = {
+    {"setPosition", _wrap_CMovingEntity_setPosition}, 
+    {"futurePosition", _wrap_CMovingEntity_futurePosition}, 
+    {"getMaxVelocity", _wrap_CMovingEntity_getMaxVelocity}, 
+    {"getHeading", _wrap_CMovingEntity_getHeading}, 
+    {"getSide", _wrap_CMovingEntity_getSide}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CMovingEntity_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CMovingEntity_bases[] = {&_wrap_class_CBaseGameEntity,0};
+swig_lua_class _wrap_class_CMovingEntity = { "CMovingEntity", &SWIGTYPE_p_CMovingEntity,_wrap_new_CMovingEntity, swig_delete_CMovingEntity, swig_CMovingEntity_methods, swig_CMovingEntity_attributes, swig_CMovingEntity_bases };
+
+static int _wrap_new_CBaseAgent(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseAgent *result = 0 ;
+  
+  result = (CBaseAgent *)new CBaseAgent();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CBaseAgent,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CBaseAgent(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseAgent *arg1 = (CBaseAgent *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseAgent,0))){
+    SWIG_fail_ptr("delete_CBaseAgent",1,SWIGTYPE_p_CBaseAgent);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CBaseAgent(void *obj) {
+CBaseAgent *arg1 = (CBaseAgent *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CBaseAgent_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_CBaseAgent_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CBaseAgent_bases[] = {&_wrap_class_CMovingEntity,0};
+swig_lua_class _wrap_class_CBaseAgent = { "CBaseAgent", &SWIGTYPE_p_CBaseAgent,_wrap_new_CBaseAgent, swig_delete_CBaseAgent, swig_CBaseAgent_methods, swig_CBaseAgent_attributes, swig_CBaseAgent_bases };
+
+static int _wrap_CEntityManager_getInstance(lua_State* L) {
+  int SWIG_arg = -1;
+  CEntityManager *result = 0 ;
+  
+  result = (CEntityManager *)CEntityManager::getInstance();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CEntityManager,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CEntityManager(lua_State* L) {
+  int SWIG_arg = -1;
+  CEntityManager *arg1 = (CEntityManager *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEntityManager,0))){
+    SWIG_fail_ptr("delete_CEntityManager",1,SWIGTYPE_p_CEntityManager);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CEntityManager_addEntity(lua_State* L) {
+  int SWIG_arg = -1;
+  CEntityManager *arg1 = (CEntityManager *) 0 ;
+  CBaseGameEntity *arg2 = (CBaseGameEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEntityManager,0))){
+    SWIG_fail_ptr("CEntityManager_addEntity",1,SWIGTYPE_p_CEntityManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CEntityManager_addEntity",2,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  (arg1)->addEntity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CEntityManager_removeEntity(lua_State* L) {
+  int SWIG_arg = -1;
+  CEntityManager *arg1 = (CEntityManager *) 0 ;
+  CBaseGameEntity *arg2 = (CBaseGameEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEntityManager,0))){
+    SWIG_fail_ptr("CEntityManager_removeEntity",1,SWIGTYPE_p_CEntityManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CEntityManager_removeEntity",2,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  (arg1)->removeEntity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CEntityManager_getEntityFromID(lua_State* L) {
+  int SWIG_arg = -1;
+  CEntityManager *arg1 = (CEntityManager *) 0 ;
+  int arg2 ;
+  CBaseGameEntity *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEntityManager,0))){
+    SWIG_fail_ptr("CEntityManager_getEntityFromID",1,SWIGTYPE_p_CEntityManager);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (CBaseGameEntity *)((CEntityManager const *)arg1)->getEntityFromID(arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CBaseGameEntity,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CEntityManager_reset(lua_State* L) {
+  int SWIG_arg = -1;
+  CEntityManager *arg1 = (CEntityManager *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CEntityManager,0))){
+    SWIG_fail_ptr("CEntityManager_reset",1,SWIGTYPE_p_CEntityManager);
+  }
+  
+  (arg1)->reset();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CEntityManager(void *obj) {
+CEntityManager *arg1 = (CEntityManager *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CEntityManager_methods[] = {
+    {"addEntity", _wrap_CEntityManager_addEntity}, 
+    {"removeEntity", _wrap_CEntityManager_removeEntity}, 
+    {"getEntityFromID", _wrap_CEntityManager_getEntityFromID}, 
+    {"reset", _wrap_CEntityManager_reset}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CEntityManager_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CEntityManager_bases[] = {0};
+swig_lua_class _wrap_class_CEntityManager = { "CEntityManager", &SWIGTYPE_p_CEntityManager,0, swig_delete_CEntityManager, swig_CEntityManager_methods, swig_CEntityManager_attributes, swig_CEntityManager_bases };
+
+static int _wrap_new_CBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *result = 0 ;
+  
+  result = (CBall *)new CBall();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CBall,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("delete_CBall",1,SWIGTYPE_p_CBall);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBall_isInLeftGoal(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("CBall_isInLeftGoal",1,SWIGTYPE_p_CBall);
+  }
+  
+  result = (bool)((CBall const *)arg1)->isInLeftGoal();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBall_isInRightGoal(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("CBall_isInRightGoal",1,SWIGTYPE_p_CBall);
+  }
+  
+  result = (bool)((CBall const *)arg1)->isInRightGoal();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBall_crossLeftLine(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("CBall_crossLeftLine",1,SWIGTYPE_p_CBall);
+  }
+  
+  result = (bool)((CBall const *)arg1)->crossLeftLine();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBall_crossRightLine(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("CBall_crossRightLine",1,SWIGTYPE_p_CBall);
+  }
+  
+  result = (bool)((CBall const *)arg1)->crossRightLine();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBall_crossTopLine(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("CBall_crossTopLine",1,SWIGTYPE_p_CBall);
+  }
+  
+  result = (bool)((CBall const *)arg1)->crossTopLine();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CBall_crossBottomLine(lua_State* L) {
+  int SWIG_arg = -1;
+  CBall *arg1 = (CBall *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBall,0))){
+    SWIG_fail_ptr("CBall_crossBottomLine",1,SWIGTYPE_p_CBall);
+  }
+  
+  result = (bool)((CBall const *)arg1)->crossBottomLine();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CBall(void *obj) {
+CBall *arg1 = (CBall *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CBall_methods[] = {
+    {"isInLeftGoal", _wrap_CBall_isInLeftGoal}, 
+    {"isInRightGoal", _wrap_CBall_isInRightGoal}, 
+    {"crossLeftLine", _wrap_CBall_crossLeftLine}, 
+    {"crossRightLine", _wrap_CBall_crossRightLine}, 
+    {"crossTopLine", _wrap_CBall_crossTopLine}, 
+    {"crossBottomLine", _wrap_CBall_crossBottomLine}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CBall_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CBall_bases[] = {&_wrap_class_CMovingEntity,0};
+swig_lua_class _wrap_class_CBall = { "CBall", &SWIGTYPE_p_CBall,_wrap_new_CBall, swig_delete_CBall, swig_CBall_methods, swig_CBall_attributes, swig_CBall_bases };
+
+static int _wrap_CReferee_p_ctor(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CReferee *result = 0 ;
+  
+  if(!lua_islightuserdata(L,1)) SWIG_fail_arg(1);
+  
+  arg1 = (CReferee *)lua_touserdata(L, 1);
+  
+  result = (CReferee *)CReferee_p_ctor(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CReferee,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_m_pCtorName_set(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  arg1 = (char *)lua_tostring(L, 1);
+  {
+    if (CReferee::m_pCtorName) delete [] CReferee::m_pCtorName;
+    if (arg1) {
+      CReferee::m_pCtorName = (char *) (new char[strlen((const char *)arg1)+1]);
+      strcpy((char *)CReferee::m_pCtorName, (const char *)arg1);
+    } else {
+      CReferee::m_pCtorName = 0;
+    }
+  }
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_m_pCtorName_get(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  result = (char *)CReferee::m_pCtorName;
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CReferee(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *result = 0 ;
+  
+  result = (CReferee *)new CReferee();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CReferee,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CReferee(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("delete_CReferee",1,SWIGTYPE_p_CReferee);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_handleMessage",1,SWIGTYPE_p_CReferee);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CReferee_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_update",1,SWIGTYPE_p_CReferee);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getFSM(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CStateMachine<CReferee > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getFSM",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CStateMachine<CReferee > *)(arg1)->getFSM();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMachineTCReferee_t,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_setMatchDuration(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  int arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_setMatchDuration",1,SWIGTYPE_p_CReferee);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setMatchDuration(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getMatchDuration(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getMatchDuration",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (int)(arg1)->getMatchDuration();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_setHomeTeamInSideLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_setHomeTeamInSideLeft",1,SWIGTYPE_p_CReferee);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setHomeTeamInSideLeft(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_isHomeTeamInSideLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_isHomeTeamInSideLeft",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (bool)(arg1)->isHomeTeamInSideLeft();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_setKickTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CTeam *arg2 = (CTeam *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_setKickTeam",1,SWIGTYPE_p_CReferee);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CReferee_setKickTeam",2,SWIGTYPE_p_CTeam);
+  }
+  
+  (arg1)->setKickTeam(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getKickTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getKickTeam",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CTeam *)(arg1)->getKickTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_setLastPlayerTouch(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_setLastPlayerTouch",1,SWIGTYPE_p_CReferee);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CReferee_setLastPlayerTouch",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->setLastPlayerTouch(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getLastPlayerTouch(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getLastPlayerTouch",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CFootballPlayer *)(arg1)->getLastPlayerTouch();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_addHomeGoal(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_addHomeGoal",1,SWIGTYPE_p_CReferee);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CReferee_addHomeGoal",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->addHomeGoal(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_addAwayGoal(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_addAwayGoal",1,SWIGTYPE_p_CReferee);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CReferee_addAwayGoal",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->addAwayGoal(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_isMoveLegal(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_isMoveLegal",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (bool)(arg1)->isMoveLegal();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getGameMode(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  GameMode result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getGameMode",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (GameMode)(arg1)->getGameMode();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getGameModeString(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getGameModeString",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (arg1)->getGameModeString();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getHomeScore(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getHomeScore",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (int)(arg1)->getHomeScore();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getAwayScore(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getAwayScore",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (int)(arg1)->getAwayScore();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getCycle(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getCycle",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (int)((CReferee const *)arg1)->getCycle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_incCycle(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_incCycle",1,SWIGTYPE_p_CReferee);
+  }
+  
+  (arg1)->incCycle();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_setGameMode(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  GameMode arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_setGameMode",1,SWIGTYPE_p_CReferee);
+  }
+  
+  arg2 = (GameMode)(int)lua_tonumber(L, 2);
+  (arg1)->setGameMode(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CReferee(void *obj) {
+CReferee *arg1 = (CReferee *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CReferee_methods[] = {
+    {"handleMessage", _wrap_CReferee_handleMessage}, 
+    {"update", _wrap_CReferee_update}, 
+    {"getFSM", _wrap_CReferee_getFSM}, 
+    {"setMatchDuration", _wrap_CReferee_setMatchDuration}, 
+    {"getMatchDuration", _wrap_CReferee_getMatchDuration}, 
+    {"setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft}, 
+    {"isHomeTeamInSideLeft", _wrap_CReferee_isHomeTeamInSideLeft}, 
+    {"setKickTeam", _wrap_CReferee_setKickTeam}, 
+    {"getKickTeam", _wrap_CReferee_getKickTeam}, 
+    {"setLastPlayerTouch", _wrap_CReferee_setLastPlayerTouch}, 
+    {"getLastPlayerTouch", _wrap_CReferee_getLastPlayerTouch}, 
+    {"addHomeGoal", _wrap_CReferee_addHomeGoal}, 
+    {"addAwayGoal", _wrap_CReferee_addAwayGoal}, 
+    {"isMoveLegal", _wrap_CReferee_isMoveLegal}, 
+    {"getGameMode", _wrap_CReferee_getGameMode}, 
+    {"getGameModeString", _wrap_CReferee_getGameModeString}, 
+    {"getHomeScore", _wrap_CReferee_getHomeScore}, 
+    {"getAwayScore", _wrap_CReferee_getAwayScore}, 
+    {"getCycle", _wrap_CReferee_getCycle}, 
+    {"incCycle", _wrap_CReferee_incCycle}, 
+    {"setGameMode", _wrap_CReferee_setGameMode}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CReferee_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CReferee_bases[] = {&_wrap_class_CBaseAgent,0};
+swig_lua_class _wrap_class_CReferee = { "CReferee", &SWIGTYPE_p_CReferee,_wrap_new_CReferee, swig_delete_CReferee, swig_CReferee_methods, swig_CReferee_attributes, swig_CReferee_bases };
+
+static int _wrap_CTeam_p_ctor(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!lua_islightuserdata(L,1)) SWIG_fail_arg(1);
+  
+  arg1 = (CTeam *)lua_touserdata(L, 1);
+  
+  result = (CTeam *)CTeam_p_ctor(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_m_pCtorName_set(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  arg1 = (char *)lua_tostring(L, 1);
+  {
+    if (CTeam::m_pCtorName) delete [] CTeam::m_pCtorName;
+    if (arg1) {
+      CTeam::m_pCtorName = (char *) (new char[strlen((const char *)arg1)+1]);
+      strcpy((char *)CTeam::m_pCtorName, (const char *)arg1);
+    } else {
+      CTeam::m_pCtorName = 0;
+    }
+  }
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_m_pCtorName_get(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  result = (char *)CTeam::m_pCtorName;
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CTeam_getTeam",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  result = (CTeam *)CTeam::getTeam(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  std::string arg1 ;
+  bool arg2 ;
+  CTeam *result = 0 ;
+  
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
+  arg2 = (bool)lua_toboolean(L, 2);
+  result = (CTeam *)new CTeam(arg1,arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("delete_CTeam",1,SWIGTYPE_p_CTeam);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_setOpponentTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CTeam *arg2 = (CTeam *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_setOpponentTeam",1,SWIGTYPE_p_CTeam);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_setOpponentTeam",2,SWIGTYPE_p_CTeam);
+  }
+  
+  (arg1)->setOpponentTeam(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getOpponentTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getOpponentTeam",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (CTeam *)(arg1)->getOpponentTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  std::string *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getName",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (std::string *)(arg1)->getName();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__string,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getPlayers(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  std::vector<CFootballPlayer * > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getPlayers",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (std::vector<CFootballPlayer * > *)(arg1)->getPlayers();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getNearestPlayerToBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getNearestPlayerToBall",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (CFootballPlayer *)((CTeam const *)arg1)->getNearestPlayerToBall();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_isKickForUs(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_isKickForUs",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (bool)((CTeam const *)arg1)->isKickForUs();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_isNearestPlayerToBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_isNearestPlayerToBall",1,SWIGTYPE_p_CTeam);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CTeam_isNearestPlayerToBall",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (bool)((CTeam const *)arg1)->isNearestPlayerToBall(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_isNearestTeamMatePlayerToBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_isNearestTeamMatePlayerToBall",1,SWIGTYPE_p_CTeam);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CTeam_isNearestTeamMatePlayerToBall",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (bool)((CTeam const *)arg1)->isNearestTeamMatePlayerToBall(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_handleMessage",1,SWIGTYPE_p_CTeam);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CTeam_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_update",1,SWIGTYPE_p_CTeam);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getFSM(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CStateMachine<CTeam > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getFSM",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (CStateMachine<CTeam > *)(arg1)->getFSM();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMachineTCTeam_t,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_changeSide(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_changeSide",1,SWIGTYPE_p_CTeam);
+  }
+  
+  (arg1)->changeSide();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CTeam(void *obj) {
+CTeam *arg1 = (CTeam *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CTeam_methods[] = {
+    {"setOpponentTeam", _wrap_CTeam_setOpponentTeam}, 
+    {"getOpponentTeam", _wrap_CTeam_getOpponentTeam}, 
+    {"getName", _wrap_CTeam_getName}, 
+    {"getPlayers", _wrap_CTeam_getPlayers}, 
+    {"getNearestPlayerToBall", _wrap_CTeam_getNearestPlayerToBall}, 
+    {"isKickForUs", _wrap_CTeam_isKickForUs}, 
+    {"isNearestPlayerToBall", _wrap_CTeam_isNearestPlayerToBall}, 
+    {"isNearestTeamMatePlayerToBall", _wrap_CTeam_isNearestTeamMatePlayerToBall}, 
+    {"handleMessage", _wrap_CTeam_handleMessage}, 
+    {"update", _wrap_CTeam_update}, 
+    {"getFSM", _wrap_CTeam_getFSM}, 
+    {"changeSide", _wrap_CTeam_changeSide}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CTeam_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CTeam_bases[] = {&_wrap_class_CBaseGameEntity,0};
+swig_lua_class _wrap_class_CTeam = { "CTeam", &SWIGTYPE_p_CTeam,_wrap_new_CTeam, swig_delete_CTeam, swig_CTeam_methods, swig_CTeam_attributes, swig_CTeam_bases };
+
+static int _wrap_CFootballPlayer_p_ctor(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!lua_islightuserdata(L,1)) SWIG_fail_arg(1);
+  
+  arg1 = (CFootballPlayer *)lua_touserdata(L, 1);
+  
+  result = (CFootballPlayer *)CFootballPlayer_p_ctor(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_m_pCtorName_set(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  
+  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
+  arg1 = (char *)lua_tostring(L, 1);
+  {
+    if (CFootballPlayer::m_pCtorName) delete [] CFootballPlayer::m_pCtorName;
+    if (arg1) {
+      CFootballPlayer::m_pCtorName = (char *) (new char[strlen((const char *)arg1)+1]);
+      strcpy((char *)CFootballPlayer::m_pCtorName, (const char *)arg1);
+    } else {
+      CFootballPlayer::m_pCtorName = 0;
+    }
+  }
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_m_pCtorName_get(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  result = (char *)CFootballPlayer::m_pCtorName;
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  CBaseGameEntity *arg1 = (CBaseGameEntity *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CBaseGameEntity,0))){
+    SWIG_fail_ptr("CFootballPlayer_getPlayer",1,SWIGTYPE_p_CBaseGameEntity);
+  }
+  
+  result = (CFootballPlayer *)CFootballPlayer::getPlayer(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CFootballPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  CTeam *arg2 = (CTeam *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  bool arg6 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  if(!lua_isboolean(L,6)) SWIG_fail_arg(6);
+  arg1 = (int)lua_tonumber(L, 1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("new_CFootballPlayer",2,SWIGTYPE_p_CTeam);
+  }
+  
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  arg6 = (bool)lua_toboolean(L, 6);
+  result = (CFootballPlayer *)new CFootballPlayer(arg1,arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CFootballPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("delete_CFootballPlayer",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_handleMessage",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CFootballPlayer_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_update",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getFSM(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CStateMachine<CFootballPlayer > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getFSM",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (CStateMachine<CFootballPlayer > *)(arg1)->getFSM();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_canDoActions(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_canDoActions",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (bool)(arg1)->canDoActions();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_canKickBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  int arg2 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_canKickBall",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (bool)(arg1)->canKickBall(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getStrategicPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getStrategicPosition",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = ((CFootballPlayer const *)arg1)->getStrategicPosition();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getIdent(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getIdent",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = ((CFootballPlayer const *)arg1)->getIdent();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getTeam",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (CTeam *)(arg1)->getTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getSteering(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CSteeringBehaviors *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getSteering",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (CSteeringBehaviors *)(arg1)->getSteering();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSteeringBehaviors,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_changeSide(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_changeSide",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->changeSide();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_isTeamLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_isTeamLeft",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (bool)((CFootballPlayer const *)arg1)->isTeamLeft();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_isBallKickable(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_isBallKickable",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (bool)((CFootballPlayer const *)arg1)->isBallKickable();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CFootballPlayer(void *obj) {
+CFootballPlayer *arg1 = (CFootballPlayer *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CFootballPlayer_methods[] = {
+    {"handleMessage", _wrap_CFootballPlayer_handleMessage}, 
+    {"update", _wrap_CFootballPlayer_update}, 
+    {"getFSM", _wrap_CFootballPlayer_getFSM}, 
+    {"canDoActions", _wrap_CFootballPlayer_canDoActions}, 
+    {"canKickBall", _wrap_CFootballPlayer_canKickBall}, 
+    {"getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition}, 
+    {"getIdent", _wrap_CFootballPlayer_getIdent}, 
+    {"getTeam", _wrap_CFootballPlayer_getTeam}, 
+    {"getSteering", _wrap_CFootballPlayer_getSteering}, 
+    {"changeSide", _wrap_CFootballPlayer_changeSide}, 
+    {"isTeamLeft", _wrap_CFootballPlayer_isTeamLeft}, 
+    {"isBallKickable", _wrap_CFootballPlayer_isBallKickable}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CFootballPlayer_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CFootballPlayer_bases[] = {&_wrap_class_CBaseAgent,0};
+swig_lua_class _wrap_class_CFootballPlayer = { "CFootballPlayer", &SWIGTYPE_p_CFootballPlayer,_wrap_new_CFootballPlayer, swig_delete_CFootballPlayer, swig_CFootballPlayer_methods, swig_CFootballPlayer_attributes, swig_CFootballPlayer_bases };
+
+static int _wrap_new_PlayerVector__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *result = 0 ;
+  
+  result = (std::vector<CFootballPlayer * > *)new std::vector<CFootballPlayer * >();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_PlayerVector__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  unsigned int arg1 ;
+  std::vector<CFootballPlayer * > *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  arg1 = (unsigned int)lua_tonumber(L, 1);
+  result = (std::vector<CFootballPlayer * > *)new std::vector<CFootballPlayer * >(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_PlayerVector__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = 0 ;
+  std::vector<CFootballPlayer * > *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("new_PlayerVector",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  result = (std::vector<CFootballPlayer * > *)new std::vector<CFootballPlayer * >((std::vector<CFootballPlayer * > const &)*arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_PlayerVector__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  unsigned int arg1 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  std::vector<CFootballPlayer * > *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  arg1 = (unsigned int)lua_tonumber(L, 1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("new_PlayerVector",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (std::vector<CFootballPlayer * > *)new std::vector<CFootballPlayer * >(arg1,arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_PlayerVector(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_PlayerVector__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__vectorTCFootballPlayer_p_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_PlayerVector__SWIG_2(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_PlayerVector__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_CFootballPlayer, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_PlayerVector__SWIG_3(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_PlayerVector'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_PlayerVector_size(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  unsigned int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_size",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  result = (unsigned int)((std::vector<CFootballPlayer * > const *)arg1)->size();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_max_size(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  unsigned int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_max_size",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  result = (unsigned int)((std::vector<CFootballPlayer * > const *)arg1)->max_size();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_empty(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_empty",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  result = (bool)((std::vector<CFootballPlayer * > const *)arg1)->empty();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_clear(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_clear",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  (arg1)->clear();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_push_back(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_push_back",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("PlayerVector_push_back",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->push_back(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_pop_back(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_pop_back",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  (arg1)->pop_back();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_front(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_front",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  result = (CFootballPlayer *)((std::vector<CFootballPlayer * > const *)arg1)->front();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector_back(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector_back",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  result = (CFootballPlayer *)((std::vector<CFootballPlayer * > const *)arg1)->back();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector___getitem(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  unsigned int arg2 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector___getitem",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  try {
+    result = (CFootballPlayer *)std_vector_Sl_CFootballPlayer_Sm__Sg____getitem__(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_exception(SWIG_IndexError, (&_e)->what()); 
+  }
+  
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PlayerVector___setitem(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  unsigned int arg2 ;
+  CFootballPlayer *arg3 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg(3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("PlayerVector___setitem",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("PlayerVector___setitem",3,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  try {
+    std_vector_Sl_CFootballPlayer_Sm__Sg____setitem__(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_exception(SWIG_IndexError, (&_e)->what()); 
+  }
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_PlayerVector(lua_State* L) {
+  int SWIG_arg = -1;
+  std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,0))){
+    SWIG_fail_ptr("delete_PlayerVector",1,SWIGTYPE_p_std__vectorTCFootballPlayer_p_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_PlayerVector(void *obj) {
+std::vector<CFootballPlayer * > *arg1 = (std::vector<CFootballPlayer * > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_std_vector_Sl_CFootballPlayer_Sm__Sg__methods[] = {
+    {"size", _wrap_PlayerVector_size}, 
+    {"max_size", _wrap_PlayerVector_max_size}, 
+    {"empty", _wrap_PlayerVector_empty}, 
+    {"clear", _wrap_PlayerVector_clear}, 
+    {"push_back", _wrap_PlayerVector_push_back}, 
+    {"pop_back", _wrap_PlayerVector_pop_back}, 
+    {"front", _wrap_PlayerVector_front}, 
+    {"back", _wrap_PlayerVector_back}, 
+    {"__getitem", _wrap_PlayerVector___getitem}, 
+    {"__setitem", _wrap_PlayerVector___setitem}, 
+    {0,0}
+};
+static swig_lua_attribute swig_std_vector_Sl_CFootballPlayer_Sm__Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_std_vector_Sl_CFootballPlayer_Sm__Sg__bases[] = {0};
+swig_lua_class _wrap_class_std_vector_Sl_CFootballPlayer_Sm__Sg_ = { "PlayerVector", &SWIGTYPE_p_std__vectorTCFootballPlayer_p_t,_wrap_new_PlayerVector, swig_delete_PlayerVector, swig_std_vector_Sl_CFootballPlayer_Sm__Sg__methods, swig_std_vector_Sl_CFootballPlayer_Sm__Sg__attributes, swig_std_vector_Sl_CFootballPlayer_Sm__Sg__bases };
+
+static int _wrap_new_StateMachineCReferee(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CStateMachine<CReferee > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("new_StateMachineCReferee",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CStateMachine<CReferee > *)new CStateMachine<CReferee >(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMachineTCReferee_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_StateMachineCReferee(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("delete_StateMachineCReferee",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_setCurrentState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_setCurrentState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setCurrentState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_setGlobalState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_setGlobalState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setGlobalState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_setPreviousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_setPreviousState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setPreviousState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_update",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_changeState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_changeState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->changeState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_handleMessage",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("StateMachineCReferee_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_revertToPreviousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_revertToPreviousState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (arg1)->revertToPreviousState();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_currentState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_currentState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  result = ((CStateMachine<CReferee > const *)arg1)->currentState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_previousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_previousState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  result = ((CStateMachine<CReferee > const *)arg1)->previousState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_globalState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_globalState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  result = ((CStateMachine<CReferee > const *)arg1)->globalState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCReferee_isInState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) 0 ;
+  std::string arg2 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCReferee_t,0))){
+    SWIG_fail_ptr("StateMachineCReferee_isInState",1,SWIGTYPE_p_CStateMachineTCReferee_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  result = (bool)((CStateMachine<CReferee > const *)arg1)->isInState(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_StateMachineCReferee(void *obj) {
+CStateMachine<CReferee > *arg1 = (CStateMachine<CReferee > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CStateMachine_Sl_CReferee_Sg__methods[] = {
+    {"setCurrentState", _wrap_StateMachineCReferee_setCurrentState}, 
+    {"setGlobalState", _wrap_StateMachineCReferee_setGlobalState}, 
+    {"setPreviousState", _wrap_StateMachineCReferee_setPreviousState}, 
+    {"update", _wrap_StateMachineCReferee_update}, 
+    {"changeState", _wrap_StateMachineCReferee_changeState}, 
+    {"handleMessage", _wrap_StateMachineCReferee_handleMessage}, 
+    {"revertToPreviousState", _wrap_StateMachineCReferee_revertToPreviousState}, 
+    {"currentState", _wrap_StateMachineCReferee_currentState}, 
+    {"previousState", _wrap_StateMachineCReferee_previousState}, 
+    {"globalState", _wrap_StateMachineCReferee_globalState}, 
+    {"isInState", _wrap_StateMachineCReferee_isInState}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CStateMachine_Sl_CReferee_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CStateMachine_Sl_CReferee_Sg__bases[] = {0};
+swig_lua_class _wrap_class_CStateMachine_Sl_CReferee_Sg_ = { "StateMachineCReferee", &SWIGTYPE_p_CStateMachineTCReferee_t,_wrap_new_StateMachineCReferee, swig_delete_StateMachineCReferee, swig_CStateMachine_Sl_CReferee_Sg__methods, swig_CStateMachine_Sl_CReferee_Sg__attributes, swig_CStateMachine_Sl_CReferee_Sg__bases };
+
+static int _wrap_new_StateMachineCTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CStateMachine<CTeam > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("new_StateMachineCTeam",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (CStateMachine<CTeam > *)new CStateMachine<CTeam >(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMachineTCTeam_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_StateMachineCTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("delete_StateMachineCTeam",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_setCurrentState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_setCurrentState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setCurrentState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_setGlobalState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_setGlobalState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setGlobalState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_setPreviousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_setPreviousState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setPreviousState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_update",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_changeState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_changeState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->changeState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_handleMessage",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("StateMachineCTeam_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_revertToPreviousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_revertToPreviousState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (arg1)->revertToPreviousState();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_currentState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_currentState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  result = ((CStateMachine<CTeam > const *)arg1)->currentState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_previousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_previousState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  result = ((CStateMachine<CTeam > const *)arg1)->previousState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_globalState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_globalState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  result = ((CStateMachine<CTeam > const *)arg1)->globalState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCTeam_isInState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) 0 ;
+  std::string arg2 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCTeam_t,0))){
+    SWIG_fail_ptr("StateMachineCTeam_isInState",1,SWIGTYPE_p_CStateMachineTCTeam_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  result = (bool)((CStateMachine<CTeam > const *)arg1)->isInState(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_StateMachineCTeam(void *obj) {
+CStateMachine<CTeam > *arg1 = (CStateMachine<CTeam > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CStateMachine_Sl_CTeam_Sg__methods[] = {
+    {"setCurrentState", _wrap_StateMachineCTeam_setCurrentState}, 
+    {"setGlobalState", _wrap_StateMachineCTeam_setGlobalState}, 
+    {"setPreviousState", _wrap_StateMachineCTeam_setPreviousState}, 
+    {"update", _wrap_StateMachineCTeam_update}, 
+    {"changeState", _wrap_StateMachineCTeam_changeState}, 
+    {"handleMessage", _wrap_StateMachineCTeam_handleMessage}, 
+    {"revertToPreviousState", _wrap_StateMachineCTeam_revertToPreviousState}, 
+    {"currentState", _wrap_StateMachineCTeam_currentState}, 
+    {"previousState", _wrap_StateMachineCTeam_previousState}, 
+    {"globalState", _wrap_StateMachineCTeam_globalState}, 
+    {"isInState", _wrap_StateMachineCTeam_isInState}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CStateMachine_Sl_CTeam_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CStateMachine_Sl_CTeam_Sg__bases[] = {0};
+swig_lua_class _wrap_class_CStateMachine_Sl_CTeam_Sg_ = { "StateMachineCTeam", &SWIGTYPE_p_CStateMachineTCTeam_t,_wrap_new_StateMachineCTeam, swig_delete_StateMachineCTeam, swig_CStateMachine_Sl_CTeam_Sg__methods, swig_CStateMachine_Sl_CTeam_Sg__attributes, swig_CStateMachine_Sl_CTeam_Sg__bases };
+
+static int _wrap_new_StateMachineCFootballPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CStateMachine<CFootballPlayer > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("new_StateMachineCFootballPlayer",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (CStateMachine<CFootballPlayer > *)new CStateMachine<CFootballPlayer >(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_StateMachineCFootballPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("delete_StateMachineCFootballPlayer",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_setCurrentState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_setCurrentState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setCurrentState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_setGlobalState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_setGlobalState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setGlobalState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_setPreviousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_setPreviousState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->setPreviousState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_update",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_changeState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_changeState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  (arg1)->changeState(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_handleMessage",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_revertToPreviousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_revertToPreviousState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (arg1)->revertToPreviousState();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_currentState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_currentState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  result = ((CStateMachine<CFootballPlayer > const *)arg1)->currentState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_previousState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_previousState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  result = ((CStateMachine<CFootballPlayer > const *)arg1)->previousState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_globalState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_globalState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  result = ((CStateMachine<CFootballPlayer > const *)arg1)->globalState();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StateMachineCFootballPlayer_isInState(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) 0 ;
+  std::string arg2 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t,0))){
+    SWIG_fail_ptr("StateMachineCFootballPlayer_isInState",1,SWIGTYPE_p_CStateMachineTCFootballPlayer_t);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
+  result = (bool)((CStateMachine<CFootballPlayer > const *)arg1)->isInState(arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_StateMachineCFootballPlayer(void *obj) {
+CStateMachine<CFootballPlayer > *arg1 = (CStateMachine<CFootballPlayer > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CStateMachine_Sl_CFootballPlayer_Sg__methods[] = {
+    {"setCurrentState", _wrap_StateMachineCFootballPlayer_setCurrentState}, 
+    {"setGlobalState", _wrap_StateMachineCFootballPlayer_setGlobalState}, 
+    {"setPreviousState", _wrap_StateMachineCFootballPlayer_setPreviousState}, 
+    {"update", _wrap_StateMachineCFootballPlayer_update}, 
+    {"changeState", _wrap_StateMachineCFootballPlayer_changeState}, 
+    {"handleMessage", _wrap_StateMachineCFootballPlayer_handleMessage}, 
+    {"revertToPreviousState", _wrap_StateMachineCFootballPlayer_revertToPreviousState}, 
+    {"currentState", _wrap_StateMachineCFootballPlayer_currentState}, 
+    {"previousState", _wrap_StateMachineCFootballPlayer_previousState}, 
+    {"globalState", _wrap_StateMachineCFootballPlayer_globalState}, 
+    {"isInState", _wrap_StateMachineCFootballPlayer_isInState}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CStateMachine_Sl_CFootballPlayer_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CStateMachine_Sl_CFootballPlayer_Sg__bases[] = {0};
+swig_lua_class _wrap_class_CStateMachine_Sl_CFootballPlayer_Sg_ = { "StateMachineCFootballPlayer", &SWIGTYPE_p_CStateMachineTCFootballPlayer_t,_wrap_new_StateMachineCFootballPlayer, swig_delete_StateMachineCFootballPlayer, swig_CStateMachine_Sl_CFootballPlayer_Sg__methods, swig_CStateMachine_Sl_CFootballPlayer_Sg__attributes, swig_CStateMachine_Sl_CFootballPlayer_Sg__bases };
+
+static int _wrap_new_btVector3__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *result = 0 ;
+  
+  result = (btVector3 *)new btVector3();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_btVector3,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_btVector3__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  btScalar *arg1 = 0 ;
+  btScalar *arg2 = 0 ;
+  btScalar *arg3 = 0 ;
+  btVector3 *result = 0 ;
+  btScalar temp1 ;
+  btScalar temp2 ;
+  btScalar temp3 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  temp1=(btScalar)lua_tonumber(L,1); arg1=&temp1;
+  temp2=(btScalar)lua_tonumber(L,2); arg2=&temp2;
+  temp3=(btScalar)lua_tonumber(L,3); arg3=&temp3;
+  result = (btVector3 *)new btVector3((btScalar const &)*arg1,(btScalar const &)*arg2,(btScalar const &)*arg3);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_btVector3,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_btVector3(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_btVector3__SWIG_0(L);
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_new_btVector3__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_btVector3'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_btVector3_x(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btScalar *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_x",1,SWIGTYPE_p_btVector3);
+  }
+  
+  {
+    btScalar const &_result_ref = ((btVector3 const *)arg1)->x();
+    result = (btScalar *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) *result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3_y(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btScalar *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_y",1,SWIGTYPE_p_btVector3);
+  }
+  
+  {
+    btScalar const &_result_ref = ((btVector3 const *)arg1)->y();
+    result = (btScalar *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) *result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3_z(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btScalar *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_z",1,SWIGTYPE_p_btVector3);
+  }
+  
+  {
+    btScalar const &_result_ref = ((btVector3 const *)arg1)->z();
+    result = (btScalar *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) *result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3_dot(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btVector3 *arg2 = 0 ;
+  btScalar result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_dot",1,SWIGTYPE_p_btVector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_dot",2,SWIGTYPE_p_btVector3);
+  }
+  
+  result = (btScalar)((btVector3 const *)arg1)->dot((btVector3 const &)*arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3_length2(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btScalar result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_length2",1,SWIGTYPE_p_btVector3);
+  }
+  
+  result = (btScalar)((btVector3 const *)arg1)->length2();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3_length(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btScalar result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_length",1,SWIGTYPE_p_btVector3);
+  }
+  
+  result = (btScalar)((btVector3 const *)arg1)->length();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3_distance(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btVector3 *arg2 = 0 ;
+  btScalar result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_distance",1,SWIGTYPE_p_btVector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3_distance",2,SWIGTYPE_p_btVector3);
+  }
+  
+  result = (btScalar)((btVector3 const *)arg1)->distance((btVector3 const &)*arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3___sub(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btVector3 *arg2 = 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3___sub",1,SWIGTYPE_p_btVector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3___sub",2,SWIGTYPE_p_btVector3);
+  }
+  
+  result = btVector3_operator_Ss_(arg1,(btVector3 const &)*arg2);
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_btVector3___add(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  btVector3 *arg2 = 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3___add",1,SWIGTYPE_p_btVector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("btVector3___add",2,SWIGTYPE_p_btVector3);
+  }
+  
+  result = btVector3_operator_Sa_(arg1,(btVector3 const &)*arg2);
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_btVector3(lua_State* L) {
+  int SWIG_arg = -1;
+  btVector3 *arg1 = (btVector3 *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("delete_btVector3",1,SWIGTYPE_p_btVector3);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_btVector3(void *obj) {
+btVector3 *arg1 = (btVector3 *) obj;
+delete arg1;
+}
+static swig_lua_method swig_btVector3_methods[] = {
+    {"x", _wrap_btVector3_x}, 
+    {"y", _wrap_btVector3_y}, 
+    {"z", _wrap_btVector3_z}, 
+    {"dot", _wrap_btVector3_dot}, 
+    {"length2", _wrap_btVector3_length2}, 
+    {"length", _wrap_btVector3_length}, 
+    {"distance", _wrap_btVector3_distance}, 
+    {"__sub", _wrap_btVector3___sub}, 
+    {"__add", _wrap_btVector3___add}, 
+    {0,0}
+};
+static swig_lua_attribute swig_btVector3_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_btVector3_bases[] = {0};
+swig_lua_class _wrap_class_btVector3 = { "btVector3", &SWIGTYPE_p_btVector3,_wrap_new_btVector3, swig_delete_btVector3, swig_btVector3_methods, swig_btVector3_attributes, swig_btVector3_bases };
+
 #ifdef __cplusplus
 }
 #endif
@@ -6793,6 +12651,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CStateMonitor_forcedLeave", _wrap_CStateMonitor_forcedLeave},
     { "CStateMonitor_leave", _wrap_CStateMonitor_leave},
     { "CStateMonitor_update", _wrap_CStateMonitor_update},
+    { "CStateMonitor_toogleSimulationView", _wrap_CStateMonitor_toogleSimulationView},
     { "CStateMonitor_switchTo2DView", _wrap_CStateMonitor_switchTo2DView},
     { "CStateMonitor_switchTo3DView", _wrap_CStateMonitor_switchTo3DView},
     { "CStateMonitor_getSimulationManager", _wrap_CStateMonitor_getSimulationManager},
@@ -6818,19 +12677,263 @@ static const struct luaL_reg swig_commands[] = {
     { "CStateLoadGame_update", _wrap_CStateLoadGame_update},
     { "CStateLoadGame_createNewGame", _wrap_CStateLoadGame_createNewGame},
     { "CStateLoadGame_loadGame", _wrap_CStateLoadGame_loadGame},
+    { "CMessage_p_ctor", _wrap_CMessage_p_ctor},
+    { "SMALLEST_DELAY_get", _wrap_SMALLEST_DELAY_get},
+    { "CMessage_m_pCtorName_set", _wrap_CMessage_m_pCtorName_set},
+    { "CMessage_m_pCtorName_get", _wrap_CMessage_m_pCtorName_get},
+    { "CMessage_Sender_set", _wrap_CMessage_Sender_set},
+    { "CMessage_Sender_get", _wrap_CMessage_Sender_get},
+    { "CMessage_Receiver_set", _wrap_CMessage_Receiver_set},
+    { "CMessage_Receiver_get", _wrap_CMessage_Receiver_get},
+    { "CMessage_Msg_set", _wrap_CMessage_Msg_set},
+    { "CMessage_Msg_get", _wrap_CMessage_Msg_get},
+    { "CMessage_DispatchTime_set", _wrap_CMessage_DispatchTime_set},
+    { "CMessage_DispatchTime_get", _wrap_CMessage_DispatchTime_get},
+    { "CMessage_ExtraInfo_set", _wrap_CMessage_ExtraInfo_set},
+    { "CMessage_ExtraInfo_get", _wrap_CMessage_ExtraInfo_get},
+    { "new_CMessage",_wrap_new_CMessage},
+    { "delete_CMessage", _wrap_delete_CMessage},
+    { "CMessage___call", _wrap_CMessage___call},
+    { "CMessage___eq", _wrap_CMessage___eq},
+    { "CMessage___lt", _wrap_CMessage___lt},
+    { "CMessageDispatcher_getInstance", _wrap_CMessageDispatcher_getInstance},
+    { "delete_CMessageDispatcher", _wrap_delete_CMessageDispatcher},
+    { "CMessageDispatcher_dispatchMsg", _wrap_CMessageDispatcher_dispatchMsg},
+    { "CMessageDispatcher_dispatchDelayedMessages", _wrap_CMessageDispatcher_dispatchDelayedMessages},
+    { "CMessageDispatcher_reset", _wrap_CMessageDispatcher_reset},
+    { "new_CSimulationManager", _wrap_new_CSimulationManager},
+    { "delete_CSimulationManager", _wrap_delete_CSimulationManager},
+    { "CSimulationManager_update", _wrap_CSimulationManager_update},
+    { "CSimulationManager_startMatch", _wrap_CSimulationManager_startMatch},
+    { "CSimulationManager_getSimulationWorld", _wrap_CSimulationManager_getSimulationWorld},
+    { "CSimulationManager_getReferee", _wrap_CSimulationManager_getReferee},
+    { "CSimulationManager_getBall", _wrap_CSimulationManager_getBall},
+    { "CSimulationManager_getHomeTeam", _wrap_CSimulationManager_getHomeTeam},
+    { "CSimulationManager_getAwayTeam", _wrap_CSimulationManager_getAwayTeam},
+    { "CSimulationManager_changePlayersSide", _wrap_CSimulationManager_changePlayersSide},
+    { "CSimulationManager_getHomeTeamName", _wrap_CSimulationManager_getHomeTeamName},
+    { "CSimulationManager_getAwayTeamName", _wrap_CSimulationManager_getAwayTeamName},
+    { "CSimulationManager_getBallPosition", _wrap_CSimulationManager_getBallPosition},
+    { "CSimulationManager_dash", _wrap_CSimulationManager_dash},
+    { "CSimulationManager_move", _wrap_CSimulationManager_move},
+    { "CSimulationManager_kick", _wrap_CSimulationManager_kick},
+    { "CSimulationManager_turn", _wrap_CSimulationManager_turn},
+    { "new_CSteeringBehaviors", _wrap_new_CSteeringBehaviors},
+    { "delete_CSteeringBehaviors", _wrap_delete_CSteeringBehaviors},
+    { "CSteeringBehaviors_setTargetPoint", _wrap_CSteeringBehaviors_setTargetPoint},
+    { "CSteeringBehaviors_setTargetEntity", _wrap_CSteeringBehaviors_setTargetEntity},
+    { "CSteeringBehaviors_getTarget", _wrap_CSteeringBehaviors_getTarget},
+    { "CSteeringBehaviors_force", _wrap_CSteeringBehaviors_force},
+    { "CSteeringBehaviors_calculate", _wrap_CSteeringBehaviors_calculate},
+    { "CSteeringBehaviors_sumForces", _wrap_CSteeringBehaviors_sumForces},
+    { "CSteeringBehaviors_forwardComponent", _wrap_CSteeringBehaviors_forwardComponent},
+    { "CSteeringBehaviors_sideComponent", _wrap_CSteeringBehaviors_sideComponent},
+    { "CSteeringBehaviors_seekOn", _wrap_CSteeringBehaviors_seekOn},
+    { "CSteeringBehaviors_arriveOn", _wrap_CSteeringBehaviors_arriveOn},
+    { "CSteeringBehaviors_pursuitOn", _wrap_CSteeringBehaviors_pursuitOn},
+    { "CSteeringBehaviors_interposeOn", _wrap_CSteeringBehaviors_interposeOn},
+    { "CSteeringBehaviors_seekOff", _wrap_CSteeringBehaviors_seekOff},
+    { "CSteeringBehaviors_arriveOff", _wrap_CSteeringBehaviors_arriveOff},
+    { "CSteeringBehaviors_pursuitOff", _wrap_CSteeringBehaviors_pursuitOff},
+    { "CSteeringBehaviors_interposeOff", _wrap_CSteeringBehaviors_interposeOff},
+    { "delete_CBaseGameEntity", _wrap_delete_CBaseGameEntity},
+    { "CBaseGameEntity_update", _wrap_CBaseGameEntity_update},
+    { "CBaseGameEntity_getID", _wrap_CBaseGameEntity_getID},
+    { "CBaseGameEntity_resetNextID", _wrap_CBaseGameEntity_resetNextID},
+    { "CBaseGameEntity_handleMessage", _wrap_CBaseGameEntity_handleMessage},
+    { "CBaseGameEntity_getWorldTransform", _wrap_CBaseGameEntity_getWorldTransform},
+    { "CBaseGameEntity_setWorldTransform", _wrap_CBaseGameEntity_setWorldTransform},
+    { "CBaseGameEntity_getShape", _wrap_CBaseGameEntity_getShape},
+    { "CBaseGameEntity_getBody", _wrap_CBaseGameEntity_getBody},
+    { "CBaseGameEntity_getPosition", _wrap_CBaseGameEntity_getPosition},
+    { "CBaseGameEntity_setPosition", _wrap_CBaseGameEntity_setPosition},
+    { "new_CMovingEntity", _wrap_new_CMovingEntity},
+    { "delete_CMovingEntity", _wrap_delete_CMovingEntity},
+    { "CMovingEntity_setPosition", _wrap_CMovingEntity_setPosition},
+    { "CMovingEntity_futurePosition", _wrap_CMovingEntity_futurePosition},
+    { "CMovingEntity_getMaxVelocity", _wrap_CMovingEntity_getMaxVelocity},
+    { "CMovingEntity_getHeading", _wrap_CMovingEntity_getHeading},
+    { "CMovingEntity_getSide", _wrap_CMovingEntity_getSide},
+    { "new_CBaseAgent", _wrap_new_CBaseAgent},
+    { "delete_CBaseAgent", _wrap_delete_CBaseAgent},
+    { "CEntityManager_getInstance", _wrap_CEntityManager_getInstance},
+    { "delete_CEntityManager", _wrap_delete_CEntityManager},
+    { "CEntityManager_addEntity", _wrap_CEntityManager_addEntity},
+    { "CEntityManager_removeEntity", _wrap_CEntityManager_removeEntity},
+    { "CEntityManager_getEntityFromID", _wrap_CEntityManager_getEntityFromID},
+    { "CEntityManager_reset", _wrap_CEntityManager_reset},
+    { "new_CBall", _wrap_new_CBall},
+    { "delete_CBall", _wrap_delete_CBall},
+    { "CBall_isInLeftGoal", _wrap_CBall_isInLeftGoal},
+    { "CBall_isInRightGoal", _wrap_CBall_isInRightGoal},
+    { "CBall_crossLeftLine", _wrap_CBall_crossLeftLine},
+    { "CBall_crossRightLine", _wrap_CBall_crossRightLine},
+    { "CBall_crossTopLine", _wrap_CBall_crossTopLine},
+    { "CBall_crossBottomLine", _wrap_CBall_crossBottomLine},
+    { "CReferee_p_ctor", _wrap_CReferee_p_ctor},
+    { "CReferee_m_pCtorName_set", _wrap_CReferee_m_pCtorName_set},
+    { "CReferee_m_pCtorName_get", _wrap_CReferee_m_pCtorName_get},
+    { "new_CReferee", _wrap_new_CReferee},
+    { "delete_CReferee", _wrap_delete_CReferee},
+    { "CReferee_handleMessage", _wrap_CReferee_handleMessage},
+    { "CReferee_update", _wrap_CReferee_update},
+    { "CReferee_getFSM", _wrap_CReferee_getFSM},
+    { "CReferee_setMatchDuration", _wrap_CReferee_setMatchDuration},
+    { "CReferee_getMatchDuration", _wrap_CReferee_getMatchDuration},
+    { "CReferee_setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft},
+    { "CReferee_isHomeTeamInSideLeft", _wrap_CReferee_isHomeTeamInSideLeft},
+    { "CReferee_setKickTeam", _wrap_CReferee_setKickTeam},
+    { "CReferee_getKickTeam", _wrap_CReferee_getKickTeam},
+    { "CReferee_setLastPlayerTouch", _wrap_CReferee_setLastPlayerTouch},
+    { "CReferee_getLastPlayerTouch", _wrap_CReferee_getLastPlayerTouch},
+    { "CReferee_addHomeGoal", _wrap_CReferee_addHomeGoal},
+    { "CReferee_addAwayGoal", _wrap_CReferee_addAwayGoal},
+    { "CReferee_isMoveLegal", _wrap_CReferee_isMoveLegal},
+    { "CReferee_getGameMode", _wrap_CReferee_getGameMode},
+    { "CReferee_getGameModeString", _wrap_CReferee_getGameModeString},
+    { "CReferee_getHomeScore", _wrap_CReferee_getHomeScore},
+    { "CReferee_getAwayScore", _wrap_CReferee_getAwayScore},
+    { "CReferee_getCycle", _wrap_CReferee_getCycle},
+    { "CReferee_incCycle", _wrap_CReferee_incCycle},
+    { "CReferee_setGameMode", _wrap_CReferee_setGameMode},
+    { "CTeam_p_ctor", _wrap_CTeam_p_ctor},
+    { "CTeam_m_pCtorName_set", _wrap_CTeam_m_pCtorName_set},
+    { "CTeam_m_pCtorName_get", _wrap_CTeam_m_pCtorName_get},
+    { "CTeam_getTeam", _wrap_CTeam_getTeam},
+    { "new_CTeam", _wrap_new_CTeam},
+    { "delete_CTeam", _wrap_delete_CTeam},
+    { "CTeam_setOpponentTeam", _wrap_CTeam_setOpponentTeam},
+    { "CTeam_getOpponentTeam", _wrap_CTeam_getOpponentTeam},
+    { "CTeam_getName", _wrap_CTeam_getName},
+    { "CTeam_getPlayers", _wrap_CTeam_getPlayers},
+    { "CTeam_getNearestPlayerToBall", _wrap_CTeam_getNearestPlayerToBall},
+    { "CTeam_isKickForUs", _wrap_CTeam_isKickForUs},
+    { "CTeam_isNearestPlayerToBall", _wrap_CTeam_isNearestPlayerToBall},
+    { "CTeam_isNearestTeamMatePlayerToBall", _wrap_CTeam_isNearestTeamMatePlayerToBall},
+    { "CTeam_handleMessage", _wrap_CTeam_handleMessage},
+    { "CTeam_update", _wrap_CTeam_update},
+    { "CTeam_getFSM", _wrap_CTeam_getFSM},
+    { "CTeam_changeSide", _wrap_CTeam_changeSide},
+    { "CFootballPlayer_p_ctor", _wrap_CFootballPlayer_p_ctor},
+    { "CFootballPlayer_m_pCtorName_set", _wrap_CFootballPlayer_m_pCtorName_set},
+    { "CFootballPlayer_m_pCtorName_get", _wrap_CFootballPlayer_m_pCtorName_get},
+    { "CFootballPlayer_getPlayer", _wrap_CFootballPlayer_getPlayer},
+    { "new_CFootballPlayer", _wrap_new_CFootballPlayer},
+    { "delete_CFootballPlayer", _wrap_delete_CFootballPlayer},
+    { "CFootballPlayer_handleMessage", _wrap_CFootballPlayer_handleMessage},
+    { "CFootballPlayer_update", _wrap_CFootballPlayer_update},
+    { "CFootballPlayer_getFSM", _wrap_CFootballPlayer_getFSM},
+    { "CFootballPlayer_canDoActions", _wrap_CFootballPlayer_canDoActions},
+    { "CFootballPlayer_canKickBall", _wrap_CFootballPlayer_canKickBall},
+    { "CFootballPlayer_getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition},
+    { "CFootballPlayer_getIdent", _wrap_CFootballPlayer_getIdent},
+    { "CFootballPlayer_getTeam", _wrap_CFootballPlayer_getTeam},
+    { "CFootballPlayer_getSteering", _wrap_CFootballPlayer_getSteering},
+    { "CFootballPlayer_changeSide", _wrap_CFootballPlayer_changeSide},
+    { "CFootballPlayer_isTeamLeft", _wrap_CFootballPlayer_isTeamLeft},
+    { "CFootballPlayer_isBallKickable", _wrap_CFootballPlayer_isBallKickable},
+    { "new_PlayerVector",_wrap_new_PlayerVector},
+    { "PlayerVector_size", _wrap_PlayerVector_size},
+    { "PlayerVector_max_size", _wrap_PlayerVector_max_size},
+    { "PlayerVector_empty", _wrap_PlayerVector_empty},
+    { "PlayerVector_clear", _wrap_PlayerVector_clear},
+    { "PlayerVector_push_back", _wrap_PlayerVector_push_back},
+    { "PlayerVector_pop_back", _wrap_PlayerVector_pop_back},
+    { "PlayerVector_front", _wrap_PlayerVector_front},
+    { "PlayerVector_back", _wrap_PlayerVector_back},
+    { "PlayerVector___getitem", _wrap_PlayerVector___getitem},
+    { "PlayerVector___setitem", _wrap_PlayerVector___setitem},
+    { "delete_PlayerVector", _wrap_delete_PlayerVector},
+    { "new_StateMachineCReferee", _wrap_new_StateMachineCReferee},
+    { "delete_StateMachineCReferee", _wrap_delete_StateMachineCReferee},
+    { "StateMachineCReferee_setCurrentState", _wrap_StateMachineCReferee_setCurrentState},
+    { "StateMachineCReferee_setGlobalState", _wrap_StateMachineCReferee_setGlobalState},
+    { "StateMachineCReferee_setPreviousState", _wrap_StateMachineCReferee_setPreviousState},
+    { "StateMachineCReferee_update", _wrap_StateMachineCReferee_update},
+    { "StateMachineCReferee_changeState", _wrap_StateMachineCReferee_changeState},
+    { "StateMachineCReferee_handleMessage", _wrap_StateMachineCReferee_handleMessage},
+    { "StateMachineCReferee_revertToPreviousState", _wrap_StateMachineCReferee_revertToPreviousState},
+    { "StateMachineCReferee_currentState", _wrap_StateMachineCReferee_currentState},
+    { "StateMachineCReferee_previousState", _wrap_StateMachineCReferee_previousState},
+    { "StateMachineCReferee_globalState", _wrap_StateMachineCReferee_globalState},
+    { "StateMachineCReferee_isInState", _wrap_StateMachineCReferee_isInState},
+    { "new_StateMachineCTeam", _wrap_new_StateMachineCTeam},
+    { "delete_StateMachineCTeam", _wrap_delete_StateMachineCTeam},
+    { "StateMachineCTeam_setCurrentState", _wrap_StateMachineCTeam_setCurrentState},
+    { "StateMachineCTeam_setGlobalState", _wrap_StateMachineCTeam_setGlobalState},
+    { "StateMachineCTeam_setPreviousState", _wrap_StateMachineCTeam_setPreviousState},
+    { "StateMachineCTeam_update", _wrap_StateMachineCTeam_update},
+    { "StateMachineCTeam_changeState", _wrap_StateMachineCTeam_changeState},
+    { "StateMachineCTeam_handleMessage", _wrap_StateMachineCTeam_handleMessage},
+    { "StateMachineCTeam_revertToPreviousState", _wrap_StateMachineCTeam_revertToPreviousState},
+    { "StateMachineCTeam_currentState", _wrap_StateMachineCTeam_currentState},
+    { "StateMachineCTeam_previousState", _wrap_StateMachineCTeam_previousState},
+    { "StateMachineCTeam_globalState", _wrap_StateMachineCTeam_globalState},
+    { "StateMachineCTeam_isInState", _wrap_StateMachineCTeam_isInState},
+    { "new_StateMachineCFootballPlayer", _wrap_new_StateMachineCFootballPlayer},
+    { "delete_StateMachineCFootballPlayer", _wrap_delete_StateMachineCFootballPlayer},
+    { "StateMachineCFootballPlayer_setCurrentState", _wrap_StateMachineCFootballPlayer_setCurrentState},
+    { "StateMachineCFootballPlayer_setGlobalState", _wrap_StateMachineCFootballPlayer_setGlobalState},
+    { "StateMachineCFootballPlayer_setPreviousState", _wrap_StateMachineCFootballPlayer_setPreviousState},
+    { "StateMachineCFootballPlayer_update", _wrap_StateMachineCFootballPlayer_update},
+    { "StateMachineCFootballPlayer_changeState", _wrap_StateMachineCFootballPlayer_changeState},
+    { "StateMachineCFootballPlayer_handleMessage", _wrap_StateMachineCFootballPlayer_handleMessage},
+    { "StateMachineCFootballPlayer_revertToPreviousState", _wrap_StateMachineCFootballPlayer_revertToPreviousState},
+    { "StateMachineCFootballPlayer_currentState", _wrap_StateMachineCFootballPlayer_currentState},
+    { "StateMachineCFootballPlayer_previousState", _wrap_StateMachineCFootballPlayer_previousState},
+    { "StateMachineCFootballPlayer_globalState", _wrap_StateMachineCFootballPlayer_globalState},
+    { "StateMachineCFootballPlayer_isInState", _wrap_StateMachineCFootballPlayer_isInState},
+    { "new_btVector3",_wrap_new_btVector3},
+    { "btVector3_x", _wrap_btVector3_x},
+    { "btVector3_y", _wrap_btVector3_y},
+    { "btVector3_z", _wrap_btVector3_z},
+    { "btVector3_dot", _wrap_btVector3_dot},
+    { "btVector3_length2", _wrap_btVector3_length2},
+    { "btVector3_length", _wrap_btVector3_length},
+    { "btVector3_distance", _wrap_btVector3_distance},
+    { "btVector3___sub", _wrap_btVector3___sub},
+    { "btVector3___add", _wrap_btVector3___add},
+    { "delete_btVector3", _wrap_delete_btVector3},
     {0,0}
 };
 
 static swig_lua_var_info swig_variables[] = {
+    { "SMALLEST_DELAY", _wrap_SMALLEST_DELAY_get, 0 },
+    { "CMessage_m_pCtorName", _wrap_CMessage_m_pCtorName_get, _wrap_CMessage_m_pCtorName_set },
+    { "CReferee_m_pCtorName", _wrap_CReferee_m_pCtorName_get, _wrap_CReferee_m_pCtorName_set },
+    { "CTeam_m_pCtorName", _wrap_CTeam_m_pCtorName_get, _wrap_CTeam_m_pCtorName_set },
+    { "CFootballPlayer_m_pCtorName", _wrap_CFootballPlayer_m_pCtorName_get, _wrap_CFootballPlayer_m_pCtorName_set },
     {0,0,0}
 };
 
 static swig_lua_const_info swig_constants[] = {
+{ SWIG_LUA_INT,     (char *)"Msg_StartMatch", (long) Msg_StartMatch, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_KickOff", (long) Msg_KickOff, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_TouchBall", (long) Msg_TouchBall, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_ReceiveBall", (long) Msg_ReceiveBall, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_PassToMe", (long) Msg_PassToMe, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_SupportAttacker", (long) Msg_SupportAttacker, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_GoHome", (long) Msg_GoHome, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"Msg_Wait", (long) Msg_Wait, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"BEFORE_START", (long) BEFORE_START, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"PLAY_ON", (long) PLAY_ON, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"HALF_TIME", (long) HALF_TIME, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"END", (long) END, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"KICK_OFF", (long) KICK_OFF, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"KICK_IN", (long) KICK_IN, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"CORNER_KICK", (long) CORNER_KICK, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"GOAL_KICK", (long) GOAL_KICK, 0, 0, 0},
     {0,0,0,0,0,0}
 };
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_CRefereeTo_p_CBaseAgent(void *x) {
+    return (void *)((CBaseAgent *)  ((CReferee *) x));
+}
+static void *_p_CFootballPlayerTo_p_CBaseAgent(void *x) {
+    return (void *)((CBaseAgent *)  ((CFootballPlayer *) x));
+}
 static void *_p_CStateMonitorTo_p_CState(void *x) {
     return (void *)((CState *)  ((CStateMonitor *) x));
 }
@@ -6846,20 +12949,66 @@ static void *_p_CStateMainMenuTo_p_CState(void *x) {
 static void *_p_CStateCreditsTo_p_CState(void *x) {
     return (void *)((CState *)  ((CStateCredits *) x));
 }
+static void *_p_CRefereeTo_p_CBaseGameEntity(void *x) {
+    return (void *)((CBaseGameEntity *) (CMovingEntity *)(CBaseAgent *) ((CReferee *) x));
+}
+static void *_p_CTeamTo_p_CBaseGameEntity(void *x) {
+    return (void *)((CBaseGameEntity *)  ((CTeam *) x));
+}
+static void *_p_CMovingEntityTo_p_CBaseGameEntity(void *x) {
+    return (void *)((CBaseGameEntity *)  ((CMovingEntity *) x));
+}
+static void *_p_CBaseAgentTo_p_CBaseGameEntity(void *x) {
+    return (void *)((CBaseGameEntity *) (CMovingEntity *) ((CBaseAgent *) x));
+}
+static void *_p_CBallTo_p_CBaseGameEntity(void *x) {
+    return (void *)((CBaseGameEntity *) (CMovingEntity *) ((CBall *) x));
+}
+static void *_p_CFootballPlayerTo_p_CBaseGameEntity(void *x) {
+    return (void *)((CBaseGameEntity *) (CMovingEntity *)(CBaseAgent *) ((CFootballPlayer *) x));
+}
+static void *_p_CRefereeTo_p_CMovingEntity(void *x) {
+    return (void *)((CMovingEntity *) (CBaseAgent *) ((CReferee *) x));
+}
+static void *_p_CBaseAgentTo_p_CMovingEntity(void *x) {
+    return (void *)((CMovingEntity *)  ((CBaseAgent *) x));
+}
+static void *_p_CBallTo_p_CMovingEntity(void *x) {
+    return (void *)((CMovingEntity *)  ((CBall *) x));
+}
+static void *_p_CFootballPlayerTo_p_CMovingEntity(void *x) {
+    return (void *)((CMovingEntity *) (CBaseAgent *) ((CFootballPlayer *) x));
+}
+static swig_type_info _swigt__btVector3 = {"_btVector3", "btVector3", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_CBall = {"_p_CBall", "CBall *", 0, 0, (void*)&_wrap_class_CBall, 0};
+static swig_type_info _swigt__p_CBaseAgent = {"_p_CBaseAgent", "CBaseAgent *", 0, 0, (void*)&_wrap_class_CBaseAgent, 0};
+static swig_type_info _swigt__p_CBaseGameEntity = {"_p_CBaseGameEntity", "CBaseGameEntity *", 0, 0, (void*)&_wrap_class_CBaseGameEntity, 0};
 static swig_type_info _swigt__p_CDAOAbstractFactory = {"_p_CDAOAbstractFactory", "CDAOAbstractFactory *", 0, 0, (void*)&_wrap_class_CDAOAbstractFactory, 0};
 static swig_type_info _swigt__p_CDate = {"_p_CDate", "CDate *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_CEntityManager = {"_p_CEntityManager", "CEntityManager *", 0, 0, (void*)&_wrap_class_CEntityManager, 0};
+static swig_type_info _swigt__p_CFootballPlayer = {"_p_CFootballPlayer", "CFootballPlayer *", 0, 0, (void*)&_wrap_class_CFootballPlayer, 0};
 static swig_type_info _swigt__p_CLog = {"_p_CLog", "CLog *", 0, 0, (void*)&_wrap_class_CLog, 0};
+static swig_type_info _swigt__p_CMessage = {"_p_CMessage", "CMessage *", 0, 0, (void*)&_wrap_class_CMessage, 0};
+static swig_type_info _swigt__p_CMessageDispatcher = {"_p_CMessageDispatcher", "CMessageDispatcher *", 0, 0, (void*)&_wrap_class_CMessageDispatcher, 0};
+static swig_type_info _swigt__p_CMovingEntity = {"_p_CMovingEntity", "CMovingEntity *", 0, 0, (void*)&_wrap_class_CMovingEntity, 0};
 static swig_type_info _swigt__p_CPfGoals = {"_p_CPfGoals", "CPfGoals *", 0, 0, (void*)&_wrap_class_CPfGoals, 0};
 static swig_type_info _swigt__p_CPfMatches = {"_p_CPfMatches", "CPfMatches *", 0, 0, (void*)&_wrap_class_CPfMatches, 0};
 static swig_type_info _swigt__p_CPfTeams = {"_p_CPfTeams", "CPfTeams *", 0, 0, (void*)&_wrap_class_CPfTeams, 0};
-static swig_type_info _swigt__p_CSimulationManager = {"_p_CSimulationManager", "CSimulationManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_CReferee = {"_p_CReferee", "CReferee *", 0, 0, (void*)&_wrap_class_CReferee, 0};
+static swig_type_info _swigt__p_CSimulationManager = {"_p_CSimulationManager", "CSimulationManager *", 0, 0, (void*)&_wrap_class_CSimulationManager, 0};
+static swig_type_info _swigt__p_CSimulationWorld = {"_p_CSimulationWorld", "CSimulationWorld *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CState = {"_p_CState", "CState *", 0, 0, (void*)&_wrap_class_CState, 0};
 static swig_type_info _swigt__p_CStateCredits = {"_p_CStateCredits", "CStateCredits *", 0, 0, (void*)&_wrap_class_CStateCredits, 0};
 static swig_type_info _swigt__p_CStateGame = {"_p_CStateGame", "CStateGame *", 0, 0, (void*)&_wrap_class_CStateGame, 0};
 static swig_type_info _swigt__p_CStateLoadGame = {"_p_CStateLoadGame", "CStateLoadGame *", 0, 0, (void*)&_wrap_class_CStateLoadGame, 0};
+static swig_type_info _swigt__p_CStateMachineTCFootballPlayer_t = {"_p_CStateMachineTCFootballPlayer_t", "CStateMachine<CFootballPlayer > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CFootballPlayer_Sg_, 0};
+static swig_type_info _swigt__p_CStateMachineTCReferee_t = {"_p_CStateMachineTCReferee_t", "CStateMachine<CReferee > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CReferee_Sg_, 0};
+static swig_type_info _swigt__p_CStateMachineTCTeam_t = {"_p_CStateMachineTCTeam_t", "CStateMachine<CTeam > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CTeam_Sg_, 0};
 static swig_type_info _swigt__p_CStateMainMenu = {"_p_CStateMainMenu", "CStateMainMenu *", 0, 0, (void*)&_wrap_class_CStateMainMenu, 0};
 static swig_type_info _swigt__p_CStateManager = {"_p_CStateManager", "CStateManager *", 0, 0, (void*)&_wrap_class_CStateManager, 0};
 static swig_type_info _swigt__p_CStateMonitor = {"_p_CStateMonitor", "CStateMonitor *", 0, 0, (void*)&_wrap_class_CStateMonitor, 0};
+static swig_type_info _swigt__p_CSteeringBehaviors = {"_p_CSteeringBehaviors", "CSteeringBehaviors *", 0, 0, (void*)&_wrap_class_CSteeringBehaviors, 0};
+static swig_type_info _swigt__p_CTeam = {"_p_CTeam", "CTeam *", 0, 0, (void*)&_wrap_class_CTeam, 0};
 static swig_type_info _swigt__p_IDAOFactory = {"_p_IDAOFactory", "IDAOFactory *", 0, 0, (void*)&_wrap_class_IDAOFactory, 0};
 static swig_type_info _swigt__p_IPfGameOptionsDAO = {"_p_IPfGameOptionsDAO", "IPfGameOptionsDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfGameStatesDAO = {"_p_IPfGameStatesDAO", "IPfGameStatesDAO *", 0, 0, (void*)0, 0};
@@ -6868,26 +13017,49 @@ static swig_type_info _swigt__p_IPfMatchesDAO = {"_p_IPfMatchesDAO", "IPfMatches
 static swig_type_info _swigt__p_IPfTeamsDAO = {"_p_IPfTeamsDAO", "IPfTeamsDAO *", 0, 0, (void*)&_wrap_class_IPfTeamsDAO, 0};
 static swig_type_info _swigt__p_Ogre__FrameEvent = {"_p_Ogre__FrameEvent", "Ogre::FrameEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__SceneManager = {"_p_Ogre__SceneManager", "Ogre::SceneManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_btCollisionShape = {"_p_btCollisionShape", "btCollisionShape *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_btRigidBody = {"_p_btRigidBody", "btRigidBody *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_btTransform = {"_p_btTransform", "btTransform *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_btVector3 = {"_p_btVector3", "btVector3 *", 0, 0, (void*)&_wrap_class_btVector3, 0};
+static swig_type_info _swigt__p_float = {"_p_float", "float *|btScalar *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)&_wrap_class_std_string, 0};
+static swig_type_info _swigt__p_std__vectorTCFootballPlayer_p_t = {"_p_std__vectorTCFootballPlayer_p_t", "std::vector<CFootballPlayer * > *", 0, 0, (void*)&_wrap_class_std_vector_Sl_CFootballPlayer_Sm__Sg_, 0};
 static swig_type_info _swigt__p_std__vectorTCPfGoals_p_t = {"_p_std__vectorTCPfGoals_p_t", "std::vector<CPfGoals * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorTCPfMatches_p_t = {"_p_std__vectorTCPfMatches_p_t", "std::vector<CPfMatches * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorTCPfTeams_p_t = {"_p_std__vectorTCPfTeams_p_t", "std::vector<CPfTeams * > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__btVector3,
+  &_swigt__p_CBall,
+  &_swigt__p_CBaseAgent,
+  &_swigt__p_CBaseGameEntity,
   &_swigt__p_CDAOAbstractFactory,
   &_swigt__p_CDate,
+  &_swigt__p_CEntityManager,
+  &_swigt__p_CFootballPlayer,
   &_swigt__p_CLog,
+  &_swigt__p_CMessage,
+  &_swigt__p_CMessageDispatcher,
+  &_swigt__p_CMovingEntity,
   &_swigt__p_CPfGoals,
   &_swigt__p_CPfMatches,
   &_swigt__p_CPfTeams,
+  &_swigt__p_CReferee,
   &_swigt__p_CSimulationManager,
+  &_swigt__p_CSimulationWorld,
   &_swigt__p_CState,
   &_swigt__p_CStateCredits,
   &_swigt__p_CStateGame,
   &_swigt__p_CStateLoadGame,
+  &_swigt__p_CStateMachineTCFootballPlayer_t,
+  &_swigt__p_CStateMachineTCReferee_t,
+  &_swigt__p_CStateMachineTCTeam_t,
   &_swigt__p_CStateMainMenu,
   &_swigt__p_CStateManager,
   &_swigt__p_CStateMonitor,
+  &_swigt__p_CSteeringBehaviors,
+  &_swigt__p_CTeam,
   &_swigt__p_IDAOFactory,
   &_swigt__p_IPfGameOptionsDAO,
   &_swigt__p_IPfGameStatesDAO,
@@ -6896,26 +13068,49 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_IPfTeamsDAO,
   &_swigt__p_Ogre__FrameEvent,
   &_swigt__p_Ogre__SceneManager,
+  &_swigt__p_btCollisionShape,
+  &_swigt__p_btRigidBody,
+  &_swigt__p_btTransform,
+  &_swigt__p_btVector3,
+  &_swigt__p_float,
   &_swigt__p_std__string,
+  &_swigt__p_std__vectorTCFootballPlayer_p_t,
   &_swigt__p_std__vectorTCPfGoals_p_t,
   &_swigt__p_std__vectorTCPfMatches_p_t,
   &_swigt__p_std__vectorTCPfTeams_p_t,
+  &_swigt__p_void,
 };
 
+static swig_cast_info _swigc__btVector3[] = {  {&_swigt__btVector3, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CBall[] = {  {&_swigt__p_CBall, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CBaseAgent[] = {  {&_swigt__p_CReferee, _p_CRefereeTo_p_CBaseAgent, 0, 0},  {&_swigt__p_CBaseAgent, 0, 0, 0},  {&_swigt__p_CFootballPlayer, _p_CFootballPlayerTo_p_CBaseAgent, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CBaseGameEntity[] = {  {&_swigt__p_CReferee, _p_CRefereeTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CTeam, _p_CTeamTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CBall, _p_CBallTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CBaseGameEntity, 0, 0, 0},  {&_swigt__p_CMovingEntity, _p_CMovingEntityTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CBaseAgent, _p_CBaseAgentTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CFootballPlayer, _p_CFootballPlayerTo_p_CBaseGameEntity, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CDAOAbstractFactory[] = {  {&_swigt__p_CDAOAbstractFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CDate[] = {  {&_swigt__p_CDate, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CEntityManager[] = {  {&_swigt__p_CEntityManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CFootballPlayer[] = {  {&_swigt__p_CFootballPlayer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CLog[] = {  {&_swigt__p_CLog, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CMessage[] = {  {&_swigt__p_CMessage, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CMessageDispatcher[] = {  {&_swigt__p_CMessageDispatcher, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CMovingEntity[] = {  {&_swigt__p_CReferee, _p_CRefereeTo_p_CMovingEntity, 0, 0},  {&_swigt__p_CBall, _p_CBallTo_p_CMovingEntity, 0, 0},  {&_swigt__p_CMovingEntity, 0, 0, 0},  {&_swigt__p_CBaseAgent, _p_CBaseAgentTo_p_CMovingEntity, 0, 0},  {&_swigt__p_CFootballPlayer, _p_CFootballPlayerTo_p_CMovingEntity, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfGoals[] = {  {&_swigt__p_CPfGoals, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfMatches[] = {  {&_swigt__p_CPfMatches, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfTeams[] = {  {&_swigt__p_CPfTeams, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CReferee[] = {  {&_swigt__p_CReferee, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationManager[] = {  {&_swigt__p_CSimulationManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CSimulationWorld[] = {  {&_swigt__p_CSimulationWorld, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CStateGame, _p_CStateGameTo_p_CState, 0, 0},  {&_swigt__p_CStateLoadGame, _p_CStateLoadGameTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateCredits[] = {  {&_swigt__p_CStateCredits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateGame[] = {  {&_swigt__p_CStateGame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateLoadGame[] = {  {&_swigt__p_CStateLoadGame, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CStateMachineTCFootballPlayer_t[] = {  {&_swigt__p_CStateMachineTCFootballPlayer_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CStateMachineTCReferee_t[] = {  {&_swigt__p_CStateMachineTCReferee_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CStateMachineTCTeam_t[] = {  {&_swigt__p_CStateMachineTCTeam_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMainMenu[] = {  {&_swigt__p_CStateMainMenu, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateManager[] = {  {&_swigt__p_CStateManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMonitor[] = {  {&_swigt__p_CStateMonitor, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CSteeringBehaviors[] = {  {&_swigt__p_CSteeringBehaviors, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CTeam[] = {  {&_swigt__p_CTeam, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IDAOFactory[] = {  {&_swigt__p_IDAOFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfGameOptionsDAO[] = {  {&_swigt__p_IPfGameOptionsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfGameStatesDAO[] = {  {&_swigt__p_IPfGameStatesDAO, 0, 0, 0},{0, 0, 0, 0}};
@@ -6924,26 +13119,49 @@ static swig_cast_info _swigc__p_IPfMatchesDAO[] = {  {&_swigt__p_IPfMatchesDAO, 
 static swig_cast_info _swigc__p_IPfTeamsDAO[] = {  {&_swigt__p_IPfTeamsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__FrameEvent[] = {  {&_swigt__p_Ogre__FrameEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__SceneManager[] = {  {&_swigt__p_Ogre__SceneManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_btCollisionShape[] = {  {&_swigt__p_btCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_btRigidBody[] = {  {&_swigt__p_btRigidBody, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_btTransform[] = {  {&_swigt__p_btTransform, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_btVector3[] = {  {&_swigt__p_btVector3, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorTCFootballPlayer_p_t[] = {  {&_swigt__p_std__vectorTCFootballPlayer_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorTCPfGoals_p_t[] = {  {&_swigt__p_std__vectorTCPfGoals_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorTCPfMatches_p_t[] = {  {&_swigt__p_std__vectorTCPfMatches_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorTCPfTeams_p_t[] = {  {&_swigt__p_std__vectorTCPfTeams_p_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__btVector3,
+  _swigc__p_CBall,
+  _swigc__p_CBaseAgent,
+  _swigc__p_CBaseGameEntity,
   _swigc__p_CDAOAbstractFactory,
   _swigc__p_CDate,
+  _swigc__p_CEntityManager,
+  _swigc__p_CFootballPlayer,
   _swigc__p_CLog,
+  _swigc__p_CMessage,
+  _swigc__p_CMessageDispatcher,
+  _swigc__p_CMovingEntity,
   _swigc__p_CPfGoals,
   _swigc__p_CPfMatches,
   _swigc__p_CPfTeams,
+  _swigc__p_CReferee,
   _swigc__p_CSimulationManager,
+  _swigc__p_CSimulationWorld,
   _swigc__p_CState,
   _swigc__p_CStateCredits,
   _swigc__p_CStateGame,
   _swigc__p_CStateLoadGame,
+  _swigc__p_CStateMachineTCFootballPlayer_t,
+  _swigc__p_CStateMachineTCReferee_t,
+  _swigc__p_CStateMachineTCTeam_t,
   _swigc__p_CStateMainMenu,
   _swigc__p_CStateManager,
   _swigc__p_CStateMonitor,
+  _swigc__p_CSteeringBehaviors,
+  _swigc__p_CTeam,
   _swigc__p_IDAOFactory,
   _swigc__p_IPfGameOptionsDAO,
   _swigc__p_IPfGameStatesDAO,
@@ -6952,10 +13170,17 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_IPfTeamsDAO,
   _swigc__p_Ogre__FrameEvent,
   _swigc__p_Ogre__SceneManager,
+  _swigc__p_btCollisionShape,
+  _swigc__p_btRigidBody,
+  _swigc__p_btTransform,
+  _swigc__p_btVector3,
+  _swigc__p_float,
   _swigc__p_std__string,
+  _swigc__p_std__vectorTCFootballPlayer_p_t,
   _swigc__p_std__vectorTCPfGoals_p_t,
   _swigc__p_std__vectorTCPfMatches_p_t,
   _swigc__p_std__vectorTCPfTeams_p_t,
+  _swigc__p_void,
 };
 
 

@@ -25,15 +25,23 @@
 #include "../fsm/CStateMachine.h"
 #include "../../state/CStateMonitor.h"
 #include "../../utils/CLog.h"
+#include "../../engine/option/CSystemOptionManager.h"
+
+
+char* CReferee::m_pCtorName = "CReferee_p_ctor";
 
 CReferee::CReferee()
 : CBaseAgent()
 {
+    CLog::getInstance()->debug("CReferee()");
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
+    CLuaManager::getInstance()->runScript("data/scripts/referee.lua");
     m_stateMachine = new CStateMachine<CReferee>(this);
+    m_stateMachine->changeState("SRf_BeforeStart");
     m_homeScore = 0;
     m_awayScore = 0;
     m_homeSideLeft = true;
+    m_matchDuration = CSystemOptionManager::getInstance()->getIntOption("Simulation","MatchDuration", 2000);
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
     m_entity = scnMgr->createEntity("Referee", "Cylinder.mesh");
     m_entity->setMaterialName("referee");
@@ -52,12 +60,12 @@ CReferee::CReferee()
     m_body = new btRigidBody(rbInfo);
 
     m_cycle = 0;
-    setGameMode(BEFORE_START);
 }
 
 
 CReferee::~CReferee()
 {
+    CLog::getInstance()->debug("~CReferee()");
     if(m_stateMachine != 0) {
         delete m_stateMachine;
     }
@@ -66,85 +74,73 @@ CReferee::~CReferee()
 
 bool CReferee::handleMessage(const CMessage &msg)
 {
-    bool handle = false;
-    switch(msg.Msg) {
-        case Msg_StartMatch:
-            if(m_currentGameMode == BEFORE_START) {
-                setGameMode(KICK_OFF_LEFT);
-            } else if(m_currentGameMode == HALF_TIME) {
-                setGameMode(KICK_OFF_LEFT);
-            }
-            CStateMonitor::getInstance()->addToLog(getGameModeString());
-            handle = true;
-            break;
-        default:
-            break;
-    }
-    return handle;
+    return m_stateMachine->handleMessage(msg);
+}
+
+
+void CReferee::setMatchDuration(int cycles)
+{
+    m_matchDuration = cycles;
+}
+
+
+int CReferee::getMatchDuration()
+{
+    return m_matchDuration;
+}
+
+
+void CReferee::setHomeTeamInSideLeft(bool left)
+{
+    m_homeSideLeft = left;
+}
+
+
+bool CReferee::isHomeTeamInSideLeft()
+{
+    return m_homeSideLeft;
+}
+
+
+void CReferee::setKickTeam(CTeam *team)
+{
+    m_kickTeam = team;
+}
+
+
+CTeam* CReferee::getKickTeam()
+{
+    return m_kickTeam;
+}
+
+
+void CReferee::setLastPlayerTouch(CFootballPlayer *player)
+{
+    m_lastPlayerTouch = player;
+}
+
+
+CFootballPlayer* CReferee::getLastPlayerTouch()
+{
+    return m_lastPlayerTouch;
 }
 
 
 void CReferee::update()
 {
-    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
-    CBall *ball = sim->getBall();
-    int halfTime = 1000;
-    if(m_currentGameMode != BEFORE_START
-                  && m_currentGameMode != HALF_TIME
-                  && m_currentGameMode != END) {
-        ++m_cycle;
-        if(m_currentGameMode == PLAY_ON) {
-            verifyBallPosition();
-        }
-        if(m_cycle == halfTime*2) {
-            setGameMode(END);
-            CStateMonitor::getInstance()->addToLog("End of the match");
-            char score[50];
-            sprintf(score,"%s %d - %d %s", sim->getHomeTeamName()->c_str(), m_homeScore, m_awayScore, sim->getAwayTeamName()->c_str());
-            CStateMonitor::getInstance()->addToLog(score);
-        } else if(m_cycle == halfTime) {
-            setGameMode(HALF_TIME);
-            sim->changePlayersSide();
-            m_homeSideLeft = false;
-            ball->setPosition(0,1,0);
-            CStateMonitor::getInstance()->addToLog("Half Time");
-            char score[50];
-            sprintf(score,"%s %d - %d %s", sim->getHomeTeamName()->c_str(), m_homeScore, m_awayScore, sim->getAwayTeamName()->c_str());
-            CStateMonitor::getInstance()->addToLog(score);
-        }
-    }
+    m_stateMachine->update();
 }
 
 
-void CReferee::playerKickEvent(CFootballPlayer *player)
+CStateMachine<CReferee>* CReferee::getFSM()
 {
-    m_lastPlayerKick = player;
-    if(m_currentGameMode == KICK_OFF_LEFT ||
-            m_currentGameMode == GOAL_KICK_LEFT ||
-            m_currentGameMode == KICK_IN_LEFT ||
-            m_currentGameMode == CORNER_KICK_LEFT) {
-        if(m_lastPlayerKick->isTeamLeft()) {
-            setGameMode(PLAY_ON);
-        } else {
-            setGameMode(KICK_IN_LEFT);
-        }
-    } else if(m_currentGameMode == KICK_OFF_RIGHT ||
-            m_currentGameMode == GOAL_KICK_RIGHT ||
-            m_currentGameMode == KICK_IN_RIGHT ||
-            m_currentGameMode == CORNER_KICK_RIGHT) {
-        if(!m_lastPlayerKick->isTeamLeft()) {
-            setGameMode(PLAY_ON);
-        } else {
-            setGameMode(KICK_IN_RIGHT);
-        }
-    }
+    return m_stateMachine;
 }
 
 
 bool CReferee::isMoveLegal()
 {
-    return (m_currentGameMode == KICK_OFF_LEFT ||
-            m_currentGameMode == KICK_OFF_RIGHT ||
+    return (m_currentGameMode == KICK_OFF ||
             m_currentGameMode == BEFORE_START ||
             m_currentGameMode == HALF_TIME);
 }
@@ -156,16 +152,21 @@ GameMode CReferee::getGameMode()
 }
 
 
-int CReferee::getCycle()
+int CReferee::getCycle() const
 {
     return m_cycle;
 }
 
 
+void CReferee::incCycle()
+{
+    m_cycle++;
+}
+
 void CReferee::setGameMode(GameMode newGameMode)
 {
     m_currentGameMode = newGameMode;
-    printf("Ciclo:%d   Game Mode: %s\n", m_cycle, getGameModeString().c_str());
+    printf("Ciclo:%d GameMode: %s\n", m_cycle, getGameModeString().c_str());
 }
 
 
@@ -185,29 +186,17 @@ std::string CReferee::getGameModeString()
         case END:
             mode = "End";
             break;
-        case KICK_OFF_LEFT:
-            mode = "Kick Off Left";
+        case KICK_OFF:
+            mode = "Kick Off";
             break;
-        case KICK_OFF_RIGHT:
-            mode = "Kick Off Right";
+        case KICK_IN:
+            mode = "Kick In";
             break;
-        case KICK_IN_LEFT:
-            mode = "Kick In Left";
+        case CORNER_KICK:
+            mode = "Corner Kick";
             break;
-        case KICK_IN_RIGHT:
-            mode = "Kick In Right";
-            break;
-        case CORNER_KICK_LEFT:
-            mode = "Corner Kick Left";
-            break;
-        case CORNER_KICK_RIGHT:
-            mode = "Corner Kick Right";
-            break;
-        case GOAL_KICK_LEFT:
-            mode = "Goal Kick Left";
-            break;
-        case GOAL_KICK_RIGHT:
-            mode = "Goal Kick Right";
+        case GOAL_KICK:
+            mode = "Goal Kick";
             break;
         default:
             break;
@@ -228,128 +217,13 @@ int CReferee::getAwayScore()
 }
 
 
-bool CReferee::verifyBallPosition()
+void CReferee::addHomeGoal(CFootballPlayer *player)
 {
-    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
-    CBall *ball = sim->getBall();
-    btVector3 pos = ball->getPosition();
-    float x = pos.x();
-    float y = pos.y();
-    float z = pos.z();
-    if(x >= -55 && x <= 55) {
-        if(z < -35) {
-            if(m_lastPlayerKick->isTeamLeft()) {
-                setGameMode(KICK_IN_RIGHT);
-            } else {
-                setGameMode(KICK_IN_LEFT);
-            }
-            ball->setPosition(x,1,-35);
-        } else if(z > 35) {
-            if(m_lastPlayerKick->isTeamLeft()) {
-                setGameMode(KICK_IN_RIGHT);
-            } else {
-                setGameMode(KICK_IN_LEFT);
-            }
-            ball->setPosition(x,1,35);
-        }
-    } else if(x < -55){
-        if(y > 2.44) {
-            if (z <= 0) {
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(CORNER_KICK_RIGHT);
-                    ball->setPosition(-54.5,1,-34.5);
-                } else {
-                    setGameMode(GOAL_KICK_LEFT);
-                    ball->setPosition(-49.5,1,-9);
-                }
-            } else {
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(CORNER_KICK_RIGHT);
-                    ball->setPosition(-54.5,1,34.5);
-                } else {
-                    setGameMode(GOAL_KICK_LEFT);
-                    ball->setPosition(-49.5,1,9);
-                }
-            }
-        } else {
-            if (z <= -3.66) {
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(CORNER_KICK_RIGHT);
-                    ball->setPosition(-54.5,1,-34.5);
-                } else {
-                    setGameMode(GOAL_KICK_LEFT);
-                    ball->setPosition(-49.5,1,-9);
-                }
-            } else if(z >= 3.66){
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(CORNER_KICK_RIGHT);
-                    ball->setPosition(-54.5,1,34.5);
-                } else {
-                    setGameMode(GOAL_KICK_LEFT);
-                    ball->setPosition(-49.5,1,9);
-                }
-            } else {
-                setGameMode(KICK_OFF_LEFT);
-                ball->setPosition(0,1,0);
-                if(m_homeSideLeft) {
-                    m_awayScore++;
-                } else {
-                    m_homeScore++;
-                }
-                char score[50];
-                sprintf(score,"Player %s scores!!", m_lastPlayerKick->getIdent().c_str());
-                CStateMonitor::getInstance()->addToLog(score);
+    m_homeScore++;
+}
 
-            }
-        }
-    } else if(x > 55) {
-        if(y > 2.44) {
-            if (z <= 0) {
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(GOAL_KICK_RIGHT);
-                    ball->setPosition(49.5,1,-9);
-                } else {
-                    setGameMode(CORNER_KICK_LEFT);
-                    ball->setPosition(54.5,1,-34.5);
-                }
-            } else {
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(GOAL_KICK_RIGHT);
-                    ball->setPosition(49.5,1,9);
-                } else {
-                    setGameMode(CORNER_KICK_LEFT);
-                    ball->setPosition(54.5,1,34.5);
-                }
-            }
-        } else {
-            if (z <= -3.66) {
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(GOAL_KICK_RIGHT);
-                    ball->setPosition(49.5,1,-9);
-                } else {
-                    setGameMode(CORNER_KICK_LEFT);
-                    ball->setPosition(54.5,1,-34.5);
-                }
-            } else if(z >= 3.66){
-                if(m_lastPlayerKick->isTeamLeft()) {
-                    setGameMode(GOAL_KICK_RIGHT);
-                    ball->setPosition(49.5,1,9);
-                } else {
-                    setGameMode(CORNER_KICK_LEFT);
-                    ball->setPosition(54.5,1,34.5);
-                }
-            } else {
-                setGameMode(KICK_OFF_RIGHT);
-                ball->setPosition(0,1,0);
-                if(m_homeSideLeft) {
-                    m_homeScore++;
-                } else {
-                    m_awayScore++;
-                }
-                char score[50];
-                sprintf(score,"Player %s scores!!", m_lastPlayerKick->getIdent().c_str());
-                CStateMonitor::getInstance()->addToLog(score);
-            }
-        }
-    }
+
+void CReferee::addAwayGoal(CFootballPlayer *player)
+{
+    m_awayScore++;
 }

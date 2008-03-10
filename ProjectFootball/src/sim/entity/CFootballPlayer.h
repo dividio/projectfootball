@@ -27,31 +27,34 @@
 
 #include "CBaseAgent.h"
 #include "../CSteeringBehaviors.h"
+#include "../fsm/CStateMachine.h"
 
+
+
+class CTeam;
 
 class CFootballPlayer: public CBaseAgent
 {
 public:
-    CFootballPlayer(int number, std::string teamName, int x, int y, int z, bool sideLeft);
+    static char* m_pCtorName;
+    static CFootballPlayer* getPlayer(CBaseGameEntity *player);
+
+    CFootballPlayer(int number, CTeam *team, int x, int y, int z, bool sideLeft);
     ~CFootballPlayer();
 
+    bool handleMessage(const CMessage &msg);
     void update();
+    CStateMachine<CFootballPlayer>* getFSM();
     bool canDoActions();
     bool canKickBall(int cycle);
-    btVector3 getDirection() const;
+    btVector3 getStrategicPosition() const;
     std::string getIdent() const;
-    std::string getTeamName() const;
+    CTeam* getTeam();
+    CSteeringBehaviors* getSteering();
     void changeSide();
 
     bool isTeamLeft() const;
-
-    //Low-Level Skills
-    void turnBodyToPoint(btVector3 pos, int cycles = 1);
-
-    //Intermediate Level Skills
-    //void turnBodyToObject(CObject o);
-    void moveToPos(btVector3 pos, int angle);
-
+    bool isBallKickable() const;
 
 private:
     bool m_canDoActions;
@@ -59,12 +62,12 @@ private:
     int m_strategicX;
     int m_strategicZ;
     bool m_sideLeft;
-    std::string m_teamName;
     int m_number;
     std::string m_ident;
-    btVector3 m_direction;
-    btQuaternion m_rotation;
     CSteeringBehaviors *m_steeringBehavior;
+    CTeam *m_team;
+    CStateMachine<CFootballPlayer> *m_stateMachine;
+
 
 };
 

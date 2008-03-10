@@ -26,43 +26,56 @@
 
 #include "CBaseAgent.h"
 #include "CFootballPlayer.h"
+#include "CTeam.h"
 #include "../fsm/CStateMachine.h"
 
 enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
-    ,KICK_OFF_LEFT,KICK_OFF_RIGHT
-    ,KICK_IN_LEFT,KICK_IN_RIGHT
-    ,CORNER_KICK_LEFT,CORNER_KICK_RIGHT
-    ,GOAL_KICK_LEFT,GOAL_KICK_RIGHT};
+    ,KICK_OFF, KICK_IN, CORNER_KICK, GOAL_KICK};
 
 class CReferee: public CBaseAgent
 {
 public:
+    static char* m_pCtorName;
+
     CReferee();
     ~CReferee();
 
     bool handleMessage(const CMessage &msg);
     void update();
+    CStateMachine<CReferee>* getFSM();
+    void setMatchDuration(int cycles);
+    int getMatchDuration();
+    void setHomeTeamInSideLeft(bool left);
+    bool isHomeTeamInSideLeft();
+    void setKickTeam(CTeam *team);
+    CTeam* getKickTeam();
+    void setLastPlayerTouch(CFootballPlayer *player);
+    CFootballPlayer* getLastPlayerTouch();
+    void addHomeGoal(CFootballPlayer *player);
+    void addAwayGoal(CFootballPlayer *player);
 
-    void playerKickEvent(CFootballPlayer *player);
     bool isMoveLegal();
     GameMode getGameMode();
-    int getCycle();
     std::string getGameModeString();
     int getHomeScore();
     int getAwayScore();
 
+    int getCycle() const;
+    void incCycle();
+    void setGameMode(GameMode newGameMode);
+
 private:
     int m_cycle;
+    int m_matchDuration;
     GameMode m_currentGameMode;
     int m_homeScore;
     int m_awayScore;
     bool m_homeSideLeft;
-    CFootballPlayer *m_lastPlayerKick;
+    CFootballPlayer *m_lastPlayerTouch;
+    CTeam *m_kickTeam;
 
     CStateMachine<CReferee> *m_stateMachine;
 
-    bool verifyBallPosition();
-    void setGameMode(GameMode newGameMode);
 };
 
 #endif // __CReferee_H__
