@@ -23,6 +23,8 @@
 #include "CMessage.h"
 
 
+char* CMessage::m_pCtorName = "CMessage_p_ctor";
+
 CMessage::CMessage()
 {
     Sender = -1;

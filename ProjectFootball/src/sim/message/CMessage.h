@@ -29,6 +29,8 @@ const double SMALLEST_DELAY = 0.25;
 class CMessage
 {
 public:
+    static char* m_pCtorName;
+
     int          Sender;
     int          Receiver;
     int          Msg;
