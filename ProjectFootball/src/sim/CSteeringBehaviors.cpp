@@ -22,11 +22,15 @@
 #include "CSteeringBehaviors.h"
 
 
-CSteeringBehaviors::CSteeringBehaviors(CBaseAgent *agent)
+CSteeringBehaviors::CSteeringBehaviors(CMovingEntity *agent)
 {
     m_agent = agent;
-    //m_ball = ball;
+    m_targetEntity = 0;
     m_steeringForce = btVector3(0,0,0);
+    m_seek = false;
+    m_arrive = false;
+    m_pursuit = false;
+    m_interpose = false;
 }
 
 
@@ -41,9 +45,15 @@ btVector3 CSteeringBehaviors::getTarget() const
 }
 
 
-void CSteeringBehaviors::setTarget(const btVector3 target)
+void CSteeringBehaviors::setTargetPoint(const btVector3 target)
 {
     m_target = target;
+}
+
+
+void CSteeringBehaviors::setTargetEntity(CMovingEntity *entity)
+{
+    m_targetEntity = entity;
 }
 
 
@@ -63,9 +73,72 @@ btVector3 CSteeringBehaviors::calculate()
 
 btVector3 CSteeringBehaviors::sumForces()
 {
-    btVector3 sum;
-    sum = arrive(m_target, normal);
+    btVector3 sum(0,0,0);
+    if(m_seek) {
+        sum += seek(m_target);
+    }
+
+    if(m_arrive) {
+        sum += arrive(m_target, fast);
+    }
+
+    if(m_pursuit) {
+        sum += pursuit(m_targetEntity);
+    }
+
+    if(m_interpose) {
+        sum += interpose(this->m_agent, m_targetEntity);
+    }
+
     return sum;
+}
+
+
+void CSteeringBehaviors::seekOn()
+{
+    m_seek = true;
+}
+
+
+void CSteeringBehaviors::arriveOn()
+{
+    m_arrive = true;
+}
+
+
+void CSteeringBehaviors::pursuitOn()
+{
+    m_pursuit = true;
+}
+
+
+void CSteeringBehaviors::interposeOn()
+{
+    m_interpose = true;
+}
+
+
+void CSteeringBehaviors::seekOff()
+{
+    m_seek = false;
+}
+
+
+void CSteeringBehaviors::arriveOff()
+{
+    m_arrive = false;
+}
+
+
+void CSteeringBehaviors::pursuitOff()
+{
+    m_pursuit = false;
+}
+
+
+void CSteeringBehaviors::interposeOff()
+{
+    m_interpose = false;
 }
 
 
@@ -98,4 +171,40 @@ btVector3 CSteeringBehaviors::arrive(btVector3 target, Deceleration decel)
     }
 
     return steer;
+}
+
+
+double CSteeringBehaviors::forwardComponent() const
+{
+  return m_agent->getHeading().normalized().dot(m_steeringForce.normalized());
+}
+
+
+double CSteeringBehaviors::sideComponent() const
+{
+  return m_agent->getSide().normalized().dot(m_steeringForce.normalized());
+}
+
+
+btVector3 CSteeringBehaviors::pursuit(CMovingEntity *entity)
+{
+    btVector3 toEntity = entity->getPosition() - m_agent->getPosition();
+
+    double lookTime = 0.0;
+    double velocity = entity->getBody()->getLinearVelocity().length();
+    if(velocity > 0.0001) {
+        lookTime = toEntity.length() / velocity;
+    }
+
+    m_target = entity->futurePosition(lookTime);
+
+    return arrive(m_target, fast);
+}
+
+//TODO Consider speeds of the objects
+btVector3 CSteeringBehaviors::interpose(CMovingEntity *objectA, CMovingEntity *objectB)
+{
+    btVector3 middle = (objectA->getPosition() + objectB->getPosition()) / 2;
+
+    return arrive(middle, fast);
 }

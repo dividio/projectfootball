@@ -23,17 +23,18 @@
 #define __CSteeringBehaviors_H__
 
 
-#include "entity/CBaseAgent.h"
+#include "entity/CMovingEntity.h"
 #include "entity/CBall.h"
 #include "../bullet/LinearMath/btVector3.h"
 
 class CSteeringBehaviors
 {
 public:
-    CSteeringBehaviors(CBaseAgent *agent);
+    CSteeringBehaviors(CMovingEntity *agent);
     ~CSteeringBehaviors();
 
-    void setTarget(const btVector3 target);
+    void setTargetPoint(const btVector3 target);
+    void setTargetEntity(CMovingEntity *entity);
     btVector3 getTarget() const;
 
     btVector3 force() const;
@@ -42,10 +43,24 @@ public:
     double forwardComponent() const;
     double sideComponent() const;
 
+    void seekOn();
+    void arriveOn();
+    void pursuitOn();
+    void interposeOn();
+
+    void seekOff();
+    void arriveOff();
+    void pursuitOff();
+    void interposeOff();
 
 private:
-    CBaseAgent *m_agent;
-    //CBall *m_ball;
+    CMovingEntity *m_agent;
+    CMovingEntity *m_targetEntity;
+
+    bool m_seek;
+    bool m_arrive;
+    bool m_pursuit;
+    bool m_interpose;
 
     btVector3 m_steeringForce;
     btVector3 m_target;
@@ -54,8 +69,8 @@ private:
 
     btVector3 seek(btVector3 target);
     btVector3 arrive(btVector3 target, Deceleration decel);
-
-
+    btVector3 pursuit(CMovingEntity *entity);
+    btVector3 interpose(CMovingEntity *objectA, CMovingEntity *objectB);
 
 };
 
