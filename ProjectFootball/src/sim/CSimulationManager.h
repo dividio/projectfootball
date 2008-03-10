@@ -29,6 +29,8 @@
 #include "entity/CFootballPlayer.h"
 #include "entity/CReferee.h"
 #include "entity/CBall.h"
+#include "../utils/CTimer.h"
+#include "entity/CTeam.h"
 #include "CSimulationWorld.h"
 
 
@@ -44,14 +46,15 @@ public:
     CSimulationWorld* getSimulationWorld();
     CReferee* getReferee();
     CBall* getBall();
+    CTeam* getHomeTeam();
+    CTeam* getAwayTeam();
     void changePlayersSide();
 
     //Information Methods
     std::string* getHomeTeamName();
     std::string* getAwayTeamName();
     btVector3 getBallPosition() const;
-    bool isNearestPlayerToBall(CFootballPlayer* player) const;
-    bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
+
 
     // Soccer Commands
     void dash(CFootballPlayer *player, btVector3 power);
@@ -60,20 +63,14 @@ public:
     void turn(CFootballPlayer *player, int moment);
 
 private:
-    int m_timer;
-    std::string m_homeTeamName;
-    std::string m_awayTeamName;
-    std::vector<CFootballPlayer*> m_homePlayers;
-    std::vector<CFootballPlayer*> m_awayPlayers;
+    CTimer *m_logicTimer;
+    CTimer *m_physicsTimer;
+    CTeam *m_homeTeam;
+    CTeam *m_awayTeam;
     CReferee *m_referee;
     CBall *m_ball;
     CSimulationWorld *m_simWorld;
 
-    CFootballPlayer *m_homeNearestPlayer;
-    CFootballPlayer *m_awayNearestPlayer;
-    CFootballPlayer *m_nearestPlayer;
-
-    void setNearestPlayersToBall();
     void truncateVector(btVector3 *v, double max);
 };
 
