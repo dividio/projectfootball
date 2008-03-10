@@ -41,6 +41,7 @@ public:
     virtual bool leave();
     virtual void update();
 
+    void toogleSimulationView();
     void switchTo2DView();
     void switchTo3DView();
     CSimulationManager* getSimulationManager();
@@ -63,7 +64,6 @@ private:
     void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool startMatchHandler(const CEGUI::EventArgs& e);
     void updateScore();
 };
 

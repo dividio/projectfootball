@@ -41,15 +41,20 @@ CStateMonitor::CStateMonitor()
     CEGUI::Window *si = CEGUI::WindowManager::getSingleton().getWindow("Monitor/Image");
     renderImage(m_cam, si);
 
+    si = CEGUI::WindowManager::getSingleton().getWindow("Monitor/Frame/Image");
+    int width = (int)si->getPixelSize().d_width;
+    int height = (int)si->getPixelSize().d_height;
+    printf("FrameWindowSize %d x %d\n", width, height);
+    CEGUI::Imageset *imageSet = CEGUI::ImagesetManager::getSingleton().getImageset("RttImageset");
+    si->setProperty("Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
+    si->disable();
+
     CEGUI::Window *w = CEGUI::WindowManager::getSingleton().getWindow("Monitor");
     w->subscribeEvent(CEGUI::Window::EventKeyDown,
             CEGUI::Event::Subscriber(&CStateMonitor::keyDownHandler, this));
     w->subscribeEvent(CEGUI::Window::EventKeyUp,
             CEGUI::Event::Subscriber(&CStateMonitor::keyUpHandler, this));
 
-    w = CEGUI::WindowManager::getSingleton().getWindow("Monitor/StartButton");
-    w->subscribeEvent(CEGUI::Window::EventMouseClick,
-            CEGUI::Event::Subscriber(&CStateMonitor::startMatchHandler, this));
 }
 
 
@@ -68,11 +73,6 @@ CStateMonitor::~CStateMonitor()
     }
 }
 
-
-bool CStateMonitor::startMatchHandler(const CEGUI::EventArgs& e)
-{
-    m_simulator->startMatch();
-}
 
 bool CStateMonitor::keyDownHandler(const CEGUI::EventArgs& e)
 {
@@ -169,7 +169,7 @@ void CStateMonitor::renderImage(Ogre::Camera *cam, CEGUI::Window *si)
 {
     int width = (int)si->getPixelSize().d_width;
     int height = (int)si->getPixelSize().d_height;
-    printf("%d x %d", width, height);
+    printf("%d x %d\n", width, height);
     Ogre::RenderTexture *tex = m_root->getRenderSystem()->createRenderTexture("RttTex", width, height, Ogre::TEX_TYPE_2D, Ogre::PF_R8G8B8);
 
     Ogre::Viewport *v = tex->addViewport(cam);
@@ -217,6 +217,23 @@ void CStateMonitor::update()
     m_camNode->translate(m_direction * t, Ogre::Node::TS_LOCAL);
     updateScore();
     m_simulator->update();
+}
+
+
+void CStateMonitor::toogleSimulationView()
+{
+    CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
+    CEGUI::FrameWindow* frameWindow = static_cast<CEGUI::FrameWindow*> (winMgr.getWindow("Monitor/FrameWindow"));
+    if(frameWindow->isVisible()) {
+        frameWindow->setVisible(false);
+        frameWindow->deactivate();
+        frameWindow->disable();
+        switchTo2DView();
+    } else {
+        frameWindow->setVisible(true);
+        frameWindow->activate();
+        frameWindow->enable();
+    }
 }
 
 

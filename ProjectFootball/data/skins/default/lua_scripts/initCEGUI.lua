@@ -45,7 +45,11 @@ end
 -- cmd_back
 
 function cmd_Monitor_StartSimulation()
+    PF.CStateMonitor_getInstance():getSimulationManager():startMatch()
+end
 
+function cmd_Monitor_ToggleZoom()
+    PF.CStateMonitor_getInstance():toogleSimulationView()
 end
 
 function cmd_Monitor_SwitchTo2DView()
