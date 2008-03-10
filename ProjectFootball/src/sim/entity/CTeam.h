@@ -22,11 +22,47 @@
 #ifndef __CTeam_H__
 #define __CTeam_H__
 
-class CTeam
+#include <string>
+#include <vector>
+
+#include "CBaseGameEntity.h"
+#include "../fsm/CStateMachine.h"
+
+
+
+class CFootballPlayer;
+
+class CTeam: public CBaseGameEntity
 {
 public:
-  CTeam();
-  ~CTeam();
+    static char* m_pCtorName;
+    static CTeam* getTeam(CBaseGameEntity *team);
+
+    CTeam(std::string name, bool sideLeft);
+    ~CTeam();
+
+    void setOpponentTeam(CTeam *team);
+    CTeam* getOpponentTeam();
+    std::string* getName();
+    std::vector<CFootballPlayer*>* getPlayers();
+    CFootballPlayer* getNearestPlayerToBall() const;
+    bool isKickForUs() const;
+    bool isNearestPlayerToBall(CFootballPlayer* player) const;
+    bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
+
+    bool handleMessage(const CMessage &msg);
+    void update();
+    CStateMachine<CTeam>* getFSM();
+    void changeSide();
+
+private:
+    std::string m_name;
+    std::vector<CFootballPlayer*> m_players;
+    CFootballPlayer *m_nearestPlayerToBall;
+    CTeam *m_opponentTeam;
+    CStateMachine<CTeam> *m_stateMachine;
+
+    void setNearestPlayersToBall();
 };
 
 #endif // __CTeam_H__
