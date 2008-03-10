@@ -29,8 +29,15 @@
 class CBall : public CMovingEntity
 {
 public:
-  CBall();
-  ~CBall();
+    CBall();
+    ~CBall();
+
+    bool isInLeftGoal() const;
+    bool isInRightGoal() const;
+    bool crossLeftLine() const;
+    bool crossRightLine() const;
+    bool crossTopLine() const;
+    bool crossBottomLine() const;
 };
 
 #endif // __CBall_H__

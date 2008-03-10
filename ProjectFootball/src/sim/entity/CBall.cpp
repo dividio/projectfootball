@@ -26,6 +26,7 @@
 CBall::CBall()
 : CMovingEntity()
 {
+    CLog::getInstance()->debug("CBall()");
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     m_centerOfMassOffset.setOrigin(btVector3(0,-0.5,0));
     m_entity = scnMgr->createEntity("Ball", "Ball.mesh");
@@ -51,4 +52,73 @@ CBall::CBall()
 
 CBall::~CBall()
 {
+    CLog::getInstance()->debug("~CBall()");
+}
+
+
+bool CBall::isInLeftGoal() const
+{
+    bool result = false;
+    btVector3 pos = getPosition();
+    if((pos.x() < -55) && (pos.y() <= 2.44) &&
+       (pos.z() > -3.66) && (pos.z() < 3.66)) {
+        result = true;
+    }
+    return result;
+}
+
+
+bool CBall::isInRightGoal() const
+{
+    bool result = false;
+    btVector3 pos = getPosition();
+    if((pos.x() > 55) && (pos.y() <= 2.44) &&
+       (pos.z() > -3.66) && (pos.z() < 3.66)) {
+        result = true;
+    }
+    return result;
+}
+
+
+bool CBall::crossLeftLine() const
+{
+    bool result = false;
+    btVector3 pos = getPosition();
+    if(pos.x() < -55) {
+        result = true;
+    }
+    return result;
+}
+
+
+bool CBall::crossRightLine() const
+{
+    bool result = false;
+    btVector3 pos = getPosition();
+    if(pos.x() > 55) {
+        result = true;
+    }
+    return result;
+}
+
+
+bool CBall::crossTopLine() const
+{
+    bool result = false;
+    btVector3 pos = getPosition();
+    if(pos.z() < -35) {
+        result = true;
+    }
+    return result;
+}
+
+
+bool CBall::crossBottomLine() const
+{
+    bool result = false;
+    btVector3 pos = getPosition();
+    if(pos.z() > 35) {
+        result = true;
+    }
+    return result;
 }
