@@ -35,9 +35,10 @@
 CSimulationManager::CSimulationManager()
 {
     CLog::getInstance()->debug("CSimulationManager()");
-    int hz = CSystemOptionManager::getInstance()->getIntOption("Simulation", "LogicFrequency", 30);
+    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+    int hz = optionManager->getIntOption("Simulation", "LogicFrequency");
     m_logicTimer = new CTimer(hz);
-    hz = CSystemOptionManager::getInstance()->getIntOption("Simulation", "PhysicsFrequency", 60);
+    hz = optionManager->getIntOption("Simulation", "PhysicsFrequency");
     m_physicsTimer = new CTimer(hz);
     m_simWorld = new CSimulationWorld();
 
@@ -198,8 +199,9 @@ void CSimulationManager::move(CFootballPlayer *player, int x, int z)
 void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 {
     btVector3 impulse;
-    int maxBallVelocity = CSystemOptionManager::getInstance()->getIntOption("Simulation", "MaxBallVelocity", 25);
-    int maxKickPower = CSystemOptionManager::getInstance()->getIntOption("Simulation", "MaxKickPower", 25);
+    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+    int maxBallVelocity = optionManager->getIntOption("Simulation", "MaxBallVelocity");
+    int maxKickPower = optionManager->getIntOption("Simulation", "MaxKickPower");
     btRigidBody *ballBody = m_ball->getBody();
     btRigidBody *body = player->getBody();
     btVector3 currentVelocity = ballBody->getLinearVelocity();

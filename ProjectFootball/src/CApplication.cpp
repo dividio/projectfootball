@@ -33,7 +33,7 @@ CApplication::CApplication()
 {
     CLog::getInstance()->debug("CApplication()");
 
-    setSystemOptionsDefaultValue();
+    setSystemOptionsDefaultValues();
     createRoot();
     defineResources();
     setupRenderSystem();
@@ -284,6 +284,12 @@ void CApplication::setSystemOptionsDefaultValues()
     optionManager->setDefaultValue("Video", "Fullscreen",   false);
     optionManager->setDefaultValue("Video", "VSync",        false);
     optionManager->setDefaultValue("Video", "RTTCopyMode",  false);
+
+    optionManager->setDefaultValue("Simulation","MatchDuration", 2000);
+    optionManager->setDefaultValue("Simulation", "LogicFrequency", 30);
+    optionManager->setDefaultValue("Simulation", "PhysicsFrequency", 60);
+    optionManager->setDefaultValue("Simulation", "MaxBallVelocity", 25);
+    optionManager->setDefaultValue("Simulation", "MaxKickPower", 25);
 }
 
 void CApplication::startRenderLoop()
