@@ -39,11 +39,12 @@ public:
      *
      * @param category Category of the searched option
      * @param option Option searched
-     * @param defaultValue If the option is not found, then this value is returned by the function
      *
      * @return String asociate to the option if it's found, or the defaultValue else
+     *
+     * @throw If the option don't exists, then this function throw a exception
      */
-    const char * getStringOption( const char *category, const char *option, const char *defaultValue );
+    const char * getStringOption( const char *category, const char *option );
 
 
     /**
@@ -54,8 +55,10 @@ public:
      * @param defaultValue If the option is not found, then this value is returned by the function
      *
      * @return int value asociate to the option if it's found, or the defaultValue else
+     *
+     * @throw If the option don't exists, then this function throw a exception
      */
-    int getIntOption( const char *category, const char *option, int defaultValue );
+    int getIntOption( const char *category, const char *option );
 
 
     /**
@@ -66,8 +69,10 @@ public:
      * @param defaultValue If the option is not found, then this value is returned by the function
      *
      * @return boolean value asociate to the option if it's found, or the defaultValue else
+     *
+     * @throw If the option don't exists, then this function throw a exception
      */
-    bool getBooleanOption( const char *category, const char *option, bool defaultValue );
+    bool getBooleanOption( const char *category, const char *option );
 
 
     /**
@@ -101,6 +106,42 @@ public:
      * @param value Boolean value of the option
      */
     void setBooleanOption( const char *category, const char *option, bool value );
+
+
+    /**
+     * This function set the default value to an option of a category.
+     * If the option exists, then nothing happen, else, create and associate
+     * the option with the value indicated.
+     *
+     * @param category Category of the searched option
+     * @param option Option to set with the associate value
+     * @paran value Default value of the option
+     */
+    void setDefaultValue( const char *category, const char *option, const char *value );
+
+
+    /**
+     * This function set the default value to an option of a category.
+     * If the option exists, then nothing happen, else, create and associate
+     * the option with the value indicated.
+     *
+     * @param category Category of the searched option
+     * @param option Option to set with the associate value
+     * @paran value Default value of the option
+     */
+    void setDefaultValue( const char *category, const char *option, int value );
+
+
+    /**
+     * This function set the default value to an option of a category.
+     * If the option exists, then nothing happen, else, create and associate
+     * the option with the value indicated.
+     *
+     * @param category Category of the searched option
+     * @param option Option to set with the associate value
+     * @paran value Default value of the option
+     */
+    void setDefaultValue( const char *category, const char *option, bool value );
 
 
 private:

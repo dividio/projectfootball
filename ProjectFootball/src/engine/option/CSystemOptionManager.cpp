@@ -138,20 +138,20 @@ CSystemOptionManager* CSystemOptionManager::getInstance()
 }
 
 
-const char * CSystemOptionManager::getStringOption( const char *category, const char *option, const char *defaultValue )
+const char * CSystemOptionManager::getStringOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CSystemOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-        // If not found then create the option
-        o = createOption( optionsList, option, defaultValue );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CSystemOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -159,22 +159,20 @@ const char * CSystemOptionManager::getStringOption( const char *category, const 
 }
 
 
-int CSystemOptionManager::getIntOption( const char *category, const char *option, int defaultValue )
+int CSystemOptionManager::getIntOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CSystemOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-        // If not found then create the option
-        std::ostringstream stream;
-        stream << defaultValue;
-        o = createOption( optionsList, option, stream.str().c_str() );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CSystemOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -182,24 +180,20 @@ int CSystemOptionManager::getIntOption( const char *category, const char *option
 }
 
 
-bool CSystemOptionManager::getBooleanOption( const char *category, const char *option, bool defaultValue )
+bool CSystemOptionManager::getBooleanOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CSystemOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-        // If not found then create the option
-        if( defaultValue ){
-            o = createOption( optionsList, option, "true" );
-        }else{
-            o = createOption( optionsList, option, "false" );
-        }
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CSystemOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -223,7 +217,7 @@ void CSystemOptionManager::setStringOption( const char *category, const char *op
         createOption( optionsList, option, value );
     }else{
         // Else delete old value
-        delete optionsList->operator[](o);
+        delete [] optionsList->operator[](o);
         // and set the new value
         char *v = new char[strlen(value)+1];
         strcpy( v, value );
@@ -244,9 +238,46 @@ void CSystemOptionManager::setIntOption( const char *category, const char *optio
 void CSystemOptionManager::setBooleanOption( const char *category, const char *option, bool value )
 {
     if( value ){
-      setStringOption( category, option, "true" );
+        setStringOption( category, option, "true" );
     }else{
-      setStringOption( category, option, "false" );
+        setStringOption( category, option, "false" );
+    }
+}
+
+
+void CSystemOptionManager::setDefaultValue( const char *category, const char *option, const char *value )
+{
+    // First, search the category
+    std::map<const char *, const char *> *optionsList = searchCategory( category );
+    if( optionsList == NULL ){
+        // If not found then create the category
+        optionsList = createCategory( category );
+    }
+
+    // Now, search the option
+    const char *o = searchOption( optionsList, option );
+    if( o == NULL ){
+        // If not found then create the option
+        createOption( optionsList, option, value );
+    }
+}
+
+
+void CSystemOptionManager::setDefaultValue( const char *category, const char *option, int value )
+{
+    char buffer[50];
+    sprintf( buffer, "%d", value );
+
+    setDefaultValue( category, option, buffer );
+}
+
+
+void CSystemOptionManager::setDefaultValue( const char *category, const char *option, bool value )
+{
+    if( value ){
+        setDefaultValue( category, option, "true" );
+    }else{
+        setDefaultValue( category, option, "false" );
     }
 }
 

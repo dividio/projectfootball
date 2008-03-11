@@ -31,6 +31,7 @@ CGameState::CGameState(int xGame)
     m_eventStrategy         = new CSingleMatchEventStrategy();
     m_reportRegister        = new CGameReportRegister();
     m_optionManager         = new CGameOptionManager(m_daoFactory->getIPfGameOptionsDAO());
+    setGameOptionsDefaultValues();
 
     m_daoFactory->beginTransaction();
 }
@@ -75,4 +76,9 @@ CGameReportRegister* CGameState::getCGameReportRegister()
 CGameOptionManager* CGameState::getCGameOptionManager()
 {
     return m_optionManager;
+}
+
+void CGameState::setGameOptionsDefaultValues()
+{
+    // nothing at the moment
 }

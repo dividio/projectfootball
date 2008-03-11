@@ -30,7 +30,7 @@ CGameEngine::CGameEngine()
 {
     m_gameState = NULL;
 
-    const char *masterDatabasePath = CSystemOptionManager::getInstance()->getStringOption("General", "MasterDatabasePath", "data/database/master.sql3");
+    const char *masterDatabasePath = CSystemOptionManager::getInstance()->getStringOption("General", "MasterDatabasePath");
     m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
 }
 

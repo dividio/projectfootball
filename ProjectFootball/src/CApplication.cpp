@@ -33,6 +33,7 @@ CApplication::CApplication()
 {
     CLog::getInstance()->debug("CApplication()");
 
+    setSystemOptionsDefaultValue();
     createRoot();
     defineResources();
     setupRenderSystem();
@@ -99,7 +100,7 @@ void CApplication::defineResources()
     ConfigFile cf;
     cf.load("resources.cfg");
 
-    Ogre::String skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
+    Ogre::String skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin");
     ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements()) {
         secName = seci.peekNextKey();
@@ -122,7 +123,7 @@ void CApplication::setupRenderSystem()
     Ogre::RenderSystemList::iterator r_it;
 
     CSystemOptionManager *op = CSystemOptionManager::getInstance();
-    std::string val = op->getStringOption("Video","RenderSystem", "OpenGL Rendering Subsystem");
+    std::string val = op->getStringOption("Video","RenderSystem");
     renderSystems = m_root->getAvailableRenderers();
 
     bool renderSystemFound = false;
@@ -148,11 +149,11 @@ void CApplication::createRenderWindow()
 {
     Ogre::NameValuePairList opts;
     CSystemOptionManager *op = CSystemOptionManager::getInstance();
-    int width = op->getIntOption("Video","Width", 800);
-    int height = op->getIntOption("Video","Height", 600);
-    bool fullscreen = op->getBooleanOption("Video","Fullscreen", false);
-    bool vsync = op->getBooleanOption("Video", "VSync", false);
-    bool copyMode = op->getBooleanOption("Video", "RTTCopyMode", false);
+    int width = op->getIntOption("Video","Width");
+    int height = op->getIntOption("Video","Height");
+    bool fullscreen = op->getBooleanOption("Video","Fullscreen");
+    bool vsync = op->getBooleanOption("Video", "VSync");
+    bool copyMode = op->getBooleanOption("Video", "RTTCopyMode");
     if(copyMode) {
         m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode","Copy");
     }
@@ -182,7 +183,7 @@ void CApplication::createRenderWindow()
 void CApplication::initializeResourceGroups()
 {
     TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    std::string skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin", "DefaultSkin");
+    std::string skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin");
     ResourceGroupManager::getSingleton().initialiseResourceGroup("General");
     ResourceGroupManager::getSingleton().initialiseResourceGroup(skin.c_str());
 }
@@ -244,7 +245,7 @@ void CApplication::setupCEGUI()
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 
-    int mouseVelocity = CSystemOptionManager::getInstance()->getIntOption("GUI", "MouseVelocity", 50);
+    int mouseVelocity = CSystemOptionManager::getInstance()->getIntOption("GUI", "MouseVelocity");
     float mouseScale = 1.0f + (mouseVelocity/100);
     m_system->setMouseMoveScaling(mouseScale);
 
@@ -267,6 +268,22 @@ void CApplication::addFrameListener( FrameListener *frameListener )
 void CApplication::removeFrameListener( FrameListener *frameListener )
 {
     m_root->removeFrameListener(frameListener);
+}
+
+void CApplication::setSystemOptionsDefaultValues()
+{
+    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+    optionManager->setDefaultValue("General", "MasterDatabasePath", "data/database/master.sql3");
+
+    optionManager->setDefaultValue("GUI", "MouseVelocity",  50);
+    optionManager->setDefaultValue("GUI", "Skin",           "DefaultSkin");
+
+    optionManager->setDefaultValue("Video", "RenderSystem", "OpenGL Rendering Subsystem");
+    optionManager->setDefaultValue("Video", "Width",        800);
+    optionManager->setDefaultValue("Video", "Height",       600);
+    optionManager->setDefaultValue("Video", "Fullscreen",   false);
+    optionManager->setDefaultValue("Video", "VSync",        false);
+    optionManager->setDefaultValue("Video", "RTTCopyMode",  false);
 }
 
 void CApplication::startRenderLoop()

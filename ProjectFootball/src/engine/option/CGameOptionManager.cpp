@@ -86,20 +86,20 @@ CGameOptionManager::~CGameOptionManager()
 }
 
 
-const char * CGameOptionManager::getStringOption( const char *category, const char *option, const char *defaultValue )
+const char * CGameOptionManager::getStringOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CGameOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-        // If not found then create the option
-        o = createOption( optionsList, option, defaultValue );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CGameOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -107,22 +107,20 @@ const char * CGameOptionManager::getStringOption( const char *category, const ch
 }
 
 
-int CGameOptionManager::getIntOption( const char *category, const char *option, int defaultValue )
+int CGameOptionManager::getIntOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CGameOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-        // If not found then create the option
-        std::ostringstream stream;
-        stream << defaultValue;
-        o = createOption( optionsList, option, stream.str().c_str() );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CGameOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -130,24 +128,20 @@ int CGameOptionManager::getIntOption( const char *category, const char *option, 
 }
 
 
-bool CGameOptionManager::getBooleanOption( const char *category, const char *option, bool defaultValue )
+bool CGameOptionManager::getBooleanOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CGameOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
-        // If not found then create the option
-        if( defaultValue ){
-            o = createOption( optionsList, option, "true" );
-        }else{
-            o = createOption( optionsList, option, "false" );
-        }
+        // If not found then throw exception
+        CLog::getInstance()->exception("[CGameOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -171,7 +165,7 @@ void CGameOptionManager::setStringOption( const char *category, const char *opti
         createOption( optionsList, option, value );
     }else{
         // Else delete old value
-        delete optionsList->operator[](o);
+        delete [] optionsList->operator[](o);
         // and set the new value
         char *v = new char[strlen(value)+1];
         strcpy( v, value );
@@ -195,6 +189,43 @@ void CGameOptionManager::setBooleanOption( const char *category, const char *opt
       setStringOption( category, option, "true" );
     }else{
       setStringOption( category, option, "false" );
+    }
+}
+
+
+void CGameOptionManager::setDefaultValue( const char *category, const char *option, const char *value )
+{
+    // First, search the category
+    std::map<const char *, const char *> *optionsList = searchCategory( category );
+    if( optionsList == NULL ){
+        // If not found then create the category
+        optionsList = createCategory( category );
+    }
+
+    // Now, search the option
+    const char *o = searchOption( optionsList, option );
+    if( o == NULL ){
+        // If not found then create the option
+        createOption( optionsList, option, value );
+    }
+}
+
+
+void CGameOptionManager::setDefaultValue( const char *category, const char *option, int value )
+{
+    char buffer[50];
+    sprintf( buffer, "%d", value );
+
+    setDefaultValue( category, option, buffer );
+}
+
+
+void CGameOptionManager::setDefaultValue( const char *category, const char *option, bool value )
+{
+    if( value ){
+        setDefaultValue( category, option, "true" );
+    }else{
+        setDefaultValue( category, option, "false" );
     }
 }
 

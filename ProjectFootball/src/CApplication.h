@@ -41,6 +41,7 @@ public:
     OIS::Keyboard* getKeyboard();
     void addFrameListener(FrameListener* frameListener);
     void removeFrameListener(FrameListener* frameListener);
+    void setSystemOptionsDefaultValues();
 
 protected:
   CApplication();

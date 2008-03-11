@@ -43,6 +43,9 @@ public:
 	CGameOptionManager*    getCGameOptionManager();
 
 private:
+    void setGameOptionsDefaultValues();
+
+private:
     CPfGames            *m_game;
     IDAOFactory         *m_daoFactory;
     IGameEventStrategy  *m_eventStrategy;
