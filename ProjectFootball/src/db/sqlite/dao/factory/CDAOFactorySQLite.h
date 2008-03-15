@@ -28,17 +28,21 @@
 
 #include "../../../dao/factory/IDAOFactory.h"
 
-#include "../../../dao/IPfGoalsDAO.h"
 #include "../../../dao/IPfGameStatesDAO.h"
-#include "../../../dao/IPfTeamsDAO.h"
 #include "../../../dao/IPfMatchesDAO.h"
 #include "../../../dao/IPfGameOptionsDAO.h"
+#include "../../../dao/IPfTeamPlayerContractsDAO.h"
+#include "../../../dao/IPfGoalsDAO.h"
+#include "../../../dao/IPfTeamPlayersDAO.h"
+#include "../../../dao/IPfTeamsDAO.h"
 
-#include "../CPfGoalsDAOSQLite.h"
 #include "../CPfGameStatesDAOSQLite.h"
-#include "../CPfTeamsDAOSQLite.h"
 #include "../CPfMatchesDAOSQLite.h"
 #include "../CPfGameOptionsDAOSQLite.h"
+#include "../CPfTeamPlayerContractsDAOSQLite.h"
+#include "../CPfGoalsDAOSQLite.h"
+#include "../CPfTeamPlayersDAOSQLite.h"
+#include "../CPfTeamsDAOSQLite.h"
 
 class CDAOFactorySQLite : public IDAOFactory
 {
@@ -52,21 +56,25 @@ public:
     virtual bool commit();
     virtual bool rollback();
 
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
     virtual IPfGameStatesDAO* getIPfGameStatesDAO();
-    virtual IPfTeamsDAO* getIPfTeamsDAO();
     virtual IPfMatchesDAO* getIPfMatchesDAO();
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
+    virtual IPfGoalsDAO* getIPfGoalsDAO();
+    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO();
+    virtual IPfTeamsDAO* getIPfTeamsDAO();
 
 
 private:
     sqlite3 *m_database;
 
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
     CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
-    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
     CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
     CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
+    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
+    CPfTeamPlayersDAOSQLite *m_PfTeamPlayersDAOSQLite;
+    CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
 
 };
 #endif /*CDAOFACTORYSQLITE_H_*/

@@ -20,36 +20,38 @@
 *       Version: 1.11                                                          *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef CPFTEAMPLAYERCONTRACTSDAOSQLITEENTITY_H_
+#define CPFTEAMPLAYERCONTRACTSDAOSQLITEENTITY_H_
 
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include <string>
+#include <vector>
+#include <sqlite3.h>
 
-class IDAOFactory
+#include "../../../bean/CPfTeamPlayerContracts.h"
+#include "../../../dao/IPfTeamPlayerContractsDAO.h"
+
+class CPfTeamPlayerContractsDAOSQLiteEntity : public IPfTeamPlayerContractsDAO
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    CPfTeamPlayerContractsDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfTeamPlayerContractsDAOSQLiteEntity();
 
-    virtual bool createSchema() =0;
+    virtual bool deleteReg(CPfTeamPlayerContracts *reg);
+    virtual bool insertReg(CPfTeamPlayerContracts *reg);
+    virtual bool updateReg(CPfTeamPlayerContracts *reg);
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+    virtual void freeVector(std::vector<CPfTeamPlayerContracts*>* vector);
 
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+protected:
+    CPfTeamPlayerContracts* loadRegister(std::string sql);
+    std::vector<CPfTeamPlayerContracts*>* loadVector(std::string sql);
+
+private:
+    bool exec(std::string sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
+    sqlite3 *m_database;
 
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*CPFTEAMPLAYERCONTRACTSDAOSQLITEENTITY_H_*/

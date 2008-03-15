@@ -20,36 +20,28 @@
 *       Version: 1.11                                                          *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef IPFTEAMPLAYERSDAO_H_
+#define IPFTEAMPLAYERSDAO_H_
 
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include <string>
+#include <vector>
 
-class IDAOFactory
+#include "../bean/CPfTeamPlayers.h"
+
+class IPfTeamPlayersDAO
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    IPfTeamPlayersDAO(){}
+    virtual ~IPfTeamPlayersDAO(){}
 
-    virtual bool createSchema() =0;
+    virtual bool deleteReg(CPfTeamPlayers *reg) =0;
+    virtual bool insertReg(CPfTeamPlayers *reg) =0;
+    virtual bool updateReg(CPfTeamPlayers *reg) =0;
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+    virtual void freeVector(std::vector<CPfTeamPlayers*>* vector) =0;
 
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+    virtual CPfTeamPlayers* findByXTepl(int XTepl) =0;
+    virtual CPfTeamPlayers* findByXTepl(const std::string &XTepl) =0;
 
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*IPFTEAMPLAYERSDAO_H_*/

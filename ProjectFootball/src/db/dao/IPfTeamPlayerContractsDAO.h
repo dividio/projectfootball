@@ -20,36 +20,32 @@
 *       Version: 1.11                                                          *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef IPFTEAMPLAYERCONTRACTSDAO_H_
+#define IPFTEAMPLAYERCONTRACTSDAO_H_
 
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include <string>
+#include <vector>
 
-class IDAOFactory
+#include "../bean/CPfTeamPlayerContracts.h"
+
+class IPfTeamPlayerContractsDAO
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    IPfTeamPlayerContractsDAO(){}
+    virtual ~IPfTeamPlayerContractsDAO(){}
 
-    virtual bool createSchema() =0;
+    virtual bool deleteReg(CPfTeamPlayerContracts *reg) =0;
+    virtual bool insertReg(CPfTeamPlayerContracts *reg) =0;
+    virtual bool updateReg(CPfTeamPlayerContracts *reg) =0;
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+    virtual void freeVector(std::vector<CPfTeamPlayerContracts*>* vector) =0;
 
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+    virtual CPfTeamPlayerContracts* findByXFkTeam(int XFkTeam) =0;
+    virtual CPfTeamPlayerContracts* findByXFkTeam(const std::string &XFkTeam) =0;
+    virtual CPfTeamPlayerContracts* findByXFkTepl(int XFkTepl) =0;
+    virtual CPfTeamPlayerContracts* findByXFkTepl(const std::string &XFkTepl) =0;
+    virtual CPfTeamPlayerContracts* findByXTpco(int XTpco) =0;
+    virtual CPfTeamPlayerContracts* findByXTpco(const std::string &XTpco) =0;
 
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*IPFTEAMPLAYERCONTRACTSDAO_H_*/

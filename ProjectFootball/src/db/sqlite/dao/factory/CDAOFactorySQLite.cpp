@@ -31,24 +31,28 @@ CDAOFactorySQLite::CDAOFactorySQLite(std::string file)
         m_database = NULL;
         CLog::getInstance()->exception("Can't open database file: \"%s\" --> \"%s\"", file.c_str(), sqlite3_errmsg(m_database));
     }
-
-    m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
+    
     m_PfGameStatesDAOSQLite = new CPfGameStatesDAOSQLite(m_database);
-    m_PfTeamsDAOSQLite = new CPfTeamsDAOSQLite(m_database);
     m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
     m_PfGameOptionsDAOSQLite = new CPfGameOptionsDAOSQLite(m_database);
-
+    m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
+    m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
+    m_PfTeamPlayersDAOSQLite = new CPfTeamPlayersDAOSQLite(m_database);
+    m_PfTeamsDAOSQLite = new CPfTeamsDAOSQLite(m_database);
+    
     CLog::getInstance()->info("SQLite Database open: <-- \"%s\"", file.c_str());
 }
 
 CDAOFactorySQLite::~CDAOFactorySQLite()
 {
-    delete m_PfGoalsDAOSQLite;
     delete m_PfGameStatesDAOSQLite;
-    delete m_PfTeamsDAOSQLite;
     delete m_PfMatchesDAOSQLite;
     delete m_PfGameOptionsDAOSQLite;
-
+    delete m_PfTeamPlayerContractsDAOSQLite;
+    delete m_PfGoalsDAOSQLite;
+    delete m_PfTeamPlayersDAOSQLite;
+    delete m_PfTeamsDAOSQLite;
+    
     sqlite3_close(m_database);
     CLog::getInstance()->info("SQLite Database closed");
 }
@@ -57,20 +61,27 @@ bool CDAOFactorySQLite::createSchema()
 {
     std::string sql = "";
     sql += "BEGIN TRANSACTION;";
-    sql += "CREATE TABLE PF_GOALS(X_FK_TEAM_SCORER INTEGER,X_GOAL INTEGER PRIMARY KEY AUTOINCREMENT,N_MINUTE INTEGER,X_FK_MATCH INTEGER,L_OWN_GOAL TEXT);";
     sql += "CREATE TABLE PF_GAME_STATES(S_STATE TEXT,X_STATE INTEGER PRIMARY KEY AUTOINCREMENT,S_VALUE TEXT);";
-    sql += "CREATE TABLE PF_TEAMS(X_TEAM INTEGER PRIMARY KEY AUTOINCREMENT,S_TEAM TEXT);";
     sql += "CREATE TABLE PF_MATCHES(D_DATE TEXT,X_FK_TEAM_HOME INTEGER,X_MATCH INTEGER PRIMARY KEY AUTOINCREMENT,X_FK_TEAM_AWAY INTEGER);";
     sql += "CREATE TABLE PF_GAME_OPTIONS(S_CATEGORY TEXT,X_OPTION INTEGER PRIMARY KEY AUTOINCREMENT,S_VALUE TEXT,S_ATTRIBUTE TEXT);";
-    sql += "CREATE INDEX PF_GOALS_X_FK_TEAM_SCORER ON PF_GOALS (X_FK_TEAM_SCORER);";
-    sql += "CREATE INDEX PF_GOALS_X_GOAL ON PF_GOALS (X_GOAL);";
-    sql += "CREATE INDEX PF_GOALS_X_FK_MATCH ON PF_GOALS (X_FK_MATCH);";
+    sql += "CREATE TABLE PF_TEAM_PLAYER_CONTRACTS(D_END TEXT,D_BEGIN TEXT,X_FK_TEAM INTEGER,X_FK_TEPL INTEGER,X_TPCO INTEGER PRIMARY KEY AUTOINCREMENT);";
+    sql += "CREATE TABLE PF_GOALS(X_FK_TEPL_SCORER INTEGER,X_GOAL INTEGER PRIMARY KEY AUTOINCREMENT,L_OWN_GOAL TEXT,X_FK_TEAM_SCORER INTEGER,X_FK_MATCH INTEGER,N_MINUTE INTEGER);";
+    sql += "CREATE TABLE PF_TEAM_PLAYERS(X_TEPL INTEGER PRIMARY KEY AUTOINCREMENT,S_NAME TEXT);";
+    sql += "CREATE TABLE PF_TEAMS(X_TEAM INTEGER PRIMARY KEY AUTOINCREMENT,S_TEAM TEXT);";
     sql += "CREATE INDEX PF_GAME_STATES_X_STATE ON PF_GAME_STATES (X_STATE);";
-    sql += "CREATE INDEX PF_TEAMS_X_TEAM ON PF_TEAMS (X_TEAM);";
     sql += "CREATE INDEX PF_MATCHES_X_FK_TEAM_HOME ON PF_MATCHES (X_FK_TEAM_HOME);";
     sql += "CREATE INDEX PF_MATCHES_X_MATCH ON PF_MATCHES (X_MATCH);";
     sql += "CREATE INDEX PF_MATCHES_X_FK_TEAM_AWAY ON PF_MATCHES (X_FK_TEAM_AWAY);";
     sql += "CREATE INDEX PF_GAME_OPTIONS_X_OPTION ON PF_GAME_OPTIONS (X_OPTION);";
+    sql += "CREATE INDEX PF_TEAM_PLAYER_CONTRACTS_X_FK_TEAM ON PF_TEAM_PLAYER_CONTRACTS (X_FK_TEAM);";
+    sql += "CREATE INDEX PF_TEAM_PLAYER_CONTRACTS_X_FK_TEPL ON PF_TEAM_PLAYER_CONTRACTS (X_FK_TEPL);";
+    sql += "CREATE INDEX PF_TEAM_PLAYER_CONTRACTS_X_TPCO ON PF_TEAM_PLAYER_CONTRACTS (X_TPCO);";
+    sql += "CREATE INDEX PF_GOALS_X_FK_TEPL_SCORER ON PF_GOALS (X_FK_TEPL_SCORER);";
+    sql += "CREATE INDEX PF_GOALS_X_GOAL ON PF_GOALS (X_GOAL);";
+    sql += "CREATE INDEX PF_GOALS_X_FK_TEAM_SCORER ON PF_GOALS (X_FK_TEAM_SCORER);";
+    sql += "CREATE INDEX PF_GOALS_X_FK_MATCH ON PF_GOALS (X_FK_MATCH);";
+    sql += "CREATE INDEX PF_TEAM_PLAYERS_X_TEPL ON PF_TEAM_PLAYERS (X_TEPL);";
+    sql += "CREATE INDEX PF_TEAMS_X_TEAM ON PF_TEAMS (X_TEAM);";
     sql += "COMMIT;";
 
     char *msgError = NULL;
@@ -119,19 +130,9 @@ bool CDAOFactorySQLite::rollback()
     return correct;
 }
 
-IPfGoalsDAO* CDAOFactorySQLite::getIPfGoalsDAO()
-{
-    return m_PfGoalsDAOSQLite;
-}
-
 IPfGameStatesDAO* CDAOFactorySQLite::getIPfGameStatesDAO()
 {
     return m_PfGameStatesDAOSQLite;
-}
-
-IPfTeamsDAO* CDAOFactorySQLite::getIPfTeamsDAO()
-{
-    return m_PfTeamsDAOSQLite;
 }
 
 IPfMatchesDAO* CDAOFactorySQLite::getIPfMatchesDAO()
@@ -142,5 +143,25 @@ IPfMatchesDAO* CDAOFactorySQLite::getIPfMatchesDAO()
 IPfGameOptionsDAO* CDAOFactorySQLite::getIPfGameOptionsDAO()
 {
     return m_PfGameOptionsDAOSQLite;
+}
+
+IPfTeamPlayerContractsDAO* CDAOFactorySQLite::getIPfTeamPlayerContractsDAO()
+{
+    return m_PfTeamPlayerContractsDAOSQLite;
+}
+
+IPfGoalsDAO* CDAOFactorySQLite::getIPfGoalsDAO()
+{
+    return m_PfGoalsDAOSQLite;
+}
+
+IPfTeamPlayersDAO* CDAOFactorySQLite::getIPfTeamPlayersDAO()
+{
+    return m_PfTeamPlayersDAOSQLite;
+}
+
+IPfTeamsDAO* CDAOFactorySQLite::getIPfTeamsDAO()
+{
+    return m_PfTeamsDAOSQLite;
 }
 

@@ -20,36 +20,59 @@
 *       Version: 1.11                                                          *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#include <iostream>
+#include <sstream>
 
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include "CPfTeamPlayerContractsDAOSQLite.h"
 
-class IDAOFactory
+CPfTeamPlayerContractsDAOSQLite::CPfTeamPlayerContractsDAOSQLite(sqlite3 *database)
+  : CPfTeamPlayerContractsDAOSQLiteEntity(database)
 {
-public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+}
 
-    virtual bool createSchema() =0;
+CPfTeamPlayerContractsDAOSQLite::~CPfTeamPlayerContractsDAOSQLite()
+{
+}
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(int XFkTeam)
+{
+    std::ostringstream stream;
+    stream << XFkTeam;
+    return findByXFkTeam(stream.str());
+}
 
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(const std::string &XFkTeam)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
+    sql = sql+"X_FK_TEAM='"+XFkTeam+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*IDAOFACTORY_H_*/
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTepl(int XFkTepl)
+{
+    std::ostringstream stream;
+    stream << XFkTepl;
+    return findByXFkTepl(stream.str());
+}
+
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTepl(const std::string &XFkTepl)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
+    sql = sql+"X_FK_TEPL='"+XFkTepl+"'";
+    return loadRegister(sql);
+}
+
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXTpco(int XTpco)
+{
+    std::ostringstream stream;
+    stream << XTpco;
+    return findByXTpco(stream.str());
+}
+
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXTpco(const std::string &XTpco)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
+    sql = sql+"X_TPCO='"+XTpco+"'";
+    return loadRegister(sql);
+}
+

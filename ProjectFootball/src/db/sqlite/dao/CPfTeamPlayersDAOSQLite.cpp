@@ -20,36 +20,31 @@
 *       Version: 1.11                                                          *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#include <iostream>
+#include <sstream>
 
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include "CPfTeamPlayersDAOSQLite.h"
 
-class IDAOFactory
+CPfTeamPlayersDAOSQLite::CPfTeamPlayersDAOSQLite(sqlite3 *database)
+  : CPfTeamPlayersDAOSQLiteEntity(database)
 {
-public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+}
 
-    virtual bool createSchema() =0;
+CPfTeamPlayersDAOSQLite::~CPfTeamPlayersDAOSQLite()
+{
+}
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXTepl(int XTepl)
+{
+    std::ostringstream stream;
+    stream << XTepl;
+    return findByXTepl(stream.str());
+}
 
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXTepl(const std::string &XTepl)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYERS WHERE ");
+    sql = sql+"X_TEPL='"+XTepl+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*IDAOFACTORY_H_*/
