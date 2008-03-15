@@ -26,17 +26,19 @@
 class CGoalMatchEvent : public IMatchEvent
 {
 public:
-	CGoalMatchEvent(int xMatch, int xTeamScorer, int nMinute, bool lOwnGoal);
+	CGoalMatchEvent(int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal);
 	virtual ~CGoalMatchEvent();
 
 	virtual int getXMatch();
 	int    getXTeamScorer();
+	int    getXTeamPlayerScorer();
 	int    getNMinute();
 	bool   getLOwnGoal();
 
 private:
     int m_xMatch;
     int m_xTeamScorer;
+    int m_xTeplScorer;
     int m_nMinute;
     int m_lOwnGoal;
 };
