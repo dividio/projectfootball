@@ -21,18 +21,25 @@
             <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.40,0},{0.65,0},{0.45,0}}" />
             <Event Name="Clicked" Function="cmd_Menu_Load" />
         </Window>
+        <Window Type="TaharezLook/Button" Name="MainMenu/ConfigButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="Text" Value="Config" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.55,0},{0.65,0},{0.60,0}}" />
+          <Event Name="Clicked" Function="cmd_Menu_Config" />
+        </Window>
         <Window Type="TaharezLook/Button" Name="MainMenu/CreditsButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Text" Value="Credits" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.55,0},{0.65,0},{0.60,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.70,0},{0.65,0},{0.75,0}}" />
             <Event Name="Clicked" Function="cmd_Menu_Credits" />
         </Window>
         <Window Type="TaharezLook/Button" Name="MainMenu/QuitButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Text" Value="Quit" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.70,0},{0.65,0},{0.75,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.85,0},{0.65,0},{0.90,0}}" />
             <Event Name="Clicked" Function="cmd_Menu_Quit" />
         </Window>
     </Window>

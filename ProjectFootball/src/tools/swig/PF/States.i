@@ -8,6 +8,7 @@
 #include "../state/CStateCredits.h"
 #include "../state/CStateGame.h"
 #include "../state/CStateLoadGame.h"
+#include "../state/CStateConfig.h"
 %}
 
 %include "std_string.i"
@@ -20,3 +21,4 @@
 %include ../../../state/CStateCredits.h
 %include ../../../state/CStateGame.h
 %include ../../../state/CStateLoadGame.h
+%include ../../../state/CStateConfig.h

@@ -22,6 +22,11 @@ function cmd_Menu_Load()
     PF.CStateManager_getInstance():pushState(state)
 end
 
+function cmd_Menu_Config()
+    local state = PF.CStateConfig_getInstance()
+    PF.CStateManager_getInstance():pushState(state)
+end
+
 function cmd_Menu_Credits()
     local state = PF.CStateCredits_getInstance()
     PF.CStateManager_getInstance():pushState(state)
@@ -61,6 +66,15 @@ function cmd_Monitor_SwitchTo3DView()
 end
 
 
+--------------------------
+-- CStateConfig functions
+--------------------------
+-- cmd_back
+
+function cmd_Config_Save()
+    local state = PF.CStateConfig_getInstance()
+    state:saveConfig()
+end
 
 --------------------------
 -- CStateLoadGame functions
