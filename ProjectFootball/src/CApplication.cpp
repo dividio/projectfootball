@@ -89,29 +89,34 @@ OIS::Keyboard* CApplication::getKeyboard()
     return m_keyboard;
 }
 
+Ogre::RenderSystemList* CApplication::getRenderSystemList()
+{
+    return m_root->getAvailableRenderers();
+}
+
 void CApplication::createRoot()
 {
-    m_root = new Root("plugins.cfg", "");
+    m_root = new Ogre::Root("plugins.cfg", "");
 }
 
 void CApplication::defineResources()
 {
     Ogre::String secName, typeName, archName;
-    ConfigFile cf;
+    Ogre::ConfigFile cf;
     cf.load("resources.cfg");
 
     Ogre::String skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin");
-    ConfigFile::SectionIterator seci = cf.getSectionIterator();
+    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements()) {
         secName = seci.peekNextKey();
 
-        ConfigFile::SettingsMultiMap *settings = seci.getNext();
-        ConfigFile::SettingsMultiMap::iterator i;
+        Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+        Ogre::ConfigFile::SettingsMultiMap::iterator i;
         if(secName == "General" || secName == skin) {
             for (i = settings->begin(); i != settings->end(); ++i) {
                 typeName = i->first;
                 archName = i->second;
-                ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
+                Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
             }
         }
     }
@@ -128,7 +133,7 @@ void CApplication::setupRenderSystem()
 
     bool renderSystemFound = false;
     for (r_it=renderSystems->begin(); r_it!=renderSystems->end(); r_it++) {
-        RenderSystem *tmp = *r_it;
+        Ogre:: RenderSystem *tmp = *r_it;
         std::string rName(tmp->getName());
 
         // returns -1 if string not found
@@ -149,11 +154,11 @@ void CApplication::createRenderWindow()
 {
     Ogre::NameValuePairList opts;
     CSystemOptionManager *op = CSystemOptionManager::getInstance();
-    int width = op->getIntOption("Video","Width");
-    int height = op->getIntOption("Video","Height");
+    int width       = op->getIntOption("Video","Width");
+    int height      = op->getIntOption("Video","Height");
     bool fullscreen = op->getBooleanOption("Video","Fullscreen");
-    bool vsync = op->getBooleanOption("Video", "VSync");
-    bool copyMode = op->getBooleanOption("Video", "RTTCopyMode");
+    bool vsync      = op->getBooleanOption("Video", "VSync");
+    bool copyMode   = op->getBooleanOption("Video", "RTTCopyMode");
     if(copyMode) {
         m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode","Copy");
     }
@@ -182,17 +187,17 @@ void CApplication::createRenderWindow()
 
 void CApplication::initializeResourceGroups()
 {
-    TextureManager::getSingleton().setDefaultNumMipmaps(5);
+    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
     std::string skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin");
-    ResourceGroupManager::getSingleton().initialiseResourceGroup("General");
-    ResourceGroupManager::getSingleton().initialiseResourceGroup(skin.c_str());
+    Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("General");
+    Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(skin.c_str());
 }
 
 void CApplication::setupScene()
 {
-    SceneManager *mgr = m_root->createSceneManager(ST_GENERIC, "Default SceneManager");
-    Camera *cam = mgr->createCamera("Camera");
-    Viewport *vp = m_window->addViewport(cam);
+    Ogre::SceneManager *mgr = m_root->createSceneManager(Ogre::ST_GENERIC, "Default SceneManager");
+    Ogre::Camera *cam = mgr->createCamera("Camera");
+    Ogre::Viewport *vp = m_window->addViewport(cam);
     vp->setSkiesEnabled(false);
 }
 
@@ -218,7 +223,7 @@ void CApplication::setupInputSystem()
     }
     catch (const OIS::Exception &e)
     {
-        throw new Exception(42, e.eText, "Application::setupInputSystem");
+        throw new Ogre::Exception(42, e.eText, "Application::setupInputSystem");
     }
 }
 
@@ -230,7 +235,7 @@ bool clickAudioEvent(const CEGUI::EventArgs &e)
 
 void CApplication::setupCEGUI()
 {
-    SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
+    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
 
     // CEGUI setup
     m_renderer = new CEGUI::OgreCEGUIRenderer(m_window, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
@@ -260,12 +265,12 @@ void CApplication::createFrameListeners()
     addFrameListener( CStateManager::getInstance() );
 }
 
-void CApplication::addFrameListener( FrameListener *frameListener )
+void CApplication::addFrameListener( Ogre::FrameListener *frameListener )
 {
     m_root->addFrameListener(frameListener);
 }
 
-void CApplication::removeFrameListener( FrameListener *frameListener )
+void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
 {
     m_root->removeFrameListener(frameListener);
 }
@@ -285,11 +290,11 @@ void CApplication::setSystemOptionsDefaultValues()
     optionManager->setDefaultValue("Video", "VSync",        false);
     optionManager->setDefaultValue("Video", "RTTCopyMode",  false);
 
-    optionManager->setDefaultValue("Simulation","MatchDuration", 2000);
-    optionManager->setDefaultValue("Simulation", "LogicFrequency", 30);
-    optionManager->setDefaultValue("Simulation", "PhysicsFrequency", 60);
-    optionManager->setDefaultValue("Simulation", "MaxBallVelocity", 25);
-    optionManager->setDefaultValue("Simulation", "MaxKickPower", 25);
+    optionManager->setDefaultValue("Simulation", "MatchDuration",       2000);
+    optionManager->setDefaultValue("Simulation", "LogicFrequency",      30);
+    optionManager->setDefaultValue("Simulation", "PhysicsFrequency",    60);
+    optionManager->setDefaultValue("Simulation", "MaxBallVelocity",     25);
+    optionManager->setDefaultValue("Simulation", "MaxKickPower",        25);
 }
 
 void CApplication::startRenderLoop()
@@ -318,7 +323,7 @@ int main(int argc, char **argv)
         CApplication *app = CApplication::getInstance();
         app->go();
     }
-    catch(Exception &e){
+    catch(Ogre::Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
         MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
     #else

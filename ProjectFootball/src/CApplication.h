@@ -26,8 +26,6 @@
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
-using namespace Ogre;
-
 
 class CApplication
 {
@@ -39,8 +37,9 @@ public:
     void exit();
     OIS::Mouse* getMouse();
     OIS::Keyboard* getKeyboard();
-    void addFrameListener(FrameListener* frameListener);
-    void removeFrameListener(FrameListener* frameListener);
+    Ogre::RenderSystemList* getRenderSystemList();
+    void addFrameListener(Ogre::FrameListener* frameListener);
+    void removeFrameListener(Ogre::FrameListener* frameListener);
     void setSystemOptionsDefaultValues();
 
 protected:
@@ -48,8 +47,8 @@ protected:
 
 private:
 
-    Root 						*m_root;
-    RenderWindow                *m_window;
+    Ogre::Root 					*m_root;
+    Ogre::RenderWindow          *m_window;
     OIS::Keyboard 				*m_keyboard;
     OIS::Mouse 					*m_mouse;
     OIS::InputManager 			*m_inputManager;
