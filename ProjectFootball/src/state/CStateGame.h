@@ -34,6 +34,8 @@ public:
     virtual bool leave();
     virtual void update();
 
+    void saveGame();
+
 private:
     CStateGame();
 

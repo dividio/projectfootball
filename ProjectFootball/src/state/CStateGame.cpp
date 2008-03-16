@@ -63,3 +63,8 @@ bool CStateGame::leave()
 void CStateGame::update()
 {
 }
+
+void CStateGame::saveGame()
+{
+    CGameEngine::getInstance()->saveGame();
+}
