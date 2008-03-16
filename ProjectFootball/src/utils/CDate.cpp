@@ -55,15 +55,98 @@ CDate::CDate(int day, int month, int year, int hour, int minutes, int seconds)
 
 CDate::CDate(const std::string &timestamp)
 {
+    // Timestamp i.e.: 2008-12-31 23:59:59
     memset(&m_tm, 0, sizeof(m_tm));
     if( timestamp!="" ){
-        int     pos     = 0;
-        time_t  secs    = 0;
-        for( pos=0; pos<timestamp.length() && timestamp[pos]>='0' && timestamp[pos]<='9'; pos++ ){
-            secs *= 10;
-            secs += timestamp[pos]-'0';
+        const char *date = timestamp.c_str();
+
+        int     i       = 0;
+        char    c;
+
+        int     year    = 0;
+        int     month   = 0;
+        int     day     = 0;
+        int     hour    = 0;
+        int     minutes = 0;
+        int     seconds = 0;
+
+        // Match year
+        for( i=0; i<4; i++ ){
+            c = *date;
+            if( c<'0' || c>'9' ){ return; }
+
+            year *= 10;
+            year += c-'0';
+            date++;
         }
-        memcpy(&m_tm, localtime(&secs), sizeof(m_tm));
+        // Match literal '-'
+        if( *date!='-' ){ return; }
+        date++;
+        // Match month
+        for( i=0; i<2; i++ ){
+            c = *date;
+            if( c<'0' || c>'9' ){ return; }
+
+            month *= 10;
+            month += c-'0';
+            date++;
+        }
+        // Match literal '-'
+        if( *date!='-' ){ return; }
+        date++;
+        // Match day of the month
+        for( i=0; i<2; i++ ){
+            c = *date;
+            if( c<'0' || c>'9' ){ return; }
+
+            day *= 10;
+            day += c-'0';
+            date++;
+        }
+        // Match literal ' ' (space)
+        if( *date!=' ' ){ return; }
+        date++;
+        // Match hour (24H format)
+        for( i=0; i<2; i++ ){
+            c = *date;
+            if( c<'0' || c>'9' ){ return; }
+
+            hour *= 10;
+            hour += c-'0';
+            date++;
+        }
+        // Match literal ':'
+        if( *date!=':' ){ return; }
+        date++;
+        // Match minutes
+        for( i=0; i<2; i++ ){
+            c = *date;
+            if( c<'0' || c>'9' ){ return; }
+
+            minutes *= 10;
+            minutes += c-'0';
+            date++;
+        }
+        // Match literal ':'
+        if( *date!=':' ){ return; }
+        date++;
+        // Match seconds
+        for( i=0; i<2; i++ ){
+            c = *date;
+            if( c<'0' || c>'9' ){ return; }
+
+            seconds *= 10;
+            seconds += c-'0';
+            date++;
+        }
+
+        m_tm.tm_mday    = day;
+        m_tm.tm_mon     = month-1; // January=0, February=1, ...
+        m_tm.tm_year    = year-1900; // Years since 1900
+        m_tm.tm_hour    = hour;
+        m_tm.tm_min     = minutes;
+        m_tm.tm_sec     = seconds;
+        mktime(&m_tm);
     }
 }
 
@@ -84,7 +167,7 @@ std::string CDate::format(const std::string &format)
 
 std::string CDate::getTimestamp()
 {
-    return format("%s");
+    return format("%Y-%m-%d %H:%M:%S");
 }
 
 bool CDate::isValid()
