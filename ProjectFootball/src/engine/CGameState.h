@@ -42,15 +42,20 @@ public:
 	CGameReportRegister*   getCGameReportRegister();
 	CGameOptionManager*    getCGameOptionManager();
 
+	CPfTeams*              getPlayerTeam();
+	CPfMatches*            getNextPlayerTeamMatch();
+
 private:
     void setGameOptionsDefaultValues();
 
 private:
-    CPfGames            *m_game;
-    IDAOFactory         *m_daoFactory;
-    IGameEventStrategy  *m_eventStrategy;
-    CGameReportRegister *m_reportRegister;
-    CGameOptionManager  *m_optionManager;
+    CPfGames                    *m_game;
+    IDAOFactory                 *m_daoFactory;
+    IGameEventStrategy          *m_eventStrategy;
+    CGameReportRegister         *m_reportRegister;
+    CGameOptionManager          *m_optionManager;
+    CPfTeams                    *m_playerTeam;
+    std::vector<CPfMatches*>    *m_matchesList;
 };
 
 #endif /*CGAMESTATE_H_*/

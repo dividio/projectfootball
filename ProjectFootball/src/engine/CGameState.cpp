@@ -31,6 +31,8 @@ CGameState::CGameState(int xGame)
     m_eventStrategy         = new CSingleMatchEventStrategy();
     m_reportRegister        = new CGameReportRegister();
     m_optionManager         = new CGameOptionManager(m_daoFactory->getIPfGameOptionsDAO());
+    m_playerTeam            = m_daoFactory->getIPfTeamsDAO()->findPlayerTeam();
+    m_matchesList           = m_daoFactory->getIPfMatchesDAO()->findMatches();
     setGameOptionsDefaultValues();
 
     m_daoFactory->beginTransaction();
@@ -40,6 +42,8 @@ CGameState::~CGameState()
 {
     m_daoFactory->rollback();
 
+    m_daoFactory->getIPfMatchesDAO()->freeVector(m_matchesList);
+    delete m_playerTeam;
     delete m_optionManager;
     delete m_reportRegister;
     delete m_eventStrategy;
@@ -76,6 +80,24 @@ CGameReportRegister* CGameState::getCGameReportRegister()
 CGameOptionManager* CGameState::getCGameOptionManager()
 {
     return m_optionManager;
+}
+
+CPfTeams* CGameState::getPlayerTeam()
+{
+    return m_playerTeam;
+}
+
+CPfMatches* CGameState::getNextPlayerTeamMatch()
+{
+    std::vector<CPfMatches*>::iterator it;
+    for( it=m_matchesList->begin(); it!=m_matchesList->end(); it++ ){
+        CPfMatches *match = (*it);
+        if( !match->getLPlayed() && (match->getXFkTeamHome()==m_playerTeam->getXTeam() || match->getXFkTeamAway()==m_playerTeam->getXTeam()) ){
+            return match;
+        }
+    }
+
+    return NULL;
 }
 
 void CGameState::setGameOptionsDefaultValues()
