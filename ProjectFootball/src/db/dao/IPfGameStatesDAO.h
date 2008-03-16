@@ -28,6 +28,9 @@
 
 #include "../bean/CPfGameStates.h"
 
+#define S_STATE_NEWGAME             "NEW_GAME"
+#define S_STATE_PLAYERTEAM          "PLAYER_TEAM"
+
 class IPfGameStatesDAO
 {
 public:
@@ -42,6 +45,7 @@ public:
 
     virtual CPfGameStates* findByXState(int XState) =0;
     virtual CPfGameStates* findByXState(const std::string &XState) =0;
+    virtual CPfGameStates* findBySState(const std::string &SState) =0;
 
 };
 #endif /*IPFGAMESTATESDAO_H_*/
