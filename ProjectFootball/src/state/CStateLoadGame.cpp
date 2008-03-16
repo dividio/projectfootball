@@ -22,6 +22,7 @@
 
 #include "CStateGame.h"
 #include "CStateManager.h"
+#include "CStateSelectTeam.h"
 #include "../utils/CLog.h"
 #include "../engine/CGameEngine.h"
 
@@ -99,8 +100,17 @@ void CStateLoadGame::loadGame()
     int xGame = itm->getID();
     CGameEngine::getInstance()->loadGame(xGame);
 
-    CStateManager::getInstance()->popState();
-    CStateManager::getInstance()->pushState(CStateGame::getInstance());
+    // Test if this game is a new game
+    IPfGameStatesDAO *gameStateDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGameStatesDAO();
+    CPfGameStates *newGameState = gameStateDAO->findBySState(S_STATE_NEWGAME);
+    if( newGameState->getSValue()=="true" ){
+        CStateManager::getInstance()->popState();
+        CStateManager::getInstance()->pushState(CStateSelectTeam::getInstance());
+    }else{
+        CStateManager::getInstance()->popState();
+        CStateManager::getInstance()->pushState(CStateGame::getInstance());
+    }
+    delete newGameState;
 }
 
 void CStateLoadGame::loadGameList()

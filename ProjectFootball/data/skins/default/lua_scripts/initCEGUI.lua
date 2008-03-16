@@ -76,19 +76,28 @@ function cmd_Config_Save()
     state:saveConfig()
 end
 
+
 --------------------------
 -- CStateLoadGame functions
 --------------------------
 -- cmd_back
 
 function cmd_LoadGame_New()
-    local state = PF.CStateLoadGame_getInstance()
-    state:createNewGame()
+    PF.CStateLoadGame_getInstance():createNewGame()
 end
 
 function cmd_LoadGame_Load()
-    local state = PF.CStateLoadGame_getInstance()
-    state:loadGame()
+    PF.CStateLoadGame_getInstance():loadGame()
+end
+
+
+--------------------------
+-- CStateSelectTeam functions
+--------------------------
+-- cmd_back
+
+function cmd_SelectTeam_Select()
+    PF.CStateSelectTeam_getInstance():selectTeam()
 end
 
 
@@ -100,6 +109,10 @@ end
 function cmd_Game_Play()
     local state = PF.CStateMonitor_getInstance()
     PF.CStateManager_getInstance():pushState(state)
+end
+
+function cmd_Game_Save()
+    PF.CStateGame_getInstance():saveGame()
 end
 
 -- End Script
