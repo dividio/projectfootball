@@ -48,3 +48,15 @@ CPfTeams* CPfTeamsDAOSQLite::findByXTeam(const std::string &XTeam)
     return loadRegister(sql);
 }
 
+std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findTeams()
+{
+    std::string sql("SELECT * FROM PF_TEAMS");
+    return loadVector(sql);
+}
+
+CPfTeams* CPfTeamsDAOSQLite::findPlayerTeam()
+{
+    std::string sql("SELECT * FROM PF_TEAMS WHERE X_TEAM=(SELECT S_VALUE FROM PF_GAME_STATES WHERE S_STATE='PLAYER_TEAM')");
+    return loadRegister(sql);
+}
+

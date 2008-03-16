@@ -37,6 +37,8 @@ public:
 
     virtual CPfTeams* findByXTeam(int XTeam);
     virtual CPfTeams* findByXTeam(const std::string &XTeam);
+    virtual std::vector<CPfTeams*>* findTeams();
+    virtual CPfTeams* findPlayerTeam();
 
 };
 #endif /*CPFTEAMSDAOSQLITE_H_*/
