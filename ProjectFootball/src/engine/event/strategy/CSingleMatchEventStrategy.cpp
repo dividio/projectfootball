@@ -38,16 +38,21 @@ void CSingleMatchEventStrategy::process(CStartMatchEvent &event)
     {
         m_xMatch = event.getXMatch();
 
-        // Delete posible previous goals
-        IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
-        std::vector<CPfGoals*> * goalsList = goalsDAO->findByXFkMatch(m_xMatch);
-        std::vector<CPfGoals*>::iterator it;
-        for( it=goalsList->begin(); it!=goalsList->end(); it++ ){
-            goalsDAO->deleteReg(*it);
+        // Test that match is not a played yet
+        IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+        CPfMatches *match = matchesDAO->findByXMatch(m_xMatch);
+        if( !match->getLPlayed() ){
+            m_started = true;
+            // Delete posible previous goals
+            IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+            std::vector<CPfGoals*> * goalsList = goalsDAO->findByXFkMatch(m_xMatch);
+            std::vector<CPfGoals*>::iterator it;
+            for( it=goalsList->begin(); it!=goalsList->end(); it++ ){
+                goalsDAO->deleteReg(*it);
+            }
+            goalsDAO->freeVector(goalsList);
         }
-        goalsDAO->freeVector(goalsList);
-
-        m_started = true;
+        delete match;
     }
 }
 
@@ -63,6 +68,12 @@ void CSingleMatchEventStrategy::process(CEndMatchEvent &event)
         for( it=m_goalsList.begin(); it!=m_goalsList.end(); it++ ){
             goalsDAO->insertReg(*it);
         }
+
+        IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+        CPfMatches *match = matchesDAO->findByXMatch(m_xMatch);
+        match->setLPlayed(true);
+        matchesDAO->updateReg(match);
+        delete match;
 
         // Generate match report
         CGameEngine::getInstance()->getCurrentGame()->getCGameReportRegister()->generateMatchReport(m_xMatch);
