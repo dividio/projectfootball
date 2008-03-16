@@ -62,7 +62,7 @@ CMasterDAOFactorySQLite* CGameEngine::getCMasterDAOFactory()
 void CGameEngine::newGame(int xFkUser, const std::string &gameName)
 {
     const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string filename = "data/database/";
+    std::string filename = "data/database/savedgames/";
 
     srand(time(NULL));
     for( int i=0; i<8; i++ ){
@@ -80,7 +80,15 @@ void CGameEngine::newGame(int xFkUser, const std::string &gameName)
     m_masterDatabase->getIPfGamesDAO()->insertReg(&game);
 
     CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
-    daoFactory->createSchema();
+    daoFactory->executeScriptFile("data/database/scripts/tables.sql");
+    daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts.sql");
+
+    CPfGameStates newGameState;
+    newGameState.setSState(S_STATE_NEWGAME);
+    newGameState.setSValue("true");
+    daoFactory->getIPfGameStatesDAO()->insertReg(&newGameState);
+
     delete daoFactory;
 }
 
