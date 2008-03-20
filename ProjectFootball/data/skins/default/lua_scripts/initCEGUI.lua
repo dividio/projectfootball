@@ -115,4 +115,9 @@ function cmd_Game_Save()
     PF.CStateGame_getInstance():saveGame()
 end
 
+function cmd_Game_Ranking()
+    local state = PF.CStateRanking_getInstance()
+    PF.CStateManager_getInstance():pushState(state)
+end
+
 -- End Script

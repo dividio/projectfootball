@@ -1431,32 +1431,34 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_CStateMainMenu swig_types[26]
 #define SWIGTYPE_p_CStateManager swig_types[27]
 #define SWIGTYPE_p_CStateMonitor swig_types[28]
-#define SWIGTYPE_p_CStateSelectTeam swig_types[29]
-#define SWIGTYPE_p_CSteeringBehaviors swig_types[30]
-#define SWIGTYPE_p_CTeam swig_types[31]
-#define SWIGTYPE_p_IDAOFactory swig_types[32]
-#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[33]
-#define SWIGTYPE_p_IPfGameStatesDAO swig_types[34]
-#define SWIGTYPE_p_IPfGoalsDAO swig_types[35]
-#define SWIGTYPE_p_IPfMatchesDAO swig_types[36]
-#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[37]
-#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[38]
-#define SWIGTYPE_p_IPfTeamsDAO swig_types[39]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[40]
-#define SWIGTYPE_p_Ogre__SceneManager swig_types[41]
-#define SWIGTYPE_p_btCollisionShape swig_types[42]
-#define SWIGTYPE_p_btRigidBody swig_types[43]
-#define SWIGTYPE_p_btTransform swig_types[44]
-#define SWIGTYPE_p_btVector3 swig_types[45]
-#define SWIGTYPE_p_float swig_types[46]
-#define SWIGTYPE_p_std__string swig_types[47]
-#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[48]
-#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[49]
-#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[50]
-#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[51]
-#define SWIGTYPE_p_void swig_types[52]
-static swig_type_info *swig_types[54];
-static swig_module_info swig_module = {swig_types, 53, 0, 0, 0, 0};
+#define SWIGTYPE_p_CStateRanking swig_types[29]
+#define SWIGTYPE_p_CStateSelectTeam swig_types[30]
+#define SWIGTYPE_p_CSteeringBehaviors swig_types[31]
+#define SWIGTYPE_p_CTeam swig_types[32]
+#define SWIGTYPE_p_IDAOFactory swig_types[33]
+#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[34]
+#define SWIGTYPE_p_IPfGameStatesDAO swig_types[35]
+#define SWIGTYPE_p_IPfGoalsDAO swig_types[36]
+#define SWIGTYPE_p_IPfMatchesDAO swig_types[37]
+#define SWIGTYPE_p_IPfRankingDAO swig_types[38]
+#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[39]
+#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[40]
+#define SWIGTYPE_p_IPfTeamsDAO swig_types[41]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[42]
+#define SWIGTYPE_p_Ogre__SceneManager swig_types[43]
+#define SWIGTYPE_p_btCollisionShape swig_types[44]
+#define SWIGTYPE_p_btRigidBody swig_types[45]
+#define SWIGTYPE_p_btTransform swig_types[46]
+#define SWIGTYPE_p_btVector3 swig_types[47]
+#define SWIGTYPE_p_float swig_types[48]
+#define SWIGTYPE_p_std__string swig_types[49]
+#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[50]
+#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[51]
+#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[52]
+#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[53]
+#define SWIGTYPE_p_void swig_types[54]
+static swig_type_info *swig_types[56];
+static swig_module_info swig_module = {swig_types, 55, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1508,6 +1510,7 @@ static swig_module_info swig_module = {swig_types, 53, 0, 0, 0, 0};
 #include "../state/CStateLoadGame.h"
 #include "../state/CStateConfig.h"
 #include "../state/CStateSelectTeam.h"
+#include "../state/CStateRanking.h"
 
 
 #include "../sim/CSimulationManager.h"
@@ -3348,28 +3351,6 @@ fail:
 }
 
 
-static int _wrap_IDAOFactory_createSchema(lua_State* L) {
-  int SWIG_arg = -1;
-  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
-    SWIG_fail_ptr("IDAOFactory_createSchema",1,SWIGTYPE_p_IDAOFactory);
-  }
-  
-  result = (bool)(arg1)->createSchema();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_IDAOFactory_executeScript(lua_State* L) {
   int SWIG_arg = -1;
   IDAOFactory *arg1 = (IDAOFactory *) 0 ;
@@ -3479,6 +3460,28 @@ static int _wrap_IDAOFactory_rollback(lua_State* L) {
   result = (bool)(arg1)->rollback();
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IDAOFactory_getIPfRankingDAO(lua_State* L) {
+  int SWIG_arg = -1;
+  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
+  IPfRankingDAO *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
+    SWIG_fail_ptr("IDAOFactory_getIPfRankingDAO",1,SWIGTYPE_p_IDAOFactory);
+  }
+  
+  result = (IPfRankingDAO *)(arg1)->getIPfRankingDAO();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IPfRankingDAO,0); SWIG_arg++; 
   return SWIG_arg;
   
 fail:
@@ -3646,12 +3649,12 @@ IDAOFactory *arg1 = (IDAOFactory *) obj;
 delete arg1;
 }
 static swig_lua_method swig_IDAOFactory_methods[] = {
-    {"createSchema", _wrap_IDAOFactory_createSchema}, 
     {"executeScript", _wrap_IDAOFactory_executeScript}, 
     {"executeScriptFile", _wrap_IDAOFactory_executeScriptFile}, 
     {"beginTransaction", _wrap_IDAOFactory_beginTransaction}, 
     {"commit", _wrap_IDAOFactory_commit}, 
     {"rollback", _wrap_IDAOFactory_rollback}, 
+    {"getIPfRankingDAO", _wrap_IDAOFactory_getIPfRankingDAO}, 
     {"getIPfGameStatesDAO", _wrap_IDAOFactory_getIPfGameStatesDAO}, 
     {"getIPfMatchesDAO", _wrap_IDAOFactory_getIPfMatchesDAO}, 
     {"getIPfGameOptionsDAO", _wrap_IDAOFactory_getIPfGameOptionsDAO}, 
@@ -7011,6 +7014,145 @@ static swig_lua_attribute swig_CStateSelectTeam_attributes[] = {
 };
 static swig_lua_class *swig_CStateSelectTeam_bases[] = {&_wrap_class_CState,0};
 swig_lua_class _wrap_class_CStateSelectTeam = { "CStateSelectTeam", &SWIGTYPE_p_CStateSelectTeam,0, swig_delete_CStateSelectTeam, swig_CStateSelectTeam_methods, swig_CStateSelectTeam_attributes, swig_CStateSelectTeam_bases };
+
+static int _wrap_CStateRanking_getInstance(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateRanking *result = 0 ;
+  
+  result = (CStateRanking *)CStateRanking::getInstance();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateRanking,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CStateRanking(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateRanking *arg1 = (CStateRanking *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateRanking,0))){
+    SWIG_fail_ptr("delete_CStateRanking",1,SWIGTYPE_p_CStateRanking);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateRanking_enter(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateRanking *arg1 = (CStateRanking *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateRanking,0))){
+    SWIG_fail_ptr("CStateRanking_enter",1,SWIGTYPE_p_CStateRanking);
+  }
+  
+  (arg1)->enter();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateRanking_forcedLeave(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateRanking *arg1 = (CStateRanking *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateRanking,0))){
+    SWIG_fail_ptr("CStateRanking_forcedLeave",1,SWIGTYPE_p_CStateRanking);
+  }
+  
+  (arg1)->forcedLeave();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateRanking_leave(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateRanking *arg1 = (CStateRanking *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateRanking,0))){
+    SWIG_fail_ptr("CStateRanking_leave",1,SWIGTYPE_p_CStateRanking);
+  }
+  
+  result = (bool)(arg1)->leave();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateRanking_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateRanking *arg1 = (CStateRanking *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateRanking,0))){
+    SWIG_fail_ptr("CStateRanking_update",1,SWIGTYPE_p_CStateRanking);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CStateRanking(void *obj) {
+CStateRanking *arg1 = (CStateRanking *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CStateRanking_methods[] = {
+    {"enter", _wrap_CStateRanking_enter}, 
+    {"forcedLeave", _wrap_CStateRanking_forcedLeave}, 
+    {"leave", _wrap_CStateRanking_leave}, 
+    {"update", _wrap_CStateRanking_update}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CStateRanking_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CStateRanking_bases[] = {&_wrap_class_CState,0};
+swig_lua_class _wrap_class_CStateRanking = { "CStateRanking", &SWIGTYPE_p_CStateRanking,0, swig_delete_CStateRanking, swig_CStateRanking_methods, swig_CStateRanking_attributes, swig_CStateRanking_bases };
 
 static int _wrap_CMessage_p_ctor(lua_State* L) {
   int SWIG_arg = -1;
@@ -12835,12 +12977,12 @@ static const struct luaL_reg swig_commands[] = {
     { "CPfGoals_setNMinute", _wrap_CPfGoals_setNMinute},
     { "CPfGoals_setNMinute_str", _wrap_CPfGoals_setNMinute_str},
     { "delete_IDAOFactory", _wrap_delete_IDAOFactory},
-    { "IDAOFactory_createSchema", _wrap_IDAOFactory_createSchema},
     { "IDAOFactory_executeScript", _wrap_IDAOFactory_executeScript},
     { "IDAOFactory_executeScriptFile", _wrap_IDAOFactory_executeScriptFile},
     { "IDAOFactory_beginTransaction", _wrap_IDAOFactory_beginTransaction},
     { "IDAOFactory_commit", _wrap_IDAOFactory_commit},
     { "IDAOFactory_rollback", _wrap_IDAOFactory_rollback},
+    { "IDAOFactory_getIPfRankingDAO", _wrap_IDAOFactory_getIPfRankingDAO},
     { "IDAOFactory_getIPfGameStatesDAO", _wrap_IDAOFactory_getIPfGameStatesDAO},
     { "IDAOFactory_getIPfMatchesDAO", _wrap_IDAOFactory_getIPfMatchesDAO},
     { "IDAOFactory_getIPfGameOptionsDAO", _wrap_IDAOFactory_getIPfGameOptionsDAO},
@@ -12957,6 +13099,12 @@ static const struct luaL_reg swig_commands[] = {
     { "CStateSelectTeam_leave", _wrap_CStateSelectTeam_leave},
     { "CStateSelectTeam_update", _wrap_CStateSelectTeam_update},
     { "CStateSelectTeam_selectTeam", _wrap_CStateSelectTeam_selectTeam},
+    { "CStateRanking_getInstance", _wrap_CStateRanking_getInstance},
+    { "delete_CStateRanking", _wrap_delete_CStateRanking},
+    { "CStateRanking_enter", _wrap_CStateRanking_enter},
+    { "CStateRanking_forcedLeave", _wrap_CStateRanking_forcedLeave},
+    { "CStateRanking_leave", _wrap_CStateRanking_leave},
+    { "CStateRanking_update", _wrap_CStateRanking_update},
     { "CMessage_p_ctor", _wrap_CMessage_p_ctor},
     { "SMALLEST_DELAY_get", _wrap_SMALLEST_DELAY_get},
     { "CMessage_m_pCtorName_set", _wrap_CMessage_m_pCtorName_set},
@@ -13229,6 +13377,9 @@ static void *_p_CStateConfigTo_p_CState(void *x) {
 static void *_p_CStateSelectTeamTo_p_CState(void *x) {
     return (void *)((CState *)  ((CStateSelectTeam *) x));
 }
+static void *_p_CStateRankingTo_p_CState(void *x) {
+    return (void *)((CState *)  ((CStateRanking *) x));
+}
 static void *_p_CStateMainMenuTo_p_CState(void *x) {
     return (void *)((CState *)  ((CStateMainMenu *) x));
 }
@@ -13294,6 +13445,7 @@ static swig_type_info _swigt__p_CStateMachineTCTeam_t = {"_p_CStateMachineTCTeam
 static swig_type_info _swigt__p_CStateMainMenu = {"_p_CStateMainMenu", "CStateMainMenu *", 0, 0, (void*)&_wrap_class_CStateMainMenu, 0};
 static swig_type_info _swigt__p_CStateManager = {"_p_CStateManager", "CStateManager *", 0, 0, (void*)&_wrap_class_CStateManager, 0};
 static swig_type_info _swigt__p_CStateMonitor = {"_p_CStateMonitor", "CStateMonitor *", 0, 0, (void*)&_wrap_class_CStateMonitor, 0};
+static swig_type_info _swigt__p_CStateRanking = {"_p_CStateRanking", "CStateRanking *", 0, 0, (void*)&_wrap_class_CStateRanking, 0};
 static swig_type_info _swigt__p_CStateSelectTeam = {"_p_CStateSelectTeam", "CStateSelectTeam *", 0, 0, (void*)&_wrap_class_CStateSelectTeam, 0};
 static swig_type_info _swigt__p_CSteeringBehaviors = {"_p_CSteeringBehaviors", "CSteeringBehaviors *", 0, 0, (void*)&_wrap_class_CSteeringBehaviors, 0};
 static swig_type_info _swigt__p_CTeam = {"_p_CTeam", "CTeam *", 0, 0, (void*)&_wrap_class_CTeam, 0};
@@ -13302,6 +13454,7 @@ static swig_type_info _swigt__p_IPfGameOptionsDAO = {"_p_IPfGameOptionsDAO", "IP
 static swig_type_info _swigt__p_IPfGameStatesDAO = {"_p_IPfGameStatesDAO", "IPfGameStatesDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfGoalsDAO = {"_p_IPfGoalsDAO", "IPfGoalsDAO *", 0, 0, (void*)&_wrap_class_IPfGoalsDAO, 0};
 static swig_type_info _swigt__p_IPfMatchesDAO = {"_p_IPfMatchesDAO", "IPfMatchesDAO *", 0, 0, (void*)&_wrap_class_IPfMatchesDAO, 0};
+static swig_type_info _swigt__p_IPfRankingDAO = {"_p_IPfRankingDAO", "IPfRankingDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamPlayerContractsDAO = {"_p_IPfTeamPlayerContractsDAO", "IPfTeamPlayerContractsDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamPlayersDAO = {"_p_IPfTeamPlayersDAO", "IPfTeamPlayersDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamsDAO = {"_p_IPfTeamsDAO", "IPfTeamsDAO *", 0, 0, (void*)&_wrap_class_IPfTeamsDAO, 0};
@@ -13349,6 +13502,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CStateMainMenu,
   &_swigt__p_CStateManager,
   &_swigt__p_CStateMonitor,
+  &_swigt__p_CStateRanking,
   &_swigt__p_CStateSelectTeam,
   &_swigt__p_CSteeringBehaviors,
   &_swigt__p_CTeam,
@@ -13357,6 +13511,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_IPfGameStatesDAO,
   &_swigt__p_IPfGoalsDAO,
   &_swigt__p_IPfMatchesDAO,
+  &_swigt__p_IPfRankingDAO,
   &_swigt__p_IPfTeamPlayerContractsDAO,
   &_swigt__p_IPfTeamPlayersDAO,
   &_swigt__p_IPfTeamsDAO,
@@ -13393,7 +13548,7 @@ static swig_cast_info _swigc__p_CPfTeams[] = {  {&_swigt__p_CPfTeams, 0, 0, 0},{
 static swig_cast_info _swigc__p_CReferee[] = {  {&_swigt__p_CReferee, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationManager[] = {  {&_swigt__p_CSimulationManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationWorld[] = {  {&_swigt__p_CSimulationWorld, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CStateGame, _p_CStateGameTo_p_CState, 0, 0},  {&_swigt__p_CStateLoadGame, _p_CStateLoadGameTo_p_CState, 0, 0},  {&_swigt__p_CStateConfig, _p_CStateConfigTo_p_CState, 0, 0},  {&_swigt__p_CStateSelectTeam, _p_CStateSelectTeamTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CStateGame, _p_CStateGameTo_p_CState, 0, 0},  {&_swigt__p_CStateLoadGame, _p_CStateLoadGameTo_p_CState, 0, 0},  {&_swigt__p_CStateConfig, _p_CStateConfigTo_p_CState, 0, 0},  {&_swigt__p_CStateSelectTeam, _p_CStateSelectTeamTo_p_CState, 0, 0},  {&_swigt__p_CStateRanking, _p_CStateRankingTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateConfig[] = {  {&_swigt__p_CStateConfig, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateCredits[] = {  {&_swigt__p_CStateCredits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateGame[] = {  {&_swigt__p_CStateGame, 0, 0, 0},{0, 0, 0, 0}};
@@ -13404,6 +13559,7 @@ static swig_cast_info _swigc__p_CStateMachineTCTeam_t[] = {  {&_swigt__p_CStateM
 static swig_cast_info _swigc__p_CStateMainMenu[] = {  {&_swigt__p_CStateMainMenu, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateManager[] = {  {&_swigt__p_CStateManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMonitor[] = {  {&_swigt__p_CStateMonitor, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CStateRanking[] = {  {&_swigt__p_CStateRanking, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateSelectTeam[] = {  {&_swigt__p_CStateSelectTeam, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSteeringBehaviors[] = {  {&_swigt__p_CSteeringBehaviors, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CTeam[] = {  {&_swigt__p_CTeam, 0, 0, 0},{0, 0, 0, 0}};
@@ -13412,6 +13568,7 @@ static swig_cast_info _swigc__p_IPfGameOptionsDAO[] = {  {&_swigt__p_IPfGameOpti
 static swig_cast_info _swigc__p_IPfGameStatesDAO[] = {  {&_swigt__p_IPfGameStatesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfGoalsDAO[] = {  {&_swigt__p_IPfGoalsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfMatchesDAO[] = {  {&_swigt__p_IPfMatchesDAO, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IPfRankingDAO[] = {  {&_swigt__p_IPfRankingDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamPlayerContractsDAO[] = {  {&_swigt__p_IPfTeamPlayerContractsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamPlayersDAO[] = {  {&_swigt__p_IPfTeamPlayersDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamsDAO[] = {  {&_swigt__p_IPfTeamsDAO, 0, 0, 0},{0, 0, 0, 0}};
@@ -13459,6 +13616,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CStateMainMenu,
   _swigc__p_CStateManager,
   _swigc__p_CStateMonitor,
+  _swigc__p_CStateRanking,
   _swigc__p_CStateSelectTeam,
   _swigc__p_CSteeringBehaviors,
   _swigc__p_CTeam,
@@ -13467,6 +13625,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_IPfGameStatesDAO,
   _swigc__p_IPfGoalsDAO,
   _swigc__p_IPfMatchesDAO,
+  _swigc__p_IPfRankingDAO,
   _swigc__p_IPfTeamPlayerContractsDAO,
   _swigc__p_IPfTeamPlayersDAO,
   _swigc__p_IPfTeamsDAO,
