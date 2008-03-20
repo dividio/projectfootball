@@ -54,7 +54,7 @@ CGameState* CGameEngine::getCurrentGame()
     return m_gameState;
 }
 
-CMasterDAOFactorySQLite* CGameEngine::getCMasterDAOFactory()
+IMasterDAOFactory* CGameEngine::getCMasterDAOFactory()
 {
     return m_masterDatabase;
 }
@@ -81,6 +81,7 @@ void CGameEngine::newGame(int xFkUser, const std::string &gameName)
 
     CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
     daoFactory->executeScriptFile("data/database/scripts/tables.sql");
+    daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
     daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts.sql");
 

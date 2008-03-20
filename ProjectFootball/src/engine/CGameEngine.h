@@ -32,7 +32,7 @@ public:
 	virtual ~CGameEngine();
 	static CGameEngine* getInstance();
 	CGameState* getCurrentGame();
-	CMasterDAOFactorySQLite* getCMasterDAOFactory();
+	IMasterDAOFactory* getCMasterDAOFactory();
 	void newGame(int xFkUser, const std::string &gameName);
 	void loadGame(int xGame);
 	void saveGame();
