@@ -566,6 +566,8 @@ class CDAOFactorySQLiteRenderer(UtilRenderer) :
     execute += "        c = (char) script.get();\n"
     execute += "        if( c!='\\r' && c!='\\n' && script.good() ){\n"
     execute += "            sql << c;\n"
+    execute += "        }else{\n"
+    execute += "            sql << ' ';\n"
     execute += "        }\n"
     execute += "    }\n"
     execute += "    script.close();\n"

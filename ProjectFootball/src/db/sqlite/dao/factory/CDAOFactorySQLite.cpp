@@ -35,7 +35,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(std::string file)
         m_database = NULL;
         CLog::getInstance()->exception("Can't open database file: \"%s\" --> \"%s\"", file.c_str(), sqlite3_errmsg(m_database));
     }
-    
+
     m_PfRankingDAOSQLite = new CPfRankingDAOSQLite(m_database);
     m_PfGameStatesDAOSQLite = new CPfGameStatesDAOSQLite(m_database);
     m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
@@ -44,7 +44,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(std::string file)
     m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
     m_PfTeamPlayersDAOSQLite = new CPfTeamPlayersDAOSQLite(m_database);
     m_PfTeamsDAOSQLite = new CPfTeamsDAOSQLite(m_database);
-    
+
     CLog::getInstance()->info("SQLite Database open: <-- \"%s\"", file.c_str());
 }
 
@@ -58,7 +58,7 @@ CDAOFactorySQLite::~CDAOFactorySQLite()
     delete m_PfGoalsDAOSQLite;
     delete m_PfTeamPlayersDAOSQLite;
     delete m_PfTeamsDAOSQLite;
-    
+
     sqlite3_close(m_database);
     CLog::getInstance()->info("SQLite Database closed");
 }
@@ -89,6 +89,8 @@ bool CDAOFactorySQLite::executeScriptFile(const char *scriptFile)
         c = (char) script.get();
         if( c!='\r' && c!='\n' && script.good() ){
             sql << c;
+        }else{
+            sql << ' ';
         }
     }
     script.close();

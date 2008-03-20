@@ -77,6 +77,8 @@ bool CMasterDAOFactorySQLite::executeScriptFile(const char *scriptFile)
         c = (char) script.get();
         if( c!='\r' && c!='\n' && script.good() ){
             sql << c;
+        }else{
+            sql << ' ';
         }
     }
     script.close();
