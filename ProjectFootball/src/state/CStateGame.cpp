@@ -28,6 +28,9 @@ CStateGame::CStateGame()
 {
     CLog::getInstance()->debug("CStateGame()");
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"game.layout");
+
+    m_playerTeam_text   = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
+    m_nextMatch_text    = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/NextMatchText"));
 }
 
 CStateGame* CStateGame::getInstance()
@@ -46,6 +49,25 @@ void CStateGame::enter()
     m_system->setGUISheet(m_sheet);
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
+
+    CPfTeams    *playerTeam = CGameEngine::getInstance()->getCurrentGame()->getPlayerTeam();
+    m_playerTeam_text->setText(playerTeam->getSTeam());
+
+    CPfMatches  *nextMatch  = CGameEngine::getInstance()->getCurrentGame()->getNextPlayerTeamMatch();
+    if( nextMatch==NULL ){
+        m_nextMatch_text->setText("No Match");
+    }else{
+        IPfTeamsDAO *teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
+        CPfTeams    *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
+        CPfTeams    *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
+
+        std::string text;
+        text += homeTeam->getSTeam()+" - "+awayTeam->getSTeam();
+        m_nextMatch_text->setText(text);
+
+        delete homeTeam;
+        delete awayTeam;
+    }
 }
 
 void CStateGame::forcedLeave()

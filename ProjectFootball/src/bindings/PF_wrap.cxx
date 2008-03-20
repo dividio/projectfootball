@@ -1999,7 +1999,7 @@ fail:
 }
 
 
-static int _wrap_CPfTeams_setXTeam__SWIG_0(lua_State* L) {
+static int _wrap_CPfTeams_setXTeam(lua_State* L) {
   int SWIG_arg = -1;
   CPfTeams *arg1 = (CPfTeams *) 0 ;
   int arg2 ;
@@ -2023,7 +2023,7 @@ fail:
 }
 
 
-static int _wrap_CPfTeams_setXTeam__SWIG_1(lua_State* L) {
+static int _wrap_CPfTeams_setXTeam_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfTeams *arg1 = (CPfTeams *) 0 ;
   std::string *arg2 = 0 ;
@@ -2033,11 +2033,11 @@ static int _wrap_CPfTeams_setXTeam__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
-    SWIG_fail_ptr("CPfTeams_setXTeam",1,SWIGTYPE_p_CPfTeams);
+    SWIG_fail_ptr("CPfTeams_setXTeam_str",1,SWIGTYPE_p_CPfTeams);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXTeam((std::string const &)*arg2);
+  (arg1)->setXTeam_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2045,57 +2045,6 @@ static int _wrap_CPfTeams_setXTeam__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_CPfTeams_setXTeam(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfTeams, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfTeams_setXTeam__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfTeams, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfTeams_setXTeam__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfTeams_setXTeam'");
-  lua_error(L);return 0;
 }
 
 
@@ -2124,6 +2073,31 @@ fail:
 }
 
 
+static int _wrap_CPfTeams_setSTeam_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setSTeam_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setSTeam_str((std::string const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CPfTeams(void *obj) {
 CPfTeams *arg1 = (CPfTeams *) obj;
 delete arg1;
@@ -2134,7 +2108,9 @@ static swig_lua_method swig_CPfTeams_methods[] = {
     {"getSTeam", _wrap_CPfTeams_getSTeam}, 
     {"getSTeam_str", _wrap_CPfTeams_getSTeam_str}, 
     {"setXTeam", _wrap_CPfTeams_setXTeam}, 
+    {"setXTeam_str", _wrap_CPfTeams_setXTeam_str}, 
     {"setSTeam", _wrap_CPfTeams_setSTeam}, 
+    {"setSTeam_str", _wrap_CPfTeams_setSTeam_str}, 
     {0,0}
 };
 static swig_lua_attribute swig_CPfTeams_attributes[] = {
@@ -2418,7 +2394,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setDMatch__SWIG_0(lua_State* L) {
+static int _wrap_CPfMatches_setDMatch(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   CDate *arg2 = 0 ;
@@ -2446,7 +2422,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setDMatch__SWIG_1(lua_State* L) {
+static int _wrap_CPfMatches_setDMatch_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   std::string *arg2 = 0 ;
@@ -2456,11 +2432,11 @@ static int _wrap_CPfMatches_setDMatch__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
-    SWIG_fail_ptr("CPfMatches_setDMatch",1,SWIGTYPE_p_CPfMatches);
+    SWIG_fail_ptr("CPfMatches_setDMatch_str",1,SWIGTYPE_p_CPfMatches);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setDMatch((std::string const &)*arg2);
+  (arg1)->setDMatch_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2471,63 +2447,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setDMatch(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_CDate, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setDMatch__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setDMatch__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfMatches_setDMatch'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfMatches_setLPlayed__SWIG_0(lua_State* L) {
+static int _wrap_CPfMatches_setLPlayed(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   bool arg2 ;
@@ -2551,7 +2471,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setLPlayed__SWIG_1(lua_State* L) {
+static int _wrap_CPfMatches_setLPlayed_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   std::string *arg2 = 0 ;
@@ -2561,11 +2481,11 @@ static int _wrap_CPfMatches_setLPlayed__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
-    SWIG_fail_ptr("CPfMatches_setLPlayed",1,SWIGTYPE_p_CPfMatches);
+    SWIG_fail_ptr("CPfMatches_setLPlayed_str",1,SWIGTYPE_p_CPfMatches);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setLPlayed((std::string const &)*arg2);
+  (arg1)->setLPlayed_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2576,58 +2496,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setLPlayed(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isboolean(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setLPlayed__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setLPlayed__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfMatches_setLPlayed'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfMatches_setXFkTeamHome__SWIG_0(lua_State* L) {
+static int _wrap_CPfMatches_setXFkTeamHome(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   int arg2 ;
@@ -2651,7 +2520,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setXFkTeamHome__SWIG_1(lua_State* L) {
+static int _wrap_CPfMatches_setXFkTeamHome_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   std::string *arg2 = 0 ;
@@ -2661,11 +2530,11 @@ static int _wrap_CPfMatches_setXFkTeamHome__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
-    SWIG_fail_ptr("CPfMatches_setXFkTeamHome",1,SWIGTYPE_p_CPfMatches);
+    SWIG_fail_ptr("CPfMatches_setXFkTeamHome_str",1,SWIGTYPE_p_CPfMatches);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXFkTeamHome((std::string const &)*arg2);
+  (arg1)->setXFkTeamHome_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2676,58 +2545,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setXFkTeamHome(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setXFkTeamHome__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setXFkTeamHome__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfMatches_setXFkTeamHome'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfMatches_setXMatch__SWIG_0(lua_State* L) {
+static int _wrap_CPfMatches_setXMatch(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   int arg2 ;
@@ -2751,7 +2569,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setXMatch__SWIG_1(lua_State* L) {
+static int _wrap_CPfMatches_setXMatch_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   std::string *arg2 = 0 ;
@@ -2761,11 +2579,11 @@ static int _wrap_CPfMatches_setXMatch__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
-    SWIG_fail_ptr("CPfMatches_setXMatch",1,SWIGTYPE_p_CPfMatches);
+    SWIG_fail_ptr("CPfMatches_setXMatch_str",1,SWIGTYPE_p_CPfMatches);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXMatch((std::string const &)*arg2);
+  (arg1)->setXMatch_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2776,58 +2594,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setXMatch(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setXMatch__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setXMatch__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfMatches_setXMatch'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfMatches_setXFkTeamAway__SWIG_0(lua_State* L) {
+static int _wrap_CPfMatches_setXFkTeamAway(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   int arg2 ;
@@ -2851,7 +2618,7 @@ fail:
 }
 
 
-static int _wrap_CPfMatches_setXFkTeamAway__SWIG_1(lua_State* L) {
+static int _wrap_CPfMatches_setXFkTeamAway_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *arg1 = (CPfMatches *) 0 ;
   std::string *arg2 = 0 ;
@@ -2861,11 +2628,11 @@ static int _wrap_CPfMatches_setXFkTeamAway__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
-    SWIG_fail_ptr("CPfMatches_setXFkTeamAway",1,SWIGTYPE_p_CPfMatches);
+    SWIG_fail_ptr("CPfMatches_setXFkTeamAway_str",1,SWIGTYPE_p_CPfMatches);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXFkTeamAway((std::string const &)*arg2);
+  (arg1)->setXFkTeamAway_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2873,57 +2640,6 @@ static int _wrap_CPfMatches_setXFkTeamAway__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_CPfMatches_setXFkTeamAway(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setXFkTeamAway__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfMatches_setXFkTeamAway__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfMatches_setXFkTeamAway'");
-  lua_error(L);return 0;
 }
 
 
@@ -2943,10 +2659,15 @@ static swig_lua_method swig_CPfMatches_methods[] = {
     {"getXFkTeamAway", _wrap_CPfMatches_getXFkTeamAway}, 
     {"getXFkTeamAway_str", _wrap_CPfMatches_getXFkTeamAway_str}, 
     {"setDMatch", _wrap_CPfMatches_setDMatch}, 
+    {"setDMatch_str", _wrap_CPfMatches_setDMatch_str}, 
     {"setLPlayed", _wrap_CPfMatches_setLPlayed}, 
+    {"setLPlayed_str", _wrap_CPfMatches_setLPlayed_str}, 
     {"setXFkTeamHome", _wrap_CPfMatches_setXFkTeamHome}, 
+    {"setXFkTeamHome_str", _wrap_CPfMatches_setXFkTeamHome_str}, 
     {"setXMatch", _wrap_CPfMatches_setXMatch}, 
+    {"setXMatch_str", _wrap_CPfMatches_setXMatch_str}, 
     {"setXFkTeamAway", _wrap_CPfMatches_setXFkTeamAway}, 
+    {"setXFkTeamAway_str", _wrap_CPfMatches_setXFkTeamAway_str}, 
     {0,0}
 };
 static swig_lua_attribute swig_CPfMatches_attributes[] = {
@@ -3274,7 +2995,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkTeplScorer__SWIG_0(lua_State* L) {
+static int _wrap_CPfGoals_setXFkTeplScorer(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   int arg2 ;
@@ -3298,7 +3019,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkTeplScorer__SWIG_1(lua_State* L) {
+static int _wrap_CPfGoals_setXFkTeplScorer_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   std::string *arg2 = 0 ;
@@ -3308,11 +3029,11 @@ static int _wrap_CPfGoals_setXFkTeplScorer__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
-    SWIG_fail_ptr("CPfGoals_setXFkTeplScorer",1,SWIGTYPE_p_CPfGoals);
+    SWIG_fail_ptr("CPfGoals_setXFkTeplScorer_str",1,SWIGTYPE_p_CPfGoals);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXFkTeplScorer((std::string const &)*arg2);
+  (arg1)->setXFkTeplScorer_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3323,58 +3044,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkTeplScorer(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXFkTeplScorer__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXFkTeplScorer__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfGoals_setXFkTeplScorer'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfGoals_setXGoal__SWIG_0(lua_State* L) {
+static int _wrap_CPfGoals_setXGoal(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   int arg2 ;
@@ -3398,7 +3068,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXGoal__SWIG_1(lua_State* L) {
+static int _wrap_CPfGoals_setXGoal_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   std::string *arg2 = 0 ;
@@ -3408,11 +3078,11 @@ static int _wrap_CPfGoals_setXGoal__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
-    SWIG_fail_ptr("CPfGoals_setXGoal",1,SWIGTYPE_p_CPfGoals);
+    SWIG_fail_ptr("CPfGoals_setXGoal_str",1,SWIGTYPE_p_CPfGoals);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXGoal((std::string const &)*arg2);
+  (arg1)->setXGoal_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3423,58 +3093,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXGoal(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXGoal__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXGoal__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfGoals_setXGoal'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfGoals_setLOwnGoal__SWIG_0(lua_State* L) {
+static int _wrap_CPfGoals_setLOwnGoal(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   bool arg2 ;
@@ -3498,7 +3117,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setLOwnGoal__SWIG_1(lua_State* L) {
+static int _wrap_CPfGoals_setLOwnGoal_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   std::string *arg2 = 0 ;
@@ -3508,11 +3127,11 @@ static int _wrap_CPfGoals_setLOwnGoal__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
-    SWIG_fail_ptr("CPfGoals_setLOwnGoal",1,SWIGTYPE_p_CPfGoals);
+    SWIG_fail_ptr("CPfGoals_setLOwnGoal_str",1,SWIGTYPE_p_CPfGoals);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setLOwnGoal((std::string const &)*arg2);
+  (arg1)->setLOwnGoal_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3523,58 +3142,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setLOwnGoal(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isboolean(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setLOwnGoal__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setLOwnGoal__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfGoals_setLOwnGoal'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfGoals_setXFkTeamScorer__SWIG_0(lua_State* L) {
+static int _wrap_CPfGoals_setXFkTeamScorer(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   int arg2 ;
@@ -3598,7 +3166,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkTeamScorer__SWIG_1(lua_State* L) {
+static int _wrap_CPfGoals_setXFkTeamScorer_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   std::string *arg2 = 0 ;
@@ -3608,11 +3176,11 @@ static int _wrap_CPfGoals_setXFkTeamScorer__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
-    SWIG_fail_ptr("CPfGoals_setXFkTeamScorer",1,SWIGTYPE_p_CPfGoals);
+    SWIG_fail_ptr("CPfGoals_setXFkTeamScorer_str",1,SWIGTYPE_p_CPfGoals);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXFkTeamScorer((std::string const &)*arg2);
+  (arg1)->setXFkTeamScorer_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3623,58 +3191,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkTeamScorer(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXFkTeamScorer__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXFkTeamScorer__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfGoals_setXFkTeamScorer'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfGoals_setXFkMatch__SWIG_0(lua_State* L) {
+static int _wrap_CPfGoals_setXFkMatch(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   int arg2 ;
@@ -3698,7 +3215,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkMatch__SWIG_1(lua_State* L) {
+static int _wrap_CPfGoals_setXFkMatch_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   std::string *arg2 = 0 ;
@@ -3708,11 +3225,11 @@ static int _wrap_CPfGoals_setXFkMatch__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
-    SWIG_fail_ptr("CPfGoals_setXFkMatch",1,SWIGTYPE_p_CPfGoals);
+    SWIG_fail_ptr("CPfGoals_setXFkMatch_str",1,SWIGTYPE_p_CPfGoals);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setXFkMatch((std::string const &)*arg2);
+  (arg1)->setXFkMatch_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3723,58 +3240,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setXFkMatch(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXFkMatch__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setXFkMatch__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfGoals_setXFkMatch'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_CPfGoals_setNMinute__SWIG_0(lua_State* L) {
+static int _wrap_CPfGoals_setNMinute(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   int arg2 ;
@@ -3798,7 +3264,7 @@ fail:
 }
 
 
-static int _wrap_CPfGoals_setNMinute__SWIG_1(lua_State* L) {
+static int _wrap_CPfGoals_setNMinute_str(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *arg1 = (CPfGoals *) 0 ;
   std::string *arg2 = 0 ;
@@ -3808,11 +3274,11 @@ static int _wrap_CPfGoals_setNMinute__SWIG_1(lua_State* L) {
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
-    SWIG_fail_ptr("CPfGoals_setNMinute",1,SWIGTYPE_p_CPfGoals);
+    SWIG_fail_ptr("CPfGoals_setNMinute_str",1,SWIGTYPE_p_CPfGoals);
   }
   
   temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
-  (arg1)->setNMinute((std::string const &)*arg2);
+  (arg1)->setNMinute_str((std::string const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3820,57 +3286,6 @@ static int _wrap_CPfGoals_setNMinute__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_CPfGoals_setNMinute(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setNMinute__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_CPfGoals_setNMinute__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'CPfGoals_setNMinute'");
-  lua_error(L);return 0;
 }
 
 
@@ -3892,11 +3307,17 @@ static swig_lua_method swig_CPfGoals_methods[] = {
     {"getNMinute", _wrap_CPfGoals_getNMinute}, 
     {"getNMinute_str", _wrap_CPfGoals_getNMinute_str}, 
     {"setXFkTeplScorer", _wrap_CPfGoals_setXFkTeplScorer}, 
+    {"setXFkTeplScorer_str", _wrap_CPfGoals_setXFkTeplScorer_str}, 
     {"setXGoal", _wrap_CPfGoals_setXGoal}, 
+    {"setXGoal_str", _wrap_CPfGoals_setXGoal_str}, 
     {"setLOwnGoal", _wrap_CPfGoals_setLOwnGoal}, 
+    {"setLOwnGoal_str", _wrap_CPfGoals_setLOwnGoal_str}, 
     {"setXFkTeamScorer", _wrap_CPfGoals_setXFkTeamScorer}, 
+    {"setXFkTeamScorer_str", _wrap_CPfGoals_setXFkTeamScorer_str}, 
     {"setXFkMatch", _wrap_CPfGoals_setXFkMatch}, 
+    {"setXFkMatch_str", _wrap_CPfGoals_setXFkMatch_str}, 
     {"setNMinute", _wrap_CPfGoals_setNMinute}, 
+    {"setNMinute_str", _wrap_CPfGoals_setNMinute_str}, 
     {0,0}
 };
 static swig_lua_attribute swig_CPfGoals_attributes[] = {
@@ -4507,6 +3928,28 @@ fail:
 }
 
 
+static int _wrap_IPfTeamsDAO_findPlayerTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfTeamsDAO *arg1 = (IPfTeamsDAO *) 0 ;
+  CPfTeams *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfTeamsDAO,0))){
+    SWIG_fail_ptr("IPfTeamsDAO_findPlayerTeam",1,SWIGTYPE_p_IPfTeamsDAO);
+  }
+  
+  result = (CPfTeams *)(arg1)->findPlayerTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfTeams,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_IPfTeamsDAO(void *obj) {
 IPfTeamsDAO *arg1 = (IPfTeamsDAO *) obj;
 delete arg1;
@@ -4518,6 +3961,7 @@ static swig_lua_method swig_IPfTeamsDAO_methods[] = {
     {"freeVector", _wrap_IPfTeamsDAO_freeVector}, 
     {"findByXTeam", _wrap_IPfTeamsDAO_findByXTeam}, 
     {"findTeams", _wrap_IPfTeamsDAO_findTeams}, 
+    {"findPlayerTeam", _wrap_IPfTeamsDAO_findPlayerTeam}, 
     {0,0}
 };
 static swig_lua_attribute swig_IPfTeamsDAO_attributes[] = {
@@ -4969,6 +4413,28 @@ static int _wrap_IPfMatchesDAO_findByXFkTeamAway(lua_State* L) {
 }
 
 
+static int _wrap_IPfMatchesDAO_findMatches(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfMatchesDAO *arg1 = (IPfMatchesDAO *) 0 ;
+  std::vector<CPfMatches * > *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfMatchesDAO,0))){
+    SWIG_fail_ptr("IPfMatchesDAO_findMatches",1,SWIGTYPE_p_IPfMatchesDAO);
+  }
+  
+  result = (std::vector<CPfMatches * > *)(arg1)->findMatches();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_std__vectorTCPfMatches_p_t,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_IPfMatchesDAO(void *obj) {
 IPfMatchesDAO *arg1 = (IPfMatchesDAO *) obj;
 delete arg1;
@@ -4981,6 +4447,7 @@ static swig_lua_method swig_IPfMatchesDAO_methods[] = {
     {"findByXFkTeamHome", _wrap_IPfMatchesDAO_findByXFkTeamHome}, 
     {"findByXMatch", _wrap_IPfMatchesDAO_findByXMatch}, 
     {"findByXFkTeamAway", _wrap_IPfMatchesDAO_findByXFkTeamAway}, 
+    {"findMatches", _wrap_IPfMatchesDAO_findMatches}, 
     {0,0}
 };
 static swig_lua_attribute swig_IPfMatchesDAO_attributes[] = {
@@ -13315,8 +12782,10 @@ static const struct luaL_reg swig_commands[] = {
     { "CPfTeams_getXTeam_str", _wrap_CPfTeams_getXTeam_str},
     { "CPfTeams_getSTeam", _wrap_CPfTeams_getSTeam},
     { "CPfTeams_getSTeam_str", _wrap_CPfTeams_getSTeam_str},
-    { "CPfTeams_setXTeam",_wrap_CPfTeams_setXTeam},
+    { "CPfTeams_setXTeam", _wrap_CPfTeams_setXTeam},
+    { "CPfTeams_setXTeam_str", _wrap_CPfTeams_setXTeam_str},
     { "CPfTeams_setSTeam", _wrap_CPfTeams_setSTeam},
+    { "CPfTeams_setSTeam_str", _wrap_CPfTeams_setSTeam_str},
     { "new_CPfMatches", _wrap_new_CPfMatches},
     { "delete_CPfMatches", _wrap_delete_CPfMatches},
     { "CPfMatches_getDMatch", _wrap_CPfMatches_getDMatch},
@@ -13329,11 +12798,16 @@ static const struct luaL_reg swig_commands[] = {
     { "CPfMatches_getXMatch_str", _wrap_CPfMatches_getXMatch_str},
     { "CPfMatches_getXFkTeamAway", _wrap_CPfMatches_getXFkTeamAway},
     { "CPfMatches_getXFkTeamAway_str", _wrap_CPfMatches_getXFkTeamAway_str},
-    { "CPfMatches_setDMatch",_wrap_CPfMatches_setDMatch},
-    { "CPfMatches_setLPlayed",_wrap_CPfMatches_setLPlayed},
-    { "CPfMatches_setXFkTeamHome",_wrap_CPfMatches_setXFkTeamHome},
-    { "CPfMatches_setXMatch",_wrap_CPfMatches_setXMatch},
-    { "CPfMatches_setXFkTeamAway",_wrap_CPfMatches_setXFkTeamAway},
+    { "CPfMatches_setDMatch", _wrap_CPfMatches_setDMatch},
+    { "CPfMatches_setDMatch_str", _wrap_CPfMatches_setDMatch_str},
+    { "CPfMatches_setLPlayed", _wrap_CPfMatches_setLPlayed},
+    { "CPfMatches_setLPlayed_str", _wrap_CPfMatches_setLPlayed_str},
+    { "CPfMatches_setXFkTeamHome", _wrap_CPfMatches_setXFkTeamHome},
+    { "CPfMatches_setXFkTeamHome_str", _wrap_CPfMatches_setXFkTeamHome_str},
+    { "CPfMatches_setXMatch", _wrap_CPfMatches_setXMatch},
+    { "CPfMatches_setXMatch_str", _wrap_CPfMatches_setXMatch_str},
+    { "CPfMatches_setXFkTeamAway", _wrap_CPfMatches_setXFkTeamAway},
+    { "CPfMatches_setXFkTeamAway_str", _wrap_CPfMatches_setXFkTeamAway_str},
     { "new_CPfGoals", _wrap_new_CPfGoals},
     { "delete_CPfGoals", _wrap_delete_CPfGoals},
     { "CPfGoals_getXFkTeplScorer", _wrap_CPfGoals_getXFkTeplScorer},
@@ -13348,12 +12822,18 @@ static const struct luaL_reg swig_commands[] = {
     { "CPfGoals_getXFkMatch_str", _wrap_CPfGoals_getXFkMatch_str},
     { "CPfGoals_getNMinute", _wrap_CPfGoals_getNMinute},
     { "CPfGoals_getNMinute_str", _wrap_CPfGoals_getNMinute_str},
-    { "CPfGoals_setXFkTeplScorer",_wrap_CPfGoals_setXFkTeplScorer},
-    { "CPfGoals_setXGoal",_wrap_CPfGoals_setXGoal},
-    { "CPfGoals_setLOwnGoal",_wrap_CPfGoals_setLOwnGoal},
-    { "CPfGoals_setXFkTeamScorer",_wrap_CPfGoals_setXFkTeamScorer},
-    { "CPfGoals_setXFkMatch",_wrap_CPfGoals_setXFkMatch},
-    { "CPfGoals_setNMinute",_wrap_CPfGoals_setNMinute},
+    { "CPfGoals_setXFkTeplScorer", _wrap_CPfGoals_setXFkTeplScorer},
+    { "CPfGoals_setXFkTeplScorer_str", _wrap_CPfGoals_setXFkTeplScorer_str},
+    { "CPfGoals_setXGoal", _wrap_CPfGoals_setXGoal},
+    { "CPfGoals_setXGoal_str", _wrap_CPfGoals_setXGoal_str},
+    { "CPfGoals_setLOwnGoal", _wrap_CPfGoals_setLOwnGoal},
+    { "CPfGoals_setLOwnGoal_str", _wrap_CPfGoals_setLOwnGoal_str},
+    { "CPfGoals_setXFkTeamScorer", _wrap_CPfGoals_setXFkTeamScorer},
+    { "CPfGoals_setXFkTeamScorer_str", _wrap_CPfGoals_setXFkTeamScorer_str},
+    { "CPfGoals_setXFkMatch", _wrap_CPfGoals_setXFkMatch},
+    { "CPfGoals_setXFkMatch_str", _wrap_CPfGoals_setXFkMatch_str},
+    { "CPfGoals_setNMinute", _wrap_CPfGoals_setNMinute},
+    { "CPfGoals_setNMinute_str", _wrap_CPfGoals_setNMinute_str},
     { "delete_IDAOFactory", _wrap_delete_IDAOFactory},
     { "IDAOFactory_createSchema", _wrap_IDAOFactory_createSchema},
     { "IDAOFactory_executeScript", _wrap_IDAOFactory_executeScript},
@@ -13375,6 +12855,7 @@ static const struct luaL_reg swig_commands[] = {
     { "IPfTeamsDAO_freeVector", _wrap_IPfTeamsDAO_freeVector},
     { "IPfTeamsDAO_findByXTeam",_wrap_IPfTeamsDAO_findByXTeam},
     { "IPfTeamsDAO_findTeams", _wrap_IPfTeamsDAO_findTeams},
+    { "IPfTeamsDAO_findPlayerTeam", _wrap_IPfTeamsDAO_findPlayerTeam},
     { "delete_IPfMatchesDAO", _wrap_delete_IPfMatchesDAO},
     { "IPfMatchesDAO_deleteReg", _wrap_IPfMatchesDAO_deleteReg},
     { "IPfMatchesDAO_insertReg", _wrap_IPfMatchesDAO_insertReg},
@@ -13383,6 +12864,7 @@ static const struct luaL_reg swig_commands[] = {
     { "IPfMatchesDAO_findByXFkTeamHome",_wrap_IPfMatchesDAO_findByXFkTeamHome},
     { "IPfMatchesDAO_findByXMatch",_wrap_IPfMatchesDAO_findByXMatch},
     { "IPfMatchesDAO_findByXFkTeamAway",_wrap_IPfMatchesDAO_findByXFkTeamAway},
+    { "IPfMatchesDAO_findMatches", _wrap_IPfMatchesDAO_findMatches},
     { "delete_IPfGoalsDAO", _wrap_delete_IPfGoalsDAO},
     { "IPfGoalsDAO_deleteReg", _wrap_IPfGoalsDAO_deleteReg},
     { "IPfGoalsDAO_insertReg", _wrap_IPfGoalsDAO_insertReg},

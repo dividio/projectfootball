@@ -39,6 +39,9 @@ public:
 private:
     CStateGame();
 
+    CEGUI::Window  *m_playerTeam_text;
+    CEGUI::Window  *m_nextMatch_text;
+
 };
 
 #endif /*CSTATEGAME_H_*/
