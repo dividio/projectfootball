@@ -20,39 +20,34 @@
 *       Version: 1.14                                                         *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef CPFRANKINGDAOSQLITEENTITY_H_
+#define CPFRANKINGDAOSQLITEENTITY_H_
 
-#include "../IPfRankingDAO.h"
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include <string>
+#include <vector>
+#include <sqlite3.h>
 
-class IDAOFactory
+#include "../../../bean/CPfRanking.h"
+#include "../../../dao/IPfRankingDAO.h"
+
+class CPfRankingDAOSQLiteEntity : public IPfRankingDAO
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    CPfRankingDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfRankingDAOSQLiteEntity();
 
-    virtual bool executeScript(const std::string &script) =0;
-    virtual bool executeScriptFile(const char *scriptFile) =0;
+    virtual void freeVector(std::vector<CPfRanking*>* vector);
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+protected:
+    CPfRanking* loadRegister(std::string sql);
+    std::vector<CPfRanking*>* loadVector(std::string sql);
 
-    virtual IPfRankingDAO* getIPfRankingDAO() =0;
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+private:
+    bool exec(std::string sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
+    sqlite3 *m_database;
 
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*CPFRANKINGDAOSQLITEENTITY_H_*/

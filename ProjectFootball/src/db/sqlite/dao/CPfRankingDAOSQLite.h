@@ -20,39 +20,21 @@
 *       Version: 1.14                                                         *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef CPFRANKINGDAOSQLITE_H_
+#define CPFRANKINGDAOSQLITE_H_
 
-#include "../IPfRankingDAO.h"
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfTeamsDAO.h"
+#include <string>
+#include <sqlite3.h>
 
-class IDAOFactory
+#include "entity/CPfRankingDAOSQLiteEntity.h"
+#include "../../bean/CPfRanking.h"
+
+class CPfRankingDAOSQLite : public CPfRankingDAOSQLiteEntity
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    CPfRankingDAOSQLite(sqlite3 *database);
+    virtual ~CPfRankingDAOSQLite();
 
-    virtual bool executeScript(const std::string &script) =0;
-    virtual bool executeScriptFile(const char *scriptFile) =0;
-
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
-
-    virtual IPfRankingDAO* getIPfRankingDAO() =0;
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
-
+    virtual std::vector<CPfRanking*>* findRanking();
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*CPFRANKINGDAOSQLITE_H_*/
