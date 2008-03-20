@@ -32,14 +32,21 @@ CStateLoadGame::CStateLoadGame()
     CLog::getInstance()->debug("CStateLoadGame()");
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"loadGame.layout");
 
-    CEGUI::MultiColumnList* ceguiGamesList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
-    ceguiGamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
-    ceguiGamesList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleSelectChanged, this));
-    ceguiGamesList->addColumn("Name", 0, CEGUI::UDim(0.77,0));
-    ceguiGamesList->addColumn("Date", 1, CEGUI::UDim(0.2,0));
+    m_loadGameButton    = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
+    m_newGameButton     = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
 
-    CEGUI::Editbox* ceguiNewEdit = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
-    ceguiNewEdit->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleTextChanged, this));
+    m_newGameEditbox    = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
+    m_newGameEditbox->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleTextChanged, this));
+
+    m_gamesList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
+    m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
+    m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleSelectChanged, this));
+    m_gamesList->setUserColumnDraggingEnabled(false);
+    m_gamesList->setUserColumnSizingEnabled(false);
+    m_gamesList->setUserSortControlEnabled(false);
+
+    m_gamesList->addColumn("Name", 0, CEGUI::UDim(0.8,0));
+    m_gamesList->addColumn("Date", 1, CEGUI::UDim(0.2,0));
 }
 
 CStateLoadGame* CStateLoadGame::getInstance()
@@ -61,14 +68,9 @@ void CStateLoadGame::enter()
 
     loadGameList();
 
-    CEGUI::PushButton* ceguiLoadButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
-    ceguiLoadButton->setEnabled(false);
-
-    CEGUI::PushButton* ceguiNewButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
-    ceguiNewButton->setEnabled(false);
-
-    CEGUI::Editbox* editBox = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
-    editBox->setText("");
+    m_loadGameButton->setEnabled(false);
+    m_newGameButton->setEnabled(false);
+    m_newGameEditbox->setText("");
 }
 
 void CStateLoadGame::forcedLeave()
@@ -87,16 +89,14 @@ void CStateLoadGame::update()
 
 void CStateLoadGame::createNewGame()
 {
-    CEGUI::Editbox* editBox = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
-    CGameEngine::getInstance()->newGame(DEFAULT_USER, editBox->getText().c_str());
+    CGameEngine::getInstance()->newGame(DEFAULT_USER, m_newGameEditbox->getText().c_str());
     loadGameList();
-    editBox->setText("");
+    m_newGameEditbox->setText("");
 }
 
 void CStateLoadGame::loadGame()
 {
-    CEGUI::MultiColumnList* ceguiGamesList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
-    CEGUI::ListboxItem* itm = ceguiGamesList->getFirstSelectedItem();
+    CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
     int xGame = itm->getID();
     CGameEngine::getInstance()->loadGame(xGame);
 
@@ -117,9 +117,8 @@ void CStateLoadGame::loadGameList()
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("MultiListSelectionBrush");
 
-    CEGUI::MultiColumnList* ceguiGamesList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
-    ceguiGamesList->resetList();
-    ceguiGamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
+    m_gamesList->resetList();
+    m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
     IPfGamesDAO*                        gamesDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
     std::vector<CPfGames*>*             gamesList = gamesDAO->findByXFkUser(DEFAULT_USER);
@@ -127,36 +126,37 @@ void CStateLoadGame::loadGameList()
     for( it=gamesList->begin(); it!=gamesList->end(); it++ ){
         CPfGames *game = (*it);
 
-        int row_idx = ceguiGamesList->addRow();
-        ceguiGamesList->setRowID(row_idx, game->getXGame());
+        int row_idx = m_gamesList->addRow();
+        m_gamesList->setRowID(row_idx, game->getXGame());
+
         CEGUI::ListboxTextItem* itm_0 = new CEGUI::ListboxTextItem(game->getSGameName());
         itm_0->setSelectionBrushImage(sel_img);
         itm_0->setID(game->getXGame());
+
         CEGUI::ListboxTextItem* itm_1 = new CEGUI::ListboxTextItem(game->getDLastSaved().format("%Y/%m/%d %H:%M:%S"));
         itm_1->setSelectionBrushImage(sel_img);
         itm_1->setID(game->getXGame());
-        ceguiGamesList->setItem(itm_0, 0, row_idx);
-        ceguiGamesList->setItem(itm_1, 1, row_idx);
+
+        m_gamesList->setItem(itm_0, 0, row_idx);
+        m_gamesList->setItem(itm_1, 1, row_idx);
     }
     gamesDAO->freeVector(gamesList);
+
+    m_gamesList->getHorzScrollbar()->setVisible(false);
 }
 
 bool CStateLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
 {
-    CEGUI::PushButton* ceguiLoadButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
-    ceguiLoadButton->setEnabled(true);
+    m_loadGameButton->setEnabled(true);
 
     return true;
 }
 
 bool CStateLoadGame::handleTextChanged(const CEGUI::EventArgs& e)
 {
-    CEGUI::Editbox* editBox = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
-    if( editBox->getText().compare("")!=0 ){
-        CEGUI::PushButton* ceguiNewButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
-        ceguiNewButton->setEnabled(true);
+    if( m_newGameEditbox->getText().compare("")!=0 ){
+        m_newGameButton->setEnabled(true);
     }else{
-        CEGUI::PushButton* ceguiNewButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
-        ceguiNewButton->setEnabled(false);
+        m_newGameButton->setEnabled(false);
     }
 }

@@ -43,6 +43,11 @@ private:
     void loadGameList();
     bool handleSelectChanged(const CEGUI::EventArgs& e);
     bool handleTextChanged(const CEGUI::EventArgs& e);
+
+    CEGUI::MultiColumnList  *m_gamesList;
+    CEGUI::Editbox          *m_newGameEditbox;
+    CEGUI::PushButton       *m_newGameButton;
+    CEGUI::PushButton       *m_loadGameButton;
 };
 
 #endif /*CSTATELOADGAME_H_*/
