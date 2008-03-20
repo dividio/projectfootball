@@ -1,0 +1,110 @@
+/******************************************************************************
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
+*                                                                             *
+* This program is free software; you can redistribute it and/or               *
+* modify it under the terms of the GNU General Public License                 *
+* as published by the Free Software Foundation; either version 2              *
+* of the License, or (at your option) any later version.                      *
+*                                                                             *
+* This program is distributed in the hope that it will be useful,             *
+* but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+* GNU General Public License for more details.                                *
+*                                                                             *
+* You should have received a copy of the GNU General Public License           *
+* along with this program; if not, write to the Free Software                 *
+* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. *
+*                                                                             *
+*                                                                             *
+******************************************************************************/
+
+
+#include "CStrategicPosition.h"
+
+
+CStrategicPosition::CStrategicPosition()
+{
+    m_initialPosition = new btVector3();
+    m_defensivePosition = new btVector3();
+    m_offensivePosition = new btVector3();
+    m_currentPosition = m_initialPosition;
+    m_playingArea = new CRectangle();
+}
+
+
+CStrategicPosition::~CStrategicPosition()
+{
+    delete m_initialPosition;
+    delete m_defensivePosition;
+    delete m_offensivePosition;
+}
+
+
+void CStrategicPosition::setInitialPosition(btVector3 *pos)
+{
+    m_initialPosition->setX(pos->x());
+    m_initialPosition->setY(pos->y());
+    m_initialPosition->setZ(pos->z());
+    m_initialPosition->setW(btScalar(0.0));
+}
+
+
+void CStrategicPosition::setDefensivePosition(btVector3 *pos)
+{
+    m_defensivePosition->setX(pos->x());
+    m_defensivePosition->setY(pos->y());
+    m_defensivePosition->setZ(pos->z());
+    m_defensivePosition->setW(btScalar(0.0));
+}
+
+
+void CStrategicPosition::setOffensivePosition(btVector3 *pos)
+{
+    m_offensivePosition->setX(pos->x());
+    m_offensivePosition->setY(pos->y());
+    m_offensivePosition->setZ(pos->z());
+    m_offensivePosition->setW(btScalar(0.0));
+}
+
+
+void CStrategicPosition::setCurrentPosition(btVector3 *pos)
+{
+    m_currentPosition = pos;
+}
+
+
+void CStrategicPosition::setPlayingArea(btVector3 *topLeft, btVector3 *bottomRight)
+{
+    m_playingArea->setTopLeft(topLeft);
+    m_playingArea->setBottomRight(bottomRight);
+}
+
+
+btVector3* CStrategicPosition::getInitialPosition() const
+{
+    return m_initialPosition;
+}
+
+
+btVector3* CStrategicPosition::getDefensivePosition() const
+{
+    return m_defensivePosition;
+}
+
+
+btVector3* CStrategicPosition::getOffensivePosition() const
+{
+    return m_offensivePosition;
+}
+
+
+btVector3* CStrategicPosition::getCurrentPosition() const
+{
+    return m_currentPosition;
+}
+
+
+CRectangle* CStrategicPosition::getPlayingArea() const
+{
+    return m_playingArea;
+}
