@@ -15,6 +15,9 @@
 #include "../sim/entity/CBall.h"
 #include "../sim/entity/CMovingEntity.h"
 #include "../sim/entity/CEntityManager.h"
+#include "../sim/tactic/CFormation.h"
+#include "../sim/tactic/CStrategicPosition.h"
+#include "../sim/tactic/CRectangle.h"
 %}
 
 %include "std_string.i"
@@ -55,4 +58,10 @@ namespace std {
 %template(StateMachineCTeam) CStateMachine<CTeam>;
 %template(StateMachineCFootballPlayer) CStateMachine<CFootballPlayer>;
 
-
+// Tactic
+%include "../../../sim/tactic/CFormation.h"
+namespace std {
+   %template(FormationVector) vector<CFormation*>;
+};
+%include "../../../sim/tactic/CStrategicPosition.h"
+%include "../../../sim/tactic/CRectangle.h"
