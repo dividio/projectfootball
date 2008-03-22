@@ -1,7 +1,6 @@
 %module DAO
 
 %{
-#include "../db/CDAOAbstractFactory.h"
 #include "../db/bean/CPfTeams.h"
 #include "../db/bean/CPfMatches.h"
 #include "../db/bean/CPfGoals.h"
@@ -14,7 +13,6 @@
 %include "std_string.i"
 %include "std_vector.i"
 
-%include ../../../db/CDAOAbstractFactory.h
 %include ../../../db/bean/CPfTeams.h
 %include ../../../db/bean/CPfMatches.h
 %include ../../../db/bean/CPfGoals.h
