@@ -18,44 +18,28 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMESTATE_H_
-#define CGAMESTATE_H_
-
-#include <string>
+#ifndef IGAMESTATE_H_
+#define IGAMESTATE_H_
 
 #include "../db/dao/factory/IDAOFactory.h"
 #include "CGameReportRegister.h"
 #include "event/strategy/IGameEventStrategy.h"
 #include "option/CGameOptionManager.h"
-#include "db/bean/CPfGames.h"
 
-class CGameState
+#define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
+
+class IGameState
 {
 public:
-	CGameState(int xGame);
-	virtual ~CGameState();
+	IGameState(){}
+	virtual ~IGameState(){}
 
-	virtual void save();
+	virtual void save() =0;
 
-    IDAOFactory*           getIDAOFactory();
-    IGameEventStrategy*    getIGameEventStrategy();
-	CGameReportRegister*   getCGameReportRegister();
-	CGameOptionManager*    getCGameOptionManager();
-
-	CPfTeams*              getPlayerTeam();
-	CPfMatches*            getNextPlayerTeamMatch();
-
-private:
-    void setGameOptionsDefaultValues();
-
-private:
-    CPfGames                    *m_game;
-    IDAOFactory                 *m_daoFactory;
-    IGameEventStrategy          *m_eventStrategy;
-    CGameReportRegister         *m_reportRegister;
-    CGameOptionManager          *m_optionManager;
-    CPfTeams                    *m_playerTeam;
-    std::vector<CPfMatches*>    *m_matchesList;
+    virtual IDAOFactory*           getIDAOFactory() =0;
+    virtual IGameEventStrategy*    getIGameEventStrategy() =0;
+	virtual CGameReportRegister*   getCGameReportRegister() =0;
+	virtual CGameOptionManager*    getCGameOptionManager() =0;
 };
 
-#endif /*CGAMESTATE_H_*/
+#endif /*IGAMESTATE_H_*/

@@ -18,37 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEENGINE_H_
-#define CGAMEENGINE_H_
+#ifndef CGAMESTATEABSTRACTFACTORY_H_
+#define CGAMESTATEABSTRACTFACTORY_H_
 
-#include <string>
-
-#include "db/sqlite/dao/factory/CMasterDAOFactorySQLite.h"
 #include "IGameState.h"
 
-class CGameEngine
+class CGameStateAbstractFactory
 {
 public:
-	virtual ~CGameEngine();
-	static CGameEngine* getInstance();
-
-	IGameState*        getCurrentGame();
-	IMasterDAOFactory* getCMasterDAOFactory();
-
-	void setUser(int xUser);
-	const CPfUsers* getCurrentUser();
-
-	void newSinglePlayerGame(const std::string &gameName);
-	void loadGame(int xGame);
-	void saveCurrentGame();
-	void unloadCurrentGame();
-
+    static IGameState* getIGameState(int xGame);
 private:
-    CGameEngine();
-
-    CPfUsers                *m_user;
-    IGameState              *m_gameState;
-    CMasterDAOFactorySQLite *m_masterDatabase;
+	CGameStateAbstractFactory() {}
+	virtual ~CGameStateAbstractFactory() {}
 };
 
-#endif /*CGAMEENGINE_H_*/
+#endif /*CGAMESTATEABSTRACTFACTORY_H_*/

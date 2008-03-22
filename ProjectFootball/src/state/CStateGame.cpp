@@ -50,10 +50,11 @@ void CStateGame::enter()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
-    CPfTeams    *playerTeam = CGameEngine::getInstance()->getCurrentGame()->getPlayerTeam();
+    CPfTeams    *playerTeam = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
     m_playerTeam_text->setText(playerTeam->getSTeam());
+    delete playerTeam;
 
-    CPfMatches  *nextMatch  = CGameEngine::getInstance()->getCurrentGame()->getNextPlayerTeamMatch();
+    CPfMatches  *nextMatch  = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
     if( nextMatch==NULL ){
         m_nextMatch_text->setText("No Match");
     }else{
@@ -67,6 +68,7 @@ void CStateGame::enter()
 
         delete homeTeam;
         delete awayTeam;
+        delete nextMatch;
     }
 }
 
@@ -88,5 +90,5 @@ void CStateGame::update()
 
 void CStateGame::saveGame()
 {
-    CGameEngine::getInstance()->saveGame();
+    CGameEngine::getInstance()->saveCurrentGame();
 }

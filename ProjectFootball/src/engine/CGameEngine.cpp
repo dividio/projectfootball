@@ -21,10 +21,11 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "option/CSystemOptionManager.h"
 #include "CGameEngine.h"
-
+#include "CGameStateAbstractFactory.h"
+#include "option/CSystemOptionManager.h"
 #include "../db/sqlite/dao/factory/CDAOFactorySQLite.h"
+#include "../utils/CLog.h"
 
 CGameEngine::CGameEngine()
 {
@@ -32,12 +33,19 @@ CGameEngine::CGameEngine()
 
     const char *masterDatabasePath = CSystemOptionManager::getInstance()->getStringOption("General", "MasterDatabasePath");
     m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
+
+    m_user = NULL;
+    setUser(DEFAULT_USER);
 }
 
 CGameEngine::~CGameEngine()
 {
     if( m_gameState!=NULL ){
         unloadCurrentGame();
+    }
+
+    if( m_user!=NULL ){
+        delete m_user;
     }
 
     delete m_masterDatabase;
@@ -49,7 +57,21 @@ CGameEngine* CGameEngine::getInstance()
     return &instance;
 }
 
-CGameState* CGameEngine::getCurrentGame()
+void CGameEngine::setUser(int xUser)
+{
+    if( m_user!=NULL ){
+        delete m_user;
+        m_user = NULL;
+    }
+    m_user = m_masterDatabase->getIPfUsersDAO()->findByXUser(xUser);
+}
+
+const CPfUsers* CGameEngine::getCurrentUser()
+{
+    return m_user;
+}
+
+IGameState* CGameEngine::getCurrentGame()
 {
     return m_gameState;
 }
@@ -59,8 +81,12 @@ IMasterDAOFactory* CGameEngine::getCMasterDAOFactory()
     return m_masterDatabase;
 }
 
-void CGameEngine::newGame(int xFkUser, const std::string &gameName)
+void CGameEngine::newSinglePlayerGame(const std::string &gameName)
 {
+    if( m_user==NULL || m_user->getXUser_str()=="" ){
+        CLog::getInstance()->exception("[CGameEngine::newSinglePlayerGame] User not defined");
+    }
+
     const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string filename = "data/database/savedgames/";
 
@@ -76,7 +102,8 @@ void CGameEngine::newGame(int xFkUser, const std::string &gameName)
     game.setSDriverName("SQLite");
     game.setSConnectionString(filename);
     game.setSGameName(gameName);
-    game.setXFkUser(xFkUser);
+    game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
+    game.setXFkUser(m_user->getXUser());
     m_masterDatabase->getIPfGamesDAO()->insertReg(&game);
 
     CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
@@ -96,10 +123,10 @@ void CGameEngine::newGame(int xFkUser, const std::string &gameName)
 void CGameEngine::loadGame(int xGame)
 {
     unloadCurrentGame();
-    m_gameState = new CGameState(xGame);
+    m_gameState = CGameStateAbstractFactory::getIGameState(xGame);
 }
 
-void CGameEngine::saveGame()
+void CGameEngine::saveCurrentGame()
 {
     if(m_gameState!=NULL){
         m_gameState->save();

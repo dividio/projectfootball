@@ -18,37 +18,44 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEENGINE_H_
-#define CGAMEENGINE_H_
+#ifndef CSINGLEPLAYERGAMESTATE_H_
+#define CSINGLEPLAYERGAMESTATE_H_
 
 #include <string>
 
-#include "db/sqlite/dao/factory/CMasterDAOFactorySQLite.h"
 #include "IGameState.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../db/sqlite/dao/factory/CDAOFactorySQLite.h"
+#include "CGameReportRegister.h"
+#include "event/strategy/IGameEventStrategy.h"
+#include "option/CGameOptionManager.h"
+#include "db/bean/CPfGames.h"
 
-class CGameEngine
+class CSinglePlayerGameState : public IGameState
 {
 public:
-	virtual ~CGameEngine();
-	static CGameEngine* getInstance();
+	CSinglePlayerGameState(int xGame);
+	virtual ~CSinglePlayerGameState();
 
-	IGameState*        getCurrentGame();
-	IMasterDAOFactory* getCMasterDAOFactory();
+	virtual void save();
 
-	void setUser(int xUser);
-	const CPfUsers* getCurrentUser();
-
-	void newSinglePlayerGame(const std::string &gameName);
-	void loadGame(int xGame);
-	void saveCurrentGame();
-	void unloadCurrentGame();
+    virtual IDAOFactory*           getIDAOFactory();
+    virtual IGameEventStrategy*    getIGameEventStrategy();
+    virtual CGameReportRegister*   getCGameReportRegister();
+    virtual CGameOptionManager*    getCGameOptionManager();
 
 private:
-    CGameEngine();
+    void setGameOptionsDefaultValues();
+    void copyFile(const std::string &origin, const std::string &destination);
 
-    CPfUsers                *m_user;
-    IGameState              *m_gameState;
-    CMasterDAOFactorySQLite *m_masterDatabase;
+private:
+    CPfGames                    *m_game;
+    CDAOFactorySQLite           *m_daoFactory;
+    IGameEventStrategy          *m_eventStrategy;
+    CGameReportRegister         *m_reportRegister;
+    CGameOptionManager          *m_optionManager;
+    std::string                 m_database_filepath;
+    std::string                 m_database_tmp_filepath;
 };
 
-#endif /*CGAMEENGINE_H_*/
+#endif /*CSINGLEPLAYERGAMESTATE_H_*/

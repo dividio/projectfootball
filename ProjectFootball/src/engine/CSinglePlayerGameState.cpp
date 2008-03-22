@@ -18,89 +18,96 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CGameState.h"
-#include "CGameEngine.h"
-#include "../db/CDAOAbstractFactory.h"
-#include "event/strategy/CSingleMatchEventStrategy.h"
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
 
-CGameState::CGameState(int xGame)
+#include "CSinglePlayerGameState.h"
+#include "CGameEngine.h"
+#include "event/strategy/CSingleMatchEventStrategy.h"
+#include "../utils/CLog.h"
+
+CSinglePlayerGameState::CSinglePlayerGameState(int xGame)
 {
     IPfGamesDAO *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
     m_game                  = gamesDAO->findByXGame(xGame);
-    m_daoFactory            = CDAOAbstractFactory::getIDAOFactory(m_game->getSDriverName(), m_game->getSConnectionString());
+
+    m_database_filepath     = m_game->getSConnectionString();
+    m_database_tmp_filepath = m_game->getSConnectionString();
+    m_database_tmp_filepath+= ".tmp";
+    copyFile(m_database_filepath, m_database_tmp_filepath);
+    m_daoFactory            = new CDAOFactorySQLite(m_database_tmp_filepath);
+
     m_eventStrategy         = new CSingleMatchEventStrategy();
     m_reportRegister        = new CGameReportRegister();
     m_optionManager         = new CGameOptionManager(m_daoFactory->getIPfGameOptionsDAO());
-    m_playerTeam            = m_daoFactory->getIPfTeamsDAO()->findPlayerTeam();
-    m_matchesList           = m_daoFactory->getIPfMatchesDAO()->findMatches();
     setGameOptionsDefaultValues();
-
-    m_daoFactory->beginTransaction();
 }
 
-CGameState::~CGameState()
+CSinglePlayerGameState::~CSinglePlayerGameState()
 {
-    m_daoFactory->rollback();
-
-    m_daoFactory->getIPfMatchesDAO()->freeVector(m_matchesList);
-    delete m_playerTeam;
     delete m_optionManager;
     delete m_reportRegister;
     delete m_eventStrategy;
     delete m_daoFactory;
     delete m_game;
+
+    remove(m_database_tmp_filepath.c_str());
 }
 
-void CGameState::save()
+void CSinglePlayerGameState::save()
 {
     CDate nowDate;
     m_game->setDLastSaved(nowDate);
     IPfGamesDAO *gamesDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
     gamesDAO->updateReg(m_game);
 
-    m_daoFactory->commit();
-    m_daoFactory->beginTransaction();
+    m_daoFactory->closeSQLite();
+    copyFile(m_database_tmp_filepath, m_database_filepath);
+    m_daoFactory->openSQLite(m_database_tmp_filepath);
 }
 
-IDAOFactory* CGameState::getIDAOFactory()
+IDAOFactory* CSinglePlayerGameState::getIDAOFactory()
 {
     return m_daoFactory;
 }
 
-IGameEventStrategy* CGameState::getIGameEventStrategy()
+IGameEventStrategy* CSinglePlayerGameState::getIGameEventStrategy()
 {
     return m_eventStrategy;
 }
 
-CGameReportRegister* CGameState::getCGameReportRegister()
+CGameReportRegister* CSinglePlayerGameState::getCGameReportRegister()
 {
     return m_reportRegister;
 }
 
-CGameOptionManager* CGameState::getCGameOptionManager()
+CGameOptionManager* CSinglePlayerGameState::getCGameOptionManager()
 {
     return m_optionManager;
 }
 
-CPfTeams* CGameState::getPlayerTeam()
-{
-    return m_playerTeam;
-}
-
-CPfMatches* CGameState::getNextPlayerTeamMatch()
-{
-    std::vector<CPfMatches*>::iterator it;
-    for( it=m_matchesList->begin(); it!=m_matchesList->end(); it++ ){
-        CPfMatches *match = (*it);
-        if( !match->getLPlayed() && (match->getXFkTeamHome()==m_playerTeam->getXTeam() || match->getXFkTeamAway()==m_playerTeam->getXTeam()) ){
-            return match;
-        }
-    }
-
-    return NULL;
-}
-
-void CGameState::setGameOptionsDefaultValues()
+void CSinglePlayerGameState::setGameOptionsDefaultValues()
 {
     // nothing at the moment
+}
+
+void CSinglePlayerGameState::copyFile(const std::string &origin, const std::string &destination)
+{
+    std::ifstream  is(origin.c_str(),       std::ifstream::in|std::ifstream::binary);
+    std::ofstream  os(destination.c_str(),  std::ofstream::out|std::ofstream::binary|std::ofstream::trunc);
+    if( !is.is_open() || !os.is_open() ){
+        CLog::getInstance()->exception("[CSinglePlayerGameState::copyFile] Error opening the files: is:'%s' os:'%s'", origin.c_str(), destination.c_str());
+    }
+
+    char buffer[4096]; // 4KBytes
+    int  nBytes;
+    while( !is.eof() ){
+        is.read(buffer, sizeof(buffer));
+        nBytes = is.gcount();
+        os.write(buffer, nBytes);
+    }
+
+    is.close();
+    os.close();
 }

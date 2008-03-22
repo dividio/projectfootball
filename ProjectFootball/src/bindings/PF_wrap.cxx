@@ -1406,59 +1406,58 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_CBall swig_types[1]
 #define SWIGTYPE_p_CBaseAgent swig_types[2]
 #define SWIGTYPE_p_CBaseGameEntity swig_types[3]
-#define SWIGTYPE_p_CDAOAbstractFactory swig_types[4]
-#define SWIGTYPE_p_CDate swig_types[5]
-#define SWIGTYPE_p_CEntityManager swig_types[6]
-#define SWIGTYPE_p_CFootballPlayer swig_types[7]
-#define SWIGTYPE_p_CLog swig_types[8]
-#define SWIGTYPE_p_CMessage swig_types[9]
-#define SWIGTYPE_p_CMessageDispatcher swig_types[10]
-#define SWIGTYPE_p_CMovingEntity swig_types[11]
-#define SWIGTYPE_p_CPfGoals swig_types[12]
-#define SWIGTYPE_p_CPfMatches swig_types[13]
-#define SWIGTYPE_p_CPfTeams swig_types[14]
-#define SWIGTYPE_p_CReferee swig_types[15]
-#define SWIGTYPE_p_CSimulationManager swig_types[16]
-#define SWIGTYPE_p_CSimulationWorld swig_types[17]
-#define SWIGTYPE_p_CState swig_types[18]
-#define SWIGTYPE_p_CStateConfig swig_types[19]
-#define SWIGTYPE_p_CStateCredits swig_types[20]
-#define SWIGTYPE_p_CStateGame swig_types[21]
-#define SWIGTYPE_p_CStateLoadGame swig_types[22]
-#define SWIGTYPE_p_CStateMachineTCFootballPlayer_t swig_types[23]
-#define SWIGTYPE_p_CStateMachineTCReferee_t swig_types[24]
-#define SWIGTYPE_p_CStateMachineTCTeam_t swig_types[25]
-#define SWIGTYPE_p_CStateMainMenu swig_types[26]
-#define SWIGTYPE_p_CStateManager swig_types[27]
-#define SWIGTYPE_p_CStateMonitor swig_types[28]
-#define SWIGTYPE_p_CStateRanking swig_types[29]
-#define SWIGTYPE_p_CStateSelectTeam swig_types[30]
-#define SWIGTYPE_p_CSteeringBehaviors swig_types[31]
-#define SWIGTYPE_p_CTeam swig_types[32]
-#define SWIGTYPE_p_IDAOFactory swig_types[33]
-#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[34]
-#define SWIGTYPE_p_IPfGameStatesDAO swig_types[35]
-#define SWIGTYPE_p_IPfGoalsDAO swig_types[36]
-#define SWIGTYPE_p_IPfMatchesDAO swig_types[37]
-#define SWIGTYPE_p_IPfRankingDAO swig_types[38]
-#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[39]
-#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[40]
-#define SWIGTYPE_p_IPfTeamsDAO swig_types[41]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[42]
-#define SWIGTYPE_p_Ogre__SceneManager swig_types[43]
-#define SWIGTYPE_p_btCollisionShape swig_types[44]
-#define SWIGTYPE_p_btRigidBody swig_types[45]
-#define SWIGTYPE_p_btTransform swig_types[46]
-#define SWIGTYPE_p_btVector3 swig_types[47]
-#define SWIGTYPE_p_float swig_types[48]
-#define SWIGTYPE_p_std__string swig_types[49]
-#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[50]
-#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[51]
-#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[52]
-#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[53]
-#define SWIGTYPE_p_void swig_types[54]
-static swig_type_info *swig_types[56];
-static swig_module_info swig_module = {swig_types, 55, 0, 0, 0, 0};
+#define SWIGTYPE_p_CDate swig_types[4]
+#define SWIGTYPE_p_CEntityManager swig_types[5]
+#define SWIGTYPE_p_CFootballPlayer swig_types[6]
+#define SWIGTYPE_p_CLog swig_types[7]
+#define SWIGTYPE_p_CMessage swig_types[8]
+#define SWIGTYPE_p_CMessageDispatcher swig_types[9]
+#define SWIGTYPE_p_CMovingEntity swig_types[10]
+#define SWIGTYPE_p_CPfGoals swig_types[11]
+#define SWIGTYPE_p_CPfMatches swig_types[12]
+#define SWIGTYPE_p_CPfTeams swig_types[13]
+#define SWIGTYPE_p_CReferee swig_types[14]
+#define SWIGTYPE_p_CSimulationManager swig_types[15]
+#define SWIGTYPE_p_CSimulationWorld swig_types[16]
+#define SWIGTYPE_p_CState swig_types[17]
+#define SWIGTYPE_p_CStateConfig swig_types[18]
+#define SWIGTYPE_p_CStateCredits swig_types[19]
+#define SWIGTYPE_p_CStateGame swig_types[20]
+#define SWIGTYPE_p_CStateLoadGame swig_types[21]
+#define SWIGTYPE_p_CStateMachineTCFootballPlayer_t swig_types[22]
+#define SWIGTYPE_p_CStateMachineTCReferee_t swig_types[23]
+#define SWIGTYPE_p_CStateMachineTCTeam_t swig_types[24]
+#define SWIGTYPE_p_CStateMainMenu swig_types[25]
+#define SWIGTYPE_p_CStateManager swig_types[26]
+#define SWIGTYPE_p_CStateMonitor swig_types[27]
+#define SWIGTYPE_p_CStateRanking swig_types[28]
+#define SWIGTYPE_p_CStateSelectTeam swig_types[29]
+#define SWIGTYPE_p_CSteeringBehaviors swig_types[30]
+#define SWIGTYPE_p_CTeam swig_types[31]
+#define SWIGTYPE_p_IDAOFactory swig_types[32]
+#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[33]
+#define SWIGTYPE_p_IPfGameStatesDAO swig_types[34]
+#define SWIGTYPE_p_IPfGoalsDAO swig_types[35]
+#define SWIGTYPE_p_IPfMatchesDAO swig_types[36]
+#define SWIGTYPE_p_IPfRankingDAO swig_types[37]
+#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[38]
+#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[39]
+#define SWIGTYPE_p_IPfTeamsDAO swig_types[40]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[41]
+#define SWIGTYPE_p_Ogre__SceneManager swig_types[42]
+#define SWIGTYPE_p_btCollisionShape swig_types[43]
+#define SWIGTYPE_p_btRigidBody swig_types[44]
+#define SWIGTYPE_p_btTransform swig_types[45]
+#define SWIGTYPE_p_btVector3 swig_types[46]
+#define SWIGTYPE_p_float swig_types[47]
+#define SWIGTYPE_p_std__string swig_types[48]
+#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[49]
+#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[50]
+#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[51]
+#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[52]
+#define SWIGTYPE_p_void swig_types[53]
+static swig_type_info *swig_types[55];
+static swig_module_info swig_module = {swig_types, 54, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1472,7 +1471,6 @@ static swig_module_info swig_module = {swig_types, 55, 0, 0, 0, 0};
 #define SWIG_init_user SWIG_init_user_PF
 
 
-#include "../db/CDAOAbstractFactory.h"
 #include "../db/bean/CPfTeams.h"
 #include "../db/bean/CPfMatches.h"
 #include "../db/bean/CPfGoals.h"
@@ -1812,63 +1810,7 @@ static swig_lua_attribute swig_std_string_attributes[] = {
 static swig_lua_class *swig_std_string_bases[] = {0};
 swig_lua_class _wrap_class_std_string = { "string", &SWIGTYPE_p_std__string,_wrap_new_string, swig_delete_string, swig_std_string_methods, swig_std_string_attributes, swig_std_string_bases };
 
-static int _wrap_delete_CDAOAbstractFactory(lua_State* L) {
-  int SWIG_arg = -1;
-  CDAOAbstractFactory *arg1 = (CDAOAbstractFactory *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CDAOAbstractFactory,0))){
-    SWIG_fail_ptr("delete_CDAOAbstractFactory",1,SWIGTYPE_p_CDAOAbstractFactory);
-  }
-  
-  delete arg1;
-  
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CDAOAbstractFactory_getIDAOFactory(lua_State* L) {
-  int SWIG_arg = -1;
-  std::string arg1 ;
-  std::string arg2 ;
-  IDAOFactory *result = 0 ;
-  
-  if(!lua_isstring(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  (&arg1)->assign(lua_tostring(L,1),lua_strlen(L,1));
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  result = (IDAOFactory *)CDAOAbstractFactory::getIDAOFactory(arg1,arg2);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IDAOFactory,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CDAOAbstractFactory(void *obj) {
-CDAOAbstractFactory *arg1 = (CDAOAbstractFactory *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CDAOAbstractFactory_methods[] = {
-    {0,0}
-};
-static swig_lua_attribute swig_CDAOAbstractFactory_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CDAOAbstractFactory_bases[] = {0};
-swig_lua_class _wrap_class_CDAOAbstractFactory = { "CDAOAbstractFactory", &SWIGTYPE_p_CDAOAbstractFactory,0, swig_delete_CDAOAbstractFactory, swig_CDAOAbstractFactory_methods, swig_CDAOAbstractFactory_attributes, swig_CDAOAbstractFactory_bases };
-
-static int _wrap_new_CPfTeams(lua_State* L) {
+static int _wrap_new_CPfTeams__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   CPfTeams *result = 0 ;
   
@@ -1880,6 +1822,58 @@ static int _wrap_new_CPfTeams(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfTeams__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = 0 ;
+  CPfTeams *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("new_CPfTeams",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  result = (CPfTeams *)new CPfTeams((CPfTeams const &)*arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfTeams,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfTeams(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_CPfTeams__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfTeams, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_CPfTeams__SWIG_1(L);
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_CPfTeams'");
+  lua_error(L);return 0;
 }
 
 
@@ -2122,7 +2116,7 @@ static swig_lua_attribute swig_CPfTeams_attributes[] = {
 static swig_lua_class *swig_CPfTeams_bases[] = {0};
 swig_lua_class _wrap_class_CPfTeams = { "CPfTeams", &SWIGTYPE_p_CPfTeams,_wrap_new_CPfTeams, swig_delete_CPfTeams, swig_CPfTeams_methods, swig_CPfTeams_attributes, swig_CPfTeams_bases };
 
-static int _wrap_new_CPfMatches(lua_State* L) {
+static int _wrap_new_CPfMatches__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   CPfMatches *result = 0 ;
   
@@ -2134,6 +2128,58 @@ static int _wrap_new_CPfMatches(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfMatches__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfMatches *arg1 = 0 ;
+  CPfMatches *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
+    SWIG_fail_ptr("new_CPfMatches",1,SWIGTYPE_p_CPfMatches);
+  }
+  
+  result = (CPfMatches *)new CPfMatches((CPfMatches const &)*arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfMatches,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfMatches(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_CPfMatches__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfMatches, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_CPfMatches__SWIG_1(L);
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_CPfMatches'");
+  lua_error(L);return 0;
 }
 
 
@@ -2679,7 +2725,7 @@ static swig_lua_attribute swig_CPfMatches_attributes[] = {
 static swig_lua_class *swig_CPfMatches_bases[] = {0};
 swig_lua_class _wrap_class_CPfMatches = { "CPfMatches", &SWIGTYPE_p_CPfMatches,_wrap_new_CPfMatches, swig_delete_CPfMatches, swig_CPfMatches_methods, swig_CPfMatches_attributes, swig_CPfMatches_bases };
 
-static int _wrap_new_CPfGoals(lua_State* L) {
+static int _wrap_new_CPfGoals__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   CPfGoals *result = 0 ;
   
@@ -2691,6 +2737,58 @@ static int _wrap_new_CPfGoals(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfGoals__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfGoals *arg1 = 0 ;
+  CPfGoals *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfGoals,0))){
+    SWIG_fail_ptr("new_CPfGoals",1,SWIGTYPE_p_CPfGoals);
+  }
+  
+  result = (CPfGoals *)new CPfGoals((CPfGoals const &)*arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfGoals,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CPfGoals(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_CPfGoals__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_CPfGoals, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_CPfGoals__SWIG_1(L);
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_CPfGoals'");
+  lua_error(L);return 0;
 }
 
 
@@ -4438,6 +4536,28 @@ fail:
 }
 
 
+static int _wrap_IPfMatchesDAO_findNextPlayerTeamMatch(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfMatchesDAO *arg1 = (IPfMatchesDAO *) 0 ;
+  CPfMatches *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfMatchesDAO,0))){
+    SWIG_fail_ptr("IPfMatchesDAO_findNextPlayerTeamMatch",1,SWIGTYPE_p_IPfMatchesDAO);
+  }
+  
+  result = (CPfMatches *)(arg1)->findNextPlayerTeamMatch();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfMatches,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_IPfMatchesDAO(void *obj) {
 IPfMatchesDAO *arg1 = (IPfMatchesDAO *) obj;
 delete arg1;
@@ -4451,6 +4571,7 @@ static swig_lua_method swig_IPfMatchesDAO_methods[] = {
     {"findByXMatch", _wrap_IPfMatchesDAO_findByXMatch}, 
     {"findByXFkTeamAway", _wrap_IPfMatchesDAO_findByXFkTeamAway}, 
     {"findMatches", _wrap_IPfMatchesDAO_findMatches}, 
+    {"findNextPlayerTeamMatch", _wrap_IPfMatchesDAO_findNextPlayerTeamMatch}, 
     {0,0}
 };
 static swig_lua_attribute swig_IPfMatchesDAO_attributes[] = {
@@ -12916,9 +13037,7 @@ static const struct luaL_reg swig_commands[] = {
     { "string_data", _wrap_string_data},
     { "string_assign", _wrap_string_assign},
     { "delete_string", _wrap_delete_string},
-    { "delete_CDAOAbstractFactory", _wrap_delete_CDAOAbstractFactory},
-    { "CDAOAbstractFactory_getIDAOFactory", _wrap_CDAOAbstractFactory_getIDAOFactory},
-    { "new_CPfTeams", _wrap_new_CPfTeams},
+    { "new_CPfTeams",_wrap_new_CPfTeams},
     { "delete_CPfTeams", _wrap_delete_CPfTeams},
     { "CPfTeams_getXTeam", _wrap_CPfTeams_getXTeam},
     { "CPfTeams_getXTeam_str", _wrap_CPfTeams_getXTeam_str},
@@ -12928,7 +13047,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CPfTeams_setXTeam_str", _wrap_CPfTeams_setXTeam_str},
     { "CPfTeams_setSTeam", _wrap_CPfTeams_setSTeam},
     { "CPfTeams_setSTeam_str", _wrap_CPfTeams_setSTeam_str},
-    { "new_CPfMatches", _wrap_new_CPfMatches},
+    { "new_CPfMatches",_wrap_new_CPfMatches},
     { "delete_CPfMatches", _wrap_delete_CPfMatches},
     { "CPfMatches_getDMatch", _wrap_CPfMatches_getDMatch},
     { "CPfMatches_getDMatch_str", _wrap_CPfMatches_getDMatch_str},
@@ -12950,7 +13069,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CPfMatches_setXMatch_str", _wrap_CPfMatches_setXMatch_str},
     { "CPfMatches_setXFkTeamAway", _wrap_CPfMatches_setXFkTeamAway},
     { "CPfMatches_setXFkTeamAway_str", _wrap_CPfMatches_setXFkTeamAway_str},
-    { "new_CPfGoals", _wrap_new_CPfGoals},
+    { "new_CPfGoals",_wrap_new_CPfGoals},
     { "delete_CPfGoals", _wrap_delete_CPfGoals},
     { "CPfGoals_getXFkTeplScorer", _wrap_CPfGoals_getXFkTeplScorer},
     { "CPfGoals_getXFkTeplScorer_str", _wrap_CPfGoals_getXFkTeplScorer_str},
@@ -13007,6 +13126,7 @@ static const struct luaL_reg swig_commands[] = {
     { "IPfMatchesDAO_findByXMatch",_wrap_IPfMatchesDAO_findByXMatch},
     { "IPfMatchesDAO_findByXFkTeamAway",_wrap_IPfMatchesDAO_findByXFkTeamAway},
     { "IPfMatchesDAO_findMatches", _wrap_IPfMatchesDAO_findMatches},
+    { "IPfMatchesDAO_findNextPlayerTeamMatch", _wrap_IPfMatchesDAO_findNextPlayerTeamMatch},
     { "delete_IPfGoalsDAO", _wrap_delete_IPfGoalsDAO},
     { "IPfGoalsDAO_deleteReg", _wrap_IPfGoalsDAO_deleteReg},
     { "IPfGoalsDAO_insertReg", _wrap_IPfGoalsDAO_insertReg},
@@ -13420,7 +13540,6 @@ static swig_type_info _swigt__btVector3 = {"_btVector3", "btVector3", 0, 0, (voi
 static swig_type_info _swigt__p_CBall = {"_p_CBall", "CBall *", 0, 0, (void*)&_wrap_class_CBall, 0};
 static swig_type_info _swigt__p_CBaseAgent = {"_p_CBaseAgent", "CBaseAgent *", 0, 0, (void*)&_wrap_class_CBaseAgent, 0};
 static swig_type_info _swigt__p_CBaseGameEntity = {"_p_CBaseGameEntity", "CBaseGameEntity *", 0, 0, (void*)&_wrap_class_CBaseGameEntity, 0};
-static swig_type_info _swigt__p_CDAOAbstractFactory = {"_p_CDAOAbstractFactory", "CDAOAbstractFactory *", 0, 0, (void*)&_wrap_class_CDAOAbstractFactory, 0};
 static swig_type_info _swigt__p_CDate = {"_p_CDate", "CDate *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CEntityManager = {"_p_CEntityManager", "CEntityManager *", 0, 0, (void*)&_wrap_class_CEntityManager, 0};
 static swig_type_info _swigt__p_CFootballPlayer = {"_p_CFootballPlayer", "CFootballPlayer *", 0, 0, (void*)&_wrap_class_CFootballPlayer, 0};
@@ -13477,7 +13596,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CBall,
   &_swigt__p_CBaseAgent,
   &_swigt__p_CBaseGameEntity,
-  &_swigt__p_CDAOAbstractFactory,
   &_swigt__p_CDate,
   &_swigt__p_CEntityManager,
   &_swigt__p_CFootballPlayer,
@@ -13534,7 +13652,6 @@ static swig_cast_info _swigc__btVector3[] = {  {&_swigt__btVector3, 0, 0, 0},{0,
 static swig_cast_info _swigc__p_CBall[] = {  {&_swigt__p_CBall, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CBaseAgent[] = {  {&_swigt__p_CReferee, _p_CRefereeTo_p_CBaseAgent, 0, 0},  {&_swigt__p_CBaseAgent, 0, 0, 0},  {&_swigt__p_CFootballPlayer, _p_CFootballPlayerTo_p_CBaseAgent, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CBaseGameEntity[] = {  {&_swigt__p_CReferee, _p_CRefereeTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CTeam, _p_CTeamTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CBall, _p_CBallTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CBaseGameEntity, 0, 0, 0},  {&_swigt__p_CMovingEntity, _p_CMovingEntityTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CBaseAgent, _p_CBaseAgentTo_p_CBaseGameEntity, 0, 0},  {&_swigt__p_CFootballPlayer, _p_CFootballPlayerTo_p_CBaseGameEntity, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CDAOAbstractFactory[] = {  {&_swigt__p_CDAOAbstractFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CDate[] = {  {&_swigt__p_CDate, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CEntityManager[] = {  {&_swigt__p_CEntityManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CFootballPlayer[] = {  {&_swigt__p_CFootballPlayer, 0, 0, 0},{0, 0, 0, 0}};
@@ -13591,7 +13708,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CBall,
   _swigc__p_CBaseAgent,
   _swigc__p_CBaseGameEntity,
-  _swigc__p_CDAOAbstractFactory,
   _swigc__p_CDate,
   _swigc__p_CEntityManager,
   _swigc__p_CFootballPlayer,

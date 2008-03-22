@@ -18,37 +18,22 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEENGINE_H_
-#define CGAMEENGINE_H_
-
 #include <string>
 
-#include "db/sqlite/dao/factory/CMasterDAOFactorySQLite.h"
-#include "IGameState.h"
+#include "CGameStateAbstractFactory.h"
+#include "CSinglePlayerGameState.h"
+#include "CGameEngine.h"
+#include "../utils/CLog.h"
 
-class CGameEngine
+IGameState* CGameStateAbstractFactory::getIGameState(int xGame)
 {
-public:
-	virtual ~CGameEngine();
-	static CGameEngine* getInstance();
+    CPfGames *game = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO()->findByXGame(xGame);
+    std::string gameType = game->getSGameType();
+    delete game;
 
-	IGameState*        getCurrentGame();
-	IMasterDAOFactory* getCMasterDAOFactory();
-
-	void setUser(int xUser);
-	const CPfUsers* getCurrentUser();
-
-	void newSinglePlayerGame(const std::string &gameName);
-	void loadGame(int xGame);
-	void saveCurrentGame();
-	void unloadCurrentGame();
-
-private:
-    CGameEngine();
-
-    CPfUsers                *m_user;
-    IGameState              *m_gameState;
-    CMasterDAOFactorySQLite *m_masterDatabase;
-};
-
-#endif /*CGAMEENGINE_H_*/
+    if( gameType==S_GAME_TYPE_SINGLEPLAYER ){
+        return new CSinglePlayerGameState(xGame);
+    }else{
+        CLog::getInstance()->exception("[CGameStateAbstractFactory::getIGameState] Game type not supported: '%s'", gameType.c_str());
+    }
+}

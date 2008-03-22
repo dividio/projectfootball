@@ -45,8 +45,8 @@ CStateLoadGame::CStateLoadGame()
     m_gamesList->setUserColumnSizingEnabled(false);
     m_gamesList->setUserSortControlEnabled(false);
 
-    m_gamesList->addColumn("Name", 0, CEGUI::UDim(0.8,0));
-    m_gamesList->addColumn("Date", 1, CEGUI::UDim(0.2,0));
+    m_gamesList->addColumn("Name", 0, CEGUI::UDim(0.7,0));
+    m_gamesList->addColumn("Date", 1, CEGUI::UDim(0.3,0));
 }
 
 CStateLoadGame* CStateLoadGame::getInstance()
@@ -89,7 +89,7 @@ void CStateLoadGame::update()
 
 void CStateLoadGame::createNewGame()
 {
-    CGameEngine::getInstance()->newGame(DEFAULT_USER, m_newGameEditbox->getText().c_str());
+    CGameEngine::getInstance()->newSinglePlayerGame(m_newGameEditbox->getText().c_str());
     loadGameList();
     m_newGameEditbox->setText("");
 }
@@ -147,7 +147,7 @@ void CStateLoadGame::loadGameList()
 
 bool CStateLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
 {
-    m_loadGameButton->setEnabled(true);
+    m_loadGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
 
     return true;
 }
