@@ -42,28 +42,19 @@ CStrategicPosition::~CStrategicPosition()
 
 void CStrategicPosition::setInitialPosition(btVector3 *pos)
 {
-    m_initialPosition->setX(pos->x());
-    m_initialPosition->setY(pos->y());
-    m_initialPosition->setZ(pos->z());
-    m_initialPosition->setW(btScalar(0.0));
+    m_initialPosition->setValue(pos->x(), pos->y(), pos->z());
 }
 
 
 void CStrategicPosition::setDefensivePosition(btVector3 *pos)
 {
-    m_defensivePosition->setX(pos->x());
-    m_defensivePosition->setY(pos->y());
-    m_defensivePosition->setZ(pos->z());
-    m_defensivePosition->setW(btScalar(0.0));
+    m_defensivePosition->setValue(pos->x(), pos->y(), pos->z());
 }
 
 
 void CStrategicPosition::setOffensivePosition(btVector3 *pos)
 {
-    m_offensivePosition->setX(pos->x());
-    m_offensivePosition->setY(pos->y());
-    m_offensivePosition->setZ(pos->z());
-    m_offensivePosition->setW(btScalar(0.0));
+    m_offensivePosition->setValue(pos->x(), pos->y(), pos->z());
 }
 
 
