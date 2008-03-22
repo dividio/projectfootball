@@ -27,19 +27,19 @@
 #include "CMasterDAOFactorySQLite.h"
 #include "../../../../../utils/CLog.h"
 
-CMasterDAOFactorySQLite::CMasterDAOFactorySQLite(std::string file)
+CMasterDAOFactorySQLite::CMasterDAOFactorySQLite(const std::string &filepath)
 {
-    CLog::getInstance()->info("Path: %s", file.c_str());
-    if( sqlite3_open(file.c_str(), &m_database )!=SQLITE_OK ){
+    if( sqlite3_open(filepath.c_str(), &m_database )!=SQLITE_OK ){
         sqlite3_close(m_database);
         m_database = NULL;
-        CLog::getInstance()->exception("Can't open database file: \"%s\" --> \"%s\"", file.c_str(), sqlite3_errmsg(m_database));
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::CMasterDAOFactorySQLite] Can't open database file: '%s' --> '%s'", filepath.c_str(), sqlite3_errmsg(m_database));
     }
+    m_filepath = filepath;
 
     m_PfGamesDAOSQLite = new CPfGamesDAOSQLite(m_database);
     m_PfUsersDAOSQLite = new CPfUsersDAOSQLite(m_database);
 
-    CLog::getInstance()->info("SQLite Database open: <-- \"%s\"", file.c_str());
+    CLog::getInstance()->info("[CMasterDAOFactorySQLite::CMasterDAOFactorySQLite] SQLite Database open: '%s'", m_filepath.c_str());
 }
 
 CMasterDAOFactorySQLite::~CMasterDAOFactorySQLite()
@@ -48,11 +48,45 @@ CMasterDAOFactorySQLite::~CMasterDAOFactorySQLite()
     delete m_PfUsersDAOSQLite;
 
     sqlite3_close(m_database);
-    CLog::getInstance()->info("SQLite Database closed");
+    CLog::getInstance()->info("[CMasterDAOFactorySQLite::~CMasterDAOFactorySQLite] SQLite Database closed: '%s'", m_filepath.c_str());
+}
+
+void CMasterDAOFactorySQLite::openSQLite(const std::string &filepath)
+{
+    if( m_database!=NULL ){
+        closeSQLite();
+    }
+
+    if( sqlite3_open(filepath.c_str(), &m_database )!=SQLITE_OK ){
+        sqlite3_close(m_database);
+        m_database = NULL;
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::openSQLite] Can't open database file: '%s' --> '%s'", filepath.c_str(), sqlite3_errmsg(m_database));
+    }
+    m_filepath = filepath;
+
+    m_PfGamesDAOSQLite->setSQLite(m_database);
+    m_PfUsersDAOSQLite->setSQLite(m_database);
+
+    CLog::getInstance()->info("[CMasterDAOFactorySQLite::openSQLite] SQLite Database open: '%s'", m_filepath.c_str());
+}
+
+void CMasterDAOFactorySQLite::closeSQLite()
+{
+    m_PfGamesDAOSQLite->setSQLite(NULL);
+    m_PfUsersDAOSQLite->setSQLite(NULL);
+
+    sqlite3_close(m_database);
+    CLog::getInstance()->info("[CMasterDAOFactorySQLite::closeSQLite] SQLite Database closed: '%s'", m_filepath.c_str());
+    m_database = NULL;
+    m_filepath = "";
 }
 
 bool CMasterDAOFactorySQLite::executeScript(const std::string &script)
 {
+    if( m_database==NULL ){
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::executeScript] No database connection.");
+    }
+
     char *msgError = NULL;
     bool correct = true;
     if( sqlite3_exec(m_database, script.c_str(), NULL, NULL, &msgError)!=SQLITE_OK ){
@@ -65,6 +99,10 @@ bool CMasterDAOFactorySQLite::executeScript(const std::string &script)
 
 bool CMasterDAOFactorySQLite::executeScriptFile(const char *scriptFile)
 {
+    if( m_database==NULL ){
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::executeScriptFile] No database connection.");
+    }
+
     char                c;
     std::ostringstream  sql;
     std::ifstream       script(scriptFile);
@@ -88,6 +126,10 @@ bool CMasterDAOFactorySQLite::executeScriptFile(const char *scriptFile)
 
 bool CMasterDAOFactorySQLite::beginTransaction()
 {
+    if( m_database==NULL ){
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::beginTransaction] No database connection.");
+    }
+
     char *msgError = NULL;
     bool correct = true;
     if( sqlite3_exec(m_database, "BEGIN TRANSACTION;", NULL, NULL, &msgError)!=SQLITE_OK ){
@@ -100,6 +142,10 @@ bool CMasterDAOFactorySQLite::beginTransaction()
 
 bool CMasterDAOFactorySQLite::commit()
 {
+    if( m_database==NULL ){
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::commit] No database connection.");
+    }
+
     char *msgError = NULL;
     bool correct = true;
     if( sqlite3_exec(m_database, "COMMIT;", NULL, NULL, &msgError)!=SQLITE_OK ){
@@ -112,6 +158,10 @@ bool CMasterDAOFactorySQLite::commit()
 
 bool CMasterDAOFactorySQLite::rollback()
 {
+    if( m_database==NULL ){
+        CLog::getInstance()->exception("[CMasterDAOFactorySQLite::rollback] No database connection.");
+    }
+
     char *msgError = NULL;
     bool correct = true;
     if( sqlite3_exec(m_database, "ROLLBACK;", NULL, NULL, &msgError)!=SQLITE_OK ){
@@ -131,4 +181,3 @@ IPfUsersDAO* CMasterDAOFactorySQLite::getIPfUsersDAO()
 {
     return m_PfUsersDAOSQLite;
 }
-

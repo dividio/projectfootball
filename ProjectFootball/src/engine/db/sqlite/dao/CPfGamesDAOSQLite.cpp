@@ -44,7 +44,7 @@ std::vector<CPfGames*>* CPfGamesDAOSQLite::findByXFkUser(int XFkUser)
 std::vector<CPfGames*>* CPfGamesDAOSQLite::findByXFkUser(const std::string &XFkUser)
 {
     std::string sql("SELECT * FROM PF_GAMES WHERE ");
-    sql = sql+"X_FK_USER='"+XFkUser+"'";
+    sql = sql+"X_FK_USER='"+XFkUser+"' ORDER BY D_LAST_SAVED DESC";
     return loadVector(sql);
 }
 
