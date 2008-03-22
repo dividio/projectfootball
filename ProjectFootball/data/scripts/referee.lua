@@ -1,6 +1,33 @@
 
 ---------------------------------------------------
 
+SRf_Global = {}
+
+SRf_Global["Enter"] = function(referee)
+
+end
+
+SRf_Global["Execute"] = function(referee)
+    local cycle = referee:getCycle();
+    local duration = referee:getMatchDuration()
+    local currentState = referee:getFSM():currentState()
+    if (cycle == ( duration / 2)) and (currentState ~= "SRf_HalfTime") then
+        referee:getFSM():changeState("SRf_HalfTime")
+    elseif (cycle == duration) and (currentState ~= "SRf_End") then
+        referee:getFSM():changeState("SRf_End")
+    end
+end
+
+SRf_Global["Exit"] = function(referee)
+
+end
+
+SRf_Global["OnMessage"] = function(referee, message)
+    return false
+end
+
+---------------------------------------------------
+
 SRf_BeforeStart = {}
 
 SRf_BeforeStart["Enter"] = function(referee)
@@ -8,7 +35,11 @@ SRf_BeforeStart["Enter"] = function(referee)
 end
 
 SRf_BeforeStart["Execute"] = function(referee)
-
+    local monitor = PF.CStateMonitor_getInstance()
+    local sim = monitor:getSimulationManager()
+    local disp = PF.CMessageDispatcher_getInstance()
+    disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_BeforeStart, nil)
+    disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_BeforeStart, nil)
 end
 
 SRf_BeforeStart["Exit"] = function(referee)
@@ -27,12 +58,12 @@ SRf_BeforeStart["OnMessage"] = function(referee, message)
     local homeTeam = sim:getHomeTeam()
     local awayTeam = sim:getAwayTeam()
     if message.Msg == PF.Msg_StartMatch then
-        referee:getFSM():changeState("SRf_KickOff")
         if kickLeftTeam == referee:isHomeTeamInSideLeft() then
             referee:setKickTeam(homeTeam)
         else
             referee:setKickTeam(awayTeam)
         end
+        referee:getFSM():changeState("SRf_KickOff")
         handle = true
     end
     return handle
@@ -44,11 +75,14 @@ SRf_HalfTime = {}
 
 SRf_HalfTime["Enter"] = function(referee)
     referee:setGameMode(PF.HALF_TIME)
-    PF.CStateMonitor_getInstance():addToLog(referee:getGameModeString())
+    local monitor = PF.CStateMonitor_getInstance()
+    monitor:addToLog(referee:getGameModeString())
+    local sim = monitor:getSimulationManager()
+    local disp = PF.CMessageDispatcher_getInstance()
     local side = referee:isHomeTeamInSideLeft()
     referee:setHomeTeamInSideLeft(not side)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-    sim:changePlayersSide()
+    disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_HalfTime, nil)
+    disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_HalfTime, nil)
     sim:getBall():setPosition(0,1,0)
 end
 
@@ -62,7 +96,15 @@ end
 
 SRf_HalfTime["OnMessage"] = function(referee, message)
     local handle = false
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local homeTeam = sim:getHomeTeam()
+    local awayTeam = sim:getAwayTeam()
     if message.Msg == PF.Msg_StartMatch then
+        if kickLeftTeam == referee:isHomeTeamInSideLeft() then
+            referee:setKickTeam(homeTeam)
+        else
+            referee:setKickTeam(awayTeam)
+        end
         referee:getFSM():changeState("SRf_KickOff")
         handle = true
     end
@@ -75,6 +117,7 @@ SRf_KickOff = {}
 
 SRf_KickOff["Enter"] = function(referee)
     referee:setGameMode(PF.KICK_OFF)
+    referee:incCycle()
     local monitor = PF.CStateMonitor_getInstance()
     monitor:addToLog(referee:getGameModeString())
     local sim = monitor:getSimulationManager()
@@ -85,13 +128,6 @@ end
 
 SRf_KickOff["Execute"] = function(referee)
     referee:incCycle()
-    local cycle = referee:getCycle();
-    local duration = referee:getMatchDuration()
-    if cycle == ( duration / 2) then
-        referee:getFSM():changeState("SRf_HalfTime")
-    elseif cycle == duration then
-        referee:getFSM():changeState("SRf_End")
-    end
 end
 
 SRf_KickOff["Exit"] = function(referee)
@@ -103,12 +139,13 @@ SRf_KickOff["OnMessage"] = function(referee, message)
     if message.Msg == PF.Msg_TouchBall then
         local player = PF.CEntityManager_getInstance():getEntityFromID(message.Sender)
         player = PF.CFootballPlayer_getPlayer(player)
+        referee:setLastPlayerTouch(player)
         if player:getTeam():getID() == referee:getKickTeam():getID() then
             referee:getFSM():changeState("SRf_PlayOn")
         else
+            referee:setKickTeam(player:getTeam():getOpponentTeam())
             referee:getFSM():changeState("SRf_KickIn")
         end
-        referee:setLastPlayerTouch(player)
         handle = true
     end
     return handle
@@ -120,18 +157,16 @@ SRf_PlayOn = {}
 
 SRf_PlayOn["Enter"] = function(referee)
     referee:setGameMode(PF.PLAY_ON)
+    local monitor = PF.CStateMonitor_getInstance()
+    local sim = monitor:getSimulationManager()
+    local disp = PF.CMessageDispatcher_getInstance()
+    disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_PlayOn, nil)
+    disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_PlayOn, nil)
 end
 
 SRf_PlayOn["Execute"] = function(referee)
     referee:incCycle()
-    local cycle = referee:getCycle();
-    local duration = referee:getMatchDuration()
     verifyBallPosition(referee)
-    if cycle == ( duration / 2) then
-        referee:getFSM():changeState("SRf_HalfTime")
-    elseif cycle == duration then
-        referee:getFSM():changeState("SRf_End")
-    end
 end
 
 SRf_PlayOn["Exit"] = function(referee)
@@ -155,7 +190,12 @@ SRf_End = {}
 
 SRf_End["Enter"] = function(referee)
     referee:setGameMode(PF.END)
-    PF.CStateMonitor_getInstance():addToLog(referee:getGameModeString())
+    local monitor = PF.CStateMonitor_getInstance()
+    monitor:addToLog(referee:getGameModeString())
+    local sim = monitor:getSimulationManager()
+    local disp = PF.CMessageDispatcher_getInstance()
+    disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_EndMatch, nil)
+    disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_EndMatch, nil)
 end
 
 SRf_End["Execute"] = function(referee)
@@ -186,13 +226,6 @@ end
 
 SRf_KickIn["Execute"] = function(referee)
     referee:incCycle()
-    local cycle = referee:getCycle();
-    local duration = referee:getMatchDuration()
-    if cycle == ( duration / 2) then
-        referee:getFSM():changeState("SRf_HalfTime")
-    elseif cycle == duration then
-        referee:getFSM():changeState("SRf_End")
-    end
 end
 
 SRf_KickIn["Exit"] = function(referee)
@@ -204,10 +237,13 @@ SRf_KickIn["OnMessage"] = function(referee, message)
     if message.Msg == PF.Msg_TouchBall then
         local player = PF.CEntityManager_getInstance():getEntityFromID(message.Sender)
         player = PF.CFootballPlayer_getPlayer(player)
+        referee:setLastPlayerTouch(player)
         if player:getTeam():getID() == referee:getKickTeam():getID() then
             referee:getFSM():changeState("SRf_PlayOn")
+        else
+            referee:setKickTeam(player:getTeam():getOpponentTeam())
+            referee:getFSM():changeState("SRf_KickIn")
         end
-        referee:setLastPlayerTouch(player)
         handle = true
     end
     return handle
@@ -229,13 +265,6 @@ end
 
 SRf_CornerKick["Execute"] = function(referee)
     referee:incCycle()
-    local cycle = referee:getCycle();
-    local duration = referee:getMatchDuration()
-    if cycle == ( duration / 2) then
-        referee:getFSM():changeState("SRf_HalfTime")
-    elseif cycle == duration then
-        referee:getFSM():changeState("SRf_End")
-    end
 end
 
 SRf_CornerKick["Exit"] = function(referee)
@@ -247,12 +276,13 @@ SRf_CornerKick["OnMessage"] = function(referee, message)
     if message.Msg == PF.Msg_TouchBall then
         local player = PF.CEntityManager_getInstance():getEntityFromID(message.Sender)
         player = PF.CFootballPlayer_getPlayer(player)
+        referee:setLastPlayerTouch(player)
         if player:getTeam():getID() == referee:getKickTeam():getID() then
             referee:getFSM():changeState("SRf_PlayOn")
         else
+            referee:setKickTeam(player:getTeam():getOpponentTeam())
             referee:getFSM():changeState("SRf_KickIn")
         end
-        referee:setLastPlayerTouch(player)
         handle = true
     end
     return handle
@@ -275,13 +305,6 @@ end
 
 SRf_GoalKick["Execute"] = function(referee)
     referee:incCycle()
-    local cycle = referee:getCycle();
-    local duration = referee:getMatchDuration()
-    if cycle == ( duration / 2) then
-        referee:getFSM():changeState("SRf_HalfTime")
-    elseif cycle == duration then
-        referee:getFSM():changeState("SRf_End")
-    end
 end
 
 SRf_GoalKick["Exit"] = function(referee)
@@ -293,12 +316,13 @@ SRf_GoalKick["OnMessage"] = function(referee, message)
     if message.Msg == PF.Msg_TouchBall then
         local player = PF.CEntityManager_getInstance():getEntityFromID(message.Sender)
         player = PF.CFootballPlayer_getPlayer(player)
+        referee:setLastPlayerTouch(player)
         if player:getTeam():getID() == referee:getKickTeam():getID() then
             referee:getFSM():changeState("SRf_PlayOn")
         else
+            referee:setKickTeam(player:getTeam():getOpponentTeam())
             referee:getFSM():changeState("SRf_KickIn")
         end
-        referee:setLastPlayerTouch(player)
         handle = true
     end
     return handle
@@ -333,17 +357,13 @@ function verifyBallPosition(referee)
             referee:addAwayGoal(player);
         end
     elseif ball:crossLeftLine() then
+        referee:setKickTeam(player:getTeam():getOpponentTeam())
         if player:isTeamLeft() then
             referee:getFSM():changeState("SRf_CornerKick")
             if z > 0 then
                 ball:setPosition(-54.5,1,34.5)
             else
                 ball:setPosition(-54.5,1,-34.5)
-            end
-            if referee:isHomeTeamInSideLeft() then
-                referee:setKickTeam(sim:getAwayTeam())
-            else
-                referee:setKickTeam(sim:getHomeTeam())
             end
         else
             referee:getFSM():changeState("SRf_GoalKick")
@@ -352,24 +372,15 @@ function verifyBallPosition(referee)
             else
                 ball:setPosition(-49.5,1,-9)
             end
-            if referee:isHomeTeamInSideLeft() then
-                referee:setKickTeam(sim:getHomeTeam())
-            else
-                referee:setKickTeam(sim:getAwayTeam())
-            end
         end
     elseif ball:crossRightLine() then
+        referee:setKickTeam(player:getTeam():getOpponentTeam())
         if player:isTeamLeft() then
             referee:getFSM():changeState("SRf_GoalKick")
             if z > 0 then
                 ball:setPosition(49.5,1,9)
             else
                 ball:setPosition(49.5,1,-9)
-            end
-            if referee:isHomeTeamInSideLeft() then
-                referee:setKickTeam(sim:getAwayTeam())
-            else
-                referee:setKickTeam(sim:getHomeTeam())
             end
         else
             referee:getFSM():changeState("SRf_CornerKick")
@@ -378,27 +389,14 @@ function verifyBallPosition(referee)
             else
                 ball:setPosition(54.5,1,-34.5)
             end
-            if referee:isHomeTeamInSideLeft() then
-                referee:setKickTeam(sim:getHomeTeam())
-            else
-                referee:setKickTeam(sim:getAwayTeam())
-            end
         end
     elseif ball:crossTopLine() then
+        referee:setKickTeam(player:getTeam():getOpponentTeam())
         referee:getFSM():changeState("SRf_KickIn")
         ball:setPosition(x,1,-35)
-        if player:isTeamLeft() == referee:isHomeTeamInSideLeft() then
-            referee:setKickTeam(sim:getAwayTeam())
-        else
-            referee:setKickTeam(sim:getHomeTeam())
-        end
     elseif ball:crossBottomLine() then
+        referee:setKickTeam(player:getTeam():getOpponentTeam())
         referee:getFSM():changeState("SRf_KickIn")
         ball:setPosition(x,1,35)
-        if player:isTeamLeft() == referee:isHomeTeamInSideLeft() then
-            referee:setKickTeam(sim:getAwayTeam())
-        else
-            referee:setKickTeam(sim:getHomeTeam())
-        end
     end
 end
