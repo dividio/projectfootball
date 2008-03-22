@@ -27,6 +27,8 @@
 
 #include "CBaseGameEntity.h"
 #include "../fsm/CStateMachine.h"
+#include "../tactic/CFormation.h"
+#include "../tactic/CStrategicPosition.h"
 
 
 
@@ -46,6 +48,10 @@ public:
     std::string* getName();
     std::vector<CFootballPlayer*>* getPlayers();
     CFootballPlayer* getNearestPlayerToBall() const;
+    int getKickPlayerID() const;
+    CFormation* getCurrentFormation() const;
+    std::vector<CFormation*>* getFormations();
+    CStrategicPosition* getPlayerStrategicPosition(int formationPos) const;
     bool isKickForUs() const;
     bool isNearestPlayerToBall(CFootballPlayer* player) const;
     bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
@@ -61,8 +67,11 @@ private:
     CFootballPlayer *m_nearestPlayerToBall;
     CTeam *m_opponentTeam;
     CStateMachine<CTeam> *m_stateMachine;
+    CFormation *m_currentFormation;
+    std::vector<CFormation*> m_formations;
 
     void setNearestPlayersToBall();
+    void setFormations();
 };
 
 #endif // __CTeam_H__

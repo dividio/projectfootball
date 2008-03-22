@@ -37,41 +37,48 @@ CTeam::CTeam(std::string name, bool sideLeft)
     CLog::getInstance()->debug("CTeam()");
     CLuaManager::getInstance()->runScript("data/scripts/team.lua");
     m_name = name;
+    setFormations();
+    if(!sideLeft) {
+        m_currentFormation->setRightCornerKickPlayerId(7);
+        m_currentFormation->setLeftCornerKickPlayerId(6);
+        m_currentFormation->setRightTrowInPlayerId(7);
+        m_currentFormation->setLeftTrowInPlayerId(6);
+    }
     m_stateMachine = new CStateMachine<CTeam>(this);
     m_stateMachine->setGlobalState("STm_Global");
     m_stateMachine->changeState("STm_BeforeStart");
 
-    CFootballPlayer *player = new CFootballPlayer(1, this, -54, 0, 0, sideLeft);
+    CFootballPlayer *player = new CFootballPlayer(1, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(2, this, -30, 0, 25, sideLeft);
+    player = new CFootballPlayer(2, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(3, this, -30, 0, -25, sideLeft);
+    player = new CFootballPlayer(3, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(4, this, -35, 0, 5, sideLeft);
+    player = new CFootballPlayer(4, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(5, this, -35, 0, -5, sideLeft);
+    player = new CFootballPlayer(5, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(6, this, -20, 0, 0, sideLeft);
+    player = new CFootballPlayer(6, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(7, this, -20, 0, 20, sideLeft);
+    player = new CFootballPlayer(7, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(8, this, -20, 0, -20, sideLeft);
+    player = new CFootballPlayer(8, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(9, this, -10, 0, 0, sideLeft);
+    player = new CFootballPlayer(9, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(10, this, -5, 0, 20, sideLeft);
+    player = new CFootballPlayer(10, this, sideLeft);
     m_players.push_back(player);
 
-    player = new CFootballPlayer(11, this, -5, 0, -20, sideLeft);
+    player = new CFootballPlayer(11, this, sideLeft);
     m_players.push_back(player);
 }
 
@@ -80,6 +87,10 @@ CTeam::~CTeam()
 {
     CLog::getInstance()->debug("~CTeam()");
     // TODO
+    while(!m_formations.empty()) {
+        delete m_formations.back();
+        m_formations.pop_back();
+    }
 }
 
 
@@ -131,6 +142,16 @@ CStateMachine<CTeam>* CTeam::getFSM()
 
 void CTeam::changeSide()
 {
+    int idLeft = m_currentFormation->getRightCornerKickPlayerId();
+    int idRight = m_currentFormation->getLeftCornerKickPlayerId();
+    m_currentFormation->setLeftCornerKickPlayerId(idLeft);
+    m_currentFormation->setRightCornerKickPlayerId(idRight);
+
+    idLeft = m_currentFormation->getRightTrowInPlayerId();
+    idRight = m_currentFormation->getLeftTrowInPlayerId();
+    m_currentFormation->setLeftTrowInPlayerId(idLeft);
+    m_currentFormation->setRightTrowInPlayerId(idRight);
+
     std::vector<CFootballPlayer*>::iterator it;
     for(it = m_players.begin(); it!=m_players.end(); it++) {
         (*it)->changeSide();
@@ -160,6 +181,69 @@ void CTeam::setNearestPlayersToBall()
 CFootballPlayer* CTeam::getNearestPlayerToBall() const
 {
     return m_nearestPlayerToBall;
+}
+
+
+int CTeam::getKickPlayerID() const
+{
+    int formationPos;
+    int playerId;
+    int aux;
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    GameMode mode = sim->getReferee()->getGameMode();
+    switch(mode) {
+        case KICK_OFF:
+            formationPos = m_currentFormation->getKickOffPlayerId();
+            playerId = m_players[formationPos]->getID();
+            break;
+        case KICK_IN:
+            aux = (int)sim->getBallPosition().z();
+            if(aux < -25) {
+                formationPos = m_currentFormation->getLeftTrowInPlayerId();
+            } else if(aux > 25) {
+                formationPos = m_currentFormation->getRightTrowInPlayerId();
+            } else {
+                formationPos = m_currentFormation->getKickInPlayerId();
+            }
+            playerId = m_players[formationPos]->getID();
+            break;
+        case CORNER_KICK:
+            aux = (int)sim->getBallPosition().z();
+            if(aux < 0) {
+                formationPos = m_currentFormation->getLeftCornerKickPlayerId();
+            } else if(aux > 0) {
+                formationPos = m_currentFormation->getRightCornerKickPlayerId();
+            }
+            playerId = m_players[formationPos]->getID();
+            break;
+        case GOAL_KICK:
+            formationPos = m_currentFormation->getGoalKickPlayerId();
+            playerId = m_players[formationPos]->getID();
+            break;
+        default:
+            playerId = m_nearestPlayerToBall->getID();
+            break;
+    }
+    return playerId;
+}
+
+
+CFormation* CTeam::getCurrentFormation() const
+{
+    return m_currentFormation;
+}
+
+
+std::vector<CFormation*>* CTeam::getFormations()
+{
+    return &m_formations;
+}
+
+
+CStrategicPosition* CTeam::getPlayerStrategicPosition(int formationPos) const
+{
+    //TODO Verify formationPos
+    return m_currentFormation->getPlayerStrategicPosition(formationPos-1);
 }
 
 
@@ -204,4 +288,118 @@ bool CTeam::isNearestTeamMatePlayerToBall(CFootballPlayer* player) const
     }
 
     return nearest;
+}
+
+
+void CTeam::setFormations()
+{
+    int i;
+    btVector3 point;
+    CFormation *formation = new CFormation("4-3-3");
+    CStrategicPosition *pos;
+
+    //Goalie
+    pos = formation->getPlayerStrategicPosition(0);
+    point.setValue(-54,0,0);
+    pos->setInitialPosition(&point);
+    point.setValue(-54,0,0);
+    pos->setDefensivePosition(&point);
+    point.setValue(-52,0,0);
+    pos->setOffensivePosition(&point);
+
+    //DF
+    pos = formation->getPlayerStrategicPosition(1);
+    point.setValue(-30,0,25);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,25);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(2);
+    point.setValue(-30,0,-25);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,-25);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,-25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(3);
+    point.setValue(-30,0,5);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,5);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,5);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(4);
+    point.setValue(-30,0,-5);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,-5);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,-5);
+    pos->setOffensivePosition(&point);
+
+    //MD
+
+    pos = formation->getPlayerStrategicPosition(5);
+    point.setValue(-20,0,0);
+    pos->setInitialPosition(&point);
+    point.setValue(-20,0,0);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,0);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(6);
+    point.setValue(-20,0,20);
+    pos->setInitialPosition(&point);
+    point.setValue(-20,0,20);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(7);
+    point.setValue(-20,0,-20);
+    pos->setInitialPosition(&point);
+    point.setValue(-20,0,-20);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,-25);
+    pos->setOffensivePosition(&point);
+
+    //
+
+    pos = formation->getPlayerStrategicPosition(8);
+    point.setValue(-10,0,0);
+    pos->setInitialPosition(&point);
+    point.setValue(10,0,0);
+    pos->setDefensivePosition(&point);
+    point.setValue(30,0,0);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(9);
+    point.setValue(-5,0,20);
+    pos->setInitialPosition(&point);
+    point.setValue(15,0,20);
+    pos->setDefensivePosition(&point);
+    point.setValue(25,0,20);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(10);
+    point.setValue(-5,0,-20);
+    pos->setInitialPosition(&point);
+    point.setValue(15,0,-20);
+    pos->setDefensivePosition(&point);
+    point.setValue(25,0,-20);
+    pos->setOffensivePosition(&point);
+
+    formation->setKickOffPlayerId(8);
+    formation->setKickInPlayerId(5);
+    formation->setRightCornerKickPlayerId(6);
+    formation->setLeftCornerKickPlayerId(7);
+    formation->setRightTrowInPlayerId(6);
+    formation->setLeftTrowInPlayerId(7);
+    formation->setGoalKickPlayerId(0);
+
+    m_formations.push_back(formation);
+    m_currentFormation = formation;
 }

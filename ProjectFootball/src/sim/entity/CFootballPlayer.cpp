@@ -34,7 +34,7 @@ CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 }
 
 
-CFootballPlayer::CFootballPlayer(int number, CTeam *team, int x, int y, int z, bool sideLeft)
+CFootballPlayer::CFootballPlayer(int number, CTeam *team, bool sideLeft)
 :CBaseAgent()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
@@ -49,13 +49,7 @@ CFootballPlayer::CFootballPlayer(int number, CTeam *team, int x, int y, int z, b
     m_team = team;
     m_number = number;
     m_lastKickBallCycle = -1;
-    if(m_sideLeft) {
-        m_strategicX = x;
-        m_strategicZ = z;
-    } else {
-        m_strategicX = -x;
-        m_strategicZ = -z;
-    }
+
     //m_direction.normalize();
     sprintf(charId,"%s%d", team->getName()->c_str(), number);
     m_ident = charId;
@@ -74,7 +68,13 @@ CFootballPlayer::CFootballPlayer(int number, CTeam *team, int x, int y, int z, b
             m_entity->setMaterialName("player_yellow");
         }
     }
-    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("PlayerNode"+id, Ogre::Vector3(m_strategicX, y, m_strategicZ));
+    btVector3 *initialPos = team->getPlayerStrategicPosition(number)->getInitialPosition();
+    btVector3 pos(initialPos->x(), initialPos->y(), initialPos->z());
+    if(!m_sideLeft) {
+        pos.setX(-pos.x());
+        pos.setZ(-pos.z());
+    }
+    m_node = scnMgr->getRootSceneNode()->createChildSceneNode("PlayerNode"+id, Ogre::Vector3(pos.x(), pos.y(), pos.z()));
     m_node->attachObject(m_entity);
     m_shape = new btCylinderShape(btVector3(btScalar(1.),btScalar(1.),btScalar(1.)));
     btScalar mass(70.0);
@@ -143,6 +143,29 @@ bool CFootballPlayer::canKickBall(int cycle)
 }
 
 
+bool CFootballPlayer::atHome()
+{
+    bool result = false;
+    btVector3 actualPos = getPosition();
+    if(actualPos.distance(getStrategicPosition()) < 0.01) {
+        result = true;
+    }
+    return result;
+}
+
+
+bool CFootballPlayer::atKickPosition()
+{
+    bool result = false;
+    CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 actualPos = getPosition();
+    if(actualPos.distance(simulator->getBallPosition()) < 2.5) {
+        result = true;
+    }
+    return result;
+}
+
+
 std::string CFootballPlayer::getIdent() const
 {
     return m_ident;
@@ -151,16 +174,23 @@ std::string CFootballPlayer::getIdent() const
 
 btVector3 CFootballPlayer::getStrategicPosition() const
 {
-    return btVector3(m_strategicX, 0, m_strategicZ);
+    btVector3 *initialPos = m_team->getPlayerStrategicPosition(m_number)->getCurrentPosition();
+    btVector3 pos(initialPos->x(), initialPos->y(), initialPos->z());
+    if(!m_sideLeft) {
+        pos.setX(-pos.x());
+        pos.setZ(-pos.z());
+    }
+    return pos;
 }
 
-CTeam* CFootballPlayer::getTeam()
+
+CTeam* CFootballPlayer::getTeam() const
 {
     return m_team;
 }
 
 
-CSteeringBehaviors* CFootballPlayer::getSteering()
+CSteeringBehaviors* CFootballPlayer::getSteering() const
 {
     return m_steeringBehavior;
 }
@@ -183,7 +213,6 @@ void CFootballPlayer::changeSide()
 {
     CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
     m_sideLeft = !m_sideLeft;
-    m_strategicX = -m_strategicX;
-    m_strategicZ = -m_strategicZ;
-    simulator->move(this, m_strategicX, m_strategicZ);
+    btVector3 pos = getStrategicPosition();
+    simulator->move(this, (int)pos.x(), (int)pos.z());
 }

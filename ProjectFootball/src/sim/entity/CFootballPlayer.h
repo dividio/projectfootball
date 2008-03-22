@@ -39,36 +39,34 @@ public:
     static char* m_pCtorName;
     static CFootballPlayer* getPlayer(CBaseGameEntity *player);
 
-    CFootballPlayer(int number, CTeam *team, int x, int y, int z, bool sideLeft);
+    CFootballPlayer(int number, CTeam *team, bool sideLeft);
     ~CFootballPlayer();
+
+    CStateMachine<CFootballPlayer>* getFSM();
+    btVector3 getStrategicPosition() const;
+    std::string getIdent() const;
+    CTeam* getTeam() const;
+    CSteeringBehaviors* getSteering() const;
+    bool isTeamLeft() const;
+    bool isBallKickable() const;
+    bool canDoActions();
+    bool canKickBall(int cycle);
+    bool atHome();
+    bool atKickPosition();
 
     bool handleMessage(const CMessage &msg);
     void update();
-    CStateMachine<CFootballPlayer>* getFSM();
-    bool canDoActions();
-    bool canKickBall(int cycle);
-    btVector3 getStrategicPosition() const;
-    std::string getIdent() const;
-    CTeam* getTeam();
-    CSteeringBehaviors* getSteering();
     void changeSide();
-
-    bool isTeamLeft() const;
-    bool isBallKickable() const;
 
 private:
     bool m_canDoActions;
     int m_lastKickBallCycle;
-    int m_strategicX;
-    int m_strategicZ;
     bool m_sideLeft;
     int m_number;
     std::string m_ident;
     CSteeringBehaviors *m_steeringBehavior;
     CTeam *m_team;
     CStateMachine<CFootballPlayer> *m_stateMachine;
-
-
 };
 
 #endif // __CFootballPlayer_H__
