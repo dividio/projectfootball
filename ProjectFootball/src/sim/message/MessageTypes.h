@@ -24,14 +24,21 @@
 
 enum MessageType
 {
-    Msg_StartMatch,
-    Msg_KickOff,
-    Msg_TouchBall,
+    Msg_StartMatch,     // Sim to R
+    Msg_BeforeStart,    // R to T
+    Msg_HalfTime,       // R to T
+    Msg_EndMatch,       // R to T
+    Msg_KickOff,        // R to T, T to P
+    Msg_TouchBall,      // Sim to R
     Msg_ReceiveBall,
     Msg_PassToMe,
     Msg_SupportAttacker,
-    Msg_GoHome,
+    Msg_GoHome,         // T to P
+    Msg_KickIn,         // T to P
+    Msg_Interrupt,
+    Msg_PlayOn,         // R to T, T to P
     Msg_Wait
 };
 
 #endif // __MessageTypes_H__
+
