@@ -248,7 +248,7 @@ void CLuaManager::destroyBindings(void)
 }
 
 
-void CLuaManager::runScript(char* file)
+void CLuaManager::runScript(const char* file)
 {
     if (luaL_loadfile(m_luaVM,file)==0) { // load and run the file
         int result = lua_pcall(m_luaVM,0,0,0);
