@@ -37,6 +37,7 @@ CReferee::CReferee()
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     CLuaManager::getInstance()->runScript("data/scripts/referee.lua");
     m_stateMachine = new CStateMachine<CReferee>(this);
+    m_stateMachine->setGlobalState("SRf_Global");
     m_stateMachine->changeState("SRf_BeforeStart");
     m_homeScore = 0;
     m_awayScore = 0;
@@ -140,7 +141,7 @@ CStateMachine<CReferee>* CReferee::getFSM()
 
 bool CReferee::isMoveLegal()
 {
-    return (m_currentGameMode == KICK_OFF ||
+    return (m_currentGameMode == END ||
             m_currentGameMode == BEFORE_START ||
             m_currentGameMode == HALF_TIME);
 }
