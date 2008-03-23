@@ -88,11 +88,16 @@ SRf_HalfTime["Enter"] = function(referee)
     referee:setHomeTeamInSideLeft(not side)
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_HalfTime, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_HalfTime, nil)
-    sim:getBall():setPosition(0,1,0)
+    sim:getBall():setPosition(0,0.5,0)
 end
 
 SRf_HalfTime["Execute"] = function(referee)
-
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local ballPos = sim:getBallPosition()
+    local center = PF.btVector3(0,0,0)
+    if ballPos:distance(center) > 1 then
+        sim:getBall():setPosition(0,0.5,0)
+    end
 end
 
 SRf_HalfTime["Exit"] = function(referee)
@@ -338,7 +343,7 @@ function verifyBallPosition(referee)
     local player = referee:getLastPlayerTouch()
     if ball:isInLeftGoal() then
         referee:getFSM():changeState("SRf_KickOff")
-        ball:setPosition(0,1,0)
+        ball:setPosition(0,0.5,0)
         if referee:isHomeTeamInSideLeft() then
             referee:setKickTeam(sim:getHomeTeam())
             referee:addAwayGoal(player);
@@ -348,7 +353,7 @@ function verifyBallPosition(referee)
         end
     elseif ball:isInRightGoal() then
         referee:getFSM():changeState("SRf_KickOff")
-        ball:setPosition(0,1,0)
+        ball:setPosition(0,0.5,0)
         if referee:isHomeTeamInSideLeft() then
             referee:setKickTeam(sim:getAwayTeam())
             referee:addHomeGoal(player);
@@ -361,16 +366,16 @@ function verifyBallPosition(referee)
         if player:isTeamLeft() then
             referee:getFSM():changeState("SRf_CornerKick")
             if z > 0 then
-                ball:setPosition(-54.5,1,34.5)
+                ball:setPosition(-54.5,0.5,34.5)
             else
-                ball:setPosition(-54.5,1,-34.5)
+                ball:setPosition(-54.5,0.5,-34.5)
             end
         else
             referee:getFSM():changeState("SRf_GoalKick")
             if z > 0 then
-                ball:setPosition(-49.5,1,9)
+                ball:setPosition(-49.5,0.5,9)
             else
-                ball:setPosition(-49.5,1,-9)
+                ball:setPosition(-49.5,0.5,-9)
             end
         end
     elseif ball:crossRightLine() then
@@ -378,25 +383,25 @@ function verifyBallPosition(referee)
         if player:isTeamLeft() then
             referee:getFSM():changeState("SRf_GoalKick")
             if z > 0 then
-                ball:setPosition(49.5,1,9)
+                ball:setPosition(49.5,0.5,9)
             else
-                ball:setPosition(49.5,1,-9)
+                ball:setPosition(49.5,0.5,-9)
             end
         else
             referee:getFSM():changeState("SRf_CornerKick")
             if z > 0 then
-                ball:setPosition(54.5,1,34.5)
+                ball:setPosition(54.5,0.5,34.5)
             else
-                ball:setPosition(54.5,1,-34.5)
+                ball:setPosition(54.5,0.5,-34.5)
             end
         end
     elseif ball:crossTopLine() then
         referee:setKickTeam(player:getTeam():getOpponentTeam())
         referee:getFSM():changeState("SRf_KickIn")
-        ball:setPosition(x,1,-35)
+        ball:setPosition(x,0.5,-35)
     elseif ball:crossBottomLine() then
         referee:setKickTeam(player:getTeam():getOpponentTeam())
         referee:getFSM():changeState("SRf_KickIn")
-        ball:setPosition(x,1,35)
+        ball:setPosition(x,0.5,35)
     end
 end
