@@ -31,6 +31,9 @@ SPl_Global["OnMessage"] = function(player, message)
     elseif message.Msg == PF.Msg_PlayOn then
         player:getFSM():changeState("SPl_ReturnToHomeRegion")
         handle = true
+    elseif message.Msg == PF.Msg_EndMatch then
+        player:getFSM():changeState("SPl_Stop")
+        handle = true
     end
     return handle
 end
