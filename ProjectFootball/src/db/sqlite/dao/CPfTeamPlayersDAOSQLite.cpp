@@ -48,3 +48,21 @@ CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXTepl(const std::string &XTepl)
     return loadRegister(sql);
 }
 
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveTeamPlayersByXFkTeam(int XFkTeam)
+{
+    std::ostringstream stream;
+    stream << XFkTeam;
+    return findActiveTeamPlayersByXFkTeam(stream.str());
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveTeamPlayersByXFkTeam(const std::string &XFkTeam)
+{
+    std::string sql("SELECT TP.* "
+                    "FROM PF_TEAM_PLAYERS TP "
+                    "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEPL=TP.X_TEPL "
+                    "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
+    sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
+                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
+    return loadVector(sql);
+}

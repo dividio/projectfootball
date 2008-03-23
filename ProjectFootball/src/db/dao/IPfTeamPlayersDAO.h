@@ -42,6 +42,8 @@ public:
 
     virtual CPfTeamPlayers* findByXTepl(int XTepl) =0;
     virtual CPfTeamPlayers* findByXTepl(const std::string &XTepl) =0;
+    virtual std::vector<CPfTeamPlayers*>* findActiveTeamPlayersByXFkTeam(int XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findActiveTeamPlayersByXFkTeam(const std::string &XFkTeam) =0;
 
 };
 #endif /*IPFTEAMPLAYERSDAO_H_*/

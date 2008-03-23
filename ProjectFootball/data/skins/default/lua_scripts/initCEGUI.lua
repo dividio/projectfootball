@@ -120,4 +120,8 @@ function cmd_Game_Ranking()
     PF.CStateManager_getInstance():pushState(state)
 end
 
+function cmd_Game_TeamPlayers()
+    local state = PF.CStateTeamPlayers_getInstance()
+    PF.CStateManager_getInstance():pushState(state)
+end
 -- End Script

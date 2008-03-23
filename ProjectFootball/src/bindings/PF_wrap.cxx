@@ -1434,34 +1434,35 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_CStateMonitor swig_types[29]
 #define SWIGTYPE_p_CStateRanking swig_types[30]
 #define SWIGTYPE_p_CStateSelectTeam swig_types[31]
-#define SWIGTYPE_p_CSteeringBehaviors swig_types[32]
-#define SWIGTYPE_p_CStrategicPosition swig_types[33]
-#define SWIGTYPE_p_CTeam swig_types[34]
-#define SWIGTYPE_p_IDAOFactory swig_types[35]
-#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[36]
-#define SWIGTYPE_p_IPfGameStatesDAO swig_types[37]
-#define SWIGTYPE_p_IPfGoalsDAO swig_types[38]
-#define SWIGTYPE_p_IPfMatchesDAO swig_types[39]
-#define SWIGTYPE_p_IPfRankingDAO swig_types[40]
-#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[41]
-#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[42]
-#define SWIGTYPE_p_IPfTeamsDAO swig_types[43]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[44]
-#define SWIGTYPE_p_Ogre__SceneManager swig_types[45]
-#define SWIGTYPE_p_btCollisionShape swig_types[46]
-#define SWIGTYPE_p_btRigidBody swig_types[47]
-#define SWIGTYPE_p_btTransform swig_types[48]
-#define SWIGTYPE_p_btVector3 swig_types[49]
-#define SWIGTYPE_p_float swig_types[50]
-#define SWIGTYPE_p_std__string swig_types[51]
-#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[52]
-#define SWIGTYPE_p_std__vectorTCFormation_p_t swig_types[53]
-#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[54]
-#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[55]
-#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[56]
-#define SWIGTYPE_p_void swig_types[57]
-static swig_type_info *swig_types[59];
-static swig_module_info swig_module = {swig_types, 58, 0, 0, 0, 0};
+#define SWIGTYPE_p_CStateTeamPlayers swig_types[32]
+#define SWIGTYPE_p_CSteeringBehaviors swig_types[33]
+#define SWIGTYPE_p_CStrategicPosition swig_types[34]
+#define SWIGTYPE_p_CTeam swig_types[35]
+#define SWIGTYPE_p_IDAOFactory swig_types[36]
+#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[37]
+#define SWIGTYPE_p_IPfGameStatesDAO swig_types[38]
+#define SWIGTYPE_p_IPfGoalsDAO swig_types[39]
+#define SWIGTYPE_p_IPfMatchesDAO swig_types[40]
+#define SWIGTYPE_p_IPfRankingDAO swig_types[41]
+#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[42]
+#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[43]
+#define SWIGTYPE_p_IPfTeamsDAO swig_types[44]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[45]
+#define SWIGTYPE_p_Ogre__SceneManager swig_types[46]
+#define SWIGTYPE_p_btCollisionShape swig_types[47]
+#define SWIGTYPE_p_btRigidBody swig_types[48]
+#define SWIGTYPE_p_btTransform swig_types[49]
+#define SWIGTYPE_p_btVector3 swig_types[50]
+#define SWIGTYPE_p_float swig_types[51]
+#define SWIGTYPE_p_std__string swig_types[52]
+#define SWIGTYPE_p_std__vectorTCFootballPlayer_p_t swig_types[53]
+#define SWIGTYPE_p_std__vectorTCFormation_p_t swig_types[54]
+#define SWIGTYPE_p_std__vectorTCPfGoals_p_t swig_types[55]
+#define SWIGTYPE_p_std__vectorTCPfMatches_p_t swig_types[56]
+#define SWIGTYPE_p_std__vectorTCPfTeams_p_t swig_types[57]
+#define SWIGTYPE_p_void swig_types[58]
+static swig_type_info *swig_types[60];
+static swig_module_info swig_module = {swig_types, 59, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1513,6 +1514,7 @@ static swig_module_info swig_module = {swig_types, 58, 0, 0, 0, 0};
 #include "../state/CStateConfig.h"
 #include "../state/CStateSelectTeam.h"
 #include "../state/CStateRanking.h"
+#include "../state/CStateTeamPlayers.h"
 
 
 #include "../sim/CSimulationManager.h"
@@ -7291,6 +7293,145 @@ static swig_lua_attribute swig_CStateRanking_attributes[] = {
 };
 static swig_lua_class *swig_CStateRanking_bases[] = {&_wrap_class_CState,0};
 swig_lua_class _wrap_class_CStateRanking = { "CStateRanking", &SWIGTYPE_p_CStateRanking,0, swig_delete_CStateRanking, swig_CStateRanking_methods, swig_CStateRanking_attributes, swig_CStateRanking_bases };
+
+static int _wrap_CStateTeamPlayers_getInstance(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *result = 0 ;
+  
+  result = (CStateTeamPlayers *)CStateTeamPlayers::getInstance();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CStateTeamPlayers,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_CStateTeamPlayers(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("delete_CStateTeamPlayers",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateTeamPlayers_enter(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("CStateTeamPlayers_enter",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  (arg1)->enter();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateTeamPlayers_forcedLeave(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("CStateTeamPlayers_forcedLeave",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  (arg1)->forcedLeave();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateTeamPlayers_leave(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("CStateTeamPlayers_leave",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  result = (bool)(arg1)->leave();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateTeamPlayers_update(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("CStateTeamPlayers_update",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  (arg1)->update();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_CStateTeamPlayers(void *obj) {
+CStateTeamPlayers *arg1 = (CStateTeamPlayers *) obj;
+delete arg1;
+}
+static swig_lua_method swig_CStateTeamPlayers_methods[] = {
+    {"enter", _wrap_CStateTeamPlayers_enter}, 
+    {"forcedLeave", _wrap_CStateTeamPlayers_forcedLeave}, 
+    {"leave", _wrap_CStateTeamPlayers_leave}, 
+    {"update", _wrap_CStateTeamPlayers_update}, 
+    {0,0}
+};
+static swig_lua_attribute swig_CStateTeamPlayers_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_CStateTeamPlayers_bases[] = {&_wrap_class_CState,0};
+swig_lua_class _wrap_class_CStateTeamPlayers = { "CStateTeamPlayers", &SWIGTYPE_p_CStateTeamPlayers,0, swig_delete_CStateTeamPlayers, swig_CStateTeamPlayers_methods, swig_CStateTeamPlayers_attributes, swig_CStateTeamPlayers_bases };
 
 static int _wrap_CMessage_p_ctor(lua_State* L) {
   int SWIG_arg = -1;
@@ -15047,6 +15188,12 @@ static const struct luaL_reg swig_commands[] = {
     { "CStateRanking_forcedLeave", _wrap_CStateRanking_forcedLeave},
     { "CStateRanking_leave", _wrap_CStateRanking_leave},
     { "CStateRanking_update", _wrap_CStateRanking_update},
+    { "CStateTeamPlayers_getInstance", _wrap_CStateTeamPlayers_getInstance},
+    { "delete_CStateTeamPlayers", _wrap_delete_CStateTeamPlayers},
+    { "CStateTeamPlayers_enter", _wrap_CStateTeamPlayers_enter},
+    { "CStateTeamPlayers_forcedLeave", _wrap_CStateTeamPlayers_forcedLeave},
+    { "CStateTeamPlayers_leave", _wrap_CStateTeamPlayers_leave},
+    { "CStateTeamPlayers_update", _wrap_CStateTeamPlayers_update},
     { "CMessage_p_ctor", _wrap_CMessage_p_ctor},
     { "SMALLEST_DELAY_get", _wrap_SMALLEST_DELAY_get},
     { "CMessage_m_pCtorName_set", _wrap_CMessage_m_pCtorName_set},
@@ -15391,6 +15538,9 @@ static void *_p_CStateSelectTeamTo_p_CState(void *x) {
 static void *_p_CStateRankingTo_p_CState(void *x) {
     return (void *)((CState *)  ((CStateRanking *) x));
 }
+static void *_p_CStateTeamPlayersTo_p_CState(void *x) {
+    return (void *)((CState *)  ((CStateTeamPlayers *) x));
+}
 static void *_p_CStateMainMenuTo_p_CState(void *x) {
     return (void *)((CState *)  ((CStateMainMenu *) x));
 }
@@ -15459,6 +15609,7 @@ static swig_type_info _swigt__p_CStateManager = {"_p_CStateManager", "CStateMana
 static swig_type_info _swigt__p_CStateMonitor = {"_p_CStateMonitor", "CStateMonitor *", 0, 0, (void*)&_wrap_class_CStateMonitor, 0};
 static swig_type_info _swigt__p_CStateRanking = {"_p_CStateRanking", "CStateRanking *", 0, 0, (void*)&_wrap_class_CStateRanking, 0};
 static swig_type_info _swigt__p_CStateSelectTeam = {"_p_CStateSelectTeam", "CStateSelectTeam *", 0, 0, (void*)&_wrap_class_CStateSelectTeam, 0};
+static swig_type_info _swigt__p_CStateTeamPlayers = {"_p_CStateTeamPlayers", "CStateTeamPlayers *", 0, 0, (void*)&_wrap_class_CStateTeamPlayers, 0};
 static swig_type_info _swigt__p_CSteeringBehaviors = {"_p_CSteeringBehaviors", "CSteeringBehaviors *", 0, 0, (void*)&_wrap_class_CSteeringBehaviors, 0};
 static swig_type_info _swigt__p_CStrategicPosition = {"_p_CStrategicPosition", "CStrategicPosition *", 0, 0, (void*)&_wrap_class_CStrategicPosition, 0};
 static swig_type_info _swigt__p_CTeam = {"_p_CTeam", "CTeam *", 0, 0, (void*)&_wrap_class_CTeam, 0};
@@ -15519,6 +15670,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CStateMonitor,
   &_swigt__p_CStateRanking,
   &_swigt__p_CStateSelectTeam,
+  &_swigt__p_CStateTeamPlayers,
   &_swigt__p_CSteeringBehaviors,
   &_swigt__p_CStrategicPosition,
   &_swigt__p_CTeam,
@@ -15566,7 +15718,7 @@ static swig_cast_info _swigc__p_CRectangle[] = {  {&_swigt__p_CRectangle, 0, 0, 
 static swig_cast_info _swigc__p_CReferee[] = {  {&_swigt__p_CReferee, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationManager[] = {  {&_swigt__p_CSimulationManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationWorld[] = {  {&_swigt__p_CSimulationWorld, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CStateGame, _p_CStateGameTo_p_CState, 0, 0},  {&_swigt__p_CStateLoadGame, _p_CStateLoadGameTo_p_CState, 0, 0},  {&_swigt__p_CStateConfig, _p_CStateConfigTo_p_CState, 0, 0},  {&_swigt__p_CStateSelectTeam, _p_CStateSelectTeamTo_p_CState, 0, 0},  {&_swigt__p_CStateRanking, _p_CStateRankingTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CState[] = {  {&_swigt__p_CStateMonitor, _p_CStateMonitorTo_p_CState, 0, 0},  {&_swigt__p_CStateGame, _p_CStateGameTo_p_CState, 0, 0},  {&_swigt__p_CStateLoadGame, _p_CStateLoadGameTo_p_CState, 0, 0},  {&_swigt__p_CStateConfig, _p_CStateConfigTo_p_CState, 0, 0},  {&_swigt__p_CStateSelectTeam, _p_CStateSelectTeamTo_p_CState, 0, 0},  {&_swigt__p_CStateRanking, _p_CStateRankingTo_p_CState, 0, 0},  {&_swigt__p_CState, 0, 0, 0},  {&_swigt__p_CStateTeamPlayers, _p_CStateTeamPlayersTo_p_CState, 0, 0},  {&_swigt__p_CStateMainMenu, _p_CStateMainMenuTo_p_CState, 0, 0},  {&_swigt__p_CStateCredits, _p_CStateCreditsTo_p_CState, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateConfig[] = {  {&_swigt__p_CStateConfig, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateCredits[] = {  {&_swigt__p_CStateCredits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateGame[] = {  {&_swigt__p_CStateGame, 0, 0, 0},{0, 0, 0, 0}};
@@ -15579,6 +15731,7 @@ static swig_cast_info _swigc__p_CStateManager[] = {  {&_swigt__p_CStateManager, 
 static swig_cast_info _swigc__p_CStateMonitor[] = {  {&_swigt__p_CStateMonitor, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateRanking[] = {  {&_swigt__p_CStateRanking, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateSelectTeam[] = {  {&_swigt__p_CStateSelectTeam, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CStateTeamPlayers[] = {  {&_swigt__p_CStateTeamPlayers, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSteeringBehaviors[] = {  {&_swigt__p_CSteeringBehaviors, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStrategicPosition[] = {  {&_swigt__p_CStrategicPosition, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CTeam[] = {  {&_swigt__p_CTeam, 0, 0, 0},{0, 0, 0, 0}};
@@ -15639,6 +15792,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CStateMonitor,
   _swigc__p_CStateRanking,
   _swigc__p_CStateSelectTeam,
+  _swigc__p_CStateTeamPlayers,
   _swigc__p_CSteeringBehaviors,
   _swigc__p_CStrategicPosition,
   _swigc__p_CTeam,

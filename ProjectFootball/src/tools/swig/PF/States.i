@@ -11,6 +11,7 @@
 #include "../state/CStateConfig.h"
 #include "../state/CStateSelectTeam.h"
 #include "../state/CStateRanking.h"
+#include "../state/CStateTeamPlayers.h"
 %}
 
 %include "std_string.i"
@@ -26,3 +27,4 @@
 %include ../../../state/CStateConfig.h
 %include ../../../state/CStateSelectTeam.h
 %include ../../../state/CStateRanking.h
+%include ../../../state/CStateTeamPlayers.h

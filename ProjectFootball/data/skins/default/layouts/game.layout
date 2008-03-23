@@ -28,6 +28,13 @@
             <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.04,0},{0.97,0},{0.08,0}}" />
             <Event Name="Clicked" Function="cmd_Game_Ranking" />
         </Window>
+        <Window Type="TaharezLook/Button" Name="Game/TeamPlayersButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="Text" Value="Team Players" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.09,0},{0.97,0},{0.13,0}}" />
+          <Event Name="Clicked" Function="cmd_Game_TeamPlayers" />
+        </Window>
         <Window Type="TaharezLook/Button" Name="Game/PlayButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
           <Property Name="Text" Value="Play" />
