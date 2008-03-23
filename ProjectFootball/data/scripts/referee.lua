@@ -133,6 +133,12 @@ end
 
 SRf_KickOff["Execute"] = function(referee)
     referee:incCycle()
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local ballPos = sim:getBallPosition()
+    local center = PF.btVector3(0,0,0)
+    if ballPos:distance(center) > 1 then
+        sim:getBall():setPosition(0,0.5,0)
+    end
 end
 
 SRf_KickOff["Exit"] = function(referee)
@@ -204,7 +210,9 @@ SRf_End["Enter"] = function(referee)
 end
 
 SRf_End["Execute"] = function(referee)
-
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local pos = sim:getBallPosition()
+    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_End["Exit"] = function(referee)
