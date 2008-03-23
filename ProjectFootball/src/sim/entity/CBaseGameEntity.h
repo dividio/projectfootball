@@ -52,7 +52,6 @@ public:
     btVector3 getPosition() const;
     void setPosition(float x, float y, float z);
 
-
 protected:
     Ogre::Entity *m_entity;
     Ogre::SceneNode *m_node;
@@ -62,8 +61,8 @@ protected:
 
     btTransform getGraphicTrans() const;
     void setGraphicTrans(btTransform trans);
-
     CBaseGameEntity();
+
 private:
     int m_ID;
     static int m_nextValidID;
