@@ -91,6 +91,69 @@ CFootballPlayer::CFootballPlayer(int number, CTeam *team, bool sideLeft)
     m_body->setActivationState(DISABLE_DEACTIVATION);
 
     m_steeringBehavior = new CSteeringBehaviors(this);
+
+
+    //Draw Circle
+    Ogre::ManualObject * circle = scnMgr->createManualObject("circle_name"+id);
+
+    float const radius = 1.5,
+                thickness = 0.5, // Of course this must be less than the radius value.
+                accuracy = 5,
+                height = 0.01;
+
+    Ogre::MaterialPtr matptr;
+    Ogre::Pass* pass;
+
+    if(sideLeft) {
+        matptr = Ogre::MaterialManager::getSingleton().createOrRetrieve("Red"+id, "General").first;
+        matptr->setReceiveShadows(true);
+        pass = matptr->getTechnique(0)->getPass(0);
+        Ogre::ColourValue colour = Ogre::ColourValue::Red;
+        pass->setDiffuse(colour);
+        pass->setAmbient(colour);
+        pass->setSpecular(colour);
+        pass->setSelfIllumination(colour);
+        //pass->setEmissive(ColourValue(0,0,0,colour.a));
+        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+        pass->setDepthWriteEnabled(false);
+    } else {
+        matptr = Ogre::MaterialManager::getSingleton().createOrRetrieve("Blue"+id, "General").first;
+        matptr->setReceiveShadows(true);
+        pass = matptr->getTechnique(0)->getPass(0);
+        Ogre::ColourValue colour = Ogre::ColourValue::Blue;
+        pass->setDiffuse(colour);
+        pass->setAmbient(colour);
+        pass->setSpecular(colour);
+        pass->setSelfIllumination(colour);
+        //pass->setEmissive(ColourValue(0,0,0,colour.a));
+        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+        pass->setDepthWriteEnabled(false);
+    }
+    circle->begin(matptr->getName(), Ogre::RenderOperation::OT_TRIANGLE_LIST);
+
+    unsigned point_index = 0;
+    for(float theta = 0; theta <= 2 * Ogre::Math::PI; theta += Ogre::Math::PI / (radius * accuracy)) {
+        circle->position(radius * cos(theta),
+                         height,
+                         radius * sin(theta));
+        circle->position(radius * cos(theta - Ogre::Math::PI / (radius * accuracy)),
+                         height,
+                         radius * sin(theta - Ogre::Math::PI / (radius * accuracy)));
+        circle->position((radius - thickness) * cos(theta - Ogre::Math::PI / (radius * accuracy)),
+                         height,
+                         (radius - thickness) * sin(theta - Ogre::Math::PI / (radius * accuracy)));
+        circle->position((radius - thickness) * cos(theta),
+                         height,
+                         (radius - thickness) * sin(theta));
+        // Join the 4 vertices created above to form a quad.
+        circle->quad(point_index, point_index + 1, point_index + 2, point_index + 3);
+        point_index += 4;
+    }
+
+    circle->end();
+
+    m_ringNode = m_node->createChildSceneNode();
+    m_ringNode->attachObject(circle);
 }
 
 
@@ -216,3 +279,23 @@ void CFootballPlayer::changeSide()
     btVector3 pos = getStrategicPosition();
     simulator->move(this, (int)pos.x(), (int)pos.z());
 }
+
+
+//synchronizes world transform from physics to user
+//Bullet only calls the update of worldtransform for active objects
+void CFootballPlayer::setWorldTransform(const btTransform& centerOfMassWorldTrans)
+{
+    setGraphicTrans(centerOfMassWorldTrans * m_centerOfMassOffset);
+}
+
+void CFootballPlayer::setGraphicTrans(btTransform trans)
+{
+    btVector3 v = trans.getOrigin();
+    btScalar y = v.getY();
+    m_node->setPosition(v.getX(), y, v.getZ());
+    m_ringNode->setPosition(0, -y+0.01, 0);
+
+    btQuaternion q = trans.getRotation();
+    m_node->setOrientation(q.w(), q.x(), q.y(), q.z());
+}
+

@@ -58,7 +58,13 @@ public:
     void update();
     void changeSide();
 
+    void setWorldTransform(const btTransform& centerOfMassWorldTrans);
+
+protected:
+    void setGraphicTrans(btTransform trans);
+
 private:
+    Ogre::SceneNode *m_ringNode;
     bool m_canDoActions;
     int m_lastKickBallCycle;
     bool m_sideLeft;
