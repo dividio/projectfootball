@@ -60,8 +60,10 @@ SRf_BeforeStart["OnMessage"] = function(referee, message)
     if message.Msg == PF.Msg_StartMatch then
         if kickLeftTeam == referee:isHomeTeamInSideLeft() then
             referee:setKickTeam(homeTeam)
+            referee:setNextTimeKickOffTeam(awayTeam)
         else
             referee:setKickTeam(awayTeam)
+            referee:setNextTimeKickOffTeam(homeTeam)
         end
         referee:getFSM():changeState("SRf_KickOff")
         handle = true
@@ -80,6 +82,9 @@ SRf_HalfTime["Enter"] = function(referee)
     local sim = monitor:getSimulationManager()
     local disp = PF.CMessageDispatcher_getInstance()
     local side = referee:isHomeTeamInSideLeft()
+    local team = referee:getNextTimeKickOffTeam()
+    referee:setKickTeam(team)
+    referee:setNextTimeKickOffTeam(team:getOpponentTeam())
     referee:setHomeTeamInSideLeft(not side)
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_HalfTime, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_HalfTime, nil)
@@ -100,11 +105,6 @@ SRf_HalfTime["OnMessage"] = function(referee, message)
     local homeTeam = sim:getHomeTeam()
     local awayTeam = sim:getAwayTeam()
     if message.Msg == PF.Msg_StartMatch then
-        if kickLeftTeam == referee:isHomeTeamInSideLeft() then
-            referee:setKickTeam(homeTeam)
-        else
-            referee:setKickTeam(awayTeam)
-        end
         referee:getFSM():changeState("SRf_KickOff")
         handle = true
     end
