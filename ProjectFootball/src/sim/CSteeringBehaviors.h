@@ -44,11 +44,13 @@ public:
     double sideComponent() const;
 
     void seekOn();
+    void stopOn();
     void arriveOn();
     void pursuitOn();
     void interposeOn();
 
     void seekOff();
+    void stopOff();
     void arriveOff();
     void pursuitOff();
     void interposeOff();
@@ -58,6 +60,7 @@ private:
     CMovingEntity *m_targetEntity;
 
     bool m_seek;
+    bool m_stop;
     bool m_arrive;
     bool m_pursuit;
     bool m_interpose;
@@ -68,6 +71,7 @@ private:
     enum Deceleration{slow = 3, normal = 2, fast = 1};
 
     btVector3 seek(btVector3 target);
+    btVector3 stop();
     btVector3 arrive(btVector3 target, Deceleration decel);
     btVector3 pursuit(CMovingEntity *entity);
     btVector3 interpose(CMovingEntity *objectA, CMovingEntity *objectB);

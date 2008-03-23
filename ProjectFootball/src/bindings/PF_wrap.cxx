@@ -8722,6 +8722,27 @@ fail:
 }
 
 
+static int _wrap_CSteeringBehaviors_stopOn(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_stopOn",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->stopOn();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CSteeringBehaviors_arriveOn(lua_State* L) {
   int SWIG_arg = -1;
   CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
@@ -8796,6 +8817,27 @@ static int _wrap_CSteeringBehaviors_seekOff(lua_State* L) {
   }
   
   (arg1)->seekOff();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSteeringBehaviors_stopOff(lua_State* L) {
+  int SWIG_arg = -1;
+  CSteeringBehaviors *arg1 = (CSteeringBehaviors *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSteeringBehaviors,0))){
+    SWIG_fail_ptr("CSteeringBehaviors_stopOff",1,SWIGTYPE_p_CSteeringBehaviors);
+  }
+  
+  (arg1)->stopOff();
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8883,10 +8925,12 @@ static swig_lua_method swig_CSteeringBehaviors_methods[] = {
     {"forwardComponent", _wrap_CSteeringBehaviors_forwardComponent}, 
     {"sideComponent", _wrap_CSteeringBehaviors_sideComponent}, 
     {"seekOn", _wrap_CSteeringBehaviors_seekOn}, 
+    {"stopOn", _wrap_CSteeringBehaviors_stopOn}, 
     {"arriveOn", _wrap_CSteeringBehaviors_arriveOn}, 
     {"pursuitOn", _wrap_CSteeringBehaviors_pursuitOn}, 
     {"interposeOn", _wrap_CSteeringBehaviors_interposeOn}, 
     {"seekOff", _wrap_CSteeringBehaviors_seekOff}, 
+    {"stopOff", _wrap_CSteeringBehaviors_stopOff}, 
     {"arriveOff", _wrap_CSteeringBehaviors_arriveOff}, 
     {"pursuitOff", _wrap_CSteeringBehaviors_pursuitOff}, 
     {"interposeOff", _wrap_CSteeringBehaviors_interposeOff}, 
@@ -11427,6 +11471,34 @@ fail:
 }
 
 
+static int _wrap_CFootballPlayer_setWorldTransform(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  btTransform *arg2 = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_setWorldTransform",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_btTransform,0))){
+    SWIG_fail_ptr("CFootballPlayer_setWorldTransform",2,SWIGTYPE_p_btTransform);
+  }
+  
+  (arg1)->setWorldTransform((btTransform const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CFootballPlayer(void *obj) {
 CFootballPlayer *arg1 = (CFootballPlayer *) obj;
 delete arg1;
@@ -11446,6 +11518,7 @@ static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"handleMessage", _wrap_CFootballPlayer_handleMessage}, 
     {"update", _wrap_CFootballPlayer_update}, 
     {"changeSide", _wrap_CFootballPlayer_changeSide}, 
+    {"setWorldTransform", _wrap_CFootballPlayer_setWorldTransform}, 
     {0,0}
 };
 static swig_lua_attribute swig_CFootballPlayer_attributes[] = {
@@ -15026,10 +15099,12 @@ static const struct luaL_reg swig_commands[] = {
     { "CSteeringBehaviors_forwardComponent", _wrap_CSteeringBehaviors_forwardComponent},
     { "CSteeringBehaviors_sideComponent", _wrap_CSteeringBehaviors_sideComponent},
     { "CSteeringBehaviors_seekOn", _wrap_CSteeringBehaviors_seekOn},
+    { "CSteeringBehaviors_stopOn", _wrap_CSteeringBehaviors_stopOn},
     { "CSteeringBehaviors_arriveOn", _wrap_CSteeringBehaviors_arriveOn},
     { "CSteeringBehaviors_pursuitOn", _wrap_CSteeringBehaviors_pursuitOn},
     { "CSteeringBehaviors_interposeOn", _wrap_CSteeringBehaviors_interposeOn},
     { "CSteeringBehaviors_seekOff", _wrap_CSteeringBehaviors_seekOff},
+    { "CSteeringBehaviors_stopOff", _wrap_CSteeringBehaviors_stopOff},
     { "CSteeringBehaviors_arriveOff", _wrap_CSteeringBehaviors_arriveOff},
     { "CSteeringBehaviors_pursuitOff", _wrap_CSteeringBehaviors_pursuitOff},
     { "CSteeringBehaviors_interposeOff", _wrap_CSteeringBehaviors_interposeOff},
@@ -15137,6 +15212,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CFootballPlayer_handleMessage", _wrap_CFootballPlayer_handleMessage},
     { "CFootballPlayer_update", _wrap_CFootballPlayer_update},
     { "CFootballPlayer_changeSide", _wrap_CFootballPlayer_changeSide},
+    { "CFootballPlayer_setWorldTransform", _wrap_CFootballPlayer_setWorldTransform},
     { "new_PlayerVector",_wrap_new_PlayerVector},
     { "PlayerVector_size", _wrap_PlayerVector_size},
     { "PlayerVector_max_size", _wrap_PlayerVector_max_size},

@@ -78,6 +78,10 @@ btVector3 CSteeringBehaviors::sumForces()
         sum += seek(m_target);
     }
 
+    if(m_stop) {
+        sum += stop();
+    }
+
     if(m_arrive) {
         sum += arrive(m_target, fast);
     }
@@ -97,6 +101,12 @@ btVector3 CSteeringBehaviors::sumForces()
 void CSteeringBehaviors::seekOn()
 {
     m_seek = true;
+}
+
+
+void CSteeringBehaviors::stopOn()
+{
+    m_stop = true;
 }
 
 
@@ -124,6 +134,12 @@ void CSteeringBehaviors::seekOff()
 }
 
 
+void CSteeringBehaviors::stopOff()
+{
+    m_stop = false;
+}
+
+
 void CSteeringBehaviors::arriveOff()
 {
     m_arrive = false;
@@ -148,6 +164,12 @@ btVector3 CSteeringBehaviors::seek(btVector3 target)
     desiredVelocity.normalize();
     desiredVelocity *= m_agent->getMaxVelocity();
     return (desiredVelocity - m_agent->getBody()->getLinearVelocity());
+}
+
+
+btVector3 CSteeringBehaviors::stop()
+{
+    return -m_agent->getBody()->getLinearVelocity();
 }
 
 
