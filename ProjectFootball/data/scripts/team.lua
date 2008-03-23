@@ -99,7 +99,7 @@ STm_EndMatch["Enter"] = function(team)
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
     for i = 0, size - 1, 1 do
-        disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_GoHome, nil)
+        disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_EndMatch, nil)
     end
 end
 
