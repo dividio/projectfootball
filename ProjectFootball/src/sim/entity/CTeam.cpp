@@ -49,36 +49,58 @@ CTeam::CTeam(std::string name, bool sideLeft)
     m_stateMachine->changeState("STm_BeforeStart");
 
     CFootballPlayer *player = new CFootballPlayer(1, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/goalie.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(2, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(3, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(4, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(5, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(6, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(7, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(8, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(9, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(10, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(11, this, sideLeft);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 }
 

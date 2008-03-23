@@ -38,10 +38,7 @@ CFootballPlayer::CFootballPlayer(int number, CTeam *team, bool sideLeft)
 :CBaseAgent()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
-    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     m_stateMachine = new CStateMachine<CFootballPlayer>(this);
-    m_stateMachine->setGlobalState("SPl_Global");
-    m_stateMachine->changeState("SPl_Wait");
     Ogre::String id;
     char charId[20];
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
