@@ -26,6 +26,7 @@ CSteeringBehaviors::CSteeringBehaviors(CMovingEntity *agent)
 {
     m_agent = agent;
     m_targetEntity = 0;
+    m_target = btVector3(0,0,0);
     m_steeringForce = btVector3(0,0,0);
     m_seek = false;
     m_arrive = false;
@@ -47,7 +48,7 @@ btVector3 CSteeringBehaviors::getTarget() const
 
 void CSteeringBehaviors::setTargetPoint(const btVector3 target)
 {
-    m_target = target;
+    m_target.setValue(target.x(), 0, target.z());
 }
 
 
