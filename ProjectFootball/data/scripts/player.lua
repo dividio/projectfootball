@@ -67,15 +67,16 @@ end
 SPl_Stop = {}
 
 SPl_Stop["Enter"] = function(player)
-
+    player:getSteering():stopOn()
 end
 
 SPl_Stop["Execute"] = function(player)
-
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    sim:dash(player, player:getSteering():calculate())
 end
 
 SPl_Stop["Exit"] = function(player)
-
+    player:getSteering():stopOff()
 end
 
 SPl_Stop["OnMessage"] = function(player, message)
