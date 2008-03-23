@@ -9931,6 +9931,138 @@ fail:
 }
 
 
+static int _wrap_CReferee_getMatchDuration(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  int result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getMatchDuration",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (int)(arg1)->getMatchDuration();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getKickTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getKickTeam",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CTeam *)(arg1)->getKickTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getNextTimeKickOffTeam(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CTeam *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getNextTimeKickOffTeam",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CTeam *)(arg1)->getNextTimeKickOffTeam();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getLastPlayerTouch(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getLastPlayerTouch",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CFootballPlayer *)(arg1)->getLastPlayerTouch();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getGameMode(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  GameMode result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getGameMode",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (GameMode)(arg1)->getGameMode();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getGameModeString(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  std::string result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getGameModeString",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (arg1)->getGameModeString();
+  SWIG_arg=0;
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CReferee_setMatchDuration(lua_State* L) {
   int SWIG_arg = -1;
   CReferee *arg1 = (CReferee *) 0 ;
@@ -9955,28 +10087,6 @@ fail:
 }
 
 
-static int _wrap_CReferee_getMatchDuration(lua_State* L) {
-  int SWIG_arg = -1;
-  CReferee *arg1 = (CReferee *) 0 ;
-  int result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_getMatchDuration",1,SWIGTYPE_p_CReferee);
-  }
-  
-  result = (int)(arg1)->getMatchDuration();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_CReferee_setHomeTeamInSideLeft(lua_State* L) {
   int SWIG_arg = -1;
   CReferee *arg1 = (CReferee *) 0 ;
@@ -9993,28 +10103,6 @@ static int _wrap_CReferee_setHomeTeamInSideLeft(lua_State* L) {
   (arg1)->setHomeTeamInSideLeft(arg2);
   SWIG_arg=0;
   
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CReferee_isHomeTeamInSideLeft(lua_State* L) {
-  int SWIG_arg = -1;
-  CReferee *arg1 = (CReferee *) 0 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_isHomeTeamInSideLeft",1,SWIGTYPE_p_CReferee);
-  }
-  
-  result = (bool)(arg1)->isHomeTeamInSideLeft();
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -10051,20 +10139,26 @@ fail:
 }
 
 
-static int _wrap_CReferee_getKickTeam(lua_State* L) {
+static int _wrap_CReferee_setNextTimeKickOffTeam(lua_State* L) {
   int SWIG_arg = -1;
   CReferee *arg1 = (CReferee *) 0 ;
-  CTeam *result = 0 ;
+  CTeam *arg2 = (CTeam *) 0 ;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_getKickTeam",1,SWIGTYPE_p_CReferee);
+    SWIG_fail_ptr("CReferee_setNextTimeKickOffTeam",1,SWIGTYPE_p_CReferee);
   }
   
-  result = (CTeam *)(arg1)->getKickTeam();
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CReferee_setNextTimeKickOffTeam",2,SWIGTYPE_p_CTeam);
+  }
+  
+  (arg1)->setNextTimeKickOffTeam(arg2);
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,0); SWIG_arg++; 
+  
   return SWIG_arg;
   
 fail:
@@ -10101,20 +10195,22 @@ fail:
 }
 
 
-static int _wrap_CReferee_getLastPlayerTouch(lua_State* L) {
+static int _wrap_CReferee_setGameMode(lua_State* L) {
   int SWIG_arg = -1;
   CReferee *arg1 = (CReferee *) 0 ;
-  CFootballPlayer *result = 0 ;
+  GameMode arg2 ;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_getLastPlayerTouch",1,SWIGTYPE_p_CReferee);
+    SWIG_fail_ptr("CReferee_setGameMode",1,SWIGTYPE_p_CReferee);
   }
   
-  result = (CFootballPlayer *)(arg1)->getLastPlayerTouch();
+  arg2 = (GameMode)(int)lua_tonumber(L, 2);
+  (arg1)->setGameMode(arg2);
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  
   return SWIG_arg;
   
 fail:
@@ -10179,6 +10275,49 @@ fail:
 }
 
 
+static int _wrap_CReferee_incCycle(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_incCycle",1,SWIGTYPE_p_CReferee);
+  }
+  
+  (arg1)->incCycle();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_isHomeTeamInSideLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  CReferee *arg1 = (CReferee *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_isHomeTeamInSideLeft",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (bool)(arg1)->isHomeTeamInSideLeft();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CReferee_isMoveLegal(lua_State* L) {
   int SWIG_arg = -1;
   CReferee *arg1 = (CReferee *) 0 ;
@@ -10201,42 +10340,20 @@ fail:
 }
 
 
-static int _wrap_CReferee_getGameMode(lua_State* L) {
+static int _wrap_CReferee_getCycle(lua_State* L) {
   int SWIG_arg = -1;
   CReferee *arg1 = (CReferee *) 0 ;
-  GameMode result;
+  int result;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_getGameMode",1,SWIGTYPE_p_CReferee);
+    SWIG_fail_ptr("CReferee_getCycle",1,SWIGTYPE_p_CReferee);
   }
   
-  result = (GameMode)(arg1)->getGameMode();
+  result = (int)((CReferee const *)arg1)->getCycle();
   SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CReferee_getGameModeString(lua_State* L) {
-  int SWIG_arg = -1;
-  CReferee *arg1 = (CReferee *) 0 ;
-  std::string result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_getGameModeString",1,SWIGTYPE_p_CReferee);
-  }
-  
-  result = (arg1)->getGameModeString();
-  SWIG_arg=0;
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -10289,73 +10406,6 @@ fail:
 }
 
 
-static int _wrap_CReferee_getCycle(lua_State* L) {
-  int SWIG_arg = -1;
-  CReferee *arg1 = (CReferee *) 0 ;
-  int result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_getCycle",1,SWIGTYPE_p_CReferee);
-  }
-  
-  result = (int)((CReferee const *)arg1)->getCycle();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CReferee_incCycle(lua_State* L) {
-  int SWIG_arg = -1;
-  CReferee *arg1 = (CReferee *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_incCycle",1,SWIGTYPE_p_CReferee);
-  }
-  
-  (arg1)->incCycle();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CReferee_setGameMode(lua_State* L) {
-  int SWIG_arg = -1;
-  CReferee *arg1 = (CReferee *) 0 ;
-  GameMode arg2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
-    SWIG_fail_ptr("CReferee_setGameMode",1,SWIGTYPE_p_CReferee);
-  }
-  
-  arg2 = (GameMode)(int)lua_tonumber(L, 2);
-  (arg1)->setGameMode(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CReferee(void *obj) {
 CReferee *arg1 = (CReferee *) obj;
 delete arg1;
@@ -10364,24 +10414,26 @@ static swig_lua_method swig_CReferee_methods[] = {
     {"handleMessage", _wrap_CReferee_handleMessage}, 
     {"update", _wrap_CReferee_update}, 
     {"getFSM", _wrap_CReferee_getFSM}, 
-    {"setMatchDuration", _wrap_CReferee_setMatchDuration}, 
     {"getMatchDuration", _wrap_CReferee_getMatchDuration}, 
-    {"setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft}, 
-    {"isHomeTeamInSideLeft", _wrap_CReferee_isHomeTeamInSideLeft}, 
-    {"setKickTeam", _wrap_CReferee_setKickTeam}, 
     {"getKickTeam", _wrap_CReferee_getKickTeam}, 
-    {"setLastPlayerTouch", _wrap_CReferee_setLastPlayerTouch}, 
+    {"getNextTimeKickOffTeam", _wrap_CReferee_getNextTimeKickOffTeam}, 
     {"getLastPlayerTouch", _wrap_CReferee_getLastPlayerTouch}, 
-    {"addHomeGoal", _wrap_CReferee_addHomeGoal}, 
-    {"addAwayGoal", _wrap_CReferee_addAwayGoal}, 
-    {"isMoveLegal", _wrap_CReferee_isMoveLegal}, 
     {"getGameMode", _wrap_CReferee_getGameMode}, 
     {"getGameModeString", _wrap_CReferee_getGameModeString}, 
+    {"setMatchDuration", _wrap_CReferee_setMatchDuration}, 
+    {"setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft}, 
+    {"setKickTeam", _wrap_CReferee_setKickTeam}, 
+    {"setNextTimeKickOffTeam", _wrap_CReferee_setNextTimeKickOffTeam}, 
+    {"setLastPlayerTouch", _wrap_CReferee_setLastPlayerTouch}, 
+    {"setGameMode", _wrap_CReferee_setGameMode}, 
+    {"addHomeGoal", _wrap_CReferee_addHomeGoal}, 
+    {"addAwayGoal", _wrap_CReferee_addAwayGoal}, 
+    {"incCycle", _wrap_CReferee_incCycle}, 
+    {"isHomeTeamInSideLeft", _wrap_CReferee_isHomeTeamInSideLeft}, 
+    {"isMoveLegal", _wrap_CReferee_isMoveLegal}, 
+    {"getCycle", _wrap_CReferee_getCycle}, 
     {"getHomeScore", _wrap_CReferee_getHomeScore}, 
     {"getAwayScore", _wrap_CReferee_getAwayScore}, 
-    {"getCycle", _wrap_CReferee_getCycle}, 
-    {"incCycle", _wrap_CReferee_incCycle}, 
-    {"setGameMode", _wrap_CReferee_setGameMode}, 
     {0,0}
 };
 static swig_lua_attribute swig_CReferee_attributes[] = {
@@ -15023,24 +15075,26 @@ static const struct luaL_reg swig_commands[] = {
     { "CReferee_handleMessage", _wrap_CReferee_handleMessage},
     { "CReferee_update", _wrap_CReferee_update},
     { "CReferee_getFSM", _wrap_CReferee_getFSM},
-    { "CReferee_setMatchDuration", _wrap_CReferee_setMatchDuration},
     { "CReferee_getMatchDuration", _wrap_CReferee_getMatchDuration},
-    { "CReferee_setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft},
-    { "CReferee_isHomeTeamInSideLeft", _wrap_CReferee_isHomeTeamInSideLeft},
-    { "CReferee_setKickTeam", _wrap_CReferee_setKickTeam},
     { "CReferee_getKickTeam", _wrap_CReferee_getKickTeam},
-    { "CReferee_setLastPlayerTouch", _wrap_CReferee_setLastPlayerTouch},
+    { "CReferee_getNextTimeKickOffTeam", _wrap_CReferee_getNextTimeKickOffTeam},
     { "CReferee_getLastPlayerTouch", _wrap_CReferee_getLastPlayerTouch},
-    { "CReferee_addHomeGoal", _wrap_CReferee_addHomeGoal},
-    { "CReferee_addAwayGoal", _wrap_CReferee_addAwayGoal},
-    { "CReferee_isMoveLegal", _wrap_CReferee_isMoveLegal},
     { "CReferee_getGameMode", _wrap_CReferee_getGameMode},
     { "CReferee_getGameModeString", _wrap_CReferee_getGameModeString},
+    { "CReferee_setMatchDuration", _wrap_CReferee_setMatchDuration},
+    { "CReferee_setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft},
+    { "CReferee_setKickTeam", _wrap_CReferee_setKickTeam},
+    { "CReferee_setNextTimeKickOffTeam", _wrap_CReferee_setNextTimeKickOffTeam},
+    { "CReferee_setLastPlayerTouch", _wrap_CReferee_setLastPlayerTouch},
+    { "CReferee_setGameMode", _wrap_CReferee_setGameMode},
+    { "CReferee_addHomeGoal", _wrap_CReferee_addHomeGoal},
+    { "CReferee_addAwayGoal", _wrap_CReferee_addAwayGoal},
+    { "CReferee_incCycle", _wrap_CReferee_incCycle},
+    { "CReferee_isHomeTeamInSideLeft", _wrap_CReferee_isHomeTeamInSideLeft},
+    { "CReferee_isMoveLegal", _wrap_CReferee_isMoveLegal},
+    { "CReferee_getCycle", _wrap_CReferee_getCycle},
     { "CReferee_getHomeScore", _wrap_CReferee_getHomeScore},
     { "CReferee_getAwayScore", _wrap_CReferee_getAwayScore},
-    { "CReferee_getCycle", _wrap_CReferee_getCycle},
-    { "CReferee_incCycle", _wrap_CReferee_incCycle},
-    { "CReferee_setGameMode", _wrap_CReferee_setGameMode},
     { "CTeam_p_ctor", _wrap_CTeam_p_ctor},
     { "CTeam_m_pCtorName_set", _wrap_CTeam_m_pCtorName_set},
     { "CTeam_m_pCtorName_get", _wrap_CTeam_m_pCtorName_get},

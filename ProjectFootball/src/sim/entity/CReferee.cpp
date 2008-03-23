@@ -109,11 +109,21 @@ void CReferee::setKickTeam(CTeam *team)
 }
 
 
+void CReferee::setNextTimeKickOffTeam(CTeam *team)
+{
+    m_nextTimeKickOffTeam = team;
+}
+
 CTeam* CReferee::getKickTeam()
 {
     return m_kickTeam;
 }
 
+
+CTeam* CReferee::getNextTimeKickOffTeam()
+{
+    return m_nextTimeKickOffTeam;
+}
 
 void CReferee::setLastPlayerTouch(CFootballPlayer *player)
 {

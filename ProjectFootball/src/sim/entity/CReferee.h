@@ -42,27 +42,31 @@ public:
 
     bool handleMessage(const CMessage &msg);
     void update();
-    CStateMachine<CReferee>* getFSM();
-    void setMatchDuration(int cycles);
-    int getMatchDuration();
-    void setHomeTeamInSideLeft(bool left);
-    bool isHomeTeamInSideLeft();
-    void setKickTeam(CTeam *team);
-    CTeam* getKickTeam();
-    void setLastPlayerTouch(CFootballPlayer *player);
-    CFootballPlayer* getLastPlayerTouch();
-    void addHomeGoal(CFootballPlayer *player);
-    void addAwayGoal(CFootballPlayer *player);
 
-    bool isMoveLegal();
+    CStateMachine<CReferee>* getFSM();
+    int getMatchDuration();
+    CTeam* getKickTeam();
+    CTeam* getNextTimeKickOffTeam();
+    CFootballPlayer* getLastPlayerTouch();
     GameMode getGameMode();
     std::string getGameModeString();
-    int getHomeScore();
-    int getAwayScore();
+
+    void setMatchDuration(int cycles);
+    void setHomeTeamInSideLeft(bool left);
+    void setKickTeam(CTeam *team);
+    void setNextTimeKickOffTeam(CTeam *team);
+    void setLastPlayerTouch(CFootballPlayer *player);
+    void setGameMode(GameMode newGameMode);
+    void addHomeGoal(CFootballPlayer *player);
+    void addAwayGoal(CFootballPlayer *player);
+    void incCycle();
+
+    bool isHomeTeamInSideLeft();
+    bool isMoveLegal();
 
     int getCycle() const;
-    void incCycle();
-    void setGameMode(GameMode newGameMode);
+    int getHomeScore();
+    int getAwayScore();
 
 private:
     int m_cycle;
@@ -73,6 +77,7 @@ private:
     bool m_homeSideLeft;
     CFootballPlayer *m_lastPlayerTouch;
     CTeam *m_kickTeam;
+    CTeam *m_nextTimeKickOffTeam;
 
     CStateMachine<CReferee> *m_stateMachine;
 
