@@ -27,7 +27,7 @@ enum MessageType
     Msg_StartMatch,     // Sim to R
     Msg_BeforeStart,    // R to T
     Msg_HalfTime,       // R to T
-    Msg_EndMatch,       // R to T
+    Msg_EndMatch,       // R to T, T to P
     Msg_KickOff,        // R to T, T to P
     Msg_TouchBall,      // Sim to R
     Msg_ReceiveBall,
@@ -35,7 +35,7 @@ enum MessageType
     Msg_SupportAttacker,
     Msg_GoHome,         // T to P
     Msg_KickIn,         // T to P
-    Msg_Interrupt,
+    Msg_Interrupt,      // T to P
     Msg_PlayOn,         // R to T, T to P
     Msg_Wait
 };
