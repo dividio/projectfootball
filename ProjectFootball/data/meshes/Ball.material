@@ -1,4 +1,4 @@
-material icosahedron1_auv
+material ball_auv
 {
   technique
   {
@@ -6,7 +6,7 @@ material icosahedron1_auv
     {
       texture_unit
       {
-        texture icosahedron1_auv.png
+        texture ball_auv.png
       }
     }
   }
