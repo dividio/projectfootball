@@ -32,6 +32,9 @@
 #include "../utils/CTimer.h"
 #include "entity/CTeam.h"
 #include "CSimulationWorld.h"
+#include "../db/bean/CPfMatches.h"
+#include "../engine/event/match/CGoalMatchEvent.h"
+
 
 
 class CSimulationManager
@@ -43,6 +46,8 @@ public:
     void update();
 
     void startMatch();
+    void goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal);
+    void endMatchEvent();
     CSimulationWorld* getSimulationWorld();
     CReferee* getReferee();
     CBall* getBall();
@@ -51,8 +56,8 @@ public:
     void changePlayersSide();
 
     //Information Methods
-    std::string* getHomeTeamName();
-    std::string* getAwayTeamName();
+    const std::string& getHomeTeamName();
+    const std::string& getAwayTeamName();
     btVector3 getBallPosition() const;
 
 
@@ -63,6 +68,8 @@ public:
     void turn(CFootballPlayer *player, int moment);
 
 private:
+    CPfMatches *m_match;
+    std::vector<CGoalMatchEvent*> m_goalEvents;
     CTimer *m_logicTimer;
     CTimer *m_physicsTimer;
     CTeam *m_homeTeam;

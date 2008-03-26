@@ -24,6 +24,8 @@
 #include "CTeam.h"
 #include "CReferee.h"
 #include "../../state/CStateMonitor.h"
+#include "../db/dao/IPfTeamPlayersDAO.h"
+#include "../engine/CGameEngine.h"
 
 
 char* CFootballPlayer::m_pCtorName = "CFootballPlayer_p_ctor";
@@ -34,38 +36,40 @@ CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 }
 
 
-CFootballPlayer::CFootballPlayer(int number, CTeam *team, bool sideLeft)
+CFootballPlayer::CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLeft)
 :CBaseAgent()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
+    IPfTeamPlayersDAO *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
+    m_teamPlayer = teamPlayersDAO->findByXTepl(XTepl);
     m_stateMachine = new CStateMachine<CFootballPlayer>(this);
     Ogre::String id;
     char charId[20];
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
     m_sideLeft = sideLeft;
     m_team = team;
-    m_number = number;
+    m_number = number; //TODO
     m_lastKickBallCycle = -1;
 
     //m_direction.normalize();
-    sprintf(charId,"%s%d", team->getName()->c_str(), number);
+    sprintf(charId,"%s%d", team->getName().c_str(), m_number);
     m_ident = charId;
     id = charId;
     m_entity = scnMgr->createEntity("Cylinder"+id, "Cylinder.mesh");
     if(sideLeft) {
-        if(number == 1) {
+        if(m_number == 1) {
             m_entity->setMaterialName("goalie_red");
         } else {
             m_entity->setMaterialName("player_red");
         }
     } else {
-        if(number == 1) {
+        if(m_number == 1) {
             m_entity->setMaterialName("goalie_yellow");
         } else {
             m_entity->setMaterialName("player_yellow");
         }
     }
-    btVector3 *initialPos = team->getPlayerStrategicPosition(number)->getInitialPosition();
+    btVector3 *initialPos = team->getPlayerStrategicPosition(m_number)->getInitialPosition();
     btVector3 pos(initialPos->x(), initialPos->y(), initialPos->z());
     if(!m_sideLeft) {
         pos.setX(-pos.x());
@@ -156,7 +160,7 @@ CFootballPlayer::CFootballPlayer(int number, CTeam *team, bool sideLeft)
 
 CFootballPlayer::~CFootballPlayer()
 {
-
+    delete m_teamPlayer;
 }
 
 
@@ -247,6 +251,12 @@ btVector3 CFootballPlayer::getStrategicPosition() const
 CTeam* CFootballPlayer::getTeam() const
 {
     return m_team;
+}
+
+
+int CFootballPlayer::getXTeamPlayer()
+{
+    return m_teamPlayer->getXTepl();
 }
 
 

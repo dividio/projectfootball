@@ -65,6 +65,7 @@ public:
     bool isMoveLegal();
 
     int getCycle() const;
+    int getMinute() const;
     int getHomeScore();
     int getAwayScore();
 

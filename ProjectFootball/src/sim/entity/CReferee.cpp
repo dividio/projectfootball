@@ -169,6 +169,12 @@ int CReferee::getCycle() const
 }
 
 
+int CReferee::getMinute() const
+{
+    return ((90*m_cycle) / m_matchDuration);
+}
+
+
 void CReferee::incCycle()
 {
     m_cycle++;
@@ -230,11 +236,25 @@ int CReferee::getAwayScore()
 
 void CReferee::addHomeGoal(CFootballPlayer *player)
 {
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    bool ownGoal = false;
+    CTeam *team = sim->getHomeTeam();
+    if(player->getTeam()->getID() != team->getID()) {
+        ownGoal = true;
+    }
+    sim->goalMatchEvent(team, player, getMinute(), ownGoal);
     m_homeScore++;
 }
 
 
 void CReferee::addAwayGoal(CFootballPlayer *player)
 {
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    bool ownGoal = false;
+    CTeam *team = sim->getAwayTeam();
+    if(player->getTeam()->getID() != team->getID()) {
+        ownGoal = true;
+    }
+    sim->goalMatchEvent(team, player, getMinute(), ownGoal);
     m_awayScore++;
 }

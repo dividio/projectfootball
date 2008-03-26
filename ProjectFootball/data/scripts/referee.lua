@@ -13,7 +13,7 @@ SRf_Global["Execute"] = function(referee)
     local currentState = referee:getFSM():currentState()
     if (cycle == ( duration / 2)) and (currentState ~= "SRf_HalfTime") then
         referee:getFSM():changeState("SRf_HalfTime")
-    elseif (cycle == duration) and (currentState ~= "SRf_End") then
+    elseif (cycle >= duration) and (currentState ~= "SRf_End") then
         referee:getFSM():changeState("SRf_End")
     end
     local monitor = PF.CStateMonitor_getInstance()
@@ -203,6 +203,7 @@ SRf_End["Enter"] = function(referee)
     local disp = PF.CMessageDispatcher_getInstance()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_EndMatch, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_EndMatch, nil)
+    sim:endMatchEvent()
 end
 
 SRf_End["Execute"] = function(referee)

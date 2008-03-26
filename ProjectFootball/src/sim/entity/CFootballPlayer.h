@@ -28,7 +28,7 @@
 #include "CBaseAgent.h"
 #include "../CSteeringBehaviors.h"
 #include "../fsm/CStateMachine.h"
-
+#include "../db/bean/CPfTeamPlayers.h"
 
 
 class CTeam;
@@ -39,13 +39,14 @@ public:
     static char* m_pCtorName;
     static CFootballPlayer* getPlayer(CBaseGameEntity *player);
 
-    CFootballPlayer(int number, CTeam *team, bool sideLeft);
+    CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLeft);
     ~CFootballPlayer();
 
     CStateMachine<CFootballPlayer>* getFSM();
     btVector3 getStrategicPosition() const;
     std::string getIdent() const;
     CTeam* getTeam() const;
+    int getXTeamPlayer();
     CSteeringBehaviors* getSteering() const;
     bool isTeamLeft() const;
     bool isBallKickable() const;
@@ -65,6 +66,7 @@ protected:
 
 private:
     Ogre::SceneNode *m_ringNode;
+    CPfTeamPlayers *m_teamPlayer;
     bool m_canDoActions;
     int m_lastKickBallCycle;
     bool m_sideLeft;

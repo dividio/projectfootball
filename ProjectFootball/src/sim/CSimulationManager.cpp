@@ -29,6 +29,12 @@
 #include "../utils/CLog.h"
 #include "../audio/CAudioSystem.h"
 #include "../engine/option/CSystemOptionManager.h"
+#include "../db/dao/IPfMatchesDAO.h"
+#include "../engine/CGameEngine.h"
+#include "../engine/event/strategy/IGameEventStrategy.h"
+#include "../engine/event/match/CStartMatchEvent.h"
+#include "../engine/event/match/CEndMatchEvent.h"
+#include "../engine/event/match/CGoalMatchEvent.h"
 
 
 
@@ -51,8 +57,12 @@ CSimulationManager::CSimulationManager()
     m_ball = new CBall();
     m_simWorld->addObject(m_ball);
 
-    m_homeTeam = new CTeam("Lui TM", true);
-    m_awayTeam = new CTeam("Aceitunas Pacheco", false);
+    IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+    m_match = matchesDAO->findNextPlayerTeamMatch();
+
+
+    m_homeTeam = new CTeam(m_match->getXFkTeamHome(), true);
+    m_awayTeam = new CTeam(m_match->getXFkTeamAway(), false);
     m_homeTeam->setOpponentTeam(m_awayTeam);
     m_awayTeam->setOpponentTeam(m_homeTeam);
 
@@ -89,6 +99,12 @@ CSimulationManager::~CSimulationManager()
     if(m_awayTeam != NULL) {
         delete m_awayTeam;
     }
+
+    while(!m_goalEvents.empty()) {
+        delete m_goalEvents.back();
+        m_goalEvents.pop_back();
+    }
+    delete m_match;
 }
 
 
@@ -150,13 +166,34 @@ void CSimulationManager::startMatch()
 }
 
 
-std::string* CSimulationManager::getHomeTeamName()
+void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal)
+{
+    CGoalMatchEvent *event = new CGoalMatchEvent(m_match->getXMatch(), teamScorer->getXTeam(),
+                                                 playerScorer->getXTeamPlayer(), minute, ownGoal);
+    m_goalEvents.push_back(event);
+}
+
+
+void CSimulationManager::endMatchEvent()
+{
+    IGameEventStrategy *eventStrategy = CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy();
+    CStartMatchEvent startMatchEvent(m_match->getXMatch());
+    CEndMatchEvent endMatchEvent(m_match->getXMatch());
+    eventStrategy->process(startMatchEvent);
+    std::vector<CGoalMatchEvent*>::iterator it;
+    for(it = m_goalEvents.begin(); it!=m_goalEvents.end(); it++) {
+        eventStrategy->process(*(*it));
+    }
+    eventStrategy->process(endMatchEvent);
+}
+
+const std::string& CSimulationManager::getHomeTeamName()
 {
     return m_homeTeam->getName();
 }
 
 
-std::string* CSimulationManager::getAwayTeamName()
+const std::string& CSimulationManager::getAwayTeamName()
 {
     return m_awayTeam->getName();
 }
