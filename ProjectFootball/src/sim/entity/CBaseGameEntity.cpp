@@ -102,7 +102,8 @@ btVector3 CBaseGameEntity::getPosition() const
 
 void CBaseGameEntity::setPosition(float x, float y, float z)
 {
-    btVector3 pos = getPosition();
-    btVector3 desp(-pos.getX() + x, -pos.getY() + y, -pos.getZ() + z);
-    m_body->translate(desp);
+    btTransform trans;
+    trans.setIdentity();
+    trans.setOrigin(btVector3(x,y,z));
+    m_body->proceedToTransform(m_centerOfMassOffset.inverse()*trans);
 }
