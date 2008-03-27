@@ -241,14 +241,15 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
     int maxKickPower = optionManager->getIntOption("Simulation", "MaxKickPower");
     btRigidBody *ballBody = m_ball->getBody();
     btRigidBody *body = player->getBody();
-    btVector3 currentVelocity = ballBody->getLinearVelocity();
-    btVector3 newVelocity = currentVelocity;
+    btVector3 velocity;
+    btVector3 direction = power.normalized();
+    direction = direction / 4;
     if(player->canKickBall(m_referee->getCycle()) && player->canDoActions()) {
         truncateVector(&power, maxKickPower);
-        newVelocity += power;
-        truncateVector(&newVelocity, maxBallVelocity);
-        ballBody->setLinearVelocity(newVelocity);
-        //m_referee->playerKickEvent(player);
+        ballBody->applyImpulse(power, -direction);
+        velocity = ballBody->getLinearVelocity();
+        truncateVector(&velocity, maxBallVelocity);
+        ballBody->setLinearVelocity(velocity);
         CMessageDispatcher::getInstance()->dispatchMsg(0, player->getID(), m_referee->getID(), Msg_TouchBall, 0);
         CAudioSystem::LOW_KICK->play();
     }
