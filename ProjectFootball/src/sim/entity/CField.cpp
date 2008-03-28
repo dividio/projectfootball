@@ -38,6 +38,7 @@ CField::CField()
     goal = scnMgr->createEntity("Goal_right", "Goal.mesh");
     node = m_node->createChildSceneNode("GoalRightNode", Ogre::Vector3(55,0,0));
     node->attachObject(goal);
+    node->yaw(Ogre::Degree(180));
 
     m_shape = new btBoxShape(btVector3(btScalar(60.0),btScalar(1.0),btScalar(45.0)));
     btScalar mass(0);
@@ -49,7 +50,8 @@ CField::CField()
     if (isDynamic)
         m_shape->calculateLocalInertia(mass,localInertia);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
-    rbInfo.m_friction = 0.2;
+    rbInfo.m_restitution = btScalar(0.4);
+    rbInfo.m_friction = 0.4;
     m_body = new btRigidBody(rbInfo);
 }
 
