@@ -11,3 +11,17 @@ material Field_auv
 		}
 	}
 }
+
+material web_auv
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture web_auv.png
+			}
+		}
+	}
+}
