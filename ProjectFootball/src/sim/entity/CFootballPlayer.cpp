@@ -45,7 +45,7 @@ CFootballPlayer::CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLe
     m_stateMachine = new CStateMachine<CFootballPlayer>(this);
     Ogre::String id;
     char charId[20];
-    m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
+    m_centerOfMassOffset.setOrigin(btVector3(0,-0.9,0));
     m_sideLeft = sideLeft;
     m_team = team;
     m_number = number; //TODO
@@ -77,7 +77,7 @@ CFootballPlayer::CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLe
     }
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("PlayerNode"+id, Ogre::Vector3(pos.x(), pos.y(), pos.z()));
     m_node->attachObject(m_entity);
-    m_shape = new btCylinderShape(btVector3(btScalar(1.),btScalar(1.),btScalar(1.)));
+    m_shape = new btCylinderShape(btVector3(btScalar(0.5),btScalar(0.9),btScalar(0.5)));
     btScalar mass(70.0);
 
     //rigidbody is dynamic if and only if mass is non zero, otherwise static
@@ -98,7 +98,7 @@ CFootballPlayer::CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLe
     Ogre::ManualObject * circle = scnMgr->createManualObject("circle_name"+id);
 
     float const radius = 1.5,
-                thickness = 0.5, // Of course this must be less than the radius value.
+                thickness = 0.7, // Of course this must be less than the radius value.
                 accuracy = 5,
                 height = 0.01;
 
