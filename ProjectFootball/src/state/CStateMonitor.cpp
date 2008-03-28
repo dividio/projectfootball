@@ -35,7 +35,7 @@ CStateMonitor::CStateMonitor()
 
     m_sceneMgr = m_root->createSceneManager(Ogre::ST_GENERIC, "Simulation SceneManager");
     m_cam = m_sceneMgr->createCamera("RttCam");
-    m_cam->setNearClipDistance(5);
+    m_cam->setNearClipDistance(1);
     m_direction = Ogre::Vector3::ZERO;
 
 
@@ -294,15 +294,14 @@ void CStateMonitor::addToLog(std::string text)
 {
     CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
     CEGUI::Listbox* logHistory = static_cast<CEGUI::Listbox*> (winMgr.getWindow("Monitor/Log"));
-    int historySize = 5;
-
+    int historySize = 6;
+    char message[30];
     // If there's text then add it
-    if(text.size())
-    {
+    if(text.size()) {
+        sprintf(message,"%d' - %s", m_simulator->getReferee()->getMinute(), text.c_str());
         // Add the Editbox text to the history Listbox
         CEGUI::ListboxTextItem* logItem;
-        if(logHistory->getItemCount() == historySize)
-        {
+        if(logHistory->getItemCount() == historySize) {
             /* We have reached the capacity of the Listbox so re-use the first Listbox item.
                This code is a little crafty.  By default the ListboxTextItem is created with
                the auto-delete flag set to true, which results in its automatic deletion when
@@ -313,12 +312,10 @@ void CStateMonitor::addToLog(std::string text)
             logItem->setAutoDeleted(false);
             logHistory->removeItem(logItem);
             logItem->setAutoDeleted(true);
-            logItem->setText(text);
-        }
-        else
-        {
+            logItem->setText(message);
+        } else {
             // Create a new listbox item
-            logItem = new CEGUI::ListboxTextItem(text);
+            logItem = new CEGUI::ListboxTextItem(message);
         }
         logHistory->addItem(logItem);
         logHistory->ensureItemIsVisible(logHistory->getItemCount());
