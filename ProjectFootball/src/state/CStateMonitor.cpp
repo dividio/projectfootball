@@ -23,6 +23,7 @@
 #include "CStateMonitor.h"
 #include "CStateManager.h"
 #include "../utils/CLog.h"
+#include "../engine/CGameEngine.h"
 
 
 CStateMonitor::CStateMonitor()
@@ -162,6 +163,8 @@ void CStateMonitor::enter()
     node->pitch(Ogre::Degree(0));
 
     switchTo2DView();
+
+    loadTeamPlayers();
 }
 
 
@@ -320,6 +323,34 @@ void CStateMonitor::addToLog(std::string text)
         logHistory->addItem(logItem);
         logHistory->ensureItemIsVisible(logHistory->getItemCount());
     }
+}
+
+
+void CStateMonitor::loadTeamPlayers()
+{
+    CEGUI::MultiColumnList *playersList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Monitor/TeamPlayersList"));
+    playersList->addColumn("Name", 0, CEGUI::UDim(1.0,0));
+    playersList->resetList();
+
+    CPfTeams                                *team               = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    IPfTeamPlayersDAO                       *teamPlayersDAO     = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
+    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findActiveTeamPlayersByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>::iterator  it;
+
+    int cont = 0;
+    for( it=teamPlayersList->begin(); it!=teamPlayersList->end(); it++ ){
+        CPfTeamPlayers *teamPlayer = (*it);
+
+        if(cont < 11) {
+            int row_idx = playersList->addRow();
+            playersList->setItem(new CEGUI::ListboxTextItem(teamPlayer->getSName()), 0, row_idx);
+        }
+        cont++;
+    }
+    teamPlayersDAO->freeVector(teamPlayersList);
+    delete team;
+
+    playersList->getHorzScrollbar()->setVisible(false);
 }
 
 

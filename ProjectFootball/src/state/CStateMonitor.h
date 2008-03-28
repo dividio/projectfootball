@@ -65,6 +65,7 @@ private:
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
     void updateScore();
+    void loadTeamPlayers();
 };
 
 #endif // __CStateMonitor_H__
