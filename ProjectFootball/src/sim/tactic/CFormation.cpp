@@ -41,6 +41,7 @@ CFormation::CFormation(const char* name)
     m_name = name;
 }
 
+
 CFormation::~CFormation()
 {
     int i = 0;
@@ -68,36 +69,9 @@ const std::string& CFormation::getName()
 }
 
 
-void CFormation::changeToInitialPosition()
+FormationType CFormation::getCurrentFormationType()
 {
-    int i = 0;
-    btVector3 *newPos;
-    for(i = 0; i < 11; i++) {
-        newPos = m_positions[i]->getInitialPosition();
-        m_positions[i]->setCurrentPosition(newPos);
-    }
-}
-
-
-void CFormation::changeToDefensive()
-{
-    int i = 0;
-    btVector3 *newPos;
-    for(i = 0; i < 11; i++) {
-        newPos = m_positions[i]->getDefensivePosition();
-        m_positions[i]->setCurrentPosition(newPos);
-    }
-}
-
-
-void CFormation::changeToOffensive()
-{
-    int i = 0;
-    btVector3 *newPos;
-    for(i = 0; i < 11; i++) {
-        newPos = m_positions[i]->getOffensivePosition();
-        m_positions[i]->setCurrentPosition(newPos);
-    }
+    return m_currentFormationType;
 }
 
 
@@ -140,6 +114,18 @@ int CFormation::getLeftTrowInPlayerId() const
 int CFormation::getGoalKickPlayerId() const
 {
     return m_goalKickPlayerId;
+}
+
+
+void CFormation::setCurrentFormationType(FormationType type)
+{
+    m_currentFormationType = type;
+    int i = 0;
+    btVector3 *newPos;
+    for(i = 0; i < 11; i++) {
+        newPos = m_positions[i]->getPosition(type);
+        m_positions[i]->setCurrentPosition(newPos);
+    }
 }
 
 

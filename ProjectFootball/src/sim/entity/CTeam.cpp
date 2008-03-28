@@ -280,6 +280,14 @@ std::vector<CFormation*>* CTeam::getFormations()
 }
 
 
+void CTeam::changeFormation(int formationPos)
+{
+    // TODO
+    FormationType currentType = m_currentFormation->getCurrentFormationType();
+    m_currentFormation = m_formations[formationPos];
+    m_currentFormation->setCurrentFormationType(currentType);
+}
+
 CStrategicPosition* CTeam::getPlayerStrategicPosition(int formationPos) const
 {
     //TODO Verify formationPos
@@ -406,7 +414,7 @@ void CTeam::setFormations()
     point.setValue(0,0,-25);
     pos->setOffensivePosition(&point);
 
-    //
+    // ATK
 
     pos = formation->getPlayerStrategicPosition(8);
     point.setValue(-10,0,0);
@@ -442,4 +450,112 @@ void CTeam::setFormations()
 
     m_formations.push_back(formation);
     m_currentFormation = formation;
+
+    // 4-4-2
+    formation = new CFormation("4-4-2");
+
+    //Goalie
+    pos = formation->getPlayerStrategicPosition(0);
+    point.setValue(-54,0,0);
+    pos->setInitialPosition(&point);
+    point.setValue(-54,0,0);
+    pos->setDefensivePosition(&point);
+    point.setValue(-52,0,0);
+    pos->setOffensivePosition(&point);
+
+    //DF
+    pos = formation->getPlayerStrategicPosition(1);
+    point.setValue(-30,0,25);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,25);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(2);
+    point.setValue(-30,0,-25);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,-25);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,-25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(3);
+    point.setValue(-30,0,5);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,5);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,5);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(4);
+    point.setValue(-30,0,-5);
+    pos->setInitialPosition(&point);
+    point.setValue(-30,0,-5);
+    pos->setDefensivePosition(&point);
+    point.setValue(-10,0,-5);
+    pos->setOffensivePosition(&point);
+
+    //MD
+
+    pos = formation->getPlayerStrategicPosition(5);
+    point.setValue(-15,0,5);
+    pos->setInitialPosition(&point);
+    point.setValue(-15,0,5);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,5);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(6);
+    point.setValue(-20,0,25);
+    pos->setInitialPosition(&point);
+    point.setValue(-20,0,25);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(7);
+    point.setValue(-20,0,-25);
+    pos->setInitialPosition(&point);
+    point.setValue(-20,0,-25);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,-25);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(8);
+    point.setValue(-15,0,-5);
+    pos->setInitialPosition(&point);
+    point.setValue(-15,0,-5);
+    pos->setDefensivePosition(&point);
+    point.setValue(0,0,-5);
+    pos->setOffensivePosition(&point);
+
+
+    // ATK
+
+    pos = formation->getPlayerStrategicPosition(9);
+    point.setValue(-5,0,20);
+    pos->setInitialPosition(&point);
+    point.setValue(15,0,20);
+    pos->setDefensivePosition(&point);
+    point.setValue(25,0,20);
+    pos->setOffensivePosition(&point);
+
+    pos = formation->getPlayerStrategicPosition(10);
+    point.setValue(-5,0,-20);
+    pos->setInitialPosition(&point);
+    point.setValue(15,0,-20);
+    pos->setDefensivePosition(&point);
+    point.setValue(25,0,-20);
+    pos->setOffensivePosition(&point);
+
+    formation->setKickOffPlayerId(8);
+    formation->setKickInPlayerId(5);
+    formation->setRightCornerKickPlayerId(6);
+    formation->setLeftCornerKickPlayerId(7);
+    formation->setRightTrowInPlayerId(6);
+    formation->setLeftTrowInPlayerId(7);
+    formation->setGoalKickPlayerId(0);
+
+    m_formations.push_back(formation);
 }

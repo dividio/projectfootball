@@ -48,6 +48,7 @@ public:
     void startMatch();
     void goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal);
     void endMatchEvent();
+    void changeFormationEvent(int pos);
     CSimulationWorld* getSimulationWorld();
     CReferee* getReferee();
     CBall* getBall();

@@ -65,6 +65,7 @@ public:
     bool                handleMessage(const CMessage &msg);
     void                update();
     void                changeSide();
+    void                changeFormation(int formationPos);
 
 private:
     CPfTeams                        *m_team;

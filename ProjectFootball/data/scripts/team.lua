@@ -42,7 +42,7 @@ end
 STm_BeforeStart = {}
 
 STm_BeforeStart["Enter"] = function(team)
-    team:getCurrentFormation():changeToInitialPosition()
+    team:getCurrentFormation():setCurrentFormationType(PF.FT_Initial)
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
@@ -68,7 +68,7 @@ end
 STm_HalfTime = {}
 
 STm_HalfTime["Enter"] = function(team)
-    team:getCurrentFormation():changeToInitialPosition()
+    team:getCurrentFormation():setCurrentFormationType(PF.FT_Initial)
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
@@ -123,11 +123,11 @@ STm_Kick["Enter"] = function(team)
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
     local formation = team:getCurrentFormation()
     if sim:getReferee():getGameMode() == PF.KICK_OFF then
-        formation:changeToInitialPosition()
+        formation:setCurrentFormationType(PF.FT_Initial)
     elseif team:isKickForUs() then
-        formation:changeToOffensive()
+        formation:setCurrentFormationType(PF.FT_Offensive)
     else
-        formation:changeToDefensive()
+        formation:setCurrentFormationType(PF.FT_Defensive)
     end
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()

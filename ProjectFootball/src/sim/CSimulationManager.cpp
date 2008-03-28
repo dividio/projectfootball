@@ -187,6 +187,21 @@ void CSimulationManager::endMatchEvent()
     eventStrategy->process(endMatchEvent);
 }
 
+
+void CSimulationManager::changeFormationEvent(int pos)
+{
+    CPfTeams *team = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    int xTeam = team->getXTeam();
+    if(xTeam == m_homeTeam->getXTeam()) {
+        m_homeTeam->changeFormation(pos);
+    } else if(xTeam == m_awayTeam->getXTeam()) {
+        m_awayTeam->changeFormation(pos);
+    } else {
+        CLog::getInstance()->error("Can't switch formation, team %d is not playing the match.", xTeam);
+    }
+}
+
+
 const std::string& CSimulationManager::getHomeTeamName()
 {
     return m_homeTeam->getName();

@@ -65,6 +65,14 @@ function cmd_Monitor_SwitchTo3DView()
     PF.CStateMonitor_getInstance():switchTo3DView()
 end
 
+function cmd_Monitor_changeTo442()
+    PF.CStateMonitor_getInstance():getSimulationManager():changeFormationEvent(1)
+end
+
+function cmd_Monitor_changeTo433()
+    PF.CStateMonitor_getInstance():getSimulationManager():changeFormationEvent(0)
+end
+
 
 --------------------------
 -- CStateConfig functions

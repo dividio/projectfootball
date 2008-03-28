@@ -26,6 +26,7 @@
 
 #include "CStrategicPosition.h"
 
+
 class CFormation
 {
 public:
@@ -33,20 +34,18 @@ public:
     CFormation(const char* name);
     ~CFormation();
 
-    void changeToInitialPosition();
-    void changeToDefensive();
-    void changeToOffensive();
-
     CStrategicPosition* getPlayerStrategicPosition(int player) const;
-    const std::string& getName();
-    int getKickOffPlayerId() const;
-    int getKickInPlayerId() const;
-    int getRightCornerKickPlayerId() const;
-    int getLeftCornerKickPlayerId() const;
-    int getRightTrowInPlayerId() const;
-    int getLeftTrowInPlayerId() const;
-    int getGoalKickPlayerId() const;
+    const std::string&  getName();
+    FormationType       getCurrentFormationType();
+    int                 getKickOffPlayerId() const;
+    int                 getKickInPlayerId() const;
+    int                 getRightCornerKickPlayerId() const;
+    int                 getLeftCornerKickPlayerId() const;
+    int                 getRightTrowInPlayerId() const;
+    int                 getLeftTrowInPlayerId() const;
+    int                 getGoalKickPlayerId() const;
 
+    void setCurrentFormationType(FormationType type);
     void setKickOffPlayerId(int player);
     void setKickInPlayerId(int player);
     void setRightCornerKickPlayerId(int player);
@@ -56,15 +55,16 @@ public:
     void setGoalKickPlayerId(int player);
 
 private:
-    std::string m_name;
-    CStrategicPosition* m_positions[11];
-    int m_kickOffPlayerId;
-    int m_kickInPlayerId;
-    int m_rightCornerKickPlayerId;
-    int m_leftCornerKickPlayerId;
-    int m_rightTrowInPlayerId;
-    int m_leftTrowInPlayerId;
-    int m_goalKickPlayerId;
+    std::string             m_name;
+    FormationType           m_currentFormationType;
+    CStrategicPosition     *m_positions[11];
+    int                     m_kickOffPlayerId;
+    int                     m_kickInPlayerId;
+    int                     m_rightCornerKickPlayerId;
+    int                     m_leftCornerKickPlayerId;
+    int                     m_rightTrowInPlayerId;
+    int                     m_leftTrowInPlayerId;
+    int                     m_goalKickPlayerId;
 };
 
 #endif // __CTactic_H__

@@ -71,6 +71,27 @@ void CStrategicPosition::setPlayingArea(btVector3 *topLeft, btVector3 *bottomRig
 }
 
 
+btVector3* CStrategicPosition::getPosition(FormationType type) const
+{
+    btVector3 *pos = m_initialPosition;
+    switch (type) {
+        case FT_Initial:
+            pos = m_initialPosition;
+            break;
+        case FT_Offensive:
+            pos = m_offensivePosition;
+            break;
+        case FT_Defensive:
+            pos = m_defensivePosition;
+            break;
+        default:
+            pos = m_initialPosition;
+            break;
+    }
+    return pos;
+}
+
+
 btVector3* CStrategicPosition::getInitialPosition() const
 {
     return m_initialPosition;

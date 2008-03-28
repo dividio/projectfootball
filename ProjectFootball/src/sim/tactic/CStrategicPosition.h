@@ -25,6 +25,14 @@
 #include "../../bullet/btBulletDynamicsCommon.h"
 #include "CRectangle.h"
 
+
+enum FormationType
+{
+    FT_Initial,
+    FT_Offensive,
+    FT_Defensive
+};
+
 class CStrategicPosition
 {
 public:
@@ -37,17 +45,18 @@ public:
     void setCurrentPosition(btVector3 *pos);
     void setPlayingArea(btVector3 *topLeft, btVector3 *bottomRight);
 
-    btVector3* getInitialPosition() const;
-    btVector3* getDefensivePosition() const;
-    btVector3* getOffensivePosition() const;
-    btVector3* getCurrentPosition() const;
+    btVector3*  getPosition(FormationType type) const;
+    btVector3*  getInitialPosition() const;
+    btVector3*  getDefensivePosition() const;
+    btVector3*  getOffensivePosition() const;
+    btVector3*  getCurrentPosition() const;
     CRectangle* getPlayingArea() const;
 
 private:
-    btVector3 *m_initialPosition;
-    btVector3 *m_defensivePosition;
-    btVector3 *m_offensivePosition;
-    btVector3 *m_currentPosition;
+    btVector3  *m_initialPosition;
+    btVector3  *m_defensivePosition;
+    btVector3  *m_offensivePosition;
+    btVector3  *m_currentPosition;
     CRectangle *m_playingArea;
 };
 
