@@ -28,6 +28,7 @@
 
 #include "../../../dao/factory/IDAOFactory.h"
 
+#include "../../../dao/IPfCompetitionPhasesDAO.h"
 #include "../../../dao/IPfRankingDAO.h"
 #include "../../../dao/IPfGameStatesDAO.h"
 #include "../../../dao/IPfMatchesDAO.h"
@@ -35,8 +36,10 @@
 #include "../../../dao/IPfTeamPlayerContractsDAO.h"
 #include "../../../dao/IPfGoalsDAO.h"
 #include "../../../dao/IPfTeamPlayersDAO.h"
+#include "../../../dao/IPfCompetitionsDAO.h"
 #include "../../../dao/IPfTeamsDAO.h"
 
+#include "../CPfCompetitionPhasesDAOSQLite.h"
 #include "../CPfRankingDAOSQLite.h"
 #include "../CPfGameStatesDAOSQLite.h"
 #include "../CPfMatchesDAOSQLite.h"
@@ -44,6 +47,7 @@
 #include "../CPfTeamPlayerContractsDAOSQLite.h"
 #include "../CPfGoalsDAOSQLite.h"
 #include "../CPfTeamPlayersDAOSQLite.h"
+#include "../CPfCompetitionsDAOSQLite.h"
 #include "../CPfTeamsDAOSQLite.h"
 
 class CDAOFactorySQLite : public IDAOFactory
@@ -62,6 +66,7 @@ public:
     virtual bool commit();
     virtual bool rollback();
 
+    virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO();
     virtual IPfRankingDAO* getIPfRankingDAO();
     virtual IPfGameStatesDAO* getIPfGameStatesDAO();
     virtual IPfMatchesDAO* getIPfMatchesDAO();
@@ -69,6 +74,7 @@ public:
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
     virtual IPfGoalsDAO* getIPfGoalsDAO();
     virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO();
+    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO();
     virtual IPfTeamsDAO* getIPfTeamsDAO();
 
 
@@ -76,6 +82,7 @@ private:
     sqlite3     *m_database;
     std::string m_filepath;
 
+    CPfCompetitionPhasesDAOSQLite *m_PfCompetitionPhasesDAOSQLite;
     CPfRankingDAOSQLite *m_PfRankingDAOSQLite;
     CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
     CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
@@ -83,6 +90,7 @@ private:
     CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
     CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
     CPfTeamPlayersDAOSQLite *m_PfTeamPlayersDAOSQLite;
+    CPfCompetitionsDAOSQLite *m_PfCompetitionsDAOSQLite;
     CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
 
 };

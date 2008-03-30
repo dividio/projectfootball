@@ -20,43 +20,45 @@
 *       Version: 1.15                                                         *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#include <iostream>
+#include <sstream>
 
-#include "../IPfCompetitionPhasesDAO.h"
-#include "../IPfRankingDAO.h"
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfCompetitionsDAO.h"
-#include "../IPfTeamsDAO.h"
+#include "CPfCompetitionPhasesDAOSQLite.h"
 
-class IDAOFactory
+CPfCompetitionPhasesDAOSQLite::CPfCompetitionPhasesDAOSQLite(sqlite3 *database)
+  : CPfCompetitionPhasesDAOSQLiteEntity(database)
 {
-public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+}
 
-    virtual bool executeScript(const std::string &script) =0;
-    virtual bool executeScriptFile(const char *scriptFile) =0;
+CPfCompetitionPhasesDAOSQLite::~CPfCompetitionPhasesDAOSQLite()
+{
+}
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXCompetitionPhase(int XCompetitionPhase)
+{
+    std::ostringstream stream;
+    stream << XCompetitionPhase;
+    return findByXCompetitionPhase(stream.str());
+}
 
-    virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
-    virtual IPfRankingDAO* getIPfRankingDAO() =0;
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXCompetitionPhase(const std::string &XCompetitionPhase)
+{
+    std::string sql("SELECT * FROM PF_COMPETITION_PHASES WHERE ");
+    sql = sql+"X_COMPETITION_PHASE='"+XCompetitionPhase+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*IDAOFACTORY_H_*/
+CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXFkCompetition(int XFkCompetition)
+{
+    std::ostringstream stream;
+    stream << XFkCompetition;
+    return findByXFkCompetition(stream.str());
+}
+
+CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXFkCompetition(const std::string &XFkCompetition)
+{
+    std::string sql("SELECT * FROM PF_COMPETITION_PHASES WHERE ");
+    sql = sql+"X_FK_COMPETITION='"+XFkCompetition+"'";
+    return loadRegister(sql);
+}
+

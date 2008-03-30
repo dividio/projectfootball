@@ -20,43 +20,31 @@
 *       Version: 1.15                                                         *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#include <iostream>
+#include <sstream>
 
-#include "../IPfCompetitionPhasesDAO.h"
-#include "../IPfRankingDAO.h"
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfCompetitionsDAO.h"
-#include "../IPfTeamsDAO.h"
+#include "CPfCompetitionsDAOSQLite.h"
 
-class IDAOFactory
+CPfCompetitionsDAOSQLite::CPfCompetitionsDAOSQLite(sqlite3 *database)
+  : CPfCompetitionsDAOSQLiteEntity(database)
 {
-public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+}
 
-    virtual bool executeScript(const std::string &script) =0;
-    virtual bool executeScriptFile(const char *scriptFile) =0;
+CPfCompetitionsDAOSQLite::~CPfCompetitionsDAOSQLite()
+{
+}
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+CPfCompetitions* CPfCompetitionsDAOSQLite::findByXCompetition(int XCompetition)
+{
+    std::ostringstream stream;
+    stream << XCompetition;
+    return findByXCompetition(stream.str());
+}
 
-    virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
-    virtual IPfRankingDAO* getIPfRankingDAO() =0;
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+CPfCompetitions* CPfCompetitionsDAOSQLite::findByXCompetition(const std::string &XCompetition)
+{
+    std::string sql("SELECT * FROM PF_COMPETITIONS WHERE ");
+    sql = sql+"X_COMPETITION='"+XCompetition+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*IDAOFACTORY_H_*/

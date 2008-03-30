@@ -36,6 +36,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     }
     m_filepath = filepath;
 
+    m_PfCompetitionPhasesDAOSQLite = new CPfCompetitionPhasesDAOSQLite(m_database);
     m_PfRankingDAOSQLite = new CPfRankingDAOSQLite(m_database);
     m_PfGameStatesDAOSQLite = new CPfGameStatesDAOSQLite(m_database);
     m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
@@ -43,6 +44,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
     m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
     m_PfTeamPlayersDAOSQLite = new CPfTeamPlayersDAOSQLite(m_database);
+    m_PfCompetitionsDAOSQLite = new CPfCompetitionsDAOSQLite(m_database);
     m_PfTeamsDAOSQLite = new CPfTeamsDAOSQLite(m_database);
 
     CLog::getInstance()->info("[CDAOFactorySQLite::CDAOFactorySQLite] SQLite Database open: '%s'", m_filepath.c_str());
@@ -50,6 +52,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
 
 CDAOFactorySQLite::~CDAOFactorySQLite()
 {
+    delete m_PfCompetitionPhasesDAOSQLite;
     delete m_PfRankingDAOSQLite;
     delete m_PfGameStatesDAOSQLite;
     delete m_PfMatchesDAOSQLite;
@@ -57,6 +60,7 @@ CDAOFactorySQLite::~CDAOFactorySQLite()
     delete m_PfTeamPlayerContractsDAOSQLite;
     delete m_PfGoalsDAOSQLite;
     delete m_PfTeamPlayersDAOSQLite;
+    delete m_PfCompetitionsDAOSQLite;
     delete m_PfTeamsDAOSQLite;
 
     sqlite3_close(m_database);
@@ -76,6 +80,7 @@ void CDAOFactorySQLite::openSQLite(const std::string &filepath)
     }
     m_filepath = filepath;
 
+    m_PfCompetitionPhasesDAOSQLite->setSQLite(m_database);
     m_PfRankingDAOSQLite->setSQLite(m_database);
     m_PfGameStatesDAOSQLite->setSQLite(m_database);
     m_PfMatchesDAOSQLite->setSQLite(m_database);
@@ -83,6 +88,7 @@ void CDAOFactorySQLite::openSQLite(const std::string &filepath)
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(m_database);
     m_PfGoalsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayersDAOSQLite->setSQLite(m_database);
+    m_PfCompetitionsDAOSQLite->setSQLite(m_database);
     m_PfTeamsDAOSQLite->setSQLite(m_database);
 
     CLog::getInstance()->info("[CDAOFactorySQLite::openSQLite] SQLite Database open: '%s'", m_filepath.c_str());
@@ -90,6 +96,7 @@ void CDAOFactorySQLite::openSQLite(const std::string &filepath)
 
 void CDAOFactorySQLite::closeSQLite()
 {
+    m_PfCompetitionPhasesDAOSQLite->setSQLite(NULL);
     m_PfRankingDAOSQLite->setSQLite(NULL);
     m_PfGameStatesDAOSQLite->setSQLite(NULL);
     m_PfMatchesDAOSQLite->setSQLite(NULL);
@@ -97,6 +104,7 @@ void CDAOFactorySQLite::closeSQLite()
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(NULL);
     m_PfGoalsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayersDAOSQLite->setSQLite(NULL);
+    m_PfCompetitionsDAOSQLite->setSQLite(NULL);
     m_PfTeamsDAOSQLite->setSQLite(NULL);
 
     sqlite3_close(m_database);
@@ -196,6 +204,11 @@ bool CDAOFactorySQLite::rollback()
     return correct;
 }
 
+IPfCompetitionPhasesDAO* CDAOFactorySQLite::getIPfCompetitionPhasesDAO()
+{
+    return m_PfCompetitionPhasesDAOSQLite;
+}
+
 IPfRankingDAO* CDAOFactorySQLite::getIPfRankingDAO()
 {
     return m_PfRankingDAOSQLite;
@@ -229,6 +242,11 @@ IPfGoalsDAO* CDAOFactorySQLite::getIPfGoalsDAO()
 IPfTeamPlayersDAO* CDAOFactorySQLite::getIPfTeamPlayersDAO()
 {
     return m_PfTeamPlayersDAOSQLite;
+}
+
+IPfCompetitionsDAO* CDAOFactorySQLite::getIPfCompetitionsDAO()
+{
+    return m_PfCompetitionsDAOSQLite;
 }
 
 IPfTeamsDAO* CDAOFactorySQLite::getIPfTeamsDAO()

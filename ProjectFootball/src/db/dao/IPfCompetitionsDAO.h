@@ -20,43 +20,28 @@
 *       Version: 1.15                                                         *
 ******************************************************************************/
 
-#ifndef IDAOFACTORY_H_
-#define IDAOFACTORY_H_
+#ifndef IPFCOMPETITIONSDAO_H_
+#define IPFCOMPETITIONSDAO_H_
 
-#include "../IPfCompetitionPhasesDAO.h"
-#include "../IPfRankingDAO.h"
-#include "../IPfGameStatesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
-#include "../IPfTeamPlayersDAO.h"
-#include "../IPfCompetitionsDAO.h"
-#include "../IPfTeamsDAO.h"
+#include <string>
+#include <vector>
 
-class IDAOFactory
+#include "../bean/CPfCompetitions.h"
+
+class IPfCompetitionsDAO
 {
 public:
-    IDAOFactory(){}
-    virtual ~IDAOFactory(){}
+    IPfCompetitionsDAO(){}
+    virtual ~IPfCompetitionsDAO(){}
 
-    virtual bool executeScript(const std::string &script) =0;
-    virtual bool executeScriptFile(const char *scriptFile) =0;
+    virtual bool deleteReg(CPfCompetitions *reg) =0;
+    virtual bool insertReg(CPfCompetitions *reg) =0;
+    virtual bool updateReg(CPfCompetitions *reg) =0;
 
-    virtual bool beginTransaction() =0;
-    virtual bool commit() =0;
-    virtual bool rollback() =0;
+    virtual void freeVector(std::vector<CPfCompetitions*>* vector) =0;
 
-    virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
-    virtual IPfRankingDAO* getIPfRankingDAO() =0;
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
-    virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
-    virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+    virtual CPfCompetitions* findByXCompetition(int XCompetition) =0;
+    virtual CPfCompetitions* findByXCompetition(const std::string &XCompetition) =0;
 
 };
-#endif /*IDAOFACTORY_H_*/
+#endif /*IPFCOMPETITIONSDAO_H_*/
