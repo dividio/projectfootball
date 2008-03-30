@@ -38,9 +38,7 @@ public:
 	void setUser(int xUser);
 	const CPfUsers* getCurrentUser();
 
-	void newSinglePlayerGame(const std::string &gameName);
 	void loadGame(int xGame);
-	void saveCurrentGame();
 	void unloadCurrentGame();
 
 private:
