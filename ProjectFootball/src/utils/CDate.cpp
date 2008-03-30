@@ -246,7 +246,7 @@ void CDate::setSec(int seconds)
     mktime(&m_tm);
 }
 
-CDate& CDate::operator +(int nDays)
+CDate& CDate::operator +=(int nDays)
 {
     m_tm.tm_mday += nDays;
     mktime(&m_tm);
@@ -262,7 +262,7 @@ CDate& CDate::operator ++()
     return *this;
 }
 
-CDate& CDate::operator -(int nDays)
+CDate& CDate::operator -=(int nDays)
 {
     m_tm.tm_mday -= nDays;
     mktime(&m_tm);

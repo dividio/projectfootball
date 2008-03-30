@@ -53,10 +53,10 @@ public:
     void setMin(int minutes);
     void setSec(int seconds);
 
-	CDate& operator +(int nDays);
+	CDate& operator +=(int nDays);
 	CDate& operator ++();
 
-	CDate& operator -(int nDays);
+	CDate& operator -=(int nDays);
 	CDate& operator --();
 
 	CDate& operator =(const CDate &date);
