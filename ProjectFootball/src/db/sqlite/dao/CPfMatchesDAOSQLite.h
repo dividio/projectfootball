@@ -35,6 +35,8 @@ public:
     CPfMatchesDAOSQLite(sqlite3 *database);
     virtual ~CPfMatchesDAOSQLite();
 
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(int XFkCompetitionPhase);
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase);
     virtual CPfMatches* findByXFkTeamHome(int XFkTeamHome);
     virtual CPfMatches* findByXFkTeamHome(const std::string &XFkTeamHome);
     virtual CPfMatches* findByXMatch(int XMatch);

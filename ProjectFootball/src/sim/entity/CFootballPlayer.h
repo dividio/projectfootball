@@ -39,7 +39,7 @@ public:
     static char* m_pCtorName;
     static CFootballPlayer* getPlayer(CBaseGameEntity *player);
 
-    CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLeft);
+    CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool sideLeft);
     ~CFootballPlayer();
 
     CStateMachine<CFootballPlayer>* getFSM();

@@ -34,6 +34,20 @@ CPfMatchesDAOSQLite::~CPfMatchesDAOSQLite()
 {
 }
 
+std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhase(int XFkCompetitionPhase)
+{
+    std::ostringstream stream;
+    stream << XFkCompetitionPhase;
+    return findByXFkCompetitionPhase(stream.str());
+}
+
+std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase)
+{
+    std::string sql("SELECT * FROM PF_MATCHES WHERE ");
+    sql = sql+"X_FK_COMPETITION_PHASE='"+XFkCompetitionPhase+"'";
+    return loadVector(sql);
+}
+
 CPfMatches* CPfMatchesDAOSQLite::findByXFkTeamHome(int XFkTeamHome)
 {
     std::ostringstream stream;

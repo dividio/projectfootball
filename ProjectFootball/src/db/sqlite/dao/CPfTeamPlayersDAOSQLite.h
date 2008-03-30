@@ -35,8 +35,8 @@ public:
     CPfTeamPlayersDAOSQLite(sqlite3 *database);
     virtual ~CPfTeamPlayersDAOSQLite();
 
-    virtual CPfTeamPlayers* findByXTepl(int XTepl);
-    virtual CPfTeamPlayers* findByXTepl(const std::string &XTepl);
+    virtual CPfTeamPlayers* findByXTeamPlayer(int XTeamPlayer);
+    virtual CPfTeamPlayers* findByXTeamPlayer(const std::string &XTeamPlayer);
     virtual std::vector<CPfTeamPlayers*>* findActiveTeamPlayersByXFkTeam(int XFkTeam);
     virtual std::vector<CPfTeamPlayers*>* findActiveTeamPlayersByXFkTeam(const std::string &XFkTeam);
 

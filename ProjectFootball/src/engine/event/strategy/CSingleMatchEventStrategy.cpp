@@ -99,7 +99,7 @@ void CSingleMatchEventStrategy::process(CGoalMatchEvent &event)
         goal->setNMinute(event.getNMinute());
         goal->setXFkMatch(event.getXMatch());
         goal->setXFkTeamScorer(event.getXTeamScorer());
-        goal->setXFkTeplScorer(event.getXTeamPlayerScorer());
+        goal->setXFkTeamPlayerScorer(event.getXTeamPlayerScorer());
 
         m_goalsList.push_back(goal);
     }

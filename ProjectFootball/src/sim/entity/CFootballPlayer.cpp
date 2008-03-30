@@ -36,12 +36,12 @@ CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 }
 
 
-CFootballPlayer::CFootballPlayer(int XTepl, int number, CTeam *team, bool sideLeft)
+CFootballPlayer::CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool sideLeft)
 :CBaseAgent()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     IPfTeamPlayersDAO *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
-    m_teamPlayer = teamPlayersDAO->findByXTepl(XTepl);
+    m_teamPlayer = teamPlayersDAO->findByXTeamPlayer(XTeamPlayer);
     m_stateMachine = new CStateMachine<CFootballPlayer>(this);
     Ogre::String id;
     char charId[20];
@@ -256,7 +256,7 @@ CTeam* CFootballPlayer::getTeam() const
 
 int CFootballPlayer::getXTeamPlayer()
 {
-    return m_teamPlayer->getXTepl();
+    return m_teamPlayer->getXTeamPlayer();
 }
 
 

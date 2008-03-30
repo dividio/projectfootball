@@ -57,57 +57,57 @@ CTeam::CTeam(int XTeam, bool sideLeft)
     m_stateMachine->setGlobalState("STm_Global");
     m_stateMachine->changeState("STm_BeforeStart");
 
-    CFootballPlayer *player = new CFootballPlayer(playersVector->at(0)->getXTepl(), 1, this, sideLeft);
+    CFootballPlayer *player = new CFootballPlayer(playersVector->at(0)->getXTeamPlayer(), 1, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/goalie.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(1)->getXTepl(), 2, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(1)->getXTeamPlayer(), 2, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(2)->getXTepl(), 3, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(2)->getXTeamPlayer(), 3, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(3)->getXTepl(), 4, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(3)->getXTeamPlayer(), 4, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(4)->getXTepl(), 5, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(4)->getXTeamPlayer(), 5, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(5)->getXTepl(), 6, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(5)->getXTeamPlayer(), 6, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(6)->getXTepl(), 7, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(6)->getXTeamPlayer(), 7, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(7)->getXTepl(), 8, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(7)->getXTeamPlayer(), 8, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(8)->getXTepl(), 9, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(8)->getXTeamPlayer(), 9, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(9)->getXTepl(), 10, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(9)->getXTeamPlayer(), 10, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(10)->getXTepl(), 11, this, sideLeft);
+    player = new CFootballPlayer(playersVector->at(10)->getXTeamPlayer(), 11, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);

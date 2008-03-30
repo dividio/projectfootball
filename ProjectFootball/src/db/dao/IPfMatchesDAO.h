@@ -40,6 +40,8 @@ public:
 
     virtual void freeVector(std::vector<CPfMatches*>* vector) =0;
 
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(int XFkCompetitionPhase) =0;
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase) =0;
     virtual CPfMatches* findByXFkTeamHome(int XFkTeamHome) =0;
     virtual CPfMatches* findByXFkTeamHome(const std::string &XFkTeamHome) =0;
     virtual CPfMatches* findByXMatch(int XMatch) =0;
