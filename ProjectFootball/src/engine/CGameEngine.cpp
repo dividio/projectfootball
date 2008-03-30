@@ -24,7 +24,6 @@
 #include "CGameEngine.h"
 #include "CGameStateAbstractFactory.h"
 #include "option/CSystemOptionManager.h"
-#include "../db/sqlite/dao/factory/CDAOFactorySQLite.h"
 #include "../utils/CLog.h"
 
 CGameEngine::CGameEngine()
@@ -81,56 +80,10 @@ IMasterDAOFactory* CGameEngine::getCMasterDAOFactory()
     return m_masterDatabase;
 }
 
-void CGameEngine::newSinglePlayerGame(const std::string &gameName)
-{
-    if( m_user==NULL || m_user->getXUser_str()=="" ){
-        CLog::getInstance()->exception("[CGameEngine::newSinglePlayerGame] User not defined");
-    }
-
-    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string filename = "data/database/savedgames/";
-
-    srand(time(NULL));
-    for( int i=0; i<8; i++ ){
-        filename += str[rand()%52];
-    }
-    filename += ".sql3";
-
-    CDate nowDate;
-    CPfGames game;
-    game.setDLastSaved(nowDate);
-    game.setSDriverName("SQLite");
-    game.setSConnectionString(filename);
-    game.setSGameName(gameName);
-    game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
-    game.setXFkUser(m_user->getXUser());
-    m_masterDatabase->getIPfGamesDAO()->insertReg(&game);
-
-    CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
-    daoFactory->executeScriptFile("data/database/scripts/tables.sql");
-    daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
-    daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
-    daoFactory->executeScriptFile("data/database/scripts/inserts.sql");
-
-    CPfGameStates newGameState;
-    newGameState.setSState(S_STATE_NEWGAME);
-    newGameState.setSValue("true");
-    daoFactory->getIPfGameStatesDAO()->insertReg(&newGameState);
-
-    delete daoFactory;
-}
-
 void CGameEngine::loadGame(int xGame)
 {
     unloadCurrentGame();
     m_gameState = CGameStateAbstractFactory::getIGameState(xGame);
-}
-
-void CGameEngine::saveCurrentGame()
-{
-    if(m_gameState!=NULL){
-        m_gameState->save();
-    }
 }
 
 void CGameEngine::unloadCurrentGame()
