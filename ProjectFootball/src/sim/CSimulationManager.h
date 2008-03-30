@@ -40,7 +40,7 @@
 class CSimulationManager
 {
 public:
-    CSimulationManager();
+    CSimulationManager(int xMatch);
     ~CSimulationManager();
 
     void update();

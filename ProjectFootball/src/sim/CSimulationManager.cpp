@@ -38,7 +38,7 @@
 
 
 
-CSimulationManager::CSimulationManager()
+CSimulationManager::CSimulationManager(int xMatch)
 {
     CLog::getInstance()->debug("CSimulationManager()");
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
@@ -58,8 +58,7 @@ CSimulationManager::CSimulationManager()
     m_simWorld->addObject(m_ball);
 
     IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
-    m_match = matchesDAO->findNextPlayerTeamMatch();
-
+    m_match = matchesDAO->findByXMatch(xMatch);
 
     m_homeTeam = new CTeam(m_match->getXFkTeamHome(), true);
     m_awayTeam = new CTeam(m_match->getXFkTeamAway(), false);
