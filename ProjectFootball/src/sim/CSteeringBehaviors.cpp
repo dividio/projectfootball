@@ -219,7 +219,7 @@ btVector3 CSteeringBehaviors::pursuit(CMovingEntity *entity)
         lookTime = toEntity.length() / velocity;
     }
 
-    m_target = entity->futurePosition(lookTime);
+    setTargetPoint(entity->futurePosition(lookTime));
 
     return arrive(m_target, fast);
 }
