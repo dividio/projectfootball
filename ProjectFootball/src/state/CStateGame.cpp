@@ -29,8 +29,9 @@ CStateGame::CStateGame()
     CLog::getInstance()->debug("CStateGame()");
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"game.layout");
 
-    m_playerTeam_text   = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
-    m_nextMatch_text    = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/NextMatchText"));
+    m_playerTeamText    = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
+    m_nextMatchText     = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/NextMatchText"));
+    m_playButton        = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/PlayButton"));
 }
 
 CStateGame* CStateGame::getInstance()
@@ -51,12 +52,13 @@ void CStateGame::enter()
     mgr->clearScene();
 
     CPfTeams    *playerTeam = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
-    m_playerTeam_text->setText(playerTeam->getSTeam());
+    m_playerTeamText->setText(playerTeam->getSTeam());
     delete playerTeam;
 
     CPfMatches  *nextMatch  = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
     if( nextMatch==NULL ){
-        m_nextMatch_text->setText("No Match");
+        m_nextMatchText->setText("No Match");
+        m_playButton->setEnabled(false);
     }else{
         IPfTeamsDAO *teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
         CPfTeams    *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
@@ -64,7 +66,8 @@ void CStateGame::enter()
 
         std::string text;
         text += homeTeam->getSTeam()+" - "+awayTeam->getSTeam();
-        m_nextMatch_text->setText(text);
+        m_nextMatchText->setText(text);
+        m_playButton->setEnabled(true);
 
         delete homeTeam;
         delete awayTeam;
@@ -90,5 +93,5 @@ void CStateGame::update()
 
 void CStateGame::saveGame()
 {
-    CGameEngine::getInstance()->saveCurrentGame();
+    CGameEngine::getInstance()->getCurrentGame()->save();
 }
