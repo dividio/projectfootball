@@ -53,19 +53,31 @@ protected:
 
 private:
 
-    Ogre::Camera *m_cam;
-    Ogre::Vector3 m_direction;
-    Ogre::SceneManager *m_sceneMgr;   // The simulation SceneManager
-    Ogre::SceneNode *m_camNode;   // The SceneNode the camera is currently attached to
-    bool m_mode3D;
-    CSimulationManager *m_simulator;
+    CEGUI::FrameWindow      *m_frameWindow;
+    CEGUI::Listbox          *m_logHistoryList;
+    CEGUI::MultiColumnList  *m_teamPlayersList;
+    CEGUI::Window           *m_groundImage;
+    CEGUI::Window           *m_groundFrameImage;
 
+    Ogre::Camera            *m_cam2D;
+    Ogre::Camera            *m_cam3D;
+    Ogre::SceneNode         *m_cam2DNode;
+    Ogre::SceneNode         *m_cam3DNode;
+    Ogre::Vector3           m_direction;
+    Ogre::RenderTexture     *m_renderTexture;
+    Ogre::SceneManager      *m_sceneMgr;    // The simulation SceneManager
+    Ogre::SceneNode         *m_camNode;     // The SceneNode the camera is currently attached to
 
-    void renderImage(Ogre::Camera *cam, CEGUI::Window *si);
+    CSimulationManager      *m_simulator;
+
+    CPfMatches              *m_match;
+
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
     void updateScore();
     void loadTeamPlayers();
+    void simulateOthersMatches(); // Simulate others matches of same competition phase than m_match
+    int  getRandomNGoals();
 };
 
 #endif // __CStateMonitor_H__
