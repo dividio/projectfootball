@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <stdio.h>
+
 #include "CStateLoadGame.h"
 
 #include "CStateGame.h"
@@ -25,6 +27,7 @@
 #include "CStateSelectTeam.h"
 #include "../utils/CLog.h"
 #include "../engine/CGameEngine.h"
+#include "../db/sqlite/dao/factory/CDAOFactorySQLite.h"
 
 CStateLoadGame::CStateLoadGame()
     :CState()
@@ -33,6 +36,7 @@ CStateLoadGame::CStateLoadGame()
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"loadGame.layout");
 
     m_loadGameButton    = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
+    m_deleteGameButton  = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
     m_newGameButton     = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
 
     m_newGameEditbox    = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
@@ -69,6 +73,7 @@ void CStateLoadGame::enter()
     loadGameList();
 
     m_loadGameButton->setEnabled(false);
+    m_deleteGameButton->setEnabled(false);
     m_newGameButton->setEnabled(false);
     m_newGameEditbox->setText("");
 }
@@ -87,9 +92,50 @@ void CStateLoadGame::update()
 {
 }
 
-void CStateLoadGame::createNewGame()
+void CStateLoadGame::newGame()
 {
-    CGameEngine::getInstance()->newSinglePlayerGame(m_newGameEditbox->getText().c_str());
+    IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
+    const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
+
+    if( user==NULL || user->getXUser()==0 ){
+        CLog::getInstance()->exception("[CStateLoadGame::newGame] User not defined");
+    }
+
+    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    std::string filename = "data/database/savedgames/";
+
+    srand(time(NULL));
+    for( int i=0; i<8; i++ ){
+        filename += str[rand()%52];
+    }
+    filename += ".sql3";
+
+    CDate nowDate;
+    CPfGames game;
+    game.setDLastSaved(nowDate);
+    game.setSDriverName("SQLite");
+    game.setSConnectionString(filename);
+    game.setSGameName(m_newGameEditbox->getText().c_str());
+    game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
+    game.setXFkUser(user->getXUser());
+    masterDatabase->getIPfGamesDAO()->insertReg(&game);
+
+    CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
+    daoFactory->executeScriptFile("data/database/scripts/tables.sql");
+    daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
+    daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_teams.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_matches.sql");
+
+    CPfGameStates newGameState;
+    newGameState.setSState(S_STATE_NEWGAME);
+    newGameState.setSValue("true");
+    daoFactory->getIPfGameStatesDAO()->insertReg(&newGameState);
+
+    delete daoFactory;
+
     loadGameList();
     m_newGameEditbox->setText("");
 }
@@ -113,6 +159,22 @@ void CStateLoadGame::loadGame()
     delete newGameState;
 }
 
+void CStateLoadGame::deleteGame()
+{
+    CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
+    int xGame = itm->getID();
+
+    IPfGamesDAO *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    CPfGames    *game       = gamesDAO->findByXGame(xGame);
+    if( game->getSDriverName()=="SQLite" ){
+        remove(game->getSConnectionString().c_str());
+    }
+    gamesDAO->deleteReg(game);
+    delete game;
+
+    loadGameList();
+}
+
 void CStateLoadGame::loadGameList()
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("MultiListSelectionBrush");
@@ -120,8 +182,8 @@ void CStateLoadGame::loadGameList()
     m_gamesList->resetList();
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
-    IPfGamesDAO*                        gamesDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
-    std::vector<CPfGames*>*             gamesList = gamesDAO->findByXFkUser(DEFAULT_USER);
+    IPfGamesDAO*                        gamesDAO    = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    std::vector<CPfGames*>*             gamesList   = gamesDAO->findByXFkUser(CGameEngine::getInstance()->getCurrentUser()->getXUser());
     std::vector<CPfGames*>::iterator    it;
     for( it=gamesList->begin(); it!=gamesList->end(); it++ ){
         CPfGames *game = (*it);
@@ -148,6 +210,7 @@ void CStateLoadGame::loadGameList()
 bool CStateLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
 {
     m_loadGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
+    m_deleteGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
 
     return true;
 }

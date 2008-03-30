@@ -34,8 +34,9 @@ public:
     virtual bool leave();
     virtual void update();
 
-    void createNewGame();
+    void newGame();
     void loadGame();
+    void deleteGame();
 
 private:
     CStateLoadGame();
@@ -48,6 +49,7 @@ private:
     CEGUI::Editbox          *m_newGameEditbox;
     CEGUI::PushButton       *m_newGameButton;
     CEGUI::PushButton       *m_loadGameButton;
+    CEGUI::PushButton       *m_deleteGameButton;
 };
 
 #endif /*CSTATELOADGAME_H_*/

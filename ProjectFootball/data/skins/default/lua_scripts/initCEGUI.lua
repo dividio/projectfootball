@@ -91,13 +91,16 @@ end
 -- cmd_back
 
 function cmd_LoadGame_New()
-    PF.CStateLoadGame_getInstance():createNewGame()
+    PF.CStateLoadGame_getInstance():newGame()
 end
 
 function cmd_LoadGame_Load()
     PF.CStateLoadGame_getInstance():loadGame()
 end
 
+function cmd_LoadGame_Delete()
+    PF.CStateLoadGame_getInstance():deleteGame()
+end
 
 --------------------------
 -- CStateSelectTeam functions

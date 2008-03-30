@@ -14,14 +14,21 @@
     <Window Type="TaharezLook/Editbox" Name="LoadGame/NewGameEdit" >
       <Property Name="MaxTextLength" Value="50" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.73,0},{0.77,0},{0.77,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.73,0},{0.5,0},{0.77,0}}" />
     </Window>
     <Window Type="TaharezLook/Button" Name="LoadGame/NewGameButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
       <Property Name="Text" Value="New Game" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.73,0},{0.97,0},{0.77,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.53,0},{0.73,0},{0.70,0},{0.77,0}}" />
       <Event Name="Clicked" Function="cmd_LoadGame_New" />
+    </Window>
+    <Window Type="TaharezLook/Button" Name="LoadGame/DeleteGameButton" >
+      <Property Name="Font" Value="DejaVuSans-10" />
+      <Property Name="Text" Value="Delete Game" />
+      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.73,0},{0.97,0},{0.77,0}}" />
+      <Event Name="Clicked" Function="cmd_LoadGame_Delete" />
     </Window>
     <Window Type="TaharezLook/Button" Name="LoadGame/BackButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
