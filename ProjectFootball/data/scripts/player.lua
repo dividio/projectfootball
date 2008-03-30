@@ -253,7 +253,9 @@ end
 SPl_ChaseBall = {}
 
 SPl_ChaseBall["Enter"] = function(player)
-    player:getSteering():arriveOn()
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    player:getSteering():pursuitOn()
+    player:getSteering():setTargetEntity(sim:getBall())
 end
 
 SPl_ChaseBall["Execute"] = function(player)
@@ -269,7 +271,7 @@ SPl_ChaseBall["Execute"] = function(player)
 end
 
 SPl_ChaseBall["Exit"] = function(player)
-    player:getSteering():arriveOff()
+    player:getSteering():pursuitOff()
 end
 
 SPl_ChaseBall["OnMessage"] = function(player, message)
