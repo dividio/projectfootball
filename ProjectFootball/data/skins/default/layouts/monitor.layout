@@ -26,14 +26,14 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="Start" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.04,0},{0.8,0},{0.1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.04,0},{0.8,0},{0.09,0}}" />
                 <Event Name="Clicked" Function="cmd_Monitor_StartSimulation" />
             </Window>
             <Window Type="TaharezLook/Button" Name="Monitor/ZoomButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="Zoom" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.04,0},{0.95,0},{0.1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.04,0},{0.95,0},{0.09,0}}" />
                 <Event Name="Clicked" Function="cmd_Monitor_ToggleZoom" />
             </Window>
             <Window Type="TaharezLook/TabControl" Name="Monitor/TabControl1" >
@@ -41,7 +41,7 @@
                 <Property Name="TabHeight" Value="{0,38}" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="TabPanePosition" Value="Top" />
-                <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.05,0},{0.501111,0},{0.964999,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.07,0},{0.5,0},{0.964999,0}}" />
                 <Window Type="DefaultWindow" Name="Monitor/TeamTab" >
                     <Property Name="Text" Value="Team" />
                     <Property Name="Visible" Value="True" />
@@ -165,12 +165,12 @@
             <Window Type="TaharezLook/StaticText" Name="Monitor/TeamNames" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.06,0},{0.4,0},{0.1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.04,0},{0.4,0},{0.09,0}}" />
             </Window>
             <Window Type="TaharezLook/StaticText" Name="Monitor/Score" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.46,0},{0.06,0},{0.54,0},{0.1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.46,0},{0.04,0},{0.54,0},{0.09,0}}" />
             </Window>
         </Window>
     </Window>
