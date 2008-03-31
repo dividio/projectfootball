@@ -47,6 +47,7 @@ public:
     CSimulationManager* getSimulationManager();
     Ogre::SceneManager* getSimulationSceneManager();
     void addToLog(std::string text);
+    void updateScore();
 
 protected:
     CStateMonitor();
@@ -55,9 +56,16 @@ private:
 
     CEGUI::FrameWindow      *m_frameWindow;
     CEGUI::Listbox          *m_logHistoryList;
+    CEGUI::Listbox          *m_logHistoryListShort;
     CEGUI::MultiColumnList  *m_teamPlayersList;
     CEGUI::Window           *m_groundImage;
     CEGUI::Window           *m_groundFrameImage;
+    CEGUI::Window           *m_teamNames;
+    CEGUI::Window           *m_score;
+    CEGUI::Window           *m_frameHomeName;
+    CEGUI::Window           *m_frameAwayName;
+    CEGUI::Window           *m_frameHomeScore;
+    CEGUI::Window           *m_frameAwayScore;
 
     Ogre::Camera            *m_cam2D;
     Ogre::Camera            *m_cam3D;
@@ -74,7 +82,6 @@ private:
 
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
-    void updateScore();
     void loadTeamPlayers();
     void simulateOthersMatches(); // Simulate others matches of same competition phase than m_match
     int  getRandomNGoals();

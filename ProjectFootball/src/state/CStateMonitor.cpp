@@ -31,13 +31,22 @@ CStateMonitor::CStateMonitor()
 {
     CLog::getInstance()->debug("CStateMonitor()");
 
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"monitor.layout");
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
 
-    m_frameWindow       = static_cast<CEGUI::FrameWindow*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Monitor/FrameWindow"));
-    m_logHistoryList    = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Monitor/Log"));
-    m_teamPlayersList   = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Monitor/TeamPlayersList"));
-    m_groundImage       = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Monitor/Image"));
-    m_groundFrameImage  = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Monitor/Frame/Image"));
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"monitor.layout");
+
+    m_frameWindow       = static_cast<CEGUI::FrameWindow*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/FrameWindow"));
+    m_logHistoryList    = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Log"));
+    m_logHistoryListShort    = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/Log"));
+    m_teamPlayersList   = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/TeamPlayersList"));
+    m_groundImage       = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Image"));
+    m_groundFrameImage  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/Image"));
+    m_teamNames  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/TeamNames"));
+    m_score  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Score"));
+    m_frameHomeName  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeName"));
+    m_frameAwayName  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayName"));
+    m_frameHomeScore  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeScore"));
+    m_frameAwayScore  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayScore"));
 
     m_direction = Ogre::Vector3::ZERO;
 
@@ -80,7 +89,7 @@ CStateMonitor::CStateMonitor()
     m_groundFrameImage->setProperty("Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
     m_groundFrameImage->disable();
 
-    CEGUI::Window *w = CEGUI::WindowManager::getSingleton().getWindow("Monitor");
+    CEGUI::Window *w = ceguiWM->getWindow("Monitor");
     w->subscribeEvent(CEGUI::Window::EventKeyDown, CEGUI::Event::Subscriber(&CStateMonitor::keyDownHandler, this));
     w->subscribeEvent(CEGUI::Window::EventKeyUp, CEGUI::Event::Subscriber(&CStateMonitor::keyUpHandler, this));
 
@@ -171,7 +180,8 @@ void CStateMonitor::enter()
     m_system->setGUISheet(m_sheet);
     m_sceneMgr->clearScene();
 
-    IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+    IDAOFactory *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IPfMatchesDAO *matchesDAO = daoFactory->getIPfMatchesDAO();
     m_match = matchesDAO->findNextPlayerTeamMatch();
     m_simulator = new CSimulationManager(m_match->getXMatch());
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
@@ -188,6 +198,17 @@ void CStateMonitor::enter()
 
     switchTo2DView();
     loadTeamPlayers();
+    IPfTeamsDAO *teamsDAO = daoFactory->getIPfTeamsDAO();
+    std::string homeName = teamsDAO->findByXTeam(m_match->getXFkTeamHome())->getSTeam();
+    std::string awayName = teamsDAO->findByXTeam(m_match->getXFkTeamAway())->getSTeam();
+    char names[40];
+    sprintf(names, "%s vs %s", homeName.c_str(), awayName.c_str());
+    m_teamNames->setProperty("Text", names);
+    m_score->setProperty("Text", "  0 - 0");
+    m_frameHomeName->setProperty("Text", homeName.c_str());
+    m_frameAwayName->setProperty("Text", awayName.c_str());
+    m_frameHomeScore->setProperty("Text", "  0");
+    m_frameAwayScore->setProperty("Text", "  0");
 }
 
 
@@ -213,6 +234,7 @@ bool CStateMonitor::leave()
         delete m_simulator;
         m_simulator = NULL;
         m_logHistoryList->resetList();
+        m_logHistoryListShort->resetList();
     }
     if( m_match!=NULL ){
         delete m_match;
@@ -292,6 +314,7 @@ Ogre::SceneManager* CStateMonitor::getSimulationSceneManager()
 void CStateMonitor::addToLog(std::string text)
 {
     int historySize = 6;
+    int shortHistorySize = 2;
     char message[30];
     // If there's text then add it
     if(text.size()) {
@@ -316,6 +339,18 @@ void CStateMonitor::addToLog(std::string text)
         }
         m_logHistoryList->addItem(logItem);
         m_logHistoryList->ensureItemIsVisible(m_logHistoryList->getItemCount());
+
+        if(m_logHistoryListShort->getItemCount() == shortHistorySize) {
+            logItem = static_cast<CEGUI::ListboxTextItem*>(m_logHistoryListShort->getListboxItemFromIndex(0));
+            logItem->setAutoDeleted(false);
+            m_logHistoryListShort->removeItem(logItem);
+            logItem->setAutoDeleted(true);
+            logItem->setText(message);
+        } else {
+            logItem = new CEGUI::ListboxTextItem(message);
+        }
+        m_logHistoryListShort->addItem(logItem);
+        m_logHistoryListShort->ensureItemIsVisible(m_logHistoryListShort->getItemCount());
     }
 }
 
@@ -347,8 +382,16 @@ void CStateMonitor::loadTeamPlayers()
 
 void CStateMonitor::updateScore()
 {
-//    CEGUI::Window *w = CEGUI::WindowManager::getSingleton().getWindow("Monitor/TabControl2/Tab1");
-//    m_simulator->getReferee()->getGameModeString();
+    CReferee *referee = m_simulator->getReferee();
+    int homeScore = referee->getHomeScore();
+    int awayScore = referee->getAwayScore();
+    char score[8];
+    sprintf(score, "  %d - %d", homeScore, awayScore);
+    m_score->setProperty("Text", score);
+    sprintf(score, "  %d", homeScore);
+    m_frameHomeScore->setProperty("Text", score);
+    sprintf(score, "  %d", awayScore);
+    m_frameAwayScore->setProperty("Text", score);
 }
 
 

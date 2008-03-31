@@ -27,6 +27,7 @@
 #include "entity/CField.h"
 #include "entity/CEntityManager.h"
 #include "../utils/CLog.h"
+#include "../state/CStateMonitor.h"
 #include "../audio/CAudioSystem.h"
 #include "../engine/option/CSystemOptionManager.h"
 #include "../db/dao/IPfMatchesDAO.h"
@@ -170,6 +171,7 @@ void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *play
     CGoalMatchEvent *event = new CGoalMatchEvent(m_match->getXMatch(), teamScorer->getXTeam(),
                                                  playerScorer->getXTeamPlayer(), minute, ownGoal);
     m_goalEvents.push_back(event);
+    CStateMonitor::getInstance()->updateScore();
 }
 
 
