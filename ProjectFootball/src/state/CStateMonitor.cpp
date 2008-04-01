@@ -204,11 +204,11 @@ void CStateMonitor::enter()
     char names[40];
     sprintf(names, "%s vs %s", homeName.c_str(), awayName.c_str());
     m_teamNames->setProperty("Text", names);
-    m_score->setProperty("Text", "  0 - 0");
+    m_score->setProperty("Text", "0 - 0");
     m_frameHomeName->setProperty("Text", homeName.c_str());
     m_frameAwayName->setProperty("Text", awayName.c_str());
-    m_frameHomeScore->setProperty("Text", "  0");
-    m_frameAwayScore->setProperty("Text", "  0");
+    m_frameHomeScore->setProperty("Text", "0");
+    m_frameAwayScore->setProperty("Text", "0");
 }
 
 
@@ -313,8 +313,8 @@ Ogre::SceneManager* CStateMonitor::getSimulationSceneManager()
 
 void CStateMonitor::addToLog(std::string text)
 {
-    int historySize = 6;
-    int shortHistorySize = 2;
+    int historySize = 7;
+    int shortHistorySize = 3;
     char message[30];
     // If there's text then add it
     if(text.size()) {
@@ -386,11 +386,11 @@ void CStateMonitor::updateScore()
     int homeScore = referee->getHomeScore();
     int awayScore = referee->getAwayScore();
     char score[8];
-    sprintf(score, "  %d - %d", homeScore, awayScore);
+    sprintf(score, "%d - %d", homeScore, awayScore);
     m_score->setProperty("Text", score);
-    sprintf(score, "  %d", homeScore);
+    sprintf(score, "%d", homeScore);
     m_frameHomeScore->setProperty("Text", score);
-    sprintf(score, "  %d", awayScore);
+    sprintf(score, "%d", awayScore);
     m_frameAwayScore->setProperty("Text", score);
 }
 
