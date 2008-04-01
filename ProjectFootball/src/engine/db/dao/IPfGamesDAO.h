@@ -44,6 +44,8 @@ public:
     virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser) =0;
     virtual CPfGames* findByXGame(int XGame) =0;
     virtual CPfGames* findByXGame(const std::string &XGame) =0;
+    virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName) =0;
+    virtual std::vector<CPfGames*>* findBySGameType(const std::string &SGameType) =0;
 
 };
 #endif /*IPFGAMESDAO_H_*/

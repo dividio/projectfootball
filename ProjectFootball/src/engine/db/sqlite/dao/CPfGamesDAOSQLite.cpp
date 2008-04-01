@@ -62,3 +62,16 @@ CPfGames* CPfGamesDAOSQLite::findByXGame(const std::string &XGame)
     return loadRegister(sql);
 }
 
+std::vector<CPfGames*>* CPfGamesDAOSQLite::findBySGameName(const std::string &SGameName)
+{
+    std::string sql("SELECT * FROM PF_GAMES WHERE ");
+    sql = sql+"S_GAME_NAME='"+SGameName+"'";
+    return loadVector(sql);
+}
+
+std::vector<CPfGames*>* CPfGamesDAOSQLite::findBySGameType(const std::string &SGameType)
+{
+    std::string sql("SELECT * FROM PF_GAMES WHERE ");
+    sql = sql+"S_GAME_TYPE='"+SGameType+"'";
+    return loadVector(sql);
+}
