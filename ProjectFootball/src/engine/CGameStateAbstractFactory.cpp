@@ -31,7 +31,7 @@ IGameState* CGameStateAbstractFactory::getIGameState(int xGame)
     std::string gameType = game->getSGameType();
     delete game;
 
-    if( gameType==S_GAME_TYPE_SINGLEPLAYER ){
+    if( gameType==S_GAME_TYPE_SINGLEPLAYER || gameType==S_GAME_TYPE_QUICKPLAY ){
         return new CSinglePlayerGameState(xGame);
     }else{
         CLog::getInstance()->exception("[CGameStateAbstractFactory::getIGameState] Game type not supported: '%s'", gameType.c_str());
