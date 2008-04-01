@@ -35,18 +35,18 @@ CStateMonitor::CStateMonitor()
 
     m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"monitor.layout");
 
-    m_frameWindow       = static_cast<CEGUI::FrameWindow*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/FrameWindow"));
-    m_logHistoryList    = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Log"));
-    m_logHistoryListShort    = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/Log"));
-    m_teamPlayersList   = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/TeamPlayersList"));
-    m_groundImage       = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Image"));
-    m_groundFrameImage  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/Image"));
-    m_teamNames  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/TeamNames"));
-    m_score  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Score"));
-    m_frameHomeName  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeName"));
-    m_frameAwayName  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayName"));
-    m_frameHomeScore  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeScore"));
-    m_frameAwayScore  = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayScore"));
+    m_frameWindow               = static_cast<CEGUI::FrameWindow*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/FrameWindow"));
+    m_logHistoryList            = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Log"));
+    m_logHistoryListShort       = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/Log"));
+    m_teamPlayersList           = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/TeamPlayersList"));
+    m_groundImage               = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Image"));
+    m_groundFrameImage          = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/Image"));
+    m_teamNames                 = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/TeamNames"));
+    m_score                     = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Score"));
+    m_frameHomeName             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeName"));
+    m_frameAwayName             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayName"));
+    m_frameHomeScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeScore"));
+    m_frameAwayScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayScore"));
 
     m_direction = Ogre::Vector3::ZERO;
 

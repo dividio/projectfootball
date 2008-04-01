@@ -13,7 +13,7 @@ end
 -- CStateMainMenu functions
 ---------------------------
 function cmd_Menu_QuickPlay()
-    local state = PF.CStateMonitor_getInstance()
+    local state = PF.CStateQuickPlay_getInstance()
     PF.CStateManager_getInstance():pushState(state)
 end
 
