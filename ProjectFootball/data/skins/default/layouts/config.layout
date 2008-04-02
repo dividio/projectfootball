@@ -55,7 +55,7 @@
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Config/Note" >
             <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="Text" Value="NOTE: The changes are applies after restart" />
+            <Property Name="Text" Value="NOTE: Changes will take effect after restart" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.42,0},{0.895,0},{0.795,0},{0.945,0}}" />
         </Window>
