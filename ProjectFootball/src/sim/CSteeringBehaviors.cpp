@@ -170,7 +170,7 @@ btVector3 CSteeringBehaviors::seek(btVector3 target)
 
 btVector3 CSteeringBehaviors::stop()
 {
-    return -m_agent->getBody()->getLinearVelocity();
+    return -(m_agent->getBody()->getLinearVelocity())/4;
 }
 
 
@@ -211,7 +211,9 @@ double CSteeringBehaviors::sideComponent() const
 
 btVector3 CSteeringBehaviors::pursuit(CMovingEntity *entity)
 {
-    btVector3 toEntity = entity->getPosition() - m_agent->getPosition();
+    btVector3 entityPos = entity->getPosition();
+    btVector3 agentPos = m_agent->getPosition();
+    btVector3 toEntity = entityPos - agentPos;
 
     double lookTime = 0.0;
     double velocity = entity->getBody()->getLinearVelocity().length();
@@ -219,7 +221,13 @@ btVector3 CSteeringBehaviors::pursuit(CMovingEntity *entity)
         lookTime = toEntity.length() / velocity;
     }
 
-    setTargetPoint(entity->futurePosition(lookTime));
+    btVector3 futurePos = entity->futurePosition(lookTime);
+
+    if(futurePos.distance(agentPos) < 1) {
+        setTargetPoint(entityPos);
+    } else {
+        setTargetPoint(futurePos);
+    }
 
     return arrive(m_target, fast);
 }
