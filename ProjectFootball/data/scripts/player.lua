@@ -91,7 +91,7 @@ end
 SPl_LookBall = {}
 
 SPl_LookBall["Enter"] = function(player)
-
+    player:getSteering():stopOn()
 end
 
 SPl_LookBall["Execute"] = function(player)
@@ -101,11 +101,14 @@ SPl_LookBall["Execute"] = function(player)
         player:getFSM():changeState("SPl_ChaseBall")
     elseif not player:atHome() then
         player:getFSM():changeState("SPl_ReturnToHomeRegion")
+    else
+        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        sim:dash(player, player:getSteering():calculate())
     end
 end
 
 SPl_LookBall["Exit"] = function(player)
-
+    player:getSteering():stopOff()
 end
 
 SPl_LookBall["OnMessage"] = function(player, message)
