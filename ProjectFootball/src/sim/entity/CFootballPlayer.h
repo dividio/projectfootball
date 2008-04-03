@@ -43,21 +43,19 @@ public:
     ~CFootballPlayer();
 
     CStateMachine<CFootballPlayer>* getFSM();
-    btVector3 getStrategicPosition() const;
-    std::string getIdent() const;
-    CTeam* getTeam() const;
-    int getXTeamPlayer();
-    CSteeringBehaviors* getSteering() const;
-    bool isTeamLeft() const;
-    bool isBallKickable() const;
-    bool canDoActions();
-    bool canKickBall(int cycle);
-    bool atHome();
-    bool atKickPosition();
-
-    bool handleMessage(const CMessage &msg);
-    void update();
-    void changeSide();
+    CSteeringBehaviors*             getSteering() const;
+    btVector3                       getStrategicPosition() const;
+    CTeam*                          getTeam() const;
+    int                             getXTeamPlayer();
+    bool                            isTeamLeft() const;
+    bool                            isBallKickable() const;
+    bool                            canDoActions();
+    bool                            canKickBall(int cycle);
+    bool                            atHome();
+    bool                            atKickPosition();
+    bool                            handleMessage(const CMessage &msg);
+    void                            update();
+    void                            changeSide();
 
     void setWorldTransform(const btTransform& centerOfMassWorldTrans);
 
@@ -65,16 +63,15 @@ protected:
     void setGraphicTrans(btTransform trans);
 
 private:
-    Ogre::SceneNode *m_ringNode;
-    CPfTeamPlayers *m_teamPlayer;
-    bool m_canDoActions;
-    int m_lastKickBallCycle;
-    bool m_sideLeft;
-    int m_number;
-    std::string m_ident;
-    CSteeringBehaviors *m_steeringBehavior;
-    CTeam *m_team;
-    CStateMachine<CFootballPlayer> *m_stateMachine;
+    CStateMachine<CFootballPlayer>  *m_stateMachine;
+    CSteeringBehaviors              *m_steeringBehavior;
+    Ogre::SceneNode                 *m_ringNode;
+    CPfTeamPlayers                  *m_teamPlayer;
+    CTeam                           *m_team;
+    bool                             m_canDoActions;
+    bool                             m_sideLeft;
+    int                              m_lastKickBallCycle;
+    int                              m_number;
 };
 
 #endif // __CFootballPlayer_H__

@@ -53,7 +53,6 @@ CFootballPlayer::CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool 
 
     //m_direction.normalize();
     sprintf(charId,"%s%d", team->getName().c_str(), m_number);
-    m_ident = charId;
     id = charId;
     m_entity = scnMgr->createEntity("Cylinder"+id, "Cylinder.mesh");
     if(sideLeft) {
@@ -227,12 +226,6 @@ bool CFootballPlayer::atKickPosition()
         result = true;
     }
     return result;
-}
-
-
-std::string CFootballPlayer::getIdent() const
-{
-    return m_ident;
 }
 
 

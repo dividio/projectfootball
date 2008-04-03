@@ -11337,6 +11337,34 @@ fail:
 }
 
 
+static int _wrap_CTeam_setControllingPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_setControllingPlayer",1,SWIGTYPE_p_CTeam);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CTeam_setControllingPlayer",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->setControllingPlayer(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CTeam_getOpponentTeam(lua_State* L) {
   int SWIG_arg = -1;
   CTeam *arg1 = (CTeam *) 0 ;
@@ -11440,6 +11468,28 @@ static int _wrap_CTeam_getNearestPlayerToBall(lua_State* L) {
   }
   
   result = (CFootballPlayer *)((CTeam const *)arg1)->getNearestPlayerToBall();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getControllingPlayer(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CFootballPlayer *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getControllingPlayer",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (CFootballPlayer *)((CTeam const *)arg1)->getControllingPlayer();
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,0); SWIG_arg++; 
   return SWIG_arg;
@@ -11575,6 +11625,28 @@ static int _wrap_CTeam_isKickForUs(lua_State* L) {
   }
   
   result = (bool)((CTeam const *)arg1)->isKickForUs();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_inControl(lua_State* L) {
+  int SWIG_arg = -1;
+  CTeam *arg1 = (CTeam *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_inControl",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (bool)((CTeam const *)arg1)->inControl();
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
@@ -11744,17 +11816,20 @@ delete arg1;
 }
 static swig_lua_method swig_CTeam_methods[] = {
     {"setOpponentTeam", _wrap_CTeam_setOpponentTeam}, 
+    {"setControllingPlayer", _wrap_CTeam_setControllingPlayer}, 
     {"getOpponentTeam", _wrap_CTeam_getOpponentTeam}, 
     {"getName", _wrap_CTeam_getName}, 
     {"getPlayers", _wrap_CTeam_getPlayers}, 
     {"getFormations", _wrap_CTeam_getFormations}, 
     {"getNearestPlayerToBall", _wrap_CTeam_getNearestPlayerToBall}, 
+    {"getControllingPlayer", _wrap_CTeam_getControllingPlayer}, 
     {"getKickPlayerID", _wrap_CTeam_getKickPlayerID}, 
     {"getCurrentFormation", _wrap_CTeam_getCurrentFormation}, 
     {"getPlayerStrategicPosition", _wrap_CTeam_getPlayerStrategicPosition}, 
     {"getFSM", _wrap_CTeam_getFSM}, 
     {"getXTeam", _wrap_CTeam_getXTeam}, 
     {"isKickForUs", _wrap_CTeam_isKickForUs}, 
+    {"inControl", _wrap_CTeam_inControl}, 
     {"isNearestPlayerToBall", _wrap_CTeam_isNearestPlayerToBall}, 
     {"isNearestTeamMatePlayerToBall", _wrap_CTeam_isNearestTeamMatePlayerToBall}, 
     {"handleMessage", _wrap_CTeam_handleMessage}, 
@@ -11926,6 +12001,28 @@ fail:
 }
 
 
+static int _wrap_CFootballPlayer_getSteering(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CSteeringBehaviors *result = 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getSteering",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (CSteeringBehaviors *)((CFootballPlayer const *)arg1)->getSteering();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSteeringBehaviors,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CFootballPlayer_getStrategicPosition(lua_State* L) {
   int SWIG_arg = -1;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
@@ -11943,28 +12040,6 @@ static int _wrap_CFootballPlayer_getStrategicPosition(lua_State* L) {
     btVector3 * resultptr = new btVector3((btVector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
   }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CFootballPlayer_getIdent(lua_State* L) {
-  int SWIG_arg = -1;
-  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
-  std::string result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CFootballPlayer_getIdent",1,SWIGTYPE_p_CFootballPlayer);
-  }
-  
-  result = ((CFootballPlayer const *)arg1)->getIdent();
-  SWIG_arg=0;
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -12009,28 +12084,6 @@ static int _wrap_CFootballPlayer_getXTeamPlayer(lua_State* L) {
   result = (int)(arg1)->getXTeamPlayer();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CFootballPlayer_getSteering(lua_State* L) {
-  int SWIG_arg = -1;
-  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
-  CSteeringBehaviors *result = 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CFootballPlayer_getSteering",1,SWIGTYPE_p_CFootballPlayer);
-  }
-  
-  result = (CSteeringBehaviors *)((CFootballPlayer const *)arg1)->getSteering();
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSteeringBehaviors,0); SWIG_arg++; 
   return SWIG_arg;
   
 fail:
@@ -12279,11 +12332,10 @@ delete arg1;
 }
 static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"getFSM", _wrap_CFootballPlayer_getFSM}, 
+    {"getSteering", _wrap_CFootballPlayer_getSteering}, 
     {"getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition}, 
-    {"getIdent", _wrap_CFootballPlayer_getIdent}, 
     {"getTeam", _wrap_CFootballPlayer_getTeam}, 
     {"getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer}, 
-    {"getSteering", _wrap_CFootballPlayer_getSteering}, 
     {"isTeamLeft", _wrap_CFootballPlayer_isTeamLeft}, 
     {"isBallKickable", _wrap_CFootballPlayer_isBallKickable}, 
     {"canDoActions", _wrap_CFootballPlayer_canDoActions}, 
@@ -14708,6 +14760,78 @@ fail:
 }
 
 
+static int _wrap_CStrategicPosition_setAttractionX(lua_State* L) {
+  int SWIG_arg = -1;
+  CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
+  float arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStrategicPosition,0))){
+    SWIG_fail_ptr("CStrategicPosition_setAttractionX",1,SWIGTYPE_p_CStrategicPosition);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setAttractionX(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStrategicPosition_setAttractionZ(lua_State* L) {
+  int SWIG_arg = -1;
+  CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
+  float arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStrategicPosition,0))){
+    SWIG_fail_ptr("CStrategicPosition_setAttractionZ",1,SWIGTYPE_p_CStrategicPosition);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setAttractionZ(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStrategicPosition_setBehindBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
+  bool arg2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStrategicPosition,0))){
+    SWIG_fail_ptr("CStrategicPosition_setBehindBall",1,SWIGTYPE_p_CStrategicPosition);
+  }
+  
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setBehindBall(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CStrategicPosition_setInitialPosition(lua_State* L) {
   int SWIG_arg = -1;
   CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
@@ -14847,6 +14971,72 @@ static int _wrap_CStrategicPosition_setPlayingArea(lua_State* L) {
   (arg1)->setPlayingArea(arg2,arg3);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStrategicPosition_getAttractionX(lua_State* L) {
+  int SWIG_arg = -1;
+  CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
+  float result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStrategicPosition,0))){
+    SWIG_fail_ptr("CStrategicPosition_getAttractionX",1,SWIGTYPE_p_CStrategicPosition);
+  }
+  
+  result = (float)(arg1)->getAttractionX();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStrategicPosition_getAttractionZ(lua_State* L) {
+  int SWIG_arg = -1;
+  CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
+  float result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStrategicPosition,0))){
+    SWIG_fail_ptr("CStrategicPosition_getAttractionZ",1,SWIGTYPE_p_CStrategicPosition);
+  }
+  
+  result = (float)(arg1)->getAttractionZ();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStrategicPosition_getBehindBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CStrategicPosition *arg1 = (CStrategicPosition *) 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStrategicPosition,0))){
+    SWIG_fail_ptr("CStrategicPosition_getBehindBall",1,SWIGTYPE_p_CStrategicPosition);
+  }
+  
+  result = (bool)(arg1)->getBehindBall();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -14995,11 +15185,17 @@ CStrategicPosition *arg1 = (CStrategicPosition *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CStrategicPosition_methods[] = {
+    {"setAttractionX", _wrap_CStrategicPosition_setAttractionX}, 
+    {"setAttractionZ", _wrap_CStrategicPosition_setAttractionZ}, 
+    {"setBehindBall", _wrap_CStrategicPosition_setBehindBall}, 
     {"setInitialPosition", _wrap_CStrategicPosition_setInitialPosition}, 
     {"setDefensivePosition", _wrap_CStrategicPosition_setDefensivePosition}, 
     {"setOffensivePosition", _wrap_CStrategicPosition_setOffensivePosition}, 
     {"setCurrentPosition", _wrap_CStrategicPosition_setCurrentPosition}, 
     {"setPlayingArea", _wrap_CStrategicPosition_setPlayingArea}, 
+    {"getAttractionX", _wrap_CStrategicPosition_getAttractionX}, 
+    {"getAttractionZ", _wrap_CStrategicPosition_getAttractionZ}, 
+    {"getBehindBall", _wrap_CStrategicPosition_getBehindBall}, 
     {"getPosition", _wrap_CStrategicPosition_getPosition}, 
     {"getInitialPosition", _wrap_CStrategicPosition_getInitialPosition}, 
     {"getDefensivePosition", _wrap_CStrategicPosition_getDefensivePosition}, 
@@ -15985,17 +16181,20 @@ static const struct luaL_reg swig_commands[] = {
     { "new_CTeam", _wrap_new_CTeam},
     { "delete_CTeam", _wrap_delete_CTeam},
     { "CTeam_setOpponentTeam", _wrap_CTeam_setOpponentTeam},
+    { "CTeam_setControllingPlayer", _wrap_CTeam_setControllingPlayer},
     { "CTeam_getOpponentTeam", _wrap_CTeam_getOpponentTeam},
     { "CTeam_getName", _wrap_CTeam_getName},
     { "CTeam_getPlayers", _wrap_CTeam_getPlayers},
     { "CTeam_getFormations", _wrap_CTeam_getFormations},
     { "CTeam_getNearestPlayerToBall", _wrap_CTeam_getNearestPlayerToBall},
+    { "CTeam_getControllingPlayer", _wrap_CTeam_getControllingPlayer},
     { "CTeam_getKickPlayerID", _wrap_CTeam_getKickPlayerID},
     { "CTeam_getCurrentFormation", _wrap_CTeam_getCurrentFormation},
     { "CTeam_getPlayerStrategicPosition", _wrap_CTeam_getPlayerStrategicPosition},
     { "CTeam_getFSM", _wrap_CTeam_getFSM},
     { "CTeam_getXTeam", _wrap_CTeam_getXTeam},
     { "CTeam_isKickForUs", _wrap_CTeam_isKickForUs},
+    { "CTeam_inControl", _wrap_CTeam_inControl},
     { "CTeam_isNearestPlayerToBall", _wrap_CTeam_isNearestPlayerToBall},
     { "CTeam_isNearestTeamMatePlayerToBall", _wrap_CTeam_isNearestTeamMatePlayerToBall},
     { "CTeam_handleMessage", _wrap_CTeam_handleMessage},
@@ -16009,11 +16208,10 @@ static const struct luaL_reg swig_commands[] = {
     { "new_CFootballPlayer", _wrap_new_CFootballPlayer},
     { "delete_CFootballPlayer", _wrap_delete_CFootballPlayer},
     { "CFootballPlayer_getFSM", _wrap_CFootballPlayer_getFSM},
+    { "CFootballPlayer_getSteering", _wrap_CFootballPlayer_getSteering},
     { "CFootballPlayer_getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition},
-    { "CFootballPlayer_getIdent", _wrap_CFootballPlayer_getIdent},
     { "CFootballPlayer_getTeam", _wrap_CFootballPlayer_getTeam},
     { "CFootballPlayer_getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer},
-    { "CFootballPlayer_getSteering", _wrap_CFootballPlayer_getSteering},
     { "CFootballPlayer_isTeamLeft", _wrap_CFootballPlayer_isTeamLeft},
     { "CFootballPlayer_isBallKickable", _wrap_CFootballPlayer_isBallKickable},
     { "CFootballPlayer_canDoActions", _wrap_CFootballPlayer_canDoActions},
@@ -16109,11 +16307,17 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_FormationVector", _wrap_delete_FormationVector},
     { "new_CStrategicPosition", _wrap_new_CStrategicPosition},
     { "delete_CStrategicPosition", _wrap_delete_CStrategicPosition},
+    { "CStrategicPosition_setAttractionX", _wrap_CStrategicPosition_setAttractionX},
+    { "CStrategicPosition_setAttractionZ", _wrap_CStrategicPosition_setAttractionZ},
+    { "CStrategicPosition_setBehindBall", _wrap_CStrategicPosition_setBehindBall},
     { "CStrategicPosition_setInitialPosition", _wrap_CStrategicPosition_setInitialPosition},
     { "CStrategicPosition_setDefensivePosition", _wrap_CStrategicPosition_setDefensivePosition},
     { "CStrategicPosition_setOffensivePosition", _wrap_CStrategicPosition_setOffensivePosition},
     { "CStrategicPosition_setCurrentPosition", _wrap_CStrategicPosition_setCurrentPosition},
     { "CStrategicPosition_setPlayingArea", _wrap_CStrategicPosition_setPlayingArea},
+    { "CStrategicPosition_getAttractionX", _wrap_CStrategicPosition_getAttractionX},
+    { "CStrategicPosition_getAttractionZ", _wrap_CStrategicPosition_getAttractionZ},
+    { "CStrategicPosition_getBehindBall", _wrap_CStrategicPosition_getBehindBall},
     { "CStrategicPosition_getPosition", _wrap_CStrategicPosition_getPosition},
     { "CStrategicPosition_getInitialPosition", _wrap_CStrategicPosition_getInitialPosition},
     { "CStrategicPosition_getDefensivePosition", _wrap_CStrategicPosition_getDefensivePosition},

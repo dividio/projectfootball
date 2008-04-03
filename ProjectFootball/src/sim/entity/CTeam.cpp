@@ -331,8 +331,8 @@ bool CTeam::inControl() const
 bool CTeam::isNearestPlayerToBall(CFootballPlayer* player) const
 {
     bool nearest = true;
-    std::string id = player->getIdent();
-    if(m_nearestPlayerToBall->getIdent() == id) {
+    int id = player->getID();
+    if(m_nearestPlayerToBall->getID() == id) {
         CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
         btVector3 ballPos = sim->getBallPosition();
         btVector3 playerPos = player->getPosition();
@@ -353,8 +353,8 @@ bool CTeam::isNearestPlayerToBall(CFootballPlayer* player) const
 bool CTeam::isNearestTeamMatePlayerToBall(CFootballPlayer* player) const
 {
     bool nearest = false;
-    std::string id = player->getIdent();
-    if(m_nearestPlayerToBall->getIdent() == id) {
+    int id = player->getID();
+    if(m_nearestPlayerToBall->getID() == id) {
         nearest = true;
     }
 
