@@ -46,12 +46,14 @@ public:
     ~CTeam();
 
     void                setOpponentTeam(CTeam *team);
+    void                setControllingPlayer(CFootballPlayer *player);
 
     CTeam*                          getOpponentTeam();
     const std::string&              getName();
     std::vector<CFootballPlayer*>*  getPlayers();
     std::vector<CFormation*>*       getFormations();
     CFootballPlayer*                getNearestPlayerToBall() const;
+    CFootballPlayer*                getControllingPlayer() const;
     int                             getKickPlayerID() const;
     CFormation*                     getCurrentFormation() const;
     CStrategicPosition*             getPlayerStrategicPosition(int formationPos) const;
@@ -59,6 +61,7 @@ public:
     int                             getXTeam();
 
     bool                isKickForUs() const;
+    bool                inControl() const;
     bool                isNearestPlayerToBall(CFootballPlayer* player) const;
     bool                isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
 
@@ -71,6 +74,7 @@ private:
     CPfTeams                        *m_team;
     std::vector<CFootballPlayer*>    m_players;
     CFootballPlayer                 *m_nearestPlayerToBall;
+    CFootballPlayer                 *m_controllingPlayer;
     CTeam                           *m_opponentTeam;
     CStateMachine<CTeam>            *m_stateMachine;
     CFormation                      *m_currentFormation;
