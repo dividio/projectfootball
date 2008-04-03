@@ -211,7 +211,7 @@ bool CFootballPlayer::atHome()
 {
     bool result = false;
     btVector3 actualPos = getPosition();
-    if(actualPos.distance(getStrategicPosition()) < 0.01) {
+    if(actualPos.distance(getStrategicPosition()) < 0.5) {
         result = true;
     }
     return result;
@@ -238,12 +238,49 @@ std::string CFootballPlayer::getIdent() const
 
 btVector3 CFootballPlayer::getStrategicPosition() const
 {
-    btVector3 *initialPos = m_team->getPlayerStrategicPosition(m_number)->getCurrentPosition();
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    CStrategicPosition *strPos = m_team->getPlayerStrategicPosition(m_number);
+    btVector3 *initialPos = strPos->getCurrentPosition();
+    CRectangle *area = strPos->getPlayingArea();
     btVector3 pos(initialPos->x(), initialPos->y(), initialPos->z());
+    btVector3 ballPos = sim->getBallPosition();
+    double x, z, maxX, maxZ, minX, minZ;
+
     if(!m_sideLeft) {
         pos.setX(-pos.x());
         pos.setZ(-pos.z());
+        maxX = - area->getBottomRight()->x();
+        minX = - area->getTopLeft()->x();
+        maxZ = - area->getTopLeft()->z();
+        minZ = - area->getBottomRight()->z();
+    } else {
+        maxX = area->getTopLeft()->x();
+        minX = area->getBottomRight()->x();
+        maxZ = area->getBottomRight()->z();
+        minZ = area->getTopLeft()->z();
     }
+
+    if(strPos->getBehindBall() == true && x > ballPos.x()) {
+        maxX = ballPos.x();
+    }
+
+    x = pos.x() + ballPos.x() * strPos->getAttractionX();
+    z = pos.z() + ballPos.z() * strPos->getAttractionZ();
+
+    if(x > maxX) {
+        x = maxX;
+    }
+    if(x < minX) { //minX have preference
+        x = minX;
+    }
+    if(z > maxZ) {
+        z = maxZ;
+    } else if(z < minZ) {
+        z = minZ;
+    }
+    pos.setX(btScalar(x));
+    pos.setZ(btScalar(z));
+
     return pos;
 }
 
