@@ -39,12 +39,18 @@ public:
     CStrategicPosition();
     ~CStrategicPosition();
 
+    void setAttractionX(float attrX);
+    void setAttractionZ(float attrZ);
+    void setBehindBall(bool behind);
     void setInitialPosition(btVector3 *pos);
     void setDefensivePosition(btVector3 *pos);
     void setOffensivePosition(btVector3 *pos);
     void setCurrentPosition(btVector3 *pos);
     void setPlayingArea(btVector3 *topLeft, btVector3 *bottomRight);
 
+    float       getAttractionX();
+    float       getAttractionZ();
+    bool        getBehindBall();
     btVector3*  getPosition(FormationType type) const;
     btVector3*  getInitialPosition() const;
     btVector3*  getDefensivePosition() const;
@@ -53,6 +59,9 @@ public:
     CRectangle* getPlayingArea() const;
 
 private:
+    float       m_attractionX;
+    float       m_attractionZ;
+    bool        m_behindBall;
     btVector3  *m_initialPosition;
     btVector3  *m_defensivePosition;
     btVector3  *m_offensivePosition;

@@ -24,11 +24,14 @@
 
 CStrategicPosition::CStrategicPosition()
 {
-    m_initialPosition = new btVector3();
+    m_attractionX       = 0.0;
+    m_attractionZ       = 0.0;
+    m_behindBall        = false;
+    m_initialPosition   = new btVector3();
     m_defensivePosition = new btVector3();
     m_offensivePosition = new btVector3();
-    m_currentPosition = m_initialPosition;
-    m_playingArea = new CRectangle();
+    m_currentPosition   = m_initialPosition;
+    m_playingArea       = new CRectangle();
 }
 
 
@@ -37,6 +40,24 @@ CStrategicPosition::~CStrategicPosition()
     delete m_initialPosition;
     delete m_defensivePosition;
     delete m_offensivePosition;
+}
+
+
+void CStrategicPosition::setAttractionX(float attrX)
+{
+    m_attractionX = attrX;
+}
+
+
+void CStrategicPosition::setAttractionZ(float attrZ)
+{
+    m_attractionZ = attrZ;
+}
+
+
+void CStrategicPosition::setBehindBall(bool behind)
+{
+    m_behindBall = behind;
 }
 
 
@@ -68,6 +89,24 @@ void CStrategicPosition::setPlayingArea(btVector3 *topLeft, btVector3 *bottomRig
 {
     m_playingArea->setTopLeft(topLeft);
     m_playingArea->setBottomRight(bottomRight);
+}
+
+
+float CStrategicPosition::getAttractionX()
+{
+    return m_attractionX;
+}
+
+
+float CStrategicPosition::getAttractionZ()
+{
+    return m_attractionZ;
+}
+
+
+bool CStrategicPosition::getBehindBall()
+{
+    return m_behindBall;
 }
 
 
