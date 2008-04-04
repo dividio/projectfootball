@@ -30,18 +30,20 @@ public:
     CMovingEntity();
     ~CMovingEntity();
 
-    void setPosition(float x, float y, float z);
+    void      setPosition(float x, float y, float z);
+    void      updateOrientation();
     btVector3 futurePosition(double time) const;
-    double getMaxVelocity() const;
     btVector3 getHeading() const;
     btVector3 getSide() const;
-
+    double    getMaxVelocity() const;
+    void      setHeading(btVector3 direction);
 
 protected:
     btVector3 m_heading;
     btVector3 m_side;
+    double    m_maxVelocity;
+    double    m_prevAngle;
 
-    double m_maxVelocity;
 };
 
 #endif // __CMovingEntity_H__

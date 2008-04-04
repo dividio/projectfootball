@@ -25,13 +25,40 @@ CMovingEntity::CMovingEntity()
 : CBaseGameEntity()
 {
     m_maxVelocity = 10;
-    m_heading = btVector3(1,0,0);
-    m_side = btVector3(0,0,1);
+    m_heading = btVector3(btScalar(1.0), btScalar(0.0), btScalar(0.0));
+    m_side = btVector3(btScalar(0.0), btScalar(0.0), btScalar(1.0));
+    m_prevAngle = 0.0;
 }
+
 
 CMovingEntity::~CMovingEntity()
 {
 }
+
+
+void CMovingEntity::updateOrientation()
+{
+    btTransform xform;
+    btVector3 baseV(btScalar(1.0), btScalar(0.0), btScalar(0.0));
+    btScalar angle = baseV.angle(m_heading);
+    btScalar angleS = baseV.angle(m_side);
+    btScalar dot = baseV.dot(m_heading);
+    btScalar dotSide = baseV.dot(m_side);
+
+    if(dotSide < 0) {
+        angle = -angle;
+    }
+
+    btScalar rotation = angle - m_prevAngle;
+    if(btFabs(rotation) > 0.01) {
+        getBody()->getMotionState()->getWorldTransform(xform);
+        rotation += m_prevAngle;
+        xform.setRotation(btQuaternion(btVector3(0.0, 1.0, 0.0), rotation));
+        getBody()->getMotionState()->setWorldTransform(xform);
+        getBody()->setCenterOfMassTransform(xform);
+    }
+}
+
 
 void CMovingEntity::setPosition(float x, float y, float z)
 {
@@ -55,6 +82,19 @@ btVector3 CMovingEntity::futurePosition(double time) const
 btVector3 CMovingEntity::getHeading() const
 {
     return m_heading;
+}
+
+
+void CMovingEntity::setHeading(btVector3 direction)
+{
+    btVector3 baseV(btScalar(1.0), btScalar(0.0), btScalar(0.0));
+    btScalar dotSide = baseV.dot(m_side);
+    m_prevAngle = baseV.angle(m_heading);
+    if(dotSide < 0) {
+        m_prevAngle = -m_prevAngle;
+    }
+    m_heading = direction.normalized();
+    m_side = btVector3(-(m_heading.z()), m_heading.y(), m_heading.getX());
 }
 
 
