@@ -47,17 +47,19 @@ public:
     btVector3                       getStrategicPosition() const;
     CTeam*                          getTeam() const;
     int                             getXTeamPlayer();
+    bool                            handleMessage(const CMessage &msg);
     bool                            isTeamLeft() const;
     bool                            isBallKickable() const;
     bool                            canDoActions();
-    bool                            canKickBall(int cycle);
     bool                            atHome();
     bool                            atKickPosition();
-    bool                            handleMessage(const CMessage &msg);
+    bool                            canKickBall(int cycle);
     void                            update();
     void                            changeSide();
 
     void setWorldTransform(const btTransform& centerOfMassWorldTrans);
+
+    void                            freezeBall();
 
 protected:
     void setGraphicTrans(btTransform trans);

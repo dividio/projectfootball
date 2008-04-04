@@ -172,13 +172,13 @@ bool CFootballPlayer::handleMessage(const CMessage &msg)
 void CFootballPlayer::update()
 {
     m_canDoActions = true;
-    CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
-    CReferee *referee = simulator->getReferee();
-    GameMode mode = referee->getGameMode();
-    m_steeringBehavior->setTargetEntity(simulator->getBall());
-    m_heading = m_body->getLinearVelocity().normalized();
-    m_side = btVector3(-(m_heading.z()), m_heading.y(), m_heading.getX());
+    updateOrientation();
+    btVector3 velocity = m_body->getLinearVelocity();
+    if(velocity.length() > 0.1) {
+        setHeading(m_body->getLinearVelocity());
+    }
     m_stateMachine->update();
+
 }
 
 
@@ -306,6 +306,16 @@ bool CFootballPlayer::isBallKickable() const
 {
     CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
     return (getPosition().distance(simulator->getBallPosition()) < 2.2);
+}
+
+
+void CFootballPlayer::freezeBall()
+{
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
+    // TODO Use maxPower attribute
+    // double velocityLenght = ballVelocity.length();
+    sim->kick(this, -ballVelocity);
 }
 
 
