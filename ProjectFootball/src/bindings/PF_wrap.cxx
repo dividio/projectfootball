@@ -9068,37 +9068,6 @@ fail:
 }
 
 
-static int _wrap_CSimulationManager_turn(lua_State* L) {
-  int SWIG_arg = -1;
-  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
-  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
-  int arg3 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
-    SWIG_fail_ptr("CSimulationManager_turn",1,SWIGTYPE_p_CSimulationManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CSimulationManager_turn",2,SWIGTYPE_p_CFootballPlayer);
-  }
-  
-  arg3 = (int)lua_tonumber(L, 3);
-  (arg1)->turn(arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CSimulationManager(void *obj) {
 CSimulationManager *arg1 = (CSimulationManager *) obj;
 delete arg1;
@@ -9121,7 +9090,6 @@ static swig_lua_method swig_CSimulationManager_methods[] = {
     {"dash", _wrap_CSimulationManager_dash}, 
     {"move", _wrap_CSimulationManager_move}, 
     {"kick", _wrap_CSimulationManager_kick}, 
-    {"turn", _wrap_CSimulationManager_turn}, 
     {0,0}
 };
 static swig_lua_attribute swig_CSimulationManager_attributes[] = {
@@ -9969,6 +9937,27 @@ fail:
 }
 
 
+static int _wrap_CMovingEntity_updateOrientation(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_updateOrientation",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  (arg1)->updateOrientation();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CMovingEntity_futurePosition(lua_State* L) {
   int SWIG_arg = -1;
   CMovingEntity *arg1 = (CMovingEntity *) 0 ;
@@ -9989,28 +9978,6 @@ static int _wrap_CMovingEntity_futurePosition(lua_State* L) {
     btVector3 * resultptr = new btVector3((btVector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
   }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CMovingEntity_getMaxVelocity(lua_State* L) {
-  int SWIG_arg = -1;
-  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
-  double result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
-    SWIG_fail_ptr("CMovingEntity_getMaxVelocity",1,SWIGTYPE_p_CMovingEntity);
-  }
-  
-  result = (double)((CMovingEntity const *)arg1)->getMaxVelocity();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -10069,16 +10036,70 @@ fail:
 }
 
 
+static int _wrap_CMovingEntity_getMaxVelocity(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  double result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_getMaxVelocity",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  result = (double)((CMovingEntity const *)arg1)->getMaxVelocity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CMovingEntity_setHeading(lua_State* L) {
+  int SWIG_arg = -1;
+  CMovingEntity *arg1 = (CMovingEntity *) 0 ;
+  btVector3 arg2 ;
+  btVector3 *argp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CMovingEntity,0))){
+    SWIG_fail_ptr("CMovingEntity_setHeading",1,SWIGTYPE_p_CMovingEntity);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("CMovingEntity_setHeading",2,SWIGTYPE_btVector3);
+  }
+  arg2 = *argp2;
+  
+  (arg1)->setHeading(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CMovingEntity(void *obj) {
 CMovingEntity *arg1 = (CMovingEntity *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CMovingEntity_methods[] = {
     {"setPosition", _wrap_CMovingEntity_setPosition}, 
+    {"updateOrientation", _wrap_CMovingEntity_updateOrientation}, 
     {"futurePosition", _wrap_CMovingEntity_futurePosition}, 
-    {"getMaxVelocity", _wrap_CMovingEntity_getMaxVelocity}, 
     {"getHeading", _wrap_CMovingEntity_getHeading}, 
     {"getSide", _wrap_CMovingEntity_getSide}, 
+    {"getMaxVelocity", _wrap_CMovingEntity_getMaxVelocity}, 
+    {"setHeading", _wrap_CMovingEntity_setHeading}, 
     {0,0}
 };
 static swig_lua_attribute swig_CMovingEntity_attributes[] = {
@@ -12092,6 +12113,35 @@ fail:
 }
 
 
+static int _wrap_CFootballPlayer_handleMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CMessage *arg2 = 0 ;
+  bool result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_handleMessage",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
+    SWIG_fail_ptr("CFootballPlayer_handleMessage",2,SWIGTYPE_p_CMessage);
+  }
+  
+  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CFootballPlayer_isTeamLeft(lua_State* L) {
   int SWIG_arg = -1;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
@@ -12158,31 +12208,6 @@ fail:
 }
 
 
-static int _wrap_CFootballPlayer_canKickBall(lua_State* L) {
-  int SWIG_arg = -1;
-  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
-  int arg2 ;
-  bool result;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CFootballPlayer_canKickBall",1,SWIGTYPE_p_CFootballPlayer);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  result = (bool)(arg1)->canKickBall(arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_CFootballPlayer_atHome(lua_State* L) {
   int SWIG_arg = -1;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
@@ -12227,25 +12252,21 @@ fail:
 }
 
 
-static int _wrap_CFootballPlayer_handleMessage(lua_State* L) {
+static int _wrap_CFootballPlayer_canKickBall(lua_State* L) {
   int SWIG_arg = -1;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
-  CMessage *arg2 = 0 ;
+  int arg2 ;
   bool result;
   
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CFootballPlayer_handleMessage",1,SWIGTYPE_p_CFootballPlayer);
+    SWIG_fail_ptr("CFootballPlayer_canKickBall",1,SWIGTYPE_p_CFootballPlayer);
   }
   
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CMessage,0))){
-    SWIG_fail_ptr("CFootballPlayer_handleMessage",2,SWIGTYPE_p_CMessage);
-  }
-  
-  result = (bool)(arg1)->handleMessage((CMessage const &)*arg2);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (bool)(arg1)->canKickBall(arg2);
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
@@ -12326,6 +12347,81 @@ fail:
 }
 
 
+static int _wrap_CFootballPlayer_kickToPos(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  btVector3 arg2 ;
+  double arg3 ;
+  btVector3 *argp2 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_kickToPos",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("CFootballPlayer_kickToPos",2,SWIGTYPE_btVector3);
+  }
+  arg2 = *argp2;
+  
+  arg3 = (double)lua_tonumber(L, 3);
+  (arg1)->kickToPos(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_freezeBall(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_freezeBall",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->freezeBall();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_kickBallCloseToBody(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_kickBallCloseToBody",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->kickBallCloseToBody();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CFootballPlayer(void *obj) {
 CFootballPlayer *arg1 = (CFootballPlayer *) obj;
 delete arg1;
@@ -12336,16 +12432,19 @@ static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition}, 
     {"getTeam", _wrap_CFootballPlayer_getTeam}, 
     {"getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer}, 
+    {"handleMessage", _wrap_CFootballPlayer_handleMessage}, 
     {"isTeamLeft", _wrap_CFootballPlayer_isTeamLeft}, 
     {"isBallKickable", _wrap_CFootballPlayer_isBallKickable}, 
     {"canDoActions", _wrap_CFootballPlayer_canDoActions}, 
-    {"canKickBall", _wrap_CFootballPlayer_canKickBall}, 
     {"atHome", _wrap_CFootballPlayer_atHome}, 
     {"atKickPosition", _wrap_CFootballPlayer_atKickPosition}, 
-    {"handleMessage", _wrap_CFootballPlayer_handleMessage}, 
+    {"canKickBall", _wrap_CFootballPlayer_canKickBall}, 
     {"update", _wrap_CFootballPlayer_update}, 
     {"changeSide", _wrap_CFootballPlayer_changeSide}, 
     {"setWorldTransform", _wrap_CFootballPlayer_setWorldTransform}, 
+    {"kickToPos", _wrap_CFootballPlayer_kickToPos}, 
+    {"freezeBall", _wrap_CFootballPlayer_freezeBall}, 
+    {"kickBallCloseToBody", _wrap_CFootballPlayer_kickBallCloseToBody}, 
     {0,0}
 };
 static swig_lua_attribute swig_CFootballPlayer_attributes[] = {
@@ -16090,7 +16189,6 @@ static const struct luaL_reg swig_commands[] = {
     { "CSimulationManager_dash", _wrap_CSimulationManager_dash},
     { "CSimulationManager_move", _wrap_CSimulationManager_move},
     { "CSimulationManager_kick", _wrap_CSimulationManager_kick},
-    { "CSimulationManager_turn", _wrap_CSimulationManager_turn},
     { "new_CSteeringBehaviors", _wrap_new_CSteeringBehaviors},
     { "delete_CSteeringBehaviors", _wrap_delete_CSteeringBehaviors},
     { "CSteeringBehaviors_setTargetPoint", _wrap_CSteeringBehaviors_setTargetPoint},
@@ -16125,10 +16223,12 @@ static const struct luaL_reg swig_commands[] = {
     { "new_CMovingEntity", _wrap_new_CMovingEntity},
     { "delete_CMovingEntity", _wrap_delete_CMovingEntity},
     { "CMovingEntity_setPosition", _wrap_CMovingEntity_setPosition},
+    { "CMovingEntity_updateOrientation", _wrap_CMovingEntity_updateOrientation},
     { "CMovingEntity_futurePosition", _wrap_CMovingEntity_futurePosition},
-    { "CMovingEntity_getMaxVelocity", _wrap_CMovingEntity_getMaxVelocity},
     { "CMovingEntity_getHeading", _wrap_CMovingEntity_getHeading},
     { "CMovingEntity_getSide", _wrap_CMovingEntity_getSide},
+    { "CMovingEntity_getMaxVelocity", _wrap_CMovingEntity_getMaxVelocity},
+    { "CMovingEntity_setHeading", _wrap_CMovingEntity_setHeading},
     { "new_CBaseAgent", _wrap_new_CBaseAgent},
     { "delete_CBaseAgent", _wrap_delete_CBaseAgent},
     { "CEntityManager_getInstance", _wrap_CEntityManager_getInstance},
@@ -16212,16 +16312,19 @@ static const struct luaL_reg swig_commands[] = {
     { "CFootballPlayer_getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition},
     { "CFootballPlayer_getTeam", _wrap_CFootballPlayer_getTeam},
     { "CFootballPlayer_getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer},
+    { "CFootballPlayer_handleMessage", _wrap_CFootballPlayer_handleMessage},
     { "CFootballPlayer_isTeamLeft", _wrap_CFootballPlayer_isTeamLeft},
     { "CFootballPlayer_isBallKickable", _wrap_CFootballPlayer_isBallKickable},
     { "CFootballPlayer_canDoActions", _wrap_CFootballPlayer_canDoActions},
-    { "CFootballPlayer_canKickBall", _wrap_CFootballPlayer_canKickBall},
     { "CFootballPlayer_atHome", _wrap_CFootballPlayer_atHome},
     { "CFootballPlayer_atKickPosition", _wrap_CFootballPlayer_atKickPosition},
-    { "CFootballPlayer_handleMessage", _wrap_CFootballPlayer_handleMessage},
+    { "CFootballPlayer_canKickBall", _wrap_CFootballPlayer_canKickBall},
     { "CFootballPlayer_update", _wrap_CFootballPlayer_update},
     { "CFootballPlayer_changeSide", _wrap_CFootballPlayer_changeSide},
     { "CFootballPlayer_setWorldTransform", _wrap_CFootballPlayer_setWorldTransform},
+    { "CFootballPlayer_kickToPos", _wrap_CFootballPlayer_kickToPos},
+    { "CFootballPlayer_freezeBall", _wrap_CFootballPlayer_freezeBall},
+    { "CFootballPlayer_kickBallCloseToBody", _wrap_CFootballPlayer_kickBallCloseToBody},
     { "new_PlayerVector",_wrap_new_PlayerVector},
     { "PlayerVector_size", _wrap_PlayerVector_size},
     { "PlayerVector_max_size", _wrap_PlayerVector_max_size},
