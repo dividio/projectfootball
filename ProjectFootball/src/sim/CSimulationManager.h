@@ -66,7 +66,6 @@ public:
     void dash(CFootballPlayer *player, btVector3 power);
     void move(CFootballPlayer *player, int x, int z);
     void kick(CFootballPlayer *player, btVector3 power);
-    void turn(CFootballPlayer *player, int moment);
 
 private:
     CPfMatches *m_match;

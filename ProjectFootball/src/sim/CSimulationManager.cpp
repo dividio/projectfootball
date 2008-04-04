@@ -272,35 +272,6 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 }
 
 
-void CSimulationManager::turn(CFootballPlayer *player, int moment)
-{
-//    if(player->canDoActions()) {
-//        btRigidBody *body = player->getBody();
-//        body->setAngularVelocity(btVector3(0,moment,0));
-//    }
-
-//    double maxDash = 10.0;
-//    btRigidBody *body = player->getBody();
-//    btVector3 currentAngVelocity = body->getAngularVelocity();
-//    btVector3 newAngVelocity = currentAngVelocity;
-//    double cos = player->m_steeringBehavior->sideComponent();
-//    double rad = acos(cos);
-//    double rot = cos*(player->m_steeringBehavior->force().length());
-//    if(     (currentAngVelocity.y() < 0 && rot < 0) ||
-//            (currentAngVelocity.y() > 0 && rot > 0)) {
-//        newAngVelocity = currentAngVelocity + btVector3(0,rot,0);
-//    } else{
-//        newAngVelocity = btVector3(0,rot,0);
-//    }
-//    truncateVector(&newAngVelocity, maxDash);
-//    if(player->getID() == 11)
-//        printf("Cycle: %d angle: %f  sideComponent(cos): %f  rot: %f\n", m_referee->getCycle(), rad*(360/(2*3.14)), cos, rot);
-//    body->setAngularVelocity(newAngVelocity);
-
-
-}
-
-
 void CSimulationManager::truncateVector(btVector3 *v, double max)
 {
     if (v->length() > max) {
