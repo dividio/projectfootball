@@ -29,6 +29,7 @@
 #include "entity/CFootballPlayer.h"
 #include "entity/CReferee.h"
 #include "entity/CBall.h"
+#include "entity/CField.h"
 #include "../utils/CTimer.h"
 #include "entity/CTeam.h"
 #include "CSimulationWorld.h"
@@ -49,12 +50,15 @@ public:
     void goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal);
     void endMatchEvent();
     void changeFormationEvent(int pos);
-    CSimulationWorld* getSimulationWorld();
-    CReferee* getReferee();
-    CBall* getBall();
-    CTeam* getHomeTeam();
-    CTeam* getAwayTeam();
     void changePlayersSide();
+
+    CSimulationWorld* getSimulationWorld();
+    CReferee*         getReferee();
+    CBall*            getBall();
+    CField*           getField();
+    CTeam*            getHomeTeam();
+    CTeam*            getAwayTeam();
+
 
     //Information Methods
     const std::string& getHomeTeamName();
@@ -76,6 +80,7 @@ private:
     CTeam *m_awayTeam;
     CReferee *m_referee;
     CBall *m_ball;
+    CField *m_field;
     CSimulationWorld *m_simWorld;
 
     void truncateVector(btVector3 *v, double max);

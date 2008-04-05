@@ -49,8 +49,8 @@ CSimulationManager::CSimulationManager(int xMatch)
     m_physicsTimer = new CTimer(hz);
     m_simWorld = new CSimulationWorld();
 
-    CField *field = new CField();
-    m_simWorld->addObject(field);
+    m_field = new CField();
+    m_simWorld->addObject(m_field);
 
     m_referee = new CReferee();
     m_simWorld->addObject(m_referee);
@@ -138,6 +138,12 @@ CReferee* CSimulationManager::getReferee()
 CBall* CSimulationManager::getBall()
 {
     return m_ball;
+}
+
+
+CField* CSimulationManager::getField()
+{
+    return m_field;
 }
 
 
