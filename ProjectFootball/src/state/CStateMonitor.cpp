@@ -362,7 +362,7 @@ void CStateMonitor::loadTeamPlayers()
 
     CPfTeams                                *team               = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
     IPfTeamPlayersDAO                       *teamPlayersDAO     = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
-    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findActiveTeamPlayersByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findActiveByXFkTeam(team->getXTeam());
     std::vector<CPfTeamPlayers*>::iterator  it;
 
     int cont = 0;
@@ -415,7 +415,7 @@ void CStateMonitor::simulateOthersMatches()
                 int nAwayGoals = getRandomNGoals();
 
                 if( nHomeGoals>0 ){
-                    std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveTeamPlayersByXFkTeam(match->getXFkTeamHome());
+                    std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveByXFkTeam(match->getXFkTeamHome());
                     while( nHomeGoals>0 ){
                         CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
                         CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamHome(), teamPlayer->getXTeamPlayer(), rand()%90, false);
@@ -425,7 +425,7 @@ void CStateMonitor::simulateOthersMatches()
                     teamPlayersDAO->freeVector(teamPlayesList);
                 }
                 if( nAwayGoals>0 ){
-                    std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveTeamPlayersByXFkTeam(match->getXFkTeamAway());
+                    std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveByXFkTeam(match->getXFkTeamAway());
                     while( nAwayGoals>0 ){
                         CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
                         CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamAway(), teamPlayer->getXTeamPlayer(), rand()%90, false);

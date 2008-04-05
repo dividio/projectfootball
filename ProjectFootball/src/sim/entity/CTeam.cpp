@@ -43,7 +43,7 @@ CTeam::CTeam(int XTeam, bool sideLeft)
     IPfTeamsDAO *teamsDAO = daoFactory->getIPfTeamsDAO();
     IPfTeamPlayersDAO *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
     m_team = teamsDAO->findByXTeam(XTeam);
-    std::vector<CPfTeamPlayers*> *playersVector = teamPlayersDAO->findActiveTeamPlayersByXFkTeam(XTeam);
+    std::vector<CPfTeamPlayers*> *playersVector = teamPlayersDAO->findActiveByXFkTeam(XTeam);
 
 
     setFormations();
