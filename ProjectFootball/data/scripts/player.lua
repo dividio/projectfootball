@@ -26,7 +26,7 @@ SPl_Global["OnMessage"] = function(player, message)
     elseif message.Msg == PF.Msg_GoHome then
         player:getFSM():changeState("SPl_BeforeStart")
         handle = true
-    elseif (message.Msg == PF.Msg_KickIn) and not (mode == PF.END) then
+    elseif (message.Msg == PF.Msg_KickIn) and not (mode == PF.END) and not (mode == PF.HALF_TIME) then
         player:getFSM():changeState("SPl_GoToKickPosition")
         handle = true
     elseif message.Msg == PF.Msg_PlayOn then
@@ -107,7 +107,7 @@ SPl_LookBall["Execute"] = function(player)
     else
         local sim = PF.CStateMonitor_getInstance():getSimulationManager()
         sim:dash(player, player:getSteering():calculate())
-        direction = sim:getBallPosition() - player:getPosition()
+        local direction = sim:getBallPosition() - player:getPosition()
         player:setHeading(direction)
     end
 end
@@ -117,26 +117,6 @@ SPl_LookBall["Exit"] = function(player)
 end
 
 SPl_LookBall["OnMessage"] = function(player, message)
-    return false
-end
-
----------------------------------------------------
-
-SPl_Wait = {}
-
-SPl_Wait["Enter"] = function(player)
-
-end
-
-SPl_Wait["Execute"] = function(player)
-    player:getFSM():changeState("SPl_Stop")
-end
-
-SPl_Wait["Exit"] = function(player)
-
-end
-
-SPl_Wait["OnMessage"] = function(player, message)
     return false
 end
 
