@@ -93,7 +93,13 @@ void CMovingEntity::setHeading(btVector3 direction)
 {
     btVector3 baseV(btScalar(1.0), btScalar(0.0), btScalar(0.0));
     btScalar dotSide = baseV.dot(m_side);
-    m_prevAngle = baseV.angle(m_heading);
+    btScalar dot = baseV.dot(m_heading);
+    if(dot > 1) {
+        dot = 1;
+    } else if(dot < -1) {
+        dot = -1;
+    }
+    m_prevAngle = btAcos(dot);
     if(dotSide < 0) {
         m_prevAngle = -m_prevAngle;
     }

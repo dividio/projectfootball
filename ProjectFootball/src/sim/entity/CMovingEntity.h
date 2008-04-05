@@ -41,9 +41,8 @@ public:
 protected:
     btVector3 m_heading;
     btVector3 m_side;
+    btScalar  m_prevAngle;
     double    m_maxVelocity;
-    double    m_prevAngle;
-
 };
 
 #endif // __CMovingEntity_H__
