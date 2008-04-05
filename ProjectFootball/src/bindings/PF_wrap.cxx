@@ -7713,6 +7713,48 @@ fail:
 }
 
 
+static int _wrap_CStateTeamPlayers_teamPlayerUp(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("CStateTeamPlayers_teamPlayerUp",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  (arg1)->teamPlayerUp();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CStateTeamPlayers_teamPlayerDown(lua_State* L) {
+  int SWIG_arg = -1;
+  CStateTeamPlayers *arg1 = (CStateTeamPlayers *) 0 ;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateTeamPlayers,0))){
+    SWIG_fail_ptr("CStateTeamPlayers_teamPlayerDown",1,SWIGTYPE_p_CStateTeamPlayers);
+  }
+  
+  (arg1)->teamPlayerDown();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CStateTeamPlayers(void *obj) {
 CStateTeamPlayers *arg1 = (CStateTeamPlayers *) obj;
 delete arg1;
@@ -7722,6 +7764,8 @@ static swig_lua_method swig_CStateTeamPlayers_methods[] = {
     {"forcedLeave", _wrap_CStateTeamPlayers_forcedLeave}, 
     {"leave", _wrap_CStateTeamPlayers_leave}, 
     {"update", _wrap_CStateTeamPlayers_update}, 
+    {"teamPlayerUp", _wrap_CStateTeamPlayers_teamPlayerUp}, 
+    {"teamPlayerDown", _wrap_CStateTeamPlayers_teamPlayerDown}, 
     {0,0}
 };
 static swig_lua_attribute swig_CStateTeamPlayers_attributes[] = {
@@ -16084,6 +16128,8 @@ static const struct luaL_reg swig_commands[] = {
     { "CStateTeamPlayers_forcedLeave", _wrap_CStateTeamPlayers_forcedLeave},
     { "CStateTeamPlayers_leave", _wrap_CStateTeamPlayers_leave},
     { "CStateTeamPlayers_update", _wrap_CStateTeamPlayers_update},
+    { "CStateTeamPlayers_teamPlayerUp", _wrap_CStateTeamPlayers_teamPlayerUp},
+    { "CStateTeamPlayers_teamPlayerDown", _wrap_CStateTeamPlayers_teamPlayerDown},
     { "CStateQuickPlay_getInstance", _wrap_CStateQuickPlay_getInstance},
     { "delete_CStateQuickPlay", _wrap_delete_CStateQuickPlay},
     { "CStateQuickPlay_enter", _wrap_CStateQuickPlay_enter},
