@@ -137,7 +137,7 @@ STm_Kick["Enter"] = function(team)
     end
     if team:isKickForUs() then
         local playerId = team:getKickPlayerID()
-        disp:dispatchMsg(0, team:getID(), playerId, PF.Msg_KickIn, nil)
+        disp:dispatchMsg(1, team:getID(), playerId, PF.Msg_KickIn, nil)
     end
 end
 
