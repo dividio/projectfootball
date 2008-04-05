@@ -12347,39 +12347,6 @@ fail:
 }
 
 
-static int _wrap_CFootballPlayer_kickToPos(lua_State* L) {
-  int SWIG_arg = -1;
-  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
-  btVector3 arg2 ;
-  double arg3 ;
-  btVector3 *argp2 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CFootballPlayer_kickToPos",1,SWIGTYPE_p_CFootballPlayer);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_btVector3,0))){
-    SWIG_fail_ptr("CFootballPlayer_kickToPos",2,SWIGTYPE_btVector3);
-  }
-  arg2 = *argp2;
-  
-  arg3 = (double)lua_tonumber(L, 3);
-  (arg1)->kickToPos(arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_CFootballPlayer_freezeBall(lua_State* L) {
   int SWIG_arg = -1;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
@@ -12391,27 +12358,6 @@ static int _wrap_CFootballPlayer_freezeBall(lua_State* L) {
   }
   
   (arg1)->freezeBall();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CFootballPlayer_kickBallCloseToBody(lua_State* L) {
-  int SWIG_arg = -1;
-  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
-  
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
-    SWIG_fail_ptr("CFootballPlayer_kickBallCloseToBody",1,SWIGTYPE_p_CFootballPlayer);
-  }
-  
-  (arg1)->kickBallCloseToBody();
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -12442,9 +12388,7 @@ static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"update", _wrap_CFootballPlayer_update}, 
     {"changeSide", _wrap_CFootballPlayer_changeSide}, 
     {"setWorldTransform", _wrap_CFootballPlayer_setWorldTransform}, 
-    {"kickToPos", _wrap_CFootballPlayer_kickToPos}, 
     {"freezeBall", _wrap_CFootballPlayer_freezeBall}, 
-    {"kickBallCloseToBody", _wrap_CFootballPlayer_kickBallCloseToBody}, 
     {0,0}
 };
 static swig_lua_attribute swig_CFootballPlayer_attributes[] = {
@@ -16322,9 +16266,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CFootballPlayer_update", _wrap_CFootballPlayer_update},
     { "CFootballPlayer_changeSide", _wrap_CFootballPlayer_changeSide},
     { "CFootballPlayer_setWorldTransform", _wrap_CFootballPlayer_setWorldTransform},
-    { "CFootballPlayer_kickToPos", _wrap_CFootballPlayer_kickToPos},
     { "CFootballPlayer_freezeBall", _wrap_CFootballPlayer_freezeBall},
-    { "CFootballPlayer_kickBallCloseToBody", _wrap_CFootballPlayer_kickBallCloseToBody},
     { "new_PlayerVector",_wrap_new_PlayerVector},
     { "PlayerVector_size", _wrap_PlayerVector_size},
     { "PlayerVector_max_size", _wrap_PlayerVector_max_size},

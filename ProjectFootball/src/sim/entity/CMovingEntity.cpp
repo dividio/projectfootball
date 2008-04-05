@@ -40,9 +40,13 @@ void CMovingEntity::updateOrientation()
 {
     btTransform xform;
     btVector3 baseV(btScalar(1.0), btScalar(0.0), btScalar(0.0));
-    btScalar angle = baseV.angle(m_heading);
-    btScalar angleS = baseV.angle(m_side);
     btScalar dot = baseV.dot(m_heading);
+    if(dot > 1) {
+        dot = 1;
+    } else if(dot < -1) {
+        dot = -1;
+    }
+    btScalar angle = btAcos(dot);
     btScalar dotSide = baseV.dot(m_side);
 
     if(dotSide < 0) {
