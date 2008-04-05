@@ -362,7 +362,7 @@ void CStateMonitor::loadTeamPlayers()
 
     CPfTeams                                *team               = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
     IPfTeamPlayersDAO                       *teamPlayersDAO     = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
-    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findActiveByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
     std::vector<CPfTeamPlayers*>::iterator  it;
 
     int cont = 0;
