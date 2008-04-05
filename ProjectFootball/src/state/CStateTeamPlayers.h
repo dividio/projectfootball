@@ -34,11 +34,21 @@ public:
     virtual bool leave();
     virtual void update();
 
+    void teamPlayerUp();
+    void teamPlayerDown();
+
 private:
     CStateTeamPlayers();
-    void loadTeamPlayers();
 
-    CEGUI::MultiColumnList  *m_teamPlayersList;
+    void loadTeamPlayersList();
+    void saveTeamPlayersList();
+    bool handleLineUpSelectChanged(const CEGUI::EventArgs& e);
+    bool handleAlternateSelectChanged(const CEGUI::EventArgs& e);
+    bool handleNotLineUpSelectChanged(const CEGUI::EventArgs& e);
+
+    CEGUI::MultiColumnList  *m_lineUpTeamPlayersList;
+    CEGUI::MultiColumnList  *m_alternateTeamPlayersList;
+    CEGUI::MultiColumnList  *m_notLineUpTeamPlayersList;
 };
 
 #endif /*CSTATETEAMPLAYERS_H_*/

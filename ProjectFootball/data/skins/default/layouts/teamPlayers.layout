@@ -14,9 +14,31 @@
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
       <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.5,0},{0.08,0}}" />
     </Window>
-    <Window Type="TaharezLook/MultiColumnList" Name="TeamPlayers/TeamPlayersList" >
+    <Window Type="TaharezLook/MultiColumnList" Name="TeamPlayers/LineUpTeamPlayersList" >
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.97,0},{0.7,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.7,0},{0.425,0}}" />
+    </Window>
+    <Window Type="TaharezLook/MultiColumnList" Name="TeamPlayers/AlternateTeamPlayersList" >
+      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.435,0},{0.7,0},{0.65,0}}" />
+    </Window>
+    <Window Type="TaharezLook/MultiColumnList" Name="TeamPlayers/NotLineUpTeamPlayersList" >
+      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.66,0},{0.7,0},{0.87,0}}" />
+    </Window>
+    <Window Type="TaharezLook/Button" Name="TeamPlayers/UpButton" >
+      <Property Name="Font" Value="DejaVuSans-10" />
+      <Property Name="Text" Value="Up" />
+      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.5,0},{0.87,0},{0.54,0}}" />
+      <Event Name="Clicked" Function="cmd_TeamPlayer_Up" />
+    </Window>
+    <Window Type="TaharezLook/Button" Name="TeamPlayers/DownButton" >
+      <Property Name="Font" Value="DejaVuSans-10" />
+      <Property Name="Text" Value="Down" />
+      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.55,0},{0.87,0},{0.59,0}}" />
+      <Event Name="Clicked" Function="cmd_TeamPlayer_Down" />
     </Window>
     <Window Type="TaharezLook/Button" Name="TeamPlayers/BackButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
