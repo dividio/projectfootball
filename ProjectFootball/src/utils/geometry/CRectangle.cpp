@@ -24,62 +24,55 @@
 
 CRectangle::CRectangle()
 {
-    m_topLeft = new btVector3();
-    m_bottomRight = new btVector3();
+    m_topLeft = btVector3();
+    m_bottomRight = btVector3();
 }
 
 
-CRectangle::CRectangle(btVector3 *topLeft, btVector3 *bottomRight)
+CRectangle::CRectangle(const btVector3 &topLeft, const btVector3 &bottomRight)
 {
-    m_topLeft = new btVector3(topLeft->x(), topLeft->y(), topLeft->z());
-    m_bottomRight = new btVector3(bottomRight->x(), bottomRight->y(), bottomRight->z());
+    m_topLeft.setValue(topLeft.x(), topLeft.y(), topLeft.z());
+    m_bottomRight.setValue(bottomRight.x(), bottomRight.y(), bottomRight.z());
 }
 
 
 CRectangle::~CRectangle()
 {
-    delete m_topLeft;
-    delete m_bottomRight;
+
 }
 
 
-void CRectangle::setTopLeft(btVector3 *pos)
+void CRectangle::setTopLeft(const btVector3 &pos)
 {
-    m_topLeft->setX(pos->x());
-    m_topLeft->setY(pos->y());
-    m_topLeft->setZ(pos->z());
-    m_topLeft->setW(btScalar(0.0));
+    m_topLeft.setValue(pos.x(), pos.y(), pos.z());
 }
 
 
-void CRectangle::setBottomRight(btVector3 *pos)
+void CRectangle::setBottomRight(const btVector3 &pos)
 {
-    m_bottomRight->setX(pos->x());
-    m_bottomRight->setY(pos->y());
-    m_bottomRight->setZ(pos->z());
-    m_bottomRight->setW(btScalar(0.0));
+    m_bottomRight.setValue(pos.x(), pos.y(), pos.z());
 }
 
 
-btVector3* CRectangle::getTopLeft() const
+btVector3 CRectangle::getTopLeft() const
 {
     return m_topLeft;
 }
 
 
-btVector3* CRectangle::getBottomRight() const
+btVector3 CRectangle::getBottomRight() const
 {
     return m_bottomRight;
 }
 
 
-bool CRectangle::isInside(btVector3 *point) const
+bool CRectangle::isInside(const btVector3 &point) const
 {
     bool isInside = false;
-    btScalar x = point->x();
-    btScalar z = point->z();
-    if((x < m_topLeft->x() && x > m_bottomRight->x()) &&
-       (z > m_topLeft->z() && z < m_bottomRight->z())) {
+    btScalar x = point.x();
+    btScalar z = point.z();
+    if((x < m_topLeft.x() && x > m_bottomRight.x()) &&
+       (z > m_topLeft.z() && z < m_bottomRight.z())) {
         isInside = true;
     }
     return isInside;

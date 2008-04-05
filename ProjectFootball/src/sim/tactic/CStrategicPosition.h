@@ -23,7 +23,7 @@
 #define __CStrategicPosition_H__
 
 #include "../../bullet/btBulletDynamicsCommon.h"
-#include "CRectangle.h"
+#include "../../utils/geometry/CRectangle.h"
 
 
 enum FormationType

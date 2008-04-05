@@ -28,19 +28,20 @@ class CRectangle
 {
 public:
     CRectangle();
-    CRectangle(btVector3 *topLeft, btVector3 *bottomRight);
+    CRectangle(const btVector3 &topLeft, const btVector3 &bottomRight);
     ~CRectangle();
 
-    void setTopLeft(btVector3 *pos);
-    void setBottomRight(btVector3 *pos);
+    btVector3 getTopLeft() const;
+    btVector3 getBottomRight() const;
 
-    btVector3* getTopLeft() const;
-    btVector3* getBottomRight() const;
+    void      setTopLeft(const btVector3 &pos);
+    void      setBottomRight(const btVector3 &pos);
 
-    bool isInside(btVector3 *point) const;
+    bool      isInside(const btVector3 &point) const;
+
 private:
-    btVector3 *m_topLeft;
-    btVector3 *m_bottomRight;
+    btVector3 m_topLeft;
+    btVector3 m_bottomRight;
 };
 
 #endif // __CRectangle_H__

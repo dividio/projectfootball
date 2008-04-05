@@ -87,8 +87,8 @@ void CStrategicPosition::setCurrentPosition(btVector3 *pos)
 
 void CStrategicPosition::setPlayingArea(btVector3 *topLeft, btVector3 *bottomRight)
 {
-    m_playingArea->setTopLeft(topLeft);
-    m_playingArea->setBottomRight(bottomRight);
+    m_playingArea->setTopLeft(btVector3(topLeft->x(), topLeft->y(), topLeft->z()));
+    m_playingArea->setBottomRight(btVector3(bottomRight->x(), bottomRight->y(), bottomRight->z()));
 }
 
 
