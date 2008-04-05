@@ -35,12 +35,14 @@ public:
     CPfTeamPlayerContractsDAOSQLite(sqlite3 *database);
     virtual ~CPfTeamPlayerContractsDAOSQLite();
 
-    virtual CPfTeamPlayerContracts* findByXFkTeamPlayer(int XFkTeamPlayer);
-    virtual CPfTeamPlayerContracts* findByXFkTeamPlayer(const std::string &XFkTeamPlayer);
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeamPlayer(int XFkTeamPlayer);
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeamPlayer(const std::string &XFkTeamPlayer);
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(int XTeamPlayerContract);
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(const std::string &XTeamPlayerContract);
-    virtual CPfTeamPlayerContracts* findByXFkTeam(int XFkTeam);
-    virtual CPfTeamPlayerContracts* findByXFkTeam(const std::string &XFkTeam);
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(int XFkTeam);
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(const std::string &XFkTeam);
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer);
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer);
 
 };
 #endif /*CPFTEAMPLAYERCONTRACTSDAOSQLITE_H_*/

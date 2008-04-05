@@ -34,18 +34,18 @@ CPfTeamPlayerContractsDAOSQLite::~CPfTeamPlayerContractsDAOSQLite()
 {
 }
 
-CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTeamPlayer(int XFkTeamPlayer)
+std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeamPlayer(int XFkTeamPlayer)
 {
     std::ostringstream stream;
     stream << XFkTeamPlayer;
     return findByXFkTeamPlayer(stream.str());
 }
 
-CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTeamPlayer(const std::string &XFkTeamPlayer)
+std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeamPlayer(const std::string &XFkTeamPlayer)
 {
     std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
     sql = sql+"X_FK_TEAM_PLAYER='"+XFkTeamPlayer+"'";
-    return loadRegister(sql);
+    return loadVector(sql);
 }
 
 CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXTeamPlayerContract(int XTeamPlayerContract)
@@ -62,17 +62,34 @@ CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXTeamPlayerContra
     return loadRegister(sql);
 }
 
-CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(int XFkTeam)
+std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(int XFkTeam)
 {
     std::ostringstream stream;
     stream << XFkTeam;
     return findByXFkTeam(stream.str());
 }
 
-CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(const std::string &XFkTeam)
+std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(const std::string &XFkTeam)
 {
     std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
     sql = sql+"X_FK_TEAM='"+XFkTeam+"'";
-    return loadRegister(sql);
+    return loadVector(sql);
 }
 
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer)
+{
+    std::ostringstream sXFkTeam;
+    sXFkTeam << XFkTeam;
+    std::ostringstream sXFkTeamPlayer;
+    sXFkTeamPlayer << XFkTeamPlayer;
+    return findActiveByXFkTeamAndXFkTeamPlayer(sXFkTeam.str(), sXFkTeamPlayer.str());
+}
+
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
+    sql = sql+"X_FK_TEAM='"+XFkTeam+"' ";
+    sql = sql+"  AND X_FK_TEAM_PLAYER='"+XFkTeamPlayer+"' ";
+    sql = sql+"  AND D_BEGIN<CURRENT_TIMESTAMP AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
+    return loadRegister(sql);
+}

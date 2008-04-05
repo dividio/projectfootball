@@ -42,8 +42,14 @@ public:
 
     virtual CPfTeamPlayers* findByXTeamPlayer(int XTeamPlayer) =0;
     virtual CPfTeamPlayers* findByXTeamPlayer(const std::string &XTeamPlayer) =0;
-    virtual std::vector<CPfTeamPlayers*>* findActiveTeamPlayersByXFkTeam(int XFkTeam) =0;
-    virtual std::vector<CPfTeamPlayers*>* findActiveTeamPlayersByXFkTeam(const std::string &XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(int XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(const std::string &XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(int XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(const std::string &XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(int XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(const std::string &XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(int XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam) =0;
 
 };
 #endif /*IPFTEAMPLAYERSDAO_H_*/

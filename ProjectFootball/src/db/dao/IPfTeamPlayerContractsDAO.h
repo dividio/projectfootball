@@ -40,12 +40,14 @@ public:
 
     virtual void freeVector(std::vector<CPfTeamPlayerContracts*>* vector) =0;
 
-    virtual CPfTeamPlayerContracts* findByXFkTeamPlayer(int XFkTeamPlayer) =0;
-    virtual CPfTeamPlayerContracts* findByXFkTeamPlayer(const std::string &XFkTeamPlayer) =0;
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeamPlayer(int XFkTeamPlayer) =0;
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeamPlayer(const std::string &XFkTeamPlayer) =0;
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(int XTeamPlayerContract) =0;
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(const std::string &XTeamPlayerContract) =0;
-    virtual CPfTeamPlayerContracts* findByXFkTeam(int XFkTeam) =0;
-    virtual CPfTeamPlayerContracts* findByXFkTeam(const std::string &XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(int XFkTeam) =0;
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(const std::string &XFkTeam) =0;
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer) =0;
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer) =0;
 
 };
 #endif /*IPFTEAMPLAYERCONTRACTSDAO_H_*/

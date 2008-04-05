@@ -48,14 +48,14 @@ CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXTeamPlayer(const std::string &XT
     return loadRegister(sql);
 }
 
-std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveTeamPlayersByXFkTeam(int XFkTeam)
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveByXFkTeam(int XFkTeam)
 {
     std::ostringstream stream;
     stream << XFkTeam;
-    return findActiveTeamPlayersByXFkTeam(stream.str());
+    return findActiveByXFkTeam(stream.str());
 }
 
-std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveTeamPlayersByXFkTeam(const std::string &XFkTeam)
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveByXFkTeam(const std::string &XFkTeam)
 {
     std::string sql("SELECT TP.* "
                     "FROM PF_TEAM_PLAYERS TP "
@@ -64,5 +64,68 @@ std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveTeamPlayersByXF
     sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
                     "  AND D_BEGIN<CURRENT_TIMESTAMP "
                     "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
+    return loadVector(sql);
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findLineUpByXFkTeam(int XFkTeam)
+{
+    std::ostringstream stream;
+    stream << XFkTeam;
+    return findLineUpByXFkTeam(stream.str());
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findLineUpByXFkTeam(const std::string &XFkTeam)
+{
+    std::string sql("SELECT TP.* "
+                    "FROM PF_TEAM_PLAYERS TP "
+                    "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
+                    "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
+    sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
+                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP) "
+                    "  AND N_LINEUP_ORDER>=1 AND N_LINEUP_ORDER<=11 "
+                    "ORDER BY N_LINEUP_ORDER";
+    return loadVector(sql);
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findAlternateByXFkTeam(int XFkTeam)
+{
+    std::ostringstream stream;
+    stream << XFkTeam;
+    return findAlternateByXFkTeam(stream.str());
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findAlternateByXFkTeam(const std::string &XFkTeam)
+{
+    std::string sql("SELECT TP.* "
+                    "FROM PF_TEAM_PLAYERS TP "
+                    "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
+                    "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
+    sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
+                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP) "
+                    "  AND N_LINEUP_ORDER>11 AND N_LINEUP_ORDER<=17 "
+                    "ORDER BY N_LINEUP_ORDER";
+    return loadVector(sql);
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findNotLineUpByXFkTeam(int XFkTeam)
+{
+    std::ostringstream stream;
+    stream << XFkTeam;
+    return findNotLineUpByXFkTeam(stream.str());
+}
+
+std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findNotLineUpByXFkTeam(const std::string &XFkTeam)
+{
+    std::string sql("SELECT TP.* "
+                    "FROM PF_TEAM_PLAYERS TP "
+                    "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
+                    "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
+    sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
+                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP) "
+                    "  AND (N_LINEUP_ORDER>17 OR N_LINEUP_ORDER IS NULL) "
+                    "ORDER BY N_LINEUP_ORDER";
     return loadVector(sql);
 }
