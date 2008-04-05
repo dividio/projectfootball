@@ -28,18 +28,20 @@
 CPfTeamPlayerContracts::CPfTeamPlayerContracts()
 {
     m_DBegin = "";
-    m_XFkTeamPlayer = "0";
     m_XTeamPlayerContract = "0";
     m_DEnd = "";
+    m_XFkTeamPlayer = "0";
+    m_NLineupOrder = "0";
     m_XFkTeam = "0";
 }
 
 CPfTeamPlayerContracts::CPfTeamPlayerContracts(const CPfTeamPlayerContracts &obj)
 {
     m_DBegin = obj.m_DBegin;
-    m_XFkTeamPlayer = obj.m_XFkTeamPlayer;
     m_XTeamPlayerContract = obj.m_XTeamPlayerContract;
     m_DEnd = obj.m_DEnd;
+    m_XFkTeamPlayer = obj.m_XFkTeamPlayer;
+    m_NLineupOrder = obj.m_NLineupOrder;
     m_XFkTeam = obj.m_XFkTeam;
 }
 
@@ -55,20 +57,6 @@ CDate CPfTeamPlayerContracts::getDBegin() const
 const std::string& CPfTeamPlayerContracts::getDBegin_str() const
 {
     return m_DBegin;
-}
-
-int CPfTeamPlayerContracts::getXFkTeamPlayer() const
-{
-    if( m_XFkTeamPlayer=="" ){
-        return 0;
-    }else{
-        return atoi(m_XFkTeamPlayer.c_str());
-    }
-}
-
-const std::string& CPfTeamPlayerContracts::getXFkTeamPlayer_str() const
-{
-    return m_XFkTeamPlayer;
 }
 
 int CPfTeamPlayerContracts::getXTeamPlayerContract() const
@@ -95,6 +83,34 @@ const std::string& CPfTeamPlayerContracts::getDEnd_str() const
     return m_DEnd;
 }
 
+int CPfTeamPlayerContracts::getXFkTeamPlayer() const
+{
+    if( m_XFkTeamPlayer=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkTeamPlayer.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayerContracts::getXFkTeamPlayer_str() const
+{
+    return m_XFkTeamPlayer;
+}
+
+int CPfTeamPlayerContracts::getNLineupOrder() const
+{
+    if( m_NLineupOrder=="" ){
+        return 0;
+    }else{
+        return atoi(m_NLineupOrder.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayerContracts::getNLineupOrder_str() const
+{
+    return m_NLineupOrder;
+}
+
 int CPfTeamPlayerContracts::getXFkTeam() const
 {
     if( m_XFkTeam=="" ){
@@ -119,18 +135,6 @@ void CPfTeamPlayerContracts::setDBegin_str(const std::string &DBegin)
     m_DBegin = DBegin;
 }
 
-void CPfTeamPlayerContracts::setXFkTeamPlayer(int XFkTeamPlayer)
-{
-    std::ostringstream stream;
-    stream << XFkTeamPlayer;
-    m_XFkTeamPlayer = stream.str();
-}
-
-void CPfTeamPlayerContracts::setXFkTeamPlayer_str(const std::string &XFkTeamPlayer)
-{
-    m_XFkTeamPlayer = XFkTeamPlayer;
-}
-
 void CPfTeamPlayerContracts::setXTeamPlayerContract(int XTeamPlayerContract)
 {
     std::ostringstream stream;
@@ -151,6 +155,30 @@ void CPfTeamPlayerContracts::setDEnd(CDate &DEnd)
 void CPfTeamPlayerContracts::setDEnd_str(const std::string &DEnd)
 {
     m_DEnd = DEnd;
+}
+
+void CPfTeamPlayerContracts::setXFkTeamPlayer(int XFkTeamPlayer)
+{
+    std::ostringstream stream;
+    stream << XFkTeamPlayer;
+    m_XFkTeamPlayer = stream.str();
+}
+
+void CPfTeamPlayerContracts::setXFkTeamPlayer_str(const std::string &XFkTeamPlayer)
+{
+    m_XFkTeamPlayer = XFkTeamPlayer;
+}
+
+void CPfTeamPlayerContracts::setNLineupOrder(int NLineupOrder)
+{
+    std::ostringstream stream;
+    stream << NLineupOrder;
+    m_NLineupOrder = stream.str();
+}
+
+void CPfTeamPlayerContracts::setNLineupOrder_str(const std::string &NLineupOrder)
+{
+    m_NLineupOrder = NLineupOrder;
 }
 
 void CPfTeamPlayerContracts::setXFkTeam(int XFkTeam)

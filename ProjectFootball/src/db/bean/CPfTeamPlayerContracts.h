@@ -36,31 +36,36 @@ public:
 
     CDate getDBegin() const;
     const std::string& getDBegin_str() const;
-    int getXFkTeamPlayer() const;
-    const std::string& getXFkTeamPlayer_str() const;
     int getXTeamPlayerContract() const;
     const std::string& getXTeamPlayerContract_str() const;
     CDate getDEnd() const;
     const std::string& getDEnd_str() const;
+    int getXFkTeamPlayer() const;
+    const std::string& getXFkTeamPlayer_str() const;
+    int getNLineupOrder() const;
+    const std::string& getNLineupOrder_str() const;
     int getXFkTeam() const;
     const std::string& getXFkTeam_str() const;
 
     void setDBegin(CDate &DBegin);
     void setDBegin_str(const std::string &DBegin);
-    void setXFkTeamPlayer(int XFkTeamPlayer);
-    void setXFkTeamPlayer_str(const std::string &XFkTeamPlayer);
     void setXTeamPlayerContract(int XTeamPlayerContract);
     void setXTeamPlayerContract_str(const std::string &XTeamPlayerContract);
     void setDEnd(CDate &DEnd);
     void setDEnd_str(const std::string &DEnd);
+    void setXFkTeamPlayer(int XFkTeamPlayer);
+    void setXFkTeamPlayer_str(const std::string &XFkTeamPlayer);
+    void setNLineupOrder(int NLineupOrder);
+    void setNLineupOrder_str(const std::string &NLineupOrder);
     void setXFkTeam(int XFkTeam);
     void setXFkTeam_str(const std::string &XFkTeam);
 
 private:
     std::string m_DBegin;
-    std::string m_XFkTeamPlayer;
     std::string m_XTeamPlayerContract;
     std::string m_DEnd;
+    std::string m_XFkTeamPlayer;
+    std::string m_NLineupOrder;
     std::string m_XFkTeam;
 
 };
