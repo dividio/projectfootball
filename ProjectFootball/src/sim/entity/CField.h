@@ -23,12 +23,20 @@
 #define __CField_H__
 
 #include "CBaseGameEntity.h"
+#include "../../utils/geometry/CRectangle.h"
 
 class CField : public CBaseGameEntity
 {
 public:
     CField();
     ~CField();
+
+    bool isInLeftArea(btVector3 point) const;
+    bool isInRightArea(btVector3 point) const;
+
+private:
+    CRectangle *m_leftArea;
+    CRectangle *m_rightArea;
 };
 
 #endif // __CField_H__

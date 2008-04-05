@@ -64,6 +64,8 @@ public:
     bool                inControl() const;
     bool                isNearestPlayerToBall(CFootballPlayer* player) const;
     bool                isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
+    bool                isBallInOwnPenaltyArea() const;
+    bool                isBallInOpponentPenaltyArea() const;
 
     bool                handleMessage(const CMessage &msg);
     void                update();
@@ -79,6 +81,7 @@ private:
     CStateMachine<CTeam>            *m_stateMachine;
     CFormation                      *m_currentFormation;
     std::vector<CFormation*>         m_formations;
+    bool                             m_sideLeft;
 
     void setNearestPlayersToBall();
     void setFormations();

@@ -43,7 +43,8 @@ CTeam::CTeam(int XTeam, bool sideLeft)
     IPfTeamsDAO *teamsDAO = daoFactory->getIPfTeamsDAO();
     IPfTeamPlayersDAO *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
     m_team = teamsDAO->findByXTeam(XTeam);
-    std::vector<CPfTeamPlayers*> *playersVector = teamPlayersDAO->findActiveByXFkTeam(XTeam);
+    m_sideLeft = sideLeft;
+    std::vector<CPfTeamPlayers*> *playersVector = teamPlayersDAO->findLineUpByXFkTeam(XTeam);
 
 
     setFormations();
@@ -59,7 +60,7 @@ CTeam::CTeam(int XTeam, bool sideLeft)
 
     CFootballPlayer *player = new CFootballPlayer(playersVector->at(0)->getXTeamPlayer(), 1, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/goalie.lua");
-    player->getFSM()->setGlobalState("SPl_Global");
+    player->getFSM()->setGlobalState("SGoalie_Global");
     m_players.push_back(player);
 
     player = new CFootballPlayer(playersVector->at(1)->getXTeamPlayer(), 2, this, sideLeft);
@@ -188,6 +189,7 @@ int CTeam::getXTeam()
 
 void CTeam::changeSide()
 {
+    m_sideLeft = !m_sideLeft;
     int idLeft = m_currentFormation->getRightCornerKickPlayerId();
     int idRight = m_currentFormation->getLeftCornerKickPlayerId();
     m_currentFormation->setLeftCornerKickPlayerId(idLeft);
@@ -362,6 +364,34 @@ bool CTeam::isNearestTeamMatePlayerToBall(CFootballPlayer* player) const
 }
 
 
+bool CTeam::isBallInOwnPenaltyArea() const
+{
+    bool isIn = false;
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 posBall = sim->getBallPosition();
+    if(m_sideLeft) {
+        isIn = sim->getField()->isInLeftArea(posBall);
+    } else {
+        isIn = sim->getField()->isInRightArea(posBall);
+    }
+    return isIn;
+}
+
+
+bool CTeam::isBallInOpponentPenaltyArea() const
+{
+    bool isIn = false;
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 posBall = sim->getBallPosition();
+    if(m_sideLeft) {
+        isIn = sim->getField()->isInRightArea(posBall);
+    } else {
+        isIn = sim->getField()->isInLeftArea(posBall);
+    }
+    return isIn;
+}
+
+
 void CTeam::setFormations()
 {
     int i;
@@ -379,8 +409,8 @@ void CTeam::setFormations()
     pos->setDefensivePosition(&point);
     point.setValue(-52,0,0);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(-45, 0, -10);
-    bottomRight.setValue(-54, 0, 10);
+    topLeft.setValue(-50, 0, -15);
+    bottomRight.setValue(-54, 0, 15);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.0);
     pos->setAttractionZ(0.1);

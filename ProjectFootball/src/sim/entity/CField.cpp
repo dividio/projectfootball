@@ -53,9 +53,27 @@ CField::CField()
     rbInfo.m_restitution = btScalar(0.4);
     rbInfo.m_friction = 0.4;
     m_body = new btRigidBody(rbInfo);
+
+    //Penalty area rectangles
+    m_leftArea = new CRectangle(btVector3(-38.5, 0.0, -20.16), btVector3(-55.0, 0.0, 20.16));
+    m_rightArea = new CRectangle(btVector3(55.0, 0.0, -20.16), btVector3(38.5, 0.0, 20.16));
 }
 
 
 CField::~CField()
 {
+    delete m_leftArea;
+    delete m_rightArea;
+}
+
+
+bool CField::isInLeftArea(btVector3 point) const
+{
+    return m_leftArea->isInside(point);
+}
+
+
+bool CField::isInRightArea(btVector3 point) const
+{
+    return m_rightArea->isInside(point);
 }
