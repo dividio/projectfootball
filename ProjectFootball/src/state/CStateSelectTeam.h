@@ -41,6 +41,10 @@ private:
 
     void loadTeamList();
     bool handleSelectChanged(const CEGUI::EventArgs& e);
+    bool handleDoubleClick(const CEGUI::EventArgs& e);
+
+    CEGUI::PushButton   *m_selectButton;
+    CEGUI::Listbox      *m_teamsList;
 };
 
 #endif /*CSTATESELECTTEAM_H_*/

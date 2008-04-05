@@ -43,6 +43,7 @@ private:
 
     void loadGameList();
     bool handleSelectChanged(const CEGUI::EventArgs& e);
+    bool handleDoubleClick(const CEGUI::EventArgs& e);
     bool handleTextChanged(const CEGUI::EventArgs& e);
 
     CEGUI::MultiColumnList  *m_gamesList;

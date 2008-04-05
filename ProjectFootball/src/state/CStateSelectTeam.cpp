@@ -31,8 +31,12 @@ CStateSelectTeam::CStateSelectTeam()
     CLog::getInstance()->debug("CStateSelectTeam()");
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"selectTeam.layout");
 
-    CEGUI::Listbox* ceguiTeamsList = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
-    ceguiTeamsList->subscribeEvent(CEGUI::Listbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleSelectChanged, this));
+    m_selectButton  = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
+    m_teamsList     = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
+
+    m_teamsList->subscribeEvent(CEGUI::Listbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleSelectChanged, this));
+    m_teamsList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CStateSelectTeam::handleDoubleClick, this));
+    m_teamsList->setWantsMultiClickEvents(true);
 }
 
 CStateSelectTeam* CStateSelectTeam::getInstance()
@@ -54,8 +58,7 @@ void CStateSelectTeam::enter()
 
     loadTeamList();
 
-    CEGUI::PushButton* selectButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
-    selectButton->setEnabled(false);
+    m_selectButton->setEnabled(false);
 }
 
 void CStateSelectTeam::forcedLeave()
@@ -76,8 +79,7 @@ void CStateSelectTeam::loadTeamList()
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("ListboxSelectionBrush");
 
-    CEGUI::Listbox* ceguiTeamsList = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
-    ceguiTeamsList->resetList();
+    m_teamsList->resetList();
 
     IPfTeamsDAO*                    teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
     std::vector<CPfTeams*>*         teamsList = teamsDAO->findTeams();
@@ -88,15 +90,14 @@ void CStateSelectTeam::loadTeamList()
         CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(team->getSTeam());
         item->setSelectionBrushImage(sel_img);
         item->setID(team->getXTeam());
-        ceguiTeamsList->addItem(item);
+        m_teamsList->addItem(item);
     }
     teamsDAO->freeVector(teamsList);
 }
 
 void CStateSelectTeam::selectTeam()
 {
-    CEGUI::Listbox* teamsList = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
-    CEGUI::ListboxItem* item = teamsList->getFirstSelectedItem();
+    CEGUI::ListboxItem* item = m_teamsList->getFirstSelectedItem();
     std::ostringstream xTeam;
     xTeam << item->getID();
 
@@ -118,11 +119,13 @@ void CStateSelectTeam::selectTeam()
 
 bool CStateSelectTeam::handleSelectChanged(const CEGUI::EventArgs& e)
 {
-    CEGUI::Listbox* teamsList = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
-    CEGUI::ListboxItem* item = teamsList->getFirstSelectedItem();
+    m_selectButton->setEnabled(m_teamsList->getFirstSelectedItem()!=NULL);
 
-    CEGUI::PushButton* ceguiSelectButton = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
-    ceguiSelectButton->setEnabled(item!=NULL);
+    return true;
+}
 
+bool CStateSelectTeam::handleDoubleClick(const CEGUI::EventArgs& e)
+{
+    selectTeam();
     return true;
 }

@@ -45,9 +45,11 @@ CStateLoadGame::CStateLoadGame()
     m_gamesList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
     m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleSelectChanged, this));
+    m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CStateLoadGame::handleDoubleClick, this));
     m_gamesList->setUserColumnDraggingEnabled(false);
     m_gamesList->setUserColumnSizingEnabled(false);
     m_gamesList->setUserSortControlEnabled(false);
+    m_gamesList->setWantsMultiClickEvents(true);
 
     m_gamesList->addColumn("Name", 0, CEGUI::UDim(0.7,0));
     m_gamesList->addColumn("Date", 1, CEGUI::UDim(0.3,0));
@@ -212,6 +214,12 @@ bool CStateLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
     m_loadGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
     m_deleteGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
 
+    return true;
+}
+
+bool CStateLoadGame::handleDoubleClick(const CEGUI::EventArgs& e)
+{
+    loadGame();
     return true;
 }
 
