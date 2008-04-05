@@ -17,7 +17,8 @@
 #include "../sim/entity/CEntityManager.h"
 #include "../sim/tactic/CFormation.h"
 #include "../sim/tactic/CStrategicPosition.h"
-#include "../sim/tactic/CRectangle.h"
+#include "../utils/geometry/CRectangle.h"
+#include "../utils/geometry/CLine2D.h"
 %}
 
 %include "std_string.i"
@@ -64,4 +65,5 @@ namespace std {
    %template(FormationVector) vector<CFormation*>;
 };
 %include "../../../sim/tactic/CStrategicPosition.h"
-%include "../../../sim/tactic/CRectangle.h"
+%include "../../../utils/geometry/CRectangle.h"
+%include "../../../utils/geometry/CLine2D.h"
