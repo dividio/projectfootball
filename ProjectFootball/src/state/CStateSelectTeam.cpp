@@ -113,6 +113,8 @@ void CStateSelectTeam::selectTeam()
     gameStateDAO->updateReg(newGameState);
     delete newGameState;
 
+    // Pop two state: selectTeam state and loadGame state
+    CStateManager::getInstance()->popState();
     CStateManager::getInstance()->popState();
     CStateManager::getInstance()->pushState(CStateGame::getInstance());
 }

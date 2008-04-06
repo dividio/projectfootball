@@ -136,6 +136,11 @@ function cmd_Game_TeamPlayers()
     PF.CStateManager_getInstance():pushState(state)
 end
 
+function cmd_Game_Results()
+    local state = PF.CStateResults_getInstance()
+    PF.CStateManager_getInstance():pushState(state)
+end
+
 
 --------------------------
 -- CStateTeamPlayer functions

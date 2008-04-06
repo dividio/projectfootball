@@ -152,7 +152,6 @@ void CStateLoadGame::loadGame()
     IPfGameStatesDAO *gameStateDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGameStatesDAO();
     CPfGameStates *newGameState = gameStateDAO->findBySState(S_STATE_NEWGAME);
     if( newGameState->getSValue()=="true" ){
-        CStateManager::getInstance()->popState();
         CStateManager::getInstance()->pushState(CStateSelectTeam::getInstance());
     }else{
         CStateManager::getInstance()->popState();

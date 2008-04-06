@@ -255,8 +255,7 @@ void CStateTeamPlayers::loadTeamPlayersList()
         CPfTeamPlayers *teamPlayer = (*it);
 
         int row_idx = m_lineUpTeamPlayersList->addRow();
-        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName());
-        item->setID(teamPlayer->getXTeamPlayer());
+        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName(), teamPlayer->getXTeamPlayer());
         item->setSelectionBrushImage(sel_img);
         m_lineUpTeamPlayersList->setItem(item, 0, row_idx);
     }
@@ -264,8 +263,7 @@ void CStateTeamPlayers::loadTeamPlayersList()
         CPfTeamPlayers *teamPlayer = (*it);
 
         int row_idx = m_alternateTeamPlayersList->addRow();
-        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName());
-        item->setID(teamPlayer->getXTeamPlayer());
+        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName(), teamPlayer->getXTeamPlayer());
         item->setSelectionBrushImage(sel_img);
         m_alternateTeamPlayersList->setItem(item, 0, row_idx);
     }
@@ -273,8 +271,7 @@ void CStateTeamPlayers::loadTeamPlayersList()
         CPfTeamPlayers *teamPlayer = (*it);
 
         int row_idx = m_notLineUpTeamPlayersList->addRow();
-        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName());
-        item->setID(teamPlayer->getXTeamPlayer());
+        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName(), teamPlayer->getXTeamPlayer());
         item->setSelectionBrushImage(sel_img);
         m_notLineUpTeamPlayersList->setItem(item, 0, row_idx);
     }
