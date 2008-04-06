@@ -26,23 +26,27 @@
 #include "../CApplication.h"
 
 CStateConfig::CStateConfig()
+    :CState()
 {
     CLog::getInstance()->debug("CStateConfig()");
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"config.layout");
 
-    CEGUI::Combobox* resolutionCombo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
-    resolutionCombo->getEditbox()->setEnabled(false);
-    resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
-    resolutionCombo->addItem(new CEGUI::ListboxTextItem("1024x768",  1024));
-    resolutionCombo->addItem(new CEGUI::ListboxTextItem("800x600",   800));
+    m_resolutionCombo   = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
+    m_rendererCombo     = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/RendererCombo"));
+    m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
+    m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
 
-    CEGUI::Combobox* rendererCombo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/RendererCombo"));
-    rendererCombo->getEditbox()->setEnabled(false);
+    m_resolutionCombo->getEditbox()->setEnabled(false);
+    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
+    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1024x768",  1024));
+    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("800x600",   800));
+
+    m_rendererCombo->getEditbox()->setEnabled(false);
     Ogre::RenderSystemList *renderSystemList = CApplication::getInstance()->getRenderSystemList();
     Ogre::RenderSystemList::iterator it;
     for( it=renderSystemList->begin(); it!=renderSystemList->end(); it++ ){
         Ogre::RenderSystem *renderSystem = (*it);
-        rendererCombo->addItem(new CEGUI::ListboxTextItem(renderSystem->getName()));
+        m_rendererCombo->addItem(new CEGUI::ListboxTextItem(renderSystem->getName()));
     }
 }
 
@@ -63,33 +67,28 @@ void CStateConfig::enter()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
-    CEGUI::Checkbox* fullscreenCheck = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
-    fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getBooleanOption("Video", "Fullscreen"));
-
-    CEGUI::Checkbox* vSyncCheck = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
-    vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getBooleanOption("Video", "VSync"));
+    m_fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getBooleanOption("Video", "Fullscreen"));
+    m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getBooleanOption("Video", "VSync"));
 
     bool found  = false;
     int  width  = CSystemOptionManager::getInstance()->getIntOption("Video", "Width");
-    CEGUI::Combobox* resolutionCombo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
-    for( int i=0; i<resolutionCombo->getItemCount() && !found; i++ ){
-        CEGUI::ListboxItem *item = resolutionCombo->getListboxItemFromIndex(i);
+    for( int i=0; i<m_resolutionCombo->getItemCount() && !found; i++ ){
+        CEGUI::ListboxItem *item = m_resolutionCombo->getListboxItemFromIndex(i);
         if( item->getID()==width ){
             found = true;
-            resolutionCombo->setItemSelectState(item, true);
-            resolutionCombo->setText(item->getText());
+            m_resolutionCombo->setItemSelectState(item, true);
+            m_resolutionCombo->setText(item->getText());
         }
     }
 
     found  = false;
     const char *renderer  = CSystemOptionManager::getInstance()->getStringOption("Video", "RenderSystem");
-    CEGUI::Combobox* rendererCombo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/RendererCombo"));
-    for( int i=0; i<rendererCombo->getItemCount() && !found; i++ ){
-        CEGUI::ListboxItem *item = rendererCombo->getListboxItemFromIndex(i);
+    for( int i=0; i<m_rendererCombo->getItemCount() && !found; i++ ){
+        CEGUI::ListboxItem *item = m_rendererCombo->getListboxItemFromIndex(i);
         if( item->getText()==renderer ){
             found = true;
-            rendererCombo->setItemSelectState(item, true);
-            rendererCombo->setText(item->getText());
+            m_rendererCombo->setItemSelectState(item, true);
+            m_rendererCombo->setText(item->getText());
         }
     }
 }
@@ -110,14 +109,10 @@ void CStateConfig::update()
 
 void CStateConfig::saveConfig()
 {
-    CEGUI::Checkbox* fullscreenCheck = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
-    CSystemOptionManager::getInstance()->setBooleanOption("Video", "Fullscreen", fullscreenCheck->isSelected());
+    CSystemOptionManager::getInstance()->setBooleanOption("Video", "Fullscreen", m_fullscreenCheck->isSelected());
+    CSystemOptionManager::getInstance()->setBooleanOption("Video", "VSync", m_vSyncCheck->isSelected());
 
-    CEGUI::Checkbox* vSyncCheck = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
-    CSystemOptionManager::getInstance()->setBooleanOption("Video", "VSync", vSyncCheck->isSelected());
-
-    CEGUI::Combobox* resolutionCombo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
-    CEGUI::ListboxItem *item = resolutionCombo->getSelectedItem();
+    CEGUI::ListboxItem *item = m_resolutionCombo->getSelectedItem();
     if( item!=NULL ){
         switch( item->getID() ){
         case 1280:
@@ -135,6 +130,5 @@ void CStateConfig::saveConfig()
         }
     }
 
-    CEGUI::Combobox* rendererCombo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/RendererCombo"));
-    CSystemOptionManager::getInstance()->setStringOption("Video", "RenderSystem", rendererCombo->getText().c_str());
+    CSystemOptionManager::getInstance()->setStringOption("Video", "RenderSystem", m_rendererCombo->getText().c_str());
 }

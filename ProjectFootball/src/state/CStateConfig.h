@@ -38,6 +38,11 @@ public:
 
 private:
     CStateConfig();
+
+    CEGUI::Combobox *m_resolutionCombo;
+    CEGUI::Combobox *m_rendererCombo;
+    CEGUI::Checkbox *m_fullscreenCheck;
+    CEGUI::Checkbox *m_vSyncCheck;
 };
 
 #endif /*CSTATECONFIG_H_*/
