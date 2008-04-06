@@ -54,9 +54,13 @@ CField::CField()
     rbInfo.m_friction = 0.4;
     m_body = new btRigidBody(rbInfo);
 
-    //Penalty area rectangles
+    //Penalty area rectangles and Goals
     m_leftArea = new CRectangle(btVector3(-38.5, 0.0, -20.16), btVector3(-55.0, 0.0, 20.16));
     m_rightArea = new CRectangle(btVector3(55.0, 0.0, -20.16), btVector3(38.5, 0.0, 20.16));
+    m_leftGoalCenter = btVector3(-55.0, 0.0, 0.0);
+    m_leftGoalFacing = btVector3(1.0, 0.0, 0.0);;
+    m_rightGoalCenter = btVector3(55.0, 0.0, 0.0);
+    m_rightGoalFacing = btVector3(-1.0, 0.0, 0.0);;
 }
 
 
@@ -76,4 +80,28 @@ bool CField::isInLeftArea(btVector3 point) const
 bool CField::isInRightArea(btVector3 point) const
 {
     return m_rightArea->isInside(point);
+}
+
+
+btVector3 CField::getLeftGoalCenter() const
+{
+    return m_leftGoalCenter;
+}
+
+
+btVector3 CField::getLeftGoalFacing() const
+{
+    return m_leftGoalFacing;
+}
+
+
+btVector3 CField::getRightGoalCenter() const
+{
+    return m_rightGoalCenter;
+}
+
+
+btVector3 CField::getRightGoalFacing() const
+{
+    return m_rightGoalFacing;
 }

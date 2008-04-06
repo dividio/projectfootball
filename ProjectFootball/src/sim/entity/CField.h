@@ -31,12 +31,20 @@ public:
     CField();
     ~CField();
 
-    bool isInLeftArea(btVector3 point) const;
-    bool isInRightArea(btVector3 point) const;
+    bool        isInLeftArea(btVector3 point) const;
+    bool        isInRightArea(btVector3 point) const;
+    btVector3   getLeftGoalCenter() const;
+    btVector3   getLeftGoalFacing() const;
+    btVector3   getRightGoalCenter() const;
+    btVector3   getRightGoalFacing() const;
 
 private:
     CRectangle *m_leftArea;
     CRectangle *m_rightArea;
+    btVector3   m_leftGoalCenter;
+    btVector3   m_rightGoalCenter;
+    btVector3   m_leftGoalFacing;
+    btVector3   m_rightGoalFacing;
 };
 
 #endif // __CField_H__
