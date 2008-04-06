@@ -189,11 +189,11 @@ SPl_KickBall["Execute"] = function(player)
         local ball = sim:getBall()
         local direction
         if player:isTeamLeft() then
-            direction = PF.btVector3(55,0,0) - ball:getPosition()
+            direction = PF.btVector3(55,0,0)
         else
-            direction = PF.btVector3(-55,0,0) - ball:getPosition()
+            direction = PF.btVector3(-55,0,0)
         end
-        sim:kick(player, direction)
+        player:kickTo(direction, 50)
     elseif player:getTeam():isNearestTeamMatePlayerToBall(player) then
         player:getFSM():changeState("SPl_ChaseBall")
     else
@@ -223,11 +223,11 @@ SPl_KickIn["Execute"] = function(player)
         local ball = sim:getBall()
         local direction
         if player:isTeamLeft() then
-            direction = PF.btVector3(55,0,0) - ball:getPosition()
+            direction = PF.btVector3(55,0,0)
         else
-            direction = PF.btVector3(-55,0,0) - ball:getPosition()
+            direction = PF.btVector3(-55,0,0)
         end
-        sim:kick(player, direction)
+        player:kickTo(direction, 50)
     end
 end
 

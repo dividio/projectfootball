@@ -60,6 +60,8 @@ public:
     void setWorldTransform(const btTransform& centerOfMassWorldTrans);
 
     void                            freezeBall();
+    void                            accelerateBallToVelocity(btVector3 velocity);
+    void                            kickTo(btVector3 target, btScalar speed);
 
 protected:
     void setGraphicTrans(btTransform trans);

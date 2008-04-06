@@ -75,6 +75,7 @@ CSimulationManager::CSimulationManager(int xMatch)
     for(it = players->begin(); it!=players->end(); it++) {
         m_simWorld->addObject((*it));
     }
+    srand(time(NULL));
 }
 
 
@@ -264,6 +265,22 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
     btRigidBody *ballBody = m_ball->getBody();
     btRigidBody *body = player->getBody();
     btVector3 velocity;
+    int error = rand()%100+1;
+    if(error <= 8) {
+        if(error == 1 || error == 2) {
+            power.setX(power.x() + 1.0);
+            power.setZ(power.z() + 1.0);
+        } else if (error == 3 || error == 4) {
+            power.setX(power.x() + 1.0);
+            power.setZ(power.z() - 1.0);
+        } else if (error == 5 || error == 6) {
+            power.setX(power.x() - 1.0);
+            power.setZ(power.z() - 1.0);
+        } else if (error == 7 || error == 8) {
+            power.setX(power.x() - 1.0);
+            power.setZ(power.z() + 1.0);
+        }
+    }
     btVector3 direction = power.normalized();
     direction = direction / 4;
     if(player->canKickBall(m_referee->getCycle()) && player->canDoActions()) {

@@ -319,6 +319,28 @@ void CFootballPlayer::freezeBall()
 }
 
 
+void CFootballPlayer::accelerateBallToVelocity(btVector3 velocity)
+{
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
+    btVector3 ballPos = sim->getBallPosition();
+    btVector3 accel = velocity - ballVelocity;
+    sim->kick(this, accel);
+}
+
+void CFootballPlayer::kickTo(btVector3 target, btScalar speed)
+{
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
+    btVector3 ballPos = sim->getBallPosition();
+    btVector3 toTarget = target - ballPos;
+    btScalar power = speed - ballVelocity.length();
+    toTarget.normalize();
+    toTarget = toTarget * speed;
+    btVector3 impulse = toTarget - ballVelocity;
+    sim->kick(this, impulse);
+}
+
 void CFootballPlayer::changeSide()
 {
     CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
