@@ -19,11 +19,11 @@ SPl_Global["OnMessage"] = function(player, message)
     local handle = false
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
     local mode = sim:getReferee():getGameMode()
-    if (message.Msg == PF.Msg_Interrupt) or
-       (message.Msg == PF.Msg_KickOff) then
+    if (message.Msg == PF.Msg_Interrupt) then
         player:getFSM():changeState("SPl_GoToStrategicPosition")
         handle = true
-    elseif message.Msg == PF.Msg_GoHome then
+    elseif message.Msg == PF.Msg_GoHome or
+       (message.Msg == PF.Msg_KickOff) then
         player:getFSM():changeState("SPl_BeforeStart")
         handle = true
     elseif (message.Msg == PF.Msg_KickIn) and not (mode == PF.END) and not (mode == PF.HALF_TIME) then
@@ -185,15 +185,14 @@ end
 
 SPl_KickBall["Execute"] = function(player)
     if player:isBallKickable() then
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-        local ball = sim:getBall()
         local direction
         if player:isTeamLeft() then
             direction = PF.btVector3(55,0,0)
         else
             direction = PF.btVector3(-55,0,0)
         end
-        player:kickTo(direction, 50)
+        player:kickTo(direction, 25)
+        player:getFSM():changeState("SPl_LookBall")
     elseif player:getTeam():isNearestTeamMatePlayerToBall(player) then
         player:getFSM():changeState("SPl_ChaseBall")
     else
@@ -227,7 +226,7 @@ SPl_KickIn["Execute"] = function(player)
         else
             direction = PF.btVector3(-55,0,0)
         end
-        player:kickTo(direction, 50)
+        player:kickTo(direction, 25)
     end
 end
 
@@ -299,5 +298,3 @@ end
 SPl_ReturnToHomeRegion["OnMessage"] = function(player, message)
     return false
 end
-
----------------------------------------------------

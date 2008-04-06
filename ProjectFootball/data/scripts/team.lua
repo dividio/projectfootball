@@ -122,18 +122,24 @@ STm_Kick = {}
 STm_Kick["Enter"] = function(team)
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
     local formation = team:getCurrentFormation()
-    if sim:getReferee():getGameMode() == PF.KICK_OFF then
-        formation:setCurrentFormationType(PF.FT_Initial)
-    elseif team:isKickForUs() then
-        formation:setCurrentFormationType(PF.FT_Offensive)
-    else
-        formation:setCurrentFormationType(PF.FT_Defensive)
-    end
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
-    for i = 0, size - 1, 1 do
-        disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_Interrupt, nil)
+    if sim:getReferee():getGameMode() == PF.KICK_OFF then
+        formation:setCurrentFormationType(PF.FT_Initial)
+        for i = 0, size - 1, 1 do
+            disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_KickOff, nil)
+        end
+    elseif team:isKickForUs() then
+        formation:setCurrentFormationType(PF.FT_Offensive)
+        for i = 0, size - 1, 1 do
+            disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_Interrupt, nil)
+        end
+    else
+        formation:setCurrentFormationType(PF.FT_Defensive)
+        for i = 0, size - 1, 1 do
+            disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_Interrupt, nil)
+        end
     end
     if team:isKickForUs() then
         local playerId = team:getKickPlayerID()

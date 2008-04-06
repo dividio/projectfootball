@@ -19,11 +19,11 @@ SGoalie_Global["OnMessage"] = function(player, message)
     local handle = false
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
     local mode = sim:getReferee():getGameMode()
-    if (message.Msg == PF.Msg_Interrupt) or
-       (message.Msg == PF.Msg_KickOff) then
+    if (message.Msg == PF.Msg_Interrupt) then
         player:getFSM():changeState("SPl_GoToStrategicPosition")
         handle = true
-    elseif message.Msg == PF.Msg_GoHome then
+    elseif message.Msg == PF.Msg_GoHome or
+       (message.Msg == PF.Msg_KickOff) then
         player:getFSM():changeState("SPl_BeforeStart")
         handle = true
     elseif (message.Msg == PF.Msg_KickIn) and not (mode == PF.END) and not (mode == PF.HALF_TIME) then
