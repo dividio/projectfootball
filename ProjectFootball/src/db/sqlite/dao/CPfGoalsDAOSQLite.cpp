@@ -81,7 +81,7 @@ std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatchAndXFkTeamScorer(int XF
     std::ostringstream streamMatch;
     streamMatch << XFkMatch;
     std::ostringstream streamTeam;
-    streamTeam << XFkMatch;
+    streamTeam << XFkTeamScorer;
     return findByXFkMatchAndXFkTeamScorer(streamMatch.str(), streamTeam.str());
 }
 
