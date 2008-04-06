@@ -12326,6 +12326,31 @@ fail:
 }
 
 
+static int _wrap_CFootballPlayer_getHomeGoalFacing(lua_State* L) {
+  int SWIG_arg = -1;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  btVector3 result;
+  
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg(1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getHomeGoalFacing",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = ((CFootballPlayer const *)arg1)->getHomeGoalFacing();
+  SWIG_arg=0;
+  {
+    btVector3 * resultptr = new btVector3((btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CFootballPlayer_getTeam(lua_State* L) {
   int SWIG_arg = -1;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
@@ -12696,6 +12721,7 @@ static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"getFSM", _wrap_CFootballPlayer_getFSM}, 
     {"getSteering", _wrap_CFootballPlayer_getSteering}, 
     {"getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition}, 
+    {"getHomeGoalFacing", _wrap_CFootballPlayer_getHomeGoalFacing}, 
     {"getTeam", _wrap_CFootballPlayer_getTeam}, 
     {"getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer}, 
     {"handleMessage", _wrap_CFootballPlayer_handleMessage}, 
@@ -16857,6 +16883,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CFootballPlayer_getFSM", _wrap_CFootballPlayer_getFSM},
     { "CFootballPlayer_getSteering", _wrap_CFootballPlayer_getSteering},
     { "CFootballPlayer_getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition},
+    { "CFootballPlayer_getHomeGoalFacing", _wrap_CFootballPlayer_getHomeGoalFacing},
     { "CFootballPlayer_getTeam", _wrap_CFootballPlayer_getTeam},
     { "CFootballPlayer_getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer},
     { "CFootballPlayer_handleMessage", _wrap_CFootballPlayer_handleMessage},

@@ -278,6 +278,19 @@ btVector3 CFootballPlayer::getStrategicPosition() const
 }
 
 
+btVector3 CFootballPlayer::getHomeGoalFacing() const
+{
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 facing;
+    if(m_sideLeft) {
+        facing = sim->getField()->getLeftGoalFacing();
+    } else {
+        facing = sim->getField()->getRightGoalFacing();
+    }
+    return facing;
+}
+
+
 CTeam* CFootballPlayer::getTeam() const
 {
     return m_team;
@@ -304,8 +317,15 @@ bool CFootballPlayer::isTeamLeft() const
 
 bool CFootballPlayer::isBallKickable() const
 {
-    CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
-    return (getPosition().distance(simulator->getBallPosition()) < 2.2);
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 ballPos = sim->getBallPosition();
+    btVector3 toBall = ballPos - getPosition();
+    btScalar dot = getHeading().dot(toBall.normalized());
+    bool canKick = false;
+    if(dot > 0 && (getPosition().distance(ballPos) < 2)) {
+        canKick = true;
+    }
+    return canKick;
 }
 
 

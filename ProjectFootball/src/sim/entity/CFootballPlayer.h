@@ -45,6 +45,7 @@ public:
     CStateMachine<CFootballPlayer>* getFSM();
     CSteeringBehaviors*             getSteering() const;
     btVector3                       getStrategicPosition() const;
+    btVector3                       getHomeGoalFacing() const;
     CTeam*                          getTeam() const;
     int                             getXTeamPlayer();
     bool                            handleMessage(const CMessage &msg);
