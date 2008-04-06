@@ -153,6 +153,7 @@ bool CReferee::isMoveLegal()
 {
     return (m_currentGameMode == END ||
             m_currentGameMode == BEFORE_START ||
+            m_currentGameMode == KICK_OFF ||
             m_currentGameMode == HALF_TIME);
 }
 
