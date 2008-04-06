@@ -40,6 +40,7 @@ public:
 
     virtual void freeVector(std::vector<CPfCompetitions*>* vector) =0;
 
+    virtual std::vector<CPfCompetitions*>*  findCompetitions() =0;
     virtual CPfCompetitions* findByXCompetition(int XCompetition) =0;
     virtual CPfCompetitions* findByXCompetition(const std::string &XCompetition) =0;
 

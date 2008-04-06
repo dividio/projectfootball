@@ -35,6 +35,7 @@ public:
     CPfCompetitionsDAOSQLite(sqlite3 *database);
     virtual ~CPfCompetitionsDAOSQLite();
 
+    virtual std::vector<CPfCompetitions*>*  findCompetitions();
     virtual CPfCompetitions* findByXCompetition(int XCompetition);
     virtual CPfCompetitions* findByXCompetition(const std::string &XCompetition);
 

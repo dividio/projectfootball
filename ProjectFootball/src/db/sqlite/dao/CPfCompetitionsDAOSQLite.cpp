@@ -34,6 +34,11 @@ CPfCompetitionsDAOSQLite::~CPfCompetitionsDAOSQLite()
 {
 }
 
+std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findCompetitions()
+{
+    return loadVector("SELECT * FROM PF_COMPETITIONS ORDER BY S_COMPETITION");
+}
+
 CPfCompetitions* CPfCompetitionsDAOSQLite::findByXCompetition(int XCompetition)
 {
     std::ostringstream stream;
