@@ -266,7 +266,7 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
     btRigidBody *body = player->getBody();
     btVector3 velocity;
     int error = rand()%100+1;
-    if(error <= 8) {
+    if(error <= 8 && power.length() > 10) {
         if(error == 1 || error == 2) {
             power.setX(power.x() + 1.0);
             power.setZ(power.z() + 1.0);
