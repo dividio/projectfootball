@@ -48,17 +48,17 @@ CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXCompetitionPhase(con
     return loadRegister(sql);
 }
 
-CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXFkCompetition(int XFkCompetition)
+std::vector<CPfCompetitionPhases*>* CPfCompetitionPhasesDAOSQLite::findByXFkCompetition(int XFkCompetition)
 {
     std::ostringstream stream;
     stream << XFkCompetition;
     return findByXFkCompetition(stream.str());
 }
 
-CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findByXFkCompetition(const std::string &XFkCompetition)
+std::vector<CPfCompetitionPhases*>* CPfCompetitionPhasesDAOSQLite::findByXFkCompetition(const std::string &XFkCompetition)
 {
     std::string sql("SELECT * FROM PF_COMPETITION_PHASES WHERE ");
-    sql = sql+"X_FK_COMPETITION='"+XFkCompetition+"'";
-    return loadRegister(sql);
+    sql = sql+"X_FK_COMPETITION='"+XFkCompetition+"' ORDER BY N_ORDER";
+    return loadVector(sql);
 }
 
