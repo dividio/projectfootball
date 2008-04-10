@@ -123,6 +123,7 @@ void CStateLoadGame::newGame()
     masterDatabase->getIPfGamesDAO()->insertReg(&game);
 
     CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
+    daoFactory->beginTransaction();
     daoFactory->executeScriptFile("data/database/scripts/tables.sql");
     daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
     daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
@@ -130,6 +131,7 @@ void CStateLoadGame::newGame()
     daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_matches.sql");
+    daoFactory->commit();
 
     CPfGameStates newGameState;
     newGameState.setSState(S_STATE_NEWGAME);
