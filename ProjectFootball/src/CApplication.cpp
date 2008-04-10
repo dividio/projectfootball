@@ -210,6 +210,8 @@ void CApplication::setupInputSystem()
     m_window->getCustomAttribute("WINDOW", &windowHnd);
     windowHndStr << windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
+    //Disable mouse grab for debug
+    //pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
     m_inputManager = OIS::InputManager::createInputSystem(pl);
 
     try
