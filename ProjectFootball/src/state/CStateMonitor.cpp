@@ -163,7 +163,9 @@ bool CStateMonitor::keyUpHandler(const CEGUI::EventArgs& e)
         m_direction.x -= move;
         break;
     case CEGUI::Key::PageDown:
-        m_direction.y += move;
+        if(m_direction.y = -move) {
+            m_direction.y += move;
+        }
         break;
     case CEGUI::Key::PageUp:
         m_direction.y -= move;
@@ -179,6 +181,7 @@ void CStateMonitor::enter()
 {
     m_system->setGUISheet(m_sheet);
     m_sceneMgr->clearScene();
+    m_direction = Ogre::Vector3::ZERO;
 
     IDAOFactory *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
     IPfMatchesDAO *matchesDAO = daoFactory->getIPfMatchesDAO();
@@ -249,6 +252,10 @@ void CStateMonitor::update()
     static btVector3 ballPositionOld = m_simulator->getBallPosition();
 
     float t = CStateManager::getInstance()->getTimeSinceLastFrame();
+    Ogre::Vector3 pos = m_cam3DNode->getPosition();
+    if(pos.y <= 5 && m_direction.y < 0) {
+        m_direction.y = 0;
+    }
     m_cam3DNode->translate(m_direction * t, Ogre::Node::TS_LOCAL);
 
     btVector3 ballPosition = m_simulator->getBallPosition();
