@@ -291,6 +291,7 @@ void CStateTeamPlayers::loadTeamPlayersList()
 
 void CStateTeamPlayers::saveTeamPlayersList()
 {
+    CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->beginTransaction();
     CPfTeams                    *team                   = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
     IPfTeamPlayerContractsDAO   *teamPlayerContractsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayerContractsDAO();
 
@@ -339,6 +340,7 @@ void CStateTeamPlayers::saveTeamPlayersList()
     }
 
     delete team;
+    CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->commit();
 }
 
 bool CStateTeamPlayers::handleLineUpSelectChanged(const CEGUI::EventArgs& e)

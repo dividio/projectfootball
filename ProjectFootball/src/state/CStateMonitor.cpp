@@ -407,6 +407,7 @@ void CStateMonitor::simulateOthersMatches()
     if( m_match!=NULL ){
         srand(time(NULL));
 
+        CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->beginTransaction();
         IPfMatchesDAO       *matchesDAO     = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
         IPfTeamPlayersDAO   *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
 
@@ -447,6 +448,8 @@ void CStateMonitor::simulateOthersMatches()
             }
         }
         matchesDAO->freeVector(matchesList);
+
+        CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->commit();
     }
 }
 
