@@ -161,7 +161,7 @@
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Credits/DDBLabel" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="David Dominguez Bocanegra" />
+          <Property Name="Text" Value="David Domínguez Bocanegra" />
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -177,7 +177,7 @@
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Credits/PereLabel" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Jaime Peregrin Millan (Pere)" />
+          <Property Name="Text" Value="Jaime Peregrín Millán" />
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -185,7 +185,7 @@
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Credits/DJChapLabel" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Carlos Javier Bastian Lerida (DJ Chap N.A)" />
+          <Property Name="Text" Value="Carlos Javier Bastian Lérida (DJ Chap N.A)" />
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
