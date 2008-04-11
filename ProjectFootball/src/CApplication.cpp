@@ -210,8 +210,9 @@ void CApplication::setupInputSystem()
     m_window->getCustomAttribute("WINDOW", &windowHnd);
     windowHndStr << windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
-    //Disable mouse grab for debug
+    //Disable mouse and keyboard grab for debug
     //pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+    //pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
     m_inputManager = OIS::InputManager::createInputSystem(pl);
 
     try
@@ -282,14 +283,14 @@ void CApplication::setSystemOptionsDefaultValues()
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
     optionManager->setDefaultValue("General", "MasterDatabasePath", "data/database/master.sql3");
 
-    optionManager->setDefaultValue("GUI", "MouseVelocity",  50);
+    optionManager->setDefaultValue("GUI", "MouseVelocity",  150);
     optionManager->setDefaultValue("GUI", "Skin",           "DefaultSkin");
 
     optionManager->setDefaultValue("Video", "RenderSystem", "OpenGL Rendering Subsystem");
-    optionManager->setDefaultValue("Video", "Width",        800);
-    optionManager->setDefaultValue("Video", "Height",       600);
-    optionManager->setDefaultValue("Video", "Fullscreen",   false);
-    optionManager->setDefaultValue("Video", "VSync",        false);
+    optionManager->setDefaultValue("Video", "Width",        1024);
+    optionManager->setDefaultValue("Video", "Height",       768);
+    optionManager->setDefaultValue("Video", "Fullscreen",   true);
+    optionManager->setDefaultValue("Video", "VSync",        true);
     optionManager->setDefaultValue("Video", "RTTCopyMode",  false);
 
     optionManager->setDefaultValue("Simulation", "MatchDuration",       2000);
