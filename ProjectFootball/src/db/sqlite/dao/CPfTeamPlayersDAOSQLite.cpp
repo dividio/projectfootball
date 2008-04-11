@@ -62,7 +62,7 @@ std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findActiveByXFkTeam(const
                     "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
                     "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
     sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
-                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND D_BEGIN<=CURRENT_TIMESTAMP "
                     "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
     return loadVector(sql);
 }
@@ -81,7 +81,7 @@ std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findLineUpByXFkTeam(const
                     "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
                     "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
     sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
-                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND D_BEGIN<=CURRENT_TIMESTAMP "
                     "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP) "
                     "  AND N_LINEUP_ORDER>=1 AND N_LINEUP_ORDER<=11 "
                     "ORDER BY N_LINEUP_ORDER";
@@ -102,7 +102,7 @@ std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findAlternateByXFkTeam(co
                     "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
                     "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
     sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
-                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND D_BEGIN<=CURRENT_TIMESTAMP "
                     "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP) "
                     "  AND N_LINEUP_ORDER>11 AND N_LINEUP_ORDER<=17 "
                     "ORDER BY N_LINEUP_ORDER";
@@ -123,7 +123,7 @@ std::vector<CPfTeamPlayers*>* CPfTeamPlayersDAOSQLite::findNotLineUpByXFkTeam(co
                     "  JOIN PF_TEAM_PLAYER_CONTRACTS TPC ON TPC.X_FK_TEAM_PLAYER=TP.X_TEAM_PLAYER "
                     "  JOIN PF_TEAMS T ON T.X_TEAM=TPC.X_FK_TEAM ");
     sql +=          "WHERE X_TEAM='"+XFkTeam+"' "
-                    "  AND D_BEGIN<CURRENT_TIMESTAMP "
+                    "  AND D_BEGIN<=CURRENT_TIMESTAMP "
                     "  AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP) "
                     "  AND (N_LINEUP_ORDER>17 OR N_LINEUP_ORDER IS NULL) "
                     "ORDER BY N_LINEUP_ORDER";

@@ -90,6 +90,6 @@ CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findActiveByXFkTeamAndX
     std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
     sql = sql+"X_FK_TEAM='"+XFkTeam+"' ";
     sql = sql+"  AND X_FK_TEAM_PLAYER='"+XFkTeamPlayer+"' ";
-    sql = sql+"  AND D_BEGIN<CURRENT_TIMESTAMP AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
+    sql = sql+"  AND D_BEGIN<=CURRENT_TIMESTAMP AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
     return loadRegister(sql);
 }
