@@ -128,6 +128,8 @@ bool CStateSelectTeam::handleSelectChanged(const CEGUI::EventArgs& e)
 
 bool CStateSelectTeam::handleDoubleClick(const CEGUI::EventArgs& e)
 {
-    selectTeam();
+    if( m_teamsList->getFirstSelectedItem()!=NULL ){
+        selectTeam();
+    }
     return true;
 }

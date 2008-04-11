@@ -208,6 +208,17 @@ void CStateLoadGame::loadGameList()
     gamesDAO->freeVector(gamesList);
 
     m_gamesList->getHorzScrollbar()->setVisible(false);
+
+    m_loadGameButton->setEnabled(false);
+    m_deleteGameButton->setEnabled(false);
+}
+
+bool CStateLoadGame::handleDoubleClick(const CEGUI::EventArgs& e)
+{
+    if( m_gamesList->getFirstSelectedItem()!=NULL ){
+        loadGame();
+    }
+    return true;
 }
 
 bool CStateLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
@@ -215,12 +226,6 @@ bool CStateLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
     m_loadGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
     m_deleteGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
 
-    return true;
-}
-
-bool CStateLoadGame::handleDoubleClick(const CEGUI::EventArgs& e)
-{
-    loadGame();
     return true;
 }
 
