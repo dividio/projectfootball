@@ -90,13 +90,13 @@ SRf_HalfTime["Enter"] = function(referee)
     referee:setHomeTeamInSideLeft(not side)
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_HalfTime, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_HalfTime, nil)
-    sim:getBall():setPosition(0,0,0)
+    referee:setKickPosition(PF.btVector3(0,0,0))
 end
 
 SRf_HalfTime["Execute"] = function(referee)
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-    local ballPos = sim:getBallPosition()
-    sim:getBall():setPosition(0,0,0)
+    local pos = referee:getKickPosition()
+    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_HalfTime["Exit"] = function(referee)
@@ -122,6 +122,7 @@ SRf_KickOff = {}
 SRf_KickOff["Enter"] = function(referee)
     referee:setGameMode(PF.KICK_OFF)
     referee:incCycle()
+    referee:setKickPosition(PF.btVector3(0,0,0))
     local monitor = PF.CStateMonitor_getInstance()
     monitor:addToLog(referee:getGameModeString())
     local sim = monitor:getSimulationManager()
@@ -133,8 +134,8 @@ end
 SRf_KickOff["Execute"] = function(referee)
     referee:incCycle()
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-    local ballPos = sim:getBallPosition()
-    sim:getBall():setPosition(0,0,0)
+    local pos = referee:getKickPosition()
+    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_KickOff["Exit"] = function(referee)
@@ -209,7 +210,7 @@ end
 SRf_End["Execute"] = function(referee)
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
     local pos = sim:getBallPosition()
-    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
+    sim:getBall():setPosition(pos:x(),0,pos:z())
 end
 
 SRf_End["Exit"] = function(referee)
@@ -237,9 +238,8 @@ end
 SRf_KickIn["Execute"] = function(referee)
     referee:incCycle()
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-    local ballPos = sim:getBallPosition()
-    local floor = PF.btVector3(ballPos:x(),0,ballPos:z())
-    sim:getBall():setPosition(floor:x(),0,floor:z())
+    local pos = referee:getKickPosition()
+    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_KickIn["Exit"] = function(referee)
@@ -280,9 +280,8 @@ end
 SRf_CornerKick["Execute"] = function(referee)
     referee:incCycle()
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-    local ballPos = sim:getBallPosition()
-    local floor = PF.btVector3(ballPos:x(),0,ballPos:z())
-    sim:getBall():setPosition(floor:x(),0,floor:z())
+    local pos = referee:getKickPosition()
+    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_CornerKick["Exit"] = function(referee)
@@ -324,9 +323,8 @@ end
 SRf_GoalKick["Execute"] = function(referee)
     referee:incCycle()
     local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-    local ballPos = sim:getBallPosition()
-    local floor = PF.btVector3(ballPos:x(),0,ballPos:z())
-    sim:getBall():setPosition(floor:x(),0,floor:z())
+    local pos = referee:getKickPosition()
+    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_GoalKick["Exit"] = function(referee)
@@ -360,7 +358,7 @@ function verifyBallPosition(referee)
     local player = referee:getLastPlayerTouch()
     if ball:isInLeftGoal() then
         referee:getFSM():changeState("SRf_KickOff")
-        ball:setPosition(0,0,0)
+        referee:setKickPosition(PF.btVector3(0,0,0))
         if referee:isHomeTeamInSideLeft() then
             referee:setKickTeam(sim:getHomeTeam())
             referee:addAwayGoal(player);
@@ -370,7 +368,7 @@ function verifyBallPosition(referee)
         end
     elseif ball:isInRightGoal() then
         referee:getFSM():changeState("SRf_KickOff")
-        ball:setPosition(0,0,0)
+        referee:setKickPosition(PF.btVector3(0,0,0))
         if referee:isHomeTeamInSideLeft() then
             referee:setKickTeam(sim:getAwayTeam())
             referee:addHomeGoal(player);
@@ -383,16 +381,16 @@ function verifyBallPosition(referee)
         if player:isTeamLeft() then
             referee:getFSM():changeState("SRf_CornerKick")
             if z > 0 then
-                ball:setPosition(-54.5,0,34.5)
+                referee:setKickPosition(PF.btVector3(-54.5,0,34.5))
             else
-                ball:setPosition(-54.5,0,-34.5)
+                referee:setKickPosition(PF.btVector3(-54.5,0,-34.5))
             end
         else
             referee:getFSM():changeState("SRf_GoalKick")
             if z > 0 then
-                ball:setPosition(-49.5,0,9)
+                referee:setKickPosition(PF.btVector3(-49.5,0,9))
             else
-                ball:setPosition(-49.5,0,-9)
+                referee:setKickPosition(PF.btVector3(-49.5,0,-9))
             end
         end
     elseif ball:crossRightLine() then
@@ -400,25 +398,25 @@ function verifyBallPosition(referee)
         if player:isTeamLeft() then
             referee:getFSM():changeState("SRf_GoalKick")
             if z > 0 then
-                ball:setPosition(49.5,0,9)
+                referee:setKickPosition(PF.btVector3(49.5,0,9))
             else
-                ball:setPosition(49.5,0,-9)
+                referee:setKickPosition(PF.btVector3(49.5,0,-9))
             end
         else
             referee:getFSM():changeState("SRf_CornerKick")
             if z > 0 then
-                ball:setPosition(54.5,0,34.5)
+                referee:setKickPosition(PF.btVector3(54.5,0,34.5))
             else
-                ball:setPosition(54.5,0,-34.5)
+                referee:setKickPosition(PF.btVector3(54.5,0,-34.5))
             end
         end
     elseif ball:crossTopLine() then
         referee:setKickTeam(player:getTeam():getOpponentTeam())
         referee:getFSM():changeState("SRf_KickIn")
-        ball:setPosition(x,0,-35)
+        referee:setKickPosition(PF.btVector3(x,0,-35))
     elseif ball:crossBottomLine() then
         referee:setKickTeam(player:getTeam():getOpponentTeam())
         referee:getFSM():changeState("SRf_KickIn")
-        ball:setPosition(x,0,35)
+        referee:setKickPosition(PF.btVector3(x,0,35))
     end
 end

@@ -126,6 +126,7 @@ SPl_GoToKickPosition = {}
 
 SPl_GoToKickPosition["Enter"] = function(player)
     player:getSteering():arriveOn()
+    player:getSteering():setTargetPoint(player:getKickPosition())
 end
 
 SPl_GoToKickPosition["Execute"] = function(player)
@@ -133,7 +134,6 @@ SPl_GoToKickPosition["Execute"] = function(player)
         player:getFSM():changeState("SPl_KickIn")
     else
       local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-      player:getSteering():setTargetPoint(sim:getBallPosition())
       sim:dash(player, player:getSteering():calculate())
     end
 end
@@ -213,12 +213,16 @@ end
 SPl_KickIn = {}
 
 SPl_KickIn["Enter"] = function(player)
-
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local direction = sim:getBallPosition() - player:getPosition()
+    player:setHeading(direction)
 end
 
 SPl_KickIn["Execute"] = function(player)
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local direction = sim:getBallPosition() - player:getPosition()
+    player:setHeading(direction)
     if player:isBallKickable() then
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
         local ball = sim:getBall()
         local direction
         if player:isTeamLeft() then
@@ -227,6 +231,8 @@ SPl_KickIn["Execute"] = function(player)
             direction = PF.btVector3(-55,0,0)
         end
         player:kickTo(direction, 25)
+    else
+        player:getFSM():changeState("SPl_GoToKickPosition")
     end
 end
 

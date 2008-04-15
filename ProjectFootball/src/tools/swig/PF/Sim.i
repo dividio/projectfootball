@@ -11,7 +11,6 @@
 #include "../sim/entity/CTeam.h"
 #include "../sim/entity/CFootballPlayer.h"
 #include "../sim/entity/CBaseGameEntity.h"
-#include "../sim/entity/CBaseAgent.h"
 #include "../sim/entity/CBall.h"
 #include "../sim/entity/CMovingEntity.h"
 #include "../sim/entity/CEntityManager.h"
@@ -39,7 +38,6 @@ ADD_CLASS_P_CTOR (CMessage);
 %include "../../../sim/CSteeringBehaviors.h"
 %include "../../../sim/entity/CBaseGameEntity.h"
 %include "../../../sim/entity/CMovingEntity.h"
-%include "../../../sim/entity/CBaseAgent.h"
 %include "../../../sim/entity/CEntityManager.h"
 %include "../../../sim/entity/CBall.h"
 

@@ -25,7 +25,7 @@
 
 #include <string>
 
-#include "CBaseAgent.h"
+#include "CMovingEntity.h"
 #include "../CSteeringBehaviors.h"
 #include "../fsm/CStateMachine.h"
 #include "../db/bean/CPfTeamPlayers.h"
@@ -33,7 +33,10 @@
 
 class CTeam;
 
-class CFootballPlayer: public CBaseAgent
+/**
+ * This class represents a football player in the simulation manager.
+ */
+class CFootballPlayer: public CMovingEntity
 {
 public:
     static char* m_pCtorName;
@@ -45,6 +48,7 @@ public:
     CStateMachine<CFootballPlayer>* getFSM();
     CSteeringBehaviors*             getSteering() const;
     btVector3                       getStrategicPosition() const;
+    btVector3                       getKickPosition() const;
     btVector3                       getHomeGoalFacing() const;
     CTeam*                          getTeam() const;
     int                             getXTeamPlayer();
@@ -60,8 +64,22 @@ public:
 
     void setWorldTransform(const btTransform& centerOfMassWorldTrans);
 
+    /**
+     * Makes a kick command for stopping the ball.
+     */
     void                            freezeBall();
+
+    /**
+     * Makes a kick command for making the ball velocity equal to the given velocity.
+     * @param velocity New velocity for the ball
+     */
     void                            accelerateBallToVelocity(btVector3 velocity);
+
+    /**
+     * Makes a kick command for kicking the ball to take target direction with an initial speed.
+     * @param target Target direction for the ball
+     * @param speed Initial speed for the ball
+     */
     void                            kickTo(btVector3 target, btScalar speed);
 
 protected:

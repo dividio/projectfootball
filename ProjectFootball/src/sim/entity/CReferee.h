@@ -24,7 +24,7 @@
 
 #include <string>
 
-#include "CBaseAgent.h"
+#include "CMovingEntity.h"
 #include "CFootballPlayer.h"
 #include "CTeam.h"
 #include "../fsm/CStateMachine.h"
@@ -32,7 +32,11 @@
 enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
     ,KICK_OFF, KICK_IN, CORNER_KICK, GOAL_KICK};
 
-class CReferee: public CBaseAgent
+
+/**
+ * This class implements football rules and control the game mode.
+ */
+class CReferee: public CMovingEntity
 {
 public:
     static char* m_pCtorName;
@@ -44,16 +48,23 @@ public:
     void update();
 
     CStateMachine<CReferee>* getFSM();
-    int getMatchDuration();
-    CTeam* getKickTeam();
-    CTeam* getNextTimeKickOffTeam();
-    CFootballPlayer* getLastPlayerTouch();
-    GameMode getGameMode();
-    std::string getGameModeString();
+    CTeam*                   getKickTeam();
+    btVector3                getKickPosition();
+    CTeam*                   getNextTimeKickOffTeam();
+    CFootballPlayer*         getLastPlayerTouch();
+    GameMode                 getGameMode();
+    std::string              getGameModeString();
+    int                      getCycle() const;
+    int                      getMinute() const;
+    int                      getMatchDuration() const;
+    int                      getHomeScore() const;
+    int                      getAwayScore() const;
+
 
     void setMatchDuration(int cycles);
     void setHomeTeamInSideLeft(bool left);
     void setKickTeam(CTeam *team);
+    void setKickPosition(btVector3 &pos);
     void setNextTimeKickOffTeam(CTeam *team);
     void setLastPlayerTouch(CFootballPlayer *player);
     void setGameMode(GameMode newGameMode);
@@ -61,26 +72,21 @@ public:
     void addAwayGoal(CFootballPlayer *player);
     void incCycle();
 
-    bool isHomeTeamInSideLeft();
-    bool isMoveLegal();
-
-    int getCycle() const;
-    int getMinute() const;
-    int getHomeScore();
-    int getAwayScore();
+    bool isHomeTeamInSideLeft() const;
+    bool isMoveLegal() const;
 
 private:
-    int m_cycle;
-    int m_matchDuration;
-    GameMode m_currentGameMode;
-    int m_homeScore;
-    int m_awayScore;
-    bool m_homeSideLeft;
-    CFootballPlayer *m_lastPlayerTouch;
-    CTeam *m_kickTeam;
-    CTeam *m_nextTimeKickOffTeam;
-
-    CStateMachine<CReferee> *m_stateMachine;
+    int                          m_cycle;
+    int                          m_matchDuration;
+    int                          m_homeScore;
+    int                          m_awayScore;
+    bool                         m_homeSideLeft;
+    GameMode                     m_currentGameMode;
+    CFootballPlayer             *m_lastPlayerTouch;
+    btVector3                   *m_kickPosition;
+    CTeam                       *m_kickTeam;
+    CTeam                       *m_nextTimeKickOffTeam;
+    CStateMachine<CReferee>     *m_stateMachine;
 
 };
 

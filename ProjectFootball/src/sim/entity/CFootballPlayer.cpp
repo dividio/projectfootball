@@ -37,7 +37,7 @@ CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 
 
 CFootballPlayer::CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool sideLeft)
-:CBaseAgent()
+:CMovingEntity()
 {
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
     IPfTeamPlayersDAO *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
@@ -198,7 +198,7 @@ bool CFootballPlayer::canDoActions()
 
 bool CFootballPlayer::canKickBall(int cycle)
 {
-    if((cycle - m_lastKickBallCycle) > 3) {
+    if((cycle - m_lastKickBallCycle) > 5) {
         m_lastKickBallCycle = cycle;
         return true;
     }
@@ -220,9 +220,9 @@ bool CFootballPlayer::atHome()
 bool CFootballPlayer::atKickPosition()
 {
     bool result = false;
-    CSimulationManager *simulator = CStateMonitor::getInstance()->getSimulationManager();
     btVector3 actualPos = getPosition();
-    if(actualPos.distance(simulator->getBallPosition()) < 2.5) {
+    btVector3 myKickPos = getKickPosition();
+    if(actualPos.distance(myKickPos) < 0.3) {
         result = true;
     }
     return result;
@@ -275,6 +275,49 @@ btVector3 CFootballPlayer::getStrategicPosition() const
     pos.setZ(btScalar(z));
 
     return pos;
+}
+
+
+btVector3 CFootballPlayer::getKickPosition() const
+{
+    double offset = 1;
+    CSimulationManager *sim = CStateMonitor::getInstance()->getSimulationManager();
+    btVector3 kickPos = sim->getReferee()->getKickPosition();
+    btVector3 myKickPos;
+    GameMode mode = sim->getReferee()->getGameMode();
+    switch (mode) {
+        case KICK_IN:
+            if(m_sideLeft) {
+                myKickPos.setValue(kickPos.x()-offset, 0, kickPos.z());
+            } else {
+                myKickPos.setValue(kickPos.x()+offset, 0, kickPos.z());
+            }
+            break;
+        case KICK_OFF:
+            if(m_sideLeft) {
+                myKickPos.setValue(kickPos.x()-offset, 0, kickPos.z());
+            } else {
+                myKickPos.setValue(kickPos.x()+offset, 0, kickPos.z());
+            }
+            break;
+        case CORNER_KICK:
+            if(m_sideLeft) {
+                myKickPos.setValue(kickPos.x()+offset, 0, kickPos.z());
+            } else {
+                myKickPos.setValue(kickPos.x()-offset, 0, kickPos.z());
+            }
+            break;
+        case GOAL_KICK:
+            if(m_sideLeft) {
+                myKickPos.setValue(kickPos.x()-offset, 0, kickPos.z());
+            } else {
+                myKickPos.setValue(kickPos.x()+offset, 0, kickPos.z());
+            }
+            break;
+        default:
+            break;
+    }
+    return myKickPos;
 }
 
 

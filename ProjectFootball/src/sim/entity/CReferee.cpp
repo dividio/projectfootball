@@ -31,7 +31,7 @@
 char* CReferee::m_pCtorName = "CReferee_p_ctor";
 
 CReferee::CReferee()
-: CBaseAgent()
+: CMovingEntity()
 {
     CLog::getInstance()->debug("CReferee()");
     Ogre::SceneManager *scnMgr = CStateMonitor::getInstance()->getSimulationSceneManager();
@@ -41,6 +41,7 @@ CReferee::CReferee()
     m_stateMachine->changeState("SRf_BeforeStart");
     m_homeScore = 0;
     m_awayScore = 0;
+    m_kickPosition = new btVector3(0,0,0);
     m_homeSideLeft = true;
     m_matchDuration = CSystemOptionManager::getInstance()->getIntOption("Simulation","MatchDuration");
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
@@ -70,6 +71,7 @@ CReferee::~CReferee()
     if(m_stateMachine != 0) {
         delete m_stateMachine;
     }
+    delete m_kickPosition;
 }
 
 
@@ -85,7 +87,7 @@ void CReferee::setMatchDuration(int cycles)
 }
 
 
-int CReferee::getMatchDuration()
+int CReferee::getMatchDuration() const
 {
     return m_matchDuration;
 }
@@ -97,7 +99,7 @@ void CReferee::setHomeTeamInSideLeft(bool left)
 }
 
 
-bool CReferee::isHomeTeamInSideLeft()
+bool CReferee::isHomeTeamInSideLeft() const
 {
     return m_homeSideLeft;
 }
@@ -109,6 +111,11 @@ void CReferee::setKickTeam(CTeam *team)
 }
 
 
+void CReferee::setKickPosition(btVector3 &pos)
+{
+    m_kickPosition->setValue(pos.x(), pos.y(), pos.z());
+}
+
 void CReferee::setNextTimeKickOffTeam(CTeam *team)
 {
     m_nextTimeKickOffTeam = team;
@@ -117,6 +124,12 @@ void CReferee::setNextTimeKickOffTeam(CTeam *team)
 CTeam* CReferee::getKickTeam()
 {
     return m_kickTeam;
+}
+
+
+btVector3 CReferee::getKickPosition()
+{
+    return *m_kickPosition;
 }
 
 
@@ -149,7 +162,7 @@ CStateMachine<CReferee>* CReferee::getFSM()
 }
 
 
-bool CReferee::isMoveLegal()
+bool CReferee::isMoveLegal() const
 {
     return (m_currentGameMode == END ||
             m_currentGameMode == BEFORE_START ||
@@ -223,13 +236,13 @@ std::string CReferee::getGameModeString()
 }
 
 
-int CReferee::getHomeScore()
+int CReferee::getHomeScore() const
 {
     return m_homeScore;
 }
 
 
-int CReferee::getAwayScore()
+int CReferee::getAwayScore() const
 {
     return m_awayScore;
 }
