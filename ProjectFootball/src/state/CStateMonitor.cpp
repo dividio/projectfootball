@@ -259,6 +259,7 @@ void CStateMonitor::update()
     m_cam3DNode->translate(m_direction * t, Ogre::Node::TS_LOCAL);
 
     btVector3 ballPosition = m_simulator->getBallPosition();
+    ballPosition.setY(0.0);
     btVector3 lookAtPoint = ballPosition;
     lookAtPoint-=ballPositionOld;
     lookAtPoint/=50;
