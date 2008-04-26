@@ -20,6 +20,9 @@ public:
     const btScalar& x() const;
     const btScalar& y() const;
     const btScalar& z() const;
+    void setX(btScalar x);
+    void setY(btScalar y);
+    void setZ(btScalar z);
     btScalar dot(const btVector3& v) const;
     btScalar length2() const;
     btScalar length() const;
