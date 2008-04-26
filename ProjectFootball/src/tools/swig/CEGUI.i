@@ -1,7 +1,4 @@
 %module CEGUI
-%{
-#define SWIG_init_user SWIG_init_user_CEGUI
-%}
 
 %{
 #include <CEGUI.h>
