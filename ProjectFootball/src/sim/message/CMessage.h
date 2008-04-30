@@ -22,6 +22,8 @@
 #ifndef __CMessage_H__
 #define __CMessage_H__
 
+#include <string>
+
 
 const double SMALLEST_DELAY = 0.25;
 
@@ -29,7 +31,7 @@ const double SMALLEST_DELAY = 0.25;
 class CMessage
 {
 public:
-    static char* m_pCtorName;
+    static std::string m_pCtorName;
 
     int          Sender;
     int          Receiver;

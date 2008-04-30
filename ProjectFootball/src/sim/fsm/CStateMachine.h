@@ -38,7 +38,7 @@ template <class T>
 void pushObjectInLua(lua_State *luaVM, T *object)
 {
     lua_getglobal(luaVM, "PF"); // push modulename
-    lua_pushstring(luaVM, object->m_pCtorName);
+    lua_pushstring(luaVM, object->m_pCtorName.c_str());
     lua_gettable(luaVM, -2);
     lua_remove(luaVM, -2);     //remove table
     lua_pushlightuserdata(luaVM, (void *) object);

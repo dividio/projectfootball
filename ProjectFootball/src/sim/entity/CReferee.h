@@ -39,7 +39,7 @@ enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
 class CReferee: public CMovingEntity
 {
 public:
-    static char* m_pCtorName;
+    static std::string m_pCtorName;
 
     CReferee();
     ~CReferee();

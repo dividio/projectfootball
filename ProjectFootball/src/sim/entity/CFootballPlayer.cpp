@@ -28,7 +28,7 @@
 #include "../engine/CGameEngine.h"
 
 
-char* CFootballPlayer::m_pCtorName = "CFootballPlayer_p_ctor";
+std::string CFootballPlayer::m_pCtorName = "CFootballPlayer_p_ctor";
 
 CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 {
@@ -397,7 +397,6 @@ void CFootballPlayer::kickTo(btVector3 target, btScalar speed)
     btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
     btVector3 ballPos = sim->getBallPosition();
     btVector3 toTarget = target - ballPos;
-    btScalar power = speed - ballVelocity.length();
     toTarget.normalize();
     toTarget = toTarget * speed;
     btVector3 impulse = toTarget - ballVelocity;

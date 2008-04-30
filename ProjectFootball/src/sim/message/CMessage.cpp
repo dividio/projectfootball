@@ -23,7 +23,7 @@
 #include "CMessage.h"
 
 
-char* CMessage::m_pCtorName = "CMessage_p_ctor";
+std::string CMessage::m_pCtorName = "CMessage_p_ctor";
 
 CMessage::CMessage()
 {

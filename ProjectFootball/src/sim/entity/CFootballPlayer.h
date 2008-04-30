@@ -39,7 +39,7 @@ class CTeam;
 class CFootballPlayer: public CMovingEntity
 {
 public:
-    static char* m_pCtorName;
+    static std::string m_pCtorName;
     static CFootballPlayer* getPlayer(CBaseGameEntity *player);
 
     CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool sideLeft);
@@ -76,8 +76,8 @@ public:
     void                            accelerateBallToVelocity(btVector3 velocity);
 
     /**
-     * Makes a kick command for kicking the ball to take target direction with an initial speed.
-     * @param target Target direction for the ball
+     * Makes a kick command for kicking the ball with an initial speed to take target point.
+     * @param target Target point for the ball
      * @param speed Initial speed for the ball
      */
     void                            kickTo(btVector3 target, btScalar speed);

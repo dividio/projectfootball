@@ -28,7 +28,7 @@
 #include "../../engine/option/CSystemOptionManager.h"
 
 
-char* CReferee::m_pCtorName = "CReferee_p_ctor";
+std::string CReferee::m_pCtorName = "CReferee_p_ctor";
 
 CReferee::CReferee()
 : CMovingEntity()

@@ -39,7 +39,7 @@ class CFootballPlayer;
 class CTeam: public CBaseGameEntity
 {
 public:
-    static char* m_pCtorName;
+    static std::string m_pCtorName;
     static CTeam* getTeam(CBaseGameEntity *team);
 
     CTeam(int XTeam, bool sideLeft);

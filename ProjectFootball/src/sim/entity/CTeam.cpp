@@ -28,7 +28,7 @@
 #include "../engine/CGameEngine.h"
 
 
-char* CTeam::m_pCtorName = "CTeam_p_ctor";
+std::string CTeam::m_pCtorName = "CTeam_p_ctor";
 
 CTeam* CTeam::getTeam(CBaseGameEntity *team)
 {
