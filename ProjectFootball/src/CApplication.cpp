@@ -33,7 +33,6 @@ CApplication::CApplication()
 {
     CLog::getInstance()->debug("CApplication()");
 
-    setSystemOptionsDefaultValues();
     createRoot();
     defineResources();
     setupRenderSystem();
@@ -105,7 +104,7 @@ void CApplication::defineResources()
     Ogre::ConfigFile cf;
     cf.load("resources.cfg");
 
-    Ogre::String skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin");
+    Ogre::String skin = CSystemOptionManager::getInstance()->getGUISkin();
     Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements()) {
         secName = seci.peekNextKey();
@@ -128,7 +127,7 @@ void CApplication::setupRenderSystem()
     Ogre::RenderSystemList::iterator r_it;
 
     CSystemOptionManager *op = CSystemOptionManager::getInstance();
-    std::string val = op->getStringOption("Video","RenderSystem");
+    std::string val = op->getVideoRenderSystem();
     renderSystems = m_root->getAvailableRenderers();
 
     bool renderSystemFound = false;
@@ -154,11 +153,11 @@ void CApplication::createRenderWindow()
 {
     Ogre::NameValuePairList opts;
     CSystemOptionManager *op = CSystemOptionManager::getInstance();
-    int width       = op->getIntOption("Video","Width");
-    int height      = op->getIntOption("Video","Height");
-    bool fullscreen = op->getBooleanOption("Video","Fullscreen");
-    bool vsync      = op->getBooleanOption("Video", "VSync");
-    bool copyMode   = op->getBooleanOption("Video", "RTTCopyMode");
+    int width       = op->getVideoWidth();
+    int height      = op->getVideoHeight();
+    bool fullscreen = op->getVideoFullscreen();
+    bool vsync      = op->getVideoVSync();
+    bool copyMode   = op->getVideoRTTCopyMode();
     if(copyMode) {
         m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode","Copy");
     }
@@ -181,14 +180,14 @@ void CApplication::createRenderWindow()
         CLog::getInstance()->debug("Debug texture created.");
     } catch (Ogre::RenderingAPIException &e){
         CLog::getInstance()->error("Error creating debug texture, using Copy mode now. Please restart the application.");
-        CSystemOptionManager::getInstance()->setBooleanOption("Video", "RTTCopyMode", true);
+        CSystemOptionManager::getInstance()->setVideoRTTCopyMode(true);
     }
 }
 
 void CApplication::initializeResourceGroups()
 {
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    std::string skin = CSystemOptionManager::getInstance()->getStringOption("GUI", "Skin");
+    std::string skin = CSystemOptionManager::getInstance()->getGUISkin();
     Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("General");
     Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup(skin.c_str());
 }
@@ -253,7 +252,7 @@ void CApplication::setupCEGUI()
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 
-    int mouseVelocity = CSystemOptionManager::getInstance()->getIntOption("GUI", "MouseVelocity");
+    int mouseVelocity = CSystemOptionManager::getInstance()->getGUIMouseVelocity();
     float mouseScale = 1.0f + (mouseVelocity/100);
     m_system->setMouseMoveScaling(mouseScale);
 
@@ -278,28 +277,6 @@ void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
     m_root->removeFrameListener(frameListener);
 }
 
-void CApplication::setSystemOptionsDefaultValues()
-{
-    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-    optionManager->setDefaultValue("General", "MasterDatabasePath", "data/database/master.sql3");
-
-    optionManager->setDefaultValue("GUI", "MouseVelocity",  150);
-    optionManager->setDefaultValue("GUI", "Skin",           "DefaultSkin");
-
-    optionManager->setDefaultValue("Video", "RenderSystem", "OpenGL Rendering Subsystem");
-    optionManager->setDefaultValue("Video", "Width",        1024);
-    optionManager->setDefaultValue("Video", "Height",       768);
-    optionManager->setDefaultValue("Video", "Fullscreen",   true);
-    optionManager->setDefaultValue("Video", "VSync",        true);
-    optionManager->setDefaultValue("Video", "RTTCopyMode",  false);
-
-    optionManager->setDefaultValue("Simulation", "MatchDuration",       2000);
-    optionManager->setDefaultValue("Simulation", "LogicFrequency",      30);
-    optionManager->setDefaultValue("Simulation", "PhysicsFrequency",    60);
-    optionManager->setDefaultValue("Simulation", "MaxBallVelocity",     25);
-    optionManager->setDefaultValue("Simulation", "MaxKickPower",        25);
-}
-
 void CApplication::startRenderLoop()
 {
     bool run = true;
@@ -322,9 +299,24 @@ int main(int argc, char **argv)
 #endif
 {
     try{
+        CSystemOptionManager *systemOptionManager = CSystemOptionManager::getInstance();
+        if( systemOptionManager->getGeneralFailSafeMode() ){
+
+            systemOptionManager->setVideoWidth( 800);
+            systemOptionManager->setVideoHeight(600);
+            systemOptionManager->setVideoFullscreen(false);
+            systemOptionManager->setVideoRTTCopyMode(true);
+        }else{
+            systemOptionManager->setGeneralFailSafeMode(true);
+            systemOptionManager->saveOptions();
+        }
+
         CLuaManager* lua = CLuaManager::getInstance();
         CApplication *app = CApplication::getInstance();
         app->go();
+
+        systemOptionManager->setGeneralFailSafeMode(false);
+        systemOptionManager->saveOptions();
     }
     catch(Ogre::Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
