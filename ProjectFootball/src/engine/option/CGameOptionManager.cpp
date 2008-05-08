@@ -28,8 +28,27 @@ CGameOptionManager::CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
    : m_categoriesList()
 {
     m_gameOptionsDAO = gameOptionsDAO;
+    loadOptions();
 
-    std::vector<CPfGameOptions*>            *gameOptionsVector  = gameOptionsDAO->findAll();
+    CLog::getInstance()->info("Game Option manager initialized");
+}
+
+
+CGameOptionManager::~CGameOptionManager()
+{
+    saveOptions();
+    cleanOptions();
+
+    CLog::getInstance()->info("Game Option manager deinitialized");
+}
+
+
+void CGameOptionManager::loadOptions()
+{
+    cleanOptions();
+    setDefaultValues();
+
+    std::vector<CPfGameOptions*>            *gameOptionsVector  = m_gameOptionsDAO->findAll();
     std::vector<CPfGameOptions*>::iterator  itGameOptions;
 
     for( itGameOptions=gameOptionsVector->begin(); itGameOptions!=gameOptionsVector->end(); itGameOptions++ ){
@@ -37,13 +56,13 @@ CGameOptionManager::CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
         setStringOption(gameOption->getSCategory().c_str(), gameOption->getSAttribute().c_str(), gameOption->getSValue().c_str());
     }
 
-    gameOptionsDAO->freeVector(gameOptionsVector);
+    m_gameOptionsDAO->freeVector(gameOptionsVector);
 
-    CLog::getInstance()->info("Game Option manager initialized");
+    CLog::getInstance()->info("Game Options loaded");
 }
 
 
-CGameOptionManager::~CGameOptionManager()
+void CGameOptionManager::saveOptions()
 {
     std::map<const char *, std::map<const char *, const char *>* >::iterator itCategories;
 
@@ -68,9 +87,27 @@ CGameOptionManager::~CGameOptionManager()
                 gameOption->setSValue(value);
                 m_gameOptionsDAO->updateReg(gameOption);
             }
+        }
+    }
+
+    CLog::getInstance()->info("Game Options saved");
+}
+
+
+void CGameOptionManager::cleanOptions()
+{
+    std::map< const char *, std::map<const char *, const char *>* >::iterator itCategories;
+
+    for( itCategories = m_categoriesList.begin(); itCategories != m_categoriesList.end(); itCategories++ ){
+        const char                                      *category       = itCategories->first;
+        std::map<const char *, const char *>            *optionsList    = itCategories->second;
+        std::map<const char *, const char *>::iterator  itOptions;
+
+        for( itOptions = optionsList->begin(); itOptions != optionsList->end(); itOptions++ ){
+            const char *option = itOptions->first;
+            const char *value  = itOptions->second;
 
             // Free memory
-            delete gameOption;
             delete []option;
             delete []value;
         }
@@ -80,9 +117,14 @@ CGameOptionManager::~CGameOptionManager()
         optionsList->clear();
         delete optionsList;
     }
-    m_categoriesList.clear();
 
-    CLog::getInstance()->info("Game Option manager deinitialized");
+    m_categoriesList.clear();
+}
+
+
+void CGameOptionManager::setDefaultValues()
+{
+    // nothing at the moment
 }
 
 
@@ -189,43 +231,6 @@ void CGameOptionManager::setBooleanOption( const char *category, const char *opt
       setStringOption( category, option, "true" );
     }else{
       setStringOption( category, option, "false" );
-    }
-}
-
-
-void CGameOptionManager::setDefaultValue( const char *category, const char *option, const char *value )
-{
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then create the option
-        createOption( optionsList, option, value );
-    }
-}
-
-
-void CGameOptionManager::setDefaultValue( const char *category, const char *option, int value )
-{
-    char buffer[50];
-    sprintf( buffer, "%d", value );
-
-    setDefaultValue( category, option, buffer );
-}
-
-
-void CGameOptionManager::setDefaultValue( const char *category, const char *option, bool value )
-{
-    if( value ){
-        setDefaultValue( category, option, "true" );
-    }else{
-        setDefaultValue( category, option, "false" );
     }
 }
 

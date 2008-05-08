@@ -40,6 +40,84 @@ public:
 	static CSystemOptionManager* getInstance();
 
 
+	/**
+	 * Load the options from the config file
+	 */
+	void loadOptions();
+
+
+	/**
+	 * Save the options in the config file
+	 */
+	void saveOptions();
+
+
+	/**
+	 * Get/Set the value of the option
+	 */
+	// General options
+	const char *   getGeneralMasterDatebasePath();
+    void           setGeneralMasterDatebasePath(const char * masterDatabasePath);
+
+    bool           getGeneralFailSafeMode();
+    void           setGeneralFailSafeMode(bool failSafeMode);
+
+    // GUI options
+	int            getGUIMouseVelocity();
+    void           setGUIMouseVelocity(int mouseVelocity);
+
+	const char *   getGUISkin();
+    void           setGUISkin(const char * skin);
+
+    // Video options
+	const char *   getVideoRenderSystem();
+    void           setVideoRenderSystem(const char * renderSystem);
+
+    int            getVideoWidth();
+    void           setVideoWidth(int width);
+
+    int            getVideoHeight();
+    void           setVideoHeight(int height);
+
+	bool           getVideoFullscreen();
+    void           setVideoFullscreen(bool fullscreen);
+
+	bool           getVideoVSync();
+    void           setVideoVSync(bool vSync);
+
+	bool           getVideoRTTCopyMode();
+    void           setVideoRTTCopyMode(bool rttCopyMode);
+
+    // Simulation options
+	int            getSimulationMatchDuration();
+    void           setSimulationMatchDuration(int matchDuration);
+
+    int            getSimulationLogicFrequency();
+    void           setSimulationLogicFrequency(int logicFrequency);
+
+    int            getSimulationPhysicsFrequency();
+    void           setSimulationPhysicsFrequency(int physicsFrequency);
+
+    int            getSimulationMaxBallVelocity();
+    void           setSimulationMaxBallVelocity(int maxBallVelocity);
+
+    int            getSimulationMaxKickPower();
+    void           setSimulationMaxKickPower(int maxKickPower);
+
+
+private:
+    /**
+     *  Clean the options stored in the manager options and frees the memory
+     */
+    void cleanOptions();
+
+
+    /**
+     * Set the default values of options
+     */
+    void setDefaultValues();
+
+
     /**
      * This function return the string associate to an option of a category
      *
@@ -112,43 +190,6 @@ public:
     void setBooleanOption( const char *category, const char *option, bool value );
 
 
-    /**
-     * This function set the default value to an option of a category.
-     * If the option exists, then nothing happen, else, create and associate
-     * the option with the value indicated.
-     *
-     * @param category Category of the searched option
-     * @param option Option to set with the associate value
-     * @paran value Default value of the option
-     */
-    void setDefaultValue( const char *category, const char *option, const char *value );
-
-
-    /**
-     * This function set the default value to an option of a category.
-     * If the option exists, then nothing happen, else, create and associate
-     * the option with the value indicated.
-     *
-     * @param category Category of the searched option
-     * @param option Option to set with the associate value
-     * @paran value Default value of the option
-     */
-    void setDefaultValue( const char *category, const char *option, int value );
-
-
-    /**
-     * This function set the default value to an option of a category.
-     * If the option exists, then nothing happen, else, create and associate
-     * the option with the value indicated.
-     *
-     * @param category Category of the searched option
-     * @param option Option to set with the associate value
-     * @paran value Default value of the option
-     */
-    void setDefaultValue( const char *category, const char *option, bool value );
-
-
-private:
 	/**
 	 * Default constructor
 	 */

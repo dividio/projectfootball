@@ -43,10 +43,8 @@ CSimulationManager::CSimulationManager(int xMatch)
 {
     CLog::getInstance()->debug("CSimulationManager()");
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-    int hz = optionManager->getIntOption("Simulation", "LogicFrequency");
-    m_logicTimer = new CTimer(hz);
-    hz = optionManager->getIntOption("Simulation", "PhysicsFrequency");
-    m_physicsTimer = new CTimer(hz);
+    m_logicTimer = new CTimer(optionManager->getSimulationLogicFrequency());
+    m_physicsTimer = new CTimer(optionManager->getSimulationPhysicsFrequency());
     m_simWorld = new CSimulationWorld();
 
     m_field = new CField();
@@ -260,8 +258,8 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 {
     btVector3 impulse;
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-    int maxBallVelocity = optionManager->getIntOption("Simulation", "MaxBallVelocity");
-    int maxKickPower = optionManager->getIntOption("Simulation", "MaxKickPower");
+    int maxBallVelocity = optionManager->getSimulationMaxBallVelocity();
+    int maxKickPower = optionManager->getSimulationMaxKickPower();
     btRigidBody *ballBody = m_ball->getBody();
     btRigidBody *body = player->getBody();
     btVector3 velocity;

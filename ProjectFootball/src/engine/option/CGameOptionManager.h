@@ -35,6 +35,31 @@ public:
 
 
     /**
+     * Load the options from the config file
+     */
+    void loadOptions();
+
+
+    /**
+     * Save the options in the config file
+     */
+    void saveOptions();
+
+
+private:
+    /**
+     *  Clean the options stored in the manager options and frees the memory
+     */
+    void cleanOptions();
+
+
+    /**
+     * Set the default values of options
+     */
+    void setDefaultValues();
+
+
+    /**
      * This function return the string associate to an option of a category
      *
      * @param category Category of the searched option
@@ -108,43 +133,6 @@ public:
     void setBooleanOption( const char *category, const char *option, bool value );
 
 
-    /**
-     * This function set the default value to an option of a category.
-     * If the option exists, then nothing happen, else, create and associate
-     * the option with the value indicated.
-     *
-     * @param category Category of the searched option
-     * @param option Option to set with the associate value
-     * @paran value Default value of the option
-     */
-    void setDefaultValue( const char *category, const char *option, const char *value );
-
-
-    /**
-     * This function set the default value to an option of a category.
-     * If the option exists, then nothing happen, else, create and associate
-     * the option with the value indicated.
-     *
-     * @param category Category of the searched option
-     * @param option Option to set with the associate value
-     * @paran value Default value of the option
-     */
-    void setDefaultValue( const char *category, const char *option, int value );
-
-
-    /**
-     * This function set the default value to an option of a category.
-     * If the option exists, then nothing happen, else, create and associate
-     * the option with the value indicated.
-     *
-     * @param category Category of the searched option
-     * @param option Option to set with the associate value
-     * @paran value Default value of the option
-     */
-    void setDefaultValue( const char *category, const char *option, bool value );
-
-
-private:
     /**
      * This function return the date structure associate with the category indicated.
      *

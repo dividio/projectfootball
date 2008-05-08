@@ -30,6 +30,33 @@
 CSystemOptionManager::CSystemOptionManager()
    : m_categoriesList()
 {
+    loadOptions();
+
+    CLog::getInstance()->info("System Option manager initialized");
+}
+
+
+CSystemOptionManager::~CSystemOptionManager()
+{
+    saveOptions();
+    cleanOptions();
+
+    CLog::getInstance()->info("System Option manager deinitialized");
+}
+
+
+CSystemOptionManager* CSystemOptionManager::getInstance()
+{
+  static CSystemOptionManager instance;
+  return &instance;
+}
+
+
+void CSystemOptionManager::loadOptions()
+{
+    cleanOptions();
+    setDefaultValues();
+
     // Open the config file
     FILE *file = fopen( CONFIG_FILE, "r" );
     if( file==NULL ){
@@ -73,16 +100,14 @@ CSystemOptionManager::CSystemOptionManager()
     // Close the config file
     fclose( file );
 
-    CLog::getInstance()->info("System Option manager initialized: <-- \"%s\"", CONFIG_FILE);
+    CLog::getInstance()->info("System Options loaded: --> \"%s\"", CONFIG_FILE);
 }
 
 
-CSystemOptionManager::~CSystemOptionManager()
+void CSystemOptionManager::saveOptions()
 {
-    // Para desincializar el gestor, se va recorriendo las distintas opciones
-    // a traves de las distintas categorias escribiendolas en el fichero de
-    // configuracion a la vez que se va liberando la memoria que se habia
-    // reservado.
+    // To save the options, is iterate across categories and
+    // options while it's written in the config file
 
     // Open the config file
     FILE *file = fopen( CONFIG_FILE, "w" );
@@ -108,13 +133,175 @@ CSystemOptionManager::~CSystemOptionManager()
             const char *value  = itOptions->second;
 
             fprintf( file, "  %s = %s\n", option, value );
+        }
+
+        fprintf( file, "\n" );
+    }
+
+    // Close config file
+    fclose( file );
+
+    CLog::getInstance()->info("System Options saved: --> \"%s\"", CONFIG_FILE);
+}
+
+
+// General options
+const char * CSystemOptionManager::getGeneralMasterDatebasePath()
+{
+    return getStringOption("General", "MasterDatabasePath");
+}
+void CSystemOptionManager::setGeneralMasterDatebasePath(const char * masterDatabasePath)
+{
+    setStringOption("General", "MasterDatabasePath", masterDatabasePath);
+}
+
+bool CSystemOptionManager::getGeneralFailSafeMode()
+{
+    return getBooleanOption("General", "FailSafeMode");
+}
+void CSystemOptionManager::setGeneralFailSafeMode(bool failSafeMode)
+{
+    setBooleanOption("General", "FailSafeMode", failSafeMode);
+}
+
+// GUI options
+int CSystemOptionManager::getGUIMouseVelocity()
+{
+    return getIntOption("GUI", "MouseVelocity");
+}
+void CSystemOptionManager::setGUIMouseVelocity(int mouseVelocity)
+{
+    setIntOption("GUI", "MouseVelocity", mouseVelocity);
+}
+
+const char * CSystemOptionManager::getGUISkin()
+{
+    return getStringOption("GUI", "Skin");
+}
+void CSystemOptionManager::setGUISkin(const char * skin)
+{
+    setStringOption("GUI", "Skin", skin);
+}
+
+// Video options
+const char * CSystemOptionManager::getVideoRenderSystem()
+{
+    return getStringOption("Video", "RenderSystem");
+}
+void CSystemOptionManager::setVideoRenderSystem(const char * renderSystem)
+{
+    setStringOption("Video", "RenderSystem", renderSystem);
+}
+
+int CSystemOptionManager::getVideoWidth()
+{
+    return getIntOption("Video", "Width");
+}
+void CSystemOptionManager::setVideoWidth(int width)
+{
+    setIntOption("Video", "Width", width);
+}
+
+int CSystemOptionManager::getVideoHeight()
+{
+    return getIntOption("Video", "Height");
+}
+void CSystemOptionManager::setVideoHeight(int height)
+{
+    setIntOption("Video", "Height", height);
+}
+
+bool CSystemOptionManager::getVideoFullscreen()
+{
+    return getBooleanOption("Video", "Fullscreen");
+}
+void CSystemOptionManager::setVideoFullscreen(bool fullscreen)
+{
+    setBooleanOption("Video", "Fullscreen", fullscreen);
+}
+
+bool CSystemOptionManager::getVideoVSync()
+{
+    return getBooleanOption("Video", "VSync");
+}
+void CSystemOptionManager::setVideoVSync(bool vSync)
+{
+    setBooleanOption("Video", "VSync", vSync);
+}
+
+bool CSystemOptionManager::getVideoRTTCopyMode()
+{
+    return getBooleanOption("Video", "RTTCopyMode");
+}
+void CSystemOptionManager::setVideoRTTCopyMode(bool rttCopyMode)
+{
+    setBooleanOption("Video", "RTTCopyMode", rttCopyMode);
+}
+
+// Simulation options
+int CSystemOptionManager::getSimulationMatchDuration()
+{
+    return getIntOption("Simulation", "MatchDuration");
+}
+void CSystemOptionManager::setSimulationMatchDuration(int matchDuration)
+{
+    setIntOption("Simulation", "MatchDuration", matchDuration);
+}
+
+int CSystemOptionManager::getSimulationLogicFrequency()
+{
+    return getIntOption("Simulation", "LogicFrequency");
+}
+void CSystemOptionManager::setSimulationLogicFrequency(int logicFrequency)
+{
+    setIntOption("Simulation", "LogicFrequency", logicFrequency);
+}
+
+int CSystemOptionManager::getSimulationPhysicsFrequency()
+{
+    return getIntOption("Simulation", "PhysicsFrequency");
+}
+void CSystemOptionManager::setSimulationPhysicsFrequency(int physicsFrequency)
+{
+    setIntOption("Simulation", "PhysicsFrequency", physicsFrequency);
+}
+
+int CSystemOptionManager::getSimulationMaxBallVelocity()
+{
+    return getIntOption("Simulation", "MaxBallVelocity");
+}
+void CSystemOptionManager::setSimulationMaxBallVelocity(int maxBallVelocity)
+{
+    setIntOption("Simulation", "MaxBallVelocity", maxBallVelocity);
+}
+
+int CSystemOptionManager::getSimulationMaxKickPower()
+{
+    return getIntOption("Simulation", "MaxKickPower");
+}
+void CSystemOptionManager::setSimulationMaxKickPower(int maxKickPower)
+{
+    setIntOption("Simulation", "MaxKickPower", maxKickPower);
+}
+
+
+void CSystemOptionManager::cleanOptions()
+{
+    std::map< const char *, std::map<const char *, const char *>* >::iterator itCategories;
+
+    for( itCategories = m_categoriesList.begin(); itCategories != m_categoriesList.end(); itCategories++ ){
+        const char                                      *category       = itCategories->first;
+        std::map<const char *, const char *>            *optionsList    = itCategories->second;
+        std::map<const char *, const char *>::iterator  itOptions;
+
+        for( itOptions = optionsList->begin(); itOptions != optionsList->end(); itOptions++ ){
+            const char *option = itOptions->first;
+            const char *value  = itOptions->second;
 
             // Free memory
             delete []option;
             delete []value;
         }
-
-        fprintf( file, "\n" );
 
         // Free memory
         delete []category;
@@ -123,18 +310,29 @@ CSystemOptionManager::~CSystemOptionManager()
     }
 
     m_categoriesList.clear();
-
-    // Close config file
-    fclose( file );
-
-    CLog::getInstance()->info("System Option manager deinitialized: --> \"%s\"", CONFIG_FILE);
 }
 
 
-CSystemOptionManager* CSystemOptionManager::getInstance()
+void CSystemOptionManager::setDefaultValues()
 {
-  static CSystemOptionManager instance;
-  return &instance;
+    setGeneralMasterDatebasePath("data/database/master.sql3");
+    setGeneralFailSafeMode(false);
+
+    setGUIMouseVelocity(150);
+    setGUISkin("DefaultSkin");
+
+    setVideoRenderSystem("OpenGL Rendering Subsystem");
+    setVideoWidth(1024);
+    setVideoHeight(768);
+    setVideoFullscreen(true);
+    setVideoVSync(true);
+    setVideoRTTCopyMode(false);
+
+    setSimulationMatchDuration(2000);
+    setSimulationLogicFrequency(30);
+    setSimulationPhysicsFrequency(60);
+    setSimulationMaxBallVelocity(25);
+    setSimulationMaxKickPower(25);
 }
 
 
@@ -241,43 +439,6 @@ void CSystemOptionManager::setBooleanOption( const char *category, const char *o
         setStringOption( category, option, "true" );
     }else{
         setStringOption( category, option, "false" );
-    }
-}
-
-
-void CSystemOptionManager::setDefaultValue( const char *category, const char *option, const char *value )
-{
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then create the option
-        createOption( optionsList, option, value );
-    }
-}
-
-
-void CSystemOptionManager::setDefaultValue( const char *category, const char *option, int value )
-{
-    char buffer[50];
-    sprintf( buffer, "%d", value );
-
-    setDefaultValue( category, option, buffer );
-}
-
-
-void CSystemOptionManager::setDefaultValue( const char *category, const char *option, bool value )
-{
-    if( value ){
-        setDefaultValue( category, option, "true" );
-    }else{
-        setDefaultValue( category, option, "false" );
     }
 }
 

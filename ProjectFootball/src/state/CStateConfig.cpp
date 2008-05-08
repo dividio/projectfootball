@@ -67,11 +67,11 @@ void CStateConfig::enter()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
-    m_fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getBooleanOption("Video", "Fullscreen"));
-    m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getBooleanOption("Video", "VSync"));
+    m_fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getVideoFullscreen());
+    m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getVideoVSync());
 
     bool found  = false;
-    int  width  = CSystemOptionManager::getInstance()->getIntOption("Video", "Width");
+    int  width  = CSystemOptionManager::getInstance()->getVideoWidth();
     for( int i=0; i<m_resolutionCombo->getItemCount() && !found; i++ ){
         CEGUI::ListboxItem *item = m_resolutionCombo->getListboxItemFromIndex(i);
         if( item->getID()==width ){
@@ -82,7 +82,7 @@ void CStateConfig::enter()
     }
 
     found  = false;
-    const char *renderer  = CSystemOptionManager::getInstance()->getStringOption("Video", "RenderSystem");
+    const char *renderer  = CSystemOptionManager::getInstance()->getVideoRenderSystem();
     for( int i=0; i<m_rendererCombo->getItemCount() && !found; i++ ){
         CEGUI::ListboxItem *item = m_rendererCombo->getListboxItemFromIndex(i);
         if( item->getText()==renderer ){
@@ -109,26 +109,27 @@ void CStateConfig::update()
 
 void CStateConfig::saveConfig()
 {
-    CSystemOptionManager::getInstance()->setBooleanOption("Video", "Fullscreen", m_fullscreenCheck->isSelected());
-    CSystemOptionManager::getInstance()->setBooleanOption("Video", "VSync", m_vSyncCheck->isSelected());
+    CSystemOptionManager::getInstance()->setVideoFullscreen(m_fullscreenCheck->isSelected());
+    CSystemOptionManager::getInstance()->setVideoVSync(m_vSyncCheck->isSelected());
 
     CEGUI::ListboxItem *item = m_resolutionCombo->getSelectedItem();
     if( item!=NULL ){
         switch( item->getID() ){
         case 1280:
-            CSystemOptionManager::getInstance()->setIntOption("Video", "Width", 1280);
-            CSystemOptionManager::getInstance()->setIntOption("Video", "Height", 1024);
+            CSystemOptionManager::getInstance()->setVideoWidth( 1280);
+            CSystemOptionManager::getInstance()->setVideoHeight(1024);
             break;
         case 1024:
-            CSystemOptionManager::getInstance()->setIntOption("Video", "Width", 1024);
-            CSystemOptionManager::getInstance()->setIntOption("Video", "Height", 768);
+            CSystemOptionManager::getInstance()->setVideoWidth( 1024);
+            CSystemOptionManager::getInstance()->setVideoHeight( 768);
             break;
         case 800:
-            CSystemOptionManager::getInstance()->setIntOption("Video", "Width", 800);
-            CSystemOptionManager::getInstance()->setIntOption("Video", "Height", 600);
+            CSystemOptionManager::getInstance()->setVideoWidth(  800);
+            CSystemOptionManager::getInstance()->setVideoHeight( 600);
             break;
         }
     }
 
-    CSystemOptionManager::getInstance()->setStringOption("Video", "RenderSystem", m_rendererCombo->getText().c_str());
+    CSystemOptionManager::getInstance()->setVideoRenderSystem(m_rendererCombo->getText().c_str());
+    CSystemOptionManager::getInstance()->saveOptions();
 }

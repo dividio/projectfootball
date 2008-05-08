@@ -43,7 +43,7 @@ CReferee::CReferee()
     m_awayScore = 0;
     m_kickPosition = new btVector3(0,0,0);
     m_homeSideLeft = true;
-    m_matchDuration = CSystemOptionManager::getInstance()->getIntOption("Simulation","MatchDuration");
+    m_matchDuration = CSystemOptionManager::getInstance()->getSimulationMatchDuration();
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
     m_entity = scnMgr->createEntity("Referee", "Cylinder.mesh");
     m_entity->setMaterialName("referee");
