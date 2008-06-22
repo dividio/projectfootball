@@ -1,6 +1,26 @@
 
 ---------------------------------------------------
 
+SPl_Dummy = {}
+
+SPl_Dummy["Enter"] = function(player)
+
+end
+
+SPl_Dummy["Execute"] = function(player)
+
+end
+
+SPl_Dummy["Exit"] = function(player)
+
+end
+
+SPl_Dummy["OnMessage"] = function(player, message)
+    return true
+end
+
+---------------------------------------------------
+
 SPl_Global = {}
 
 SPl_Global["Enter"] = function(player)
@@ -259,7 +279,6 @@ SPl_ChaseBall["Execute"] = function(player)
         player:getFSM():changeState("SPl_KickBall")
     elseif player:getTeam():isNearestTeamMatePlayerToBall(player) then
         local sim = PF.CStateMonitor_getInstance():getSimulationManager()
-        player:getSteering():setTargetPoint(sim:getBallPosition())
         sim:dash(player, player:getSteering():calculate())
     else
         player:getFSM():changeState("SPl_ReturnToHomeRegion")
