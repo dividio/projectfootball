@@ -211,25 +211,35 @@ double CSteeringBehaviors::sideComponent() const
 
 btVector3 CSteeringBehaviors::pursuit(CMovingEntity *entity)
 {
+    btVector3 result;
     btVector3 entityPos = entity->getPosition();
     btVector3 agentPos = m_agent->getPosition();
     btVector3 toEntity = entityPos - agentPos;
+    btVector3 entityVel = entity->getBody()->getLinearVelocity();
+    double relativeHeading = m_agent->getHeading().dot(entityVel.normalized());
 
-    double lookTime = 0.0;
-    double velocity = entity->getBody()->getLinearVelocity().length();
-    if(velocity > 0.0001) {
-        lookTime = toEntity.length() / velocity;
-    }
-
-    btVector3 futurePos = entity->futurePosition(lookTime);
-
-    if(futurePos.distance(agentPos) < 1) {
+    if((toEntity.dot(m_agent->getHeading()) > 0) &&
+       (relativeHeading < -0.95)) {
         setTargetPoint(entityPos);
+        result = seek(m_target);
     } else {
-        setTargetPoint(futurePos);
-    }
+        double lookTime = 0.0;
+        double velocity = entityVel.length();
+        if(velocity > 0.0001) {
+            lookTime = toEntity.length() / (m_agent->getMaxVelocity() + velocity);
+        }
 
-    return arrive(m_target, fast);
+        btVector3 futurePos = entity->futurePosition(lookTime);
+
+        if(futurePos.distance(agentPos) < 1) {
+            setTargetPoint(entityPos);
+        } else {
+            setTargetPoint(futurePos);
+        }
+        //result = arrive(m_target, fast);
+        result = seek(m_target);
+    }
+    return result;
 }
 
 //TODO Consider speeds of the objects
