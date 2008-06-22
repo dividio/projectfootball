@@ -32,7 +32,6 @@ CBall::CBall()
     m_entity = scnMgr->createEntity("Ball", "Ball.mesh");
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("BallNode", Ogre::Vector3(0, 0, 0));
     m_node->attachObject(m_entity);
-    //m_shape = new btCylinderShape(btVector3(btScalar(0.5),btScalar(0.5),btScalar(0.5)));
     m_shape = new btSphereShape(btScalar(0.5));
     btScalar mass(0.5);
 
@@ -45,6 +44,8 @@ CBall::CBall()
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
     rbInfo.m_restitution = btScalar(0.8);
     rbInfo.m_friction = 0.5;
+    rbInfo.m_angularDamping = 0.9;
+    rbInfo.m_linearDamping = 0.2;
     m_body = new btRigidBody(rbInfo);
     m_body->setActivationState(DISABLE_DEACTIVATION);
 }
