@@ -46,8 +46,9 @@ STm_BeforeStart["Enter"] = function(team)
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
+    local id = team:getID()
     for i = 0, size - 1, 1 do
-        disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_GoHome, nil)
+        disp:dispatchMsg(0, id, playersVector[i]:getID(), PF.Msg_GoHome, nil)
     end
 end
 
@@ -169,6 +170,13 @@ STm_PlayOn["Enter"] = function(team)
     local size = playersVector:size()
     for i = 0, size - 1, 1 do
         disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_PlayOn, nil)
+    end
+    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local formation = team:getCurrentFormation()
+    if sim:getReferee():getLastPlayerTouch():getTeam():getID() == team:getID() then
+        formation:setCurrentFormationType(PF.FT_Offensive)
+    else
+        formation:setCurrentFormationType(PF.FT_Defensive)
     end
 end
 
