@@ -421,36 +421,36 @@ void CTeam::setFormations()
     pos->setInitialPosition(&point);
     point.setValue(-30,0,25);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,25);
+    point.setValue(-20,0,27);
     pos->setOffensivePosition(&point);
     topLeft.setValue(0, 0, 0);
-    bottomRight.setValue(-55, 0, 35);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
-    pos->setAttractionZ(0.3);
+    pos->setAttractionZ(0.2);
 
     pos = formation->getPlayerStrategicPosition(2);
     point.setValue(-30,0,-25);
     pos->setInitialPosition(&point);
     point.setValue(-30,0,-25);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,-25);
+    point.setValue(-20,0,-27);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(0, 0, -35);
-    bottomRight.setValue(-55, 0, 0);
+    topLeft.setValue(0, 0, -33);
+    bottomRight.setValue(-53, 0, 0);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
-    pos->setAttractionZ(0.3);
+    pos->setAttractionZ(0.2);
 
     pos = formation->getPlayerStrategicPosition(3);
     point.setValue(-30,0,5);
     pos->setInitialPosition(&point);
     point.setValue(-30,0,5);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,5);
+    point.setValue(-25,0,5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(53, 0, -33);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
     pos->setAttractionZ(0.3);
@@ -460,10 +460,10 @@ void CTeam::setFormations()
     pos->setInitialPosition(&point);
     point.setValue(-30,0,-5);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,-5);
+    point.setValue(-25,0,-5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(53, 0, -33);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
     pos->setAttractionZ(0.3);
@@ -477,10 +477,10 @@ void CTeam::setFormations()
     pos->setDefensivePosition(&point);
     point.setValue(0,0,0);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(45, 0, -32);
+    bottomRight.setValue(-45, 0, 32);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.5);
+    pos->setAttractionX(0.3);
     pos->setAttractionZ(0.3);
 
     pos = formation->getPlayerStrategicPosition(6);
@@ -490,10 +490,10 @@ void CTeam::setFormations()
     pos->setDefensivePosition(&point);
     point.setValue(0,0,25);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(45, 0, -32);
+    bottomRight.setValue(-45, 0, 32);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.5);
+    pos->setAttractionX(0.3);
     pos->setAttractionZ(0.3);
 
     pos = formation->getPlayerStrategicPosition(7);
@@ -503,10 +503,10 @@ void CTeam::setFormations()
     pos->setDefensivePosition(&point);
     point.setValue(0,0,-25);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(45, 0, -32);
+    bottomRight.setValue(-45, 0, 32);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.5);
+    pos->setAttractionX(0.3);
     pos->setAttractionZ(0.3);
 
     // ATK
@@ -516,12 +516,12 @@ void CTeam::setFormations()
     pos->setInitialPosition(&point);
     point.setValue(10,0,0);
     pos->setDefensivePosition(&point);
-    point.setValue(30,0,0);
+    point.setValue(25,0,0);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -15);
+    topLeft.setValue(53, 0, -15);
     bottomRight.setValue(-15, 0, 15);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.5);
+    pos->setAttractionX(0.3);
     pos->setAttractionZ(0.3);
 
     pos = formation->getPlayerStrategicPosition(9);
@@ -529,25 +529,25 @@ void CTeam::setFormations()
     pos->setInitialPosition(&point);
     point.setValue(15,0,20);
     pos->setDefensivePosition(&point);
-    point.setValue(25,0,20);
+    point.setValue(21,0,16);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, 0);
+    topLeft.setValue(53, 0, 0);
     bottomRight.setValue(-10, 0, 35);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.6);
-    pos->setAttractionZ(0.25);
+    pos->setAttractionX(0.5);
+    pos->setAttractionZ(0.2);
 
     pos = formation->getPlayerStrategicPosition(10);
     point.setValue(-5,0,-20);
     pos->setInitialPosition(&point);
     point.setValue(15,0,-20);
     pos->setDefensivePosition(&point);
-    point.setValue(25,0,-20);
+    point.setValue(21,0,-16);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
+    topLeft.setValue(53, 0, -35);
     bottomRight.setValue(-10, 0, 0);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.5);
+    pos->setAttractionX(0.3);
     pos->setAttractionZ(0.3);
 
     formation->setKickOffPlayerId(8);
@@ -580,54 +580,54 @@ void CTeam::setFormations()
 
     //DF
     pos = formation->getPlayerStrategicPosition(1);
-    point.setValue(-30,0,25);
+    point.setValue(-30,0,20);
     pos->setInitialPosition(&point);
-    point.setValue(-30,0,25);
+    point.setValue(-30,0,20);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,25);
+    point.setValue(-15,0,25);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(53, 0, -33);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
     pos->setAttractionZ(0.3);
 
 
     pos = formation->getPlayerStrategicPosition(2);
-    point.setValue(-30,0,-25);
+    point.setValue(-30,0,-20);
     pos->setInitialPosition(&point);
-    point.setValue(-30,0,-25);
+    point.setValue(-30,0,-20);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,-25);
+    point.setValue(-15,0,-25);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(53, 0, -33);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
     pos->setAttractionZ(0.3);
 
     pos = formation->getPlayerStrategicPosition(3);
-    point.setValue(-30,0,5);
+    point.setValue(-35,0,10);
     pos->setInitialPosition(&point);
-    point.setValue(-30,0,5);
+    point.setValue(-35,0,10);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,5);
+    point.setValue(-13,0,5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(53, 0, -33);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
     pos->setAttractionZ(0.3);
 
     pos = formation->getPlayerStrategicPosition(4);
-    point.setValue(-30,0,-5);
+    point.setValue(-35,0,-10);
     pos->setInitialPosition(&point);
-    point.setValue(-30,0,-5);
+    point.setValue(-35,0,-10);
     pos->setDefensivePosition(&point);
-    point.setValue(-10,0,-5);
+    point.setValue(-13,0,-5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(53, 0, -33);
+    bottomRight.setValue(-53, 0, 33);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.2);
     pos->setAttractionZ(0.3);
@@ -635,27 +635,27 @@ void CTeam::setFormations()
     //MD
 
     pos = formation->getPlayerStrategicPosition(5);
-    point.setValue(-15,0,5);
+    point.setValue(-20,0,2);
     pos->setInitialPosition(&point);
-    point.setValue(-15,0,5);
+    point.setValue(-20,0,2);
     pos->setDefensivePosition(&point);
     point.setValue(0,0,5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(50, 0, -10);
+    bottomRight.setValue(-35, 0, 30);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.4);
+    pos->setAttractionX(0.2);
     pos->setAttractionZ(0.4);
 
     pos = formation->getPlayerStrategicPosition(6);
     point.setValue(-20,0,25);
     pos->setInitialPosition(&point);
-    point.setValue(-20,0,25);
+    point.setValue(-15,0,25);
     pos->setDefensivePosition(&point);
     point.setValue(0,0,25);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(50, 0, -32);
+    bottomRight.setValue(-50, 0, 32);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.4);
     pos->setAttractionZ(0.4);
@@ -663,27 +663,27 @@ void CTeam::setFormations()
     pos = formation->getPlayerStrategicPosition(7);
     point.setValue(-20,0,-25);
     pos->setInitialPosition(&point);
-    point.setValue(-20,0,-25);
+    point.setValue(-15,0,-25);
     pos->setDefensivePosition(&point);
     point.setValue(0,0,-25);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(50, 0, -32);
+    bottomRight.setValue(-50, 0, 32);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.4);
     pos->setAttractionZ(0.4);
 
     pos = formation->getPlayerStrategicPosition(8);
-    point.setValue(-15,0,-5);
+    point.setValue(-10,0,-2);
     pos->setInitialPosition(&point);
-    point.setValue(-15,0,-5);
+    point.setValue(-10,0,-2);
     pos->setDefensivePosition(&point);
     point.setValue(0,0,-5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(45, 0, -30);
+    bottomRight.setValue(-35, 0, 20);
     pos->setPlayingArea(&topLeft, &bottomRight);
-    pos->setAttractionX(0.4);
+    pos->setAttractionX(0.2);
     pos->setAttractionZ(0.4);
 
 
@@ -692,12 +692,12 @@ void CTeam::setFormations()
     pos = formation->getPlayerStrategicPosition(9);
     point.setValue(-5,0,15);
     pos->setInitialPosition(&point);
-    point.setValue(15,0,15);
+    point.setValue(12,0,15);
     pos->setDefensivePosition(&point);
-    point.setValue(25,0,20);
+    point.setValue(20,0,20);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(52, 0, -32);
+    bottomRight.setValue(-20, 0, 25);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.1);
     pos->setAttractionZ(0.3);
@@ -705,17 +705,17 @@ void CTeam::setFormations()
     pos = formation->getPlayerStrategicPosition(10);
     point.setValue(-5,0,-15);
     pos->setInitialPosition(&point);
-    point.setValue(15,0,-15);
+    point.setValue(20,0,-10);
     pos->setDefensivePosition(&point);
-    point.setValue(25,0,-20);
+    point.setValue(25,0,-5);
     pos->setOffensivePosition(&point);
-    topLeft.setValue(55, 0, -35);
-    bottomRight.setValue(-55, 0, 35);
+    topLeft.setValue(52, 0, -25);
+    bottomRight.setValue(-20, 0, 32);
     pos->setPlayingArea(&topLeft, &bottomRight);
     pos->setAttractionX(0.1);
     pos->setAttractionZ(0.3);
 
-    formation->setKickOffPlayerId(8);
+    formation->setKickOffPlayerId(10);
     formation->setKickInPlayerId(5);
     formation->setRightCornerKickPlayerId(6);
     formation->setLeftCornerKickPlayerId(7);
