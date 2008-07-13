@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include <stdio.h>
+#include <libintl.h>
 
 #include "CStateMainMenu.h"
 #include "CStateManager.h"
@@ -30,7 +31,20 @@ CStateMainMenu::CStateMainMenu()
 {
     CLog::getInstance()->debug("CStateMainMenu()");
 
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+
     m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"mainMenu.layout");
+
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"MainMenu/QuickPlayButton"))->setText((CEGUI::utf8*)gettext("Quick Play"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"MainMenu/LoadGameButton"))->setText((CEGUI::utf8*)gettext("New/Load Game"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"MainMenu/ConfigButton"))->setText((CEGUI::utf8*)gettext("Config"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"MainMenu/CreditsButton"))->setText((CEGUI::utf8*)gettext("Credits"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"MainMenu/QuitButton"))->setText((CEGUI::utf8*)gettext("Quit"));
 }
 
 

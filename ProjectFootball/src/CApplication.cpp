@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include <stdio.h>
+#include <libintl.h>
 
 #include "CApplication.h"
 #include "audio/CAudioSystem.h"
@@ -299,6 +300,11 @@ int main(int argc, char **argv)
 #endif
 {
     try{
+
+        setlocale(LC_ALL, "");
+        bindtextdomain("projectfootball", "data/po");
+        textdomain("projectfootball");
+
         CSystemOptionManager *systemOptionManager = CSystemOptionManager::getInstance();
         if( systemOptionManager->getGeneralFailSafeMode() ){
 
