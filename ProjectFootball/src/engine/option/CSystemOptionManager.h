@@ -27,50 +27,53 @@
 class CSystemOptionManager
 {
 public:
-	/**
-	 * Destructor
-	 */
-	~CSystemOptionManager();
+    /**
+     * Destructor
+     */
+    ~CSystemOptionManager();
 
 
-	/**
-	 * Return the unique instance of the option manager
-	 * @return The unique instance of the option managre
-	 */
-	static CSystemOptionManager* getInstance();
+    /**
+     * Return the unique instance of the option manager
+     * @return The unique instance of the option managre
+     */
+    static CSystemOptionManager* getInstance();
 
 
-	/**
-	 * Load the options from the config file
-	 */
-	void loadOptions();
+    /**
+     * Load the options from the config file
+     */
+    void loadOptions();
 
 
-	/**
-	 * Save the options in the config file
-	 */
-	void saveOptions();
+    /**
+     * Save the options in the config file
+     */
+    void saveOptions();
 
 
-	/**
-	 * Get/Set the value of the option
-	 */
-	// General options
-	const char *   getGeneralMasterDatebasePath();
+    /**
+     * Get/Set the value of the option
+     */
+    // General options
+    const char *   getGeneralMasterDatebasePath();
     void           setGeneralMasterDatebasePath(const char * masterDatabasePath);
 
     bool           getGeneralFailSafeMode();
     void           setGeneralFailSafeMode(bool failSafeMode);
 
     // GUI options
-	int            getGUIMouseVelocity();
+    int            getGUIMouseVelocity();
     void           setGUIMouseVelocity(int mouseVelocity);
 
-	const char *   getGUISkin();
+    const char *   getGUISkin();
     void           setGUISkin(const char * skin);
 
+    const char *   getGUIXMLParser();
+    void           setGUIXMLParser(const char * skin);
+
     // Video options
-	const char *   getVideoRenderSystem();
+    const char *   getVideoRenderSystem();
     void           setVideoRenderSystem(const char * renderSystem);
 
     int            getVideoWidth();
@@ -79,17 +82,17 @@ public:
     int            getVideoHeight();
     void           setVideoHeight(int height);
 
-	bool           getVideoFullscreen();
+    bool           getVideoFullscreen();
     void           setVideoFullscreen(bool fullscreen);
 
-	bool           getVideoVSync();
+    bool           getVideoVSync();
     void           setVideoVSync(bool vSync);
 
-	bool           getVideoRTTCopyMode();
-    void           setVideoRTTCopyMode(bool rttCopyMode);
+    const char *   getVideoRTTPreferredMode();
+    void           setVideoRTTPreferredMode(const char * rttPreferredMode);
 
     // Simulation options
-	int            getSimulationMatchDuration();
+    int            getSimulationMatchDuration();
     void           setSimulationMatchDuration(int matchDuration);
 
     int            getSimulationLogicFrequency();
@@ -190,9 +193,9 @@ private:
     void setBooleanOption( const char *category, const char *option, bool value );
 
 
-	/**
-	 * Default constructor
-	 */
+  /**
+   * Default constructor
+   */
     CSystemOptionManager();
 
 

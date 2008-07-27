@@ -158,10 +158,8 @@ void CApplication::createRenderWindow()
     int height      = op->getVideoHeight();
     bool fullscreen = op->getVideoFullscreen();
     bool vsync      = op->getVideoVSync();
-    bool copyMode   = op->getVideoRTTCopyMode();
-    if(copyMode) {
-        m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode","Copy");
-    }
+    std::string RTTMode  = op->getVideoRTTPreferredMode();
+    m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode", RTTMode);
     m_root->initialise(false);
     if(vsync) {
         opts["vsync"] = "true";
@@ -181,7 +179,7 @@ void CApplication::createRenderWindow()
         CLog::getInstance()->debug("Debug texture created.");
     } catch (Ogre::RenderingAPIException &e){
         CLog::getInstance()->error("Error creating debug texture, using Copy mode now. Please restart the application.");
-        CSystemOptionManager::getInstance()->setVideoRTTCopyMode(true);
+        CSystemOptionManager::getInstance()->setVideoRTTPreferredMode("Copy");
     }
 }
 
@@ -243,7 +241,8 @@ void CApplication::setupCEGUI()
     // CEGUI setup
     m_renderer = new CEGUI::OgreCEGUIRenderer(m_window, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
     CEGUI::ScriptModule* script_module = CLuaManager::getInstance();
-    CEGUI::System::setDefaultXMLParserName("TinyXMLParser");
+    std::string parser = CSystemOptionManager::getInstance()->getGUIXMLParser();
+    CEGUI::System::setDefaultXMLParserName(parser);
     m_system = new CEGUI::System(m_renderer, 0, 0, script_module);
 
     CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
@@ -307,11 +306,10 @@ int main(int argc, char **argv)
 
         CSystemOptionManager *systemOptionManager = CSystemOptionManager::getInstance();
         if( systemOptionManager->getGeneralFailSafeMode() ){
-
-            systemOptionManager->setVideoWidth( 800);
+            systemOptionManager->setVideoWidth(800);
             systemOptionManager->setVideoHeight(600);
             systemOptionManager->setVideoFullscreen(false);
-            systemOptionManager->setVideoRTTCopyMode(true);
+            systemOptionManager->setVideoRTTPreferredMode("Copy");
         }else{
             systemOptionManager->setGeneralFailSafeMode(true);
             systemOptionManager->saveOptions();

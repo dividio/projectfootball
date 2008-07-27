@@ -183,6 +183,15 @@ void CSystemOptionManager::setGUISkin(const char * skin)
     setStringOption("GUI", "Skin", skin);
 }
 
+const char * CSystemOptionManager::getGUIXMLParser()
+{
+    return getStringOption("GUI", "XMLParser");
+}
+void CSystemOptionManager::setGUIXMLParser(const char * parser)
+{
+    setStringOption("GUI", "XMLParser", parser);
+}
+
 // Video options
 const char * CSystemOptionManager::getVideoRenderSystem()
 {
@@ -229,13 +238,13 @@ void CSystemOptionManager::setVideoVSync(bool vSync)
     setBooleanOption("Video", "VSync", vSync);
 }
 
-bool CSystemOptionManager::getVideoRTTCopyMode()
+const char * CSystemOptionManager::getVideoRTTPreferredMode()
 {
-    return getBooleanOption("Video", "RTTCopyMode");
+    return getStringOption("Video", "RTTPreferredMode");
 }
-void CSystemOptionManager::setVideoRTTCopyMode(bool rttCopyMode)
+void CSystemOptionManager::setVideoRTTPreferredMode(const char* rttPreferredMode)
 {
-    setBooleanOption("Video", "RTTCopyMode", rttCopyMode);
+    setStringOption("Video", "RTTPreferredMode", rttPreferredMode);
 }
 
 // Simulation options
@@ -320,13 +329,14 @@ void CSystemOptionManager::setDefaultValues()
 
     setGUIMouseVelocity(150);
     setGUISkin("DefaultSkin");
+    setGUIXMLParser("TinyXMLParser");
 
     setVideoRenderSystem("OpenGL Rendering Subsystem");
     setVideoWidth(1024);
     setVideoHeight(768);
     setVideoFullscreen(true);
     setVideoVSync(true);
-    setVideoRTTCopyMode(false);
+    setVideoRTTPreferredMode("FBO");
 
     setSimulationMatchDuration(2000);
     setSimulationLogicFrequency(30);
