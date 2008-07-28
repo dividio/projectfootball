@@ -8,7 +8,6 @@
     <Property Name="Image" Value="set:Background image:Background" />
     <Property Name="FrameEnabled" Value="false" />
     <Window Type="TaharezLook/StaticText" Name="Ranking/RankingLabel" >
-      <Property Name="Text" Value="Ranking:" />
       <Property Name="FrameEnabled" Value="False" />
       <Property Name="BackgroundEnabled" Value="False" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -20,7 +19,6 @@
     </Window>
     <Window Type="TaharezLook/Button" Name="Ranking/BackButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
-      <Property Name="Text" Value="Back" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
       <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
       <Event Name="Clicked" Function="cmd_back" />

@@ -9,73 +9,65 @@
         <Property Name="Image" Value="set:Background image:Background" />
         <Window Type="TaharezLook/Button" Name="Game/SaveButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Save" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.85,0},{0.2,0},{0.89,0}}" />
           <Event Name="Clicked" Function="cmd_Game_Save" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/MainMenuButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="Text" Value="Return to Main Menu" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.3,0},{0.94,0}}" />
             <Event Name="Clicked" Function="cmd_back" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/RankingButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="Text" Value="Ranking" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.04,0},{0.97,0},{0.08,0}}" />
             <Event Name="Clicked" Function="cmd_Game_Ranking" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/TeamPlayersButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Team Players" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.09,0},{0.97,0},{0.13,0}}" />
           <Event Name="Clicked" Function="cmd_Game_TeamPlayers" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/ResultsButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Results" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.14,0},{0.97,0},{0.18,0}}" />
           <Event Name="Clicked" Function="cmd_Game_Results" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/PlayButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Play Match" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.94,0}}" />
           <Event Name="Clicked" Function="cmd_Game_Play" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Game/PlayerTeamLabel" >
-          <Property Name="Text" Value="Player Team:" />
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="HorzFormatting" Value="RightAligned" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.15,0},{0.08,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.2,0},{0.08,0}}" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Game/PlayerTeamText" >
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.04,0},{0.5,0},{0.08,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.04,0},{0.5,0},{0.08,0}}" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Game/NextMatchLabel" >
-          <Property Name="Text" Value="Next Match:" />
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="HorzFormatting" Value="RightAligned" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.15,0},{0.12,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.2,0},{0.12,0}}" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Game/NextMatchText" >
           <Property Name="FrameEnabled" Value="False" />
           <Property Name="BackgroundEnabled" Value="False" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.08,0},{0.5,0},{0.12,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.08,0},{0.5,0},{0.12,0}}" />
         </Window>
     </Window>
 </GUILayout>

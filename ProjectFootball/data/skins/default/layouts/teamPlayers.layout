@@ -8,7 +8,6 @@
     <Property Name="Image" Value="set:Background image:Background" />
     <Property Name="FrameEnabled" Value="false" />
     <Window Type="TaharezLook/StaticText" Name="TeamPlayers/TeamPlayersLabel" >
-      <Property Name="Text" Value="TeamPlayers:" />
       <Property Name="FrameEnabled" Value="False" />
       <Property Name="BackgroundEnabled" Value="False" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -28,21 +27,18 @@
     </Window>
     <Window Type="TaharezLook/Button" Name="TeamPlayers/UpButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
-      <Property Name="Text" Value="Up" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.5,0},{0.87,0},{0.54,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.5,0},{0.9,0},{0.54,0}}" />
       <Event Name="Clicked" Function="cmd_TeamPlayer_Up" />
     </Window>
     <Window Type="TaharezLook/Button" Name="TeamPlayers/DownButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
-      <Property Name="Text" Value="Down" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.55,0},{0.87,0},{0.59,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.55,0},{0.9,0},{0.59,0}}" />
       <Event Name="Clicked" Function="cmd_TeamPlayer_Down" />
     </Window>
     <Window Type="TaharezLook/Button" Name="TeamPlayers/BackButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
-      <Property Name="Text" Value="Back" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
       <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
       <Event Name="Clicked" Function="cmd_back" />

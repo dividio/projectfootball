@@ -18,8 +18,9 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CStateSelectTeam.h"
+#include <libintl.h>
 
+#include "CStateSelectTeam.h"
 #include "CStateManager.h"
 #include "CStateGame.h"
 #include "../utils/CLog.h"
@@ -29,14 +30,24 @@ CStateSelectTeam::CStateSelectTeam()
     :CState()
 {
     CLog::getInstance()->debug("CStateSelectTeam()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"selectTeam.layout");
 
-    m_selectButton  = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
-    m_teamsList     = static_cast<CEGUI::Listbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"selectTeam.layout");
+
+    m_selectButton  = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
+    m_teamsList     = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
 
     m_teamsList->subscribeEvent(CEGUI::Listbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleSelectChanged, this));
     m_teamsList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CStateSelectTeam::handleDoubleClick, this));
     m_teamsList->setWantsMultiClickEvents(true);
+
+    // i18n support
+    m_selectButton->setText((CEGUI::utf8*)gettext("Select Team"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"SelectTeam/SelectTeamLabel"))->setText((CEGUI::utf8*)gettext("Please, select your team:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"SelectTeam/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
+
 }
 
 CStateSelectTeam* CStateSelectTeam::getInstance()

@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <libintl.h>
+
 #include "CStateResults.h"
 #include "../utils/CLog.h"
 #include "../engine/CGameEngine.h"
@@ -26,11 +28,13 @@ CStateResults::CStateResults()
     :CState()
 {
     CLog::getInstance()->debug("CStateResults()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"results.layout");
 
-    m_competitionsCombo         = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Results/CompetitionCombo"));
-    m_competitionPhasesCombo    = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Results/CompetitionPhaseCombo"));
-    m_resultsList               = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Results/ResultsList"));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"results.layout");
+
+    m_competitionsCombo         = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"Results/CompetitionCombo"));
+    m_competitionPhasesCombo    = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"Results/CompetitionPhaseCombo"));
+    m_resultsList               = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"Results/ResultsList"));
 
     m_competitionsCombo->getEditbox()->setEnabled(false);
     m_competitionsCombo->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CStateResults::handleCompetitionChange, this));
@@ -43,10 +47,16 @@ CStateResults::CStateResults()
     m_resultsList->setUserSortControlEnabled(false);
     m_resultsList->setWantsMultiClickEvents(true);
 
-    m_resultsList->addColumn("Home Team",   0, CEGUI::UDim(0.4,0));
-    m_resultsList->addColumn("Goals",       1, CEGUI::UDim(0.1,0));
-    m_resultsList->addColumn("Away Team",   2, CEGUI::UDim(0.4,0));
-    m_resultsList->addColumn("Goals",       3, CEGUI::UDim(0.1,0));
+    // i18n support
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Results/ResultsLabel"))->setText((CEGUI::utf8*)gettext("Results:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Results/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
+
+    m_resultsList->addColumn((CEGUI::utf8*)gettext("Home Team"),   0, CEGUI::UDim(0.4,0));
+    m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       1, CEGUI::UDim(0.1,0));
+    m_resultsList->addColumn((CEGUI::utf8*)gettext("Away Team"),   2, CEGUI::UDim(0.4,0));
+    m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       3, CEGUI::UDim(0.1,0));
 }
 
 CStateResults::~CStateResults()

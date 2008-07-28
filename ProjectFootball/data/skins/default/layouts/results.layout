@@ -8,7 +8,6 @@
     <Property Name="Image" Value="set:Background image:Background" />
     <Property Name="FrameEnabled" Value="false" />
     <Window Type="TaharezLook/StaticText" Name="Results/ResultsLabel" >
-      <Property Name="Text" Value="Results:" />
       <Property Name="FrameEnabled" Value="False" />
       <Property Name="BackgroundEnabled" Value="False" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

@@ -18,6 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <libintl.h>
 
 #include "CReferee.h"
 #include "../CSimulationManager.h"
@@ -206,28 +207,28 @@ std::string CReferee::getGameModeString()
     std::string mode;
     switch(m_currentGameMode) {
         case BEFORE_START:
-            mode = "Before Start";
+            mode = gettext("Before Start");
             break;
         case HALF_TIME:
-            mode = "Half Time";
+            mode = gettext("Half Time");
             break;
         case PLAY_ON:
-            mode = "Play On";
+            mode = gettext("Play On");
             break;
         case END:
-            mode = "End";
+            mode = gettext("End");
             break;
         case KICK_OFF:
-            mode = "Kick Off";
+            mode = gettext("Kick Off");
             break;
         case KICK_IN:
-            mode = "Kick In";
+            mode = gettext("Kick In");
             break;
         case CORNER_KICK:
-            mode = "Corner Kick";
+            mode = gettext("Corner Kick");
             break;
         case GOAL_KICK:
-            mode = "Goal Kick";
+            mode = gettext("Goal Kick");
             break;
         default:
             break;

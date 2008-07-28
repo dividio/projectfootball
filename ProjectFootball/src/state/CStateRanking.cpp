@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <libintl.h>
+
 #include "CStateRanking.h"
 #include "../engine/CGameEngine.h"
 #include "../utils/CLog.h"
@@ -26,11 +28,23 @@ CStateRanking::CStateRanking()
     :CState()
 {
     CLog::getInstance()->debug("CStateRanking()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"ranking.layout");
 
-    m_rankingList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Ranking/RankingList"));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"ranking.layout");
 
-    m_rankingList->addColumn("Team", 0, CEGUI::UDim(0.65,0));
+    m_rankingList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
+
+    m_rankingList->setUserColumnDraggingEnabled(false);
+    m_rankingList->setUserColumnSizingEnabled(false);
+    m_rankingList->setUserSortControlEnabled(false);
+
+    // i18n support
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Ranking/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
+
+    m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 0, CEGUI::UDim(0.65,0));
     m_rankingList->addColumn("PT",   1, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("PM",   2, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("WM",   3, CEGUI::UDim(0.05,0));
@@ -39,9 +53,6 @@ CStateRanking::CStateRanking()
     m_rankingList->addColumn("GF",   6, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("GA",   7, CEGUI::UDim(0.05,0));
 
-    m_rankingList->setUserColumnDraggingEnabled(false);
-    m_rankingList->setUserColumnSizingEnabled(false);
-    m_rankingList->setUserSortControlEnabled(false);
 }
 
 CStateRanking* CStateRanking::getInstance()

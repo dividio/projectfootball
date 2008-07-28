@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-13 18:21+0200\n"
+"POT-Creation-Date: 2008-07-28 15:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,16 +16,151 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: src/state/CStateCredits.cpp:44
+msgid "... and to all users who tested the game ;-)"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:68
+msgid "2D View"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:70
+msgid "3D View"
+msgstr ""
+
+#: src/state/CStateResults.cpp:58
+msgid "Away Team"
+msgstr ""
+
+#: src/state/CStateCredits.cpp:46 src/state/CStateMonitor.cpp:54
+#: src/state/CStateLoadGame.cpp:63 src/state/CStateConfig.cpp:61
+#: src/state/CStateSelectTeam.cpp:49 src/state/CStateRanking.cpp:43
+#: src/state/CStateTeamPlayers.cpp:67 src/state/CStateResults.cpp:54
+msgid "Back"
+msgstr ""
+
+#: src/state/CStateCredits.cpp:38
+msgid "Based on:"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:210
+msgid "Before Start"
+msgstr ""
+
 #: src/state/CStateMainMenu.cpp:43
 msgid "Config"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:228
+msgid "Corner Kick"
 msgstr ""
 
 #: src/state/CStateMainMenu.cpp:45
 msgid "Credits"
 msgstr ""
 
+#: src/state/CStateLoadGame.cpp:58
+msgid "Date"
+msgstr ""
+
+#: src/state/CStateLoadGame.cpp:60
+msgid "Delete Game"
+msgstr ""
+
+#: src/state/CStateCredits.cpp:40
+msgid "Designed and coded by:"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:65
+msgid "Down"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:219
+msgid "End"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:62
+msgid "Formation"
+msgstr ""
+
+#: src/state/CStateConfig.cpp:55
+msgid "Fullscreen"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:231
+msgid "Goal Kick"
+msgstr ""
+
+#: src/state/CStateResults.cpp:57 src/state/CStateResults.cpp:59
+msgid "Goals"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:213
+msgid "Half Time"
+msgstr ""
+
+#: src/state/CStateResults.cpp:56
+msgid "Home Team"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:225
+msgid "Kick In"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:222
+msgid "Kick Off"
+msgstr ""
+
+#: src/state/CStateLoadGame.cpp:61
+msgid "Load Game"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:64
+msgid "Log"
+msgstr ""
+
+#: src/state/CStateConfig.cpp:59
+msgid "NOTE: Changes will take effect after restart"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:392 src/state/CStateLoadGame.cpp:57
+msgid "Name"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:44
+msgid "Name (Alternate)"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:36
+msgid "Name (Line Up)"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:52
+msgid "Name (Not Line Up)"
+msgstr ""
+
+#: src/state/CStateLoadGame.cpp:59
+msgid "New Game"
+msgstr ""
+
 #: src/state/CStateMainMenu.cpp:41
 msgid "New/Load Game"
+msgstr ""
+
+#: src/state/CStateGame.cpp:54
+msgid "Next Match:"
+msgstr ""
+
+#: src/state/CStateGame.cpp:40
+msgid "Play Match"
+msgstr ""
+
+#: src/sim/entity/CReferee.cpp:216
+msgid "Play On"
+msgstr ""
+
+#: src/state/CStateSelectTeam.cpp:47
+msgid "Please, select your team:"
 msgstr ""
 
 #: src/state/CStateMainMenu.cpp:39
@@ -34,4 +169,88 @@ msgstr ""
 
 #: src/state/CStateMainMenu.cpp:47
 msgid "Quit"
+msgstr ""
+
+#: src/state/CStateGame.cpp:46
+msgid "Ranking"
+msgstr ""
+
+#: src/state/CStateRanking.cpp:45
+msgid "Ranking:"
+msgstr ""
+
+#: src/state/CStateConfig.cpp:51
+msgid "Renderer:"
+msgstr ""
+
+#: src/state/CStateConfig.cpp:53
+msgid "Resolution:"
+msgstr ""
+
+#: src/state/CStateGame.cpp:50
+msgid "Results"
+msgstr ""
+
+#: src/state/CStateResults.cpp:52
+msgid "Results:"
+msgstr ""
+
+#: src/state/CStateGame.cpp:44
+msgid "Return to Main Menu"
+msgstr ""
+
+#: src/state/CStateGame.cpp:42 src/state/CStateConfig.cpp:63
+msgid "Save"
+msgstr ""
+
+#: src/state/CStateSelectTeam.cpp:45
+msgid "Select Team"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:52
+msgid "Simulation View"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:56 src/state/CStateMonitor.cpp:72
+msgid "Start"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:66
+msgid "Statistics"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:60 src/state/CStateRanking.cpp:47
+msgid "Team"
+msgstr ""
+
+#: src/state/CStateGame.cpp:48
+msgid "Team Players"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:61
+msgid "Team Players:"
+msgstr ""
+
+#: src/state/CStateCredits.cpp:42
+msgid "Thanks to:"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:63
+msgid "Up"
+msgstr ""
+
+#: src/state/CStateConfig.cpp:57
+msgid "Vertical Sync"
+msgstr ""
+
+#: src/state/CStateConfig.cpp:49
+msgid "Video"
+msgstr ""
+
+#: src/state/CStateGame.cpp:52
+msgid "Your Team:"
+msgstr ""
+
+#: src/state/CStateMonitor.cpp:58
+msgid "Zoom"
 msgstr ""

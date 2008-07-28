@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <libintl.h>
+
 #include "CStateTeamPlayers.h"
 #include "../engine/CGameEngine.h"
 #include "../utils/CLog.h"
@@ -26,31 +28,43 @@ CStateTeamPlayers::CStateTeamPlayers()
     :CState()
 {
     CLog::getInstance()->debug("CStateTeamPlayers()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"teamPlayers.layout");
 
-    m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"TeamPlayers/LineUpTeamPlayersList"));
-    m_lineUpTeamPlayersList->addColumn("Name (Line Up)", 0, CEGUI::UDim(1.0,0));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"teamPlayers.layout");
+
+    m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"TeamPlayers/LineUpTeamPlayersList"));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(1.0,0));
     m_lineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_lineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_lineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_lineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
     m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateTeamPlayers::handleLineUpSelectChanged, this));
 
-    m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"TeamPlayers/AlternateTeamPlayersList"));
-    m_alternateTeamPlayersList->addColumn("Name (Alternate)", 0, CEGUI::UDim(1.0,0));
+    m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"TeamPlayers/AlternateTeamPlayersList"));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Alternate)"), 0, CEGUI::UDim(1.0,0));
     m_alternateTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_alternateTeamPlayersList->setUserColumnSizingEnabled(false);
     m_alternateTeamPlayersList->setUserSortControlEnabled(false);
     m_alternateTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
     m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateTeamPlayers::handleAlternateSelectChanged, this));
 
-    m_notLineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"TeamPlayers/NotLineUpTeamPlayersList"));
-    m_notLineUpTeamPlayersList->addColumn("Name (Not Line Up)", 0, CEGUI::UDim(1.0,0));
+    m_notLineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"TeamPlayers/NotLineUpTeamPlayersList"));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Not Line Up)"), 0, CEGUI::UDim(1.0,0));
     m_notLineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_notLineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_notLineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_notLineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
     m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateTeamPlayers::handleNotLineUpSelectChanged, this));
+
+    // i18n support
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel"))->setText((CEGUI::utf8*)gettext("Team Players:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"TeamPlayers/UpButton"))->setText((CEGUI::utf8*)gettext("Up"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"TeamPlayers/DownButton"))->setText((CEGUI::utf8*)gettext("Down"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"TeamPlayers/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
 }
 
 CStateTeamPlayers* CStateTeamPlayers::getInstance()

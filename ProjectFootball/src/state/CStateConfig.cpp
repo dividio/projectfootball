@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include <Ogre.h>
+#include <libintl.h>
 
 #include "CStateConfig.h"
 #include "../utils/CLog.h"
@@ -29,17 +30,37 @@ CStateConfig::CStateConfig()
     :CState()
 {
     CLog::getInstance()->debug("CStateConfig()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"config.layout");
 
-    m_resolutionCombo   = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
-    m_rendererCombo     = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/RendererCombo"));
-    m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
-    m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"config.layout");
+
+    m_resolutionCombo   = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
+    m_rendererCombo     = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
+    m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
+    m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
 
     m_resolutionCombo->getEditbox()->setEnabled(false);
     m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
     m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1024x768",  1024));
     m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("800x600",   800));
+
+    // i18n support
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/Video"))->setText((CEGUI::utf8*)gettext("Video"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/RendererText"))->setText((CEGUI::utf8*)gettext("Renderer:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/ResolutionText"))->setText((CEGUI::utf8*)gettext("Resolution:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/FullScreenCheck"))->setText((CEGUI::utf8*)gettext("Fullscreen"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/VSyncCheck"))->setText((CEGUI::utf8*)gettext("Vertical Sync"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/Note"))->setText((CEGUI::utf8*)gettext("NOTE: Changes will take effect after restart"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Config/SaveButton"))->setText((CEGUI::utf8*)gettext("Save"));
 
     m_rendererCombo->getEditbox()->setEnabled(false);
     Ogre::RenderSystemList *renderSystemList = CApplication::getInstance()->getRenderSystemList();

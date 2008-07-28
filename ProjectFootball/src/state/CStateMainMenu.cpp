@@ -32,9 +32,9 @@ CStateMainMenu::CStateMainMenu()
     CLog::getInstance()->debug("CStateMainMenu()");
 
     CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"mainMenu.layout");
 
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"mainMenu.layout");
-
+    // i18n support
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"MainMenu/QuickPlayButton"))->setText((CEGUI::utf8*)gettext("Quick Play"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(

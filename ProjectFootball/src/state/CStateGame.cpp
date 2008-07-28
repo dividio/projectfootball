@@ -18,8 +18,9 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CStateGame.h"
+#include <libintl.h>
 
+#include "CStateGame.h"
 #include "../utils/CLog.h"
 #include "../engine/CGameEngine.h"
 
@@ -27,11 +28,31 @@ CStateGame::CStateGame()
     :CState()
 {
     CLog::getInstance()->debug("CStateGame()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"game.layout");
 
-    m_playerTeamText    = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
-    m_nextMatchText     = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/NextMatchText"));
-    m_playButton        = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"Game/PlayButton"));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"game.layout");
+
+    m_playerTeamText    = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
+    m_nextMatchText     = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/NextMatchText"));
+    m_playButton        = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayButton"));
+
+    // i18n support
+    m_playButton->setText((CEGUI::utf8*)gettext("Play Match"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/SaveButton"))->setText((CEGUI::utf8*)gettext("Save"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/MainMenuButton"))->setText((CEGUI::utf8*)gettext("Return to Main Menu"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/RankingButton"))->setText((CEGUI::utf8*)gettext("Ranking"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/TeamPlayersButton"))->setText((CEGUI::utf8*)gettext("Team Players"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/ResultsButton"))->setText((CEGUI::utf8*)gettext("Results"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/PlayerTeamLabel"))->setText((CEGUI::utf8*)gettext("Your Team:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Game/NextMatchLabel"))->setText((CEGUI::utf8*)gettext("Next Match:"));
+
 }
 
 CStateGame* CStateGame::getInstance()

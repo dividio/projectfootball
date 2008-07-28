@@ -19,9 +19,9 @@
 ******************************************************************************/
 
 #include <stdio.h>
+#include <libintl.h>
 
 #include "CStateLoadGame.h"
-
 #include "CStateGame.h"
 #include "CStateManager.h"
 #include "CStateSelectTeam.h"
@@ -33,16 +33,18 @@ CStateLoadGame::CStateLoadGame()
     :CState()
 {
     CLog::getInstance()->debug("CStateLoadGame()");
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"loadGame.layout");
 
-    m_loadGameButton    = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
-    m_deleteGameButton  = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
-    m_newGameButton     = static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"loadGame.layout");
 
-    m_newGameEditbox    = static_cast<CEGUI::Editbox*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
+    m_loadGameButton    = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
+    m_deleteGameButton  = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
+    m_newGameButton     = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
+
+    m_newGameEditbox    = static_cast<CEGUI::Editbox*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
     m_newGameEditbox->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleTextChanged, this));
 
-    m_gamesList = static_cast<CEGUI::MultiColumnList*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
+    m_gamesList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
     m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateLoadGame::handleSelectChanged, this));
     m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CStateLoadGame::handleDoubleClick, this));
@@ -51,8 +53,14 @@ CStateLoadGame::CStateLoadGame()
     m_gamesList->setUserSortControlEnabled(false);
     m_gamesList->setWantsMultiClickEvents(true);
 
-    m_gamesList->addColumn("Name", 0, CEGUI::UDim(0.7,0));
-    m_gamesList->addColumn("Date", 1, CEGUI::UDim(0.3,0));
+    // i18n support
+    m_gamesList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(0.7,0));
+    m_gamesList->addColumn((CEGUI::utf8*)gettext("Date"), 1, CEGUI::UDim(0.3,0));
+    m_newGameButton->setText((CEGUI::utf8*)gettext("New Game"));
+    m_deleteGameButton->setText((CEGUI::utf8*)gettext("Delete Game"));
+    m_loadGameButton->setText((CEGUI::utf8*)gettext("Load Game"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"LoadGame/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
 }
 
 CStateLoadGame* CStateLoadGame::getInstance()

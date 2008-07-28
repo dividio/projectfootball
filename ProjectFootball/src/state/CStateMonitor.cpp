@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include <stdio.h>
+#include <libintl.h>
 
 #include "CStateMonitor.h"
 #include "CStateManager.h"
@@ -32,7 +33,6 @@ CStateMonitor::CStateMonitor()
     CLog::getInstance()->debug("CStateMonitor()");
 
     CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-
     m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"monitor.layout");
 
     m_frameWindow               = static_cast<CEGUI::FrameWindow*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/FrameWindow"));
@@ -47,6 +47,30 @@ CStateMonitor::CStateMonitor()
     m_frameAwayName             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayName"));
     m_frameHomeScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeScore"));
     m_frameAwayScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayScore"));
+
+    // i18n support
+    m_frameWindow->setText((CEGUI::utf8*)gettext("Simulation View"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/StartButton"))->setText((CEGUI::utf8*)gettext("Start"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/ZoomButton"))->setText((CEGUI::utf8*)gettext("Zoom"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/TeamTab"))->setText((CEGUI::utf8*)gettext("Team"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/FormationTab"))->setText((CEGUI::utf8*)gettext("Formation"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/LogTab"))->setText((CEGUI::utf8*)gettext("Log"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/StatisticsTab"))->setText((CEGUI::utf8*)gettext("Statistics"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/Frame/2DButton"))->setText((CEGUI::utf8*)gettext("2D View"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/Frame/3DButton"))->setText((CEGUI::utf8*)gettext("3D View"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"Monitor/Frame/StartButton"))->setText((CEGUI::utf8*)gettext("Start"));
+
 
     m_direction = Ogre::Vector3::ZERO;
 
@@ -365,7 +389,7 @@ void CStateMonitor::addToLog(std::string text)
 
 void CStateMonitor::loadTeamPlayers()
 {
-    m_teamPlayersList->addColumn("Name", 0, CEGUI::UDim(1.0,0));
+    m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(1.0,0));
     m_teamPlayersList->resetList();
 
     CPfTeams                                *team               = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();

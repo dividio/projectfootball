@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <libintl.h>
+
 #include "CStateCredits.h"
 #include "CStateManager.h"
 #include "../utils/CLog.h"
@@ -28,7 +30,20 @@ CStateCredits::CStateCredits()
 {
     CLog::getInstance()->debug("CStateCredits()");
 
-    m_sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout((CEGUI::utf8*)"credits.layout");
+    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
+    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"credits.layout");
+
+    // i18n support
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+        (CEGUI::utf8*)"Credits/BasedLabel"))->setText((CEGUI::utf8*)gettext("Based on:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+        (CEGUI::utf8*)"Credits/CodedLabel"))->setText((CEGUI::utf8*)gettext("Designed and coded by:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+        (CEGUI::utf8*)"Credits/ThanksLabel"))->setText((CEGUI::utf8*)gettext("Thanks to:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+        (CEGUI::utf8*)"Credits/AllUsersLabel"))->setText((CEGUI::utf8*)gettext("... and to all users who tested the game ;-)"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+        (CEGUI::utf8*)"Credits/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
 }
 
 
