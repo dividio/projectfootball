@@ -303,6 +303,7 @@ int main(int argc, char **argv)
         setlocale(LC_ALL, "");
         bindtextdomain("projectfootball", "data/po");
         textdomain("projectfootball");
+        bind_textdomain_codeset("projectfootball", "UTF-8");
 
         CSystemOptionManager *systemOptionManager = CSystemOptionManager::getInstance();
         if( systemOptionManager->getGeneralFailSafeMode() ){
