@@ -22,12 +22,13 @@
 #define CSTATESELECTTEAM_H_
 
 #include "CState.h"
+#include "../db/bean/CPfTeams.h"
 
 class CStateSelectTeam : public CState
 {
 public:
     static CStateSelectTeam* getInstance();
-	virtual ~CStateSelectTeam();
+  virtual ~CStateSelectTeam();
 
     virtual void enter();
     virtual void forcedLeave();
@@ -42,9 +43,13 @@ private:
     void loadTeamList();
     bool handleSelectChanged(const CEGUI::EventArgs& e);
     bool handleDoubleClick(const CEGUI::EventArgs& e);
+    void loadTeamInfo(CPfTeams *team);
+    void clearTeamInfo();
 
-    CEGUI::PushButton   *m_selectButton;
-    CEGUI::Listbox      *m_teamsList;
+    CEGUI::PushButton       *m_selectButton;
+    CEGUI::Listbox          *m_guiTeamsList;
+    CEGUI::Window       *m_guiTeamName;
+    std::vector<CPfTeams*>  *m_teamsList;
 };
 
 #endif /*CSTATESELECTTEAM_H_*/
