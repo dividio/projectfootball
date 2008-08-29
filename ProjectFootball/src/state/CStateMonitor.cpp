@@ -100,7 +100,11 @@ CStateMonitor::CStateMonitor()
     m_cam3D->setCustomProjectionMatrix(false);
     m_cam3D->setNearClipDistance(5);
 
-    m_renderTexture = m_root->getRenderSystem()->createRenderTexture("RttTex", (int)m_groundImage->getPixelSize().d_width, (int)m_groundImage->getPixelSize().d_height, Ogre::TEX_TYPE_2D, Ogre::PF_R8G8B8);
+    Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual("RttTex",
+                    Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D,
+                    (int)m_groundImage->getPixelSize().d_width, (int)m_groundImage->getPixelSize().d_height,
+                    0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+    m_renderTexture = texturePtr->getBuffer()->getRenderTarget();
 
     CEGUI::Texture  *cTex = m_renderer->createTexture((CEGUI::utf8*)"RttTex");
     CEGUI::Imageset *imageSet = CEGUI::ImagesetManager::getSingleton().createImageset((CEGUI::utf8*)"RttImageset", cTex);

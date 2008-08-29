@@ -174,8 +174,10 @@ void CApplication::createRenderWindow()
     }
     try {
         CLog::getInstance()->debug("Creating debug texture.");
-        m_root->getRenderSystem()->createRenderTexture("DebugText", 2, 2, Ogre::TEX_TYPE_2D, Ogre::PF_R8G8B8);
-        m_root->getRenderSystem()->destroyRenderTexture("DebugText");
+        Ogre::TexturePtr debugTexture = m_root->getTextureManager()->createManual("DebugText",
+                Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 2, 2,
+                0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+        delete debugTexture.getPointer();
         CLog::getInstance()->debug("Debug texture created.");
     } catch (Ogre::RenderingAPIException &e){
         CLog::getInstance()->error("Error creating debug texture, using Copy mode now. Please restart the application.");
