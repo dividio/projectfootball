@@ -45,7 +45,7 @@ CStateRanking::CStateRanking()
             (CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
 
     m_rankingList->addColumn("",     0, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.65,0));
+    m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.60,0));
     m_rankingList->addColumn("PT",   2, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("PM",   3, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("WM",   4, CEGUI::UDim(0.05,0));
