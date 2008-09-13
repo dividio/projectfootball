@@ -25,17 +25,11 @@
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
       <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.66,0},{0.7,0},{0.87,0}}" />
     </Window>
-    <Window Type="TaharezLook/Button" Name="TeamPlayers/UpButton" >
+    <Window Type="TaharezLook/Button" Name="TeamPlayers/ChangeButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.5,0},{0.9,0},{0.54,0}}" />
-      <Event Name="Clicked" Function="cmd_TeamPlayer_Up" />
-    </Window>
-    <Window Type="TaharezLook/Button" Name="TeamPlayers/DownButton" >
-      <Property Name="Font" Value="DejaVuSans-10" />
-      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.55,0},{0.9,0},{0.59,0}}" />
-      <Event Name="Clicked" Function="cmd_TeamPlayer_Down" />
+      <Property Name="UnifiedAreaRect" Value="{{0.75,0},{0.7,0},{0.9,0},{0.74,0}}" />
+      <Event Name="Clicked" Function="cmd_Change_Players" />
     </Window>
     <Window Type="TaharezLook/Button" Name="TeamPlayers/BackButton" >
       <Property Name="Font" Value="DejaVuSans-10" />

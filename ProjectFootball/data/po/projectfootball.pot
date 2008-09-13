@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-02 15:42+0200\n"
+"POT-Creation-Date: 2008-09-13 21:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr ""
 #: src/state/CStateCredits.cpp:46 src/state/CStateMonitor.cpp:54
 #: src/state/CStateLoadGame.cpp:63 src/state/CStateConfig.cpp:61
 #: src/state/CStateSelectTeam.cpp:58 src/state/CStateRanking.cpp:43
-#: src/state/CStateTeamPlayers.cpp:67 src/state/CStateResults.cpp:54
+#: src/state/CStateTeamPlayers.cpp:66 src/state/CStateResults.cpp:54
 msgid "Back"
 msgstr ""
 
@@ -49,6 +49,10 @@ msgstr ""
 
 #: src/state/CStateSelectTeam.cpp:52
 msgid "Budget:"
+msgstr ""
+
+#: src/state/CStateTeamPlayers.cpp:64
+msgid "Change"
 msgstr ""
 
 #: src/state/CStateMainMenu.cpp:43
@@ -73,10 +77,6 @@ msgstr ""
 
 #: src/state/CStateCredits.cpp:40
 msgid "Designed and coded by:"
-msgstr ""
-
-#: src/state/CStateTeamPlayers.cpp:65
-msgid "Down"
 msgstr ""
 
 #: src/sim/entity/CReferee.cpp:219
@@ -131,11 +131,11 @@ msgstr ""
 msgid "NOTE: Changes will take effect after restart"
 msgstr ""
 
-#: src/state/CStateMonitor.cpp:392 src/state/CStateLoadGame.cpp:57
+#: src/state/CStateMonitor.cpp:396 src/state/CStateLoadGame.cpp:57
 msgid "Name"
 msgstr ""
 
-#: src/state/CStateTeamPlayers.cpp:44
+#: src/state/CStateTeamPlayers.cpp:45
 msgid "Name (Alternate)"
 msgstr ""
 
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Name (Line Up)"
 msgstr ""
 
-#: src/state/CStateTeamPlayers.cpp:52
+#: src/state/CStateTeamPlayers.cpp:53
 msgid "Name (Not Line Up)"
 msgstr ""
 
@@ -235,7 +235,7 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: src/state/CStateMonitor.cpp:60 src/state/CStateRanking.cpp:47
+#: src/state/CStateMonitor.cpp:60 src/state/CStateRanking.cpp:48
 msgid "Team"
 msgstr ""
 
@@ -243,16 +243,12 @@ msgstr ""
 msgid "Team Players"
 msgstr ""
 
-#: src/state/CStateTeamPlayers.cpp:61
+#: src/state/CStateTeamPlayers.cpp:62
 msgid "Team Players:"
 msgstr ""
 
 #: src/state/CStateCredits.cpp:42
 msgid "Thanks to:"
-msgstr ""
-
-#: src/state/CStateTeamPlayers.cpp:63
-msgid "Up"
 msgstr ""
 
 #: src/state/CStateConfig.cpp:57

@@ -22,33 +22,46 @@
 #define CSTATETEAMPLAYERS_H_
 
 #include "CState.h"
+#include "../engine/CGameEngine.h"
+
+enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
 
 class CStateTeamPlayers : public CState
 {
 public:
-	static CStateTeamPlayers* getInstance();
-	virtual ~CStateTeamPlayers();
+    static CStateTeamPlayers* getInstance();
+    virtual ~CStateTeamPlayers();
 
     virtual void enter();
     virtual void forcedLeave();
     virtual bool leave();
     virtual void update();
 
-    void teamPlayerUp();
-    void teamPlayerDown();
+    bool handleChangePlayers();
 
 private:
     CStateTeamPlayers();
 
     void loadTeamPlayersList();
     void saveTeamPlayersList();
+    void changePlayers();
+    void selectChanged(CEGUI::MultiColumnList *list);
     bool handleLineUpSelectChanged(const CEGUI::EventArgs& e);
     bool handleAlternateSelectChanged(const CEGUI::EventArgs& e);
     bool handleNotLineUpSelectChanged(const CEGUI::EventArgs& e);
 
-    CEGUI::MultiColumnList  *m_lineUpTeamPlayersList;
-    CEGUI::MultiColumnList  *m_alternateTeamPlayersList;
-    CEGUI::MultiColumnList  *m_notLineUpTeamPlayersList;
+    CEGUI::MultiColumnList *m_lineUpTeamPlayersList;
+    CEGUI::MultiColumnList *m_alternateTeamPlayersList;
+    CEGUI::MultiColumnList *m_notLineUpTeamPlayersList;
+
+    CPfTeamPlayers         *m_selectedPlayer1;
+    CPfTeamPlayers         *m_selectedPlayer2;
+    CEGUI::ListboxItem     *m_item1;
+    CEGUI::ListboxItem     *m_item2;
+    CEGUI::MultiColumnList *m_selectedPlayer1List;
+    CEGUI::MultiColumnList *m_selectedPlayer2List;
+    SelectedPlayers         m_selectedPlayers;
+    bool                    m_forcedSelection;
 };
 
 #endif /*CSTATETEAMPLAYERS_H_*/

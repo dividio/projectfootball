@@ -146,11 +146,9 @@ end
 -- CStateTeamPlayer functions
 --------------------------
 -- cmd_back
-function cmd_TeamPlayer_Up()
-    PF.CStateTeamPlayers_getInstance():teamPlayerUp();
+
+function cmd_Change_Players()
+    PF.CStateTeamPlayers_getInstance():handleChangePlayers();
 end
 
-function cmd_TeamPlayer_Down()
-    PF.CStateTeamPlayers_getInstance():teamPlayerDown();
-end
 -- End Script
