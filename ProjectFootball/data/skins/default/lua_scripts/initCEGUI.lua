@@ -73,6 +73,11 @@ function cmd_Monitor_changeTo433()
     PF.CStateMonitor_getInstance():getSimulationManager():changeFormationEvent(0)
 end
 
+function cmd_Monitor_Continue()
+    local state = PF.CStateMatchResult_getInstance()
+    PF.CStateManager_getInstance():popState()
+    PF.CStateManager_getInstance():pushState(state)
+end
 
 --------------------------
 -- CStateConfig functions
@@ -118,8 +123,7 @@ end
 -- cmd_back
 
 function cmd_Game_Play()
-    local state = PF.CStateMonitor_getInstance()
-    PF.CStateManager_getInstance():pushState(state)
+    PF.CStateGame_getInstance():playButtonEvent()
 end
 
 function cmd_Game_Save()
@@ -141,6 +145,10 @@ function cmd_Game_Results()
     PF.CStateManager_getInstance():pushState(state)
 end
 
+function cmd_Game_ResultMode()
+    PF.CStateGame_getInstance():resultModeEvent()
+end
+
 
 --------------------------
 -- CStateTeamPlayer functions
@@ -150,5 +158,12 @@ end
 function cmd_Change_Players()
     PF.CStateTeamPlayers_getInstance():handleChangePlayers();
 end
+
+
+--------------------------
+-- CStateMatchResult functions
+--------------------------
+-- cmd_back
+
 
 -- End Script

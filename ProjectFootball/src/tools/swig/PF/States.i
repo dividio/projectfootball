@@ -14,6 +14,7 @@
 #include "../state/CStateTeamPlayers.h"
 #include "../state/CStateQuickPlay.h"
 #include "../state/CStateResults.h"
+#include "../state/CStateMatchResult.h"
 %}
 
 %include "std_string.i"
@@ -32,3 +33,4 @@
 %include ../../../state/CStateTeamPlayers.h
 %include ../../../state/CStateQuickPlay.h
 %include ../../../state/CStateResults.h
+%include ../../../state/CStateMatchResult.h

@@ -21,6 +21,9 @@
 #include <libintl.h>
 
 #include "CStateGame.h"
+#include "CStateManager.h"
+#include "CStateMonitor.h"
+#include "CStateMatchResult.h"
 #include "../utils/CLog.h"
 #include "../engine/CGameEngine.h"
 
@@ -32,12 +35,14 @@ CStateGame::CStateGame()
     CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
     m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"game.layout");
 
-    m_playerTeamText    = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
-    m_nextMatchText     = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/NextMatchText"));
-    m_playButton        = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayButton"));
+    m_playerTeamText     = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
+    m_nextMatchText      = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/NextMatchText"));
+    m_playButton         = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayButton"));
+    m_resultModeCheckBox = static_cast<CEGUI::Checkbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/ResultMode"));
 
     // i18n support
     m_playButton->setText((CEGUI::utf8*)gettext("Play Match"));
+    m_resultModeCheckBox->setText((CEGUI::utf8*)gettext("Result Mode"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"Game/SaveButton"))->setText((CEGUI::utf8*)gettext("Save"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
@@ -52,7 +57,6 @@ CStateGame::CStateGame()
             (CEGUI::utf8*)"Game/PlayerTeamLabel"))->setText((CEGUI::utf8*)gettext("Your Team:"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"Game/NextMatchLabel"))->setText((CEGUI::utf8*)gettext("Next Match:"));
-
 }
 
 CStateGame* CStateGame::getInstance()
@@ -72,7 +76,18 @@ void CStateGame::enter()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
-    CPfTeams    *playerTeam = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
+
+    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
+    if(resultMode->getSValue() == "true") { //result mode
+        m_resultModeCheckBox->setSelected(true);
+    } else {
+        m_resultModeCheckBox->setSelected(false);
+    }
+    delete resultMode;
+
+    CPfTeams    *playerTeam = daoFactory->getIPfTeamsDAO()->findPlayerTeam();
     m_playerTeamText->setText(playerTeam->getSTeam());
     delete playerTeam;
 
@@ -115,4 +130,35 @@ void CStateGame::update()
 void CStateGame::saveGame()
 {
     CGameEngine::getInstance()->getCurrentGame()->save();
+}
+
+void CStateGame::resultModeEvent()
+{
+    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
+
+    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
+
+    if(m_resultModeCheckBox->isSelected()) {
+        resultMode->setSValue("true");
+    } else {
+        resultMode->setSValue("false");
+    }
+    optionsDAO->updateReg(resultMode);
+    delete resultMode;
+}
+
+void CStateGame::playButtonEvent()
+{
+    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
+
+    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
+
+    if(resultMode->getSValue() == "true") {
+        CStateManager::getInstance()->pushState(CStateMatchResult::getInstance());
+    } else {
+        CStateManager::getInstance()->pushState(CStateMonitor::getInstance());
+    }
+    delete resultMode;
 }

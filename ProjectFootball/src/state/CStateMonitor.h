@@ -48,6 +48,7 @@ public:
     Ogre::SceneManager* getSimulationSceneManager();
     void addToLog(std::string text);
     void updateScore();
+    void endMatchEvent();
 
 protected:
     CStateMonitor();
@@ -66,6 +67,8 @@ private:
     CEGUI::Window           *m_frameAwayName;
     CEGUI::Window           *m_frameHomeScore;
     CEGUI::Window           *m_frameAwayScore;
+    CEGUI::PushButton       *m_continueButton;
+    CEGUI::PushButton       *m_backButton;
 
     Ogre::Camera            *m_cam2D;
     Ogre::Camera            *m_cam3D;
@@ -83,8 +86,6 @@ private:
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
     void loadTeamPlayers();
-    void simulateOthersMatches(); // Simulate others matches of same competition phase than m_match
-    int  getRandomNGoals();
 };
 
 #endif // __CStateMonitor_H__

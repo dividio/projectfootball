@@ -139,6 +139,7 @@ void CStateLoadGame::newGame()
     daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_matches.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_gameoptions.sql");
     daoFactory->commit();
 
     CPfGameStates newGameState;

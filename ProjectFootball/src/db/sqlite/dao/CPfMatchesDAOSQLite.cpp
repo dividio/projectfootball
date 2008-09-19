@@ -110,3 +110,16 @@ CPfMatches* CPfMatchesDAOSQLite::findNextPlayerTeamMatch()
     }
 }
 
+CPfMatches* CPfMatchesDAOSQLite::findLastPlayerTeamMatch()
+{
+    std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='Y' AND (X_FK_TEAM_HOME=(SELECT S_VALUE FROM PF_GAME_STATES WHERE S_STATE='PLAYER_TEAM') OR X_FK_TEAM_AWAY=(SELECT S_VALUE FROM PF_GAME_STATES WHERE S_STATE='PLAYER_TEAM')) ORDER BY D_MATCH");
+    std::vector<CPfMatches*>* matchesList = loadVector(sql);
+    if( matchesList->empty() ){
+        freeVector(matchesList);
+        return NULL;
+    }else{
+        CPfMatches *match = new CPfMatches(*(matchesList->back()));
+        freeVector(matchesList);
+        return match;
+    }
+}

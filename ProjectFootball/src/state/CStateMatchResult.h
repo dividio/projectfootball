@@ -18,33 +18,44 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSTATEGAME_H_
-#define CSTATEGAME_H_
+
+#ifndef CSTATEMATCHRESULT_H_
+#define CSTATEMATCHRESULT_H_
 
 #include "CState.h"
+#include "../engine/CGameEngine.h"
 
-class CStateGame : public CState
+
+class CStateMatchResult : public CState
 {
 public:
-    static CStateGame* getInstance();
-  virtual ~CStateGame();
+    static CStateMatchResult* getInstance();
+    virtual ~CStateMatchResult();
 
     virtual void enter();
     virtual void forcedLeave();
     virtual bool leave();
     virtual void update();
 
-    void saveGame();
-    void resultModeEvent();
-    void playButtonEvent();
-
 private:
-    CStateGame();
+    CPfMatches              *m_match;
+    CEGUI::Window           *m_competitionName;
+    CEGUI::Window           *m_competitionPhaseName;
+    CEGUI::Window           *m_homeName;
+    CEGUI::Window           *m_awayName;
+    CEGUI::Window           *m_homeScore;
+    CEGUI::Window           *m_awayScore;
+    CEGUI::MultiColumnList  *m_homeEventsList;
+    CEGUI::MultiColumnList  *m_awayEventsList;
 
-    CEGUI::Window     *m_playerTeamText;
-    CEGUI::Window     *m_nextMatchText;
-    CEGUI::PushButton *m_playButton;
-    CEGUI::Checkbox   *m_resultModeCheckBox;
+    CStateMatchResult();
+
+    /** Simulate others matches of same competition phase than m_match
+     * TODO Simulate all matches with Date less or equal than current user match
+     */
+    void simulateMatches();
+    int  getRandomNGoals();
+    void loadMatchInfo(CPfMatches *match);
 };
 
-#endif /*CSTATEGAME_H_*/
+#endif /*CSTATEMATCHRESULT_H_*/

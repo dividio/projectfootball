@@ -50,6 +50,7 @@ public:
     virtual CPfMatches* findByXFkTeamAway(const std::string &XFkTeamAway) =0;
     virtual std::vector<CPfMatches*>* findMatches() =0;
     virtual CPfMatches* findNextPlayerTeamMatch() =0;
+    virtual CPfMatches* findLastPlayerTeamMatch() =0;
 
 };
 #endif /*IPFMATCHESDAO_H_*/

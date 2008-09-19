@@ -191,6 +191,7 @@ void CSimulationManager::endMatchEvent()
         eventStrategy->process(*(*it));
     }
     eventStrategy->process(endMatchEvent);
+    CStateMonitor::getInstance()->endMatchEvent();
 }
 
 

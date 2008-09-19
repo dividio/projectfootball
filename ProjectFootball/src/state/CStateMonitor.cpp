@@ -47,11 +47,13 @@ CStateMonitor::CStateMonitor()
     m_frameAwayName             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayName"));
     m_frameHomeScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/HomeScore"));
     m_frameAwayScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/Frame/AwayScore"));
+    m_continueButton            = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/ContinueButton"));
+    m_backButton                = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"Monitor/BackButton"));
 
     // i18n support
-    m_frameWindow->setText((CEGUI::utf8*)gettext("Simulation View"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Monitor/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
+    m_frameWindow   ->setText((CEGUI::utf8*)gettext("Simulation View"));
+    m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
+    m_backButton    ->setText((CEGUI::utf8*)gettext("Back"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"Monitor/StartButton"))->setText((CEGUI::utf8*)gettext("Start"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
@@ -70,7 +72,6 @@ CStateMonitor::CStateMonitor()
             (CEGUI::utf8*)"Monitor/Frame/3DButton"))->setText((CEGUI::utf8*)gettext("3D View"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"Monitor/Frame/StartButton"))->setText((CEGUI::utf8*)gettext("Start"));
-
 
     m_direction = Ogre::Vector3::ZERO;
 
@@ -211,6 +212,9 @@ void CStateMonitor::enter()
     m_sceneMgr->clearScene();
     m_direction = Ogre::Vector3::ZERO;
 
+    m_continueButton->setEnabled(false);
+    m_backButton->setEnabled(true);
+
     IDAOFactory *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
     IPfMatchesDAO *matchesDAO = daoFactory->getIPfMatchesDAO();
     m_match = matchesDAO->findNextPlayerTeamMatch();
@@ -259,8 +263,6 @@ void CStateMonitor::forcedLeave()
 
 bool CStateMonitor::leave()
 {
-    simulateOthersMatches();
-
     if(m_simulator != NULL) {
         delete m_simulator;
         m_simulator = NULL;
@@ -431,63 +433,9 @@ void CStateMonitor::updateScore()
 }
 
 
-void CStateMonitor::simulateOthersMatches()
+void CStateMonitor::endMatchEvent()
 {
-    if( m_match!=NULL ){
-        srand(time(NULL));
-
-        CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->beginTransaction();
-        IPfMatchesDAO       *matchesDAO     = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
-        IPfTeamPlayersDAO   *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
-
-        std::vector<CPfMatches*>*           matchesList = matchesDAO->findByXFkCompetitionPhase(m_match->getXFkCompetitionPhase());
-        std::vector<CPfMatches*>::iterator  it;
-        for( it=matchesList->begin(); it!=matchesList->end(); it++ ){
-            CPfMatches *match = (*it);
-            if( match->getXMatch()!=m_match->getXMatch() ){
-                CStartMatchEvent    startMatchEvent(match->getXMatch());
-                CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(startMatchEvent);
-
-                int nHomeGoals = getRandomNGoals();
-                int nAwayGoals = getRandomNGoals();
-
-                if( nHomeGoals>0 ){
-                    std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveByXFkTeam(match->getXFkTeamHome());
-                    while( nHomeGoals>0 ){
-                        CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
-                        CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamHome(), teamPlayer->getXTeamPlayer(), rand()%90, false);
-                        CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(goalMatchEvent);
-                        nHomeGoals--;
-                    }
-                    teamPlayersDAO->freeVector(teamPlayesList);
-                }
-                if( nAwayGoals>0 ){
-                    std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveByXFkTeam(match->getXFkTeamAway());
-                    while( nAwayGoals>0 ){
-                        CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
-                        CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamAway(), teamPlayer->getXTeamPlayer(), rand()%90, false);
-                        CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(goalMatchEvent);
-                        nAwayGoals--;
-                    }
-                    teamPlayersDAO->freeVector(teamPlayesList);
-                }
-
-                CEndMatchEvent      endMatchEvent(match->getXMatch());
-                CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(endMatchEvent);
-            }
-        }
-        matchesDAO->freeVector(matchesList);
-
-        CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->commit();
-    }
-}
-
-int CStateMonitor::getRandomNGoals()
-{
-    int n = rand()%100;
-
-    if( n>=0  && n<15  ){ return 0; }
-    if( n>=15 && n<50  ){ return 1; }
-    if( n>=50 && n<90  ){ return 2; }
-    if( n>=90 && n<100 ){ return 3; }
+    //TODO Check if game mode is QuickPlay
+    //m_backButton->setEnabled(false);
+    m_continueButton->setEnabled(true);
 }
