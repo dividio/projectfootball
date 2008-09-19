@@ -146,7 +146,7 @@ bool CStateSelectTeam::handleSelectChanged(const CEGUI::EventArgs& e)
     if(m_guiTeamsList->getFirstSelectedItem()!=NULL) {
         m_selectButton->setEnabled(true);
         CEGUI::ListboxItem* item = m_guiTeamsList->getFirstSelectedItem();
-        uint xTeam = item->getID();
+        int xTeam = item->getID();
 
         std::vector<CPfTeams*>::iterator it;
         bool found=false;

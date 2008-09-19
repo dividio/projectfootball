@@ -268,7 +268,7 @@ void CStateTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
         if( currentItem != 0 ) {
             list->clearAllSelections();
             IPfTeamPlayersDAO *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
-            uint xTeamPlayer = currentItem->getID();
+            int xTeamPlayer = currentItem->getID();
             switch (m_selectedPlayers) {
                 case NONE:
                     m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
