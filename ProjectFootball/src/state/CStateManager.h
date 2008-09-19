@@ -28,10 +28,6 @@
 
 
 #include "CState.h"
-#include "CStateMainMenu.h"
-#include "CStateCredits.h"
-#include "CStateMonitor.h"
-
 
 
 class CStateManager : public Ogre::FrameListener

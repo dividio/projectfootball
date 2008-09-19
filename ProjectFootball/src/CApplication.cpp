@@ -24,6 +24,7 @@
 #include "CApplication.h"
 #include "audio/CAudioSystem.h"
 #include "state/CStateManager.h"
+#include "state/CStateMainMenu.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
 #include "engine/option/CSystemOptionManager.h"
