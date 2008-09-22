@@ -24,7 +24,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.277299267" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.63830879" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
+<listOptionValue builtIn="false" value="../src/bullet"/>
 <listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
@@ -362,7 +362,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.819665685" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.739835718" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/include/CEGUI"/>
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ProjectFootball/src/bullet}&quot;"/>
+<listOptionValue builtIn="false" value="../src/bullet"/>
 <listOptionValue builtIn="false" value="/usr/include/lua5.1"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE"/>
 <listOptionValue builtIn="false" value="/usr/include/OGRE/GLX"/>
