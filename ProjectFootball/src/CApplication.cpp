@@ -160,7 +160,10 @@ void CApplication::createRenderWindow()
     bool fullscreen = op->getVideoFullscreen();
     bool vsync      = op->getVideoVSync();
     std::string RTTMode  = op->getVideoRTTPreferredMode();
-    m_root->getRenderSystem()->setConfigOption("RTT Preferred Mode", RTTMode);
+    Ogre::RenderSystem *renderSystem = m_root->getRenderSystem();
+    if(renderSystem->getName() == "OpenGL Rendering Subsystem") {
+    	renderSystem->setConfigOption("RTT Preferred Mode", RTTMode);
+    }
     m_root->initialise(false);
     if(vsync) {
         opts["vsync"] = "true";
