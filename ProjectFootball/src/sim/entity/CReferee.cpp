@@ -46,7 +46,7 @@ CReferee::CReferee()
     m_homeSideLeft = true;
     m_matchDuration = CSystemOptionManager::getInstance()->getSimulationMatchDuration();
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
-    m_entity = scnMgr->createEntity("Referee", "Cylinder.mesh");
+    m_entity = scnMgr->createEntity("Referee", "Human.mesh");
     m_entity->setMaterialName("referee");
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("RefereeNode", Ogre::Vector3(0, 0, -38));
     m_node->attachObject(m_entity);

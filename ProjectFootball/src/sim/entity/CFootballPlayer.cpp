@@ -54,7 +54,7 @@ CFootballPlayer::CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool 
     //m_direction.normalize();
     sprintf(charId,"%s%d", team->getName().c_str(), m_number);
     id = charId;
-    m_entity = scnMgr->createEntity("Cylinder"+id, "Cylinder.mesh");
+    m_entity = scnMgr->createEntity("Player"+id, "Human.mesh");
     if(sideLeft) {
         if(m_number == 1) {
             m_entity->setMaterialName("goalie_red");
