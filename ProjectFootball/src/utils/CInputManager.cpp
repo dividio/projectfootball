@@ -51,6 +51,8 @@ bool CInputManager::keyPressed(const OIS::KeyEvent& e)
 {
     if(e.key==OIS::KC_ESCAPE) {
         CStateManager::getInstance()->popState();
+    } else if(e.key==OIS::KC_F12) {
+        CApplication::getInstance()->takeScreenshot();
     } else {
         m_system->injectKeyDown(e.key);
         m_system->injectChar(e.text);

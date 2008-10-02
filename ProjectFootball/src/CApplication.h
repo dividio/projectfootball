@@ -40,6 +40,7 @@ public:
     Ogre::RenderSystemList* getRenderSystemList();
     void addFrameListener(Ogre::FrameListener* frameListener);
     void removeFrameListener(Ogre::FrameListener* frameListener);
+    void takeScreenshot();
 
 protected:
   CApplication();

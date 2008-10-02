@@ -162,7 +162,7 @@ void CApplication::createRenderWindow()
     std::string RTTMode  = op->getVideoRTTPreferredMode();
     Ogre::RenderSystem *renderSystem = m_root->getRenderSystem();
     if(renderSystem->getName() == "OpenGL Rendering Subsystem") {
-    	renderSystem->setConfigOption("RTT Preferred Mode", RTTMode);
+        renderSystem->setConfigOption("RTT Preferred Mode", RTTMode);
     }
     m_root->initialise(false);
     if(vsync) {
@@ -280,6 +280,13 @@ void CApplication::addFrameListener( Ogre::FrameListener *frameListener )
 void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
 {
     m_root->removeFrameListener(frameListener);
+}
+
+void CApplication::takeScreenshot()
+{
+    std::ostringstream ss;
+    ss << "screenshot" << ".png";
+    m_window->writeContentsToFile(ss.str());
 }
 
 void CApplication::startRenderLoop()
