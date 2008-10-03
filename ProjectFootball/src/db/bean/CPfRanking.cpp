@@ -22,6 +22,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <stdlib.h>
 
 #include "CPfRanking.h"
 

@@ -21,6 +21,7 @@
 ******************************************************************************/
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "CPfUsersDAOSQLiteEntity.h"
 #include "../../../../../utils/CLog.h"

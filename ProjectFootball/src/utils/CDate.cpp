@@ -20,6 +20,8 @@
 
 #include "CDate.h"
 
+#include <string.h>
+
 CDate::CDate()
 {
     memset(&m_tm, 0, sizeof(m_tm));

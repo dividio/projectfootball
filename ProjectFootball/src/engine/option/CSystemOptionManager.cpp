@@ -22,6 +22,8 @@
 #define	LINE_LENGTH		256
 
 #include <sstream>
+#include <stdlib.h>
+#include <string.h>
 
 #include "CSystemOptionManager.h"
 #include "../../utils/CLog.h"

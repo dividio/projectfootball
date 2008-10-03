@@ -19,6 +19,8 @@
 ******************************************************************************/
 
 #include <sstream>
+#include <stdlib.h>
+#include <string.h>
 
 #include "CGameOptionManager.h"
 #include "../CGameEngine.h"
