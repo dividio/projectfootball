@@ -135,9 +135,11 @@ void CStateLoadGame::newGame()
     daoFactory->executeScriptFile("data/database/scripts/tables.sql");
     daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
     daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_countries.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_teams.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
+    daoFactory->executeScriptFile("data/database/scripts/inserts_registeredteams.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_matches.sql");
     daoFactory->executeScriptFile("data/database/scripts/inserts_gameoptions.sql");
     daoFactory->commit();
