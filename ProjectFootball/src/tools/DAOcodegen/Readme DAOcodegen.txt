@@ -2,7 +2,7 @@
 DAOcodegen README
 ---------------------
 
-Español:
+EspaÃ±ol:
 DAOcodegen es un script para generar las clases de un DAO en C++.
 
 Copiar el fichero DAOcodegen.py en el directorio:
