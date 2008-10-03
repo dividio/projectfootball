@@ -34,9 +34,22 @@ CStateSelectTeam::CStateSelectTeam()
     CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
     m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"selectTeam.layout");
 
-    m_selectButton  = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
-    m_guiTeamsList  = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
-    m_guiTeamName   = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
+    m_selectButton        = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
+    m_guiTeamsList        = static_cast<CEGUI::Listbox*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
+    m_guiTeamName         = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
+    m_guiTeamBudget       = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/Budget"));
+    m_guiTeamLogo         = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/TeamLogo"));
+    m_confederationsCombo = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/Confederation"));
+    m_countriesCombo      = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/Country"));
+    m_competitionsCombo   = static_cast<CEGUI::Combobox*>(ceguiWM->getWindow((CEGUI::utf8*)"SelectTeam/Competition"));
+
+    m_confederationsCombo->getEditbox()->setEnabled(false);
+    m_confederationsCombo->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleConfederationChange, this));
+    m_countriesCombo     ->getEditbox()->setEnabled(false);
+    m_countriesCombo     ->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleCountryChange, this));
+    m_competitionsCombo  ->getEditbox()->setEnabled(false);
+    m_competitionsCombo  ->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleCompetitionChange, this));
+
 
     m_guiTeamsList->subscribeEvent(CEGUI::Listbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CStateSelectTeam::handleSelectChanged, this));
     m_guiTeamsList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CStateSelectTeam::handleDoubleClick, this));
@@ -76,7 +89,10 @@ void CStateSelectTeam::enter()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
     mgr->clearScene();
 
-    loadTeamList();
+    int confederation = loadConfederationsList();
+    int country       = loadCountriesList(confederation);
+    int competition   = loadCompetitionsList(country);
+    loadTeamList(competition);
 
     m_selectButton->setEnabled(false);
 }
@@ -88,9 +104,35 @@ void CStateSelectTeam::forcedLeave()
 
 bool CStateSelectTeam::leave()
 {
-    IPfTeamsDAO* teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
-    teamsDAO->freeVector(m_teamsList);
+    IDAOFactory          *daoFactory        = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IPfConfederationsDAO *confederationsDAO = daoFactory->getIPfConfederationsDAO();
+    IPfCountriesDAO      *countriesDAO      = daoFactory->getIPfCountriesDAO();
+    IPfCompetitionsDAO   *competitionsDAO   = daoFactory->getIPfCompetitionsDAO();
+    IPfTeamsDAO          *teamsDAO          = daoFactory->getIPfTeamsDAO();
+
+    if(m_confederationsList!=0) {
+        confederationsDAO->freeVector(m_confederationsList);
+        m_confederationsList = 0;
+    }
+    if(m_countriesList!=0) {
+        countriesDAO->freeVector(m_countriesList);
+        m_countriesList = 0;
+    }
+    if(m_competitionsList!=0) {
+        competitionsDAO->freeVector(m_competitionsList);
+        m_competitionsList = 0;
+    }
+    if(m_teamsList!=0) {
+        teamsDAO->freeVector(m_teamsList);
+        m_teamsList = 0;
+    }
+
+    m_confederationsCombo->resetList();
+    m_countriesCombo     ->resetList();
+    m_competitionsCombo  ->resetList();
+    m_guiTeamsList       ->resetList();
     clearTeamInfo();
+
     return true;
 }
 
@@ -98,22 +140,101 @@ void CStateSelectTeam::update()
 {
 }
 
-void CStateSelectTeam::loadTeamList()
+int CStateSelectTeam::loadConfederationsList()
+{
+    IPfConfederationsDAO *confederationsDAO = CGameEngine::getInstance()->getCurrentGame()
+                                            ->getIDAOFactory()->getIPfConfederationsDAO();
+    if(m_confederationsList!=0) {
+        confederationsDAO->freeVector(m_confederationsList);
+    }
+    m_confederationsList = confederationsDAO->findConfederations();
+
+
+    std::vector<CPfConfederations*>::iterator it;
+    for(it = m_confederationsList->begin(); it != m_confederationsList->end(); it++) {
+        CPfConfederations *confederation = (*it);
+        m_confederationsCombo->addItem(new CEGUI::ListboxTextItem
+                (confederation->getSConfederation(), confederation->getXConfederation()));
+    }
+    m_confederationsCombo->setText(m_confederationsList->front()->getSConfederation());
+    return m_confederationsList->front()->getXConfederation();
+}
+
+int CStateSelectTeam::loadCountriesList(int XConfederation)
+{
+    IPfCountriesDAO *countriesDAO = CGameEngine::getInstance()->getCurrentGame()
+                                            ->getIDAOFactory()->getIPfCountriesDAO();
+
+    if(m_countriesList!=0) {
+        countriesDAO->freeVector(m_countriesList);
+    }
+    m_countriesList = countriesDAO->findByXFkConfederation(XConfederation);
+    int selectedCountry = -1;
+
+    if(!m_countriesList->empty()) {
+        std::vector<CPfCountries*>::iterator it;
+        for(it = m_countriesList->begin(); it != m_countriesList->end(); it++) {
+            CPfCountries *country = (*it);
+            m_countriesCombo->addItem(new CEGUI::ListboxTextItem
+                    (country->getSCountry(), country->getXCountry()));
+        }
+        m_countriesCombo->setText(m_countriesList->front()->getSCountry());
+
+        selectedCountry = m_countriesList->front()->getXCountry();
+    } else {
+        m_countriesCombo->setText((CEGUI::utf8*)gettext("No countries"));
+    }
+
+    return selectedCountry;
+}
+
+int CStateSelectTeam::loadCompetitionsList(int XCountry)
+{
+    IPfCompetitionsDAO *competitionsDAO = CGameEngine::getInstance()->getCurrentGame()
+                                            ->getIDAOFactory()->getIPfCompetitionsDAO();
+    if(m_competitionsList!=0) {
+        competitionsDAO->freeVector(m_competitionsList);
+    }
+    m_competitionsList = competitionsDAO->findByXFkCountry(XCountry);
+    int selectedCompetition = -1;
+
+    if(!m_competitionsList->empty()) {
+        std::vector<CPfCompetitions*>::iterator it;
+        for(it = m_competitionsList->begin(); it != m_competitionsList->end(); it++) {
+            CPfCompetitions *competition = (*it);
+            m_competitionsCombo->addItem(new CEGUI::ListboxTextItem
+                    (competition->getSCompetition(), competition->getXCompetition()));
+        }
+        m_competitionsCombo->setText(m_competitionsList->front()->getSCompetition());
+        selectedCompetition = m_competitionsList->front()->getXCompetition();
+    } else {
+        m_competitionsCombo->setText((CEGUI::utf8*)gettext("No competitions"));
+    }
+
+    return selectedCompetition;
+}
+
+void CStateSelectTeam::loadTeamList(int XCompetition)
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("ListboxSelectionBrush");
 
-    m_guiTeamsList->resetList();
-
     IPfTeamsDAO* teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
-    m_teamsList = teamsDAO->findTeams();
-    std::vector<CPfTeams*>::iterator it;
-    for( it=m_teamsList->begin(); it!=m_teamsList->end(); it++ ){
-        CPfTeams *team = (*it);
 
-        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(team->getSTeam());
-        item->setSelectionBrushImage(sel_img);
-        item->setID(team->getXTeam());
-        m_guiTeamsList->addItem(item);
+    if(m_teamsList!=0) {
+        teamsDAO->freeVector(m_teamsList);
+    }
+    m_teamsList = teamsDAO->findTeamsByXCompetition(XCompetition);
+
+    if(!m_teamsList->empty()) {
+        std::vector<CPfTeams*>::iterator it;
+        for( it=m_teamsList->begin(); it!=m_teamsList->end(); it++ ){
+            CPfTeams *team = (*it);
+
+            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(team->getSTeam());
+            item->setSelectionBrushImage(sel_img);
+            item->setID(team->getXTeam());
+            m_guiTeamsList->addItem(item);
+        }
     }
 }
 
@@ -135,7 +256,7 @@ void CStateSelectTeam::selectTeam()
     gameStateDAO->updateReg(newGameState);
     delete newGameState;
 
-    // Pop two state: selectTeam state and loadGame state
+    // Pop two states: selectTeam state and loadGame state
     CStateManager::getInstance()->popState();
     CStateManager::getInstance()->popState();
     CStateManager::getInstance()->pushState(CStateGame::getInstance());
@@ -143,7 +264,7 @@ void CStateSelectTeam::selectTeam()
 
 bool CStateSelectTeam::handleSelectChanged(const CEGUI::EventArgs& e)
 {
-    if(m_guiTeamsList->getFirstSelectedItem()!=NULL) {
+    if(m_guiTeamsList->getFirstSelectedItem()!=0 && m_teamsList!=0) {
         m_selectButton->setEnabled(true);
         CEGUI::ListboxItem* item = m_guiTeamsList->getFirstSelectedItem();
         int xTeam = item->getID();
@@ -166,9 +287,63 @@ bool CStateSelectTeam::handleSelectChanged(const CEGUI::EventArgs& e)
     return true;
 }
 
+bool CStateSelectTeam::handleConfederationChange(const CEGUI::EventArgs& e)
+{
+    CEGUI::ListboxItem *item = m_confederationsCombo->getSelectedItem();
+    if(item!=0) {
+        m_confederationsCombo->setText(item->getText());
+        m_countriesCombo->clearAllSelections();
+        m_countriesCombo->resetList();
+        m_countriesCombo->getEditbox()->setText("");
+        m_competitionsCombo->clearAllSelections();
+        m_competitionsCombo->resetList();
+        m_competitionsCombo->getEditbox()->setText("");
+        m_guiTeamsList->resetList();
+        m_selectButton->setEnabled(false);
+        clearTeamInfo();
+
+        int country     = loadCountriesList(item->getID());
+        int competition = loadCompetitionsList(country);
+        loadTeamList(competition);
+    }
+    return true;
+}
+
+bool CStateSelectTeam::handleCountryChange(const CEGUI::EventArgs& e)
+{
+    CEGUI::ListboxItem *item = m_countriesCombo->getSelectedItem();
+    if(item!=0) {
+        m_countriesCombo->setText(item->getText());
+        m_competitionsCombo->clearAllSelections();
+        m_competitionsCombo->resetList();
+        m_competitionsCombo->getEditbox()->setText("");
+        m_guiTeamsList->resetList();
+        m_selectButton->setEnabled(false);
+        clearTeamInfo();
+
+        int competition = loadCompetitionsList(item->getID());
+        loadTeamList(competition);
+    }
+    return true;
+}
+
+bool CStateSelectTeam::handleCompetitionChange(const CEGUI::EventArgs& e)
+{
+    CEGUI::ListboxItem *item = m_competitionsCombo->getSelectedItem();
+    if(item!=0) {
+        m_competitionsCombo->setText(item->getText());
+        m_guiTeamsList->resetList();
+        m_selectButton->setEnabled(false);
+        clearTeamInfo();
+
+        loadTeamList(item->getID());
+    }
+    return true;
+}
+
 bool CStateSelectTeam::handleDoubleClick(const CEGUI::EventArgs& e)
 {
-    if( m_guiTeamsList->getFirstSelectedItem()!=NULL ){
+    if(m_guiTeamsList->getFirstSelectedItem()!=0) {
         selectTeam();
     }
     return true;
@@ -177,11 +352,24 @@ bool CStateSelectTeam::handleDoubleClick(const CEGUI::EventArgs& e)
 void CStateSelectTeam::loadTeamInfo(CPfTeams *team)
 {
     // TODO Add more team information
+    char budget[10];
     m_guiTeamName->setProperty("Text", team->getSTeam());
+    sprintf(budget, "%d", team->getNBudget());
+    m_guiTeamBudget->setProperty("Text", budget);
+
+    //Loading logo
+    CEGUI::String imagesetName = "TeamLogo" + team->getXTeam_str();
+    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
+        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, team->getSLogo());
+    }
+
+    m_guiTeamLogo->setProperty("Image", "set:"+ imagesetName +" image:full_image");
 }
 
 void CStateSelectTeam::clearTeamInfo()
 {
     // TODO Clear all team information
-    m_guiTeamName->setProperty("Text", "");
+    m_guiTeamName  ->setProperty("Text", "");
+    m_guiTeamBudget->setProperty("Text", "");
+    m_guiTeamLogo  ->setProperty("Image", "");
 }

@@ -23,6 +23,9 @@
 
 #include "CState.h"
 #include "../db/bean/CPfTeams.h"
+#include "../db/bean/CPfConfederations.h"
+#include "../db/bean/CPfCountries.h"
+#include "../db/bean/CPfCompetitions.h"
 
 class CStateSelectTeam : public CState
 {
@@ -40,16 +43,33 @@ public:
 private:
     CStateSelectTeam();
 
-    void loadTeamList();
-    bool handleSelectChanged(const CEGUI::EventArgs& e);
-    bool handleDoubleClick(const CEGUI::EventArgs& e);
+    int  loadConfederationsList();
+    int  loadCountriesList     (int XConfederation);
+    int  loadCompetitionsList  (int XCountry);
+    void loadTeamList          (int XCompetition);
+
+    bool handleSelectChanged      (const CEGUI::EventArgs& e);
+    bool handleConfederationChange(const CEGUI::EventArgs& e);
+    bool handleCountryChange      (const CEGUI::EventArgs& e);
+    bool handleCompetitionChange  (const CEGUI::EventArgs& e);
+    bool handleDoubleClick        (const CEGUI::EventArgs& e);
+
     void loadTeamInfo(CPfTeams *team);
     void clearTeamInfo();
 
-    CEGUI::PushButton       *m_selectButton;
-    CEGUI::Listbox          *m_guiTeamsList;
-    CEGUI::Window       *m_guiTeamName;
-    std::vector<CPfTeams*>  *m_teamsList;
+    CEGUI::PushButton                *m_selectButton;
+    CEGUI::Listbox                   *m_guiTeamsList;
+    CEGUI::Window                    *m_guiTeamName;
+    CEGUI::Window                    *m_guiTeamBudget;
+    CEGUI::Window                    *m_guiTeamLogo;
+    CEGUI::Combobox                  *m_confederationsCombo;
+    CEGUI::Combobox                  *m_countriesCombo;
+    CEGUI::Combobox                  *m_competitionsCombo;
+
+    std::vector<CPfConfederations*>  *m_confederationsList;
+    std::vector<CPfCountries*>       *m_countriesList;
+    std::vector<CPfCompetitions*>    *m_competitionsList;
+    std::vector<CPfTeams*>           *m_teamsList;
 };
 
 #endif /*CSTATESELECTTEAM_H_*/

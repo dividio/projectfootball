@@ -22,12 +22,13 @@
 #define CSTATERANKING_H_
 
 #include "CState.h"
+#include "../db/bean/CPfTeams.h"
 
 class CStateRanking : public CState
 {
 public:
     static CStateRanking* getInstance();
-	virtual ~CStateRanking();
+  virtual ~CStateRanking();
 
     virtual void enter();
     virtual void forcedLeave();
@@ -37,6 +38,9 @@ public:
 private:
     CStateRanking();
     void loadRanking();
+
+    // TODO Ranking for all competitions
+    bool isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam);
 
     CEGUI::MultiColumnList  *m_rankingList;
 };

@@ -41,6 +41,8 @@ CStateMatchResult::CStateMatchResult()
     m_awayScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayScore"));
     m_homeEventsList       = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamEventsList"));
     m_awayEventsList       = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamEventsList"));
+    m_homeLogo             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamLogo"));
+    m_awayLogo             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamLogo"));
 
 
     // i18n support
@@ -115,26 +117,41 @@ void CStateMatchResult::loadMatchInfo(CPfMatches *match)
     IPfTeamPlayersDAO       *playersDAO           = daoFactory->getIPfTeamPlayersDAO();
     IPfCompetitionsDAO      *competitionsDAO      = daoFactory->getIPfCompetitionsDAO();
     IPfCompetitionPhasesDAO *competitionPhasesDAO = daoFactory->getIPfCompetitionPhasesDAO();
+    IPfTeamsDAO             *teamsDAO             = daoFactory->getIPfTeamsDAO();
 
+    CPfTeams                *homeTeam         = teamsDAO->findByXTeam(match->getXFkTeamHome());
+    CPfTeams                *awayTeam         = teamsDAO->findByXTeam(match->getXFkTeamAway());
     CPfCompetitionPhases    *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
     CPfCompetitions         *competition      = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
-    std::vector<CPfGoals*>  *homeGoalsList    = goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), match->getXFkTeamHome());
-    std::vector<CPfGoals*>  *awayGoalsList    = goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), match->getXFkTeamAway());
+    std::vector<CPfGoals*>  *homeGoalsList    = goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), homeTeam->getXTeam());
+    std::vector<CPfGoals*>  *awayGoalsList    = goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), awayTeam->getXTeam());
 
     std::ostringstream nHomeGoals;
     nHomeGoals << homeGoalsList->size();
     std::ostringstream nAwayGoals;
     nAwayGoals << awayGoalsList->size();
 
-    IPfTeamsDAO *teamsDAO = daoFactory->getIPfTeamsDAO();
-    std::string homeName = teamsDAO->findByXTeam(match->getXFkTeamHome())->getSTeam();
-    std::string awayName = teamsDAO->findByXTeam(match->getXFkTeamAway())->getSTeam();
+    std::string homeName = homeTeam->getSTeam();
+    std::string awayName = awayTeam->getSTeam();
     m_competitionName->setProperty("Text", competition->getSCompetition().c_str());
     m_competitionPhaseName->setProperty("Text", competitionPhase->getSCompetitionPhase().c_str());
     m_homeName->setProperty("Text", homeName.c_str());
     m_awayName->setProperty("Text", awayName.c_str());
     m_homeScore->setProperty("Text", nHomeGoals.str());
     m_awayScore->setProperty("Text", nAwayGoals.str());
+    //Loading Home logo
+    CEGUI::String imagesetHomeName = "TeamLogo" + homeTeam->getXTeam_str();
+    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetHomeName)) {
+        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetHomeName, homeTeam->getSLogo());
+    }
+    m_homeLogo->setProperty("Image", "set:"+ imagesetHomeName +" image:full_image");
+
+    //Loading Away logo
+    CEGUI::String imagesetAwayName = "TeamLogo" + awayTeam->getXTeam_str();
+    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetAwayName)) {
+        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetAwayName, awayTeam->getSLogo());
+    }
+    m_awayLogo->setProperty("Image", "set:"+ imagesetAwayName +" image:full_image");
 
     std::vector<CPfGoals*>::iterator it;
     CEGUI::ListboxTextItem *item;

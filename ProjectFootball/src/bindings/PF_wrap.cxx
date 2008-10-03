@@ -1543,30 +1543,33 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_IDAOFactory swig_types[39]
 #define SWIGTYPE_p_IPfCompetitionPhasesDAO swig_types[40]
 #define SWIGTYPE_p_IPfCompetitionsDAO swig_types[41]
-#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[42]
-#define SWIGTYPE_p_IPfGameStatesDAO swig_types[43]
-#define SWIGTYPE_p_IPfGoalsDAO swig_types[44]
-#define SWIGTYPE_p_IPfMatchesDAO swig_types[45]
-#define SWIGTYPE_p_IPfRankingDAO swig_types[46]
-#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[47]
-#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[48]
-#define SWIGTYPE_p_IPfTeamsDAO swig_types[49]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[50]
-#define SWIGTYPE_p_Ogre__SceneManager swig_types[51]
-#define SWIGTYPE_p_btCollisionShape swig_types[52]
-#define SWIGTYPE_p_btRigidBody swig_types[53]
-#define SWIGTYPE_p_btTransform swig_types[54]
-#define SWIGTYPE_p_btVector3 swig_types[55]
-#define SWIGTYPE_p_float swig_types[56]
-#define SWIGTYPE_p_std__string swig_types[57]
-#define SWIGTYPE_p_std__vectorT_CFootballPlayer_p_t swig_types[58]
-#define SWIGTYPE_p_std__vectorT_CFormation_p_t swig_types[59]
-#define SWIGTYPE_p_std__vectorT_CPfGoals_p_t swig_types[60]
-#define SWIGTYPE_p_std__vectorT_CPfMatches_p_t swig_types[61]
-#define SWIGTYPE_p_std__vectorT_CPfTeams_p_t swig_types[62]
-#define SWIGTYPE_p_void swig_types[63]
-static swig_type_info *swig_types[65];
-static swig_module_info swig_module = {swig_types, 64, 0, 0, 0, 0};
+#define SWIGTYPE_p_IPfConfederationsDAO swig_types[42]
+#define SWIGTYPE_p_IPfCountriesDAO swig_types[43]
+#define SWIGTYPE_p_IPfGameOptionsDAO swig_types[44]
+#define SWIGTYPE_p_IPfGameStatesDAO swig_types[45]
+#define SWIGTYPE_p_IPfGoalsDAO swig_types[46]
+#define SWIGTYPE_p_IPfMatchesDAO swig_types[47]
+#define SWIGTYPE_p_IPfRankingDAO swig_types[48]
+#define SWIGTYPE_p_IPfRegisteredTeamsDAO swig_types[49]
+#define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[50]
+#define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[51]
+#define SWIGTYPE_p_IPfTeamsDAO swig_types[52]
+#define SWIGTYPE_p_Ogre__FrameEvent swig_types[53]
+#define SWIGTYPE_p_Ogre__SceneManager swig_types[54]
+#define SWIGTYPE_p_btCollisionShape swig_types[55]
+#define SWIGTYPE_p_btRigidBody swig_types[56]
+#define SWIGTYPE_p_btTransform swig_types[57]
+#define SWIGTYPE_p_btVector3 swig_types[58]
+#define SWIGTYPE_p_float swig_types[59]
+#define SWIGTYPE_p_std__string swig_types[60]
+#define SWIGTYPE_p_std__vectorT_CFootballPlayer_p_t swig_types[61]
+#define SWIGTYPE_p_std__vectorT_CFormation_p_t swig_types[62]
+#define SWIGTYPE_p_std__vectorT_CPfGoals_p_t swig_types[63]
+#define SWIGTYPE_p_std__vectorT_CPfMatches_p_t swig_types[64]
+#define SWIGTYPE_p_std__vectorT_CPfTeams_p_t swig_types[65]
+#define SWIGTYPE_p_void swig_types[66]
+static swig_type_info *swig_types[68];
+static swig_module_info swig_module = {swig_types, 67, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2066,6 +2069,62 @@ fail:
 }
 
 
+static int _wrap_CPfTeams_getSLogo(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_num_args("getSLogo",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSLogo",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getSLogo",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  {
+    std::string const &_result_ref = ((CPfTeams const *)arg1)->getSLogo();
+    result = (std::string *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getSLogo_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_num_args("getSLogo_str",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSLogo_str",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getSLogo_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  {
+    std::string const &_result_ref = ((CPfTeams const *)arg1)->getSLogo_str();
+    result = (std::string *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CPfTeams_getXTeam(lua_State* L) {
   int SWIG_arg = -1;
   CPfTeams *arg1 = (CPfTeams *) 0 ;
@@ -2165,6 +2224,224 @@ static int _wrap_CPfTeams_getSTeam_str(lua_State* L) {
   }
   SWIG_arg=0;
   lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getNBudget(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getNBudget",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getNBudget",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getNBudget",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  result = (int)((CPfTeams const *)arg1)->getNBudget();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getNBudget_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_num_args("getNBudget_str",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getNBudget_str",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getNBudget_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  {
+    std::string const &_result_ref = ((CPfTeams const *)arg1)->getNBudget_str();
+    result = (std::string *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getSShortName(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_num_args("getSShortName",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSShortName",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getSShortName",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  {
+    std::string const &_result_ref = ((CPfTeams const *)arg1)->getSShortName();
+    result = (std::string *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getSShortName_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_num_args("getSShortName_str",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSShortName_str",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getSShortName_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  {
+    std::string const &_result_ref = ((CPfTeams const *)arg1)->getSShortName_str();
+    result = (std::string *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getXFkCountry(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getXFkCountry",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getXFkCountry",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getXFkCountry",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  result = (int)((CPfTeams const *)arg1)->getXFkCountry();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_getXFkCountry_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *result = 0 ;
+  
+  SWIG_check_num_args("getXFkCountry_str",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getXFkCountry_str",1,"CPfTeams const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_getXFkCountry_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  {
+    std::string const &_result_ref = ((CPfTeams const *)arg1)->getXFkCountry_str();
+    result = (std::string *) &_result_ref;
+  }
+  SWIG_arg=0;
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setSLogo(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("setSLogo",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSLogo",1,"CPfTeams *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setSLogo",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setSLogo",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setSLogo((std::string const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setSLogo_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("setSLogo_str",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSLogo_str",1,"CPfTeams *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setSLogo_str",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setSLogo_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setSLogo_str((std::string const &)*arg2);
+  SWIG_arg=0;
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -2286,19 +2563,201 @@ fail:
 }
 
 
+static int _wrap_CPfTeams_setNBudget(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setNBudget",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setNBudget",1,"CPfTeams *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setNBudget",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setNBudget",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setNBudget(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setNBudget_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("setNBudget_str",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setNBudget_str",1,"CPfTeams *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setNBudget_str",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setNBudget_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setNBudget_str((std::string const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setSShortName(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("setSShortName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSShortName",1,"CPfTeams *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setSShortName",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setSShortName",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setSShortName((std::string const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setSShortName_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("setSShortName_str",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSShortName_str",1,"CPfTeams *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setSShortName_str",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setSShortName_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setSShortName_str((std::string const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setXFkCountry(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setXFkCountry",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setXFkCountry",1,"CPfTeams *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setXFkCountry",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setXFkCountry",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setXFkCountry(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CPfTeams_setXFkCountry_str(lua_State* L) {
+  int SWIG_arg = -1;
+  CPfTeams *arg1 = (CPfTeams *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("setXFkCountry_str",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setXFkCountry_str",1,"CPfTeams *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setXFkCountry_str",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("CPfTeams_setXFkCountry_str",1,SWIGTYPE_p_CPfTeams);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setXFkCountry_str((std::string const &)*arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_CPfTeams(void *obj) {
 CPfTeams *arg1 = (CPfTeams *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CPfTeams_methods[] = {
+    {"getSLogo", _wrap_CPfTeams_getSLogo}, 
+    {"getSLogo_str", _wrap_CPfTeams_getSLogo_str}, 
     {"getXTeam", _wrap_CPfTeams_getXTeam}, 
     {"getXTeam_str", _wrap_CPfTeams_getXTeam_str}, 
     {"getSTeam", _wrap_CPfTeams_getSTeam}, 
     {"getSTeam_str", _wrap_CPfTeams_getSTeam_str}, 
+    {"getNBudget", _wrap_CPfTeams_getNBudget}, 
+    {"getNBudget_str", _wrap_CPfTeams_getNBudget_str}, 
+    {"getSShortName", _wrap_CPfTeams_getSShortName}, 
+    {"getSShortName_str", _wrap_CPfTeams_getSShortName_str}, 
+    {"getXFkCountry", _wrap_CPfTeams_getXFkCountry}, 
+    {"getXFkCountry_str", _wrap_CPfTeams_getXFkCountry_str}, 
+    {"setSLogo", _wrap_CPfTeams_setSLogo}, 
+    {"setSLogo_str", _wrap_CPfTeams_setSLogo_str}, 
     {"setXTeam", _wrap_CPfTeams_setXTeam}, 
     {"setXTeam_str", _wrap_CPfTeams_setXTeam_str}, 
     {"setSTeam", _wrap_CPfTeams_setSTeam}, 
     {"setSTeam_str", _wrap_CPfTeams_setSTeam_str}, 
+    {"setNBudget", _wrap_CPfTeams_setNBudget}, 
+    {"setNBudget_str", _wrap_CPfTeams_setNBudget_str}, 
+    {"setSShortName", _wrap_CPfTeams_setSShortName}, 
+    {"setSShortName_str", _wrap_CPfTeams_setSShortName_str}, 
+    {"setXFkCountry", _wrap_CPfTeams_setXFkCountry}, 
+    {"setXFkCountry_str", _wrap_CPfTeams_setXFkCountry_str}, 
     {0,0}
 };
 static swig_lua_attribute swig_CPfTeams_attributes[] = {
@@ -4165,6 +4624,56 @@ fail:
 }
 
 
+static int _wrap_IDAOFactory_getIPfRegisteredTeamsDAO(lua_State* L) {
+  int SWIG_arg = -1;
+  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
+  IPfRegisteredTeamsDAO *result = 0 ;
+  
+  SWIG_check_num_args("getIPfRegisteredTeamsDAO",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getIPfRegisteredTeamsDAO",1,"IDAOFactory *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
+    SWIG_fail_ptr("IDAOFactory_getIPfRegisteredTeamsDAO",1,SWIGTYPE_p_IDAOFactory);
+  }
+  
+  result = (IPfRegisteredTeamsDAO *)(arg1)->getIPfRegisteredTeamsDAO();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IPfRegisteredTeamsDAO,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IDAOFactory_getIPfConfederationsDAO(lua_State* L) {
+  int SWIG_arg = -1;
+  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
+  IPfConfederationsDAO *result = 0 ;
+  
+  SWIG_check_num_args("getIPfConfederationsDAO",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getIPfConfederationsDAO",1,"IDAOFactory *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
+    SWIG_fail_ptr("IDAOFactory_getIPfConfederationsDAO",1,SWIGTYPE_p_IDAOFactory);
+  }
+  
+  result = (IPfConfederationsDAO *)(arg1)->getIPfConfederationsDAO();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IPfConfederationsDAO,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_IDAOFactory_getIPfTeamPlayerContractsDAO(lua_State* L) {
   int SWIG_arg = -1;
   IDAOFactory *arg1 = (IDAOFactory *) 0 ;
@@ -4240,6 +4749,31 @@ fail:
 }
 
 
+static int _wrap_IDAOFactory_getIPfCountriesDAO(lua_State* L) {
+  int SWIG_arg = -1;
+  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
+  IPfCountriesDAO *result = 0 ;
+  
+  SWIG_check_num_args("getIPfCountriesDAO",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getIPfCountriesDAO",1,"IDAOFactory *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
+    SWIG_fail_ptr("IDAOFactory_getIPfCountriesDAO",1,SWIGTYPE_p_IDAOFactory);
+  }
+  
+  result = (IPfCountriesDAO *)(arg1)->getIPfCountriesDAO();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_IPfCountriesDAO,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_IDAOFactory_getIPfCompetitionsDAO(lua_State* L) {
   int SWIG_arg = -1;
   IDAOFactory *arg1 = (IDAOFactory *) 0 ;
@@ -4305,9 +4839,12 @@ static swig_lua_method swig_IDAOFactory_methods[] = {
     {"getIPfGameStatesDAO", _wrap_IDAOFactory_getIPfGameStatesDAO}, 
     {"getIPfMatchesDAO", _wrap_IDAOFactory_getIPfMatchesDAO}, 
     {"getIPfGameOptionsDAO", _wrap_IDAOFactory_getIPfGameOptionsDAO}, 
+    {"getIPfRegisteredTeamsDAO", _wrap_IDAOFactory_getIPfRegisteredTeamsDAO}, 
+    {"getIPfConfederationsDAO", _wrap_IDAOFactory_getIPfConfederationsDAO}, 
     {"getIPfTeamPlayerContractsDAO", _wrap_IDAOFactory_getIPfTeamPlayerContractsDAO}, 
     {"getIPfGoalsDAO", _wrap_IDAOFactory_getIPfGoalsDAO}, 
     {"getIPfTeamPlayersDAO", _wrap_IDAOFactory_getIPfTeamPlayersDAO}, 
+    {"getIPfCountriesDAO", _wrap_IDAOFactory_getIPfCountriesDAO}, 
     {"getIPfCompetitionsDAO", _wrap_IDAOFactory_getIPfCompetitionsDAO}, 
     {"getIPfTeamsDAO", _wrap_IDAOFactory_getIPfTeamsDAO}, 
     {0,0}
@@ -4579,6 +5116,114 @@ static int _wrap_IPfTeamsDAO_findByXTeam(lua_State* L) {
 }
 
 
+static int _wrap_IPfTeamsDAO_findByXFkCountry__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfTeamsDAO *arg1 = (IPfTeamsDAO *) 0 ;
+  int arg2 ;
+  CPfTeams *result = 0 ;
+  
+  SWIG_check_num_args("findByXFkCountry",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("findByXFkCountry",1,"IPfTeamsDAO *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("findByXFkCountry",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfTeamsDAO,0))){
+    SWIG_fail_ptr("IPfTeamsDAO_findByXFkCountry",1,SWIGTYPE_p_IPfTeamsDAO);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (CPfTeams *)(arg1)->findByXFkCountry(arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfTeams,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IPfTeamsDAO_findByXFkCountry__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  IPfTeamsDAO *arg1 = (IPfTeamsDAO *) 0 ;
+  std::string *arg2 = 0 ;
+  CPfTeams *result = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("findByXFkCountry",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("findByXFkCountry",1,"IPfTeamsDAO *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("findByXFkCountry",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IPfTeamsDAO,0))){
+    SWIG_fail_ptr("IPfTeamsDAO_findByXFkCountry",1,SWIGTYPE_p_IPfTeamsDAO);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  result = (CPfTeams *)(arg1)->findByXFkCountry((std::string const &)*arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CPfTeams,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IPfTeamsDAO_findByXFkCountry(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_IPfTeamsDAO, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_IPfTeamsDAO_findByXFkCountry__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_IPfTeamsDAO, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_IPfTeamsDAO_findByXFkCountry__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'IPfTeamsDAO_findByXFkCountry'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_IPfTeamsDAO_findTeams(lua_State* L) {
   int SWIG_arg = -1;
   IPfTeamsDAO *arg1 = (IPfTeamsDAO *) 0 ;
@@ -4639,6 +5284,7 @@ static swig_lua_method swig_IPfTeamsDAO_methods[] = {
     {"updateReg", _wrap_IPfTeamsDAO_updateReg}, 
     {"freeVector", _wrap_IPfTeamsDAO_freeVector}, 
     {"findByXTeam", _wrap_IPfTeamsDAO_findByXTeam}, 
+    {"findByXFkCountry", _wrap_IPfTeamsDAO_findByXFkCountry}, 
     {"findTeams", _wrap_IPfTeamsDAO_findTeams}, 
     {"findPlayerTeam", _wrap_IPfTeamsDAO_findPlayerTeam}, 
     {0,0}
@@ -18829,11 +19475,14 @@ static swig_type_info _swigt__p_CTeam = {"_p_CTeam", "CTeam *", 0, 0, (void*)&_w
 static swig_type_info _swigt__p_IDAOFactory = {"_p_IDAOFactory", "IDAOFactory *", 0, 0, (void*)&_wrap_class_IDAOFactory, 0};
 static swig_type_info _swigt__p_IPfCompetitionPhasesDAO = {"_p_IPfCompetitionPhasesDAO", "IPfCompetitionPhasesDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfCompetitionsDAO = {"_p_IPfCompetitionsDAO", "IPfCompetitionsDAO *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IPfConfederationsDAO = {"_p_IPfConfederationsDAO", "IPfConfederationsDAO *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IPfCountriesDAO = {"_p_IPfCountriesDAO", "IPfCountriesDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfGameOptionsDAO = {"_p_IPfGameOptionsDAO", "IPfGameOptionsDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfGameStatesDAO = {"_p_IPfGameStatesDAO", "IPfGameStatesDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfGoalsDAO = {"_p_IPfGoalsDAO", "IPfGoalsDAO *", 0, 0, (void*)&_wrap_class_IPfGoalsDAO, 0};
 static swig_type_info _swigt__p_IPfMatchesDAO = {"_p_IPfMatchesDAO", "IPfMatchesDAO *", 0, 0, (void*)&_wrap_class_IPfMatchesDAO, 0};
 static swig_type_info _swigt__p_IPfRankingDAO = {"_p_IPfRankingDAO", "IPfRankingDAO *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IPfRegisteredTeamsDAO = {"_p_IPfRegisteredTeamsDAO", "IPfRegisteredTeamsDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamPlayerContractsDAO = {"_p_IPfTeamPlayerContractsDAO", "IPfTeamPlayerContractsDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamPlayersDAO = {"_p_IPfTeamPlayersDAO", "IPfTeamPlayersDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamsDAO = {"_p_IPfTeamsDAO", "IPfTeamsDAO *", 0, 0, (void*)&_wrap_class_IPfTeamsDAO, 0};
@@ -18895,11 +19544,14 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_IDAOFactory,
   &_swigt__p_IPfCompetitionPhasesDAO,
   &_swigt__p_IPfCompetitionsDAO,
+  &_swigt__p_IPfConfederationsDAO,
+  &_swigt__p_IPfCountriesDAO,
   &_swigt__p_IPfGameOptionsDAO,
   &_swigt__p_IPfGameStatesDAO,
   &_swigt__p_IPfGoalsDAO,
   &_swigt__p_IPfMatchesDAO,
   &_swigt__p_IPfRankingDAO,
+  &_swigt__p_IPfRegisteredTeamsDAO,
   &_swigt__p_IPfTeamPlayerContractsDAO,
   &_swigt__p_IPfTeamPlayersDAO,
   &_swigt__p_IPfTeamsDAO,
@@ -18961,11 +19613,14 @@ static swig_cast_info _swigc__p_CTeam[] = {  {&_swigt__p_CTeam, 0, 0, 0},{0, 0, 
 static swig_cast_info _swigc__p_IDAOFactory[] = {  {&_swigt__p_IDAOFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfCompetitionPhasesDAO[] = {  {&_swigt__p_IPfCompetitionPhasesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfCompetitionsDAO[] = {  {&_swigt__p_IPfCompetitionsDAO, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IPfConfederationsDAO[] = {  {&_swigt__p_IPfConfederationsDAO, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IPfCountriesDAO[] = {  {&_swigt__p_IPfCountriesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfGameOptionsDAO[] = {  {&_swigt__p_IPfGameOptionsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfGameStatesDAO[] = {  {&_swigt__p_IPfGameStatesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfGoalsDAO[] = {  {&_swigt__p_IPfGoalsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfMatchesDAO[] = {  {&_swigt__p_IPfMatchesDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfRankingDAO[] = {  {&_swigt__p_IPfRankingDAO, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IPfRegisteredTeamsDAO[] = {  {&_swigt__p_IPfRegisteredTeamsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamPlayerContractsDAO[] = {  {&_swigt__p_IPfTeamPlayerContractsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamPlayersDAO[] = {  {&_swigt__p_IPfTeamPlayersDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamsDAO[] = {  {&_swigt__p_IPfTeamsDAO, 0, 0, 0},{0, 0, 0, 0}};
@@ -19027,11 +19682,14 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_IDAOFactory,
   _swigc__p_IPfCompetitionPhasesDAO,
   _swigc__p_IPfCompetitionsDAO,
+  _swigc__p_IPfConfederationsDAO,
+  _swigc__p_IPfCountriesDAO,
   _swigc__p_IPfGameOptionsDAO,
   _swigc__p_IPfGameStatesDAO,
   _swigc__p_IPfGoalsDAO,
   _swigc__p_IPfMatchesDAO,
   _swigc__p_IPfRankingDAO,
+  _swigc__p_IPfRegisteredTeamsDAO,
   _swigc__p_IPfTeamPlayerContractsDAO,
   _swigc__p_IPfTeamPlayersDAO,
   _swigc__p_IPfTeamsDAO,

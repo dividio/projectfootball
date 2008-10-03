@@ -88,6 +88,6 @@ std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatchAndXFkTeamScorer(int XF
 std::vector<CPfGoals*>* CPfGoalsDAOSQLite::findByXFkMatchAndXFkTeamScorer(const std::string &XFkMatch, const std::string &XFkTeamScorer)
 {
     std::string sql("SELECT * FROM PF_GOALS WHERE ");
-    sql = sql+"X_FK_MATCH='"+XFkMatch+"' AND X_FK_TEAM_SCORER='"+XFkTeamScorer+"'";
+    sql = sql+"X_FK_MATCH='"+XFkMatch+"' AND X_FK_TEAM_SCORER='"+XFkTeamScorer+"'"+"ORDER BY N_MINUTE DESC";
     return loadVector(sql);
 }

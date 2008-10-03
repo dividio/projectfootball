@@ -45,6 +45,8 @@ private:
     CEGUI::Window           *m_awayName;
     CEGUI::Window           *m_homeScore;
     CEGUI::Window           *m_awayScore;
+    CEGUI::Window           *m_homeLogo;
+    CEGUI::Window           *m_awayLogo;
     CEGUI::MultiColumnList  *m_homeEventsList;
     CEGUI::MultiColumnList  *m_awayEventsList;
 
