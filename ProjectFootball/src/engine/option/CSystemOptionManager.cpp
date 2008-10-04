@@ -338,7 +338,7 @@ void CSystemOptionManager::setDefaultValues()
     setVideoHeight(768);
     setVideoFullscreen(true);
     setVideoVSync(true);
-    setVideoRTTPreferredMode("FBO");
+    setVideoRTTPreferredMode("Copy");
 
     setSimulationMatchDuration(2000);
     setSimulationLogicFrequency(30);
