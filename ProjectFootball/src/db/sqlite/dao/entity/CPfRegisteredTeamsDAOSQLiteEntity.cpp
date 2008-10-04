@@ -21,6 +21,7 @@
 ******************************************************************************/
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "CPfRegisteredTeamsDAOSQLiteEntity.h"
 #include "../../../../utils/CLog.h"
