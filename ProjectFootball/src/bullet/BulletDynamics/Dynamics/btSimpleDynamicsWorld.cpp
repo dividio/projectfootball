@@ -27,7 +27,11 @@ subject to the following restrictions:
   can be used by probes that are checking whether the
   library is actually installed.
 */
-extern "C" void btBulletDynamicsProbe () {}
+extern "C" 
+{
+	void btBulletDynamicsProbe ();
+	void btBulletDynamicsProbe () {}
+}
 
 
 
@@ -119,6 +123,11 @@ void	btSimpleDynamicsWorld::setGravity(const btVector3& gravity)
 			body->setGravity(gravity);
 		}
 	}
+}
+
+btVector3 btSimpleDynamicsWorld::getGravity () const
+{
+	return m_gravity;
 }
 
 void	btSimpleDynamicsWorld::removeRigidBody(btRigidBody* body)

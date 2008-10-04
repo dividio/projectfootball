@@ -23,7 +23,7 @@ class btOverlappingPairCache;
 class btConstraintSolver;
 class btSimulationIslandManager;
 class btTypedConstraint;
-#include "BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
 
 class btRaycastVehicle;
 class btIDebugDraw;
@@ -52,9 +52,7 @@ protected:
 	bool	m_ownsIslandManager;
 	bool	m_ownsConstraintSolver;
 
-	btContactSolverInfo	m_solverInfo;
-
-
+	
 	btAlignedObjectArray<btRaycastVehicle*>	m_vehicles;
 
 	int	m_profileTimings;
@@ -118,6 +116,7 @@ public:
 
 
 	virtual void	setGravity(const btVector3& gravity);
+	virtual btVector3 getGravity () const;
 
 	virtual void	addRigidBody(btRigidBody* body);
 
@@ -139,11 +138,7 @@ public:
 
 	virtual const btTypedConstraint* getConstraint(int index) const;
 
-	btContactSolverInfo& getSolverInfo()
-	{
-		return m_solverInfo;
-	}
-
+	
 	virtual btDynamicsWorldType	getWorldType() const
 	{
 		return BT_DISCRETE_DYNAMICS_WORLD;
@@ -155,6 +150,9 @@ public:
 	///apply gravity, call this once per timestep
 	virtual void	applyGravity();
 
+	virtual void	setNumTasks(int numTasks)
+	{
+	}
 
 };
 

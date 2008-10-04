@@ -52,6 +52,8 @@ CONCAVE_SHAPES_START_HERE,
 	TERRAIN_SHAPE_PROXYTYPE,
 ///Used for GIMPACT Trimesh integration
 	GIMPACT_SHAPE_PROXYTYPE,
+///Multimaterial mesh
+    MULTIMATERIAL_TRIANGLE_MESH_PROXYTYPE,
 	
 	EMPTY_SHAPE_PROXYTYPE,
 	STATIC_PLANE_PROXYTYPE,
@@ -59,11 +61,14 @@ CONCAVE_SHAPES_END_HERE,
 
 	COMPOUND_SHAPE_PROXYTYPE,
 
+	SOFTBODY_SHAPE_PROXYTYPE,
+
 	MAX_BROADPHASE_COLLISION_TYPES
 };
 
 
-///btBroadphaseProxy
+///The btBroadphaseProxy is the main class that can be used with the Bullet broadphases. 
+///It stores collision shape type information, collision filter information and a client object, typically a btCollisionObject or btRigidBody.
 ATTRIBUTE_ALIGNED16(struct) btBroadphaseProxy
 {
 
@@ -77,41 +82,36 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 	        KinematicFilter = 4,
 	        DebrisFilter = 8,
 			SensorTrigger = 16,
-	        AllFilter = DefaultFilter | StaticFilter | KinematicFilter | DebrisFilter | SensorTrigger
+	        AllFilter = -1 //all bits sets: DefaultFilter | StaticFilter | KinematicFilter | DebrisFilter | SensorTrigger
 	};
 
 	//Usually the client btCollisionObject or Rigidbody class
 	void*	m_clientObject;
 
-	///in the case of btMultiSapBroadphase, we store the collifionFilterGroup/Mask in the m_multiSapParentProxy
-	union
-	{
-		struct
-		{
-			short int m_collisionFilterGroup;
-			short int m_collisionFilterMask;
-		};
+	short int m_collisionFilterGroup;
+	short int m_collisionFilterMask;
 
-		void*	m_multiSapParentProxy;
+	void*	m_multiSapParentProxy;		
 
-	};
 
 	int			m_uniqueId;//m_uniqueId is introduced for paircache. could get rid of this, by calculating the address offset etc.
-	int m_unusedPadding; //making the structure 16 bytes, better for alignment etc.
 
-	SIMD_FORCE_INLINE int getUid()
+	SIMD_FORCE_INLINE int getUid() const
 	{
-		return m_uniqueId;//(int)this;
+		return m_uniqueId;
 	}
 
 	//used for memory pools
-	btBroadphaseProxy() :m_clientObject(0){}
+	btBroadphaseProxy() :m_clientObject(0),m_multiSapParentProxy(0)
+	{
+	}
 
-	btBroadphaseProxy(void* userPtr,short int collisionFilterGroup, short int collisionFilterMask)
+	btBroadphaseProxy(void* userPtr,short int collisionFilterGroup, short int collisionFilterMask,void* multiSapParentProxy=0)
 		:m_clientObject(userPtr),
 		m_collisionFilterGroup(collisionFilterGroup),
 		m_collisionFilterMask(collisionFilterMask)
 	{
+		m_multiSapParentProxy = multiSapParentProxy;
 	}
 
 	
@@ -149,7 +149,8 @@ struct btBroadphaseProxy;
 
 
 
-/// contains a pair of aabb-overlapping objects
+///The btBroadphasePair class contains a pair of aabb-overlapping objects.
+///A btDispatcher can search a btCollisionAlgorithm that performs exact/narrowphase collision detection on the actual collision shapes.
 ATTRIBUTE_ALIGNED16(struct) btBroadphasePair
 {
 	btBroadphasePair ()

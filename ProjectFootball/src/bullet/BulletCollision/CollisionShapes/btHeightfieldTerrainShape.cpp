@@ -21,9 +21,9 @@ subject to the following restrictions:
 btHeightfieldTerrainShape::btHeightfieldTerrainShape(int heightStickWidth, int heightStickLength,void* heightfieldData,btScalar maxHeight,int upAxis,bool useFloatData,bool flipQuadEdges)
 : m_heightStickWidth(heightStickWidth),
 m_heightStickLength(heightStickLength),
+m_maxHeight(maxHeight),
 m_width((btScalar)heightStickWidth-1),
 m_length((btScalar)heightStickLength-1),
-m_maxHeight(maxHeight),
 m_heightfieldDataUnknown(heightfieldData),
 m_useFloatData(useFloatData),
 m_flipQuadEdges(flipQuadEdges),
@@ -91,19 +91,15 @@ btHeightfieldTerrainShape::~btHeightfieldTerrainShape()
 
 void btHeightfieldTerrainShape::getAabb(const btTransform& t,btVector3& aabbMin,btVector3& aabbMax) const
 {
-/*
-	aabbMin.setValue(-1e30f,-1e30f,-1e30f);
-	aabbMax.setValue(1e30f,1e30f,1e30f);
-*/
-
 	btVector3 halfExtents = (m_localAabbMax-m_localAabbMin)* m_localScaling * btScalar(0.5);
+	halfExtents += btVector3(getMargin(),getMargin(),getMargin());
 
 	btMatrix3x3 abs_b = t.getBasis().absolute();  
 	btPoint3 center = t.getOrigin();
 	btVector3 extent = btVector3(abs_b[0].dot(halfExtents),
 		   abs_b[1].dot(halfExtents),
 		  abs_b[2].dot(halfExtents));
-	extent += btVector3(getMargin(),getMargin(),getMargin());
+	
 
 	aabbMin = center - extent;
 	aabbMax = center + extent;
@@ -182,17 +178,16 @@ void	btHeightfieldTerrainShape::getVertex(int x,int y,btVector3& vertex) const
 }
 
 
-void btHeightfieldTerrainShape::quantizeWithClamp(int* out, const btVector3& point) const
+void btHeightfieldTerrainShape::quantizeWithClamp(int* out, const btVector3& point,int /*isMax*/) const
 {
-	
-
 	btVector3 clampedPoint(point);
 	clampedPoint.setMax(m_localAabbMin);
 	clampedPoint.setMin(m_localAabbMax);
 
-	btVector3 v = (clampedPoint );// * m_quantization;
+	btVector3 v = (clampedPoint);// - m_bvhAabbMin) * m_bvhQuantization;
 
-	// SMJ - Add 0.5 in the correct direction before doing the int conversion.
+	//TODO: optimization: check out how to removed this btFabs
+		
 	out[0] = (int)(v.getX() + v.getX() / btFabs(v.getX())* btScalar(0.5) );
 	out[1] = (int)(v.getY() + v.getY() / btFabs(v.getY())* btScalar(0.5) );
 	out[2] = (int)(v.getZ() + v.getZ() / btFabs(v.getZ())* btScalar(0.5) );
@@ -214,8 +209,8 @@ void	btHeightfieldTerrainShape::processAllTriangles(btTriangleCallback* callback
 	btVector3	localAabbMin = aabbMin*btVector3(1.f/m_localScaling[0],1.f/m_localScaling[1],1.f/m_localScaling[2]);
 	btVector3	localAabbMax = aabbMax*btVector3(1.f/m_localScaling[0],1.f/m_localScaling[1],1.f/m_localScaling[2]);
 	
-	quantizeWithClamp(quantizedAabbMin, localAabbMin);
-	quantizeWithClamp(quantizedAabbMax, localAabbMax);
+	quantizeWithClamp(quantizedAabbMin, localAabbMin,0);
+	quantizeWithClamp(quantizedAabbMax, localAabbMax,1);
 	
 	
 

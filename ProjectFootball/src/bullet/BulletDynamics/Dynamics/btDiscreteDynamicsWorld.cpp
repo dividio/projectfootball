@@ -42,6 +42,7 @@ subject to the following restrictions:
 #include "BulletCollision/CollisionShapes/btSphereShape.h"
 #include "BulletCollision/CollisionShapes/btTriangleCallback.h"
 #include "BulletCollision/CollisionShapes/btTriangleMeshShape.h"
+#include "BulletCollision/CollisionShapes/btStaticPlaneShape.h"
 #include "LinearMath/btIDebugDraw.h"
 
 
@@ -124,6 +125,27 @@ void	btDiscreteDynamicsWorld::saveKinematicState(btScalar timeStep)
 
 void	btDiscreteDynamicsWorld::debugDrawWorld()
 {
+
+	if (getDebugDrawer() && getDebugDrawer()->getDebugMode() & btIDebugDraw::DBG_DrawContactPoints)
+	{
+		int numManifolds = getDispatcher()->getNumManifolds();
+		btVector3 color(0,0,0);
+		for (int i=0;i<numManifolds;i++)
+		{
+			btPersistentManifold* contactManifold = getDispatcher()->getManifoldByIndexInternal(i);
+			//btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
+			//btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1());
+
+			int numContacts = contactManifold->getNumContacts();
+			for (int j=0;j<numContacts;j++)
+			{
+				btManifoldPoint& cp = contactManifold->getContactPoint(j);
+				getDebugDrawer()->drawContactPoint(cp.m_positionWorldOnB,cp.m_normalWorldOnB,cp.getDistance(),cp.getLifeTime(),color);
+			}
+		}
+	}
+
+
 	if (getDebugDrawer() && getDebugDrawer()->getDebugMode() & (btIDebugDraw::DBG_DrawWireframe | btIDebugDraw::DBG_DrawAabb))
 	{
 		int i;
@@ -329,7 +351,9 @@ int	btDiscreteDynamicsWorld::stepSimulation( btScalar timeStep,int maxSubSteps, 
 
 	clearForces();
 
+#ifndef BT_NO_PROFILE
 	CProfileManager::Increment_Frame_Counter();
+#endif //BT_NO_PROFILE
 	
 	return numSimulationSubSteps;
 }
@@ -372,6 +396,9 @@ void	btDiscreteDynamicsWorld::internalSingleStepSimulation(btScalar timeStep)
 
 	updateActivationState( timeStep );
 
+	if(0 != m_internalTickCallback) {
+		(*m_internalTickCallback)(this, timeStep);
+	}	
 }
 
 void	btDiscreteDynamicsWorld::setGravity(const btVector3& gravity)
@@ -386,6 +413,11 @@ void	btDiscreteDynamicsWorld::setGravity(const btVector3& gravity)
 			body->setGravity(gravity);
 		}
 	}
+}
+
+btVector3 btDiscreteDynamicsWorld::getGravity () const
+{
+	return m_gravity;
 }
 
 
@@ -457,6 +489,12 @@ void	btDiscreteDynamicsWorld::updateActivationState(btScalar timeStep)
 				{
 					if (body->getActivationState() == ACTIVE_TAG)
 						body->setActivationState( WANTS_DEACTIVATION );
+					if (body->getActivationState() == ISLAND_SLEEPING) 
+					{
+						body->setAngularVelocity(btVector3(0,0,0));
+						body->setLinearVelocity(btVector3(0,0,0));
+					}
+
 				}
 			} else
 			{
@@ -593,7 +631,11 @@ void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 					}
 				}
 
-				m_solver->solveGroup( bodies,numBodies,manifolds, numManifolds,startConstraint,numCurConstraints,m_solverInfo,m_debugDrawer,m_stackAlloc,m_dispatcher);
+				///only call solveGroup if there is some work: avoid virtual function call, its overhead can be excessive
+				if (numManifolds + numCurConstraints)
+				{
+					m_solver->solveGroup( bodies,numBodies,manifolds, numManifolds,startConstraint,numCurConstraints,m_solverInfo,m_debugDrawer,m_stackAlloc,m_dispatcher);
+				}
 		
 			}
 		}
@@ -613,7 +655,7 @@ void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 		
 	
 
-	sortedConstraints.heapSort(btSortConstraintOnIslandPredicate());
+	sortedConstraints.quickSort(btSortConstraintOnIslandPredicate());
 	
 	btTypedConstraint** constraintsPtr = getNumConstraints() ? &sortedConstraints[0] : 0;
 	
@@ -717,40 +759,10 @@ void	btDiscreteDynamicsWorld::startProfiling(btScalar timeStep)
 {
 	(void)timeStep;
 
+#ifndef BT_NO_PROFILE
 	CProfileManager::Reset();
+#endif //BT_NO_PROFILE
 
-	
-	#ifdef USE_QUICKPROF
-
-
-	//toggle btProfiler
-	if ( m_debugDrawer && m_debugDrawer->getDebugMode() & btIDebugDraw::DBG_ProfileTimings)
-	{
-		if (!m_profileTimings)
-		{
-			m_profileTimings = 1;
-			// To disable profiling, simply comment out the following line.
-			static int counter = 0;
-
-			char filename[128];
-			sprintf(filename,"quickprof_bullet_timings%i.csv",counter++);
-			btProfiler::init(filename, btProfiler::BLOCK_CYCLE_SECONDS);//BLOCK_TOTAL_MICROSECONDS
-		} else
-		{
-			btProfiler::endProfilingCycle();
-		}
-
-	} else
-	{
-		if (m_profileTimings)
-		{
-			btProfiler::endProfilingCycle();
-
-			m_profileTimings = 0;
-			btProfiler::destroy();
-		}
-	}
-#endif //USE_QUICKPROF
 }
 
 
@@ -872,27 +884,52 @@ void btDiscreteDynamicsWorld::debugDrawObject(const btTransform& worldTransform,
 
 				btScalar radius = capsuleShape->getRadius();
 				btScalar halfHeight = capsuleShape->getHalfHeight();
+				
+				int upAxis = capsuleShape->getUpAxis();
+
+				
+				btVector3 capStart(0.f,0.f,0.f);
+				capStart[upAxis] = -halfHeight;
+
+				btVector3 capEnd(0.f,0.f,0.f);
+				capEnd[upAxis] = halfHeight;
 
 				// Draw the ends
 				{
+					
 					btTransform childTransform = worldTransform;
-					childTransform.getOrigin() = worldTransform * btVector3(0,halfHeight,0);
+					childTransform.getOrigin() = worldTransform * capStart;
 					debugDrawSphere(radius, childTransform, color);
 				}
 
 				{
 					btTransform childTransform = worldTransform;
-					childTransform.getOrigin() = worldTransform * btVector3(0,-halfHeight,0);
+					childTransform.getOrigin() = worldTransform * capEnd;
 					debugDrawSphere(radius, childTransform, color);
 				}
 
 				// Draw some additional lines
 				btVector3 start = worldTransform.getOrigin();
-				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * btVector3(-radius,halfHeight,0),start+worldTransform.getBasis() * btVector3(-radius,-halfHeight,0), color);
-				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * btVector3(radius,halfHeight,0),start+worldTransform.getBasis() * btVector3(radius,-halfHeight,0), color);
-				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * btVector3(0,halfHeight,-radius),start+worldTransform.getBasis() * btVector3(0,-halfHeight,-radius), color);
-				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * btVector3(0,halfHeight,radius),start+worldTransform.getBasis() * btVector3(0,-halfHeight,radius), color);
 
+				
+				capStart[(upAxis+1)%3] = radius;
+				capEnd[(upAxis+1)%3] = radius;
+				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * capStart,start+worldTransform.getBasis() * capEnd, color);
+				capStart[(upAxis+1)%3] = -radius;
+				capEnd[(upAxis+1)%3] = -radius;
+				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * capStart,start+worldTransform.getBasis() * capEnd, color);
+
+				capStart[(upAxis+1)%3] = 0.f;
+				capEnd[(upAxis+1)%3] = 0.f;
+
+				capStart[(upAxis+2)%3] = radius;
+				capEnd[(upAxis+2)%3] = radius;
+				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * capStart,start+worldTransform.getBasis() * capEnd, color);
+				capStart[(upAxis+2)%3] = -radius;
+				capEnd[(upAxis+2)%3] = -radius;
+				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * capStart,start+worldTransform.getBasis() * capEnd, color);
+
+				
 				break;
 			}
 		case CONE_SHAPE_PROXYTYPE:
@@ -937,6 +974,25 @@ void btDiscreteDynamicsWorld::debugDrawObject(const btTransform& worldTransform,
 				getDebugDrawer()->drawLine(start+worldTransform.getBasis() * (offsetHeight-offsetRadius),start+worldTransform.getBasis() * (-offsetHeight-offsetRadius),color);
 				break;
 			}
+
+			case STATIC_PLANE_PROXYTYPE:
+				{
+					const btStaticPlaneShape* staticPlaneShape = static_cast<const btStaticPlaneShape*>(shape);
+					btScalar planeConst = staticPlaneShape->getPlaneConstant();
+					const btVector3& planeNormal = staticPlaneShape->getPlaneNormal();
+					btVector3 planeOrigin = planeNormal * planeConst;
+					btVector3 vec0,vec1;
+					btPlaneSpace1(planeNormal,vec0,vec1);
+					btScalar vecLen = 100.f;
+					btVector3 pt0 = planeOrigin + vec0*vecLen;
+					btVector3 pt1 = planeOrigin - vec0*vecLen;
+					btVector3 pt2 = planeOrigin + vec1*vecLen;
+					btVector3 pt3 = planeOrigin - vec1*vecLen;
+					getDebugDrawer()->drawLine(worldTransform*pt0,worldTransform*pt1,color);
+					getDebugDrawer()->drawLine(worldTransform*pt2,worldTransform*pt3,color);
+					break;
+
+				}
 		default:
 			{
 

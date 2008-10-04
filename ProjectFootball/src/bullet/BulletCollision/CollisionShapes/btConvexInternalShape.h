@@ -4,7 +4,7 @@
 
 #include "btConvexShape.h"
 
-///btConvexInternalShape carries some additional data, shared by most implementations
+///The btConvexInternalShape is an internal base class, shared by most convex shape implementations.
 class btConvexInternalShape : public btConvexShape
 {
 
@@ -17,10 +17,7 @@ class btConvexInternalShape : public btConvexShape
 	
 	btScalar	m_collisionMargin;
 
-	btScalar	m_padding[2];
-
-
-
+	btScalar	m_padding;
 
 public:
 
@@ -93,6 +90,8 @@ public:
 		btAssert(0);
 	}
 
+
+	
 };
 
 

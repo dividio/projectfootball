@@ -22,12 +22,15 @@ subject to the following restrictions:
 #include "LinearMath/btPoint3.h"
 #include "BulletCollision/BroadphaseCollision/btBroadphaseProxy.h" //for the shape types
 
-///btCollisionShape provides interface for collision shapes that can be shared among btCollisionObjects.
+///The btCollisionShape class provides an interface for collision shapes that can be shared among btCollisionObjects.
 class btCollisionShape
 {
+
+	void* m_userPointer;
+
 public:
 
-	btCollisionShape() 
+	btCollisionShape() : m_userPointer(0)
 	{
 	}
 	virtual ~btCollisionShape()
@@ -45,7 +48,7 @@ public:
 
 	///calculateTemporalAabb calculates the enclosing aabb for the moving object over interval [0..timeStep)
 	///result is conservative
-	void calculateTemporalAabb(const btTransform& curTrans,const btVector3& linvel,const btVector3& angvel,btScalar timeStep, btVector3& temporalAabbMin,btVector3& temporalAabbMax);
+	void calculateTemporalAabb(const btTransform& curTrans,const btVector3& linvel,const btVector3& angvel,btScalar timeStep, btVector3& temporalAabbMin,btVector3& temporalAabbMax) const;
 
 #ifndef __SPU__
 
@@ -87,6 +90,18 @@ public:
 
 	virtual void	setMargin(btScalar margin) = 0;
 	virtual btScalar	getMargin() const = 0;
+
+	
+	///optional user data pointer
+	void	setUserPointer(void* userPtr)
+	{
+		m_userPointer = userPtr;
+	}
+
+	void*	getUserPointer() const
+	{
+		return m_userPointer;
+	}
 
 };	
 

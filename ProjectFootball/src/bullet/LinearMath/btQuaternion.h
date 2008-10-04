@@ -19,6 +19,7 @@ subject to the following restrictions:
 
 #include "btVector3.h"
 
+///The btQuaternion implements quaternion to perform linear algebra rotations in combination with btMatrix3x3, btVector3 and btTransform.
 class btQuaternion : public btQuadWord {
 public:
 	btQuaternion() {}
@@ -158,7 +159,7 @@ public:
 
 	btQuaternion inverse() const
 	{
-		return btQuaternion(m_x, m_y, m_z, -m_unusedW);
+		return btQuaternion(-m_x, -m_y, -m_z, m_unusedW);
 	}
 
 	SIMD_FORCE_INLINE btQuaternion
@@ -316,6 +317,7 @@ shortestArcQuatNormalize2(btVector3& v0,btVector3& v1)
 }
 
 #endif
+
 
 
 

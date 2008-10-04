@@ -16,7 +16,6 @@ subject to the following restrictions:
 
 #include "btContinuousConvexCollision.h"
 #include "BulletCollision/CollisionShapes/btConvexShape.h"
-#include "BulletCollision/CollisionShapes/btMinkowskiSumShape.h"
 #include "BulletCollision/NarrowPhaseCollision/btSimplexSolverInterface.h"
 #include "LinearMath/btTransformUtil.h"
 #include "BulletCollision/CollisionShapes/btSphereShape.h"
@@ -35,7 +34,7 @@ m_convexA(convexA),m_convexB(convexB)
 
 /// This maximum should not be necessary. It allows for untested/degenerate cases in production code.
 /// You don't want your game ever to lock-up.
-#define MAX_ITERATIONS 1000
+#define MAX_ITERATIONS 64
 
 bool	btContinuousConvexCollision::calcTimeOfImpact(
 				const btTransform& fromA,
@@ -52,10 +51,18 @@ bool	btContinuousConvexCollision::calcTimeOfImpact(
 	btTransformUtil::calculateVelocity(fromA,toA,btScalar(1.),linVelA,angVelA);
 	btTransformUtil::calculateVelocity(fromB,toB,btScalar(1.),linVelB,angVelB);
 
+
 	btScalar boundingRadiusA = m_convexA->getAngularMotionDisc();
 	btScalar boundingRadiusB = m_convexB->getAngularMotionDisc();
 
 	btScalar maxAngularProjectedVelocity = angVelA.length() * boundingRadiusA + angVelB.length() * boundingRadiusB;
+	btVector3 relLinVel = (linVelB-linVelA);
+
+	btScalar relLinVelocLength = (linVelB-linVelA).length();
+	
+	if ((relLinVelocLength+maxAngularProjectedVelocity) == 0.f)
+		return false;
+
 
 	btScalar radius = btScalar(0.001);
 
@@ -109,8 +116,8 @@ bool	btContinuousConvexCollision::calcTimeOfImpact(
 		dist = pointCollector1.m_distance;
 		n = pointCollector1.m_normalOnBInWorld;
 
-	
-
+		btScalar projectedLinearVelocity = relLinVel.dot(n);
+		
 		//not close enough
 		while (dist > radius)
 		{
@@ -121,7 +128,7 @@ bool	btContinuousConvexCollision::calcTimeOfImpact(
 			}
 			btScalar dLambda = btScalar(0.);
 
-				btScalar projectedLinearVelocity = (linVelB-linVelA).dot(n);
+			projectedLinearVelocity = relLinVel.dot(n);
 
 			//calculate safe moving fraction from distance / (linear+rotational velocity)
 			
@@ -131,6 +138,8 @@ bool	btContinuousConvexCollision::calcTimeOfImpact(
 			
 			dLambda = dist / (projectedLinearVelocity+ maxAngularProjectedVelocity);
 
+			
+			
 			lambda = lambda + dLambda;
 
 			if (lambda > btScalar(1.))
@@ -187,6 +196,10 @@ bool	btContinuousConvexCollision::calcTimeOfImpact(
 			}
 
 		}
+
+		//don't report time of impact for motion away from the contact normal (or causes minor penetration)
+		if ((projectedLinearVelocity+ maxAngularProjectedVelocity)<=result.m_allowedPenetration)//SIMD_EPSILON)
+			return false;
 
 		result.m_fraction = lambda;
 		result.m_normal = n;

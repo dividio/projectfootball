@@ -30,7 +30,14 @@ m_ownsBvh(false)
 #ifndef DISABLE_BVH
 
 	btVector3 bvhAabbMin,bvhAabbMax;
-	meshInterface->calculateAabbBruteForce(bvhAabbMin,bvhAabbMax);
+	if(meshInterface->hasPremadeAabb())
+	{
+		meshInterface->getPremadeAabb(&bvhAabbMin, &bvhAabbMax);
+	}
+	else
+	{
+		meshInterface->calculateAabbBruteForce(bvhAabbMin,bvhAabbMax);
+	}
 	
 	if (buildBvh)
 	{
@@ -75,9 +82,9 @@ void	btBvhTriangleMeshShape::partialRefitTree(const btVector3& aabbMin,const btV
 }
 
 
-void	btBvhTriangleMeshShape::refitTree()
+void	btBvhTriangleMeshShape::refitTree(const btVector3& aabbMin,const btVector3& aabbMax)
 {
-	m_bvh->refit( m_meshInterface );
+	m_bvh->refit( m_meshInterface, aabbMin,aabbMax );
 	
 	recalcLocalAabb();
 }
@@ -91,14 +98,14 @@ btBvhTriangleMeshShape::~btBvhTriangleMeshShape()
 	}
 }
 
-void	btBvhTriangleMeshShape::performRaycast (btTriangleRaycastCallback* callback, const btVector3& raySource, const btVector3& rayTarget)
+void	btBvhTriangleMeshShape::performRaycast (btTriangleCallback* callback, const btVector3& raySource, const btVector3& rayTarget)
 {
 	struct	MyNodeOverlapCallback : public btNodeOverlapCallback
 	{
 		btStridingMeshInterface*	m_meshInterface;
-		btTriangleRaycastCallback* m_callback;
+		btTriangleCallback* m_callback;
 
-		MyNodeOverlapCallback(btTriangleRaycastCallback* callback,btStridingMeshInterface* meshInterface)
+		MyNodeOverlapCallback(btTriangleCallback* callback,btStridingMeshInterface* meshInterface)
 			:m_meshInterface(meshInterface),
 			m_callback(callback)
 		{
@@ -127,13 +134,13 @@ void	btBvhTriangleMeshShape::performRaycast (btTriangleRaycastCallback* callback
 				indicestype,
 				nodeSubPart);
 
-			int* gfxbase = (int*)(indexbase+nodeTriangleIndex*indexstride);
+			unsigned int* gfxbase = (unsigned int*)(indexbase+nodeTriangleIndex*indexstride);
 			btAssert(indicestype==PHY_INTEGER||indicestype==PHY_SHORT);
 	
 			const btVector3& meshScaling = m_meshInterface->getScaling();
 			for (int j=2;j>=0;j--)
 			{
-				int graphicsindex = indicestype==PHY_SHORT?((short*)gfxbase)[j]:gfxbase[j];
+				int graphicsindex = indicestype==PHY_SHORT?((unsigned short*)gfxbase)[j]:gfxbase[j];
 
 				btScalar* graphicsbase = (btScalar*)(vertexbase+graphicsindex*stride);
 
@@ -151,14 +158,14 @@ void	btBvhTriangleMeshShape::performRaycast (btTriangleRaycastCallback* callback
 	m_bvh->reportRayOverlappingNodex(&myNodeCallback,raySource,rayTarget);
 }
 
-void	btBvhTriangleMeshShape::performConvexcast (btTriangleConvexcastCallback* callback, const btVector3& raySource, const btVector3& rayTarget, const btVector3& aabbMin, const btVector3& aabbMax)
+void	btBvhTriangleMeshShape::performConvexcast (btTriangleCallback* callback, const btVector3& raySource, const btVector3& rayTarget, const btVector3& aabbMin, const btVector3& aabbMax)
 {
 	struct	MyNodeOverlapCallback : public btNodeOverlapCallback
 	{
 		btStridingMeshInterface*	m_meshInterface;
-		btTriangleConvexcastCallback* m_callback;
+		btTriangleCallback* m_callback;
 
-		MyNodeOverlapCallback(btTriangleConvexcastCallback* callback,btStridingMeshInterface* meshInterface)
+		MyNodeOverlapCallback(btTriangleCallback* callback,btStridingMeshInterface* meshInterface)
 			:m_meshInterface(meshInterface),
 			m_callback(callback)
 		{
@@ -187,13 +194,13 @@ void	btBvhTriangleMeshShape::performConvexcast (btTriangleConvexcastCallback* ca
 				indicestype,
 				nodeSubPart);
 
-			int* gfxbase = (int*)(indexbase+nodeTriangleIndex*indexstride);
+			unsigned int* gfxbase = (unsigned int*)(indexbase+nodeTriangleIndex*indexstride);
 			btAssert(indicestype==PHY_INTEGER||indicestype==PHY_SHORT);
 	
 			const btVector3& meshScaling = m_meshInterface->getScaling();
 			for (int j=2;j>=0;j--)
 			{
-				int graphicsindex = indicestype==PHY_SHORT?((short*)gfxbase)[j]:gfxbase[j];
+				int graphicsindex = indicestype==PHY_SHORT?((unsigned short*)gfxbase)[j]:gfxbase[j];
 
 				btScalar* graphicsbase = (btScalar*)(vertexbase+graphicsindex*stride);
 
@@ -259,14 +266,14 @@ void	btBvhTriangleMeshShape::processAllTriangles(btTriangleCallback* callback,co
 				indicestype,
 				nodeSubPart);
 
-			int* gfxbase = (int*)(indexbase+nodeTriangleIndex*indexstride);
+			unsigned int* gfxbase = (unsigned int*)(indexbase+nodeTriangleIndex*indexstride);
 			btAssert(indicestype==PHY_INTEGER||indicestype==PHY_SHORT);
 	
 			const btVector3& meshScaling = m_meshInterface->getScaling();
 			for (int j=2;j>=0;j--)
 			{
 				
-				int graphicsindex = indicestype==PHY_SHORT?((short*)gfxbase)[j]:gfxbase[j];
+				int graphicsindex = indicestype==PHY_SHORT?((unsigned short*)gfxbase)[j]:gfxbase[j];
 
 
 #ifdef DEBUG_TRIANGLE_MESH
@@ -299,22 +306,37 @@ void	btBvhTriangleMeshShape::processAllTriangles(btTriangleCallback* callback,co
 
 }
 
-
-void	btBvhTriangleMeshShape::setLocalScaling(const btVector3& scaling)
+void   btBvhTriangleMeshShape::setLocalScaling(const btVector3& scaling)
 {
-	if ((getLocalScaling() -scaling).length2() > SIMD_EPSILON)
-	{
-		btTriangleMeshShape::setLocalScaling(scaling);
-		if (m_ownsBvh)
-		{
-			m_bvh->~btOptimizedBvh();
-			btAlignedFree(m_bvh);
-		}
-		///m_localAabbMin/m_localAabbMax is already re-calculated in btTriangleMeshShape. We could just scale aabb, but this needs some more work
-		void* mem = btAlignedAlloc(sizeof(btOptimizedBvh),16);
-		m_bvh = new(mem) btOptimizedBvh();
-		//rebuild the bvh...
-		m_bvh->build(m_meshInterface,m_useQuantizedAabbCompression,m_localAabbMin,m_localAabbMax);
-
-	}
+   if ((getLocalScaling() -scaling).length2() > SIMD_EPSILON)
+   {
+      btTriangleMeshShape::setLocalScaling(scaling);
+      if (m_ownsBvh)
+      {
+         m_bvh->~btOptimizedBvh();
+         btAlignedFree(m_bvh);
+      }
+      ///m_localAabbMin/m_localAabbMax is already re-calculated in btTriangleMeshShape. We could just scale aabb, but this needs some more work
+      void* mem = btAlignedAlloc(sizeof(btOptimizedBvh),16);
+      m_bvh = new(mem) btOptimizedBvh();
+      //rebuild the bvh...
+      m_bvh->build(m_meshInterface,m_useQuantizedAabbCompression,m_localAabbMin,m_localAabbMax);
+      m_ownsBvh = true;
+   }
 }
+
+void   btBvhTriangleMeshShape::setOptimizedBvh(btOptimizedBvh* bvh, const btVector3& scaling)
+{
+   btAssert(!m_bvh);
+   btAssert(!m_ownsBvh);
+
+   m_bvh = bvh;
+   m_ownsBvh = false;
+   // update the scaling without rebuilding the bvh
+   if ((getLocalScaling() -scaling).length2() > SIMD_EPSILON)
+   {
+      btTriangleMeshShape::setLocalScaling(scaling);
+   }
+}
+
+

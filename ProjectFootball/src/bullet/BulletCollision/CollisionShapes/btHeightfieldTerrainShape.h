@@ -18,7 +18,8 @@ subject to the following restrictions:
 
 #include "btConcaveShape.h"
 
-///btHeightfieldTerrainShape simulates a 2D heightfield terrain 
+///The btHeightfieldTerrainShape simulates a 2D heightfield terrain collision shape. You can also use the more general btBvhTriangleMeshShape instead.
+///An example implementation of btHeightfieldTerrainShape is provided in Demos/VehicleDemo/VehicleDemo.cpp
 class btHeightfieldTerrainShape : public btConcaveShape
 {
 protected:
@@ -47,7 +48,7 @@ protected:
 	btVector3	m_localScaling;
 
 	virtual btScalar	getHeightFieldValue(int x,int y) const;
-	void		quantizeWithClamp(int* out, const btVector3& point) const;
+	void		quantizeWithClamp(int* out, const btVector3& point,int isMax) const;
 	void		getVertex(int x,int y,btVector3& vertex) const;
 
 	inline bool testQuantizedAabbAgainstQuantizedAabb(int* aabbMin1, int* aabbMax1,const  int* aabbMin2,const  int* aabbMax2) const

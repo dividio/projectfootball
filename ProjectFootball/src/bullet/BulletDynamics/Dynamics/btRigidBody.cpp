@@ -40,6 +40,8 @@ btRigidBody::btRigidBody(btScalar mass, btMotionState *motionState, btCollisionS
 void	btRigidBody::setupRigidBody(const btRigidBody::btRigidBodyConstructionInfo& constructionInfo)
 {
 
+	m_internalType=CO_RIGID_BODY;
+
 	m_linearVelocity.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
 	m_angularVelocity.setValue(btScalar(0.),btScalar(0.),btScalar(0.));
 	m_angularFactor = btScalar(1.);
@@ -54,7 +56,7 @@ void	btRigidBody::setupRigidBody(const btRigidBody::btRigidBodyConstructionInfo&
 	m_contactSolverType = 0;
 	m_frictionSolverType = 0;
 	m_additionalDamping = constructionInfo.m_additionalDamping;
-
+	m_additionalDampingFactor = constructionInfo.m_additionalDampingFactor;
 	m_additionalLinearDampingThresholdSqr = constructionInfo.m_additionalLinearDampingThresholdSqr;
 	m_additionalAngularDampingThresholdSqr = constructionInfo.m_additionalAngularDampingThresholdSqr;
 	m_additionalAngularDampingFactor = constructionInfo.m_additionalAngularDampingFactor;
@@ -75,12 +77,9 @@ void	btRigidBody::setupRigidBody(const btRigidBody::btRigidBodyConstructionInfo&
 	m_friction = constructionInfo.m_friction;
 	m_restitution = constructionInfo.m_restitution;
 
-	m_collisionShape = constructionInfo.m_collisionShape;
+	setCollisionShape( constructionInfo.m_collisionShape );
 	m_debugBodyId = uniqueId++;
 	
-	//m_internalOwner is to allow upcasting from collision object to rigid body
-	m_internalOwner = this;
-
 	setMassProps(constructionInfo.m_mass, constructionInfo.m_localInertia);
     setDamping(constructionInfo.m_linearDamping, constructionInfo.m_angularDamping);
 	updateInertiaTensor();

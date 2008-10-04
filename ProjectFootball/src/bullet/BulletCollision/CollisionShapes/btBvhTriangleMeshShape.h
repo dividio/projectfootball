@@ -19,10 +19,12 @@ subject to the following restrictions:
 #include "btTriangleMeshShape.h"
 #include "btOptimizedBvh.h"
 #include "LinearMath/btAlignedAllocator.h"
-#include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
 
-///Bvh Concave triangle mesh is a static-triangle mesh shape with Bounding Volume Hierarchy optimization.
-///Uses an interface to access the triangles to allow for sharing graphics/physics triangles.
+
+///The btBvhTriangleMeshShape is a static-triangle mesh shape with several optimizations, such as bounding volume hierarchy and cache friendly traversal for PlayStation 3 Cell SPU. It is recommended to enable useQuantizedAabbCompression for better memory usage.
+///It takes a triangle mesh as input, for example a btTriangleMesh or btTriangleIndexVertexArray. The btBvhTriangleMeshShape class allows for triangle mesh deformations by a refit or partialRefit method.
+///Instead of building the bounding volume hierarchy acceleration structure, it is also possible to serialize (save) and deserialize (load) the structure from disk.
+///See Demos\ConcaveDemo\ConcavePhysicsDemo.cpp for an example.
 ATTRIBUTE_ALIGNED16(class) btBvhTriangleMeshShape : public btTriangleMeshShape
 {
 
@@ -43,17 +45,22 @@ public:
 	
 	virtual ~btBvhTriangleMeshShape();
 
+	bool getOwnsBvh () const
+	{
+		return m_ownsBvh;
+	}
+
 	virtual int	getShapeType() const
 	{
 		return TRIANGLE_MESH_SHAPE_PROXYTYPE;
 	}
 	
-	void performRaycast (btTriangleRaycastCallback* callback, const btVector3& raySource, const btVector3& rayTarget);
-	void performConvexcast (btTriangleConvexcastCallback* callback, const btVector3& boxSource, const btVector3& boxTarget, const btVector3& boxMin, const btVector3& boxMax);
+	void performRaycast (btTriangleCallback* callback, const btVector3& raySource, const btVector3& rayTarget);
+	void performConvexcast (btTriangleCallback* callback, const btVector3& boxSource, const btVector3& boxTarget, const btVector3& boxMin, const btVector3& boxMax);
 
 	virtual void	processAllTriangles(btTriangleCallback* callback,const btVector3& aabbMin,const btVector3& aabbMax) const;
 
-	void	refitTree();
+	void	refitTree(const btVector3& aabbMin,const btVector3& aabbMax);
 
 	///for a fast incremental refit of parts of the tree. Note: the entire AABB of the tree will become more conservative, it never shrinks
 	void	partialRefitTree(const btVector3& aabbMin,const btVector3& aabbMax);
@@ -70,14 +77,7 @@ public:
 	}
 
 
-	void	setOptimizedBvh(btOptimizedBvh* bvh)
-	{
-		btAssert(!m_bvh);
-		btAssert(!m_ownsBvh);
-
-		m_bvh = bvh;
-		m_ownsBvh = false;
-	}
+	void	setOptimizedBvh(btOptimizedBvh* bvh, const btVector3& localScaling=btVector3(1,1,1));
 
 	bool	usesQuantizedAabbCompression() const
 	{

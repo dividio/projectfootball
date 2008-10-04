@@ -18,7 +18,28 @@ subject to the following restrictions:
 
 #include "btCollisionConfiguration.h"
 class btVoronoiSimplexSolver;
-class btGjkEpaPenetrationDepthSolver;
+class btConvexPenetrationDepthSolver;
+
+struct	btDefaultCollisionConstructionInfo
+{
+	btStackAlloc*		m_stackAlloc;
+	btPoolAllocator*	m_persistentManifoldPool;
+	btPoolAllocator*	m_collisionAlgorithmPool;
+	int					m_defaultMaxPersistentManifoldPoolSize;
+	int					m_defaultMaxCollisionAlgorithmPoolSize;
+	int					m_defaultStackAllocatorSize;
+
+	btDefaultCollisionConstructionInfo()
+		:m_stackAlloc(0),
+		m_persistentManifoldPool(0),
+		m_collisionAlgorithmPool(0),
+		m_defaultMaxPersistentManifoldPoolSize(65535),
+		m_defaultMaxCollisionAlgorithmPoolSize(65535),
+		m_defaultStackAllocatorSize(5*1024*1024)
+	{
+	}
+};
+
 
 
 ///btCollisionConfiguration allows to configure Bullet collision detection
@@ -40,7 +61,7 @@ class	btDefaultCollisionConfiguration : public btCollisionConfiguration
 
 	//default simplex/penetration depth solvers
 	btVoronoiSimplexSolver*	m_simplexSolver;
-	btGjkEpaPenetrationDepthSolver*	m_pdSolver;
+	btConvexPenetrationDepthSolver*	m_pdSolver;
 	
 	//default CreationFunctions, filling the m_doubleDispatch table
 	btCollisionAlgorithmCreateFunc*	m_convexConvexCreateFunc;
@@ -50,8 +71,12 @@ class	btDefaultCollisionConfiguration : public btCollisionConfiguration
 	btCollisionAlgorithmCreateFunc*	m_swappedCompoundCreateFunc;
 	btCollisionAlgorithmCreateFunc* m_emptyCreateFunc;
 	btCollisionAlgorithmCreateFunc* m_sphereSphereCF;
+#ifdef USE_BUGGY_SPHERE_BOX_ALGORITHM
 	btCollisionAlgorithmCreateFunc* m_sphereBoxCF;
 	btCollisionAlgorithmCreateFunc* m_boxSphereCF;
+#endif //USE_BUGGY_SPHERE_BOX_ALGORITHM
+
+	btCollisionAlgorithmCreateFunc* m_boxBoxCF;
 	btCollisionAlgorithmCreateFunc*	m_sphereTriangleCF;
 	btCollisionAlgorithmCreateFunc*	m_triangleSphereCF;
 	btCollisionAlgorithmCreateFunc*	m_planeConvexCF;
@@ -59,7 +84,8 @@ class	btDefaultCollisionConfiguration : public btCollisionConfiguration
 	
 public:
 
-	btDefaultCollisionConfiguration(btStackAlloc*	stackAlloc=0,btPoolAllocator*	persistentManifoldPool=0,btPoolAllocator*	collisionAlgorithmPool=0);
+
+	btDefaultCollisionConfiguration(const btDefaultCollisionConstructionInfo& constructionInfo = btDefaultCollisionConstructionInfo());
 
 	virtual ~btDefaultCollisionConfiguration();
 
@@ -80,7 +106,7 @@ public:
 	}
 
 
-	btCollisionAlgorithmCreateFunc* getCollisionAlgorithmCreateFunc(int proxyType0,int proxyType1);
+	virtual btCollisionAlgorithmCreateFunc* getCollisionAlgorithmCreateFunc(int proxyType0,int proxyType1);
 
 
 };

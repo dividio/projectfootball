@@ -25,7 +25,8 @@ enum btTypedConstraintType
 	HINGE_CONSTRAINT_TYPE,
 	CONETWIST_CONSTRAINT_TYPE,
 	D6_CONSTRAINT_TYPE,
-	VEHICLE_CONSTRAINT_TYPE
+	VEHICLE_CONSTRAINT_TYPE,
+	SLIDER_CONSTRAINT_TYPE
 };
 
 ///TypedConstraint is the baseclass for Bullet constraints and vehicles
@@ -98,6 +99,12 @@ public:
 	{
 		return m_userConstraintId;
 	}
+
+	int getUid() const
+	{
+		return m_userConstraintId;   
+	} 
+
 	btScalar	getAppliedImpulse() const
 	{
 		return m_appliedImpulse;
@@ -107,6 +114,7 @@ public:
 	{
 		return m_constraintType;
 	}
+
 };
 
 #endif //TYPED_CONSTRAINT_H

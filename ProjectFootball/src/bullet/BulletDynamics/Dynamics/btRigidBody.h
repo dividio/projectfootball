@@ -160,11 +160,15 @@ public:
 	///but a rigidbody is derived from btCollisionObject, so we can safely perform an upcast
 	static const btRigidBody*	upcast(const btCollisionObject* colObj)
 	{
-		return (const btRigidBody*)colObj->getInternalOwner();
+		if (colObj->getInternalType()==btCollisionObject::CO_RIGID_BODY)
+			return (const btRigidBody*)colObj;
+		return 0;
 	}
 	static btRigidBody*	upcast(btCollisionObject* colObj)
 	{
-		return (btRigidBody*)colObj->getInternalOwner();
+		if (colObj->getInternalType()==btCollisionObject::CO_RIGID_BODY)
+			return (btRigidBody*)colObj;
+		return 0;
 	}
 	
 	/// continuous collision detection needs prediction
@@ -182,6 +186,26 @@ public:
 	}
 
 	void			setDamping(btScalar lin_damping, btScalar ang_damping);
+
+	btScalar getLinearDamping() const
+	{
+		return m_linearDamping;
+	}
+
+	btScalar getAngularDamping() const
+	{
+		return m_angularDamping;
+	}
+
+	btScalar getLinearSleepingThreshold() const
+	{
+		return m_linearSleepingThreshold;
+	}
+
+	btScalar getAngularSleepingThreshold() const
+	{
+		return m_angularSleepingThreshold;
+	}
 
 	void			applyDamping(btScalar timeStep);
 
@@ -233,7 +257,7 @@ public:
 	void	applyForce(const btVector3& force, const btVector3& rel_pos) 
 	{
 		applyCentralForce(force);
-		applyTorque(rel_pos.cross(force));
+		applyTorque(rel_pos.cross(force)*m_angularFactor);
 	}
 	
 	void applyCentralImpulse(const btVector3& impulse)
@@ -448,7 +472,6 @@ public:
 	{
 		return m_constraintRefs.size();
 	}
-
 
 	int	m_debugBodyId;
 };

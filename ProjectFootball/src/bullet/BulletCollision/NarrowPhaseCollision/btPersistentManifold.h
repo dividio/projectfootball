@@ -28,6 +28,7 @@ struct btCollisionResult;
 extern btScalar gContactBreakingThreshold;
 
 typedef bool (*ContactDestroyedCallback)(void* userPersistentData);
+typedef bool (*ContactProcessedCallback)(btManifoldPoint& cp,void* body0,void* body1);
 extern ContactDestroyedCallback	gContactDestroyedCallback;
 
 
@@ -110,7 +111,7 @@ public:
 	
 	int getCacheEntry(const btManifoldPoint& newPoint) const;
 
-	void AddManifoldPoint( const btManifoldPoint& newPoint);
+	int addManifoldPoint( const btManifoldPoint& newPoint);
 
 	void removeContactPoint (int index)
 	{
@@ -123,6 +124,10 @@ public:
 			m_pointCache[index] = m_pointCache[lastUsedIndex]; 
 			//get rid of duplicated userPersistentData pointer
 			m_pointCache[lastUsedIndex].m_userPersistentData = 0;
+			m_pointCache[lastUsedIndex].m_appliedImpulse = 0.f;
+			m_pointCache[lastUsedIndex].m_lateralFrictionInitialized = false;
+			m_pointCache[lastUsedIndex].m_appliedImpulseLateral1 = 0.f;
+			m_pointCache[lastUsedIndex].m_appliedImpulseLateral2 = 0.f;
 			m_pointCache[lastUsedIndex].m_lifeTime = 0;
 		}
 
@@ -136,12 +141,20 @@ public:
 #define MAINTAIN_PERSISTENCY 1
 #ifdef MAINTAIN_PERSISTENCY
 		int	lifeTime = m_pointCache[insertIndex].getLifeTime();
+		btScalar	appliedImpulse = m_pointCache[insertIndex].m_appliedImpulse;
+		btScalar	appliedLateralImpulse1 = m_pointCache[insertIndex].m_appliedImpulseLateral1;
+		btScalar	appliedLateralImpulse2 = m_pointCache[insertIndex].m_appliedImpulseLateral2;
+				
 		btAssert(lifeTime>=0);
 		void* cache = m_pointCache[insertIndex].m_userPersistentData;
 		
 		m_pointCache[insertIndex] = newPoint;
 
 		m_pointCache[insertIndex].m_userPersistentData = cache;
+		m_pointCache[insertIndex].m_appliedImpulse = appliedImpulse;
+		m_pointCache[insertIndex].m_appliedImpulseLateral1 = appliedLateralImpulse1;
+		m_pointCache[insertIndex].m_appliedImpulseLateral2 = appliedLateralImpulse2;
+		
 		m_pointCache[insertIndex].m_lifeTime = lifeTime;
 #else
 		clearUserCache(m_pointCache[insertIndex]);
