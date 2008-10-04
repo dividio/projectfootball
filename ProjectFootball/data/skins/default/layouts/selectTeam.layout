@@ -70,28 +70,41 @@
         <Window Type="TaharezLook/Combobox" Name="SelectTeam/Confederation" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.28,0},{0.233784,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.28,0},{0.24,0}}" />
             <Property Name="MaxEditTextLength" Value="1073741823" />
         </Window>
         <Window Type="TaharezLook/Combobox" Name="SelectTeam/Country" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.375,0},{0.08,0},{0.615,0},{0.250676,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.375,0},{0.08,0},{0.615,0},{0.24,0}}" />
             <Property Name="MaxEditTextLength" Value="1073741823" />
         </Window>
         <Window Type="TaharezLook/Combobox" Name="SelectTeam/Competition" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.72,0},{0.08,0},{0.97,0},{0.250676,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.72,0},{0.08,0},{0.97,0},{0.24,0}}" />
             <Property Name="MaxEditTextLength" Value="1073741823" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="SelectTeam/SelectCompetitionLabel" >
+        <Window Type="TaharezLook/StaticText" Name="SelectTeam/ConfederationLabel" >
             <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="Text" Value="Select Competition:" />
             <Property Name="FrameEnabled" Value="false" />
             <Property Name="BackgroundEnabled" Value="false" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.03,0},{0.4,0},{0.08,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.03,0},{0.28,0},{0.08,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="SelectTeam/CountryLabel" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="false" />
+            <Property Name="BackgroundEnabled" Value="false" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.375,0},{0.03,0},{0.615,0},{0.08,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="SelectTeam/CompetitionLabel" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="false" />
+            <Property Name="BackgroundEnabled" Value="false" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.72,0},{0.03,0},{0.97,0},{0.08,0}}" />
         </Window>
     </Window>
 </GUILayout>

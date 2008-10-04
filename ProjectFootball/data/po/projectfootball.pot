@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-19 20:33+0200\n"
+"POT-Creation-Date: 2008-10-04 13:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: src/state/CStateCredits.cpp:46 src/state/CStateMonitor.cpp:56
 #: src/state/CStateLoadGame.cpp:63 src/state/CStateConfig.cpp:61
-#: src/state/CStateSelectTeam.cpp:58 src/state/CStateRanking.cpp:43
+#: src/state/CStateSelectTeam.cpp:75 src/state/CStateRanking.cpp:43
 #: src/state/CStateTeamPlayers.cpp:66 src/state/CStateResults.cpp:54
 msgid "Back"
 msgstr ""
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Before Start"
 msgstr ""
 
-#: src/state/CStateSelectTeam.cpp:52
+#: src/state/CStateSelectTeam.cpp:65
 msgid "Budget:"
 msgstr ""
 
@@ -55,16 +55,28 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
+#: src/state/CStateSelectTeam.cpp:73
+msgid "Competition:"
+msgstr ""
+
+#: src/state/CStateSelectTeam.cpp:69
+msgid "Confederation:"
+msgstr ""
+
 #: src/state/CStateMainMenu.cpp:43
 msgid "Config"
 msgstr ""
 
-#: src/state/CStateMonitor.cpp:55 src/state/CStateMatchResult.cpp:48
+#: src/state/CStateMonitor.cpp:55 src/state/CStateMatchResult.cpp:50
 msgid "Continue"
 msgstr ""
 
 #: src/sim/entity/CReferee.cpp:228
 msgid "Corner Kick"
+msgstr ""
+
+#: src/state/CStateSelectTeam.cpp:71
+msgid "Country:"
 msgstr ""
 
 #: src/state/CStateMainMenu.cpp:45
@@ -87,7 +99,7 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-#: src/state/CStateMatchResult.cpp:51 src/state/CStateMatchResult.cpp:53
+#: src/state/CStateMatchResult.cpp:53 src/state/CStateMatchResult.cpp:55
 msgid "Event"
 msgstr ""
 
@@ -103,7 +115,7 @@ msgstr ""
 msgid "Goal Kick"
 msgstr ""
 
-#: src/state/CStateMatchResult.cpp:153 src/state/CStateMatchResult.cpp:168
+#: src/state/CStateMatchResult.cpp:170 src/state/CStateMatchResult.cpp:185
 #, c-format
 msgid "Goal by %s"
 msgstr ""
@@ -128,7 +140,7 @@ msgstr ""
 msgid "Kick Off"
 msgstr ""
 
-#: src/state/CStateSelectTeam.cpp:54
+#: src/state/CStateSelectTeam.cpp:67
 msgid "Level:"
 msgstr ""
 
@@ -160,7 +172,7 @@ msgstr ""
 msgid "Name (Not Line Up)"
 msgstr ""
 
-#: src/state/CStateSelectTeam.cpp:50
+#: src/state/CStateSelectTeam.cpp:63
 msgid "Name:"
 msgstr ""
 
@@ -176,6 +188,14 @@ msgstr ""
 msgid "Next Match:"
 msgstr ""
 
+#: src/state/CStateSelectTeam.cpp:215
+msgid "No competitions"
+msgstr ""
+
+#: src/state/CStateSelectTeam.cpp:189
+msgid "No countries"
+msgstr ""
+
 #: src/state/CStateGame.cpp:44
 msgid "Play Match"
 msgstr ""
@@ -184,7 +204,7 @@ msgstr ""
 msgid "Play On"
 msgstr ""
 
-#: src/state/CStateSelectTeam.cpp:48
+#: src/state/CStateSelectTeam.cpp:61
 msgid "Please, select your team:"
 msgstr ""
 
@@ -202,10 +222,6 @@ msgstr ""
 
 #: src/state/CStateRanking.cpp:45
 msgid "Ranking:"
-msgstr ""
-
-#: src/state/CStateSelectTeam.cpp:56
-msgid "Region/Country/Division"
 msgstr ""
 
 #: src/state/CStateConfig.cpp:51
@@ -236,7 +252,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/state/CStateSelectTeam.cpp:46
+#: src/state/CStateSelectTeam.cpp:59
 msgid "Select Team"
 msgstr ""
 
@@ -284,6 +300,6 @@ msgstr ""
 msgid "Zoom"
 msgstr ""
 
-#: src/state/CStateMatchResult.cpp:50 src/state/CStateMatchResult.cpp:52
+#: src/state/CStateMatchResult.cpp:52 src/state/CStateMatchResult.cpp:54
 msgid "min"
 msgstr ""

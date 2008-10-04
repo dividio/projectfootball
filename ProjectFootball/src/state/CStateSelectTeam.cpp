@@ -66,7 +66,11 @@ CStateSelectTeam::CStateSelectTeam()
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"SelectTeam/LevelLabel"))->setText((CEGUI::utf8*)gettext("Level:"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"SelectTeam/Country"))->setText((CEGUI::utf8*)gettext("Region/Country/Division"));
+            (CEGUI::utf8*)"SelectTeam/ConfederationLabel"))->setText((CEGUI::utf8*)gettext("Confederation:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"SelectTeam/CountryLabel"))->setText((CEGUI::utf8*)gettext("Country:"));
+    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
+            (CEGUI::utf8*)"SelectTeam/CompetitionLabel"))->setText((CEGUI::utf8*)gettext("Competition:"));
     static_cast<CEGUI::Window*>(ceguiWM->getWindow(
             (CEGUI::utf8*)"SelectTeam/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
 
