@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="Monitor" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="TaharezLook/StaticImage" Name="Monitor/Background" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Property Name="Image" Value="set:Background image:Background" />
+            <Window Type="TaharezLook/Button" Name="Monitor/BackButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.92,0},{0.7,0},{0.97,0}}" />
+                <Event Name="Clicked" Function="cmd_back" />
+            </Window>
+            <Window Type="TaharezLook/Button" Name="Monitor/ContinueButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.92,0},{0.995,0},{0.97,0}}" />
+                <Event Name="Clicked" Function="cmd_Monitor_Continue" />
+            </Window>
+            <Window Type="TaharezLook/StaticImage" Name="Monitor/Image" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.12,0},{0.995,0},{0.589,0}}" />
+            </Window>
+            <Window Type="TaharezLook/Button" Name="Monitor/StartButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.01,0},{0.75,0},{0.06,0}}" />
+                <Event Name="Clicked" Function="cmd_Monitor_StartSimulation" />
+            </Window>
+            <Window Type="TaharezLook/Button" Name="Monitor/ZoomButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.01,0},{0.95,0},{0.06,0}}" />
+                <Event Name="Clicked" Function="cmd_Monitor_ToggleZoom" />
+            </Window>
+            <Window Type="TaharezLook/TabControl" Name="Monitor/TabControl1" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="TabHeight" Value="{0,38}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TabPanePosition" Value="Top" />
+                <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.07,0},{0.5,0},{0.97,0}}" />
+                <Window Type="DefaultWindow" Name="Monitor/TeamTab" >
+                    <Property Name="Visible" Value="True" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    <Window Type="TaharezLook/MultiColumnList" Name="Monitor/TeamPlayersList" >
+                      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                      <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.5,0}}" />
+                      <Property Name="ColumnsMovable" Value="False" />
+                      <Property Name="ColumnsSizable" Value="False" />
+                      <Property Name="SortSettingEnabled" Value="False" />
+                      <Property Name="ForceHorzScrollbar" Value="False" />
+                    </Window>
+                </Window>
+                <Window Type="DefaultWindow" Name="Monitor/FormationTab" >
+                    <Property Name="Visible" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    <Window Type="TaharezLook/Button" Name="Monitor/433Button" >
+                        <Property Name="Font" Value="DejaVuSans-10" />
+                        <Property Name="Text" Value="4-3-3" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.25,0},{0.7,0},{0.35,0}}" />
+                        <Event Name="Clicked" Function="cmd_Monitor_changeTo433" />
+                    </Window>
+                    <Window Type="TaharezLook/Button" Name="Monitor/442Button" >
+                        <Property Name="Font" Value="DejaVuSans-10" />
+                        <Property Name="Text" Value="4-4-2" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.45,0},{0.7,0},{0.55,0}}" />
+                        <Event Name="Clicked" Function="cmd_Monitor_changeTo442" />
+                    </Window>
+                </Window>
+            </Window>
+            <Window Type="TaharezLook/TabControl" Name="Monitor/TabControl2" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="TabHeight" Value="{0,38}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TabPanePosition" Value="Top" />
+                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.62,0},{0.995,0},{0.9,0}}" />
+                <Window Type="DefaultWindow" Name="Monitor/LogTab" >
+                    <Property Name="Visible" Value="True" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    <Window Type="TaharezLook/Listbox" Name="Monitor/Log" >
+                        <Property Name="Font" Value="DejaVuSans-10" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    </Window>
+                </Window>
+                <Window Type="DefaultWindow" Name="Monitor/StatisticsTab" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                </Window>
+            </Window>
+            <Window Type="TaharezLook/FrameWindow" Name="Monitor/FrameWindow" >
+                <Property Name="Visible" Value="False" />
+                <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+                <Property Name="SizingEnabled" Value="False" />
+                <Property Name="RollUpEnabled" Value="False" />
+                <Property Name="DragMovingEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TitlebarEnabled" Value="True" />
+                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.01,0},{1,0},{0.99,0}}" />
+                <Event Name="CloseClicked" Function="cmd_Monitor_ToggleZoom" />
+                <Window Type="TaharezLook/Button" Name="Monitor/Frame/2DButton" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.05,0},{0.65,0},{0.1,0}}" />
+                    <Event Name="Clicked" Function="cmd_Monitor_SwitchTo2DView" />
+                </Window>
+                <Window Type="TaharezLook/Button" Name="Monitor/Frame/3DButton" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.68,0},{0.05,0},{0.98,0},{0.1,0}}" />
+                    <Event Name="Clicked" Function="cmd_Monitor_SwitchTo3DView" />
+                </Window>
+                <Window Type="TaharezLook/Button" Name="Monitor/Frame/StartButton" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.05,0},{0.32,0},{0.1,0}}" />
+                    <Event Name="Clicked" Function="cmd_Monitor_StartSimulation" />
+                </Window>
+                <Window Type="TaharezLook/StaticImage" Name="Monitor/Frame/Image" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1485,0},{0.14,0},{0.8515,0},{0.857,0}}" />
+                </Window>
+                <Window Type="TaharezLook/Listbox" Name="Monitor/Frame/Log" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.87,0},{0.7,0},{0.99,0}}" />
+                </Window>
+                <Window Type="TaharezLook/StaticText" Name="Monitor/Frame/HomeName" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.015,0},{0.15,0},{0.14,0},{0.2,0}}" />
+                </Window>
+                <Window Type="TaharezLook/StaticText" Name="Monitor/Frame/AwayName" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.86,0},{0.15,0},{0.985,0},{0.2,0}}" />
+                </Window>
+                <Window Type="TaharezLook/StaticText" Name="Monitor/Frame/HomeScore" >
+                    <Property Name="Font" Value="DejaVuSans-32" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.015,0},{0.25,0},{0.14,0},{0.4,0}}" />
+                </Window>
+                <Window Type="TaharezLook/StaticText" Name="Monitor/Frame/AwayScore" >
+                    <Property Name="Font" Value="DejaVuSans-32" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.86,0},{0.25,0},{0.985,0},{0.4,0}}" />
+                </Window>
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Monitor/TeamNames" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="HorzFormatting" Value="HorzCentred" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.01,0},{0.4,0},{0.06,0}}" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Monitor/Score" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="HorzFormatting" Value="HorzCentred" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.46,0},{0.01,0},{0.54,0},{0.06,0}}" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

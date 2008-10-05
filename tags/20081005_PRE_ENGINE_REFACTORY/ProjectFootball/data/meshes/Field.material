@@ -1,0 +1,27 @@
+material Field_auv
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture Field_auv.png
+			}
+		}
+	}
+}
+
+material web_auv
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture web_auv.png
+			}
+		}
+	}
+}
