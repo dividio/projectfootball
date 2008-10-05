@@ -21,10 +21,11 @@
 #ifndef IGAMESTATE_H_
 #define IGAMESTATE_H_
 
-#include "../db/dao/factory/IDAOFactory.h"
+// TODO: Remove singlePlayer dependency
+#include "../singlePlayer/db/dao/factory/IDAOFactory.h"
 #include "CGameReportRegister.h"
-#include "event/strategy/IGameEventStrategy.h"
-#include "option/CGameOptionManager.h"
+#include "../singlePlayer/event/strategy/IGameEventStrategy.h"
+#include "../singlePlayer/option/CGameOptionManager.h"
 
 #define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
 #define S_GAME_TYPE_QUICKPLAY       "QUICK_PLAY"

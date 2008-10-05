@@ -23,8 +23,8 @@
 
 #include "CApplication.h"
 #include "audio/CAudioSystem.h"
-#include "state/CStateManager.h"
-#include "state/CStateMainMenu.h"
+#include "engine/CScreenManager.h"
+#include "engine/screen/CScreenMainMenu.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
 #include "engine/option/CSystemOptionManager.h"
@@ -71,13 +71,13 @@ CApplication* CApplication::getInstance()
 
 void CApplication::go()
 {
-    CStateManager::getInstance()->pushState(CStateMainMenu::getInstance());
+    CScreenManager::getInstance()->pushState(CScreenMainMenu::getInstance());
     startRenderLoop();
 }
 
 void CApplication::exit()
 {
-    CStateManager::getInstance()->popStack();
+    CScreenManager::getInstance()->popStack();
 }
 
 OIS::Mouse* CApplication::getMouse()
@@ -269,7 +269,7 @@ void CApplication::setupCEGUI()
 
 void CApplication::createFrameListeners()
 {
-    addFrameListener( CStateManager::getInstance() );
+    addFrameListener( CScreenManager::getInstance() );
 }
 
 void CApplication::addFrameListener( Ogre::FrameListener *frameListener )

@@ -17,7 +17,7 @@ end
 
 SGoalie_Global["OnMessage"] = function(player, message)
     local handle = false
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local mode = sim:getReferee():getGameMode()
     if (message.Msg == PF.Msg_Interrupt) then
         player:getFSM():changeState("SPl_GoToStrategicPosition")
@@ -56,7 +56,7 @@ SGoalie_ReturnToHomeRegion["Execute"] = function(player)
     elseif player:atHome() then
         player:getFSM():changeState("SGoalie_LookBall")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         local strategicPosition = calculateGoaliePosition(player)
         player:getSteering():setTargetPoint(strategicPosition)
         sim:dash(player, player:getSteering():calculate())
@@ -83,7 +83,7 @@ end
 
 SGoalie_KickBall["Execute"] = function(player)
     if player:isBallKickable() then
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         local ball = sim:getBall()
         local direction
         if player:isTeamLeft() then
@@ -113,7 +113,7 @@ end
 SGoalie_ChaseBall = {}
 
 SGoalie_ChaseBall["Enter"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     player:getSteering():pursuitOn()
     player:getSteering():setTargetEntity(sim:getBall())
 end
@@ -123,7 +123,7 @@ SGoalie_ChaseBall["Execute"] = function(player)
         player:getFSM():changeState("SGoalie_KickBall")
     elseif player:getTeam():isNearestTeamMatePlayerToBall(player)
        and player:getTeam():isBallInOwnPenaltyArea() then
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         player:getSteering():setTargetPoint(sim:getBallPosition())
         sim:dash(player, player:getSteering():calculate())
     else
@@ -156,7 +156,7 @@ SGoalie_LookBall["Execute"] = function(player)
     elseif not player:atHome() then
         player:getFSM():changeState("SGoalie_ReturnToHomeRegion")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         sim:dash(player, player:getSteering():calculate())
         local direction = sim:getBallPosition() - player:getPosition()
         player:setHeading(direction)
@@ -176,7 +176,7 @@ end
 function calculateGoaliePosition(goalie)
     local rectangle = goalie:getTeam():getPlayerStrategicPosition(1):getPlayingArea() -- TODO player number
     local finalPoint = PF.btVector3(0,0,0)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local topL
     local topR
     local bottomL

@@ -19,7 +19,7 @@
 ******************************************************************************/
 
 #include "CInputManager.h"
-#include "../state/CStateManager.h"
+#include "../engine/CScreenManager.h"
 #include "../CApplication.h"
 
 CInputManager::CInputManager()
@@ -50,7 +50,7 @@ void CInputManager::capture()
 bool CInputManager::keyPressed(const OIS::KeyEvent& e)
 {
     if(e.key==OIS::KC_ESCAPE) {
-        CStateManager::getInstance()->popState();
+        CScreenManager::getInstance()->popState();
     } else if(e.key==OIS::KC_F12) {
         CApplication::getInstance()->takeScreenshot();
     } else {

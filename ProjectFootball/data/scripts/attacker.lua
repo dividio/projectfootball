@@ -17,7 +17,7 @@ end
 
 SAttacker_Global["OnMessage"] = function(player, message)
     local handle = false
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local mode = sim:getReferee():getGameMode()
     if (message.Msg == PF.Msg_Interrupt) then
         player:getFSM():changeState("SPl_GoToStrategicPosition")
@@ -56,7 +56,7 @@ SAttacker_ReturnToHomeRegion["Execute"] = function(player)
     elseif player:atHome() then
         player:getFSM():changeState("SAttacker_LookBall")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         local strategicPosition = player:getStrategicPosition()
         player:getSteering():setTargetPoint(strategicPosition)
         sim:dash(player, player:getSteering():calculate())
@@ -114,7 +114,7 @@ end
 SAttacker_ChaseBall = {}
 
 SAttacker_ChaseBall["Enter"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     player:getSteering():pursuitOn()
     player:getSteering():setTargetEntity(sim:getBall())
 end
@@ -124,7 +124,7 @@ SAttacker_ChaseBall["Execute"] = function(player)
         player:getFSM():changeState("SAttacker_KickBall")
     elseif player:getTeam():isNearestTeamMatePlayerToBall(player)
        and player:getTeam():isBallInOwnPenaltyArea() then
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         player:getSteering():setTargetPoint(sim:getBallPosition())
         sim:dash(player, player:getSteering():calculate())
     else
@@ -157,7 +157,7 @@ SAttacker_LookBall["Execute"] = function(player)
     elseif not player:atHome() then
         player:getFSM():changeState("SAttacker_ReturnToHomeRegion")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         sim:dash(player, player:getSteering():calculate())
         local direction = sim:getBallPosition() - player:getPosition()
         player:setHeading(direction)

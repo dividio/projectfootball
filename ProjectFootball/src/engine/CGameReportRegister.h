@@ -23,7 +23,8 @@
 
 #include <vector>
 
-#include "report/CMatchReport.h"
+// TODO: Remove singlePlayer dependency
+#include "../singlePlayer/report/CMatchReport.h"
 
 class CGameReportRegister
 {

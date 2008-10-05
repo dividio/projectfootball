@@ -263,7 +263,7 @@ class CBeanClassRenderer(UtilRenderer) :
     file.write("#include <string>\n")
     file.write("\n");
     if self.thereIsDateAttrib(klass)!=0 :
-      file.write("#include \"../../utils/CDate.h\"\n")
+      file.write("#include \"../../../utils/CDate.h\"\n")
       file.write("\n");
     file.write("class "+cClass+"\n")
     file.write("{\n")
@@ -694,7 +694,7 @@ class CDAOFactorySQLiteRenderer(UtilRenderer) :
     file.write("#include <sstream>\n")
     file.write("\n")
     file.write("#include \"CDAOFactorySQLite.h\"\n")
-    file.write("#include \"../../../../utils/CLog.h\"\n")
+    file.write("#include \"../../../../../utils/CLog.h\"\n")
     file.write("\n");
     file.write(self.renderConstructorCPP(klasses))
     file.write(self.renderDestructorCPP(klasses))
@@ -959,7 +959,7 @@ class CClassDAOEntityRenderer(UtilRenderer) :
     file.write("#include <string.h>\n")
     file.write("\n");
     file.write("#include \""+cClassDAO+".h\"\n")
-    file.write("#include \"../../../../utils/CLog.h\"\n")
+    file.write("#include \"../../../../../utils/CLog.h\"\n")
     file.write("\n");
     file.write(self.renderConstructorCPP(klass))
     file.write(self.renderDestructorCPP(klass))

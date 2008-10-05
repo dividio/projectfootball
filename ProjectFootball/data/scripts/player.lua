@@ -37,7 +37,7 @@ end
 
 SPl_Global["OnMessage"] = function(player, message)
     local handle = false
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local mode = sim:getReferee():getGameMode()
     if (message.Msg == PF.Msg_Interrupt) then
         player:getFSM():changeState("SPl_GoToStrategicPosition")
@@ -68,7 +68,7 @@ SPl_BeforeStart["Enter"] = function(player)
 end
 
 SPl_BeforeStart["Execute"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     if player:atHome() then
         player:getFSM():changeState("SPl_Stop")
     else
@@ -95,7 +95,7 @@ SPl_Stop["Enter"] = function(player)
 end
 
 SPl_Stop["Execute"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     sim:dash(player, player:getSteering():calculate())
     direction = sim:getBallPosition() - player:getPosition()
     player:setHeading(direction)
@@ -125,7 +125,7 @@ SPl_LookBall["Execute"] = function(player)
     elseif not player:atHome() then
         player:getFSM():changeState("SPl_ReturnToHomeRegion")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         sim:dash(player, player:getSteering():calculate())
         local direction = sim:getBallPosition() - player:getPosition()
         player:setHeading(direction)
@@ -153,7 +153,7 @@ SPl_GoToKickPosition["Execute"] = function(player)
     if player:atKickPosition() then
         player:getFSM():changeState("SPl_KickIn")
     else
-      local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+      local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
       sim:dash(player, player:getSteering():calculate())
     end
 end
@@ -178,7 +178,7 @@ SPl_GoToStrategicPosition["Execute"] = function(player)
     if player:atHome() then
         player:getFSM():changeState("SPl_Stop")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         player:getSteering():setTargetPoint(player:getStrategicPosition())
         sim:dash(player, player:getSteering():calculate())
     end
@@ -233,13 +233,13 @@ end
 SPl_KickIn = {}
 
 SPl_KickIn["Enter"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local direction = sim:getBallPosition() - player:getPosition()
     player:setHeading(direction)
 end
 
 SPl_KickIn["Execute"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local direction = sim:getBallPosition() - player:getPosition()
     player:setHeading(direction)
     if player:isBallKickable() then
@@ -269,7 +269,7 @@ end
 SPl_ChaseBall = {}
 
 SPl_ChaseBall["Enter"] = function(player)
-    local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     player:getSteering():pursuitOn()
     player:getSteering():setTargetEntity(sim:getBall())
 end
@@ -278,7 +278,7 @@ SPl_ChaseBall["Execute"] = function(player)
     if player:isBallKickable() then
         player:getFSM():changeState("SPl_KickBall")
     elseif player:getTeam():isNearestTeamMatePlayerToBall(player) then
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         sim:dash(player, player:getSteering():calculate())
     else
         player:getFSM():changeState("SPl_ReturnToHomeRegion")
@@ -309,7 +309,7 @@ SPl_ReturnToHomeRegion["Execute"] = function(player)
     elseif player:atHome() then
         player:getFSM():changeState("SPl_LookBall")
     else
-        local sim = PF.CStateMonitor_getInstance():getSimulationManager()
+        local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
         local strategicPosition = player:getStrategicPosition()
         player:getSteering():setTargetPoint(strategicPosition)
         sim:dash(player, player:getSteering():calculate())

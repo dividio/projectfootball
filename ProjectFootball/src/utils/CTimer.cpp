@@ -18,9 +18,9 @@
 *                                                                             *
 ******************************************************************************/
 
-
+// TODO: Remove CScreenManager dependency
 #include "CTimer.h"
-#include "../state/CStateManager.h"
+#include "../engine/CScreenManager.h"
 
 CTimer::CTimer(int frequency)
 {
@@ -37,7 +37,7 @@ CTimer::~CTimer()
 
 void CTimer::update()
 {
-    m_currentTime += CStateManager::getInstance()->getTimeSinceLastFrame();
+    m_currentTime += CScreenManager::getInstance()->getTimeSinceLastFrame();
 }
 
 

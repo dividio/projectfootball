@@ -21,7 +21,7 @@
 #include <string>
 
 #include "CGameStateAbstractFactory.h"
-#include "CSinglePlayerGameState.h"
+#include "../singlePlayer/CSinglePlayerGameState.h"
 #include "CGameEngine.h"
 #include "../utils/CLog.h"
 

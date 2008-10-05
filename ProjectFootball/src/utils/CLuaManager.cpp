@@ -33,7 +33,6 @@ CLuaManager::CLuaManager()
     } else {
         luaL_openlibs(m_luaVM);
         luaopen_PF(m_luaVM);
-        luaopen_CEGUI(m_luaVM);
     }
     // set ID string
     d_identifierString = "CLuaManager - Project Football scripting module for Lua and CEGUI";

@@ -27,7 +27,7 @@
 
 #include "CSystemOptionManager.h"
 #include "../../utils/CLog.h"
-#include "optionsUtil.h"
+#include "../../utils/optionsUtil.h"
 
 CSystemOptionManager::CSystemOptionManager()
    : m_categoriesList()
