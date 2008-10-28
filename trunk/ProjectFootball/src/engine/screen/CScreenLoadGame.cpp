@@ -30,7 +30,6 @@
 #include "../CGameEngine.h"
 #include "../singlePlayer/db/sqlite/dao/factory/CDAOFactorySQLite.h"
 #include "../../singlePlayer/CDataGenerator.h"
-#include "../../utils/CDate.h"
 
 CScreenLoadGame::CScreenLoadGame()
     :CScreen()
@@ -134,24 +133,8 @@ void CScreenLoadGame::newGame()
     masterDatabase->getIPfGamesDAO()->insertReg(&game);
 
     CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
-    daoFactory->beginTransaction();
-    daoFactory->executeScriptFile("data/database/scripts/tables.sql");
-    daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
-    daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
-    daoFactory->executeScriptFile("data/database/scripts/inserts_countries.sql");
-    daoFactory->executeScriptFile("data/database/scripts/inserts_teams.sql");
-    daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
-    daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
-    daoFactory->executeScriptFile("data/database/scripts/inserts_registeredteams.sql");
-    std::vector<CPfCompetitions*> *competitions = daoFactory->getIPfCompetitionsDAO()->findCompetitions();
-    std::vector<CPfCompetitions*>::iterator it;
-    CDate date(31, 8, 2008, 17, 0, 0);
-    CDataGenerator generator;
-    for(it = competitions->begin(); it != competitions->end(); it++) {
-        generator.generateCompetitionMatches(daoFactory, (*it), date);
-    }
-    daoFactory->executeScriptFile("data/database/scripts/inserts_gameoptions.sql");
-    daoFactory->commit();
+    CDataGenerator generator(daoFactory);
+    generator.generateDataBase();
 
     CPfGameStates newGameState;
     newGameState.setSState(S_STATE_NEWGAME);

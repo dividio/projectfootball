@@ -29,8 +29,9 @@
 #include "db/bean/CPfCompetitionPhases.h"
 #include "../utils/CDate.h"
 
-CDataGenerator::CDataGenerator()
+CDataGenerator::CDataGenerator(IDAOFactory *daoFactory)
 {
+    m_daoFactory = daoFactory;
 }
 
 CDataGenerator::~CDataGenerator()
@@ -39,13 +40,34 @@ CDataGenerator::~CDataGenerator()
 
 void CDataGenerator::generateDataBase()
 {
+    m_daoFactory->beginTransaction();
 
+    m_daoFactory->executeScriptFile("data/database/scripts/tables.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/inserts_gameoptions.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/inserts_countries.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/inserts_teams.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/inserts_registeredteams.sql");
+
+    //Matches generation
+    std::vector<CPfCompetitions*> *competitions = m_daoFactory->getIPfCompetitionsDAO()->findCompetitions();
+    std::vector<CPfCompetitions*>::iterator it;
+    CDate date(31, 8, 2008, 17, 0, 0);
+
+    for(it = competitions->begin(); it != competitions->end(); it++) {
+        generateCompetitionMatches((*it), date);
+    }
+
+    m_daoFactory->commit();
 }
 
-void CDataGenerator::generateCompetitionMatches(IDAOFactory *daoFactory, CPfCompetitions *competition, CDate date)
+void CDataGenerator::generateCompetitionMatches(CPfCompetitions *competition, CDate date)
 {
-    std::vector<CPfTeams*>              *teams = daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(competition->getXCompetition());
-    std::vector<CPfCompetitionPhases*>  *phases = daoFactory->getIPfCompetitionPhasesDAO()->findByXFkCompetition(competition->getXCompetition_str());
+    std::vector<CPfTeams*>              *teams = m_daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(competition->getXCompetition());
+    std::vector<CPfCompetitionPhases*>  *phases = m_daoFactory->getIPfCompetitionPhasesDAO()->findByXFkCompetition(competition->getXCompetition_str());
     int numTeams = teams->size();
     int numPhases = phases->size();
     int returnOffset = numPhases/2;
@@ -66,8 +88,8 @@ void CDataGenerator::generateCompetitionMatches(IDAOFactory *daoFactory, CPfComp
         }
     }
 
-    generateMatches(daoFactory, homeList, awayList, phases->operator[](0)->getXCompetitionPhase(), date);
-    generateMatches(daoFactory, awayList, homeList, phases->operator[](returnOffset)->getXCompetitionPhase(), returnDate);
+    generateMatches(homeList, awayList, phases->operator[](0)->getXCompetitionPhase(), date);
+    generateMatches(awayList, homeList, phases->operator[](returnOffset)->getXCompetitionPhase(), returnDate);
     for(count=1; count < numPhases/2; count++) {
         date += 7;
         returnDate += 7;
@@ -97,21 +119,21 @@ void CDataGenerator::generateCompetitionMatches(IDAOFactory *daoFactory, CPfComp
             awayList->push_back(homeBack);
         }
 
-        generateMatches(daoFactory, homeList, awayList, phases->operator[](count)->getXCompetitionPhase(), date);
-        generateMatches(daoFactory, awayList, homeList, phases->operator[](count + returnOffset)->getXCompetitionPhase(), returnDate);
+        generateMatches(homeList, awayList, phases->operator[](count)->getXCompetitionPhase(), date);
+        generateMatches(awayList, homeList, phases->operator[](count + returnOffset)->getXCompetitionPhase(), returnDate);
     }
 
     delete awayList;
     delete homeList;
-    daoFactory->getIPfCompetitionPhasesDAO()->freeVector(phases);
-    daoFactory->getIPfTeamsDAO()->freeVector(teams);
+    m_daoFactory->getIPfCompetitionPhasesDAO()->freeVector(phases);
+    m_daoFactory->getIPfTeamsDAO()->freeVector(teams);
 
 }
 
-void CDataGenerator::generateMatches(IDAOFactory *daoFactory, std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, CDate &date)
+void CDataGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, CDate &date)
 {
     CPfMatches match;
-    IPfMatchesDAO *matchesDAO= daoFactory->getIPfMatchesDAO();
+    IPfMatchesDAO *matchesDAO= m_daoFactory->getIPfMatchesDAO();
     std::list<CPfTeams*>::iterator itHome;
     std::list<CPfTeams*>::iterator itAway;
     for(itHome = homeList->begin(), itAway = awayList->begin(); itHome != homeList->end(); itHome++, itAway++) {

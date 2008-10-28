@@ -33,14 +33,15 @@
 class CDataGenerator
 {
 public:
-    CDataGenerator();
+    CDataGenerator(IDAOFactory *daoFactory);
     virtual ~CDataGenerator();
 
     void generateDataBase();
-    void generateCompetitionMatches(IDAOFactory *daoFactory, CPfCompetitions *competition, CDate date);
-
+    void generateCompetitionMatches(CPfCompetitions *competition, CDate date);
 private:
-    void generateMatches(IDAOFactory *daoFactory, std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, CDate &date);
+    IDAOFactory *m_daoFactory;
+
+    void generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, CDate &date);
 };
 
 #endif /*CDATAGENERATOR_H_*/
