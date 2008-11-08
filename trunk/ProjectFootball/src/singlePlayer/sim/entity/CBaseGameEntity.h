@@ -34,37 +34,37 @@ public:
 
     virtual ~CBaseGameEntity(){};
 
-    virtual void update(){};
-    int getID() const;
+    void        update(){};
+    int         getID() const;
     static void resetNextID();
 
     virtual bool handleMessage(const CMessage &msg){return false;};
 
     //synchronizes world transform from user to physics
-    virtual void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
+    void    getWorldTransform(btTransform& centerOfMassWorldTrans ) const;
 
     //synchronizes world transform from physics to user
     //Bullet only calls the update of worldtransform for active objects
-    virtual void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
+    void    setWorldTransform(const btTransform& centerOfMassWorldTrans);
 
     btCollisionShape* getShape();
-    btRigidBody* getBody();
-    btVector3 getPosition() const;
-    void setPosition(float x, float y, float z);
+    btRigidBody*      getBody();
+    btVector3         getPosition() const;
+    void              setPosition(float x, float y, float z);
 
 protected:
-    Ogre::Entity *m_entity;
-    Ogre::SceneNode *m_node;
+    Ogre::Entity     *m_entity;
+    Ogre::SceneNode  *m_node;
     btCollisionShape *m_shape;
-    btRigidBody* m_body;
-    btTransform m_centerOfMassOffset;
+    btRigidBody      *m_body;
+    btTransform       m_centerOfMassOffset;
 
     btTransform getGraphicTrans() const;
-    void setGraphicTrans(btTransform trans);
+    void        setGraphicTrans(btTransform trans);
     CBaseGameEntity();
 
 private:
-    int m_ID;
+    int        m_ID;
     static int m_nextValidID;
 };
 
