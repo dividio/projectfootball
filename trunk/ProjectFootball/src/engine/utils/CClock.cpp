@@ -18,22 +18,23 @@
 *                                                                             *
 ******************************************************************************/
 
-#include <string>
+#include "CClock.h"
 
-#include "CGameStateAbstractFactory.h"
-#include "../singlePlayer/CSinglePlayerGameState.h"
-#include "CGameEngine.h"
-#include "../utils/CLog.h"
-
-IGameState* CGameStateAbstractFactory::getIGameState(int xGame)
+CClock::CClock()
 {
-    CPfGames *game = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO()->findByXGame(xGame);
-    std::string gameType = game->getSGameType();
-    delete game;
+	m_currentTime = 0;
+}
 
-    if( gameType==S_GAME_TYPE_SINGLEPLAYER || gameType==S_GAME_TYPE_QUICKPLAY ){
-        return new CSinglePlayerGameState(xGame);
-    }else{
-        CLog::getInstance()->exception("[CGameStateAbstractFactory::getIGameState] Game type not supported: '%s'", gameType.c_str());
-    }
+CClock::~CClock()
+{
+}
+
+double CClock::getCurrentTime()
+{
+	return m_currentTime;
+}
+
+void CClock::addTime( double time )
+{
+	m_currentTime += time;
 }

@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CLUAMANAGER_H__
-#define __CLUAMANAGER_H__
+#ifndef CLUAMANAGER_H_
+#define CLUAMANAGER_H_
 
 extern "C"
 {
@@ -59,4 +59,4 @@ protected:
     CLuaManager();
 };
 
-#endif // __CLUAMANAGER_H__
+#endif // CLUAMANAGER_H_

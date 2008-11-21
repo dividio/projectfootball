@@ -26,26 +26,22 @@
 class CScreenLoadGame : public CScreen
 {
 public:
-    static CScreenLoadGame* getInstance();
+    CScreenLoadGame();
 	virtual ~CScreenLoadGame();
 
     virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
-
-    void newGame();
-    void loadGame();
-    void deleteGame();
 
 private:
-    CScreenLoadGame();
-
     void loadGameList();
-    bool handleDoubleClick(const CEGUI::EventArgs& e);
-    bool handleSelectChanged(const CEGUI::EventArgs& e);
-    bool handleTextChanged(const CEGUI::EventArgs& e);
+    bool gamesListDoubleClick(const CEGUI::EventArgs& e);
+    bool gamesListSelectChanged(const CEGUI::EventArgs& e);
+    bool newGameEditboxTextChanged(const CEGUI::EventArgs& e);
+	bool backButtonClicked(const CEGUI::EventArgs& e);
+	bool newGameButtonClicked(const CEGUI::EventArgs& e);
+	bool loadGameButtonClicked(const CEGUI::EventArgs& e);
+	bool deleteGameButtonClicked(const CEGUI::EventArgs& e);
 
+	CEGUI::PushButton		*m_backButton;
     CEGUI::MultiColumnList  *m_gamesList;
     CEGUI::Editbox          *m_newGameEditbox;
     CEGUI::PushButton       *m_newGameButton;

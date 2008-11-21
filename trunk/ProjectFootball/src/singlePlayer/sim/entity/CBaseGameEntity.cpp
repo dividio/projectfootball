@@ -27,7 +27,13 @@ int CBaseGameEntity::m_nextValidID = 0;
 
 CBaseGameEntity::CBaseGameEntity()
 {
-    m_ID = m_nextValidID;
+	// TODO: Initialize attributes of CBaseGameEntity in constructor of CBaseGameEntity
+    m_entity	= NULL;
+    m_node		= NULL;
+    m_shape		= NULL;
+    m_body		= NULL;
+
+	m_ID = m_nextValidID;
     m_nextValidID++;
     m_centerOfMassOffset.setIdentity();
     CEntityManager::getInstance()->addEntity(this);

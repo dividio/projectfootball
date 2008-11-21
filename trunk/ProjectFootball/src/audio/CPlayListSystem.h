@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CPlayListSystem_H__
-#define __CPlayListSystem_H__
+#ifndef CPLAYLISTSYSTEM_H_
+#define CPLAYLISTSYSTEM_H_
 
 #include "IAudioFile.h"
 
@@ -40,4 +40,4 @@ public:
   void stopPlayback();
 
 };
-#endif // __CPlayListSystem_H__
+#endif // CPLAYLISTSYSTEM_H_

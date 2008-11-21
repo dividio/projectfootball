@@ -19,12 +19,11 @@
 ******************************************************************************/
 
 
-#ifndef __CSteeringBehaviors_H__
-#define __CSteeringBehaviors_H__
+#ifndef CSTEERINGBEHAVIORS_H_
+#define CSTEERINGBEHAVIORS_H_
 
 
 #include "entity/CMovingEntity.h"
-#include "entity/CBall.h"
 #include "../bullet/LinearMath/btVector3.h"
 
 class CSteeringBehaviors
@@ -78,4 +77,4 @@ private:
 
 };
 
-#endif // __CSteeringBehaviors_H__
+#endif // CSTEERINGBEHAVIORS_H_

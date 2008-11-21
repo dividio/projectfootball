@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CMessage_H__
-#define __CMessage_H__
+#ifndef CMESSAGE_H_
+#define CMESSAGE_H_
 
 #include <string>
 
@@ -49,4 +49,4 @@ public:
 
 };
 
-#endif // __CMessage_H__
+#endif // CMESSAGE_H_

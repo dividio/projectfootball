@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CAPPLICATION_H__
-#define __CAPPLICATION_H__
+#ifndef CAPPLICATION_H_
+#define CAPPLICATION_H_
 
 #include <Ogre.h>
 #include <OIS/OIS.h>
@@ -34,7 +34,6 @@ public:
     static CApplication* getInstance();
 
     void go();
-    void exit();
     OIS::Mouse* getMouse();
     OIS::Keyboard* getKeyboard();
     Ogre::RenderSystemList* getRenderSystemList();
@@ -68,4 +67,4 @@ private:
 };
 
 
-#endif // __CAPPLICATION_H__
+#endif // CAPPLICATION_H_

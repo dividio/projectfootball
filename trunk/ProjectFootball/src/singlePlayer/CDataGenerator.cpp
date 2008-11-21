@@ -55,7 +55,7 @@ void CDataGenerator::generateDataBase()
     //Matches generation
     std::vector<CPfCompetitions*> *competitions = m_daoFactory->getIPfCompetitionsDAO()->findCompetitions();
     std::vector<CPfCompetitions*>::iterator it;
-    CDate date(31, 8, 2008, 17, 0, 0);
+    CDate date(31, 8, 2008, 17, 0, 0); // TODO: Remove magical numbers
 
     for(it = competitions->begin(); it != competitions->end(); it++) {
         generateCompetitionMatches((*it), date);

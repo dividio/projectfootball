@@ -1521,25 +1521,25 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_CMovingEntity swig_types[11]
 #define SWIGTYPE_p_CPfGoals swig_types[12]
 #define SWIGTYPE_p_CPfMatches swig_types[13]
-#define SWIGTYPE_p_CPfTeams swig_types[14]
-#define SWIGTYPE_p_CRectangle swig_types[15]
-#define SWIGTYPE_p_CReferee swig_types[16]
-#define SWIGTYPE_p_CScreen swig_types[17]
-#define SWIGTYPE_p_CScreenConfig swig_types[18]
-#define SWIGTYPE_p_CScreenCredits swig_types[19]
-#define SWIGTYPE_p_CScreenGame swig_types[20]
-#define SWIGTYPE_p_CScreenLoadGame swig_types[21]
-#define SWIGTYPE_p_CScreenMainMenu swig_types[22]
-#define SWIGTYPE_p_CScreenManager swig_types[23]
+#define SWIGTYPE_p_CPfTeamPlayers swig_types[14]
+#define SWIGTYPE_p_CPfTeams swig_types[15]
+#define SWIGTYPE_p_CRectangle swig_types[16]
+#define SWIGTYPE_p_CReferee swig_types[17]
+#define SWIGTYPE_p_CScreen swig_types[18]
+#define SWIGTYPE_p_CScreenConfig swig_types[19]
+#define SWIGTYPE_p_CScreenCredits swig_types[20]
+#define SWIGTYPE_p_CScreenGame swig_types[21]
+#define SWIGTYPE_p_CScreenLoadGame swig_types[22]
+#define SWIGTYPE_p_CScreenMainMenu swig_types[23]
 #define SWIGTYPE_p_CScreenMatchResult swig_types[24]
-#define SWIGTYPE_p_CScreenQuickPlay swig_types[25]
-#define SWIGTYPE_p_CScreenRanking swig_types[26]
-#define SWIGTYPE_p_CScreenResults swig_types[27]
-#define SWIGTYPE_p_CScreenSelectTeam swig_types[28]
-#define SWIGTYPE_p_CScreenSimulator swig_types[29]
-#define SWIGTYPE_p_CScreenTeamPlayers swig_types[30]
-#define SWIGTYPE_p_CSimulationManager swig_types[31]
-#define SWIGTYPE_p_CSimulationWorld swig_types[32]
+#define SWIGTYPE_p_CScreenRanking swig_types[25]
+#define SWIGTYPE_p_CScreenResults swig_types[26]
+#define SWIGTYPE_p_CScreenSelectTeam swig_types[27]
+#define SWIGTYPE_p_CScreenSimulator swig_types[28]
+#define SWIGTYPE_p_CScreenTeamPlayers swig_types[29]
+#define SWIGTYPE_p_CSimulationManager swig_types[30]
+#define SWIGTYPE_p_CSimulationWorld swig_types[31]
+#define SWIGTYPE_p_CSinglePlayerGame swig_types[32]
 #define SWIGTYPE_p_CStateMachineT_CFootballPlayer_t swig_types[33]
 #define SWIGTYPE_p_CStateMachineT_CReferee_t swig_types[34]
 #define SWIGTYPE_p_CStateMachineT_CTeam_t swig_types[35]
@@ -1560,7 +1560,7 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_IPfTeamPlayerContractsDAO swig_types[50]
 #define SWIGTYPE_p_IPfTeamPlayersDAO swig_types[51]
 #define SWIGTYPE_p_IPfTeamsDAO swig_types[52]
-#define SWIGTYPE_p_Ogre__FrameEvent swig_types[53]
+#define SWIGTYPE_p_IScreen swig_types[53]
 #define SWIGTYPE_p_Ogre__SceneManager swig_types[54]
 #define SWIGTYPE_p_btCollisionShape swig_types[55]
 #define SWIGTYPE_p_btRigidBody swig_types[56]
@@ -1572,10 +1572,11 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_std__vectorT_CFormation_p_t swig_types[62]
 #define SWIGTYPE_p_std__vectorT_CPfGoals_p_t swig_types[63]
 #define SWIGTYPE_p_std__vectorT_CPfMatches_p_t swig_types[64]
-#define SWIGTYPE_p_std__vectorT_CPfTeams_p_t swig_types[65]
-#define SWIGTYPE_p_void swig_types[66]
-static swig_type_info *swig_types[68];
-static swig_module_info swig_module = {swig_types, 67, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__vectorT_CPfTeamPlayers_p_t swig_types[65]
+#define SWIGTYPE_p_std__vectorT_CPfTeams_p_t swig_types[66]
+#define SWIGTYPE_p_void swig_types[67]
+static swig_type_info *swig_types[69];
+static swig_module_info swig_module = {swig_types, 68, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1621,7 +1622,7 @@ typedef struct{} LANGUAGE_OBJ;
 #include "../utils/CLog.h"
 
 
-#include "../engine/CScreenManager.h"
+#include "../engine/IScreen.h"
 #include "../engine/CScreen.h"
 #include "../engine/screen/CScreenMainMenu.h"
 #include "../engine/screen/CScreenConfig.h"
@@ -1632,7 +1633,6 @@ typedef struct{} LANGUAGE_OBJ;
 #include "../singlePlayer/screen/CScreenSelectTeam.h"
 #include "../singlePlayer/screen/CScreenRanking.h"
 #include "../singlePlayer/screen/CScreenTeamPlayers.h"
-#include "../singlePlayer/screen/CScreenQuickPlay.h"
 #include "../singlePlayer/screen/CScreenResults.h"
 #include "../singlePlayer/screen/CScreenMatchResult.h"
 
@@ -6717,269 +6717,15 @@ static swig_lua_class *swig_CLog_bases[] = {0};
 static const char *swig_CLog_base_names[] = {0};
 static swig_lua_class _wrap_class_CLog = { "CLog", &SWIGTYPE_p_CLog,0, swig_delete_CLog, swig_CLog_methods, swig_CLog_attributes, swig_CLog_bases, swig_CLog_base_names };
 
-static int _wrap_CScreenManager_getInstance(lua_State* L) {
+static int _wrap_IScreen_enter(lua_State* L) {
   int SWIG_arg = 0;
-  CScreenManager *result = 0 ;
-  
-  SWIG_check_num_args("CScreenManager::getInstance",0,0)
-  result = (CScreenManager *)CScreenManager::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenManager,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_forcedPopStack(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  
-  SWIG_check_num_args("forcedPopStack",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedPopStack",1,"CScreenManager *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_forcedPopStack",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  (arg1)->forcedPopStack();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_frameEnded(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  Ogre::FrameEvent *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("frameEnded",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("frameEnded",1,"CScreenManager *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("frameEnded",2,"Ogre::FrameEvent const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_frameEnded",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Ogre__FrameEvent,0))){
-    SWIG_fail_ptr("CScreenManager_frameEnded",2,SWIGTYPE_p_Ogre__FrameEvent);
-  }
-  
-  result = (bool)(arg1)->frameEnded((Ogre::FrameEvent const &)*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_frameStarted(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  Ogre::FrameEvent *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("frameStarted",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("frameStarted",1,"CScreenManager *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("frameStarted",2,"Ogre::FrameEvent const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_frameStarted",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Ogre__FrameEvent,0))){
-    SWIG_fail_ptr("CScreenManager_frameStarted",2,SWIGTYPE_p_Ogre__FrameEvent);
-  }
-  
-  result = (bool)(arg1)->frameStarted((Ogre::FrameEvent const &)*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_popStack(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  
-  SWIG_check_num_args("popStack",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("popStack",1,"CScreenManager *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_popStack",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  (arg1)->popStack();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_popState(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  
-  SWIG_check_num_args("popState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("popState",1,"CScreenManager *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_popState",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  (arg1)->popState();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_popToState(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  CScreen *arg2 = (CScreen *) 0 ;
-  
-  SWIG_check_num_args("popToState",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("popToState",1,"CScreenManager *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("popToState",2,"CScreen *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_popToState",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CScreen,0))){
-    SWIG_fail_ptr("CScreenManager_popToState",2,SWIGTYPE_p_CScreen);
-  }
-  
-  (arg1)->popToState(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_pushState(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  CScreen *arg2 = (CScreen *) 0 ;
-  
-  SWIG_check_num_args("pushState",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("pushState",1,"CScreenManager *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("pushState",2,"CScreen *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_pushState",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CScreen,0))){
-    SWIG_fail_ptr("CScreenManager_pushState",2,SWIGTYPE_p_CScreen);
-  }
-  
-  (arg1)->pushState(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenManager_getTimeSinceLastFrame(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenManager *arg1 = (CScreenManager *) 0 ;
-  float result;
-  
-  SWIG_check_num_args("getTimeSinceLastFrame",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getTimeSinceLastFrame",1,"CScreenManager *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenManager,0))){
-    SWIG_fail_ptr("CScreenManager_getTimeSinceLastFrame",1,SWIGTYPE_p_CScreenManager);
-  }
-  
-  result = (float)(arg1)->getTimeSinceLastFrame();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CScreenManager(void *obj) {
-CScreenManager *arg1 = (CScreenManager *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CScreenManager_methods[] = {
-    {"forcedPopStack", _wrap_CScreenManager_forcedPopStack}, 
-    {"frameEnded", _wrap_CScreenManager_frameEnded}, 
-    {"frameStarted", _wrap_CScreenManager_frameStarted}, 
-    {"popStack", _wrap_CScreenManager_popStack}, 
-    {"popState", _wrap_CScreenManager_popState}, 
-    {"popToState", _wrap_CScreenManager_popToState}, 
-    {"pushState", _wrap_CScreenManager_pushState}, 
-    {"getTimeSinceLastFrame", _wrap_CScreenManager_getTimeSinceLastFrame}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CScreenManager_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CScreenManager_bases[] = {0};
-static const char *swig_CScreenManager_base_names[] = {0};
-static swig_lua_class _wrap_class_CScreenManager = { "CScreenManager", &SWIGTYPE_p_CScreenManager,0, swig_delete_CScreenManager, swig_CScreenManager_methods, swig_CScreenManager_attributes, swig_CScreenManager_bases, swig_CScreenManager_base_names };
-
-static int _wrap_CScreen_enter(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreen *arg1 = (CScreen *) 0 ;
+  IScreen *arg1 = (IScreen *) 0 ;
   
   SWIG_check_num_args("enter",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("enter",1,"CScreen *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("enter",1,"IScreen *");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreen,0))){
-    SWIG_fail_ptr("CScreen_enter",1,SWIGTYPE_p_CScreen);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IScreen,0))){
+    SWIG_fail_ptr("IScreen_enter",1,SWIGTYPE_p_IScreen);
   }
   
   (arg1)->enter();
@@ -6994,18 +6740,82 @@ fail:
 }
 
 
-static int _wrap_CScreen_forcedLeave(lua_State* L) {
+static int _wrap_IScreen_leave(lua_State* L) {
+  int SWIG_arg = 0;
+  IScreen *arg1 = (IScreen *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("leave",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"IScreen *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IScreen,0))){
+    SWIG_fail_ptr("IScreen_leave",1,SWIGTYPE_p_IScreen);
+  }
+  
+  result = (bool)(arg1)->leave();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IScreen_update(lua_State* L) {
+  int SWIG_arg = 0;
+  IScreen *arg1 = (IScreen *) 0 ;
+  
+  SWIG_check_num_args("update",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"IScreen *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IScreen,0))){
+    SWIG_fail_ptr("IScreen_update",1,SWIGTYPE_p_IScreen);
+  }
+  
+  (arg1)->update();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_IScreen(void *obj) {
+IScreen *arg1 = (IScreen *) obj;
+delete arg1;
+}
+static swig_lua_method swig_IScreen_methods[] = {
+    {"enter", _wrap_IScreen_enter}, 
+    {"leave", _wrap_IScreen_leave}, 
+    {"update", _wrap_IScreen_update}, 
+    {0,0}
+};
+static swig_lua_attribute swig_IScreen_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_IScreen_bases[] = {0};
+static const char *swig_IScreen_base_names[] = {0};
+static swig_lua_class _wrap_class_IScreen = { "IScreen", &SWIGTYPE_p_IScreen,0, swig_delete_IScreen, swig_IScreen_methods, swig_IScreen_attributes, swig_IScreen_bases, swig_IScreen_base_names };
+
+static int _wrap_CScreen_enter(lua_State* L) {
   int SWIG_arg = 0;
   CScreen *arg1 = (CScreen *) 0 ;
   
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreen *");
+  SWIG_check_num_args("enter",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("enter",1,"CScreen *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreen,0))){
-    SWIG_fail_ptr("CScreen_forcedLeave",1,SWIGTYPE_p_CScreen);
+    SWIG_fail_ptr("CScreen_enter",1,SWIGTYPE_p_CScreen);
   }
   
-  (arg1)->forcedLeave();
+  (arg1)->enter();
   
   return SWIG_arg;
   
@@ -7070,7 +6880,6 @@ delete arg1;
 }
 static swig_lua_method swig_CScreen_methods[] = {
     {"enter", _wrap_CScreen_enter}, 
-    {"forcedLeave", _wrap_CScreen_forcedLeave}, 
     {"leave", _wrap_CScreen_leave}, 
     {"update", _wrap_CScreen_update}, 
     {0,0}
@@ -7078,110 +6887,17 @@ static swig_lua_method swig_CScreen_methods[] = {
 static swig_lua_attribute swig_CScreen_attributes[] = {
     {0,0,0}
 };
-static swig_lua_class *swig_CScreen_bases[] = {0};
-static const char *swig_CScreen_base_names[] = {0};
+static swig_lua_class *swig_CScreen_bases[] = {0,0};
+static const char *swig_CScreen_base_names[] = {"IScreen *",0};
 static swig_lua_class _wrap_class_CScreen = { "CScreen", &SWIGTYPE_p_CScreen,0, swig_delete_CScreen, swig_CScreen_methods, swig_CScreen_attributes, swig_CScreen_bases, swig_CScreen_base_names };
 
-static int _wrap_CScreenMainMenu_getInstance(lua_State* L) {
+static int _wrap_new_CScreenMainMenu(lua_State* L) {
   int SWIG_arg = 0;
   CScreenMainMenu *result = 0 ;
   
-  SWIG_check_num_args("CScreenMainMenu::getInstance",0,0)
-  result = (CScreenMainMenu *)CScreenMainMenu::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenMainMenu,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenMainMenu_enter(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenMainMenu *arg1 = (CScreenMainMenu *) 0 ;
-  
-  SWIG_check_num_args("enter",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("enter",1,"CScreenMainMenu *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenMainMenu,0))){
-    SWIG_fail_ptr("CScreenMainMenu_enter",1,SWIGTYPE_p_CScreenMainMenu);
-  }
-  
-  (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenMainMenu_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenMainMenu *arg1 = (CScreenMainMenu *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenMainMenu *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenMainMenu,0))){
-    SWIG_fail_ptr("CScreenMainMenu_forcedLeave",1,SWIGTYPE_p_CScreenMainMenu);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenMainMenu_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenMainMenu *arg1 = (CScreenMainMenu *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenMainMenu *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenMainMenu,0))){
-    SWIG_fail_ptr("CScreenMainMenu_leave",1,SWIGTYPE_p_CScreenMainMenu);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenMainMenu_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenMainMenu *arg1 = (CScreenMainMenu *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenMainMenu *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenMainMenu,0))){
-    SWIG_fail_ptr("CScreenMainMenu_update",1,SWIGTYPE_p_CScreenMainMenu);
-  }
-  
-  (arg1)->update();
-  
+  SWIG_check_num_args("CScreenMainMenu",0,0)
+  result = (CScreenMainMenu *)new CScreenMainMenu();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenMainMenu,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7197,10 +6913,6 @@ CScreenMainMenu *arg1 = (CScreenMainMenu *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenMainMenu_methods[] = {
-    {"enter", _wrap_CScreenMainMenu_enter}, 
-    {"forcedLeave", _wrap_CScreenMainMenu_forcedLeave}, 
-    {"leave", _wrap_CScreenMainMenu_leave}, 
-    {"update", _wrap_CScreenMainMenu_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenMainMenu_attributes[] = {
@@ -7208,15 +6920,15 @@ static swig_lua_attribute swig_CScreenMainMenu_attributes[] = {
 };
 static swig_lua_class *swig_CScreenMainMenu_bases[] = {0,0};
 static const char *swig_CScreenMainMenu_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenMainMenu = { "CScreenMainMenu", &SWIGTYPE_p_CScreenMainMenu,0, swig_delete_CScreenMainMenu, swig_CScreenMainMenu_methods, swig_CScreenMainMenu_attributes, swig_CScreenMainMenu_bases, swig_CScreenMainMenu_base_names };
+static swig_lua_class _wrap_class_CScreenMainMenu = { "CScreenMainMenu", &SWIGTYPE_p_CScreenMainMenu,_wrap_new_CScreenMainMenu, swig_delete_CScreenMainMenu, swig_CScreenMainMenu_methods, swig_CScreenMainMenu_attributes, swig_CScreenMainMenu_bases, swig_CScreenMainMenu_base_names };
 
-static int _wrap_CScreenLoadGame_getInstance(lua_State* L) {
+static int _wrap_new_CScreenLoadGame(lua_State* L) {
   int SWIG_arg = 0;
   CScreenLoadGame *result = 0 ;
   
-  SWIG_check_num_args("CScreenLoadGame::getInstance",0,0)
-  result = (CScreenLoadGame *)CScreenLoadGame::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenLoadGame,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenLoadGame",0,0)
+  result = (CScreenLoadGame *)new CScreenLoadGame();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenLoadGame,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7250,157 +6962,12 @@ fail:
 }
 
 
-static int _wrap_CScreenLoadGame_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenLoadGame *arg1 = (CScreenLoadGame *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenLoadGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenLoadGame,0))){
-    SWIG_fail_ptr("CScreenLoadGame_forcedLeave",1,SWIGTYPE_p_CScreenLoadGame);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenLoadGame_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenLoadGame *arg1 = (CScreenLoadGame *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenLoadGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenLoadGame,0))){
-    SWIG_fail_ptr("CScreenLoadGame_leave",1,SWIGTYPE_p_CScreenLoadGame);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenLoadGame_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenLoadGame *arg1 = (CScreenLoadGame *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenLoadGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenLoadGame,0))){
-    SWIG_fail_ptr("CScreenLoadGame_update",1,SWIGTYPE_p_CScreenLoadGame);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenLoadGame_newGame(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenLoadGame *arg1 = (CScreenLoadGame *) 0 ;
-  
-  SWIG_check_num_args("newGame",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("newGame",1,"CScreenLoadGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenLoadGame,0))){
-    SWIG_fail_ptr("CScreenLoadGame_newGame",1,SWIGTYPE_p_CScreenLoadGame);
-  }
-  
-  (arg1)->newGame();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenLoadGame_loadGame(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenLoadGame *arg1 = (CScreenLoadGame *) 0 ;
-  
-  SWIG_check_num_args("loadGame",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("loadGame",1,"CScreenLoadGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenLoadGame,0))){
-    SWIG_fail_ptr("CScreenLoadGame_loadGame",1,SWIGTYPE_p_CScreenLoadGame);
-  }
-  
-  (arg1)->loadGame();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenLoadGame_deleteGame(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenLoadGame *arg1 = (CScreenLoadGame *) 0 ;
-  
-  SWIG_check_num_args("deleteGame",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("deleteGame",1,"CScreenLoadGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenLoadGame,0))){
-    SWIG_fail_ptr("CScreenLoadGame_deleteGame",1,SWIGTYPE_p_CScreenLoadGame);
-  }
-  
-  (arg1)->deleteGame();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenLoadGame(void *obj) {
 CScreenLoadGame *arg1 = (CScreenLoadGame *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenLoadGame_methods[] = {
     {"enter", _wrap_CScreenLoadGame_enter}, 
-    {"forcedLeave", _wrap_CScreenLoadGame_forcedLeave}, 
-    {"leave", _wrap_CScreenLoadGame_leave}, 
-    {"update", _wrap_CScreenLoadGame_update}, 
-    {"newGame", _wrap_CScreenLoadGame_newGame}, 
-    {"loadGame", _wrap_CScreenLoadGame_loadGame}, 
-    {"deleteGame", _wrap_CScreenLoadGame_deleteGame}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenLoadGame_attributes[] = {
@@ -7408,15 +6975,15 @@ static swig_lua_attribute swig_CScreenLoadGame_attributes[] = {
 };
 static swig_lua_class *swig_CScreenLoadGame_bases[] = {0,0};
 static const char *swig_CScreenLoadGame_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenLoadGame = { "CScreenLoadGame", &SWIGTYPE_p_CScreenLoadGame,0, swig_delete_CScreenLoadGame, swig_CScreenLoadGame_methods, swig_CScreenLoadGame_attributes, swig_CScreenLoadGame_bases, swig_CScreenLoadGame_base_names };
+static swig_lua_class _wrap_class_CScreenLoadGame = { "CScreenLoadGame", &SWIGTYPE_p_CScreenLoadGame,_wrap_new_CScreenLoadGame, swig_delete_CScreenLoadGame, swig_CScreenLoadGame_methods, swig_CScreenLoadGame_attributes, swig_CScreenLoadGame_bases, swig_CScreenLoadGame_base_names };
 
-static int _wrap_CScreenConfig_getInstance(lua_State* L) {
+static int _wrap_new_CScreenConfig(lua_State* L) {
   int SWIG_arg = 0;
   CScreenConfig *result = 0 ;
   
-  SWIG_check_num_args("CScreenConfig::getInstance",0,0)
-  result = (CScreenConfig *)CScreenConfig::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenConfig,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenConfig",0,0)
+  result = (CScreenConfig *)new CScreenConfig();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenConfig,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7450,109 +7017,12 @@ fail:
 }
 
 
-static int _wrap_CScreenConfig_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenConfig *arg1 = (CScreenConfig *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenConfig *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenConfig,0))){
-    SWIG_fail_ptr("CScreenConfig_forcedLeave",1,SWIGTYPE_p_CScreenConfig);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenConfig_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenConfig *arg1 = (CScreenConfig *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenConfig *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenConfig,0))){
-    SWIG_fail_ptr("CScreenConfig_leave",1,SWIGTYPE_p_CScreenConfig);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenConfig_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenConfig *arg1 = (CScreenConfig *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenConfig *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenConfig,0))){
-    SWIG_fail_ptr("CScreenConfig_update",1,SWIGTYPE_p_CScreenConfig);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenConfig_saveConfig(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenConfig *arg1 = (CScreenConfig *) 0 ;
-  
-  SWIG_check_num_args("saveConfig",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("saveConfig",1,"CScreenConfig *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenConfig,0))){
-    SWIG_fail_ptr("CScreenConfig_saveConfig",1,SWIGTYPE_p_CScreenConfig);
-  }
-  
-  (arg1)->saveConfig();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenConfig(void *obj) {
 CScreenConfig *arg1 = (CScreenConfig *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenConfig_methods[] = {
     {"enter", _wrap_CScreenConfig_enter}, 
-    {"forcedLeave", _wrap_CScreenConfig_forcedLeave}, 
-    {"leave", _wrap_CScreenConfig_leave}, 
-    {"update", _wrap_CScreenConfig_update}, 
-    {"saveConfig", _wrap_CScreenConfig_saveConfig}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenConfig_attributes[] = {
@@ -7560,108 +7030,15 @@ static swig_lua_attribute swig_CScreenConfig_attributes[] = {
 };
 static swig_lua_class *swig_CScreenConfig_bases[] = {0,0};
 static const char *swig_CScreenConfig_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenConfig = { "CScreenConfig", &SWIGTYPE_p_CScreenConfig,0, swig_delete_CScreenConfig, swig_CScreenConfig_methods, swig_CScreenConfig_attributes, swig_CScreenConfig_bases, swig_CScreenConfig_base_names };
+static swig_lua_class _wrap_class_CScreenConfig = { "CScreenConfig", &SWIGTYPE_p_CScreenConfig,_wrap_new_CScreenConfig, swig_delete_CScreenConfig, swig_CScreenConfig_methods, swig_CScreenConfig_attributes, swig_CScreenConfig_bases, swig_CScreenConfig_base_names };
 
-static int _wrap_CScreenCredits_getInstance(lua_State* L) {
+static int _wrap_new_CScreenCredits(lua_State* L) {
   int SWIG_arg = 0;
   CScreenCredits *result = 0 ;
   
-  SWIG_check_num_args("CScreenCredits::getInstance",0,0)
-  result = (CScreenCredits *)CScreenCredits::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenCredits,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenCredits_enter(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenCredits *arg1 = (CScreenCredits *) 0 ;
-  
-  SWIG_check_num_args("enter",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("enter",1,"CScreenCredits *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenCredits,0))){
-    SWIG_fail_ptr("CScreenCredits_enter",1,SWIGTYPE_p_CScreenCredits);
-  }
-  
-  (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenCredits_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenCredits *arg1 = (CScreenCredits *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenCredits *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenCredits,0))){
-    SWIG_fail_ptr("CScreenCredits_forcedLeave",1,SWIGTYPE_p_CScreenCredits);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenCredits_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenCredits *arg1 = (CScreenCredits *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenCredits *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenCredits,0))){
-    SWIG_fail_ptr("CScreenCredits_leave",1,SWIGTYPE_p_CScreenCredits);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenCredits_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenCredits *arg1 = (CScreenCredits *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenCredits *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenCredits,0))){
-    SWIG_fail_ptr("CScreenCredits_update",1,SWIGTYPE_p_CScreenCredits);
-  }
-  
-  (arg1)->update();
-  
+  SWIG_check_num_args("CScreenCredits",0,0)
+  result = (CScreenCredits *)new CScreenCredits();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenCredits,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7677,10 +7054,6 @@ CScreenCredits *arg1 = (CScreenCredits *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenCredits_methods[] = {
-    {"enter", _wrap_CScreenCredits_enter}, 
-    {"forcedLeave", _wrap_CScreenCredits_forcedLeave}, 
-    {"leave", _wrap_CScreenCredits_leave}, 
-    {"update", _wrap_CScreenCredits_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenCredits_attributes[] = {
@@ -7688,15 +7061,22 @@ static swig_lua_attribute swig_CScreenCredits_attributes[] = {
 };
 static swig_lua_class *swig_CScreenCredits_bases[] = {0,0};
 static const char *swig_CScreenCredits_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenCredits = { "CScreenCredits", &SWIGTYPE_p_CScreenCredits,0, swig_delete_CScreenCredits, swig_CScreenCredits_methods, swig_CScreenCredits_attributes, swig_CScreenCredits_bases, swig_CScreenCredits_base_names };
+static swig_lua_class _wrap_class_CScreenCredits = { "CScreenCredits", &SWIGTYPE_p_CScreenCredits,_wrap_new_CScreenCredits, swig_delete_CScreenCredits, swig_CScreenCredits_methods, swig_CScreenCredits_attributes, swig_CScreenCredits_bases, swig_CScreenCredits_base_names };
 
-static int _wrap_CScreenGame_getInstance(lua_State* L) {
+static int _wrap_new_CScreenGame(lua_State* L) {
   int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenGame *result = 0 ;
   
-  SWIG_check_num_args("CScreenGame::getInstance",0,0)
-  result = (CScreenGame *)CScreenGame::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenGame,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenGame",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenGame",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenGame",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenGame *)new CScreenGame(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenGame,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7719,76 +7099,6 @@ static int _wrap_CScreenGame_enter(lua_State* L) {
   }
   
   (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenGame_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenGame *arg1 = (CScreenGame *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenGame,0))){
-    SWIG_fail_ptr("CScreenGame_forcedLeave",1,SWIGTYPE_p_CScreenGame);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenGame_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenGame *arg1 = (CScreenGame *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenGame,0))){
-    SWIG_fail_ptr("CScreenGame_leave",1,SWIGTYPE_p_CScreenGame);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenGame_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenGame *arg1 = (CScreenGame *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenGame,0))){
-    SWIG_fail_ptr("CScreenGame_update",1,SWIGTYPE_p_CScreenGame);
-  }
-  
-  (arg1)->update();
   
   return SWIG_arg;
   
@@ -7823,64 +7133,13 @@ fail:
 }
 
 
-static int _wrap_CScreenGame_resultModeEvent(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenGame *arg1 = (CScreenGame *) 0 ;
-  
-  SWIG_check_num_args("resultModeEvent",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("resultModeEvent",1,"CScreenGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenGame,0))){
-    SWIG_fail_ptr("CScreenGame_resultModeEvent",1,SWIGTYPE_p_CScreenGame);
-  }
-  
-  (arg1)->resultModeEvent();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenGame_playButtonEvent(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenGame *arg1 = (CScreenGame *) 0 ;
-  
-  SWIG_check_num_args("playButtonEvent",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("playButtonEvent",1,"CScreenGame *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenGame,0))){
-    SWIG_fail_ptr("CScreenGame_playButtonEvent",1,SWIGTYPE_p_CScreenGame);
-  }
-  
-  (arg1)->playButtonEvent();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenGame(void *obj) {
 CScreenGame *arg1 = (CScreenGame *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenGame_methods[] = {
     {"enter", _wrap_CScreenGame_enter}, 
-    {"forcedLeave", _wrap_CScreenGame_forcedLeave}, 
-    {"leave", _wrap_CScreenGame_leave}, 
-    {"update", _wrap_CScreenGame_update}, 
     {"saveGame", _wrap_CScreenGame_saveGame}, 
-    {"resultModeEvent", _wrap_CScreenGame_resultModeEvent}, 
-    {"playButtonEvent", _wrap_CScreenGame_playButtonEvent}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenGame_attributes[] = {
@@ -7888,15 +7147,22 @@ static swig_lua_attribute swig_CScreenGame_attributes[] = {
 };
 static swig_lua_class *swig_CScreenGame_bases[] = {0,0};
 static const char *swig_CScreenGame_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenGame = { "CScreenGame", &SWIGTYPE_p_CScreenGame,0, swig_delete_CScreenGame, swig_CScreenGame_methods, swig_CScreenGame_attributes, swig_CScreenGame_bases, swig_CScreenGame_base_names };
+static swig_lua_class _wrap_class_CScreenGame = { "CScreenGame", &SWIGTYPE_p_CScreenGame,_wrap_new_CScreenGame, swig_delete_CScreenGame, swig_CScreenGame_methods, swig_CScreenGame_attributes, swig_CScreenGame_bases, swig_CScreenGame_base_names };
 
-static int _wrap_CScreenSimulator_getInstance(lua_State* L) {
+static int _wrap_new_CScreenSimulator(lua_State* L) {
   int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenSimulator *result = 0 ;
   
-  SWIG_check_num_args("CScreenSimulator::getInstance",0,0)
-  result = (CScreenSimulator *)CScreenSimulator::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenSimulator,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenSimulator",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenSimulator",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenSimulator",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenSimulator *)new CScreenSimulator(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenSimulator,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7919,29 +7185,6 @@ static int _wrap_CScreenSimulator_enter(lua_State* L) {
   }
   
   (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenSimulator_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSimulator *arg1 = (CScreenSimulator *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenSimulator *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSimulator,0))){
-    SWIG_fail_ptr("CScreenSimulator_forcedLeave",1,SWIGTYPE_p_CScreenSimulator);
-  }
-  
-  (arg1)->forcedLeave();
   
   return SWIG_arg;
   
@@ -7989,75 +7232,6 @@ static int _wrap_CScreenSimulator_update(lua_State* L) {
   }
   
   (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenSimulator_toogleSimulationView(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSimulator *arg1 = (CScreenSimulator *) 0 ;
-  
-  SWIG_check_num_args("toogleSimulationView",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("toogleSimulationView",1,"CScreenSimulator *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSimulator,0))){
-    SWIG_fail_ptr("CScreenSimulator_toogleSimulationView",1,SWIGTYPE_p_CScreenSimulator);
-  }
-  
-  (arg1)->toogleSimulationView();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenSimulator_switchTo2DView(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSimulator *arg1 = (CScreenSimulator *) 0 ;
-  
-  SWIG_check_num_args("switchTo2DView",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("switchTo2DView",1,"CScreenSimulator *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSimulator,0))){
-    SWIG_fail_ptr("CScreenSimulator_switchTo2DView",1,SWIGTYPE_p_CScreenSimulator);
-  }
-  
-  (arg1)->switchTo2DView();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenSimulator_switchTo3DView(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSimulator *arg1 = (CScreenSimulator *) 0 ;
-  
-  SWIG_check_num_args("switchTo3DView",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("switchTo3DView",1,"CScreenSimulator *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSimulator,0))){
-    SWIG_fail_ptr("CScreenSimulator_switchTo3DView",1,SWIGTYPE_p_CScreenSimulator);
-  }
-  
-  (arg1)->switchTo3DView();
   
   return SWIG_arg;
   
@@ -8120,18 +7294,19 @@ fail:
 static int _wrap_CScreenSimulator_addToLog(lua_State* L) {
   int SWIG_arg = 0;
   CScreenSimulator *arg1 = (CScreenSimulator *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("addToLog",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("addToLog",1,"CScreenSimulator *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("addToLog",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("addToLog",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSimulator,0))){
     SWIG_fail_ptr("CScreenSimulator_addToLog",1,SWIGTYPE_p_CScreenSimulator);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->addToLog(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->addToLog((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -8195,12 +7370,8 @@ delete arg1;
 }
 static swig_lua_method swig_CScreenSimulator_methods[] = {
     {"enter", _wrap_CScreenSimulator_enter}, 
-    {"forcedLeave", _wrap_CScreenSimulator_forcedLeave}, 
     {"leave", _wrap_CScreenSimulator_leave}, 
     {"update", _wrap_CScreenSimulator_update}, 
-    {"toogleSimulationView", _wrap_CScreenSimulator_toogleSimulationView}, 
-    {"switchTo2DView", _wrap_CScreenSimulator_switchTo2DView}, 
-    {"switchTo3DView", _wrap_CScreenSimulator_switchTo3DView}, 
     {"getSimulationManager", _wrap_CScreenSimulator_getSimulationManager}, 
     {"getSimulationSceneManager", _wrap_CScreenSimulator_getSimulationSceneManager}, 
     {"addToLog", _wrap_CScreenSimulator_addToLog}, 
@@ -8213,15 +7384,22 @@ static swig_lua_attribute swig_CScreenSimulator_attributes[] = {
 };
 static swig_lua_class *swig_CScreenSimulator_bases[] = {0,0};
 static const char *swig_CScreenSimulator_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenSimulator = { "CScreenSimulator", &SWIGTYPE_p_CScreenSimulator,0, swig_delete_CScreenSimulator, swig_CScreenSimulator_methods, swig_CScreenSimulator_attributes, swig_CScreenSimulator_bases, swig_CScreenSimulator_base_names };
+static swig_lua_class _wrap_class_CScreenSimulator = { "CScreenSimulator", &SWIGTYPE_p_CScreenSimulator,_wrap_new_CScreenSimulator, swig_delete_CScreenSimulator, swig_CScreenSimulator_methods, swig_CScreenSimulator_attributes, swig_CScreenSimulator_bases, swig_CScreenSimulator_base_names };
 
-static int _wrap_CScreenSelectTeam_getInstance(lua_State* L) {
+static int _wrap_new_CScreenSelectTeam(lua_State* L) {
   int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenSelectTeam *result = 0 ;
   
-  SWIG_check_num_args("CScreenSelectTeam::getInstance",0,0)
-  result = (CScreenSelectTeam *)CScreenSelectTeam::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenSelectTeam,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenSelectTeam",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenSelectTeam",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenSelectTeam",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenSelectTeam *)new CScreenSelectTeam(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenSelectTeam,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8244,29 +7422,6 @@ static int _wrap_CScreenSelectTeam_enter(lua_State* L) {
   }
   
   (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenSelectTeam_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSelectTeam *arg1 = (CScreenSelectTeam *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenSelectTeam *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSelectTeam,0))){
-    SWIG_fail_ptr("CScreenSelectTeam_forcedLeave",1,SWIGTYPE_p_CScreenSelectTeam);
-  }
-  
-  (arg1)->forcedLeave();
   
   return SWIG_arg;
   
@@ -8302,62 +7457,13 @@ fail:
 }
 
 
-static int _wrap_CScreenSelectTeam_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSelectTeam *arg1 = (CScreenSelectTeam *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenSelectTeam *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSelectTeam,0))){
-    SWIG_fail_ptr("CScreenSelectTeam_update",1,SWIGTYPE_p_CScreenSelectTeam);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenSelectTeam_selectTeam(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenSelectTeam *arg1 = (CScreenSelectTeam *) 0 ;
-  
-  SWIG_check_num_args("selectTeam",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("selectTeam",1,"CScreenSelectTeam *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenSelectTeam,0))){
-    SWIG_fail_ptr("CScreenSelectTeam_selectTeam",1,SWIGTYPE_p_CScreenSelectTeam);
-  }
-  
-  (arg1)->selectTeam();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenSelectTeam(void *obj) {
 CScreenSelectTeam *arg1 = (CScreenSelectTeam *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenSelectTeam_methods[] = {
     {"enter", _wrap_CScreenSelectTeam_enter}, 
-    {"forcedLeave", _wrap_CScreenSelectTeam_forcedLeave}, 
     {"leave", _wrap_CScreenSelectTeam_leave}, 
-    {"update", _wrap_CScreenSelectTeam_update}, 
-    {"selectTeam", _wrap_CScreenSelectTeam_selectTeam}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenSelectTeam_attributes[] = {
@@ -8365,15 +7471,22 @@ static swig_lua_attribute swig_CScreenSelectTeam_attributes[] = {
 };
 static swig_lua_class *swig_CScreenSelectTeam_bases[] = {0,0};
 static const char *swig_CScreenSelectTeam_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenSelectTeam = { "CScreenSelectTeam", &SWIGTYPE_p_CScreenSelectTeam,0, swig_delete_CScreenSelectTeam, swig_CScreenSelectTeam_methods, swig_CScreenSelectTeam_attributes, swig_CScreenSelectTeam_bases, swig_CScreenSelectTeam_base_names };
+static swig_lua_class _wrap_class_CScreenSelectTeam = { "CScreenSelectTeam", &SWIGTYPE_p_CScreenSelectTeam,_wrap_new_CScreenSelectTeam, swig_delete_CScreenSelectTeam, swig_CScreenSelectTeam_methods, swig_CScreenSelectTeam_attributes, swig_CScreenSelectTeam_bases, swig_CScreenSelectTeam_base_names };
 
-static int _wrap_CScreenRanking_getInstance(lua_State* L) {
+static int _wrap_new_CScreenRanking(lua_State* L) {
   int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenRanking *result = 0 ;
   
-  SWIG_check_num_args("CScreenRanking::getInstance",0,0)
-  result = (CScreenRanking *)CScreenRanking::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenRanking,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenRanking",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenRanking",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenRanking",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenRanking *)new CScreenRanking(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenRanking,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8407,85 +7520,12 @@ fail:
 }
 
 
-static int _wrap_CScreenRanking_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenRanking *arg1 = (CScreenRanking *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenRanking *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenRanking,0))){
-    SWIG_fail_ptr("CScreenRanking_forcedLeave",1,SWIGTYPE_p_CScreenRanking);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenRanking_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenRanking *arg1 = (CScreenRanking *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenRanking *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenRanking,0))){
-    SWIG_fail_ptr("CScreenRanking_leave",1,SWIGTYPE_p_CScreenRanking);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenRanking_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenRanking *arg1 = (CScreenRanking *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenRanking *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenRanking,0))){
-    SWIG_fail_ptr("CScreenRanking_update",1,SWIGTYPE_p_CScreenRanking);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenRanking(void *obj) {
 CScreenRanking *arg1 = (CScreenRanking *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenRanking_methods[] = {
     {"enter", _wrap_CScreenRanking_enter}, 
-    {"forcedLeave", _wrap_CScreenRanking_forcedLeave}, 
-    {"leave", _wrap_CScreenRanking_leave}, 
-    {"update", _wrap_CScreenRanking_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenRanking_attributes[] = {
@@ -8493,15 +7533,22 @@ static swig_lua_attribute swig_CScreenRanking_attributes[] = {
 };
 static swig_lua_class *swig_CScreenRanking_bases[] = {0,0};
 static const char *swig_CScreenRanking_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenRanking = { "CScreenRanking", &SWIGTYPE_p_CScreenRanking,0, swig_delete_CScreenRanking, swig_CScreenRanking_methods, swig_CScreenRanking_attributes, swig_CScreenRanking_bases, swig_CScreenRanking_base_names };
+static swig_lua_class _wrap_class_CScreenRanking = { "CScreenRanking", &SWIGTYPE_p_CScreenRanking,_wrap_new_CScreenRanking, swig_delete_CScreenRanking, swig_CScreenRanking_methods, swig_CScreenRanking_attributes, swig_CScreenRanking_bases, swig_CScreenRanking_base_names };
 
-static int _wrap_CScreenTeamPlayers_getInstance(lua_State* L) {
+static int _wrap_new_CScreenTeamPlayers(lua_State* L) {
   int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenTeamPlayers *result = 0 ;
   
-  SWIG_check_num_args("CScreenTeamPlayers::getInstance",0,0)
-  result = (CScreenTeamPlayers *)CScreenTeamPlayers::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenTeamPlayers,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenTeamPlayers",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenTeamPlayers",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenTeamPlayers",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenTeamPlayers *)new CScreenTeamPlayers(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenTeamPlayers,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8524,29 +7571,6 @@ static int _wrap_CScreenTeamPlayers_enter(lua_State* L) {
   }
   
   (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenTeamPlayers_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenTeamPlayers *arg1 = (CScreenTeamPlayers *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenTeamPlayers *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenTeamPlayers,0))){
-    SWIG_fail_ptr("CScreenTeamPlayers_forcedLeave",1,SWIGTYPE_p_CScreenTeamPlayers);
-  }
-  
-  (arg1)->forcedLeave();
   
   return SWIG_arg;
   
@@ -8582,63 +7606,13 @@ fail:
 }
 
 
-static int _wrap_CScreenTeamPlayers_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenTeamPlayers *arg1 = (CScreenTeamPlayers *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenTeamPlayers *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenTeamPlayers,0))){
-    SWIG_fail_ptr("CScreenTeamPlayers_update",1,SWIGTYPE_p_CScreenTeamPlayers);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenTeamPlayers_handleChangePlayers(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenTeamPlayers *arg1 = (CScreenTeamPlayers *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("handleChangePlayers",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("handleChangePlayers",1,"CScreenTeamPlayers *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenTeamPlayers,0))){
-    SWIG_fail_ptr("CScreenTeamPlayers_handleChangePlayers",1,SWIGTYPE_p_CScreenTeamPlayers);
-  }
-  
-  result = (bool)(arg1)->handleChangePlayers();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenTeamPlayers(void *obj) {
 CScreenTeamPlayers *arg1 = (CScreenTeamPlayers *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenTeamPlayers_methods[] = {
     {"enter", _wrap_CScreenTeamPlayers_enter}, 
-    {"forcedLeave", _wrap_CScreenTeamPlayers_forcedLeave}, 
     {"leave", _wrap_CScreenTeamPlayers_leave}, 
-    {"update", _wrap_CScreenTeamPlayers_update}, 
-    {"handleChangePlayers", _wrap_CScreenTeamPlayers_handleChangePlayers}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenTeamPlayers_attributes[] = {
@@ -8646,143 +7620,22 @@ static swig_lua_attribute swig_CScreenTeamPlayers_attributes[] = {
 };
 static swig_lua_class *swig_CScreenTeamPlayers_bases[] = {0,0};
 static const char *swig_CScreenTeamPlayers_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenTeamPlayers = { "CScreenTeamPlayers", &SWIGTYPE_p_CScreenTeamPlayers,0, swig_delete_CScreenTeamPlayers, swig_CScreenTeamPlayers_methods, swig_CScreenTeamPlayers_attributes, swig_CScreenTeamPlayers_bases, swig_CScreenTeamPlayers_base_names };
+static swig_lua_class _wrap_class_CScreenTeamPlayers = { "CScreenTeamPlayers", &SWIGTYPE_p_CScreenTeamPlayers,_wrap_new_CScreenTeamPlayers, swig_delete_CScreenTeamPlayers, swig_CScreenTeamPlayers_methods, swig_CScreenTeamPlayers_attributes, swig_CScreenTeamPlayers_bases, swig_CScreenTeamPlayers_base_names };
 
-static int _wrap_CScreenQuickPlay_getInstance(lua_State* L) {
+static int _wrap_new_CScreenResults(lua_State* L) {
   int SWIG_arg = 0;
-  CScreenQuickPlay *result = 0 ;
-  
-  SWIG_check_num_args("CScreenQuickPlay::getInstance",0,0)
-  result = (CScreenQuickPlay *)CScreenQuickPlay::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenQuickPlay,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenQuickPlay_enter(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenQuickPlay *arg1 = (CScreenQuickPlay *) 0 ;
-  
-  SWIG_check_num_args("enter",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("enter",1,"CScreenQuickPlay *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenQuickPlay,0))){
-    SWIG_fail_ptr("CScreenQuickPlay_enter",1,SWIGTYPE_p_CScreenQuickPlay);
-  }
-  
-  (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenQuickPlay_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenQuickPlay *arg1 = (CScreenQuickPlay *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenQuickPlay *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenQuickPlay,0))){
-    SWIG_fail_ptr("CScreenQuickPlay_forcedLeave",1,SWIGTYPE_p_CScreenQuickPlay);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenQuickPlay_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenQuickPlay *arg1 = (CScreenQuickPlay *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenQuickPlay *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenQuickPlay,0))){
-    SWIG_fail_ptr("CScreenQuickPlay_leave",1,SWIGTYPE_p_CScreenQuickPlay);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenQuickPlay_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenQuickPlay *arg1 = (CScreenQuickPlay *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenQuickPlay *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenQuickPlay,0))){
-    SWIG_fail_ptr("CScreenQuickPlay_update",1,SWIGTYPE_p_CScreenQuickPlay);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_CScreenQuickPlay(void *obj) {
-CScreenQuickPlay *arg1 = (CScreenQuickPlay *) obj;
-delete arg1;
-}
-static swig_lua_method swig_CScreenQuickPlay_methods[] = {
-    {"enter", _wrap_CScreenQuickPlay_enter}, 
-    {"forcedLeave", _wrap_CScreenQuickPlay_forcedLeave}, 
-    {"leave", _wrap_CScreenQuickPlay_leave}, 
-    {"update", _wrap_CScreenQuickPlay_update}, 
-    {0,0}
-};
-static swig_lua_attribute swig_CScreenQuickPlay_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_CScreenQuickPlay_bases[] = {0,0};
-static const char *swig_CScreenQuickPlay_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenQuickPlay = { "CScreenQuickPlay", &SWIGTYPE_p_CScreenQuickPlay,0, swig_delete_CScreenQuickPlay, swig_CScreenQuickPlay_methods, swig_CScreenQuickPlay_attributes, swig_CScreenQuickPlay_bases, swig_CScreenQuickPlay_base_names };
-
-static int _wrap_CScreenResults_getInstance(lua_State* L) {
-  int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenResults *result = 0 ;
   
-  SWIG_check_num_args("CScreenResults::getInstance",0,0)
-  result = (CScreenResults *)CScreenResults::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenResults,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenResults",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenResults",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenResults",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenResults *)new CScreenResults(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenResults,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8816,85 +7669,12 @@ fail:
 }
 
 
-static int _wrap_CScreenResults_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenResults *arg1 = (CScreenResults *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenResults *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenResults,0))){
-    SWIG_fail_ptr("CScreenResults_forcedLeave",1,SWIGTYPE_p_CScreenResults);
-  }
-  
-  (arg1)->forcedLeave();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenResults_leave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenResults *arg1 = (CScreenResults *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("leave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenResults *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenResults,0))){
-    SWIG_fail_ptr("CScreenResults_leave",1,SWIGTYPE_p_CScreenResults);
-  }
-  
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenResults_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenResults *arg1 = (CScreenResults *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenResults *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenResults,0))){
-    SWIG_fail_ptr("CScreenResults_update",1,SWIGTYPE_p_CScreenResults);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenResults(void *obj) {
 CScreenResults *arg1 = (CScreenResults *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenResults_methods[] = {
     {"enter", _wrap_CScreenResults_enter}, 
-    {"forcedLeave", _wrap_CScreenResults_forcedLeave}, 
-    {"leave", _wrap_CScreenResults_leave}, 
-    {"update", _wrap_CScreenResults_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenResults_attributes[] = {
@@ -8902,15 +7682,22 @@ static swig_lua_attribute swig_CScreenResults_attributes[] = {
 };
 static swig_lua_class *swig_CScreenResults_bases[] = {0,0};
 static const char *swig_CScreenResults_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenResults = { "CScreenResults", &SWIGTYPE_p_CScreenResults,0, swig_delete_CScreenResults, swig_CScreenResults_methods, swig_CScreenResults_attributes, swig_CScreenResults_bases, swig_CScreenResults_base_names };
+static swig_lua_class _wrap_class_CScreenResults = { "CScreenResults", &SWIGTYPE_p_CScreenResults,_wrap_new_CScreenResults, swig_delete_CScreenResults, swig_CScreenResults_methods, swig_CScreenResults_attributes, swig_CScreenResults_bases, swig_CScreenResults_base_names };
 
-static int _wrap_CScreenMatchResult_getInstance(lua_State* L) {
+static int _wrap_new_CScreenMatchResult(lua_State* L) {
   int SWIG_arg = 0;
+  CSinglePlayerGame *arg1 = (CSinglePlayerGame *) 0 ;
   CScreenMatchResult *result = 0 ;
   
-  SWIG_check_num_args("CScreenMatchResult::getInstance",0,0)
-  result = (CScreenMatchResult *)CScreenMatchResult::getInstance();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenMatchResult,0); SWIG_arg++; 
+  SWIG_check_num_args("CScreenMatchResult",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CScreenMatchResult",1,"CSinglePlayerGame *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CScreenMatchResult",1,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CScreenMatchResult *)new CScreenMatchResult(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CScreenMatchResult,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8933,29 +7720,6 @@ static int _wrap_CScreenMatchResult_enter(lua_State* L) {
   }
   
   (arg1)->enter();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_CScreenMatchResult_forcedLeave(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenMatchResult *arg1 = (CScreenMatchResult *) 0 ;
-  
-  SWIG_check_num_args("forcedLeave",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("forcedLeave",1,"CScreenMatchResult *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenMatchResult,0))){
-    SWIG_fail_ptr("CScreenMatchResult_forcedLeave",1,SWIGTYPE_p_CScreenMatchResult);
-  }
-  
-  (arg1)->forcedLeave();
   
   return SWIG_arg;
   
@@ -8991,38 +7755,13 @@ fail:
 }
 
 
-static int _wrap_CScreenMatchResult_update(lua_State* L) {
-  int SWIG_arg = 0;
-  CScreenMatchResult *arg1 = (CScreenMatchResult *) 0 ;
-  
-  SWIG_check_num_args("update",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"CScreenMatchResult *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CScreenMatchResult,0))){
-    SWIG_fail_ptr("CScreenMatchResult_update",1,SWIGTYPE_p_CScreenMatchResult);
-  }
-  
-  (arg1)->update();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static void swig_delete_CScreenMatchResult(void *obj) {
 CScreenMatchResult *arg1 = (CScreenMatchResult *) obj;
 delete arg1;
 }
 static swig_lua_method swig_CScreenMatchResult_methods[] = {
     {"enter", _wrap_CScreenMatchResult_enter}, 
-    {"forcedLeave", _wrap_CScreenMatchResult_forcedLeave}, 
     {"leave", _wrap_CScreenMatchResult_leave}, 
-    {"update", _wrap_CScreenMatchResult_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_CScreenMatchResult_attributes[] = {
@@ -9030,7 +7769,7 @@ static swig_lua_attribute swig_CScreenMatchResult_attributes[] = {
 };
 static swig_lua_class *swig_CScreenMatchResult_bases[] = {0,0};
 static const char *swig_CScreenMatchResult_base_names[] = {"CScreen *",0};
-static swig_lua_class _wrap_class_CScreenMatchResult = { "CScreenMatchResult", &SWIGTYPE_p_CScreenMatchResult,0, swig_delete_CScreenMatchResult, swig_CScreenMatchResult_methods, swig_CScreenMatchResult_attributes, swig_CScreenMatchResult_bases, swig_CScreenMatchResult_base_names };
+static swig_lua_class _wrap_class_CScreenMatchResult = { "CScreenMatchResult", &SWIGTYPE_p_CScreenMatchResult,_wrap_new_CScreenMatchResult, swig_delete_CScreenMatchResult, swig_CScreenMatchResult_methods, swig_CScreenMatchResult_attributes, swig_CScreenMatchResult_bases, swig_CScreenMatchResult_base_names };
 
 static int _wrap_CMessage_p_ctor(lua_State* L) {
   int SWIG_arg = 0;
@@ -9753,12 +8492,19 @@ static swig_lua_class _wrap_class_CMessageDispatcher = { "CMessageDispatcher", &
 static int _wrap_new_CSimulationManager(lua_State* L) {
   int SWIG_arg = 0;
   int arg1 ;
+  CSinglePlayerGame *arg2 = (CSinglePlayerGame *) 0 ;
   CSimulationManager *result = 0 ;
   
-  SWIG_check_num_args("CSimulationManager",1,1)
+  SWIG_check_num_args("CSimulationManager",2,2)
   if(!lua_isnumber(L,1)) SWIG_fail_arg("CSimulationManager",1,"int");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("CSimulationManager",2,"CSinglePlayerGame *");
   arg1 = (int)lua_tonumber(L, 1);
-  result = (CSimulationManager *)new CSimulationManager(arg1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CSinglePlayerGame,0))){
+    SWIG_fail_ptr("new_CSimulationManager",2,SWIGTYPE_p_CSinglePlayerGame);
+  }
+  
+  result = (CSimulationManager *)new CSimulationManager(arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationManager,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -9782,6 +8528,33 @@ static int _wrap_CSimulationManager_update(lua_State* L) {
   }
   
   (arg1)->update();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CSimulationManager_addToLog(lua_State* L) {
+  int SWIG_arg = 0;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  
+  SWIG_check_num_args("addToLog",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("addToLog",1,"CSimulationManager *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("addToLog",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("CSimulationManager_addToLog",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->addToLog((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -10276,6 +9049,7 @@ delete arg1;
 }
 static swig_lua_method swig_CSimulationManager_methods[] = {
     {"update", _wrap_CSimulationManager_update}, 
+    {"addToLog", _wrap_CSimulationManager_addToLog}, 
     {"startMatch", _wrap_CSimulationManager_startMatch}, 
     {"goalMatchEvent", _wrap_CSimulationManager_goalMatchEvent}, 
     {"endMatchEvent", _wrap_CSimulationManager_endMatchEvent}, 
@@ -11090,23 +9864,6 @@ static swig_lua_class *swig_CBaseGameEntity_bases[] = {0};
 static const char *swig_CBaseGameEntity_base_names[] = {0};
 static swig_lua_class _wrap_class_CBaseGameEntity = { "CBaseGameEntity", &SWIGTYPE_p_CBaseGameEntity,0, swig_delete_CBaseGameEntity, swig_CBaseGameEntity_methods, swig_CBaseGameEntity_attributes, swig_CBaseGameEntity_bases, swig_CBaseGameEntity_base_names };
 
-static int _wrap_new_CMovingEntity(lua_State* L) {
-  int SWIG_arg = 0;
-  CMovingEntity *result = 0 ;
-  
-  SWIG_check_num_args("CMovingEntity",0,0)
-  result = (CMovingEntity *)new CMovingEntity();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CMovingEntity,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_CMovingEntity_setPosition(lua_State* L) {
   int SWIG_arg = 0;
   CMovingEntity *arg1 = (CMovingEntity *) 0 ;
@@ -11321,7 +10078,7 @@ static swig_lua_attribute swig_CMovingEntity_attributes[] = {
 };
 static swig_lua_class *swig_CMovingEntity_bases[] = {0,0};
 static const char *swig_CMovingEntity_base_names[] = {"CBaseGameEntity *",0};
-static swig_lua_class _wrap_class_CMovingEntity = { "CMovingEntity", &SWIGTYPE_p_CMovingEntity,_wrap_new_CMovingEntity, swig_delete_CMovingEntity, swig_CMovingEntity_methods, swig_CMovingEntity_attributes, swig_CMovingEntity_bases, swig_CMovingEntity_base_names };
+static swig_lua_class _wrap_class_CMovingEntity = { "CMovingEntity", &SWIGTYPE_p_CMovingEntity,0, swig_delete_CMovingEntity, swig_CMovingEntity_methods, swig_CMovingEntity_attributes, swig_CMovingEntity_bases, swig_CMovingEntity_base_names };
 
 static int _wrap_CEntityManager_getInstance(lua_State* L) {
   int SWIG_arg = 0;
@@ -11713,10 +10470,17 @@ fail:
 
 static int _wrap_new_CReferee(lua_State* L) {
   int SWIG_arg = 0;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
   CReferee *result = 0 ;
   
-  SWIG_check_num_args("CReferee",0,0)
-  result = (CReferee *)new CReferee();
+  SWIG_check_num_args("CReferee",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CReferee",1,"CSimulationManager *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("new_CReferee",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  result = (CReferee *)new CReferee(arg1);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_CReferee,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -12063,6 +10827,30 @@ static int _wrap_CReferee_getAwayScore(lua_State* L) {
   
   result = (int)((CReferee const *)arg1)->getAwayScore();
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CReferee_getSimulationManager(lua_State* L) {
+  int SWIG_arg = 0;
+  CReferee *arg1 = (CReferee *) 0 ;
+  CSimulationManager *result = 0 ;
+  
+  SWIG_check_num_args("getSimulationManager",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSimulationManager",1,"CReferee *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CReferee,0))){
+    SWIG_fail_ptr("CReferee_getSimulationManager",1,SWIGTYPE_p_CReferee);
+  }
+  
+  result = (CSimulationManager *)(arg1)->getSimulationManager();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationManager,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -12421,6 +11209,7 @@ static swig_lua_method swig_CReferee_methods[] = {
     {"getMatchDuration", _wrap_CReferee_getMatchDuration}, 
     {"getHomeScore", _wrap_CReferee_getHomeScore}, 
     {"getAwayScore", _wrap_CReferee_getAwayScore}, 
+    {"getSimulationManager", _wrap_CReferee_getSimulationManager}, 
     {"setMatchDuration", _wrap_CReferee_setMatchDuration}, 
     {"setHomeTeamInSideLeft", _wrap_CReferee_setHomeTeamInSideLeft}, 
     {"setKickTeam", _wrap_CReferee_setKickTeam}, 
@@ -12530,16 +11319,34 @@ fail:
 
 static int _wrap_new_CTeam(lua_State* L) {
   int SWIG_arg = 0;
-  int arg1 ;
-  bool arg2 ;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CPfTeams *arg2 = (CPfTeams *) 0 ;
+  std::vector< CPfTeamPlayers * > *arg3 = (std::vector< CPfTeamPlayers * > *) 0 ;
+  bool arg4 ;
   CTeam *result = 0 ;
   
-  SWIG_check_num_args("CTeam",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("CTeam",1,"int");
-  if(!lua_isboolean(L,2)) SWIG_fail_arg("CTeam",2,"bool");
-  arg1 = (int)lua_tonumber(L, 1);
-  arg2 = (lua_toboolean(L, 2)!=0);
-  result = (CTeam *)new CTeam(arg1,arg2);
+  SWIG_check_num_args("CTeam",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CTeam",1,"CSimulationManager *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("CTeam",2,"CPfTeams const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("CTeam",3,"std::vector< CPfTeamPlayers * > *");
+  if(!lua_isboolean(L,4)) SWIG_fail_arg("CTeam",4,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("new_CTeam",1,SWIGTYPE_p_CSimulationManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfTeams,0))){
+    SWIG_fail_ptr("new_CTeam",2,SWIGTYPE_p_CPfTeams);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_std__vectorT_CPfTeamPlayers_p_t,0))){
+    SWIG_fail_ptr("new_CTeam",3,SWIGTYPE_p_std__vectorT_CPfTeamPlayers_p_t);
+  }
+  
+  arg4 = (lua_toboolean(L, 4)!=0);
+  result = (CTeam *)new CTeam(arg1,(CPfTeams const *)arg2,arg3,arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_CTeam,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -12601,6 +11408,30 @@ static int _wrap_CTeam_setControllingPlayer(lua_State* L) {
   
   (arg1)->setControllingPlayer(arg2);
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CTeam_getSimulationManager(lua_State* L) {
+  int SWIG_arg = 0;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CSimulationManager *result = 0 ;
+  
+  SWIG_check_num_args("getSimulationManager",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSimulationManager",1,"CTeam *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_getSimulationManager",1,SWIGTYPE_p_CTeam);
+  }
+  
+  result = (CSimulationManager *)(arg1)->getSimulationManager();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationManager,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13149,6 +11980,7 @@ delete arg1;
 static swig_lua_method swig_CTeam_methods[] = {
     {"setOpponentTeam", _wrap_CTeam_setOpponentTeam}, 
     {"setControllingPlayer", _wrap_CTeam_setControllingPlayer}, 
+    {"getSimulationManager", _wrap_CTeam_getSimulationManager}, 
     {"getOpponentTeam", _wrap_CTeam_getOpponentTeam}, 
     {"getName", _wrap_CTeam_getName}, 
     {"getPlayers", _wrap_CTeam_getPlayers}, 
@@ -13267,26 +12099,37 @@ fail:
 
 static int _wrap_new_CFootballPlayer(lua_State* L) {
   int SWIG_arg = 0;
-  int arg1 ;
-  int arg2 ;
-  CTeam *arg3 = (CTeam *) 0 ;
-  bool arg4 ;
+  CSimulationManager *arg1 = (CSimulationManager *) 0 ;
+  CPfTeamPlayers *arg2 = (CPfTeamPlayers *) 0 ;
+  int arg3 ;
+  CTeam *arg4 = (CTeam *) 0 ;
+  bool arg5 ;
   CFootballPlayer *result = 0 ;
   
-  SWIG_check_num_args("CFootballPlayer",4,4)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("CFootballPlayer",1,"int");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("CFootballPlayer",2,"int");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("CFootballPlayer",3,"CTeam *");
-  if(!lua_isboolean(L,4)) SWIG_fail_arg("CFootballPlayer",4,"bool");
-  arg1 = (int)lua_tonumber(L, 1);
-  arg2 = (int)lua_tonumber(L, 2);
+  SWIG_check_num_args("CFootballPlayer",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("CFootballPlayer",1,"CSimulationManager *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("CFootballPlayer",2,"CPfTeamPlayers const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("CFootballPlayer",3,"int");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("CFootballPlayer",4,"CTeam *");
+  if(!lua_isboolean(L,5)) SWIG_fail_arg("CFootballPlayer",5,"bool");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_CTeam,0))){
-    SWIG_fail_ptr("new_CFootballPlayer",3,SWIGTYPE_p_CTeam);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CSimulationManager,0))){
+    SWIG_fail_ptr("new_CFootballPlayer",1,SWIGTYPE_p_CSimulationManager);
   }
   
-  arg4 = (lua_toboolean(L, 4)!=0);
-  result = (CFootballPlayer *)new CFootballPlayer(arg1,arg2,arg3,arg4);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CPfTeamPlayers,0))){
+    SWIG_fail_ptr("new_CFootballPlayer",2,SWIGTYPE_p_CPfTeamPlayers);
+  }
+  
+  arg3 = (int)lua_tonumber(L, 3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("new_CFootballPlayer",4,SWIGTYPE_p_CTeam);
+  }
+  
+  arg5 = (lua_toboolean(L, 5)!=0);
+  result = (CFootballPlayer *)new CFootballPlayer(arg1,(CPfTeamPlayers const *)arg2,arg3,arg4,arg5);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_CFootballPlayer,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -13699,6 +12542,30 @@ fail:
 }
 
 
+static int _wrap_CFootballPlayer_getSimulationManager(lua_State* L) {
+  int SWIG_arg = 0;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  CSimulationManager *result = 0 ;
+  
+  SWIG_check_num_args("getSimulationManager",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSimulationManager",1,"CFootballPlayer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getSimulationManager",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  result = (CSimulationManager *)(arg1)->getSimulationManager();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationManager,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CFootballPlayer_setWorldTransform(lua_State* L) {
   int SWIG_arg = 0;
   CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
@@ -13840,6 +12707,7 @@ static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"canKickBall", _wrap_CFootballPlayer_canKickBall}, 
     {"update", _wrap_CFootballPlayer_update}, 
     {"changeSide", _wrap_CFootballPlayer_changeSide}, 
+    {"getSimulationManager", _wrap_CFootballPlayer_getSimulationManager}, 
     {"setWorldTransform", _wrap_CFootballPlayer_setWorldTransform}, 
     {"freezeBall", _wrap_CFootballPlayer_freezeBall}, 
     {"accelerateBallToVelocity", _wrap_CFootballPlayer_accelerateBallToVelocity}, 
@@ -17748,19 +16616,6 @@ static swig_lua_class _wrap_class_btVector3 = { "btVector3", &SWIGTYPE_p_btVecto
 
 static const struct luaL_reg swig_commands[] = {
     { "CLog_getInstance", _wrap_CLog_getInstance},
-    { "CScreenManager_getInstance", _wrap_CScreenManager_getInstance},
-    { "CScreenMainMenu_getInstance", _wrap_CScreenMainMenu_getInstance},
-    { "CScreenLoadGame_getInstance", _wrap_CScreenLoadGame_getInstance},
-    { "CScreenConfig_getInstance", _wrap_CScreenConfig_getInstance},
-    { "CScreenCredits_getInstance", _wrap_CScreenCredits_getInstance},
-    { "CScreenGame_getInstance", _wrap_CScreenGame_getInstance},
-    { "CScreenSimulator_getInstance", _wrap_CScreenSimulator_getInstance},
-    { "CScreenSelectTeam_getInstance", _wrap_CScreenSelectTeam_getInstance},
-    { "CScreenRanking_getInstance", _wrap_CScreenRanking_getInstance},
-    { "CScreenTeamPlayers_getInstance", _wrap_CScreenTeamPlayers_getInstance},
-    { "CScreenQuickPlay_getInstance", _wrap_CScreenQuickPlay_getInstance},
-    { "CScreenResults_getInstance", _wrap_CScreenResults_getInstance},
-    { "CScreenMatchResult_getInstance", _wrap_CScreenMatchResult_getInstance},
     { "CMessage_p_ctor", _wrap_CMessage_p_ctor},
     { "CMessageDispatcher_getInstance", _wrap_CMessageDispatcher_getInstance},
     { "CBaseGameEntity_resetNextID", _wrap_CBaseGameEntity_resetNextID},
@@ -17783,6 +16638,7 @@ static swig_lua_var_info swig_variables[] = {
 };
 
 static swig_lua_const_info swig_constants[] = {
+{ SWIG_LUA_STRING,  (char *)"SIMULATION_SCENE_MANAGER_NODE_NAME", 0, 0, (void *)"Simulation SceneManager", 0},
 { SWIG_LUA_INT,     (char *)"NONE", (long) NONE, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"PLAYER1", (long) PLAYER1, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"PLAYER2", (long) PLAYER2, 0, 0, 0},
@@ -17823,9 +16679,6 @@ static void *_p_CScreenLoadGameTo_p_CScreen(void *x, int *SWIGUNUSEDPARM(newmemo
 static void *_p_CScreenSelectTeamTo_p_CScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((CScreen *)  ((CScreenSelectTeam *) x));
 }
-static void *_p_CScreenQuickPlayTo_p_CScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((CScreen *)  ((CScreenQuickPlay *) x));
-}
 static void *_p_CScreenMatchResultTo_p_CScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((CScreen *)  ((CScreenMatchResult *) x));
 }
@@ -17852,6 +16705,42 @@ static void *_p_CScreenCreditsTo_p_CScreen(void *x, int *SWIGUNUSEDPARM(newmemor
 }
 static void *_p_CScreenGameTo_p_CScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((CScreen *)  ((CScreenGame *) x));
+}
+static void *_p_CScreenLoadGameTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenLoadGame *) x));
+}
+static void *_p_CScreenSelectTeamTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenSelectTeam *) x));
+}
+static void *_p_CScreenMatchResultTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenMatchResult *) x));
+}
+static void *_p_CScreenRankingTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenRanking *) x));
+}
+static void *_p_CScreenSimulatorTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenSimulator *) x));
+}
+static void *_p_CScreenResultsTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenResults *) x));
+}
+static void *_p_CScreenTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *)  ((CScreen *) x));
+}
+static void *_p_CScreenTeamPlayersTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenTeamPlayers *) x));
+}
+static void *_p_CScreenMainMenuTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenMainMenu *) x));
+}
+static void *_p_CScreenConfigTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenConfig *) x));
+}
+static void *_p_CScreenCreditsTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenCredits *) x));
+}
+static void *_p_CScreenGameTo_p_IScreen(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IScreen *) (CScreen *) ((CScreenGame *) x));
 }
 static void *_p_CRefereeTo_p_CMovingEntity(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((CMovingEntity *)  ((CReferee *) x));
@@ -17891,6 +16780,7 @@ static swig_type_info _swigt__p_CMessageDispatcher = {"_p_CMessageDispatcher", "
 static swig_type_info _swigt__p_CMovingEntity = {"_p_CMovingEntity", "CMovingEntity *", 0, 0, (void*)&_wrap_class_CMovingEntity, 0};
 static swig_type_info _swigt__p_CPfGoals = {"_p_CPfGoals", "CPfGoals *", 0, 0, (void*)&_wrap_class_CPfGoals, 0};
 static swig_type_info _swigt__p_CPfMatches = {"_p_CPfMatches", "CPfMatches *", 0, 0, (void*)&_wrap_class_CPfMatches, 0};
+static swig_type_info _swigt__p_CPfTeamPlayers = {"_p_CPfTeamPlayers", "CPfTeamPlayers *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CPfTeams = {"_p_CPfTeams", "CPfTeams *", 0, 0, (void*)&_wrap_class_CPfTeams, 0};
 static swig_type_info _swigt__p_CRectangle = {"_p_CRectangle", "CRectangle *", 0, 0, (void*)&_wrap_class_CRectangle, 0};
 static swig_type_info _swigt__p_CReferee = {"_p_CReferee", "CReferee *", 0, 0, (void*)&_wrap_class_CReferee, 0};
@@ -17900,9 +16790,7 @@ static swig_type_info _swigt__p_CScreenCredits = {"_p_CScreenCredits", "CScreenC
 static swig_type_info _swigt__p_CScreenGame = {"_p_CScreenGame", "CScreenGame *", 0, 0, (void*)&_wrap_class_CScreenGame, 0};
 static swig_type_info _swigt__p_CScreenLoadGame = {"_p_CScreenLoadGame", "CScreenLoadGame *", 0, 0, (void*)&_wrap_class_CScreenLoadGame, 0};
 static swig_type_info _swigt__p_CScreenMainMenu = {"_p_CScreenMainMenu", "CScreenMainMenu *", 0, 0, (void*)&_wrap_class_CScreenMainMenu, 0};
-static swig_type_info _swigt__p_CScreenManager = {"_p_CScreenManager", "CScreenManager *", 0, 0, (void*)&_wrap_class_CScreenManager, 0};
 static swig_type_info _swigt__p_CScreenMatchResult = {"_p_CScreenMatchResult", "CScreenMatchResult *", 0, 0, (void*)&_wrap_class_CScreenMatchResult, 0};
-static swig_type_info _swigt__p_CScreenQuickPlay = {"_p_CScreenQuickPlay", "CScreenQuickPlay *", 0, 0, (void*)&_wrap_class_CScreenQuickPlay, 0};
 static swig_type_info _swigt__p_CScreenRanking = {"_p_CScreenRanking", "CScreenRanking *", 0, 0, (void*)&_wrap_class_CScreenRanking, 0};
 static swig_type_info _swigt__p_CScreenResults = {"_p_CScreenResults", "CScreenResults *", 0, 0, (void*)&_wrap_class_CScreenResults, 0};
 static swig_type_info _swigt__p_CScreenSelectTeam = {"_p_CScreenSelectTeam", "CScreenSelectTeam *", 0, 0, (void*)&_wrap_class_CScreenSelectTeam, 0};
@@ -17910,6 +16798,7 @@ static swig_type_info _swigt__p_CScreenSimulator = {"_p_CScreenSimulator", "CScr
 static swig_type_info _swigt__p_CScreenTeamPlayers = {"_p_CScreenTeamPlayers", "CScreenTeamPlayers *", 0, 0, (void*)&_wrap_class_CScreenTeamPlayers, 0};
 static swig_type_info _swigt__p_CSimulationManager = {"_p_CSimulationManager", "CSimulationManager *", 0, 0, (void*)&_wrap_class_CSimulationManager, 0};
 static swig_type_info _swigt__p_CSimulationWorld = {"_p_CSimulationWorld", "CSimulationWorld *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_CSinglePlayerGame = {"_p_CSinglePlayerGame", "CSinglePlayerGame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CStateMachineT_CFootballPlayer_t = {"_p_CStateMachineT_CFootballPlayer_t", "CStateMachine< CFootballPlayer > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CFootballPlayer_Sg_, 0};
 static swig_type_info _swigt__p_CStateMachineT_CReferee_t = {"_p_CStateMachineT_CReferee_t", "CStateMachine< CReferee > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CReferee_Sg_, 0};
 static swig_type_info _swigt__p_CStateMachineT_CTeam_t = {"_p_CStateMachineT_CTeam_t", "CStateMachine< CTeam > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CTeam_Sg_, 0};
@@ -17930,7 +16819,7 @@ static swig_type_info _swigt__p_IPfRegisteredTeamsDAO = {"_p_IPfRegisteredTeamsD
 static swig_type_info _swigt__p_IPfTeamPlayerContractsDAO = {"_p_IPfTeamPlayerContractsDAO", "IPfTeamPlayerContractsDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamPlayersDAO = {"_p_IPfTeamPlayersDAO", "IPfTeamPlayersDAO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IPfTeamsDAO = {"_p_IPfTeamsDAO", "IPfTeamsDAO *", 0, 0, (void*)&_wrap_class_IPfTeamsDAO, 0};
-static swig_type_info _swigt__p_Ogre__FrameEvent = {"_p_Ogre__FrameEvent", "Ogre::FrameEvent *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IScreen = {"_p_IScreen", "IScreen *", 0, 0, (void*)&_wrap_class_IScreen, 0};
 static swig_type_info _swigt__p_Ogre__SceneManager = {"_p_Ogre__SceneManager", "Ogre::SceneManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btCollisionShape = {"_p_btCollisionShape", "btCollisionShape *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btRigidBody = {"_p_btRigidBody", "btRigidBody *", 0, 0, (void*)0, 0};
@@ -17942,6 +16831,7 @@ static swig_type_info _swigt__p_std__vectorT_CFootballPlayer_p_t = {"_p_std__vec
 static swig_type_info _swigt__p_std__vectorT_CFormation_p_t = {"_p_std__vectorT_CFormation_p_t", "std::vector< CFormation * > *", 0, 0, (void*)&_wrap_class_std_vector_Sl_CFormation_Sm__Sg_, 0};
 static swig_type_info _swigt__p_std__vectorT_CPfGoals_p_t = {"_p_std__vectorT_CPfGoals_p_t", "std::vector< CPfGoals * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_CPfMatches_p_t = {"_p_std__vectorT_CPfMatches_p_t", "std::vector< CPfMatches * > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_CPfTeamPlayers_p_t = {"_p_std__vectorT_CPfTeamPlayers_p_t", "std::vector< CPfTeamPlayers * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_CPfTeams_p_t = {"_p_std__vectorT_CPfTeams_p_t", "std::vector< CPfTeams * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
@@ -17960,6 +16850,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CMovingEntity,
   &_swigt__p_CPfGoals,
   &_swigt__p_CPfMatches,
+  &_swigt__p_CPfTeamPlayers,
   &_swigt__p_CPfTeams,
   &_swigt__p_CRectangle,
   &_swigt__p_CReferee,
@@ -17969,9 +16860,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CScreenGame,
   &_swigt__p_CScreenLoadGame,
   &_swigt__p_CScreenMainMenu,
-  &_swigt__p_CScreenManager,
   &_swigt__p_CScreenMatchResult,
-  &_swigt__p_CScreenQuickPlay,
   &_swigt__p_CScreenRanking,
   &_swigt__p_CScreenResults,
   &_swigt__p_CScreenSelectTeam,
@@ -17979,6 +16868,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CScreenTeamPlayers,
   &_swigt__p_CSimulationManager,
   &_swigt__p_CSimulationWorld,
+  &_swigt__p_CSinglePlayerGame,
   &_swigt__p_CStateMachineT_CFootballPlayer_t,
   &_swigt__p_CStateMachineT_CReferee_t,
   &_swigt__p_CStateMachineT_CTeam_t,
@@ -17999,7 +16889,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_IPfTeamPlayerContractsDAO,
   &_swigt__p_IPfTeamPlayersDAO,
   &_swigt__p_IPfTeamsDAO,
-  &_swigt__p_Ogre__FrameEvent,
+  &_swigt__p_IScreen,
   &_swigt__p_Ogre__SceneManager,
   &_swigt__p_btCollisionShape,
   &_swigt__p_btRigidBody,
@@ -18011,6 +16901,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__vectorT_CFormation_p_t,
   &_swigt__p_std__vectorT_CPfGoals_p_t,
   &_swigt__p_std__vectorT_CPfMatches_p_t,
+  &_swigt__p_std__vectorT_CPfTeamPlayers_p_t,
   &_swigt__p_std__vectorT_CPfTeams_p_t,
   &_swigt__p_void,
 };
@@ -18029,18 +16920,17 @@ static swig_cast_info _swigc__p_CMessageDispatcher[] = {  {&_swigt__p_CMessageDi
 static swig_cast_info _swigc__p_CMovingEntity[] = {  {&_swigt__p_CReferee, _p_CRefereeTo_p_CMovingEntity, 0, 0},  {&_swigt__p_CBall, _p_CBallTo_p_CMovingEntity, 0, 0},  {&_swigt__p_CMovingEntity, 0, 0, 0},  {&_swigt__p_CFootballPlayer, _p_CFootballPlayerTo_p_CMovingEntity, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfGoals[] = {  {&_swigt__p_CPfGoals, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfMatches[] = {  {&_swigt__p_CPfMatches, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CPfTeamPlayers[] = {  {&_swigt__p_CPfTeamPlayers, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPfTeams[] = {  {&_swigt__p_CPfTeams, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CRectangle[] = {  {&_swigt__p_CRectangle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CReferee[] = {  {&_swigt__p_CReferee, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CScreen[] = {  {&_swigt__p_CScreenLoadGame, _p_CScreenLoadGameTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenSelectTeam, _p_CScreenSelectTeamTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenQuickPlay, _p_CScreenQuickPlayTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenMatchResult, _p_CScreenMatchResultTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenRanking, _p_CScreenRankingTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenSimulator, _p_CScreenSimulatorTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenResults, _p_CScreenResultsTo_p_CScreen, 0, 0},  {&_swigt__p_CScreen, 0, 0, 0},  {&_swigt__p_CScreenTeamPlayers, _p_CScreenTeamPlayersTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenMainMenu, _p_CScreenMainMenuTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenConfig, _p_CScreenConfigTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenCredits, _p_CScreenCreditsTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenGame, _p_CScreenGameTo_p_CScreen, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CScreen[] = {  {&_swigt__p_CScreenLoadGame, _p_CScreenLoadGameTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenSelectTeam, _p_CScreenSelectTeamTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenMatchResult, _p_CScreenMatchResultTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenRanking, _p_CScreenRankingTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenSimulator, _p_CScreenSimulatorTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenResults, _p_CScreenResultsTo_p_CScreen, 0, 0},  {&_swigt__p_CScreen, 0, 0, 0},  {&_swigt__p_CScreenTeamPlayers, _p_CScreenTeamPlayersTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenMainMenu, _p_CScreenMainMenuTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenConfig, _p_CScreenConfigTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenCredits, _p_CScreenCreditsTo_p_CScreen, 0, 0},  {&_swigt__p_CScreenGame, _p_CScreenGameTo_p_CScreen, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenConfig[] = {  {&_swigt__p_CScreenConfig, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenCredits[] = {  {&_swigt__p_CScreenCredits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenGame[] = {  {&_swigt__p_CScreenGame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenLoadGame[] = {  {&_swigt__p_CScreenLoadGame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenMainMenu[] = {  {&_swigt__p_CScreenMainMenu, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CScreenManager[] = {  {&_swigt__p_CScreenManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenMatchResult[] = {  {&_swigt__p_CScreenMatchResult, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CScreenQuickPlay[] = {  {&_swigt__p_CScreenQuickPlay, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenRanking[] = {  {&_swigt__p_CScreenRanking, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenResults[] = {  {&_swigt__p_CScreenResults, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CScreenSelectTeam[] = {  {&_swigt__p_CScreenSelectTeam, 0, 0, 0},{0, 0, 0, 0}};
@@ -18048,6 +16938,7 @@ static swig_cast_info _swigc__p_CScreenSimulator[] = {  {&_swigt__p_CScreenSimul
 static swig_cast_info _swigc__p_CScreenTeamPlayers[] = {  {&_swigt__p_CScreenTeamPlayers, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationManager[] = {  {&_swigt__p_CSimulationManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationWorld[] = {  {&_swigt__p_CSimulationWorld, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CSinglePlayerGame[] = {  {&_swigt__p_CSinglePlayerGame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMachineT_CFootballPlayer_t[] = {  {&_swigt__p_CStateMachineT_CFootballPlayer_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMachineT_CReferee_t[] = {  {&_swigt__p_CStateMachineT_CReferee_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMachineT_CTeam_t[] = {  {&_swigt__p_CStateMachineT_CTeam_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -18068,7 +16959,7 @@ static swig_cast_info _swigc__p_IPfRegisteredTeamsDAO[] = {  {&_swigt__p_IPfRegi
 static swig_cast_info _swigc__p_IPfTeamPlayerContractsDAO[] = {  {&_swigt__p_IPfTeamPlayerContractsDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamPlayersDAO[] = {  {&_swigt__p_IPfTeamPlayersDAO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IPfTeamsDAO[] = {  {&_swigt__p_IPfTeamsDAO, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Ogre__FrameEvent[] = {  {&_swigt__p_Ogre__FrameEvent, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IScreen[] = {  {&_swigt__p_CScreenLoadGame, _p_CScreenLoadGameTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenSelectTeam, _p_CScreenSelectTeamTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenMatchResult, _p_CScreenMatchResultTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenRanking, _p_CScreenRankingTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenSimulator, _p_CScreenSimulatorTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenResults, _p_CScreenResultsTo_p_IScreen, 0, 0},  {&_swigt__p_IScreen, 0, 0, 0},  {&_swigt__p_CScreen, _p_CScreenTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenTeamPlayers, _p_CScreenTeamPlayersTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenMainMenu, _p_CScreenMainMenuTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenConfig, _p_CScreenConfigTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenCredits, _p_CScreenCreditsTo_p_IScreen, 0, 0},  {&_swigt__p_CScreenGame, _p_CScreenGameTo_p_IScreen, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__SceneManager[] = {  {&_swigt__p_Ogre__SceneManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btCollisionShape[] = {  {&_swigt__p_btCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btRigidBody[] = {  {&_swigt__p_btRigidBody, 0, 0, 0},{0, 0, 0, 0}};
@@ -18080,6 +16971,7 @@ static swig_cast_info _swigc__p_std__vectorT_CFootballPlayer_p_t[] = {  {&_swigt
 static swig_cast_info _swigc__p_std__vectorT_CFormation_p_t[] = {  {&_swigt__p_std__vectorT_CFormation_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_CPfGoals_p_t[] = {  {&_swigt__p_std__vectorT_CPfGoals_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_CPfMatches_p_t[] = {  {&_swigt__p_std__vectorT_CPfMatches_p_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_CPfTeamPlayers_p_t[] = {  {&_swigt__p_std__vectorT_CPfTeamPlayers_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_CPfTeams_p_t[] = {  {&_swigt__p_std__vectorT_CPfTeams_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
@@ -18098,6 +16990,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CMovingEntity,
   _swigc__p_CPfGoals,
   _swigc__p_CPfMatches,
+  _swigc__p_CPfTeamPlayers,
   _swigc__p_CPfTeams,
   _swigc__p_CRectangle,
   _swigc__p_CReferee,
@@ -18107,9 +17000,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CScreenGame,
   _swigc__p_CScreenLoadGame,
   _swigc__p_CScreenMainMenu,
-  _swigc__p_CScreenManager,
   _swigc__p_CScreenMatchResult,
-  _swigc__p_CScreenQuickPlay,
   _swigc__p_CScreenRanking,
   _swigc__p_CScreenResults,
   _swigc__p_CScreenSelectTeam,
@@ -18117,6 +17008,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CScreenTeamPlayers,
   _swigc__p_CSimulationManager,
   _swigc__p_CSimulationWorld,
+  _swigc__p_CSinglePlayerGame,
   _swigc__p_CStateMachineT_CFootballPlayer_t,
   _swigc__p_CStateMachineT_CReferee_t,
   _swigc__p_CStateMachineT_CTeam_t,
@@ -18137,7 +17029,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_IPfTeamPlayerContractsDAO,
   _swigc__p_IPfTeamPlayersDAO,
   _swigc__p_IPfTeamsDAO,
-  _swigc__p_Ogre__FrameEvent,
+  _swigc__p_IScreen,
   _swigc__p_Ogre__SceneManager,
   _swigc__p_btCollisionShape,
   _swigc__p_btRigidBody,
@@ -18149,6 +17041,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__vectorT_CFormation_p_t,
   _swigc__p_std__vectorT_CPfGoals_p_t,
   _swigc__p_std__vectorT_CPfMatches_p_t,
+  _swigc__p_std__vectorT_CPfTeamPlayers_p_t,
   _swigc__p_std__vectorT_CPfTeams_p_t,
   _swigc__p_void,
 };

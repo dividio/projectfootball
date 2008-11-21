@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CLine2D_H__
-#define __CLine2D_H__
+#ifndef CLINE2D_H_
+#define CLINE2D_H_
 
 #include "../../bullet/btBulletDynamicsCommon.h"
 
@@ -50,4 +50,4 @@ private:
     btScalar m_c;
 };
 
-#endif // __CLine2D_H__
+#endif // CLINE2D_H_

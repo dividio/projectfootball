@@ -22,32 +22,32 @@
 
 #include "CScreenMatchResult.h"
 #include "../utils/CLog.h"
-#include "../engine/CGameEngine.h"
 
-
-CScreenMatchResult::CScreenMatchResult()
- :CScreen()
+CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
+ :CScreen("matchResult.layout")
 {
     CLog::getInstance()->debug("CScreenMatchResult()");
 
-    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"matchResult.layout");
+    m_game = game;
+    m_match = NULL;
 
-    m_competitionName      = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/Competition"));
-    m_competitionPhaseName = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/CompetitionPhase"));
-    m_homeName             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/HomeName"));
-    m_awayName             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayName"));
-    m_homeScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/HomeScore"));
-    m_awayScore            = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayScore"));
-    m_homeEventsList       = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamEventsList"));
-    m_awayEventsList       = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamEventsList"));
-    m_homeLogo             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamLogo"));
-    m_awayLogo             = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamLogo"));
+    m_competitionName		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/Competition"));
+    m_competitionPhaseName	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/CompetitionPhase"));
+    m_homeName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeName"));
+    m_awayName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayName"));
+    m_homeScore            	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeScore"));
+    m_awayScore            	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayScore"));
+    m_homeEventsList       	= static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamEventsList"));
+    m_awayEventsList       	= static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamEventsList"));
+    m_homeLogo             	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamLogo"));
+    m_awayLogo             	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamLogo"));
+    m_continueButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/ContinueButton"));
 
+    // Event handle
+    m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMatchResult::continueButtonClicked, this));
 
     // i18n support
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-        (CEGUI::utf8*)"MatchResult/ContinueButton"))->setText((CEGUI::utf8*)gettext("Continue"));
+    m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
 
     m_homeEventsList->addColumn((CEGUI::utf8*)gettext("min"), 0, CEGUI::UDim(0.2,0));
     m_homeEventsList->addColumn((CEGUI::utf8*)gettext("Event"), 1, CEGUI::UDim(0.8,0));
@@ -67,34 +67,18 @@ CScreenMatchResult::CScreenMatchResult()
 CScreenMatchResult::~CScreenMatchResult()
 {
     CLog::getInstance()->debug("~CScreenMatchResult()");
-    if(m_match != 0) {
-        delete m_match;
-    }
-}
-
-CScreenMatchResult* CScreenMatchResult::getInstance()
-{
-    static CScreenMatchResult instance;
-    return &instance;
+    delete m_match;
 }
 
 void CScreenMatchResult::enter()
 {
-    m_system->setGUISheet(m_sheet);
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
+	CScreen::enter();
 
     simulateMatches();
 
-    IDAOFactory   *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
-    IPfMatchesDAO *matchesDAO = daoFactory->getIPfMatchesDAO();
+    IPfMatchesDAO *matchesDAO = m_game->getIDAOFactory()->getIPfMatchesDAO();
     m_match = matchesDAO->findLastPlayerTeamMatch();
     loadMatchInfo(m_match);
-}
-
-void CScreenMatchResult::forcedLeave()
-{
-
 }
 
 bool CScreenMatchResult::leave()
@@ -104,14 +88,9 @@ bool CScreenMatchResult::leave()
     return true;
 }
 
-void CScreenMatchResult::update()
-{
-
-}
-
 void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
 {
-    IDAOFactory             *daoFactory           = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IDAOFactory             *daoFactory           = m_game->getIDAOFactory();
     IPfMatchesDAO           *matchesDAO           = daoFactory->getIPfMatchesDAO();
     IPfGoalsDAO             *goalsDAO             = daoFactory->getIPfGoalsDAO();
     IPfTeamPlayersDAO       *playersDAO           = daoFactory->getIPfTeamPlayersDAO();
@@ -201,7 +180,7 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
 
 void CScreenMatchResult::simulateMatches()
 {
-    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IDAOFactory         *daoFactory = m_game->getIDAOFactory();
     IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
     IPfMatchesDAO       *matchesDAO = daoFactory->getIPfMatchesDAO();
     IPfTeamPlayersDAO   *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
@@ -225,7 +204,7 @@ void CScreenMatchResult::simulateMatches()
         CPfMatches *match = (*it);
         if( !match->getLPlayed() ){
             CStartMatchEvent    startMatchEvent(match->getXMatch());
-            CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(startMatchEvent);
+            m_game->getEventStrategy()->process(startMatchEvent);
 
             int nHomeGoals = getRandomNGoals();
             int nAwayGoals = getRandomNGoals();
@@ -235,7 +214,7 @@ void CScreenMatchResult::simulateMatches()
                 while( nHomeGoals>0 ){
                     CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
                     CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamHome(), teamPlayer->getXTeamPlayer(), rand()%90, false);
-                    CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(goalMatchEvent);
+                    m_game->getEventStrategy()->process(goalMatchEvent);
                     nHomeGoals--;
                 }
                 teamPlayersDAO->freeVector(teamPlayesList);
@@ -245,14 +224,14 @@ void CScreenMatchResult::simulateMatches()
                 while( nAwayGoals>0 ){
                     CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
                     CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamAway(), teamPlayer->getXTeamPlayer(), rand()%90, false);
-                    CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(goalMatchEvent);
+                    m_game->getEventStrategy()->process(goalMatchEvent);
                     nAwayGoals--;
                 }
                 teamPlayersDAO->freeVector(teamPlayesList);
             }
 
             CEndMatchEvent endMatchEvent(match->getXMatch());
-            CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy()->process(endMatchEvent);
+            m_game->getEventStrategy()->process(endMatchEvent);
         }
     }
     matchesDAO->freeVector(matchesList);
@@ -270,4 +249,10 @@ int CScreenMatchResult::getRandomNGoals()
     if( n>=15 && n<50  ){ return 1; }
     if( n>=50 && n<90  ){ return 2; }
     if( n>=90 && n<100 ){ return 3; }
+}
+
+bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getGameScreen());
+	return true;
 }

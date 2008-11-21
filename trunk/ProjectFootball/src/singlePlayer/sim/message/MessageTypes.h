@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __MessageTypes_H__
-#define __MessageTypes_H__
+#ifndef MESSAGETYPES_H_
+#define MESSAGETYPES_H_
 
 enum MessageType
 {
@@ -40,5 +40,4 @@ enum MessageType
     Msg_Wait
 };
 
-#endif // __MessageTypes_H__
-
+#endif // MESSAGETYPES_H_

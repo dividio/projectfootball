@@ -22,23 +22,21 @@
 #ifndef CSCREENMATCHRESULT_H_
 #define CSCREENMATCHRESULT_H_
 
-// TODO: Remove CGameEngine dependency
+#include "../CSinglePlayerGame.h"
 #include "../../engine/CScreen.h"
-#include "../../engine/CGameEngine.h"
-
 
 class CScreenMatchResult : public CScreen
 {
 public:
-    static CScreenMatchResult* getInstance();
+    CScreenMatchResult(CSinglePlayerGame *game);
     virtual ~CScreenMatchResult();
 
     virtual void enter();
-    virtual void forcedLeave();
     virtual bool leave();
-    virtual void update();
 
 private:
+	bool continueButtonClicked(const CEGUI::EventArgs& e);
+
     CPfMatches              *m_match;
     CEGUI::Window           *m_competitionName;
     CEGUI::Window           *m_competitionPhaseName;
@@ -50,8 +48,9 @@ private:
     CEGUI::Window           *m_awayLogo;
     CEGUI::MultiColumnList  *m_homeEventsList;
     CEGUI::MultiColumnList  *m_awayEventsList;
+    CEGUI::PushButton		*m_continueButton;
 
-    CScreenMatchResult();
+    CSinglePlayerGame		*m_game;
 
     /** Simulate others matches of same competition phase than m_match
      * TODO Simulate all matches with Date less or equal than current user match

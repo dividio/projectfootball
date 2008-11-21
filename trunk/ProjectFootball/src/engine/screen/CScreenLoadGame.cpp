@@ -21,35 +21,24 @@
 #include <stdio.h>
 #include <libintl.h>
 
-// TODO: Remove singlePlayer dependency
 #include "CScreenLoadGame.h"
-#include "../../singlePlayer/screen/CScreenGame.h"
-#include "../CScreenManager.h"
-#include "../../singlePlayer/screen/CScreenSelectTeam.h"
-#include "../../utils/CLog.h"
 #include "../CGameEngine.h"
-#include "../singlePlayer/db/sqlite/dao/factory/CDAOFactorySQLite.h"
-#include "../../singlePlayer/CDataGenerator.h"
+#include "../../singlePlayer/CSinglePlayerGame.h"
+#include "../../utils/CLog.h"
 
 CScreenLoadGame::CScreenLoadGame()
-    :CScreen()
+    :CScreen("loadGame.layout")
 {
     CLog::getInstance()->debug("CScreenLoadGame()");
 
-    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"loadGame.layout");
+    m_backButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/BackButton"));
+    m_loadGameButton    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
+    m_deleteGameButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
+    m_newGameButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
+    m_newGameEditbox    = static_cast<CEGUI::Editbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
 
-    m_loadGameButton    = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
-    m_deleteGameButton  = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
-    m_newGameButton     = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
-
-    m_newGameEditbox    = static_cast<CEGUI::Editbox*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
-    m_newGameEditbox->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::handleTextChanged, this));
-
-    m_gamesList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
+    m_gamesList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
-    m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::handleSelectChanged, this));
-    m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenLoadGame::handleDoubleClick, this));
     m_gamesList->setUserColumnDraggingEnabled(false);
     m_gamesList->setUserColumnSizingEnabled(false);
     m_gamesList->setUserSortControlEnabled(false);
@@ -61,14 +50,16 @@ CScreenLoadGame::CScreenLoadGame()
     m_newGameButton->setText((CEGUI::utf8*)gettext("New Game"));
     m_deleteGameButton->setText((CEGUI::utf8*)gettext("Delete Game"));
     m_loadGameButton->setText((CEGUI::utf8*)gettext("Load Game"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"LoadGame/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
-}
+    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
 
-CScreenLoadGame* CScreenLoadGame::getInstance()
-{
-    static CScreenLoadGame instance;
-    return &instance;
+    // Event handle
+    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::backButtonClicked, this));
+    m_newGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::newGameButtonClicked, this));
+    m_loadGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::loadGameButtonClicked, this));
+    m_deleteGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::deleteGameButtonClicked, this));
+    m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListSelectChanged, this));
+    m_gamesList->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListDoubleClick, this));
+    m_newGameEditbox->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::newGameEditboxTextChanged, this));
 }
 
 CScreenLoadGame::~CScreenLoadGame()
@@ -78,9 +69,7 @@ CScreenLoadGame::~CScreenLoadGame()
 
 void CScreenLoadGame::enter()
 {
-    m_system->setGUISheet(m_sheet);
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
+	CScreen::enter();
 
     loadGameList();
 
@@ -88,97 +77,6 @@ void CScreenLoadGame::enter()
     m_deleteGameButton->setEnabled(false);
     m_newGameButton->setEnabled(false);
     m_newGameEditbox->setText("");
-}
-
-void CScreenLoadGame::forcedLeave()
-{
-
-}
-
-bool CScreenLoadGame::leave()
-{
-    return true;
-}
-
-void CScreenLoadGame::update()
-{
-}
-
-void CScreenLoadGame::newGame()
-{
-    IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
-    const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
-
-    if( user==NULL || user->getXUser()==0 ){
-        CLog::getInstance()->exception("[CScreenLoadGame::newGame] User not defined");
-    }
-
-    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string filename = "data/database/savedgames/";
-
-    srand(time(NULL));
-    for( int i=0; i<8; i++ ){
-        filename += str[rand()%52];
-    }
-    filename += ".sql3";
-
-    CDate nowDate;
-    CPfGames game;
-    game.setDLastSaved(nowDate);
-    game.setSDriverName("SQLite");
-    game.setSConnectionString(filename);
-    game.setSGameName(m_newGameEditbox->getText().c_str());
-    game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
-    game.setXFkUser(user->getXUser());
-    masterDatabase->getIPfGamesDAO()->insertReg(&game);
-
-    CDAOFactorySQLite *daoFactory = new CDAOFactorySQLite(filename);
-    CDataGenerator generator(daoFactory);
-    generator.generateDataBase();
-
-    CPfGameStates newGameState;
-    newGameState.setSState(S_STATE_NEWGAME);
-    newGameState.setSValue("true");
-    daoFactory->getIPfGameStatesDAO()->insertReg(&newGameState);
-
-    delete daoFactory;
-
-    loadGameList();
-    m_newGameEditbox->setText("");
-}
-
-void CScreenLoadGame::loadGame()
-{
-    CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
-    int xGame = itm->getID();
-    CGameEngine::getInstance()->loadGame(xGame);
-
-    // Test if this game is a new game
-    IPfGameStatesDAO *gameStateDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGameStatesDAO();
-    CPfGameStates *newGameState = gameStateDAO->findBySState(S_STATE_NEWGAME);
-    if( newGameState->getSValue()=="true" ){
-        CScreenManager::getInstance()->pushState(CScreenSelectTeam::getInstance());
-    }else{
-        CScreenManager::getInstance()->popState();
-        CScreenManager::getInstance()->pushState(CScreenGame::getInstance());
-    }
-    delete newGameState;
-}
-
-void CScreenLoadGame::deleteGame()
-{
-    CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
-    int xGame = itm->getID();
-
-    IPfGamesDAO *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
-    CPfGames    *game       = gamesDAO->findByXGame(xGame);
-    if( game->getSDriverName()=="SQLite" ){
-        remove(game->getSConnectionString().c_str());
-    }
-    gamesDAO->deleteReg(game);
-    delete game;
-
-    loadGameList();
 }
 
 void CScreenLoadGame::loadGameList()
@@ -216,15 +114,15 @@ void CScreenLoadGame::loadGameList()
     m_deleteGameButton->setEnabled(false);
 }
 
-bool CScreenLoadGame::handleDoubleClick(const CEGUI::EventArgs& e)
+bool CScreenLoadGame::gamesListDoubleClick(const CEGUI::EventArgs& e)
 {
     if( m_gamesList->getFirstSelectedItem()!=NULL ){
-        loadGame();
+    	loadGameButtonClicked(e);
     }
     return true;
 }
 
-bool CScreenLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
+bool CScreenLoadGame::gamesListSelectChanged(const CEGUI::EventArgs& e)
 {
     m_loadGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
     m_deleteGameButton->setEnabled(m_gamesList->getFirstSelectedItem()!=NULL);
@@ -232,11 +130,63 @@ bool CScreenLoadGame::handleSelectChanged(const CEGUI::EventArgs& e)
     return true;
 }
 
-bool CScreenLoadGame::handleTextChanged(const CEGUI::EventArgs& e)
+bool CScreenLoadGame::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
 {
     if( m_newGameEditbox->getText().compare("")!=0 ){
         m_newGameButton->setEnabled(true);
     }else{
         m_newGameButton->setEnabled(false);
     }
+}
+
+bool CScreenLoadGame::backButtonClicked(const CEGUI::EventArgs& e)
+{
+	CGameEngine::getInstance()->previousScreen();
+	return true;
+}
+
+bool CScreenLoadGame::newGameButtonClicked(const CEGUI::EventArgs& e)
+{
+    IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
+    const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
+
+    if( user==NULL || user->getXUser()==0 ){
+        CLog::getInstance()->exception("[CScreenLoadGame::newGame] User not defined");
+    }
+
+    CSinglePlayerGame singlePlayerGame(user, m_newGameEditbox->getText().c_str());
+    CPfGames *game = singlePlayerGame.save();
+    masterDatabase->getIPfGamesDAO()->insertReg(game);
+
+    loadGameList();
+    m_newGameEditbox->setText("");
+
+	return true;
+}
+
+bool CScreenLoadGame::loadGameButtonClicked(const CEGUI::EventArgs& e)
+{
+    CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
+    int xGame = itm->getID();
+    CGameEngine::getInstance()->loadGame(xGame);
+
+	return true;
+}
+
+bool CScreenLoadGame::deleteGameButtonClicked(const CEGUI::EventArgs& e)
+{
+    CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
+    int xGame = itm->getID();
+
+    IPfGamesDAO *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    CPfGames    *game       = gamesDAO->findByXGame(xGame);
+    if( game->getSDriverName()=="SQLite" ){
+        remove(game->getSConnectionString().c_str());
+    }
+    gamesDAO->deleteReg(game);
+    delete game;
+
+    loadGameList();
+
+	return true;
 }

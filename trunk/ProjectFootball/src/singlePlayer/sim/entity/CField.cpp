@@ -18,16 +18,17 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <Ogre.h>
 
 #include "CField.h"
 #include "../../screen/CScreenSimulator.h"
 
-
 CField::CField()
 : CBaseGameEntity()
 {
-    Ogre::SceneManager *scnMgr = CScreenSimulator::getInstance()->getSimulationSceneManager();
-    m_centerOfMassOffset.setOrigin(btVector3(0,1,0));
+	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
+
+	m_centerOfMassOffset.setOrigin(btVector3(0,1,0));
     m_entity = scnMgr->createEntity("Field", "Field.mesh");
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("FieldNode", Ogre::Vector3(0, 0, 0));
     m_node->attachObject(m_entity);

@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CSimulationWorld_H__
-#define __CSimulationWorld_H__
+#ifndef CSIMULATIONWORLD_H_
+#define CSIMULATIONWORLD_H_
 
 #include <vector>
 
@@ -48,4 +48,4 @@ private:
 
 };
 
-#endif // __CSimulationWorld_H__
+#endif // CSIMULATIONWORLD_H_

@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CRectangle_H__
-#define __CRectangle_H__
+#ifndef CRECTANGLE_H_
+#define CRECTANGLE_H_
 
 #include "../../bullet/btBulletDynamicsCommon.h"
 
@@ -44,4 +44,4 @@ private:
     btVector3 m_bottomRight;
 };
 
-#endif // __CRectangle_H__
+#endif // CRECTANGLE_H_

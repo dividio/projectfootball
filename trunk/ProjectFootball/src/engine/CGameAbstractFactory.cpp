@@ -18,45 +18,29 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSINGLEPLAYERGAMESTATE_H_
-#define CSINGLEPLAYERGAMESTATE_H_
-
 #include <string>
 
-// TODO: Remove engine dependency
-#include "../engine/IGameState.h"
-#include "db/dao/factory/IDAOFactory.h"
-#include "db/sqlite/dao/factory/CDAOFactorySQLite.h"
-#include "../engine/CGameReportRegister.h"
-#include "event/strategy/IGameEventStrategy.h"
-#include "option/CGameOptionManager.h"
-#include "../engine/db/bean/CPfGames.h"
+#include "CGameEngine.h"
+#include "CGameAbstractFactory.h"
+#include "../utils/CLog.h"
+#include "../singlePlayer/CSinglePlayerGame.h"
+#include "../quickPlay/CQuickGame.h"
 
-class CSinglePlayerGameState : public IGameState
+IGame* CGameAbstractFactory::getIGame(int xGame)
 {
-public:
-	CSinglePlayerGameState(int xGame);
-	virtual ~CSinglePlayerGameState();
+    CPfGames *game = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO()->findByXGame(xGame);
+    std::string gameType = game->getSGameType();
 
-	virtual void save();
-
-    virtual IDAOFactory*           getIDAOFactory();
-    virtual IGameEventStrategy*    getIGameEventStrategy();
-    virtual CGameReportRegister*   getCGameReportRegister();
-    virtual CGameOptionManager*    getCGameOptionManager();
-
-private:
-    void setGameOptionsDefaultValues();
-    void copyFile(const std::string &origin, const std::string &destination);
-
-private:
-    CPfGames                    *m_game;
-    CDAOFactorySQLite           *m_daoFactory;
-    IGameEventStrategy          *m_eventStrategy;
-    CGameReportRegister         *m_reportRegister;
-    CGameOptionManager          *m_optionManager;
-    std::string                 m_database_filepath;
-    std::string                 m_database_tmp_filepath;
-};
-
-#endif /*CSINGLEPLAYERGAMESTATE_H_*/
+    if( gameType==S_GAME_TYPE_SINGLEPLAYER ){
+    	IGame *iGame = new CSinglePlayerGame(game);
+    	delete game;
+    	return iGame;
+    }else if( gameType==S_GAME_TYPE_QUICKPLAY ){
+    	IGame *iGame = new CQuickGame(CGameEngine::getInstance()->getCurrentUser());
+    	delete game;
+    	return iGame;
+    }else{
+    	delete game;
+        CLog::getInstance()->exception("[CGameAbstractFactory::getIGame] Game type not supported: '%s'", gameType.c_str());
+    }
+}

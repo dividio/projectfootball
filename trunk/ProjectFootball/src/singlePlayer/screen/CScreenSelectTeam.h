@@ -22,54 +22,56 @@
 #define CSCREENSELECTTEAM_H_
 
 #include "../../engine/CScreen.h"
-#include "../singlePlayer/db/bean/CPfTeams.h"
-#include "../singlePlayer/db/bean/CPfConfederations.h"
-#include "../singlePlayer/db/bean/CPfCountries.h"
-#include "../singlePlayer/db/bean/CPfCompetitions.h"
+
+#include "../CSinglePlayerGame.h"
+
+#include "../db/bean/CPfTeams.h"
+#include "../db/bean/CPfConfederations.h"
+#include "../db/bean/CPfCountries.h"
+#include "../db/bean/CPfCompetitions.h"
 
 class CScreenSelectTeam : public CScreen
 {
 public:
-    static CScreenSelectTeam* getInstance();
-  virtual ~CScreenSelectTeam();
+    CScreenSelectTeam(CSinglePlayerGame *game);
+	virtual ~CScreenSelectTeam();
 
     virtual void enter();
-    virtual void forcedLeave();
     virtual bool leave();
-    virtual void update();
-
-    void selectTeam();
 
 private:
-    CScreenSelectTeam();
+    bool confederationsComboboxListSelectionChanged(const CEGUI::EventArgs& e);
+    bool countriesComboboxListSelectionChanged(const CEGUI::EventArgs& e);
+    bool competitionsComboboxListSelectionChanged  (const CEGUI::EventArgs& e);
+    bool teamsListboxSelectionChanged(const CEGUI::EventArgs& e);
+    bool teamsListboxMouseDoubleClick(const CEGUI::EventArgs& e);
+    bool selectButtonClicked(const CEGUI::EventArgs& e);
+    bool backButtonClicked(const CEGUI::EventArgs& e);
 
     int  loadConfederationsList();
     int  loadCountriesList     (int XConfederation);
     int  loadCompetitionsList  (int XCountry);
     void loadTeamList          (int XCompetition);
 
-    bool handleSelectChanged      (const CEGUI::EventArgs& e);
-    bool handleConfederationChange(const CEGUI::EventArgs& e);
-    bool handleCountryChange      (const CEGUI::EventArgs& e);
-    bool handleCompetitionChange  (const CEGUI::EventArgs& e);
-    bool handleDoubleClick        (const CEGUI::EventArgs& e);
-
     void loadTeamInfo(CPfTeams *team);
     void clearTeamInfo();
 
-    CEGUI::PushButton                *m_selectButton;
-    CEGUI::Listbox                   *m_guiTeamsList;
-    CEGUI::Window                    *m_guiTeamName;
-    CEGUI::Window                    *m_guiTeamBudget;
-    CEGUI::Window                    *m_guiTeamLogo;
-    CEGUI::Combobox                  *m_confederationsCombo;
-    CEGUI::Combobox                  *m_countriesCombo;
-    CEGUI::Combobox                  *m_competitionsCombo;
+    CEGUI::PushButton				*m_backButton;
+    CEGUI::PushButton               *m_selectButton;
+    CEGUI::Listbox                  *m_guiTeamsList;
+    CEGUI::Window                   *m_guiTeamName;
+    CEGUI::Window                   *m_guiTeamBudget;
+    CEGUI::Window                   *m_guiTeamLogo;
+    CEGUI::Combobox                 *m_confederationsCombobox;
+    CEGUI::Combobox                 *m_countriesCombobox;
+    CEGUI::Combobox                 *m_competitionsCombobox;
 
-    std::vector<CPfConfederations*>  *m_confederationsList;
-    std::vector<CPfCountries*>       *m_countriesList;
-    std::vector<CPfCompetitions*>    *m_competitionsList;
-    std::vector<CPfTeams*>           *m_teamsList;
+    std::vector<CPfConfederations*> *m_confederationsList;
+    std::vector<CPfCountries*>      *m_countriesList;
+    std::vector<CPfCompetitions*>   *m_competitionsList;
+    std::vector<CPfTeams*>			*m_teamsList;
+
+    CSinglePlayerGame				*m_game;
 };
 
 #endif /*CSCREENSELECTTEAM_H_*/

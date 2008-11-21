@@ -18,33 +18,36 @@
 *                                                                             *
 ******************************************************************************/
 
-
-#ifndef __CSimulationManager_H__
-#define __CSimulationManager_H__
-
+#ifndef CSIMULATIONMANAGER_H_
+#define CSIMULATIONMANAGER_H_
 
 #include <string>
 #include <vector>
 
-#include "entity/CFootballPlayer.h"
-#include "entity/CReferee.h"
+#include "CSimulationWorld.h"
+
 #include "entity/CBall.h"
 #include "entity/CField.h"
-#include "../utils/CTimer.h"
-#include "entity/CTeam.h"
-#include "CSimulationWorld.h"
+
+#include "../../engine/utils/CTimer.h"
+
+#include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfMatches.h"
 #include "../event/match/CGoalMatchEvent.h"
 
-
+class CFootballPlayer;
+class CTeam;
+class CReferee;
 
 class CSimulationManager
 {
 public:
-    CSimulationManager(int xMatch);
+    CSimulationManager(int xMatch, CSinglePlayerGame *game);
     ~CSimulationManager();
 
     void update();
+
+    void addToLog(const std::string &text);
 
     void startMatch();
     void goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal);
@@ -72,18 +75,20 @@ public:
     void kick(CFootballPlayer *player, btVector3 power);
 
 private:
-    CPfMatches *m_match;
-    std::vector<CGoalMatchEvent*> m_goalEvents;
-    CTimer *m_logicTimer;
-    CTimer *m_physicsTimer;
-    CTeam *m_homeTeam;
-    CTeam *m_awayTeam;
-    CReferee *m_referee;
-    CBall *m_ball;
-    CField *m_field;
-    CSimulationWorld *m_simWorld;
+    CPfMatches						*m_match;
+    std::vector<CGoalMatchEvent*> 	 m_goalEvents;
+    CTimer 							*m_logicTimer;
+    CTimer 							*m_physicsTimer;
+    CTeam 							*m_homeTeam;
+    CTeam 							*m_awayTeam;
+    CReferee 						*m_referee;
+    CBall 							*m_ball;
+    CField 							*m_field;
+    CSimulationWorld 				*m_simWorld;
+
+    CSinglePlayerGame				*m_game;
 
     void truncateVector(btVector3 *v, double max);
 };
 
-#endif // __CSimulationManager_H__
+#endif // CSIMULATIONMANAGER_H_

@@ -35,16 +35,14 @@ CMessageDispatcher* CMessageDispatcher::getInstance()
 CMessageDispatcher::CMessageDispatcher()
 {
     CLog::getInstance()->debug("CMessageDispatcher()");
-    m_timer = new CTimer();
+    m_stopWatch = new CStopWatch();
 }
 
 
 CMessageDispatcher::~CMessageDispatcher()
 {
     CLog::getInstance()->debug("~CMessageDispatcher()");
-    if(m_timer != 0) {
-        delete m_timer;
-    }
+    delete m_stopWatch;
 }
 
 
@@ -52,7 +50,7 @@ void CMessageDispatcher::dispatchMsg(double delay, int sender, int receiver, int
 {
     CBaseGameEntity *entity = CEntityManager::getInstance()->getEntityFromID(receiver);
 
-    if(entity == 0) {
+    if(entity == NULL) {
         CLog::getInstance()->debug("Entity %d doesn't exist", receiver);
         return;
     }
@@ -61,15 +59,14 @@ void CMessageDispatcher::dispatchMsg(double delay, int sender, int receiver, int
     if(delay <= 0.0) {
         discharge(entity, message);
     } else {
-        message.DispatchTime = m_timer->getTime() + delay;
+        message.DispatchTime = m_stopWatch->getTime() + delay;
         m_priorityQueue.insert(message);
     }
 }
 
 void CMessageDispatcher::dispatchDelayedMessages()
 {
-    m_timer->nextTick();
-    double time = m_timer->getTime();
+    double time = m_stopWatch->getTime();
     while(!m_priorityQueue.empty() &&
             (m_priorityQueue.begin()->DispatchTime < time) &&
             (m_priorityQueue.begin()->DispatchTime > 0)) {
@@ -86,7 +83,7 @@ void CMessageDispatcher::dispatchDelayedMessages()
 
 void CMessageDispatcher::reset()
 {
-    m_timer->reset();
+	m_stopWatch->reset();
     m_priorityQueue.clear();
 }
 

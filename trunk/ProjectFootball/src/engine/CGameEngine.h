@@ -22,31 +22,64 @@
 #define CGAMEENGINE_H_
 
 #include <string>
+#include <vector>
+#include <Ogre.h>
 
+#include "IGame.h"
+#include "IScreen.h"
 #include "db/sqlite/dao/factory/CMasterDAOFactorySQLite.h"
-#include "IGameState.h"
 
-class CGameEngine
+#include "utils/IClock.h"
+
+class CGameEngine : public Ogre::FrameListener
 {
 public:
 	virtual ~CGameEngine();
 	static CGameEngine* getInstance();
 
-	IGameState*        getCurrentGame();
-	IMasterDAOFactory* getCMasterDAOFactory();
+	IGame*        		getCurrentGame();
+	IMasterDAOFactory* 	getCMasterDAOFactory();
 
 	void setUser(int xUser);
 	const CPfUsers* getCurrentUser();
 
 	void loadGame(int xGame);
+	void save();
 	void unloadCurrentGame();
+
+	IClock& getClock();
+
+	// Ogre
+    virtual bool frameEnded(const Ogre::FrameEvent& evt);
+    virtual bool frameStarted(const Ogre::FrameEvent& evt);
+
+    // Screen stack
+    void exit();
+    void previousScreen();
+    void nextScreen(IScreen* screen);
+
+    IScreen* getMainMenuScreen();
+    IScreen* getLoadGameScreen();
+    IScreen* getConfigScreen();
+    IScreen* getCreditsScreen();
+
+protected:
+	void enterScreen();
 
 private:
     CGameEngine();
 
     CPfUsers                *m_user;
-    IGameState              *m_gameState;
+    IGame              		*m_game;
     CMasterDAOFactorySQLite *m_masterDatabase;
+
+    IClock					*m_clock;
+    std::vector<IScreen*> 	 m_screenStack;
+
+    IScreen					*m_mainMenuScreen;
+    IScreen					*m_loadGameScreen;
+    IScreen					*m_configScreen;
+    IScreen					*m_creditsScreen;
 };
 
 #endif /*CGAMEENGINE_H_*/

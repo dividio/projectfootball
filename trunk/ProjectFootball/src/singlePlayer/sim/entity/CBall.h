@@ -19,10 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CBall_H__
-#define __CBall_H__
-
-#include <Ogre.h>
+#ifndef CBALL_H_
+#define CBALL_H_
 
 #include "CMovingEntity.h"
 
@@ -40,4 +38,4 @@ public:
     bool crossBottomLine() const;
 };
 
-#endif // __CBall_H__
+#endif // CBALL_H_

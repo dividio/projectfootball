@@ -22,10 +22,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "CGameOptionManager.h"
+#include "CSinglePlayerOptionManager.h"
 #include "../../utils/CLog.h"
 
-CGameOptionManager::CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
+CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
    : m_categoriesList()
 {
     m_gameOptionsDAO = gameOptionsDAO;
@@ -35,7 +35,7 @@ CGameOptionManager::CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
 }
 
 
-CGameOptionManager::~CGameOptionManager()
+CSinglePlayerOptionManager::~CSinglePlayerOptionManager()
 {
     saveOptions();
     cleanOptions();
@@ -44,7 +44,7 @@ CGameOptionManager::~CGameOptionManager()
 }
 
 
-void CGameOptionManager::loadOptions()
+void CSinglePlayerOptionManager::loadOptions()
 {
     cleanOptions();
     setDefaultValues();
@@ -63,7 +63,7 @@ void CGameOptionManager::loadOptions()
 }
 
 
-void CGameOptionManager::saveOptions()
+void CSinglePlayerOptionManager::saveOptions()
 {
     std::map<const char *, std::map<const char *, const char *>* >::iterator itCategories;
 
@@ -95,7 +95,7 @@ void CGameOptionManager::saveOptions()
 }
 
 
-void CGameOptionManager::cleanOptions()
+void CSinglePlayerOptionManager::cleanOptions()
 {
     std::map< const char *, std::map<const char *, const char *>* >::iterator itCategories;
 
@@ -123,26 +123,26 @@ void CGameOptionManager::cleanOptions()
 }
 
 
-void CGameOptionManager::setDefaultValues()
+void CSinglePlayerOptionManager::setDefaultValues()
 {
     // nothing at the moment
 }
 
 
-const char * CGameOptionManager::getStringOption( const char *category, const char *option )
+const char * CSinglePlayerOptionManager::getStringOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[CGameOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[CGameOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -150,20 +150,20 @@ const char * CGameOptionManager::getStringOption( const char *category, const ch
 }
 
 
-int CGameOptionManager::getIntOption( const char *category, const char *option )
+int CSinglePlayerOptionManager::getIntOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[CGameOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[CGameOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -171,20 +171,20 @@ int CGameOptionManager::getIntOption( const char *category, const char *option )
 }
 
 
-bool CGameOptionManager::getBooleanOption( const char *category, const char *option )
+bool CSinglePlayerOptionManager::getBooleanOption( const char *category, const char *option )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[CGameOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[CGameOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -192,7 +192,7 @@ bool CGameOptionManager::getBooleanOption( const char *category, const char *opt
 }
 
 
-void CGameOptionManager::setStringOption( const char *category, const char *option, const char *value )
+void CSinglePlayerOptionManager::setStringOption( const char *category, const char *option, const char *value )
 {
     // First, search the category
     std::map<const char *, const char *> *optionsList = searchCategory( category );
@@ -217,7 +217,7 @@ void CGameOptionManager::setStringOption( const char *category, const char *opti
 }
 
 
-void CGameOptionManager::setIntOption( const char *category, const char *option, int value )
+void CSinglePlayerOptionManager::setIntOption( const char *category, const char *option, int value )
 {
     char buffer[50];
     sprintf( buffer, "%d", value );
@@ -226,7 +226,7 @@ void CGameOptionManager::setIntOption( const char *category, const char *option,
 }
 
 
-void CGameOptionManager::setBooleanOption( const char *category, const char *option, bool value )
+void CSinglePlayerOptionManager::setBooleanOption( const char *category, const char *option, bool value )
 {
     if( value ){
       setStringOption( category, option, "true" );
@@ -236,7 +236,7 @@ void CGameOptionManager::setBooleanOption( const char *category, const char *opt
 }
 
 
-std::map<const char *, const char *> * CGameOptionManager::searchCategory( const char *category )
+std::map<const char *, const char *> * CSinglePlayerOptionManager::searchCategory( const char *category )
 {
     bool found = false;
     std::map< const char *, std::map<const char *, const char *>* >::iterator it;
@@ -259,7 +259,7 @@ std::map<const char *, const char *> * CGameOptionManager::searchCategory( const
 }
 
 
-const char * CGameOptionManager::searchOption( std::map<const char *, const char *> *map, const char *option )
+const char * CSinglePlayerOptionManager::searchOption( std::map<const char *, const char *> *map, const char *option )
 {
     bool found = false;
     std::map<const char *, const char *>::iterator it;
@@ -282,7 +282,7 @@ const char * CGameOptionManager::searchOption( std::map<const char *, const char
 }
 
 
-std::map<const char *, const char *> * CGameOptionManager::createCategory( const char *category )
+std::map<const char *, const char *> * CSinglePlayerOptionManager::createCategory( const char *category )
 {
     // First, create the new options list
     std::map<const char *, const char *> *optionsList = new std::map<const char *, const char *>();
@@ -297,7 +297,7 @@ std::map<const char *, const char *> * CGameOptionManager::createCategory( const
 }
 
 
-const char * CGameOptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
+const char * CSinglePlayerOptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
 {
     // First, copu the option and the value
     char *o = new char[strlen(option)+1];

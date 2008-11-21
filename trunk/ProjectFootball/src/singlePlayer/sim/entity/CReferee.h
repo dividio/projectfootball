@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CReferee_H__
-#define __CReferee_H__
+#ifndef CREFEREE_H_
+#define CREFEREE_H_
 
 #include <string>
 
@@ -32,6 +32,7 @@
 enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
     ,KICK_OFF, KICK_IN, CORNER_KICK, GOAL_KICK};
 
+class CSimulationManager;
 
 /**
  * This class implements football rules and control the game mode.
@@ -41,7 +42,7 @@ class CReferee: public CMovingEntity
 public:
     static std::string m_pCtorName;
 
-    CReferee();
+    CReferee(CSimulationManager *simulationManager);
     ~CReferee();
 
     bool handleMessage(const CMessage &msg);
@@ -60,6 +61,7 @@ public:
     int                      getHomeScore() const;
     int                      getAwayScore() const;
 
+    CSimulationManager* getSimulationManager();
 
     void setMatchDuration(int cycles);
     void setHomeTeamInSideLeft(bool left);
@@ -87,7 +89,8 @@ private:
     CTeam                       *m_kickTeam;
     CTeam                       *m_nextTimeKickOffTeam;
     CStateMachine<CReferee>     *m_stateMachine;
+    CSimulationManager			*m_simulationManager;
 
 };
 
-#endif // __CReferee_H__
+#endif // CREFEREE_H_

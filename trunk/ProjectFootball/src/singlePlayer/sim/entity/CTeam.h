@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CTeam_H__
-#define __CTeam_H__
+#ifndef CTEAM_H_
+#define CTEAM_H_
 
 #include <string>
 #include <vector>
@@ -30,10 +30,9 @@
 #include "../tactic/CFormation.h"
 #include "../tactic/CStrategicPosition.h"
 #include "../../db/bean/CPfTeams.h"
+#include "../../db/bean/CPfTeamPlayers.h"
 
-
-
-
+class CSimulationManager;
 class CFootballPlayer;
 
 class CTeam: public CBaseGameEntity
@@ -42,11 +41,13 @@ public:
     static std::string m_pCtorName;
     static CTeam* getTeam(CBaseGameEntity *team);
 
-    CTeam(int XTeam, bool sideLeft);
+    CTeam(CSimulationManager *simulationManager, const CPfTeams *team, std::vector<CPfTeamPlayers*> *playersVector, bool sideLeft);
     ~CTeam();
 
-    void                setOpponentTeam(CTeam *team);
-    void                setControllingPlayer(CFootballPlayer *player);
+    void  setOpponentTeam(CTeam *team);
+    void  setControllingPlayer(CFootballPlayer *player);
+
+    CSimulationManager* getSimulationManager();
 
     CTeam*                          getOpponentTeam();
     const std::string&              getName();
@@ -60,19 +61,20 @@ public:
     CStateMachine<CTeam>*           getFSM();
     int                             getXTeam();
 
-    bool                isKickForUs() const;
-    bool                inControl() const;
-    bool                isNearestPlayerToBall(CFootballPlayer* player) const;
-    bool                isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
-    bool                isBallInOwnPenaltyArea() const;
-    bool                isBallInOpponentPenaltyArea() const;
+    bool isKickForUs() const;
+    bool inControl() const;
+    bool isNearestPlayerToBall(CFootballPlayer* player) const;
+    bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
+    bool isBallInOwnPenaltyArea() const;
+    bool isBallInOpponentPenaltyArea() const;
 
-    bool                handleMessage(const CMessage &msg);
-    void                update();
-    void                changeSide();
-    void                changeFormation(int formationPos);
+    bool handleMessage(const CMessage &msg);
+    void update();
+    void changeSide();
+    void changeFormation(int formationPos);
 
 private:
+	CSimulationManager				*m_simulationManager;
     CPfTeams                        *m_team;
     std::vector<CFootballPlayer*>    m_players;
     CFootballPlayer                 *m_nearestPlayerToBall;
@@ -87,4 +89,4 @@ private:
     void setFormations();
 };
 
-#endif // __CTeam_H__
+#endif // CTEAM_H_

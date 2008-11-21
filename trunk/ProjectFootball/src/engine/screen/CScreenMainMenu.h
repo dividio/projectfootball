@@ -33,15 +33,20 @@ class CScreenMainMenu : public CScreen
 {
 
 public:
-    static CScreenMainMenu* getInstance();
+    CScreenMainMenu();
     virtual ~CScreenMainMenu();
 
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
+private:
+	bool quickPlayButtonClicked(const CEGUI::EventArgs& e);
+	bool loadGameButtonClicked(const CEGUI::EventArgs& e);
+	bool configButtonClicked(const CEGUI::EventArgs& e);
+	bool creditsButtonClicked(const CEGUI::EventArgs& e);
+	bool quitButtonClicked(const CEGUI::EventArgs& e);
 
-protected:
-    CScreenMainMenu();
+	CEGUI::PushButton	*m_quickPlayButton;
+	CEGUI::PushButton	*m_loadGameButton;
+	CEGUI::PushButton	*m_configButton;
+	CEGUI::PushButton	*m_creditsButton;
+	CEGUI::PushButton	*m_quitButton;
 };
 #endif // CSCREENMAINMENU_H_

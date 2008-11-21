@@ -18,23 +18,20 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEEVENTREGISTERSTRATEGY_H_
-#define CGAMEEVENTREGISTERSTRATEGY_H_
+#ifndef ISCREEN_H_
+#define ISCREEN_H_
 
-#include "IGameEventStrategy.h"
-
-class CGameEventRegisterStrategy : public IGameEventStrategy
+class IScreen
 {
 public:
-	CGameEventRegisterStrategy(IGameEventStrategy &delegatedEventStrategy);
-	virtual ~CGameEventRegisterStrategy();
+	virtual ~IScreen(){}
 
-	virtual void process(CStartMatchEvent &event);
-    virtual void process(CEndMatchEvent   &event);
-    virtual void process(CGoalMatchEvent  &event);
+    virtual void enter() =0;
+    virtual bool leave() =0;
+    virtual void update()=0;
 
-private:
-    IGameEventStrategy  &m_delegatedEventStrategy;
+protected:
+	IScreen(){}
 };
 
-#endif /*CGAMEEVENTREGISTERSTRATEGY_H_*/
+#endif /*ISCREEN_H_*/

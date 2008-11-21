@@ -22,24 +22,40 @@
 #include <stdlib.h>
 
 #include "CGameEngine.h"
-#include "CGameStateAbstractFactory.h"
+#include "CGameAbstractFactory.h"
 #include "option/CSystemOptionManager.h"
+#include "utils/CClock.h"
 #include "../utils/CLog.h"
 
-CGameEngine::CGameEngine()
+#include "screen/CScreenMainMenu.h"
+#include "screen/CScreenLoadGame.h"
+#include "screen/CScreenConfig.h"
+#include "screen/CScreenCredits.h"
+
+CGameEngine::CGameEngine() : m_screenStack()
 {
-    m_gameState = NULL;
+	m_clock = new CClock();
+    m_game	= NULL;
 
     const char *masterDatabasePath = CSystemOptionManager::getInstance()->getGeneralMasterDatebasePath();
     m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
 
     m_user = NULL;
     setUser(DEFAULT_USER);
+
+    // The config screen will be created later
+    // because OGRE is not fully initialized now
+    m_mainMenuScreen 	= new CScreenMainMenu();
+    m_loadGameScreen 	= new CScreenLoadGame();
+    m_configScreen		= NULL;
+    m_creditsScreen		= new CScreenCredits();
+
+    nextScreen(m_mainMenuScreen);
 }
 
 CGameEngine::~CGameEngine()
 {
-    if( m_gameState!=NULL ){
+    if( m_game!=NULL ){
         unloadCurrentGame();
     }
 
@@ -47,7 +63,13 @@ CGameEngine::~CGameEngine()
         delete m_user;
     }
 
+    delete m_mainMenuScreen;
+    delete m_loadGameScreen;
+    delete m_configScreen;
+    delete m_creditsScreen;
+
     delete m_masterDatabase;
+    delete m_clock;
 }
 
 CGameEngine* CGameEngine::getInstance()
@@ -70,9 +92,9 @@ const CPfUsers* CGameEngine::getCurrentUser()
     return m_user;
 }
 
-IGameState* CGameEngine::getCurrentGame()
+IGame* CGameEngine::getCurrentGame()
 {
-    return m_gameState;
+    return m_game;
 }
 
 IMasterDAOFactory* CGameEngine::getCMasterDAOFactory()
@@ -83,13 +105,126 @@ IMasterDAOFactory* CGameEngine::getCMasterDAOFactory()
 void CGameEngine::loadGame(int xGame)
 {
     unloadCurrentGame();
-    m_gameState = CGameStateAbstractFactory::getIGameState(xGame);
+    m_game = CGameAbstractFactory::getIGame(xGame);
+    nextScreen(m_game);
+}
+
+void CGameEngine::save()
+{
+	if( m_game!=NULL ){
+		CPfGames *game = m_game->save();
+		m_masterDatabase->getIPfGamesDAO()->updateReg(game);
+	}
 }
 
 void CGameEngine::unloadCurrentGame()
 {
-    if(m_gameState!=NULL){
-        delete m_gameState;
-        m_gameState = NULL;
+    if(m_game!=NULL && m_screenStack.back()==m_game && m_screenStack.back()->leave() ){
+        m_screenStack.pop_back();
+        delete m_game;
+        m_game = NULL;
+
+        nextScreen(m_mainMenuScreen);
+    }
+}
+
+bool CGameEngine::frameEnded(const Ogre::FrameEvent& evt)
+{
+    return true;
+}
+
+
+bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
+{
+	((CClock*)m_clock)->addTime(evt.timeSinceLastFrame);
+    if( m_screenStack.empty() ){
+    	CLog::getInstance()->info("-== Stopping Main Loop ==-");
+        return false;
+    }else{
+        m_screenStack.back()->update();
+        return true;
+    }
+}
+
+IClock& CGameEngine::getClock()
+{
+	return *m_clock;
+}
+
+
+void CGameEngine::exit()
+{
+    while(!m_screenStack.empty() && m_screenStack.back()->leave()) {
+    	m_screenStack.pop_back();
+    }
+    enterScreen();
+}
+
+void CGameEngine::previousScreen()
+{
+	CLog::getInstance()->debug("CGameEngine::previousScreen()");
+	// cleanup the current state
+	if(!m_screenStack.empty()) {
+		if(m_screenStack.back()->leave()) {
+			m_screenStack.pop_back();
+			enterScreen();
+		}
+	}
+}
+
+void CGameEngine::nextScreen(IScreen* screen)
+{
+	CLog::getInstance()->debug("CGameEngine::nextScreen()");
+	bool found = false;
+	for( int i=m_screenStack.size()-1; i>=0 && !found; i-- ){
+		if( m_screenStack[i]==screen ){
+			found = true;
+		}
+	}
+
+	if( found ){
+		while( !m_screenStack.empty() ){
+			if( m_screenStack.back()!=screen && m_screenStack.back()->leave() ){
+				m_screenStack.pop_back();
+			}else{
+				m_screenStack.back()->enter();
+				break;
+			}
+		}
+	}else{
+		m_screenStack.push_back(screen);
+		m_screenStack.back()->enter();
+	}
+}
+
+IScreen* CGameEngine::getMainMenuScreen()
+{
+	return m_mainMenuScreen;
+}
+
+IScreen* CGameEngine::getLoadGameScreen()
+{
+	return m_loadGameScreen;
+}
+
+IScreen* CGameEngine::getConfigScreen()
+{
+    // The config screen will be created here
+    // because OGRE is now fully initialized
+	if( m_configScreen==NULL ){
+		m_configScreen = new CScreenConfig();
+	}
+	return m_configScreen;
+}
+
+IScreen* CGameEngine::getCreditsScreen()
+{
+	return m_creditsScreen;
+}
+
+void CGameEngine::enterScreen()
+{
+    if(!m_screenStack.empty()) {
+        m_screenStack.back()->enter();
     }
 }

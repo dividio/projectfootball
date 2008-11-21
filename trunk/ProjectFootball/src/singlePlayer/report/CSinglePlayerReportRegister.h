@@ -18,19 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEREPORTREGISTER_H_
-#define CGAMEREPORTREGISTER_H_
+#ifndef CSINGLEPLAYERREPORTREGISTER_H_
+#define CSINGLEPLAYERREPORTREGISTER_H_
 
 #include <vector>
 
-// TODO: Remove singlePlayer dependency
-#include "../singlePlayer/report/CMatchReport.h"
+#include "CMatchReport.h"
 
-class CGameReportRegister
+class CSinglePlayerReportRegister
 {
 public:
-	CGameReportRegister();
-	virtual ~CGameReportRegister();
+	CSinglePlayerReportRegister();
+	virtual ~CSinglePlayerReportRegister();
 
 	void generateMatchReport(int xMatch);
 	std::vector<CMatchReport*>* getMatchReportList();
@@ -39,4 +38,4 @@ private:
     std::vector<CMatchReport*>* m_matchReportList;
 };
 
-#endif /*CGAMEREPORTREGISTER_H_*/
+#endif /*CSINGLEPLAYERREPORTREGISTER_H_*/

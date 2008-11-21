@@ -21,28 +21,28 @@
 #include <libintl.h>
 
 #include "CScreenRanking.h"
-#include "../engine/CGameEngine.h"
 #include "../utils/CLog.h"
 
-CScreenRanking::CScreenRanking()
-    :CScreen()
+CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
+    :CScreen("ranking.layout")
 {
     CLog::getInstance()->debug("CScreenRanking()");
 
-    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"ranking.layout");
+    m_game = game;
 
-    m_rankingList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
+    m_rankingList 	= static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
+    m_backButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/BackButton"));
 
     m_rankingList->setUserColumnDraggingEnabled(false);
     m_rankingList->setUserColumnSizingEnabled(false);
     m_rankingList->setUserSortControlEnabled(false);
 
     // i18n support
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Ranking/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
+    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
+
+    // Event handle
+    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::backButtonClicked, this));
 
     m_rankingList->addColumn("",     0, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.60,0));
@@ -56,12 +56,6 @@ CScreenRanking::CScreenRanking()
 
 }
 
-CScreenRanking* CScreenRanking::getInstance()
-{
-    static CScreenRanking instance;
-    return &instance;
-}
-
 CScreenRanking::~CScreenRanking()
 {
     CLog::getInstance()->debug("~CScreenRanking()");
@@ -69,25 +63,9 @@ CScreenRanking::~CScreenRanking()
 
 void CScreenRanking::enter()
 {
-    m_system->setGUISheet(m_sheet);
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
+	CScreen::enter();
 
     loadRanking();
-}
-
-void CScreenRanking::forcedLeave()
-{
-
-}
-
-bool CScreenRanking::leave()
-{
-    return true;
-}
-
-void CScreenRanking::update()
-{
 }
 
 void CScreenRanking::loadRanking()
@@ -95,7 +73,7 @@ void CScreenRanking::loadRanking()
     m_rankingList->resetList();
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("MultiListSelectionBrush");
 
-    IDAOFactory                         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
+    IDAOFactory                         *daoFactory		= m_game->getIDAOFactory();
     IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
     std::vector<CPfRanking*>            *rankingList    = rankingDAO->findRanking();
     std::vector<CPfRanking*>::iterator  it;
@@ -171,4 +149,10 @@ bool CScreenRanking::isInSameCompetition(std::vector<CPfTeams*> *teams, std::str
         it++;
     }
     return finded;
+}
+
+bool CScreenRanking::backButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->previousScreen();
+	return true;
 }

@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CAudioSystem_H__
-#define __CAudioSystem_H__
+#ifndef CAUDIOSYSTEM_H_
+#define CAUDIOSYSTEM_H_
 
 #include "IAudioFile.h"
 
@@ -35,4 +35,4 @@ private:
     CAudioSystem();
 
 };
-#endif // __CAudioSystem_H__
+#endif // CAUDIOSYSTEM_H_

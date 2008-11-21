@@ -18,16 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <Ogre.h>
 
 #include "CBall.h"
 #include "../../screen/CScreenSimulator.h"
-
+#include "../../../utils/CLog.h"
 
 CBall::CBall()
 : CMovingEntity()
 {
+	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
+
     CLog::getInstance()->debug("CBall()");
-    Ogre::SceneManager *scnMgr = CScreenSimulator::getInstance()->getSimulationSceneManager();
     m_centerOfMassOffset.setOrigin(btVector3(0,-0.5,0));
     m_entity = scnMgr->createEntity("Ball", "Ball.mesh");
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("BallNode", Ogre::Vector3(0, 0, 0));
@@ -39,8 +41,9 @@ CBall::CBall()
     bool isDynamic = (mass != 0.f);
 
     btVector3 localInertia(0,0,0);
-    if (isDynamic)
+    if (isDynamic){
         m_shape->calculateLocalInertia(mass,localInertia);
+    }
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,this,m_shape,localInertia);
     rbInfo.m_restitution = btScalar(0.8);
     rbInfo.m_friction = 0.5;

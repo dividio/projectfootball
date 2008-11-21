@@ -18,57 +18,23 @@
 *                                                                             *
 ******************************************************************************/
 
-// TODO: Remove CScreenManager dependency
-#include "CTimer.h"
-#include "../engine/CScreenManager.h"
+#ifndef CSTOPWATCH_H_
+#define CSTOPWATCH_H_
 
-CTimer::CTimer(int frequency)
+#include "IClock.h"
+
+class CStopWatch
 {
-    m_frequency = 1.0/frequency;
-    m_currentTime = 0;
-    m_previousTime = 0;
-}
+public:
+	CStopWatch();
+	virtual ~CStopWatch();
 
+	double 	getTime();
+	void	reset();
 
-CTimer::~CTimer()
-{
-}
+private:
+	IClock&	m_clock;
+	double	m_initTime;
+};
 
-
-void CTimer::update()
-{
-    m_currentTime += CScreenManager::getInstance()->getTimeSinceLastFrame();
-}
-
-
-void CTimer::reset()
-{
-    m_currentTime = 0;
-    m_previousTime = 0;
-}
-
-
-double CTimer::getTime() const
-{
-    return m_currentTime;
-}
-
-
-bool CTimer::nextTick()
-{
-    double auxTime;
-    bool tick = false;
-    auxTime = m_currentTime;
-    update();
-    if(m_frequency != -1) {
-        m_previousTime += (m_currentTime - auxTime);
-        if(m_previousTime >= m_frequency) {
-            m_previousTime -= m_frequency;
-            tick = true;
-        }
-    } else {
-        tick = true;
-    }
-
-    return tick;
-}
+#endif /*CSTOPWATCH_H_*/

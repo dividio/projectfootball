@@ -29,13 +29,11 @@
       <Property Name="Font" Value="DejaVuSans-10" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
       <Property Name="UnifiedAreaRect" Value="{{0.75,0},{0.7,0},{0.9,0},{0.74,0}}" />
-      <Event Name="Clicked" Function="cmd_Change_Players" />
     </Window>
     <Window Type="TaharezLook/Button" Name="TeamPlayers/BackButton" >
       <Property Name="Font" Value="DejaVuSans-10" />
       <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
       <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
-      <Event Name="Clicked" Function="cmd_back" />
     </Window>
   </Window>
 </GUILayout>

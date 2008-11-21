@@ -57,13 +57,11 @@
         <Window Type="TaharezLook/Button" Name="Config/BackButton" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.95,0}}" />
-            <Event Name="Clicked" Function="cmd_back" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Config/SaveButton" >
             <Property Name="Text" Value="Save" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.95,0}}" />
-            <Event Name="Clicked" Function="cmd_Config_Save" />
         </Window>
     </Window>
 </GUILayout>

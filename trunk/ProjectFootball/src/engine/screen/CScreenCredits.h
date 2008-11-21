@@ -30,17 +30,14 @@
 class CScreenCredits : public CScreen
 {
 public:
-    static CScreenCredits* getInstance();
-
+    CScreenCredits();
     virtual ~CScreenCredits();
 
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
+private:
+	bool backButtonClicked(const CEGUI::EventArgs& e);
 
-protected:
-    CScreenCredits();
+	CEGUI::PushButton	*m_backButton;
+
 };
 
 #endif // CSCREENCREDITS_H_

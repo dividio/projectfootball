@@ -19,21 +19,39 @@
 ******************************************************************************/
 
 #include "CScreen.h"
-#include "CScreenManager.h"
 #include "../utils/CLog.h"
 
 
-CScreen::CScreen()
+CScreen::CScreen(const char *layout)
 {
     CLog::getInstance()->debug("CScreen()");
 
-    m_root = Ogre::Root::getSingletonPtr();
-    m_system = CEGUI::System::getSingletonPtr();
-    m_renderer = (CEGUI::OgreCEGUIRenderer *) m_system->getRenderer();
+    m_root			= Ogre::Root::getSingletonPtr();
+    m_system		= CEGUI::System::getSingletonPtr();
+    m_renderer		= (CEGUI::OgreCEGUIRenderer *) m_system->getRenderer();
+    m_windowMngr	= CEGUI::WindowManager::getSingletonPtr();
+    m_layout		= m_windowMngr->loadWindowLayout((CEGUI::utf8*)layout);
 }
 
 
 CScreen::~CScreen()
 {
   CLog::getInstance()->debug("~CScreen()");
+  m_windowMngr->destroyWindow(m_layout);
+}
+
+void CScreen::enter()
+{
+    m_system->setGUISheet(m_layout);
+    m_root->getSceneManager("Default SceneManager")->clearScene();
+}
+
+bool CScreen::leave()
+{
+	return true;
+}
+
+void CScreen::update()
+{
+	// Nothing to do
 }

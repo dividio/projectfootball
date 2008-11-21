@@ -19,26 +19,25 @@
 ******************************************************************************/
 
 
-#ifndef __CTimer_H__
-#define __CTimer_H__
+#ifndef CTIMER_H_
+#define CTIMER_H_
+
+#include "IClock.h"
 
 class CTimer
 {
 public:
-    CTimer(int frequency = -1);
+    CTimer(int frequency);
     ~CTimer();
 
     void reset();
-    double getTime() const;
     bool nextTick();
 
 private:
-    double m_initTime;
-    double m_currentTime;
-    double m_previousTime;
-    double m_frequency;
-
-    void update();
+	IClock&	m_clock;
+    double 	m_initTime;
+    double 	m_previousTime;
+    double 	m_period;
 };
 
-#endif // __CTimer_H__
+#endif // CTIMER_H_

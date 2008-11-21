@@ -140,10 +140,10 @@ class CStateMachine
 public:
     CStateMachine(entity_type *owner)
     {
-        m_owner = owner;
-        m_globalState = "";
-        m_currentState = "";
-        m_previousState = "";
+        m_owner				= owner;
+        m_globalState		= "";
+        m_currentState		= "";
+        m_previousState		= "";
     };
 
     ~CStateMachine(){};
@@ -203,10 +203,10 @@ public:
 
 
 private:
-    entity_type *m_owner;
-    std::string m_globalState;
-    std::string m_currentState;
-    std::string m_previousState;
+    entity_type 		*m_owner;
+    std::string 		m_globalState;
+    std::string 		m_currentState;
+    std::string 		m_previousState;
 };
 
 #endif // CSTATEMACHINE_H_

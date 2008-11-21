@@ -26,8 +26,8 @@
 class IMatchEvent : public IGameEvent
 {
 public:
-	IMatchEvent();
-	virtual ~IMatchEvent();
+	IMatchEvent(){}
+	virtual ~IMatchEvent(){}
 
 	virtual int getXMatch() =0;
 };

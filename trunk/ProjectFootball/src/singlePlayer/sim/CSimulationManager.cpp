@@ -21,28 +21,30 @@
 #include <stdlib.h>
 #include <cmath>
 
-// TODO: Remove CGameEngine dependency
 #include "CSimulationManager.h"
+
 #include "message/CMessageDispatcher.h"
 #include "message/MessageTypes.h"
-#include "entity/CField.h"
 #include "entity/CEntityManager.h"
-#include "../utils/CLog.h"
-#include "../screen/CScreenSimulator.h"
-#include "../audio/CAudioSystem.h"
-#include "../engine/option/CSystemOptionManager.h"
-#include "../db/dao/IPfMatchesDAO.h"
-#include "../../engine/CGameEngine.h"
-#include "../event/strategy/IGameEventStrategy.h"
+#include "entity/CFootballPlayer.h"
+#include "entity/CReferee.h"
+#include "entity/CTeam.h"
+
 #include "../event/match/CStartMatchEvent.h"
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"
+#include "../screen/CScreenSimulator.h"
 
+#include "../../audio/CAudioSystem.h"
+#include "../../engine/option/CSystemOptionManager.h"
+#include "../../utils/CLog.h"
 
-
-CSimulationManager::CSimulationManager(int xMatch)
+CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
 {
     CLog::getInstance()->debug("CSimulationManager()");
+
+    m_game = game;
+
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
     m_logicTimer = new CTimer(optionManager->getSimulationLogicFrequency());
     m_physicsTimer = new CTimer(optionManager->getSimulationPhysicsFrequency());
@@ -51,17 +53,29 @@ CSimulationManager::CSimulationManager(int xMatch)
     m_field = new CField();
     m_simWorld->addObject(m_field);
 
-    m_referee = new CReferee();
+    m_referee = new CReferee(this);
     m_simWorld->addObject(m_referee);
 
     m_ball = new CBall();
     m_simWorld->addObject(m_ball);
 
-    IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+    IPfMatchesDAO *matchesDAO = m_game->getIDAOFactory()->getIPfMatchesDAO();
     m_match = matchesDAO->findByXMatch(xMatch);
 
-    m_homeTeam = new CTeam(m_match->getXFkTeamHome(), true);
-    m_awayTeam = new CTeam(m_match->getXFkTeamAway(), false);
+    // Home team
+    CPfTeams *homeTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_match->getXFkTeamHome());
+    std::vector<CPfTeamPlayers*> *homePlayersVector = m_game->getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(homeTeam->getXTeam());
+    m_homeTeam = new CTeam(this, homeTeam, homePlayersVector, true);
+    m_game->getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(homePlayersVector);
+    delete homeTeam;
+
+    // Away team
+    CPfTeams *awayTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_match->getXFkTeamAway());
+    std::vector<CPfTeamPlayers*> *awayPlayersVector = m_game->getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(awayTeam->getXTeam());
+    m_awayTeam = new CTeam(this, awayTeam, awayPlayersVector, false);
+    m_game->getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(awayPlayersVector);
+    delete awayTeam;
+
     m_homeTeam->setOpponentTeam(m_awayTeam);
     m_awayTeam->setOpponentTeam(m_homeTeam);
 
@@ -123,6 +137,13 @@ void CSimulationManager::update()
 }
 
 
+void CSimulationManager::addToLog(const std::string &text)
+{
+	CScreenSimulator* screenSimulator = (CScreenSimulator*) m_game->getSimulatorScreen();
+	screenSimulator->addToLog(text);
+}
+
+
 CSimulationWorld* CSimulationManager::getSimulationWorld()
 {
     return m_simWorld;
@@ -177,13 +198,14 @@ void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *play
     CGoalMatchEvent *event = new CGoalMatchEvent(m_match->getXMatch(), teamScorer->getXTeam(),
                                                  playerScorer->getXTeamPlayer(), minute, ownGoal);
     m_goalEvents.push_back(event);
-    CScreenSimulator::getInstance()->updateScore();
+    CScreenSimulator *screen = (CScreenSimulator*) m_game->getSimulatorScreen();
+    screen->updateScore();
 }
 
 
 void CSimulationManager::endMatchEvent()
 {
-    IGameEventStrategy *eventStrategy = CGameEngine::getInstance()->getCurrentGame()->getIGameEventStrategy();
+    CSinglePlayerEventStrategy *eventStrategy = m_game->getEventStrategy();
     CStartMatchEvent startMatchEvent(m_match->getXMatch());
     CEndMatchEvent endMatchEvent(m_match->getXMatch());
     eventStrategy->process(startMatchEvent);
@@ -192,13 +214,14 @@ void CSimulationManager::endMatchEvent()
         eventStrategy->process(*(*it));
     }
     eventStrategy->process(endMatchEvent);
-    CScreenSimulator::getInstance()->endMatchEvent();
+    CScreenSimulator *screen = (CScreenSimulator*) m_game->getSimulatorScreen();
+    screen->endMatchEvent();
 }
 
 
 void CSimulationManager::changeFormationEvent(int pos)
 {
-    CPfTeams *team = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams *team = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
     int xTeam = team->getXTeam();
     if(xTeam == m_homeTeam->getXTeam()) {
         m_homeTeam->changeFormation(pos);

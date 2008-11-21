@@ -19,16 +19,15 @@
 ******************************************************************************/
 
 
-#ifndef __CMovingEntity_H__
-#define __CMovingEntity_H__
+#ifndef CMOVINGENTITY_H_
+#define CMOVINGENTITY_H_
 
 #include "CBaseGameEntity.h"
 
 class CMovingEntity : public CBaseGameEntity
 {
 public:
-    CMovingEntity();
-    ~CMovingEntity();
+    virtual ~CMovingEntity();
 
     void      setPosition(float x, float y, float z);
     void      updateOrientation();
@@ -43,6 +42,8 @@ protected:
     btVector3 m_side;
     btScalar  m_prevAngle;
     double    m_maxVelocity;
+    CMovingEntity();
+
 };
 
-#endif // __CMovingEntity_H__
+#endif // CMOVINGENTITY_H_

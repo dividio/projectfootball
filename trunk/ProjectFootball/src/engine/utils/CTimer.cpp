@@ -18,31 +18,40 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CGameEventRegisterStrategy.h"
+#include "CTimer.h"
+#include "../CGameEngine.h"
 
-CGameEventRegisterStrategy::CGameEventRegisterStrategy(IGameEventStrategy &delegatedEventStrategy)
-    : m_delegatedEventStrategy(delegatedEventStrategy)
+CTimer::CTimer(int frequency) : m_clock(CGameEngine::getInstance()->getClock())
+{
+	reset();
+
+	if( frequency<=0 ){
+		m_period = -1.0;
+	}else{
+		m_period = 1.0/(double)frequency;
+	}
+}
+
+
+CTimer::~CTimer()
 {
 }
 
-CGameEventRegisterStrategy::~CGameEventRegisterStrategy()
+
+void CTimer::reset()
 {
+    m_previousTime = m_clock.getCurrentTime();
 }
 
-void CGameEventRegisterStrategy::process(CEndMatchEvent &event)
-{
-    m_delegatedEventStrategy.process(event);
-    // TODO: Register event
-}
 
-void CGameEventRegisterStrategy::process(CGoalMatchEvent &event)
+bool CTimer::nextTick()
 {
-    m_delegatedEventStrategy.process(event);
-    // TODO: Register event
-}
-
-void CGameEventRegisterStrategy::process(CStartMatchEvent &event)
-{
-    m_delegatedEventStrategy.process(event);
-    // TODO: Register event
+    double currentTime 	= m_clock.getCurrentTime();
+    double timeLapse	= currentTime - m_previousTime;
+    if( timeLapse>m_period && m_period>0 ){
+    	m_previousTime = currentTime;
+    	return true;
+    }else{
+    	return false;
+    }
 }

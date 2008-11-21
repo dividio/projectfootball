@@ -18,29 +18,20 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CGameReportRegister.h"
+#ifndef CQUICKGAME_H_
+#define CQUICKGAME_H_
 
-CGameReportRegister::CGameReportRegister()
-{
-    m_matchReportList = new std::vector<CMatchReport*>();
-}
+#include "../singlePlayer/CSinglePlayerGame.h"
 
-CGameReportRegister::~CGameReportRegister()
+class CQuickGame : public CSinglePlayerGame
 {
-    std::vector<CMatchReport*>::iterator it;
-    for( it=m_matchReportList->begin(); it!=m_matchReportList->end(); it++ ){
-        delete (*it);
-    }
-    delete m_matchReportList;
-}
+public:
+	CQuickGame(const CPfUsers *user);
+	virtual ~CQuickGame();
 
-void CGameReportRegister::generateMatchReport(int xMatch)
-{
-    CMatchReport *matchReport = new CMatchReport(xMatch);
-    m_matchReportList->push_back(matchReport);
-}
+    // CScreen
+    virtual void enter();
+    virtual bool leave();
+};
 
-std::vector<CMatchReport*>* CGameReportRegister::getMatchReportList()
-{
-    return m_matchReportList;
-}
+#endif /*CQUICKGAME_H_*/

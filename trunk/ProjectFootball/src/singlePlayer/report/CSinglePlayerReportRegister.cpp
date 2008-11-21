@@ -18,26 +18,29 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENQUICKPLAY_H_
-#define CSCREENQUICKPLAY_H_
+#include "CSinglePlayerReportRegister.h"
 
-#include "../../engine/CScreen.h"
-
-class CScreenQuickPlay : public CScreen
+CSinglePlayerReportRegister::CSinglePlayerReportRegister()
 {
-public:
-    static CScreenQuickPlay* getInstance();
-	virtual ~CScreenQuickPlay();
+    m_matchReportList = new std::vector<CMatchReport*>();
+}
 
-    virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
+CSinglePlayerReportRegister::~CSinglePlayerReportRegister()
+{
+    std::vector<CMatchReport*>::iterator it;
+    for( it=m_matchReportList->begin(); it!=m_matchReportList->end(); it++ ){
+        delete (*it);
+    }
+    delete m_matchReportList;
+}
 
-private:
-    CScreenQuickPlay();
-    void newQuickGame();
-    void deleteQuickGames();
-};
+void CSinglePlayerReportRegister::generateMatchReport(int xMatch)
+{
+    CMatchReport *matchReport = new CMatchReport(xMatch);
+    m_matchReportList->push_back(matchReport);
+}
 
-#endif /*CSCREENQUICKPLAY_H_*/
+std::vector<CMatchReport*>* CSinglePlayerReportRegister::getMatchReportList()
+{
+    return m_matchReportList;
+}

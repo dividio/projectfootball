@@ -25,25 +25,26 @@
 #include <Ogre.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
+#include "IScreen.h"
 
 
-class CScreen
+class CScreen : public IScreen
 {
 
 public:
     virtual ~CScreen();
 
-    virtual void enter() = 0;
-    virtual void forcedLeave() = 0;
-    virtual bool leave() = 0;
-    virtual void update() = 0;
+    virtual void enter();
+    virtual bool leave();
+    virtual void update();
 
 protected:
-    Ogre::Root*    m_root;
-    CEGUI::OgreCEGUIRenderer *m_renderer;
-    CEGUI::System *m_system;
-    CEGUI::Window *m_sheet;
+    Ogre::Root					*m_root;
+    CEGUI::OgreCEGUIRenderer	*m_renderer;
+    CEGUI::System 				*m_system;
+    CEGUI::Window				*m_layout;
+    CEGUI::WindowManager 		*m_windowMngr;
 
-    CScreen();
+    CScreen(const char *layout);
 };
 #endif // CSCREEN_H_

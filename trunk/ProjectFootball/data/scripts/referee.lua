@@ -16,8 +16,6 @@ SRf_Global["Execute"] = function(referee)
     elseif (cycle >= duration) and (currentState ~= "SRf_End") then
         referee:getFSM():changeState("SRf_End")
     end
-    local simulator = PF.CScreenSimulator_getInstance()
-    local sim = simulator:getSimulationManager()
 end
 
 SRf_Global["Exit"] = function(referee)
@@ -37,9 +35,8 @@ SRf_BeforeStart["Enter"] = function(referee)
 end
 
 SRf_BeforeStart["Execute"] = function(referee)
-    local simulator = PF.CScreenSimulator_getInstance()
-    local sim = simulator:getSimulationManager()
     local disp = PF.CMessageDispatcher_getInstance()
+    local sim = referee:getSimulationManager()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_BeforeStart, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_BeforeStart, nil)
 end
@@ -56,7 +53,7 @@ SRf_BeforeStart["OnMessage"] = function(referee, message)
     if (left == 1) then
         kickLeftTeam = true
     end
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
+    local sim = referee:getSimulationManager()
     local homeTeam = sim:getHomeTeam()
     local awayTeam = sim:getAwayTeam()
     if message.Msg == PF.Msg_StartMatch then
@@ -78,10 +75,9 @@ end
 SRf_HalfTime = {}
 
 SRf_HalfTime["Enter"] = function(referee)
+    local sim = referee:getSimulationManager()
     referee:setGameMode(PF.HALF_TIME)
-    local simulator = PF.CScreenSimulator_getInstance()
-    simulator:addToLog(referee:getGameModeString())
-    local sim = simulator:getSimulationManager()
+	sim:addToLog(referee:getGameModeString())
     local disp = PF.CMessageDispatcher_getInstance()
     local side = referee:isHomeTeamInSideLeft()
     local team = referee:getNextTimeKickOffTeam()
@@ -94,9 +90,8 @@ SRf_HalfTime["Enter"] = function(referee)
 end
 
 SRf_HalfTime["Execute"] = function(referee)
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local pos = referee:getKickPosition()
-    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
+    referee:getSimulationManager():getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_HalfTime["Exit"] = function(referee)
@@ -105,7 +100,7 @@ end
 
 SRf_HalfTime["OnMessage"] = function(referee, message)
     local handle = false
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
+    local sim = referee:getSimulationManager()
     local homeTeam = sim:getHomeTeam()
     local awayTeam = sim:getAwayTeam()
     if message.Msg == PF.Msg_StartMatch then
@@ -120,12 +115,11 @@ end
 SRf_KickOff = {}
 
 SRf_KickOff["Enter"] = function(referee)
+    local sim = referee:getSimulationManager()
     referee:setGameMode(PF.KICK_OFF)
     referee:incCycle()
     referee:setKickPosition(PF.btVector3(0,0,0))
-    local simulator = PF.CScreenSimulator_getInstance()
-    simulator:addToLog(referee:getGameModeString())
-    local sim = simulator:getSimulationManager()
+    sim:addToLog(referee:getGameModeString())
     local disp = PF.CMessageDispatcher_getInstance()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_KickOff, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_KickOff, nil)
@@ -133,9 +127,8 @@ end
 
 SRf_KickOff["Execute"] = function(referee)
     referee:incCycle()
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local pos = referee:getKickPosition()
-    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
+    referee:getSimulationManager():getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_KickOff["Exit"] = function(referee)
@@ -165,9 +158,8 @@ SRf_PlayOn = {}
 
 SRf_PlayOn["Enter"] = function(referee)
     referee:setGameMode(PF.PLAY_ON)
-    local simulator = PF.CScreenSimulator_getInstance()
-    local sim = simulator:getSimulationManager()
     local disp = PF.CMessageDispatcher_getInstance()
+    local sim = referee:getSimulationManager()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_PlayOn, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_PlayOn, nil)
 end
@@ -197,18 +189,17 @@ end
 SRf_End = {}
 
 SRf_End["Enter"] = function(referee)
+    local sim = referee:getSimulationManager()
     referee:setGameMode(PF.END)
-    local simulator = PF.CScreenSimulator_getInstance()
-    simulator:addToLog(referee:getGameModeString())
-    local sim = simulator:getSimulationManager()
+    sim:addToLog(referee:getGameModeString())
     local disp = PF.CMessageDispatcher_getInstance()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_EndMatch, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_EndMatch, nil)
-    sim:endMatchEvent()
+    referee:getSimulationManager():endMatchEvent()
 end
 
 SRf_End["Execute"] = function(referee)
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
+	local sim = referee:getSimulationManager()
     local pos = sim:getBallPosition()
     sim:getBall():setPosition(pos:x(),0,pos:z())
 end
@@ -226,10 +217,9 @@ end
 SRf_KickIn = {}
 
 SRf_KickIn["Enter"] = function(referee)
+    local sim = referee:getSimulationManager()
     referee:setGameMode(PF.KICK_IN)
-    local simulator = PF.CScreenSimulator_getInstance()
-    simulator:addToLog(referee:getGameModeString())
-    local sim = simulator:getSimulationManager()
+    sim:addToLog(referee:getGameModeString())
     local disp = PF.CMessageDispatcher_getInstance()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_KickOff, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_KickOff, nil)
@@ -237,9 +227,8 @@ end
 
 SRf_KickIn["Execute"] = function(referee)
     referee:incCycle()
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local pos = referee:getKickPosition()
-    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
+    referee:getSimulationManager():getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_KickIn["Exit"] = function(referee)
@@ -268,10 +257,9 @@ end
 SRf_CornerKick = {}
 
 SRf_CornerKick["Enter"] = function(referee)
+    local sim = referee:getSimulationManager()
     referee:setGameMode(PF.CORNER_KICK)
-    local simulator = PF.CScreenSimulator_getInstance()
-    simulator:addToLog(referee:getGameModeString())
-    local sim = simulator:getSimulationManager()
+    sim:addToLog(referee:getGameModeString())
     local disp = PF.CMessageDispatcher_getInstance()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_KickOff, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_KickOff, nil)
@@ -279,9 +267,8 @@ end
 
 SRf_CornerKick["Execute"] = function(referee)
     referee:incCycle()
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local pos = referee:getKickPosition()
-    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
+    referee:getSimulationManager():getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_CornerKick["Exit"] = function(referee)
@@ -311,10 +298,9 @@ end
 SRf_GoalKick = {}
 
 SRf_GoalKick["Enter"] = function(referee)
+    local sim = referee:getSimulationManager()
     referee:setGameMode(PF.GOAL_KICK)
-    local simulator = PF.CScreenSimulator_getInstance()
-    simulator:addToLog(referee:getGameModeString())
-    local sim = simulator:getSimulationManager()
+    sim:addToLog(referee:getGameModeString())
     local disp = PF.CMessageDispatcher_getInstance()
     disp:dispatchMsg(0, referee:getID(), sim:getHomeTeam():getID(), PF.Msg_KickOff, nil)
     disp:dispatchMsg(0, referee:getID(), sim:getAwayTeam():getID(), PF.Msg_KickOff, nil)
@@ -322,9 +308,8 @@ end
 
 SRf_GoalKick["Execute"] = function(referee)
     referee:incCycle()
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local pos = referee:getKickPosition()
-    sim:getBall():setPosition(pos:x(),pos:y(),pos:z())
+    referee:getSimulationManager():getBall():setPosition(pos:x(),pos:y(),pos:z())
 end
 
 SRf_GoalKick["Exit"] = function(referee)
@@ -351,7 +336,7 @@ end
 ---------------------------------------------------
 
 function verifyBallPosition(referee)
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
+	local sim = referee:getSimulationManager()
     local ball = sim:getBall()
     local x = ball:getPosition():x()
     local z = ball:getPosition():z()

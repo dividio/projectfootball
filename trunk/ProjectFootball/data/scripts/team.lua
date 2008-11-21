@@ -17,7 +17,6 @@ end
 
 STm_Global["OnMessage"] = function(team, message)
     local handle = false
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     if message.Msg == PF.Msg_KickOff then
         team:getFSM():changeState("STm_Kick")
         handle = true
@@ -121,12 +120,11 @@ end
 STm_Kick = {}
 
 STm_Kick["Enter"] = function(team)
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local formation = team:getCurrentFormation()
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
-    if sim:getReferee():getGameMode() == PF.KICK_OFF then
+    if team:getSimulationManager():getReferee():getGameMode() == PF.KICK_OFF then
         formation:setCurrentFormationType(PF.FT_Initial)
         for i = 0, size - 1, 1 do
             disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_KickOff, nil)
@@ -171,9 +169,8 @@ STm_PlayOn["Enter"] = function(team)
     for i = 0, size - 1, 1 do
         disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_PlayOn, nil)
     end
-    local sim = PF.CScreenSimulator_getInstance():getSimulationManager()
     local formation = team:getCurrentFormation()
-    if sim:getReferee():getLastPlayerTouch():getTeam():getID() == team:getID() then
+    if team:getSimulationManager():getReferee():getLastPlayerTouch():getTeam():getID() == team:getID() then
         formation:setCurrentFormationType(PF.FT_Offensive)
     else
         formation:setCurrentFormationType(PF.FT_Defensive)

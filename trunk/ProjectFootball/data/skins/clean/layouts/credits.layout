@@ -10,7 +10,6 @@
             <Property Name="Text" Value="Back" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.332626,0},{0.785756,0},{0.652626,0},{0.848575,0}}" />
-            <Event Name="Clicked" Function="cmd_back" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Credits/Text" >
             <Property Name="Font" Value="DejaVuSans-10" />

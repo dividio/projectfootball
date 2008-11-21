@@ -21,28 +21,29 @@
 #ifndef CSCREENRANKING_H_
 #define CSCREENRANKING_H_
 
-#include "../../engine/CScreen.h"
+#include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfTeams.h"
+#include "../../engine/CScreen.h"
 
 class CScreenRanking : public CScreen
 {
 public:
-    static CScreenRanking* getInstance();
-  virtual ~CScreenRanking();
+    CScreenRanking(CSinglePlayerGame *game);
+	virtual ~CScreenRanking();
 
     virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
 
 private:
-    CScreenRanking();
     void loadRanking();
+    bool backButtonClicked(const CEGUI::EventArgs& e);
 
     // TODO Ranking for all competitions
     bool isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam);
 
     CEGUI::MultiColumnList  *m_rankingList;
+    CEGUI::PushButton		*m_backButton;
+
+    CSinglePlayerGame		*m_game;
 };
 
 #endif /*CSCREENRANKING_H_*/

@@ -18,20 +18,20 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEOPTIONMANAGER_H_
-#define CGAMEOPTIONMANAGER_H_
+#ifndef CSINGLEPLAYEROPTIONMANAGER_H_
+#define CSINGLEPLAYEROPTIONMANAGER_H_
 
 #include <map>
 #include "../db/dao/IPfGameOptionsDAO.h"
 
-class CGameOptionManager
+class CSinglePlayerOptionManager
 {
 public:
 	/**
 	 * Constructor/Destructor
 	 */
-    CGameOptionManager(IPfGameOptionsDAO *gameOptionsDAO);
-	~CGameOptionManager();
+	CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOptionsDAO);
+	~CSinglePlayerOptionManager();
 
 
     /**
@@ -185,4 +185,4 @@ private:
     std::map< const char *, std::map<const char *, const char *>* > m_categoriesList;
 };
 
-#endif /*CGAMEOPTIONMANAGER_H_*/
+#endif /*CSINGLEPLAYEROPTIONMANAGER_H_*/

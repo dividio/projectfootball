@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CTactic_H__
-#define __CTactic_H__
+#ifndef CFORMATION_H_
+#define CFORMATION_H_
 
 #include <string>
 
@@ -67,4 +67,4 @@ private:
     int                     m_goalKickPlayerId;
 };
 
-#endif // __CTactic_H__
+#endif // CFORMATION_H_

@@ -21,36 +21,24 @@
 #include <libintl.h>
 
 #include "CScreenCredits.h"
-#include "../CScreenManager.h"
+#include "../CGameEngine.h"
 #include "../../utils/CLog.h"
 
 
 CScreenCredits::CScreenCredits()
- :CScreen()
+	:CScreen("credits.layout")
 {
     CLog::getInstance()->debug("CScreenCredits()");
 
-    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"credits.layout");
+    m_backButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/BackButton"));
+    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenCredits::backButtonClicked, this));
 
     // i18n support
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-        (CEGUI::utf8*)"Credits/BasedLabel"))->setText((CEGUI::utf8*)gettext("Based on:"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-        (CEGUI::utf8*)"Credits/CodedLabel"))->setText((CEGUI::utf8*)gettext("Designed and coded by:"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-        (CEGUI::utf8*)"Credits/ThanksLabel"))->setText((CEGUI::utf8*)gettext("Thanks to:"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-        (CEGUI::utf8*)"Credits/AllUsersLabel"))->setText((CEGUI::utf8*)gettext("... and to all users who tested the game ;-)"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-        (CEGUI::utf8*)"Credits/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
-}
-
-
-CScreenCredits* CScreenCredits::getInstance()
-{
-    static CScreenCredits instance;
-    return &instance;
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/BasedLabel"))->setText((CEGUI::utf8*)gettext("Based on:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/CodedLabel"))->setText((CEGUI::utf8*)gettext("Designed and coded by:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/ThanksLabel"))->setText((CEGUI::utf8*)gettext("Thanks to:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/AllUsersLabel"))->setText((CEGUI::utf8*)gettext("... and to all users who tested the game ;-)"));
+    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
 }
 
 
@@ -59,28 +47,8 @@ CScreenCredits::~CScreenCredits()
     CLog::getInstance()->debug("~CScreenCredits()");
 }
 
-
-void CScreenCredits::enter()
+bool CScreenCredits::backButtonClicked(const CEGUI::EventArgs& e)
 {
-    m_system->setGUISheet(m_sheet);
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
-
-}
-
-
-void CScreenCredits::forcedLeave()
-{
-
-}
-
-
-bool CScreenCredits::leave()
-{
-    return true;
-}
-
-
-void CScreenCredits::update()
-{
+	CGameEngine::getInstance()->previousScreen();
+	return true;
 }

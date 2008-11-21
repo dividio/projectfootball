@@ -21,48 +21,47 @@
 #include <libintl.h>
 
 #include "CScreenGame.h"
-#include "../../engine/CScreenManager.h"
-#include "CScreenSimulator.h"
-#include "CScreenMatchResult.h"
+#include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
-#include "../engine/CGameEngine.h"
 
-CScreenGame::CScreenGame()
-    :CScreen()
+CScreenGame::CScreenGame(CSinglePlayerGame *game)
+    :CScreen("game.layout")
 {
     CLog::getInstance()->debug("CScreenGame()");
 
-    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"game.layout");
+    m_game = game;
 
-    m_playerTeamText     = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
-    m_nextMatchText      = static_cast<CEGUI::Window*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/NextMatchText"));
-    m_playButton         = static_cast<CEGUI::PushButton*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/PlayButton"));
-    m_resultModeCheckBox = static_cast<CEGUI::Checkbox*>(ceguiWM->getWindow((CEGUI::utf8*)"Game/ResultMode"));
+    m_playerTeamText     	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
+    m_nextMatchText      	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextMatchText"));
+
+    m_saveButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveButton"));
+    m_mainMenuButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainMenuButton"));
+    m_rankingButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/RankingButton"));
+    m_teamPlayersButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/TeamPlayersButton"));
+    m_resultsButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultsButton"));
+    m_playButton        	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayButton"));
+    m_resultModeCheckbox	= static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultMode"));
 
     // i18n support
+    m_saveButton->setText((CEGUI::utf8*)gettext("Save"));
+    m_mainMenuButton->setText((CEGUI::utf8*)gettext("Return to Main Menu"));
+    m_rankingButton->setText((CEGUI::utf8*)gettext("Ranking"));
+    m_teamPlayersButton->setText((CEGUI::utf8*)gettext("Team Players"));
+    m_resultsButton->setText((CEGUI::utf8*)gettext("Results"));
     m_playButton->setText((CEGUI::utf8*)gettext("Play Match"));
-    m_resultModeCheckBox->setText((CEGUI::utf8*)gettext("Result Mode"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/SaveButton"))->setText((CEGUI::utf8*)gettext("Save"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/MainMenuButton"))->setText((CEGUI::utf8*)gettext("Return to Main Menu"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/RankingButton"))->setText((CEGUI::utf8*)gettext("Ranking"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/TeamPlayersButton"))->setText((CEGUI::utf8*)gettext("Team Players"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/ResultsButton"))->setText((CEGUI::utf8*)gettext("Results"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/PlayerTeamLabel"))->setText((CEGUI::utf8*)gettext("Your Team:"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"Game/NextMatchLabel"))->setText((CEGUI::utf8*)gettext("Next Match:"));
-}
+    m_resultModeCheckbox->setText((CEGUI::utf8*)gettext("Result Mode"));
 
-CScreenGame* CScreenGame::getInstance()
-{
-    static CScreenGame instance;
-    return &instance;
+    // Event handle
+    m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveButtonClicked, this));
+    m_mainMenuButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::mainMenuButtonClicked, this));
+    m_rankingButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::rankingButtonClicked, this));
+    m_teamPlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::teamPlayersButtonClicked, this));
+    m_resultsButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::resultsButtonClicked, this));
+    m_playButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::playButtonClicked, this));
+    m_resultModeCheckbox->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CScreenGame::resultModeCheckboxCheckStateChanged, this));
+
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayerTeamLabel"))->setText((CEGUI::utf8*)gettext("Your Team:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextMatchLabel"))->setText((CEGUI::utf8*)gettext("Next Match:"));
 }
 
 CScreenGame::~CScreenGame()
@@ -72,31 +71,28 @@ CScreenGame::~CScreenGame()
 
 void CScreenGame::enter()
 {
-    m_system->setGUISheet(m_sheet);
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
+	CScreen::enter();
 
-    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
-    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
+    IPfGameOptionsDAO   *optionsDAO = m_game->getIDAOFactory()->getIPfGameOptionsDAO();
 
     CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
     if(resultMode->getSValue() == "true") { //result mode
-        m_resultModeCheckBox->setSelected(true);
+        m_resultModeCheckbox->setSelected(true);
     } else {
-        m_resultModeCheckBox->setSelected(false);
+        m_resultModeCheckbox->setSelected(false);
     }
     delete resultMode;
 
-    CPfTeams    *playerTeam = daoFactory->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams    *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
     m_playerTeamText->setText(playerTeam->getSTeam());
     delete playerTeam;
 
-    CPfMatches  *nextMatch  = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
+    CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
     if( nextMatch==NULL ){
         m_nextMatchText->setText("No Match");
         m_playButton->setEnabled(false);
     }else{
-        IPfTeamsDAO *teamsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO();
+        IPfTeamsDAO *teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
         CPfTeams    *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
         CPfTeams    *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
 
@@ -111,54 +107,66 @@ void CScreenGame::enter()
     }
 }
 
-void CScreenGame::forcedLeave()
-{
-    CGameEngine::getInstance()->unloadCurrentGame();
-}
-
-bool CScreenGame::leave()
-{
-    // TODO: Confirm current game unload
-    CGameEngine::getInstance()->unloadCurrentGame();
-    return true;
-}
-
-void CScreenGame::update()
-{
-}
-
 void CScreenGame::saveGame()
 {
-    CGameEngine::getInstance()->getCurrentGame()->save();
+    CGameEngine::getInstance()->save();
 }
 
-void CScreenGame::resultModeEvent()
+bool CScreenGame::saveButtonClicked(const CEGUI::EventArgs& e)
 {
-    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
-    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
+	CGameEngine::getInstance()->save();
+	return true;
+}
 
-    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
+bool CScreenGame::mainMenuButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->exit();
+	return true;
+}
 
-    if(m_resultModeCheckBox->isSelected()) {
+bool CScreenGame::rankingButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getRankingScreen());
+	return true;
+}
+
+bool CScreenGame::teamPlayersButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getTeamPlayersScreen());
+	return true;
+}
+
+bool CScreenGame::resultsButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getResultsScreen());
+	return true;
+}
+
+bool CScreenGame::playButtonClicked(const CEGUI::EventArgs& e)
+{
+    CPfGameOptions *resultMode = m_game->getIDAOFactory()->getIPfGameOptionsDAO()->findBySCategoryAndSAttribute("Match", "ResultMode");
+    if(resultMode->getSValue() == "true") {
+    	m_game->nextScreen(m_game->getMatchResultScreen());
+    } else {
+    	m_game->nextScreen(m_game->getSimulatorScreen());
+    }
+    delete resultMode;
+
+	return true;
+}
+
+bool CScreenGame::resultModeCheckboxCheckStateChanged(const CEGUI::EventArgs& e)
+{
+    IPfGameOptionsDAO	*optionsDAO = m_game->getIDAOFactory()->getIPfGameOptionsDAO();
+    CPfGameOptions		*resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
+
+    if(m_resultModeCheckbox->isSelected()) {
         resultMode->setSValue("true");
     } else {
         resultMode->setSValue("false");
     }
     optionsDAO->updateReg(resultMode);
     delete resultMode;
-}
 
-void CScreenGame::playButtonEvent()
-{
-    IDAOFactory         *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
-    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
-
-    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
-
-    if(resultMode->getSValue() == "true") {
-        CScreenManager::getInstance()->pushState(CScreenMatchResult::getInstance());
-    } else {
-        CScreenManager::getInstance()->pushState(CScreenSimulator::getInstance());
-    }
-    delete resultMode;
+	return true;
 }

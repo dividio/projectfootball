@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CFootballPlayer_H__
-#define __CFootballPlayer_H__
+#ifndef CFOOTBALLPLAYER_H_
+#define CFOOTBALLPLAYER_H_
 
 
 #include <string>
@@ -30,7 +30,7 @@
 #include "../fsm/CStateMachine.h"
 #include "../../db/bean/CPfTeamPlayers.h"
 
-
+class CSimulationManager;
 class CTeam;
 
 /**
@@ -42,7 +42,7 @@ public:
     static std::string m_pCtorName;
     static CFootballPlayer* getPlayer(CBaseGameEntity *player);
 
-    CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool sideLeft);
+    CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team, bool sideLeft);
     ~CFootballPlayer();
 
     CStateMachine<CFootballPlayer>* getFSM();
@@ -62,30 +62,33 @@ public:
     void                            update();
     void                            changeSide();
 
+    CSimulationManager* getSimulationManager();
+
     void setWorldTransform(const btTransform& centerOfMassWorldTrans);
 
     /**
      * Makes a kick command for stopping the ball.
      */
-    void                            freezeBall();
+    void freezeBall();
 
     /**
      * Makes a kick command for making the ball velocity equal to the given velocity.
      * @param velocity New velocity for the ball
      */
-    void                            accelerateBallToVelocity(btVector3 velocity);
+    void accelerateBallToVelocity(btVector3 velocity);
 
     /**
      * Makes a kick command for kicking the ball with an initial speed to take target point.
      * @param target Target point for the ball
      * @param speed Initial speed for the ball
      */
-    void                            kickTo(btVector3 target, btScalar speed);
+    void kickTo(btVector3 target, btScalar speed);
 
 protected:
     void setGraphicTrans(btTransform trans);
 
 private:
+	CSimulationManager				*m_simulationManager;
     CStateMachine<CFootballPlayer>  *m_stateMachine;
     CSteeringBehaviors              *m_steeringBehavior;
     Ogre::SceneNode                 *m_ringNode;
@@ -97,4 +100,4 @@ private:
     int                              m_number;
 };
 
-#endif // __CFootballPlayer_H__
+#endif // CFOOTBALLPLAYER_H_

@@ -18,29 +18,21 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENCONFIG_H_
-#define CSCREENCONFIG_H_
+#ifndef CGAMESABSTRACTFACTORY_H_
+#define CGAMESABSTRACTFACTORY_H_
 
-#include "../CScreen.h"
+#define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
+#define S_GAME_TYPE_QUICKPLAY       "QUICK_PLAY"
 
-class CScreenConfig : public CScreen
+#include "IGame.h"
+
+class CGameAbstractFactory
 {
 public:
-    CScreenConfig();
-	virtual ~CScreenConfig();
-
-    virtual void enter();
-
+    static IGame* getIGame(int xGame);
 private:
-	bool backButtonClicked(const CEGUI::EventArgs& e);
-	bool saveButtonClicked(const CEGUI::EventArgs& e);
-
-	CEGUI::PushButton	*m_backButton;
-	CEGUI::PushButton	*m_saveButton;
-    CEGUI::Combobox 	*m_resolutionCombo;
-    CEGUI::Combobox 	*m_rendererCombo;
-    CEGUI::Checkbox 	*m_fullscreenCheck;
-    CEGUI::Checkbox 	*m_vSyncCheck;
+	CGameAbstractFactory() {}
+	virtual ~CGameAbstractFactory() {}
 };
 
-#endif /*CSCREENCONFIG_H_*/
+#endif /*CGAMESABSTRACTFACTORY_H_*/

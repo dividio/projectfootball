@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __IAudioFactory_H__
-#define __IAudioFactory_H__
+#ifndef IAUDIOFACTORY_H_
+#define IAUDIOFACTORY_H_
 
 #include <string>
 #include "IAudioFile.h"
@@ -33,4 +33,4 @@ public:
     virtual IAudioFile* createSampleAudioFile(std::string filepath) =0;
     virtual IAudioFile* createMusicAudioFile(std::string filepath) =0;
 };
-#endif // __IAudioFactory_H__
+#endif // IAUDIOFACTORY_H_

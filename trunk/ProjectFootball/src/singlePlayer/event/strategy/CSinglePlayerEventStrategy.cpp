@@ -18,34 +18,34 @@
 *                                                                             *
 ******************************************************************************/
 
-// TODO: Remove CGameEngine dependency
-#include "CSingleMatchEventStrategy.h"
-#include "../../../engine/CGameEngine.h"
+#include "CSinglePlayerEventStrategy.h"
 
-CSingleMatchEventStrategy::CSingleMatchEventStrategy()
+CSinglePlayerEventStrategy::CSinglePlayerEventStrategy(IDAOFactory *daoFactory, CSinglePlayerReportRegister *reportRegister)
 {
-    m_xMatch    = -1;
-    m_started   = false;
-    m_ended     = false;
+    m_xMatch    		= -1;
+    m_started   		= false;
+    m_ended     		= false;
+    m_daoFactory		= daoFactory;
+    m_reportRegister	= reportRegister;
 }
 
-CSingleMatchEventStrategy::~CSingleMatchEventStrategy()
+CSinglePlayerEventStrategy::~CSinglePlayerEventStrategy()
 {
 }
 
-void CSingleMatchEventStrategy::process(CStartMatchEvent &event)
+void CSinglePlayerEventStrategy::process(CStartMatchEvent &event)
 {
     if( !m_started )
     {
         m_xMatch = event.getXMatch();
 
         // Test that match is not a played yet
-        IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+        IPfMatchesDAO *matchesDAO = m_daoFactory->getIPfMatchesDAO();
         CPfMatches *match = matchesDAO->findByXMatch(m_xMatch);
         if( !match->getLPlayed() ){
             m_started = true;
             // Delete posible previous goals
-            IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+            IPfGoalsDAO *goalsDAO = m_daoFactory->getIPfGoalsDAO();
             std::vector<CPfGoals*> * goalsList = goalsDAO->findByXFkMatch(m_xMatch);
             std::vector<CPfGoals*>::iterator it;
             for( it=goalsList->begin(); it!=goalsList->end(); it++ ){
@@ -57,27 +57,27 @@ void CSingleMatchEventStrategy::process(CStartMatchEvent &event)
     }
 }
 
-void CSingleMatchEventStrategy::process(CEndMatchEvent &event)
+void CSinglePlayerEventStrategy::process(CEndMatchEvent &event)
 {
     if( m_started && !m_ended && m_xMatch==event.getXMatch() )
     {
         m_ended = true;
 
         // Save match result
-        IPfGoalsDAO *goalsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfGoalsDAO();
+        IPfGoalsDAO *goalsDAO = m_daoFactory->getIPfGoalsDAO();
         std::vector<CPfGoals*>::iterator it;
         for( it=m_goalsList.begin(); it!=m_goalsList.end(); it++ ){
             goalsDAO->insertReg(*it);
         }
 
-        IPfMatchesDAO *matchesDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfMatchesDAO();
+        IPfMatchesDAO *matchesDAO = m_daoFactory->getIPfMatchesDAO();
         CPfMatches *match = matchesDAO->findByXMatch(m_xMatch);
         match->setLPlayed(true);
         matchesDAO->updateReg(match);
         delete match;
 
         // Generate match report
-        CGameEngine::getInstance()->getCurrentGame()->getCGameReportRegister()->generateMatchReport(m_xMatch);
+        m_reportRegister->generateMatchReport(m_xMatch);
 
         // Reset SingleMatchEventStrategy state
         for( it=m_goalsList.begin(); it!=m_goalsList.end(); it++ ){
@@ -91,7 +91,7 @@ void CSingleMatchEventStrategy::process(CEndMatchEvent &event)
     }
 }
 
-void CSingleMatchEventStrategy::process(CGoalMatchEvent &event)
+void CSinglePlayerEventStrategy::process(CGoalMatchEvent &event)
 {
     if( m_started && !m_ended && m_xMatch==event.getXMatch() )
     {

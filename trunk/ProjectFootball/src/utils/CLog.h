@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CLOG_H__
-#define __CLOG_H__
+#ifndef CLOG_H_
+#define CLOG_H_
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -125,4 +125,4 @@ private:
 
 };
 
-#endif // __CLOG_H__
+#endif // CLOG_H_

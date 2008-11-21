@@ -19,14 +19,14 @@
 ******************************************************************************/
 
 
-#ifndef __CMessageDispatcher_H__
-#define __CMessageDispatcher_H__
+#ifndef CMESSAGEDISPATCHER_H_
+#define CMESSAGEDISPATCHER_H_
 
 #include <set>
 
 #include "CMessage.h"
 #include "../entity/CBaseGameEntity.h"
-#include "../../../utils/CTimer.h"
+#include "../../../engine/utils/CStopWatch.h"
 
 class CMessageDispatcher
 {
@@ -45,8 +45,8 @@ public:
     void reset();
 
 private:
-    std::set<CMessage> m_priorityQueue;
-    CTimer *m_timer;
+    std::set<CMessage> 	m_priorityQueue;
+    CStopWatch			*m_stopWatch;
 
     CMessageDispatcher();
 
@@ -54,4 +54,4 @@ private:
 
 };
 
-#endif // __CMessageDispatcher_H__
+#endif // CMESSAGEDISPATCHER_H_

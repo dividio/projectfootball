@@ -22,6 +22,8 @@
 #define CSCREENTEAMPLAYERS_H_
 
 #include "../../engine/CScreen.h"
+
+#include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfTeamPlayers.h"
 
 enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
@@ -29,39 +31,40 @@ enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
 class CScreenTeamPlayers : public CScreen
 {
 public:
-    static CScreenTeamPlayers* getInstance();
+    CScreenTeamPlayers(CSinglePlayerGame *game);
     virtual ~CScreenTeamPlayers();
 
     virtual void enter();
-    virtual void forcedLeave();
     virtual bool leave();
-    virtual void update();
-
-    bool handleChangePlayers();
 
 private:
-    CScreenTeamPlayers();
+    bool lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
+    bool alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
+    bool notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
+    bool backButtonClicked(const CEGUI::EventArgs& e);
+    bool changePlayersButtonClicked(const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
     void saveTeamPlayersList();
     void changePlayers();
     void selectChanged(CEGUI::MultiColumnList *list);
-    bool handleLineUpSelectChanged(const CEGUI::EventArgs& e);
-    bool handleAlternateSelectChanged(const CEGUI::EventArgs& e);
-    bool handleNotLineUpSelectChanged(const CEGUI::EventArgs& e);
 
-    CEGUI::MultiColumnList *m_lineUpTeamPlayersList;
-    CEGUI::MultiColumnList *m_alternateTeamPlayersList;
-    CEGUI::MultiColumnList *m_notLineUpTeamPlayersList;
+    CEGUI::MultiColumnList 	*m_lineUpTeamPlayersList;
+    CEGUI::MultiColumnList 	*m_alternateTeamPlayersList;
+    CEGUI::MultiColumnList 	*m_notLineUpTeamPlayersList;
 
-    CPfTeamPlayers         *m_selectedPlayer1;
-    CPfTeamPlayers         *m_selectedPlayer2;
-    CEGUI::ListboxItem     *m_item1;
-    CEGUI::ListboxItem     *m_item2;
-    CEGUI::MultiColumnList *m_selectedPlayer1List;
-    CEGUI::MultiColumnList *m_selectedPlayer2List;
-    SelectedPlayers         m_selectedPlayers;
-    bool                    m_forcedSelection;
+    CPfTeamPlayers         	*m_selectedPlayer1;
+    CPfTeamPlayers         	*m_selectedPlayer2;
+    CEGUI::ListboxItem     	*m_item1;
+    CEGUI::ListboxItem     	*m_item2;
+    CEGUI::MultiColumnList 	*m_selectedPlayer1List;
+    CEGUI::MultiColumnList 	*m_selectedPlayer2List;
+    CEGUI::PushButton		*m_backButton;
+    CEGUI::PushButton		*m_changePlayersButton;
+    SelectedPlayers          m_selectedPlayers;
+    bool                     m_forcedSelection;
+
+    CSinglePlayerGame		*m_game;
 };
 
 #endif /*CSCREENTEAMPLAYERS_H_*/

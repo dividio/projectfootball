@@ -18,30 +18,24 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef IGAMESTATE_H_
-#define IGAMESTATE_H_
+#include "CStopWatch.h"
+#include "../CGameEngine.h"
 
-// TODO: Remove singlePlayer dependency
-#include "../singlePlayer/db/dao/factory/IDAOFactory.h"
-#include "CGameReportRegister.h"
-#include "../singlePlayer/event/strategy/IGameEventStrategy.h"
-#include "../singlePlayer/option/CGameOptionManager.h"
-
-#define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
-#define S_GAME_TYPE_QUICKPLAY       "QUICK_PLAY"
-
-class IGameState
+CStopWatch::CStopWatch() : m_clock(CGameEngine::getInstance()->getClock())
 {
-public:
-	IGameState(){}
-	virtual ~IGameState(){}
+	reset();
+}
 
-	virtual void save() =0;
+CStopWatch::~CStopWatch()
+{
+}
 
-    virtual IDAOFactory*           getIDAOFactory() =0;
-    virtual IGameEventStrategy*    getIGameEventStrategy() =0;
-	virtual CGameReportRegister*   getCGameReportRegister() =0;
-	virtual CGameOptionManager*    getCGameOptionManager() =0;
-};
+double CStopWatch::getTime()
+{
+	return (m_clock.getCurrentTime()-m_initTime);
+}
 
-#endif /*IGAMESTATE_H_*/
+void CStopWatch::reset()
+{
+	m_initTime = m_clock.getCurrentTime();
+}

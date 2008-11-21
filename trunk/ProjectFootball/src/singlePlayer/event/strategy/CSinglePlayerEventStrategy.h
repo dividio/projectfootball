@@ -18,12 +18,38 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "IMatchEvent.h"
+#ifndef CSINGLEMPLAYEREVENTSTRATEGY_H_
+#define CSINGLEMPLAYEREVENTSTRATEGY_H_
 
-IMatchEvent::IMatchEvent()
-{
-}
+#include <vector>
 
-IMatchEvent::~IMatchEvent()
+#include "../match/CStartMatchEvent.h"
+#include "../match/CEndMatchEvent.h"
+#include "../match/CGoalMatchEvent.h"
+
+#include "../../report/CSinglePlayerReportRegister.h"
+
+#include "../../db/bean/CPfGoals.h"
+#include "../../db/dao/factory/IDAOFactory.h"
+
+class CSinglePlayerEventStrategy
 {
-}
+public:
+	CSinglePlayerEventStrategy(IDAOFactory *daoFactory, CSinglePlayerReportRegister *reportRegister);
+	virtual ~CSinglePlayerEventStrategy();
+
+    virtual void process(CStartMatchEvent &event);
+    virtual void process(CEndMatchEvent   &event);
+    virtual void process(CGoalMatchEvent  &event);
+
+private:
+    int     					m_xMatch;
+    bool    					m_started;
+    bool    					m_ended;
+    std::vector<CPfGoals *> 	m_goalsList;
+
+    IDAOFactory					*m_daoFactory;
+    CSinglePlayerReportRegister *m_reportRegister;
+};
+
+#endif /*CSINGLEMPLAYEREVENTSTRATEGY_H_*/

@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __IAudioFile_H__
-#define __IAudioFile_H__
+#ifndef IAUDIOFILE_H_
+#define IAUDIOFILE_H_
 
 class IAudioFile
 {
@@ -33,4 +33,4 @@ public:
 	virtual void play() =0;
 	virtual void stop() =0;
 };
-#endif // __IAudioFile_H__
+#endif // IAUDIOFILE_H_

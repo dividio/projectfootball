@@ -18,14 +18,12 @@
 *                                                                             *
 ******************************************************************************/
 
-// TODO: Remove CGameEngine dependency
 #include "CFootballPlayer.h"
-#include "../CSimulationManager.h"
+
 #include "CTeam.h"
+#include "../CSimulationManager.h"
 #include "CReferee.h"
 #include "../../screen/CScreenSimulator.h"
-#include "../../db/dao/IPfTeamPlayersDAO.h"
-#include "../../../engine/CGameEngine.h"
 
 
 std::string CFootballPlayer::m_pCtorName = "CFootballPlayer_p_ctor";
@@ -36,12 +34,14 @@ CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 }
 
 
-CFootballPlayer::CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool sideLeft)
+CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team, bool sideLeft)
 :CMovingEntity()
 {
-    Ogre::SceneManager *scnMgr = CScreenSimulator::getInstance()->getSimulationSceneManager();
-    IPfTeamPlayersDAO *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
-    m_teamPlayer = teamPlayersDAO->findByXTeamPlayer(XTeamPlayer);
+	m_simulationManager = simulationManager;
+
+	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
+
+    m_teamPlayer = new CPfTeamPlayers(*teamPlayer);
     m_stateMachine = new CStateMachine<CFootballPlayer>(this);
     Ogre::String id;
     char charId[20];
@@ -159,7 +159,14 @@ CFootballPlayer::CFootballPlayer(int XTeamPlayer, int number, CTeam *team, bool 
 
 CFootballPlayer::~CFootballPlayer()
 {
+	delete m_stateMachine;
     delete m_teamPlayer;
+}
+
+
+CSimulationManager* CFootballPlayer::getSimulationManager()
+{
+	return m_simulationManager;
 }
 
 
@@ -231,12 +238,11 @@ bool CFootballPlayer::atKickPosition()
 
 btVector3 CFootballPlayer::getStrategicPosition() const
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
     CStrategicPosition *strPos = m_team->getPlayerStrategicPosition(m_number);
     btVector3 *initialPos = strPos->getCurrentPosition();
     CRectangle *area = strPos->getPlayingArea();
     btVector3 pos(initialPos->x(), initialPos->y(), initialPos->z());
-    btVector3 ballPos = sim->getBallPosition();
+    btVector3 ballPos = m_simulationManager->getBallPosition();
     double x, z, maxX, maxZ, minX, minZ;
 
     if(!m_sideLeft) {
@@ -281,10 +287,9 @@ btVector3 CFootballPlayer::getStrategicPosition() const
 btVector3 CFootballPlayer::getKickPosition() const
 {
     double offset = 1;
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 kickPos = sim->getReferee()->getKickPosition();
+    btVector3 kickPos = m_simulationManager->getReferee()->getKickPosition();
     btVector3 myKickPos;
-    GameMode mode = sim->getReferee()->getGameMode();
+    GameMode mode = m_simulationManager->getReferee()->getGameMode();
     switch (mode) {
         case KICK_IN:
             if(m_sideLeft) {
@@ -323,12 +328,11 @@ btVector3 CFootballPlayer::getKickPosition() const
 
 btVector3 CFootballPlayer::getHomeGoalFacing() const
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
     btVector3 facing;
     if(m_sideLeft) {
-        facing = sim->getField()->getLeftGoalFacing();
+        facing = m_simulationManager->getField()->getLeftGoalFacing();
     } else {
-        facing = sim->getField()->getRightGoalFacing();
+        facing = m_simulationManager->getField()->getRightGoalFacing();
     }
     return facing;
 }
@@ -360,8 +364,7 @@ bool CFootballPlayer::isTeamLeft() const
 
 bool CFootballPlayer::isBallKickable() const
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 ballPos = sim->getBallPosition();
+    btVector3 ballPos = m_simulationManager->getBallPosition();
     btVector3 toBall = ballPos - getPosition();
     btScalar dot = getHeading().dot(toBall.normalized());
     bool canKick = false;
@@ -374,41 +377,37 @@ bool CFootballPlayer::isBallKickable() const
 
 void CFootballPlayer::freezeBall()
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
+    btVector3 ballVelocity = m_simulationManager->getBall()->getBody()->getLinearVelocity();
     // TODO Use maxPower attribute
     // double velocityLenght = ballVelocity.length();
-    sim->kick(this, -ballVelocity);
+    m_simulationManager->kick(this, -ballVelocity);
 }
 
 
 void CFootballPlayer::accelerateBallToVelocity(btVector3 velocity)
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
-    btVector3 ballPos = sim->getBallPosition();
+    btVector3 ballVelocity = m_simulationManager->getBall()->getBody()->getLinearVelocity();
+    btVector3 ballPos = m_simulationManager->getBallPosition();
     btVector3 accel = velocity - ballVelocity;
-    sim->kick(this, accel);
+    m_simulationManager->kick(this, accel);
 }
 
 void CFootballPlayer::kickTo(btVector3 target, btScalar speed)
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 ballVelocity = sim->getBall()->getBody()->getLinearVelocity();
-    btVector3 ballPos = sim->getBallPosition();
+    btVector3 ballVelocity = m_simulationManager->getBall()->getBody()->getLinearVelocity();
+    btVector3 ballPos = m_simulationManager->getBallPosition();
     btVector3 toTarget = target - ballPos;
     toTarget.normalize();
     toTarget = toTarget * speed;
     btVector3 impulse = toTarget - ballVelocity;
-    sim->kick(this, impulse);
+    m_simulationManager->kick(this, impulse);
 }
 
 void CFootballPlayer::changeSide()
 {
-    CSimulationManager *simulator = CScreenSimulator::getInstance()->getSimulationManager();
     m_sideLeft = !m_sideLeft;
     btVector3 pos = getStrategicPosition();
-    simulator->move(this, (int)pos.x(), (int)pos.z());
+    m_simulationManager->move(this, (int)pos.x(), (int)pos.z());
 }
 
 

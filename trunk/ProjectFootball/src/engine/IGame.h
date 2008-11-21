@@ -18,24 +18,21 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef IGAMEEVENTSTRATEGY_H_
-#define IGAMEEVENTSTRATEGY_H_
+#ifndef IGAME_H_
+#define IGAME_H_
 
-#include "../match/CStartMatchEvent.h"
-#include "../match/CEndMatchEvent.h"
-#include "../match/CGoalMatchEvent.h"
+#include "IScreen.h"
+#include "db/bean/CPfGames.h"
 
-
-class IGameEventStrategy
+class IGame : public IScreen
 {
 public:
-	IGameEventStrategy() {}
-	virtual ~IGameEventStrategy() {}
+	virtual ~IGame(){}
 
-	// Match events
-	virtual void process(CStartMatchEvent &event) =0;
-	virtual void process(CEndMatchEvent   &event) =0;
-	virtual void process(CGoalMatchEvent  &event) =0;
+	virtual CPfGames* save() =0;
+
+protected:
+	IGame(){}
 };
 
-#endif /*IGAMEEVENTSTRATEGY_H_*/
+#endif /*IGAME_H_*/

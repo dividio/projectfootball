@@ -31,11 +31,13 @@
 
 std::string CReferee::m_pCtorName = "CReferee_p_ctor";
 
-CReferee::CReferee()
+CReferee::CReferee(CSimulationManager *simulationManager)
 : CMovingEntity()
 {
+	m_simulationManager = simulationManager;
+	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
+
     CLog::getInstance()->debug("CReferee()");
-    Ogre::SceneManager *scnMgr = CScreenSimulator::getInstance()->getSimulationSceneManager();
     CLuaManager::getInstance()->runScript("data/scripts/referee.lua");
     m_stateMachine = new CStateMachine<CReferee>(this);
     m_stateMachine->setGlobalState("SRf_Global");
@@ -69,10 +71,14 @@ CReferee::CReferee()
 CReferee::~CReferee()
 {
     CLog::getInstance()->debug("~CReferee()");
-    if(m_stateMachine != 0) {
-        delete m_stateMachine;
-    }
+    delete m_stateMachine;
     delete m_kickPosition;
+}
+
+
+CSimulationManager* CReferee::getSimulationManager()
+{
+	return m_simulationManager;
 }
 
 
@@ -251,25 +257,23 @@ int CReferee::getAwayScore() const
 
 void CReferee::addHomeGoal(CFootballPlayer *player)
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
     bool ownGoal = false;
-    CTeam *team = sim->getHomeTeam();
+    CTeam *team = m_simulationManager->getHomeTeam();
     if(player->getTeam()->getID() != team->getID()) {
         ownGoal = true;
     }
-    sim->goalMatchEvent(team, player, getMinute(), ownGoal);
+    m_simulationManager->goalMatchEvent(team, player, getMinute(), ownGoal);
     m_homeScore++;
 }
 
 
 void CReferee::addAwayGoal(CFootballPlayer *player)
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
     bool ownGoal = false;
-    CTeam *team = sim->getAwayTeam();
+    CTeam *team = m_simulationManager->getAwayTeam();
     if(player->getTeam()->getID() != team->getID()) {
         ownGoal = true;
     }
-    sim->goalMatchEvent(team, player, getMinute(), ownGoal);
+    m_simulationManager->goalMatchEvent(team, player, getMinute(), ownGoal);
     m_awayScore++;
 }

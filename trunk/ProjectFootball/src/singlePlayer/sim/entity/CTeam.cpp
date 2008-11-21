@@ -20,13 +20,9 @@
 
 
 #include "CTeam.h"
+#include "CReferee.h"
 #include "CFootballPlayer.h"
-#include "../../screen/CScreenSimulator.h"
 #include "../CSimulationManager.h"
-#include "../../db/dao/IPfTeamsDAO.h"
-#include "../../db/dao/IPfTeamPlayersDAO.h"
-#include "../engine/CGameEngine.h"
-
 
 std::string CTeam::m_pCtorName = "CTeam_p_ctor";
 
@@ -35,17 +31,15 @@ CTeam* CTeam::getTeam(CBaseGameEntity *team)
     return (CTeam*) team;
 }
 
-CTeam::CTeam(int XTeam, bool sideLeft)
+CTeam::CTeam(CSimulationManager *simulationManager, const CPfTeams *team, std::vector<CPfTeamPlayers*> *playersVector, bool sideLeft)
 {
     CLog::getInstance()->debug("CTeam()");
-    CLuaManager::getInstance()->runScript("data/scripts/team.lua");
-    IDAOFactory *daoFactory = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory();
-    IPfTeamsDAO *teamsDAO = daoFactory->getIPfTeamsDAO();
-    IPfTeamPlayersDAO *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
-    m_team = teamsDAO->findByXTeam(XTeam);
-    m_sideLeft = sideLeft;
-    std::vector<CPfTeamPlayers*> *playersVector = teamPlayersDAO->findLineUpByXFkTeam(XTeam);
 
+    m_simulationManager = simulationManager;
+
+    CLuaManager::getInstance()->runScript("data/scripts/team.lua");
+    m_team = new CPfTeams(*team);
+    m_sideLeft = sideLeft;
 
     setFormations();
     if(!sideLeft) {
@@ -58,62 +52,61 @@ CTeam::CTeam(int XTeam, bool sideLeft)
     m_stateMachine->setGlobalState("STm_Global");
     m_stateMachine->changeState("STm_BeforeStart");
 
-    CFootballPlayer *player = new CFootballPlayer(playersVector->at(0)->getXTeamPlayer(), 1, this, sideLeft);
+    // TODO: Initialize football players on a loop
+    CFootballPlayer *player = new CFootballPlayer(m_simulationManager, playersVector->at(0), 1, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/goalie.lua");
     player->getFSM()->setGlobalState("SGoalie_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(1)->getXTeamPlayer(), 2, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(1), 2, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(2)->getXTeamPlayer(), 3, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(2), 3, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(3)->getXTeamPlayer(), 4, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(3), 4, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(4)->getXTeamPlayer(), 5, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(4), 5, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(5)->getXTeamPlayer(), 6, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(5), 6, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(6)->getXTeamPlayer(), 7, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(6), 7, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(7)->getXTeamPlayer(), 8, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(7), 8, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(8)->getXTeamPlayer(), 9, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(8), 9, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(9)->getXTeamPlayer(), 10, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(9), 10, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
 
-    player = new CFootballPlayer(playersVector->at(10)->getXTeamPlayer(), 11, this, sideLeft);
+    player = new CFootballPlayer(m_simulationManager, playersVector->at(10), 11, this, sideLeft);
     CLuaManager::getInstance()->runScript("data/scripts/player.lua");
     player->getFSM()->setGlobalState("SPl_Global");
     m_players.push_back(player);
-
-    teamPlayersDAO->freeVector(playersVector);
 }
 
 
@@ -125,7 +118,14 @@ CTeam::~CTeam()
         delete m_formations.back();
         m_formations.pop_back();
     }
+    delete m_stateMachine;
     delete m_team;
+}
+
+
+CSimulationManager* CTeam::getSimulationManager()
+{
+	return m_simulationManager;
 }
 
 
@@ -209,11 +209,10 @@ void CTeam::changeSide()
 
 void CTeam::setNearestPlayersToBall()
 {
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
     btScalar minDist = 1000;
     btScalar auxDist;
     btVector3 playerPos;
-    btVector3 ballPos = sim->getBallPosition();
+    btVector3 ballPos = m_simulationManager->getBallPosition();
     std::vector<CFootballPlayer*>::iterator it;
     for(it = m_players.begin(); it!=m_players.end(); it++) {
         playerPos = (*it)->getPosition();
@@ -243,15 +242,14 @@ int CTeam::getKickPlayerID() const
     int formationPos;
     int playerId;
     int aux;
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    GameMode mode = sim->getReferee()->getGameMode();
+    GameMode mode = m_simulationManager->getReferee()->getGameMode();
     switch(mode) {
         case KICK_OFF:
             formationPos = m_currentFormation->getKickOffPlayerId();
             playerId = m_players[formationPos]->getID();
             break;
         case KICK_IN:
-            aux = (int)sim->getBallPosition().z();
+            aux = (int)m_simulationManager->getBallPosition().z();
             if(aux < -25) {
                 formationPos = m_currentFormation->getLeftTrowInPlayerId();
             } else if(aux > 25) {
@@ -262,7 +260,7 @@ int CTeam::getKickPlayerID() const
             playerId = m_players[formationPos]->getID();
             break;
         case CORNER_KICK:
-            aux = (int)sim->getBallPosition().z();
+            aux = (int)m_simulationManager->getBallPosition().z();
             if(aux < 0) {
                 formationPos = m_currentFormation->getLeftCornerKickPlayerId();
             } else if(aux > 0) {
@@ -312,8 +310,7 @@ CStrategicPosition* CTeam::getPlayerStrategicPosition(int formationPos) const
 bool CTeam::isKickForUs() const
 {
     bool us = false;
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    if(sim->getReferee()->getKickTeam()->getID() == getID()) {
+    if(m_simulationManager->getReferee()->getKickTeam()->getID() == getID()) {
         us = true;
     }
     return us;
@@ -335,8 +332,7 @@ bool CTeam::isNearestPlayerToBall(CFootballPlayer* player) const
     bool nearest = true;
     int id = player->getID();
     if(m_nearestPlayerToBall->getID() == id) {
-        CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-        btVector3 ballPos = sim->getBallPosition();
+        btVector3 ballPos = m_simulationManager->getBallPosition();
         btVector3 playerPos = player->getPosition();
         btVector3 opponentPos = m_opponentTeam->getNearestPlayerToBall()->getPosition();
         btScalar playerDist = playerPos.distance(ballPos);
@@ -367,12 +363,11 @@ bool CTeam::isNearestTeamMatePlayerToBall(CFootballPlayer* player) const
 bool CTeam::isBallInOwnPenaltyArea() const
 {
     bool isIn = false;
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 posBall = sim->getBallPosition();
+    btVector3 posBall = m_simulationManager->getBallPosition();
     if(m_sideLeft) {
-        isIn = sim->getField()->isInLeftArea(posBall);
+        isIn = m_simulationManager->getField()->isInLeftArea(posBall);
     } else {
-        isIn = sim->getField()->isInRightArea(posBall);
+        isIn = m_simulationManager->getField()->isInRightArea(posBall);
     }
     return isIn;
 }
@@ -381,12 +376,11 @@ bool CTeam::isBallInOwnPenaltyArea() const
 bool CTeam::isBallInOpponentPenaltyArea() const
 {
     bool isIn = false;
-    CSimulationManager *sim = CScreenSimulator::getInstance()->getSimulationManager();
-    btVector3 posBall = sim->getBallPosition();
+    btVector3 posBall = m_simulationManager->getBallPosition();
     if(m_sideLeft) {
-        isIn = sim->getField()->isInRightArea(posBall);
+        isIn = m_simulationManager->getField()->isInRightArea(posBall);
     } else {
-        isIn = sim->getField()->isInLeftArea(posBall);
+        isIn = m_simulationManager->getField()->isInLeftArea(posBall);
     }
     return isIn;
 }

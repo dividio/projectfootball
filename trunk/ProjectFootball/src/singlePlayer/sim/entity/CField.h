@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CField_H__
-#define __CField_H__
+#ifndef CFIELD_H_
+#define CFIELD_H_
 
 #include "CBaseGameEntity.h"
 #include "../../../utils/geometry/CRectangle.h"
@@ -47,4 +47,4 @@ private:
     btVector3   m_rightGoalFacing;
 };
 
-#endif // __CField_H__
+#endif // CFIELD_H_

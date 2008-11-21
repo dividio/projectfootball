@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CAudioAbstractFactory_H__
-#define __CAudioAbstractFactory_H__
+#ifndef CAUDIOABSTRACTFACTORY_H_
+#define CAUDIOABSTRACTFACTORY_H_
 
 #include "IAudioFactory.h"
 
@@ -36,4 +36,4 @@ private:
     static IAudioFactory* m_instance;
 
 };
-#endif // __CAudioAbstractFactory_H__
+#endif // CAUDIOABSTRACTFACTORY_H_

@@ -11,37 +11,31 @@
           <Property Name="Font" Value="DejaVuSans-10" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.87,0},{0.2,0},{0.91,0}}" />
-          <Event Name="Clicked" Function="cmd_Game_Save" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/MainMenuButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.92,0},{0.3,0},{0.97,0}}" />
-            <Event Name="Clicked" Function="cmd_back" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/RankingButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.04,0},{0.97,0},{0.08,0}}" />
-            <Event Name="Clicked" Function="cmd_Game_Ranking" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/TeamPlayersButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.09,0},{0.97,0},{0.13,0}}" />
-          <Event Name="Clicked" Function="cmd_Game_TeamPlayers" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/ResultsButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.14,0},{0.97,0},{0.18,0}}" />
-          <Event Name="Clicked" Function="cmd_Game_Results" />
         </Window>
         <Window Type="TaharezLook/Button" Name="Game/PlayButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.92,0},{0.995,0},{0.97,0}}" />
-          <Event Name="Clicked" Function="cmd_Game_Play" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Game/PlayerTeamLabel" >
           <Property Name="FrameEnabled" Value="False" />
@@ -73,7 +67,6 @@
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.87,0},{0.995,0},{0.91,0}}" />
-            <Event Name="CheckStateChanged" Function="cmd_Game_ResultMode" />
         </Window>
     </Window>
 </GUILayout>

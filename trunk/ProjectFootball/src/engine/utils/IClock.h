@@ -18,18 +18,13 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMESTATEABSTRACTFACTORY_H_
-#define CGAMESTATEABSTRACTFACTORY_H_
+#ifndef ICLOCK_H_
+#define ICLOCK_H_
 
-#include "IGameState.h"
-
-class CGameStateAbstractFactory
+class IClock
 {
 public:
-    static IGameState* getIGameState(int xGame);
-private:
-	CGameStateAbstractFactory() {}
-	virtual ~CGameStateAbstractFactory() {}
+	virtual double getCurrentTime() =0;
 };
 
-#endif /*CGAMESTATEABSTRACTFACTORY_H_*/
+#endif /*ICLOCK_H_*/

@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CStrategicPosition_H__
-#define __CStrategicPosition_H__
+#ifndef CSTRATEGICPOSITION_H_
+#define CSTRATEGICPOSITION_H_
 
 #include "../../../bullet/btBulletDynamicsCommon.h"
 #include "../../../utils/geometry/CRectangle.h"
@@ -69,4 +69,4 @@ private:
     CRectangle *m_playingArea;
 };
 
-#endif // __CStrategicPosition_H__
+#endif // CSTRATEGICPOSITION_H_

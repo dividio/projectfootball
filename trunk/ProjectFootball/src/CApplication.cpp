@@ -23,8 +23,7 @@
 
 #include "CApplication.h"
 #include "audio/CAudioSystem.h"
-#include "engine/CScreenManager.h"
-#include "engine/screen/CScreenMainMenu.h"
+#include "engine/CGameEngine.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
 #include "engine/option/CSystemOptionManager.h"
@@ -71,13 +70,7 @@ CApplication* CApplication::getInstance()
 
 void CApplication::go()
 {
-    CScreenManager::getInstance()->pushState(CScreenMainMenu::getInstance());
     startRenderLoop();
-}
-
-void CApplication::exit()
-{
-    CScreenManager::getInstance()->popStack();
 }
 
 OIS::Mouse* CApplication::getMouse()
@@ -253,7 +246,6 @@ void CApplication::setupCEGUI()
     CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
 
     // Other CEGUI setup here.
-    // TODO Make Cegui initialization in Lua
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 
@@ -269,7 +261,7 @@ void CApplication::setupCEGUI()
 
 void CApplication::createFrameListeners()
 {
-    addFrameListener( CScreenManager::getInstance() );
+    addFrameListener( CGameEngine::getInstance() );
 }
 
 void CApplication::addFrameListener( Ogre::FrameListener *frameListener )
@@ -284,6 +276,7 @@ void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
 
 void CApplication::takeScreenshot()
 {
+	// TODO: don't overwrite previous screenshots
     std::ostringstream ss;
     ss << "screenshot" << ".png";
     m_window->writeContentsToFile(ss.str());

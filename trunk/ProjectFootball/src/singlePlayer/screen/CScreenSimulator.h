@@ -22,40 +22,58 @@
 #ifndef CSCREENSIMULATOR_H_
 #define CSCREENSIMULATOR_H_
 
-#include <Ogre.h>
 #include <CEGUI/CEGUI.h>
+
+#include <Ogre.h>
 #include <OgreCEGUIRenderer.h>
 
 #include "../../engine/CScreen.h"
+
+#include "../CSinglePlayerGame.h"
 #include "../sim/CSimulationManager.h"
+
+#define SIMULATION_SCENE_MANAGER_NODE_NAME	"Simulation SceneManager"
 
 class CScreenSimulator : public CScreen
 {
 public:
-    static CScreenSimulator* getInstance();
-
+    CScreenSimulator(CSinglePlayerGame *game);
     virtual ~CScreenSimulator();
 
     virtual void enter();
-    virtual void forcedLeave();
     virtual bool leave();
     virtual void update();
 
-    void toogleSimulationView();
-    void switchTo2DView();
-    void switchTo3DView();
     CSimulationManager* getSimulationManager();
     Ogre::SceneManager* getSimulationSceneManager();
-    void addToLog(std::string text);
+    void addToLog(const std::string &text);
     void updateScore();
     void endMatchEvent();
 
-protected:
-    CScreenSimulator();
-
 private:
+    bool keyDownHandler(const CEGUI::EventArgs& e);
+    bool keyUpHandler(const CEGUI::EventArgs& e);
+    bool backButtonClicked(const CEGUI::EventArgs& e);
+    bool continueButtonClicked(const CEGUI::EventArgs& e);
+    bool startButtonClicked(const CEGUI::EventArgs& e);
+    bool zoomButtonClicked(const CEGUI::EventArgs& e);
+    bool formation433ButtonClicked(const CEGUI::EventArgs& e);
+    bool formation442ButtonClicked(const CEGUI::EventArgs& e);
+    bool frameWindowCloseClicked(const CEGUI::EventArgs& e);
+    bool view2DButtonClicked(const CEGUI::EventArgs& e);
+    bool view3DButtonClicked(const CEGUI::EventArgs& e);
 
-    CEGUI::FrameWindow      *m_frameWindow;
+    CEGUI::PushButton		*m_backButton;
+    CEGUI::PushButton		*m_continueButton;
+    CEGUI::PushButton		*m_startButton;
+    CEGUI::PushButton		*m_zoomButton;
+    CEGUI::PushButton		*m_formation433Button;
+    CEGUI::PushButton		*m_formation442Button;
+    CEGUI::FrameWindow		*m_frameWindow;
+    CEGUI::PushButton		*m_view2DButton;
+    CEGUI::PushButton		*m_view3DButton;
+    CEGUI::PushButton		*m_frameStartButtom;
+
     CEGUI::Listbox          *m_logHistoryList;
     CEGUI::Listbox          *m_logHistoryListShort;
     CEGUI::MultiColumnList  *m_teamPlayersList;
@@ -67,25 +85,27 @@ private:
     CEGUI::Window           *m_frameAwayName;
     CEGUI::Window           *m_frameHomeScore;
     CEGUI::Window           *m_frameAwayScore;
-    CEGUI::PushButton       *m_continueButton;
-    CEGUI::PushButton       *m_backButton;
 
     Ogre::Camera            *m_cam2D;
     Ogre::Camera            *m_cam3D;
     Ogre::SceneNode         *m_cam2DNode;
     Ogre::SceneNode         *m_cam3DNode;
     Ogre::Vector3           m_direction;
-    Ogre::RenderTexture     *m_renderTexture;
     Ogre::SceneManager      *m_sceneMgr;    // The simulation SceneManager
     Ogre::SceneNode         *m_camNode;     // The SceneNode the camera is currently attached to
+    Ogre::RenderTexture     *m_renderTexture;
+
+
 
     CSimulationManager      *m_simulator;
 
     CPfMatches              *m_match;
 
-    bool keyDownHandler(const CEGUI::EventArgs& e);
-    bool keyUpHandler(const CEGUI::EventArgs& e);
+    CSinglePlayerGame		*m_game;
+
     void loadTeamPlayers();
+    void toogleZoom();
+    void setup2DView();
 };
 
 #endif // CSCREENSIMULATOR_H_

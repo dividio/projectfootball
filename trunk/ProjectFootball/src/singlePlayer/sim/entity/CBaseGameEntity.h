@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CBaseGameEntity_H__
-#define __CBaseGameEntity_H__
+#ifndef CBASEGAMEENTITY_H_
+#define CBASEGAMEENTITY_H_
 
 #include <Ogre.h>
 
@@ -68,4 +68,4 @@ private:
     static int m_nextValidID;
 };
 
-#endif // __CBaseGameEntity_H__
+#endif // CBASEGAMEENTITY_H_

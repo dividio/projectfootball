@@ -21,32 +21,32 @@
 #ifndef CSCREENRESULTS_H_
 #define CSCREENRESULTS_H_
 
+#include "../CSinglePlayerGame.h"
 #include "../../engine/CScreen.h"
 
 class CScreenResults : public CScreen
 {
 public:
-	static CScreenResults* getInstance();
+    CScreenResults(CSinglePlayerGame *game);
 	virtual ~CScreenResults();
 
 	virtual void enter();
-    virtual void forcedLeave();
-    virtual bool leave();
-    virtual void update();
 
 private:
-    CScreenResults();
-
-    bool handleCompetitionChange(const CEGUI::EventArgs& e);
-    bool handleCompetitionPhaseChange(const CEGUI::EventArgs& e);
+    bool competitionsComboboxListSelectionChanged(const CEGUI::EventArgs& e);
+    bool competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e);
+    bool backButtonClicked(const CEGUI::EventArgs& e);
 
     void loadCompetitions();
     void loadCompetitionPhases();
     void loadResultsList();
 
-    CEGUI::Combobox         *m_competitionsCombo;
-    CEGUI::Combobox         *m_competitionPhasesCombo;
+    CEGUI::Combobox         *m_competitionsCombobox;
+    CEGUI::Combobox         *m_competitionPhasesCombobox;
     CEGUI::MultiColumnList  *m_resultsList;
+    CEGUI::PushButton		*m_backButton;
+
+    CSinglePlayerGame		*m_game;
 };
 
 #endif /*CSCREENRESULTS_H_*/

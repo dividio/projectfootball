@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef __CEntityManager_H__
-#define __CEntityManager_H__
+#ifndef CENTITYMANAGER_H_
+#define CENTITYMANAGER_H_
 
 #include <map>
 
@@ -43,4 +43,4 @@ private:
     CEntityManager();
 };
 
-#endif // __CEntityManager_H__
+#endif // CENTITYMANAGER_H_

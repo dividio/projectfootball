@@ -20,58 +20,51 @@
 
 #include <libintl.h>
 
-// TODO: Remove CGameEngine dependency
 #include "CScreenTeamPlayers.h"
-#include "../../engine/CGameEngine.h"
 #include "../utils/CLog.h"
 
-CScreenTeamPlayers::CScreenTeamPlayers()
-    :CScreen()
+CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
+    :CScreen("teamPlayers.layout")
 {
     CLog::getInstance()->debug("CScreenTeamPlayers()");
 
-    CEGUI::WindowManager *ceguiWM = &(CEGUI::WindowManager::getSingleton());
-    m_sheet = ceguiWM->loadWindowLayout((CEGUI::utf8*)"teamPlayers.layout");
+    m_game = game;
 
-    m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"TeamPlayers/LineUpTeamPlayersList"));
+    m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/LineUpTeamPlayersList"));
     m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(1.0,0));
     m_lineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_lineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_lineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_lineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
-    m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::handleLineUpSelectChanged, this));
+    m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::lineUpTeamPlayersListboxSelectionChanged, this));
     //m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventMouseButtonUp, CEGUI::Event::Subscriber(&CScreenTeamPlayers::handleMCLButtomUp, this));
 
-    m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"TeamPlayers/AlternateTeamPlayersList"));
+    m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/AlternateTeamPlayersList"));
     m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Alternate)"), 0, CEGUI::UDim(1.0,0));
     m_alternateTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_alternateTeamPlayersList->setUserColumnSizingEnabled(false);
     m_alternateTeamPlayersList->setUserSortControlEnabled(false);
     m_alternateTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
-    m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::handleAlternateSelectChanged, this));
+    m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::alternateTeamPlayersListboxSelectionChanged, this));
 
-    m_notLineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(ceguiWM->getWindow((CEGUI::utf8*)"TeamPlayers/NotLineUpTeamPlayersList"));
+    m_notLineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/NotLineUpTeamPlayersList"));
     m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Not Line Up)"), 0, CEGUI::UDim(1.0,0));
     m_notLineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_notLineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_notLineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_notLineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
-    m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::handleNotLineUpSelectChanged, this));
+    m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::notLineUpTeamPlayersListboxSelectionChanged, this));
+
+    m_backButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/BackButton"));
+    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::backButtonClicked, this));
+
+    m_changePlayersButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/ChangeButton"));
+    m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::changePlayersButtonClicked, this));
 
     // i18n support
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel"))->setText((CEGUI::utf8*)gettext("Team Players:"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"TeamPlayers/ChangeButton"))->setText((CEGUI::utf8*)gettext("Change"));
-    static_cast<CEGUI::Window*>(ceguiWM->getWindow(
-            (CEGUI::utf8*)"TeamPlayers/BackButton"))->setText((CEGUI::utf8*)gettext("Back"));
-}
-
-
-CScreenTeamPlayers* CScreenTeamPlayers::getInstance()
-{
-    static CScreenTeamPlayers instance;
-    return &instance;
+    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
+    m_changePlayersButton->setText((CEGUI::utf8*)gettext("Change"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel"))->setText((CEGUI::utf8*)gettext("Team Players:"));
 }
 
 
@@ -83,20 +76,12 @@ CScreenTeamPlayers::~CScreenTeamPlayers()
 
 void CScreenTeamPlayers::enter()
 {
-    m_system->setGUISheet(m_sheet);
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-    mgr->clearScene();
+	CScreen::enter();
 
     loadTeamPlayersList();
     m_selectedPlayers = NONE;
     m_selectedPlayer1 = 0;
     m_selectedPlayer2 = 0;
-}
-
-
-void CScreenTeamPlayers::forcedLeave()
-{
-    saveTeamPlayersList();
 }
 
 
@@ -121,11 +106,6 @@ bool CScreenTeamPlayers::leave()
     }
     m_selectedPlayers = NONE;
     return true;
-}
-
-
-void CScreenTeamPlayers::update()
-{
 }
 
 
@@ -160,8 +140,8 @@ void CScreenTeamPlayers::loadTeamPlayersList()
     m_alternateTeamPlayersList->resetList();
     m_notLineUpTeamPlayersList->resetList();
 
-    CPfTeams                        *team                       = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
-    IPfTeamPlayersDAO               *teamPlayersDAO             = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
+    CPfTeams                        *team                       = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    IPfTeamPlayersDAO               *teamPlayersDAO             = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
     std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
     std::vector<CPfTeamPlayers*>    *alternateTeamPlayersList   = teamPlayersDAO->findAlternateByXFkTeam(team->getXTeam());
     std::vector<CPfTeamPlayers*>    *notLineUpTeamPlayersList   = teamPlayersDAO->findNotLineUpByXFkTeam(team->getXTeam());
@@ -208,9 +188,9 @@ void CScreenTeamPlayers::loadTeamPlayersList()
 
 void CScreenTeamPlayers::saveTeamPlayersList()
 {
-    CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->beginTransaction();
-    CPfTeams                    *team                   = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
-    IPfTeamPlayerContractsDAO   *teamPlayerContractsDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayerContractsDAO();
+    m_game->getIDAOFactory()->beginTransaction();
+    CPfTeams                    *team                   = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    IPfTeamPlayerContractsDAO   *teamPlayerContractsDAO = m_game->getIDAOFactory()->getIPfTeamPlayerContractsDAO();
 
     int i;
     int lineUpOrder = 1;
@@ -257,7 +237,7 @@ void CScreenTeamPlayers::saveTeamPlayersList()
     }
 
     delete team;
-    CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->commit();
+    m_game->getIDAOFactory()->commit();
 }
 
 
@@ -268,7 +248,7 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
         CEGUI::ListboxItem *currentItem = list->getFirstSelectedItem();
         if( currentItem != 0 ) {
             list->clearAllSelections();
-            IPfTeamPlayersDAO *teamPlayersDAO = CGameEngine::getInstance()->getCurrentGame()->getIDAOFactory()->getIPfTeamPlayersDAO();
+            IPfTeamPlayersDAO *teamPlayersDAO = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
             int xTeamPlayer = currentItem->getID();
             switch (m_selectedPlayers) {
                 case NONE:
@@ -328,31 +308,38 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
 }
 
 
-bool CScreenTeamPlayers::handleLineUpSelectChanged(const CEGUI::EventArgs& e)
+bool CScreenTeamPlayers::lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_lineUpTeamPlayersList);
     return true;
 }
 
 
-bool CScreenTeamPlayers::handleAlternateSelectChanged(const CEGUI::EventArgs& e)
+bool CScreenTeamPlayers::alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_alternateTeamPlayersList);
     return true;
 }
 
 
-bool CScreenTeamPlayers::handleNotLineUpSelectChanged(const CEGUI::EventArgs& e)
+bool CScreenTeamPlayers::notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_notLineUpTeamPlayersList);
     return true;
 }
 
 
-bool CScreenTeamPlayers::handleChangePlayers()
+bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
 {
     if(m_selectedPlayers == BOTH) {
         changePlayers();
     }
     return true;
+}
+
+
+bool CScreenTeamPlayers::backButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->previousScreen();
+	return true;
 }

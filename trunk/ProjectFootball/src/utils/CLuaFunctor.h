@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef __CLuaFunctor_H__
-#define __CLuaFunctor_H__
+#ifndef CLUAFUNCTOR_H_
+#define CLUAFUNCTOR_H_
 
 #include "CEGUI.h"
 
@@ -45,4 +45,4 @@ private:
   mutable bool m_initFlag;
 };
 
-#endif // __CLuaFunctor_H__
+#endif // CLUAFUNCTOR_H_

@@ -14,13 +14,11 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.92,0},{0.7,0},{0.97,0}}" />
-                <Event Name="Clicked" Function="cmd_back" />
             </Window>
             <Window Type="TaharezLook/Button" Name="Simulator/ContinueButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.92,0},{0.995,0},{0.97,0}}" />
-                <Event Name="Clicked" Function="cmd_Simulator_Continue" />
             </Window>
             <Window Type="TaharezLook/StaticImage" Name="Simulator/Image" >
                 <Property Name="FrameEnabled" Value="False" />
@@ -31,13 +29,11 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.01,0},{0.75,0},{0.06,0}}" />
-                <Event Name="Clicked" Function="cmd_Simulator_StartSimulation" />
             </Window>
             <Window Type="TaharezLook/Button" Name="Simulator/ZoomButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.01,0},{0.95,0},{0.06,0}}" />
-                <Event Name="Clicked" Function="cmd_Simulator_ToggleZoom" />
             </Window>
             <Window Type="TaharezLook/TabControl" Name="Simulator/TabControl1" >
                 <Property Name="Font" Value="DejaVuSans-10" />
@@ -67,14 +63,12 @@
                         <Property Name="Text" Value="4-3-3" />
                         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                         <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.25,0},{0.7,0},{0.35,0}}" />
-                        <Event Name="Clicked" Function="cmd_Simulator_changeTo433" />
                     </Window>
                     <Window Type="TaharezLook/Button" Name="Simulator/442Button" >
                         <Property Name="Font" Value="DejaVuSans-10" />
                         <Property Name="Text" Value="4-4-2" />
                         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                         <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.45,0},{0.7,0},{0.55,0}}" />
-                        <Event Name="Clicked" Function="cmd_Simulator_changeTo442" />
                     </Window>
                 </Window>
             </Window>
@@ -108,24 +102,20 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="TitlebarEnabled" Value="True" />
                 <Property Name="UnifiedAreaRect" Value="{{0,0},{0.01,0},{1,0},{0.99,0}}" />
-                <Event Name="CloseClicked" Function="cmd_Simulator_ToggleZoom" />
                 <Window Type="TaharezLook/Button" Name="Simulator/Frame/2DButton" >
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.05,0},{0.65,0},{0.1,0}}" />
-                    <Event Name="Clicked" Function="cmd_Simulator_SwitchTo2DView" />
                 </Window>
                 <Window Type="TaharezLook/Button" Name="Simulator/Frame/3DButton" >
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.68,0},{0.05,0},{0.98,0},{0.1,0}}" />
-                    <Event Name="Clicked" Function="cmd_Simulator_SwitchTo3DView" />
                 </Window>
                 <Window Type="TaharezLook/Button" Name="Simulator/Frame/StartButton" >
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.05,0},{0.32,0},{0.1,0}}" />
-                    <Event Name="Clicked" Function="cmd_Simulator_StartSimulation" />
                 </Window>
                 <Window Type="TaharezLook/StaticImage" Name="Simulator/Frame/Image" >
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

@@ -18,29 +18,26 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSINGLEMATCHEVENTSTRATEGY_H_
-#define CSINGLEMATCHEVENTSTRATEGY_H_
+#ifndef CCLOCK_H_
+#define CCLOCK_H_
 
-#include <vector>
+#include "IClock.h"
+#include "../CGameEngine.h"
 
-#include "IGameEventStrategy.h"
-#include "../../db/bean/CPfGoals.h"
-
-class CSingleMatchEventStrategy : public IGameEventStrategy
+class CClock : public IClock
 {
+	friend class CGameEngine;
 public:
-	CSingleMatchEventStrategy();
-	virtual ~CSingleMatchEventStrategy();
+	virtual ~CClock();
 
-    virtual void process(CStartMatchEvent &event);
-    virtual void process(CEndMatchEvent   &event);
-    virtual void process(CGoalMatchEvent  &event);
+	virtual double getCurrentTime();
+
+protected:
+	CClock();
+	void addTime( double time );
 
 private:
-    int     m_xMatch;
-    bool    m_started;
-    bool    m_ended;
-    std::vector<CPfGoals *> m_goalsList;
+	double m_currentTime;
 };
 
-#endif /*CSINGLEMATCHEVENTSTATEGY_H_*/
+#endif /*CCLOCK_H_*/

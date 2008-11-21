@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 #include "CInputManager.h"
-#include "../engine/CScreenManager.h"
 #include "../CApplication.h"
+#include "../engine/CGameEngine.h"
 
 CInputManager::CInputManager()
 {
@@ -50,7 +50,7 @@ void CInputManager::capture()
 bool CInputManager::keyPressed(const OIS::KeyEvent& e)
 {
     if(e.key==OIS::KC_ESCAPE) {
-        CScreenManager::getInstance()->popState();
+//    	CGameEngine::getInstance()->previousScreen();
     } else if(e.key==OIS::KC_F12) {
         CApplication::getInstance()->takeScreenshot();
     } else {
