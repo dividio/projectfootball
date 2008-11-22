@@ -49,10 +49,11 @@ bool CPfTeamPlayerContractsDAOSQLiteEntity::deleteReg(CPfTeamPlayerContracts *re
 
 bool CPfTeamPlayerContractsDAOSQLiteEntity::insertReg(CPfTeamPlayerContracts *reg)
 {
-    std::string sql("INSERT INTO PF_TEAM_PLAYER_CONTRACTS (D_BEGIN,X_FK_TEAM_PLAYER,D_END,X_FK_TEAM) VALUES (");
+    std::string sql("INSERT INTO PF_TEAM_PLAYER_CONTRACTS (D_BEGIN,D_END,X_FK_TEAM_PLAYER,N_LINEUP_ORDER,X_FK_TEAM) VALUES (");
     sql += (reg->getDBegin_str()=="")?"NULL":"'"+reg->getDBegin_str()+"'";
-    sql += (reg->getXFkTeamPlayer_str()=="")?",NULL":",'"+reg->getXFkTeamPlayer_str()+"'";
     sql += (reg->getDEnd_str()=="")?",NULL":",'"+reg->getDEnd_str()+"'";
+    sql += (reg->getXFkTeamPlayer_str()=="")?",NULL":",'"+reg->getXFkTeamPlayer_str()+"'";
+    sql += (reg->getNLineupOrder_str()=="")?",NULL":",'"+reg->getNLineupOrder_str()+"'";
     sql += (reg->getXFkTeam_str()=="")?",NULL":",'"+reg->getXFkTeam_str()+"'";
     sql += ")";
     return exec(sql);
@@ -135,12 +136,14 @@ int CPfTeamPlayerContractsDAOSQLiteEntity::callbackRegister(void *object, int nC
         for( int i=0; i<nColumns; i++ ){
             if( strcmp(sColumn[i], "D_BEGIN")==0 ){
                 destiny->setDBegin_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
-                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_TEAM_PLAYER_CONTRACT")==0 ){
                 destiny->setXTeamPlayerContract_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "D_END")==0 ){
                 destiny->setDEnd_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
+                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
+                destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM")==0 ){
                 destiny->setXFkTeam_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
@@ -158,12 +161,14 @@ int CPfTeamPlayerContractsDAOSQLiteEntity::callbackVector(void *object, int nCol
         for( int i=0; i<nColumns; i++ ){
             if( strcmp(sColumn[i], "D_BEGIN")==0 ){
                 destiny->setDBegin_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
-                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_TEAM_PLAYER_CONTRACT")==0 ){
                 destiny->setXTeamPlayerContract_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "D_END")==0 ){
                 destiny->setDEnd_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
+                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
+                destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM")==0 ){
                 destiny->setXFkTeam_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
