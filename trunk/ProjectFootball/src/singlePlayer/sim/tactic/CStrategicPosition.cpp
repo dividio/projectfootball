@@ -40,6 +40,7 @@ CStrategicPosition::~CStrategicPosition()
     delete m_initialPosition;
     delete m_defensivePosition;
     delete m_offensivePosition;
+    delete m_playingArea;
 }
 
 
