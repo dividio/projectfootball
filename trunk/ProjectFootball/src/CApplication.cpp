@@ -162,7 +162,8 @@ void CApplication::createRenderWindow()
         opts["vsync"] = "true";
         #if OGRE_PLATFORM == PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_LINUX
             // TODO Nvidia and Ati check
-            putenv("__GL_SYNC_TO_VBLANK=1");
+            char glSync[22] = "__GL_SYNC_TO_VBLANK=1";
+            putenv(glSync);
         #endif
         m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
     } else {
@@ -276,7 +277,7 @@ void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
 
 void CApplication::takeScreenshot()
 {
-	// TODO: don't overwrite previous screenshots
+  // TODO: don't overwrite previous screenshots
     std::ostringstream ss;
     ss << "screenshot" << ".png";
     m_window->writeContentsToFile(ss.str());
