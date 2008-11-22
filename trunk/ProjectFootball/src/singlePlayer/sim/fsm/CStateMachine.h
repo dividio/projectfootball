@@ -148,9 +148,9 @@ public:
 
     ~CStateMachine(){};
 
-    void setCurrentState(std::string state) {m_currentState = state;};
-    void setGlobalState(std::string state) {m_globalState = state;};
-    void setPreviousState(std::string state) {m_previousState = state;};
+    void setCurrentState (const std::string &state) {m_currentState = state;};
+    void setGlobalState  (const std::string &state) {m_globalState = state;};
+    void setPreviousState(const std::string &state) {m_previousState = state;};
 
 
 
@@ -164,7 +164,7 @@ public:
         }
     };
 
-    void changeState(std::string newState)
+    void changeState(const std::string &newState)
     {
         if(!newState.empty()) {
             if(!m_currentState.empty()) {
@@ -195,9 +195,9 @@ public:
 
     void revertToPreviousState() {changeState(m_previousState);};
 
-    std::string currentState() const {return m_currentState;};
-    std::string previousState() const {return m_previousState;};
-    std::string globalState() const {return m_globalState;};
+    const std::string& previousState() const {return m_previousState;};
+    const std::string& currentState()  const {return m_currentState;};
+    const std::string& globalState()   const {return m_globalState;};
 
     bool isInState(const std::string state) const { return (m_currentState == state);};
 
