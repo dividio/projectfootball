@@ -76,7 +76,7 @@ CScreenTeamPlayers::~CScreenTeamPlayers()
 
 void CScreenTeamPlayers::enter()
 {
-	CScreen::enter();
+  CScreen::enter();
 
     loadTeamPlayersList();
     m_selectedPlayers = NONE;
@@ -289,7 +289,6 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
                         delete m_selectedPlayer1;
                         m_selectedPlayers = PLAYER2;
                         m_item2->setSelected(true);
-                        CLog::getInstance()->debug("Deseleccionado");
                     } else if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
                         delete m_selectedPlayer2;
                         m_selectedPlayers = PLAYER1;
@@ -303,7 +302,7 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
                     break;
             }
         }
-    m_forcedSelection = false;
+        m_forcedSelection = false;
     }
 }
 
@@ -340,6 +339,6 @@ bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenTeamPlayers::backButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_game->previousScreen();
-	return true;
+    m_game->previousScreen();
+    return true;
 }
