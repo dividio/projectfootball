@@ -232,7 +232,7 @@ class CBeanClassRenderer(UtilRenderer) :
         setters += "    void set"+self.attributeName(a)+"(double "+self.attributeName(a)+");\n"
         setters += "    void set"+self.attributeName(a)+"_str(const std::string &"+self.attributeName(a)+");\n"
       elif t=="DATE" :
-        setters += "    void set"+self.attributeName(a)+"(CDate &"+self.attributeName(a)+");\n"
+        setters += "    void set"+self.attributeName(a)+"(const CDate &"+self.attributeName(a)+");\n"
         setters += "    void set"+self.attributeName(a)+"_str(const std::string &"+self.attributeName(a)+");\n"
       elif t=="BOOLEAN" :
         setters += "    void set"+self.attributeName(a)+"(bool "+self.attributeName(a)+");\n"
@@ -411,7 +411,7 @@ class CBeanClassRenderer(UtilRenderer) :
         setters += "    m_"+self.attributeName(a)+" = "+self.attributeName(a)+";\n"
         setters += "}\n\n"
       elif t=="DATE" :
-        setters += "void "+cClass+"::set"+self.attributeName(a)+"(CDate &"+self.attributeName(a)+")\n"
+        setters += "void "+cClass+"::set"+self.attributeName(a)+"(const CDate &"+self.attributeName(a)+")\n"
         setters += "{\n"
         setters += "    m_"+self.attributeName(a)+" = "+self.attributeName(a)+".getTimestamp();\n"
         setters += "}\n\n"

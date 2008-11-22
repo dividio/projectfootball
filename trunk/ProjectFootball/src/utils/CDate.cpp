@@ -156,7 +156,7 @@ CDate::~CDate()
 {
 }
 
-std::string CDate::format(const std::string &format)
+std::string CDate::format(const std::string &format) const
 {
     if( !isValid() || format=="" ){
         return "";
@@ -167,12 +167,12 @@ std::string CDate::format(const std::string &format)
     return buffer;
 }
 
-std::string CDate::getTimestamp()
+std::string CDate::getTimestamp() const
 {
     return format("%Y-%m-%d %H:%M:%S");
 }
 
-bool CDate::isValid()
+bool CDate::isValid() const
 {
     return  m_tm.tm_mday>=1 && m_tm.tm_mday<=31
             && m_tm.tm_mon>=0 && m_tm.tm_mon<=11
@@ -182,32 +182,32 @@ bool CDate::isValid()
             && m_tm.tm_sec>=0 && m_tm.tm_sec<=59;
 }
 
-int CDate::getYear()
+int CDate::getYear() const
 {
     return m_tm.tm_year+1900;
 }
 
-int CDate::getMonth()
+int CDate::getMonth() const
 {
     return m_tm.tm_mon+1;
 }
 
-int CDate::getDay()
+int CDate::getDay() const
 {
     return m_tm.tm_mday;
 }
 
-int CDate::getHour()
+int CDate::getHour() const
 {
     return m_tm.tm_hour;
 }
 
-int CDate::getMin()
+int CDate::getMin() const
 {
     return m_tm.tm_min;
 }
 
-int CDate::getSec()
+int CDate::getSec() const
 {
     return m_tm.tm_sec;
 }
@@ -285,7 +285,7 @@ CDate& CDate::operator =(const CDate &date)
     m_tm = date.m_tm;
 }
 
-bool CDate::operator ==(const CDate &date)
+bool CDate::operator ==(const CDate &date) const
 {
     return  this->m_tm.tm_mday==date.m_tm.tm_mday
             && this->m_tm.tm_mon==date.m_tm.tm_mon
@@ -295,12 +295,12 @@ bool CDate::operator ==(const CDate &date)
             && this->m_tm.tm_sec==date.m_tm.tm_sec;
 }
 
-bool CDate::operator !=(const CDate &date)
+bool CDate::operator !=(const CDate &date) const
 {
     return !this->operator ==(date);
 }
 
-bool CDate::operator <(const CDate &date)
+bool CDate::operator <(const CDate &date) const
 {
     return  this->m_tm.tm_year<date.m_tm.tm_year
             || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon<date.m_tm.tm_mon)
@@ -310,17 +310,17 @@ bool CDate::operator <(const CDate &date)
             || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon==date.m_tm.tm_mon && this->m_tm.tm_mday==date.m_tm.tm_mday && this->m_tm.tm_hour==date.m_tm.tm_hour && this->m_tm.tm_min==date.m_tm.tm_min && this->m_tm.tm_sec<date.m_tm.tm_sec);
 }
 
-bool CDate::operator <=(const CDate &date)
+bool CDate::operator <=(const CDate &date) const
 {
     return this->operator <(date) || this->operator ==(date);
 }
 
-bool CDate::operator >(const CDate &date)
+bool CDate::operator >(const CDate &date) const
 {
     return !this->operator <(date) && !this->operator ==(date);
 }
 
-bool CDate::operator >=(const CDate &date)
+bool CDate::operator >=(const CDate &date) const
 {
     return !this->operator <(date);
 }

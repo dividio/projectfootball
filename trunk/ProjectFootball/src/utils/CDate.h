@@ -32,19 +32,19 @@ public:
     CDate(int day, int month, int year);
     CDate(int day, int month, int year, int hour, int minutes, int seconds);
     CDate(const std::string &timestamp);
-	virtual ~CDate();
+    virtual ~CDate();
 
-	std::string format(const std::string &format);
-	std::string getTimestamp();
+    std::string format(const std::string &format) const;
+    std::string getTimestamp() const;
 
-	bool isValid();
+    bool isValid() const;
 
-	int getYear();
-	int getMonth();
-	int getDay();
-	int getHour();
-	int getMin();
-	int getSec();
+    int getYear()  const;
+    int getMonth() const;
+    int getDay()   const;
+    int getHour()  const;
+    int getMin()   const;
+    int getSec()   const;
 
     void setYear(int year);
     void setMonth(int month);
@@ -53,20 +53,20 @@ public:
     void setMin(int minutes);
     void setSec(int seconds);
 
-	CDate& operator +=(int nDays);
-	CDate& operator ++();
+    CDate& operator +=(int nDays);
+    CDate& operator ++();
 
-	CDate& operator -=(int nDays);
-	CDate& operator --();
+    CDate& operator -=(int nDays);
+    CDate& operator --();
 
-	CDate& operator =(const CDate &date);
+    CDate& operator =(const CDate &date);
 
-	bool operator ==(const CDate &date);
-	bool operator !=(const CDate &date);
-	bool operator <(const CDate &date);
-	bool operator <=(const CDate &date);
-    bool operator >(const CDate &date);
-    bool operator >=(const CDate &date);
+    bool operator ==(const CDate &date) const;
+    bool operator !=(const CDate &date) const;
+    bool operator <(const CDate &date)  const;
+    bool operator <=(const CDate &date) const;
+    bool operator >(const CDate &date)  const;
+    bool operator >=(const CDate &date) const;
 
 private:
     struct tm m_tm;

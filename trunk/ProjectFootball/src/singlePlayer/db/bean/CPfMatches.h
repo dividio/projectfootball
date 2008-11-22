@@ -51,7 +51,7 @@ public:
     void setXFkCompetitionPhase_str(const std::string &XFkCompetitionPhase);
     void setXFkTeamAway(int XFkTeamAway);
     void setXFkTeamAway_str(const std::string &XFkTeamAway);
-    void setDMatch(CDate &DMatch);
+    void setDMatch(const CDate &DMatch);
     void setDMatch_str(const std::string &DMatch);
     void setXMatch(int XMatch);
     void setXMatch_str(const std::string &XMatch);

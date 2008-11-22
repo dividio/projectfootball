@@ -150,7 +150,7 @@ void CPfMatches::setXFkTeamAway_str(const std::string &XFkTeamAway)
     m_XFkTeamAway = XFkTeamAway;
 }
 
-void CPfMatches::setDMatch(CDate &DMatch)
+void CPfMatches::setDMatch(const CDate &DMatch)
 {
     m_DMatch = DMatch.getTimestamp();
 }
