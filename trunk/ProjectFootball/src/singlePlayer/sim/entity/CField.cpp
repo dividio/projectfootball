@@ -23,6 +23,7 @@
 #include "CField.h"
 #include "../../screen/CScreenSimulator.h"
 
+
 CField::CField()
 : CBaseGameEntity()
 {
@@ -34,11 +35,15 @@ CField::CField()
     m_node->attachObject(m_entity);
 
     Ogre::Entity *goal = scnMgr->createEntity("Goal_left", "Goal.mesh");
+    Ogre::Entity *net  = scnMgr->createEntity("Net_left", "Net.mesh");
     Ogre::SceneNode *node = m_node->createChildSceneNode("GoalLeftNode", Ogre::Vector3(-55,0,0));
     node->attachObject(goal);
+    node->attachObject(net);
     goal = scnMgr->createEntity("Goal_right", "Goal.mesh");
+    net = scnMgr->createEntity("Net_right", "Net.mesh");
     node = m_node->createChildSceneNode("GoalRightNode", Ogre::Vector3(55,0,0));
     node->attachObject(goal);
+    node->attachObject(net);
     node->yaw(Ogre::Degree(180));
 
     m_shape = new btBoxShape(btVector3(btScalar(60.0),btScalar(1.0),btScalar(45.0)));
