@@ -62,9 +62,10 @@ bool CPfTeamPlayerContractsDAOSQLiteEntity::updateReg(CPfTeamPlayerContracts *re
 {
     std::string sql("UPDATE PF_TEAM_PLAYER_CONTRACTS SET ");
     sql += (reg->getDBegin_str()=="")?" D_BEGIN=NULL":" D_BEGIN='"+reg->getDBegin_str()+"'";
-    sql += (reg->getXFkTeamPlayer_str()=="")?",X_FK_TEAM_PLAYER=NULL":",X_FK_TEAM_PLAYER='"+reg->getXFkTeamPlayer_str()+"'";
     sql += (reg->getXTeamPlayerContract_str()=="")?",X_TEAM_PLAYER_CONTRACT=NULL":",X_TEAM_PLAYER_CONTRACT='"+reg->getXTeamPlayerContract_str()+"'";
     sql += (reg->getDEnd_str()=="")?",D_END=NULL":",D_END='"+reg->getDEnd_str()+"'";
+    sql += (reg->getXFkTeamPlayer_str()=="")?",X_FK_TEAM_PLAYER=NULL":",X_FK_TEAM_PLAYER='"+reg->getXFkTeamPlayer_str()+"'";
+    sql += (reg->getNLineupOrder_str()=="")?",N_LINEUP_ORDER=NULL":",N_LINEUP_ORDER='"+reg->getNLineupOrder_str()+"'";
     sql += (reg->getXFkTeam_str()=="")?",X_FK_TEAM=NULL":",X_FK_TEAM='"+reg->getXFkTeam_str()+"'";
     sql += " WHERE X_TEAM_PLAYER_CONTRACT='"+reg->getXTeamPlayerContract_str()+"'";
     return exec(sql);
