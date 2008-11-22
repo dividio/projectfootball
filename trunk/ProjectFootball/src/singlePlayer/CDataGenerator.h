@@ -38,10 +38,12 @@ public:
 
     void generateDataBase();
     void generateCompetitionMatches(CPfCompetitions *competition, CDate date);
+
+
 private:
     IDAOFactory *m_daoFactory;
 
-    void generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, CDate &date);
+    void generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date);
 };
 
 #endif /*CDATAGENERATOR_H_*/

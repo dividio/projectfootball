@@ -62,6 +62,7 @@ void CDataGenerator::generateDataBase()
     }
 
     m_daoFactory->commit();
+    m_daoFactory->getIPfCompetitionsDAO()->freeVector(competitions);
 }
 
 void CDataGenerator::generateCompetitionMatches(CPfCompetitions *competition, CDate date)
@@ -130,7 +131,7 @@ void CDataGenerator::generateCompetitionMatches(CPfCompetitions *competition, CD
 
 }
 
-void CDataGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, CDate &date)
+void CDataGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date)
 {
     CPfMatches match;
     IPfMatchesDAO *matchesDAO= m_daoFactory->getIPfMatchesDAO();
