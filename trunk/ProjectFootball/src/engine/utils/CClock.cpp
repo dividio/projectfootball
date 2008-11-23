@@ -22,7 +22,7 @@
 
 CClock::CClock()
 {
-  m_currentTime = 0;
+    m_currentTime = 0;
 }
 
 CClock::~CClock()
@@ -31,10 +31,10 @@ CClock::~CClock()
 
 double CClock::getCurrentTime()
 {
-  return m_currentTime;
+    return m_currentTime;
 }
 
 void CClock::addTime( double time )
 {
-  m_currentTime += time;
+    m_currentTime += time;
 }
