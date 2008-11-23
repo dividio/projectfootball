@@ -79,7 +79,7 @@ CScreenSelectTeam::~CScreenSelectTeam()
 
 void CScreenSelectTeam::enter()
 {
-	CScreen::enter();
+    CScreen::enter();
 
     int confederation = loadConfederationsList();
     int country       = loadCountriesList(confederation);
@@ -89,22 +89,22 @@ void CScreenSelectTeam::enter()
     m_selectButton->setEnabled(false);
 }
 
-bool CScreenSelectTeam::leave()
+void CScreenSelectTeam::leave()
 {
     if(m_confederationsList!=NULL) {
-    	m_game->getIDAOFactory()->getIPfConfederationsDAO()->freeVector(m_confederationsList);
+        m_game->getIDAOFactory()->getIPfConfederationsDAO()->freeVector(m_confederationsList);
         m_confederationsList = NULL;
     }
     if(m_countriesList!=NULL) {
-    	m_game->getIDAOFactory()->getIPfCountriesDAO()->freeVector(m_countriesList);
+        m_game->getIDAOFactory()->getIPfCountriesDAO()->freeVector(m_countriesList);
         m_countriesList = NULL;
     }
     if(m_competitionsList!=NULL) {
-    	m_game->getIDAOFactory()->getIPfCompetitionsDAO()->freeVector(m_competitionsList);
+        m_game->getIDAOFactory()->getIPfCompetitionsDAO()->freeVector(m_competitionsList);
         m_competitionsList = NULL;
     }
     if(m_teamsList!=NULL) {
-    	m_game->getIDAOFactory()->getIPfTeamsDAO()->freeVector(m_teamsList);
+        m_game->getIDAOFactory()->getIPfTeamsDAO()->freeVector(m_teamsList);
         m_teamsList = NULL;
     }
 
@@ -113,8 +113,6 @@ bool CScreenSelectTeam::leave()
     m_competitionsCombobox  ->resetList();
     m_guiTeamsList			->resetList();
     clearTeamInfo();
-
-    return true;
 }
 
 int CScreenSelectTeam::loadConfederationsList()
@@ -294,7 +292,7 @@ bool CScreenSelectTeam::competitionsComboboxListSelectionChanged(const CEGUI::Ev
 bool CScreenSelectTeam::teamsListboxMouseDoubleClick(const CEGUI::EventArgs& e)
 {
     if(m_guiTeamsList->getFirstSelectedItem()!=0) {
-    	selectButtonClicked(e);
+        selectButtonClicked(e);
     }
     return true;
 }
@@ -323,8 +321,8 @@ bool CScreenSelectTeam::selectButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenSelectTeam::backButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_game->previousScreen();
-	return true;
+    m_game->previousScreen();
+    return true;
 }
 
 void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)

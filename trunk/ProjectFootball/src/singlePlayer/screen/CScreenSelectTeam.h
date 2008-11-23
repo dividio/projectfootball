@@ -34,10 +34,10 @@ class CScreenSelectTeam : public CScreen
 {
 public:
     CScreenSelectTeam(CSinglePlayerGame *game);
-	virtual ~CScreenSelectTeam();
+    virtual ~CScreenSelectTeam();
 
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
 
 private:
     bool confederationsComboboxListSelectionChanged(const CEGUI::EventArgs& e);

@@ -46,12 +46,12 @@ void CScreen::enter()
     m_root->getSceneManager("Default SceneManager")->clearScene();
 }
 
-bool CScreen::leave()
+void CScreen::leave()
 {
-	return true;
+    // Nothing to do
 }
 
 void CScreen::update()
 {
-	// Nothing to do
+    // Nothing to do
 }

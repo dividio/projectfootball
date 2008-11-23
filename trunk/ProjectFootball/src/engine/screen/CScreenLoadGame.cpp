@@ -69,7 +69,7 @@ CScreenLoadGame::~CScreenLoadGame()
 
 void CScreenLoadGame::enter()
 {
-	CScreen::enter();
+    CScreen::enter();
 
     loadGameList();
 
@@ -87,7 +87,7 @@ void CScreenLoadGame::loadGameList()
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
     IPfGamesDAO*                        gamesDAO    = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
-    std::vector<CPfGames*>*             gamesList   = gamesDAO->findByXFkUser(CGameEngine::getInstance()->getCurrentUser()->getXUser());
+    std::vector<CPfGames*>*             gamesList   = gamesDAO->findByXFkUserAndSGameType(CGameEngine::getInstance()->getCurrentUser()->getXUser(), S_GAME_TYPE_SINGLEPLAYER);
     std::vector<CPfGames*>::iterator    it;
     for( it=gamesList->begin(); it!=gamesList->end(); it++ ){
         CPfGames *game = (*it);
@@ -117,7 +117,7 @@ void CScreenLoadGame::loadGameList()
 bool CScreenLoadGame::gamesListDoubleClick(const CEGUI::EventArgs& e)
 {
     if( m_gamesList->getFirstSelectedItem()!=NULL ){
-    	loadGameButtonClicked(e);
+        loadGameButtonClicked(e);
     }
     return true;
 }
@@ -141,8 +141,8 @@ bool CScreenLoadGame::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
 
 bool CScreenLoadGame::backButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->previousScreen();
-	return true;
+    CGameEngine::getInstance()->previousScreen();
+    return true;
 }
 
 bool CScreenLoadGame::newGameButtonClicked(const CEGUI::EventArgs& e)
@@ -151,26 +151,25 @@ bool CScreenLoadGame::newGameButtonClicked(const CEGUI::EventArgs& e)
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 
     if( user==NULL || user->getXUser()==0 ){
-        CLog::getInstance()->exception("[CScreenLoadGame::newGame] User not defined");
+        CLog::getInstance()->exception("[CScreenLoadGame::newGameButtonClicked] User not defined");
     }
 
-    CSinglePlayerGame singlePlayerGame(user, m_newGameEditbox->getText().c_str());
-    CPfGames *game = singlePlayerGame.save();
-    masterDatabase->getIPfGamesDAO()->insertReg(game);
+    CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(user, m_newGameEditbox->getText().c_str()));
+    CGameEngine::getInstance()->save();
 
-    loadGameList();
     m_newGameEditbox->setText("");
 
-	return true;
+    return true;
 }
 
 bool CScreenLoadGame::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
-    int xGame = itm->getID();
-    CGameEngine::getInstance()->loadGame(xGame);
+    CPfGames *game = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO()->findByXGame(itm->getID());
+    CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(game));
+    delete game;
 
-	return true;
+    return true;
 }
 
 bool CScreenLoadGame::deleteGameButtonClicked(const CEGUI::EventArgs& e)
@@ -188,5 +187,5 @@ bool CScreenLoadGame::deleteGameButtonClicked(const CEGUI::EventArgs& e)
 
     loadGameList();
 
-	return true;
+    return true;
 }

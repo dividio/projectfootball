@@ -35,7 +35,7 @@ public:
     virtual ~CScreen();
 
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
     virtual void update();
 
 protected:

@@ -23,7 +23,6 @@
 
 #include "CScreenMainMenu.h"
 #include "../CGameEngine.h"
-#include "../CGameAbstractFactory.h"
 #include "../../quickPlay/CQuickGame.h"
 #include "../../utils/CLog.h"
 
@@ -62,28 +61,14 @@ CScreenMainMenu::~CScreenMainMenu()
 
 bool CScreenMainMenu::quickPlayButtonClicked(const CEGUI::EventArgs& e)
 {
-    IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 
     if( user==NULL || user->getXUser()==0 ){
         CLog::getInstance()->exception("[CScreenMainMenu::quickPlayButtonClicked] User not defined");
     }
 
-    CQuickGame *quickGame = new CQuickGame(user);
-    CPfGames *game = quickGame->save();
-    masterDatabase->getIPfGamesDAO()->insertReg(game);
-    delete quickGame;
-
-    IPfGamesDAO                         *gamesDAO   = masterDatabase->getIPfGamesDAO();
-    std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_QUICKPLAY);
-    if( gamesList==NULL || gamesList->size()==0 ){
-        CLog::getInstance()->error("[CScreenMainMenu::quickPlayButtonClicked] No quick game found");
-    }else if( gamesList->size()>1 ){
-        CLog::getInstance()->error("[CScreenMainMenu::quickPlayButtonClicked] Too many quick game found");
-    }else{
-        CGameEngine::getInstance()->loadGame(gamesList->at(0)->getXGame());
-    }
-    gamesDAO->freeVector(gamesList);
+    CGameEngine::getInstance()->loadGame(new CQuickGame(user));
+    CGameEngine::getInstance()->save();
 
     return true;
 }

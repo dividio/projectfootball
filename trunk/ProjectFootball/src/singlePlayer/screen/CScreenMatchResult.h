@@ -32,10 +32,10 @@ public:
     virtual ~CScreenMatchResult();
 
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
 
 private:
-	bool continueButtonClicked(const CEGUI::EventArgs& e);
+    bool continueButtonClicked(const CEGUI::EventArgs& e);
 
     CPfMatches              *m_match;
     CEGUI::Window           *m_competitionName;

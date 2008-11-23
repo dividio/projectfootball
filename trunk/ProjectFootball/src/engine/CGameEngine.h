@@ -21,6 +21,9 @@
 #ifndef CGAMEENGINE_H_
 #define CGAMEENGINE_H_
 
+#define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
+#define S_GAME_TYPE_QUICKPLAY       "QUICK_PLAY"
+
 #include <string>
 #include <vector>
 #include <Ogre.h>
@@ -34,22 +37,22 @@
 class CGameEngine : public Ogre::FrameListener
 {
 public:
-	virtual ~CGameEngine();
-	static CGameEngine* getInstance();
+    virtual ~CGameEngine();
+    static CGameEngine* getInstance();
 
-	IGame*        		getCurrentGame();
-	IMasterDAOFactory* 	getCMasterDAOFactory();
+    IGame*        		getCurrentGame();
+    IMasterDAOFactory* 	getCMasterDAOFactory();
 
-	void setUser(int xUser);
-	const CPfUsers* getCurrentUser();
+    void setUser(int xUser);
+    const CPfUsers* getCurrentUser();
 
-	void loadGame(int xGame);
-	void save();
-	void unloadCurrentGame();
+    void loadGame(IGame* game);
+    void save();
+    void unloadCurrentGame();
 
-	IClock& getClock();
+    IClock& getClock();
 
-	// Ogre
+    // Ogre
     virtual bool frameEnded(const Ogre::FrameEvent& evt);
     virtual bool frameStarted(const Ogre::FrameEvent& evt);
 
@@ -64,7 +67,7 @@ public:
     IScreen* getCreditsScreen();
 
 protected:
-	void enterScreen();
+    void enterScreen();
 
 private:
     CGameEngine();

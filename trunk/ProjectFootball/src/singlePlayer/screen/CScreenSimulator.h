@@ -41,7 +41,7 @@ public:
     virtual ~CScreenSimulator();
 
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
     virtual void update();
 
     CSimulationManager* getSimulationManager();

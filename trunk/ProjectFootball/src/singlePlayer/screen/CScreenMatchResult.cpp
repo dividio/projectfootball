@@ -72,7 +72,7 @@ CScreenMatchResult::~CScreenMatchResult()
 
 void CScreenMatchResult::enter()
 {
-	CScreen::enter();
+    CScreen::enter();
 
     simulateMatches();
 
@@ -81,11 +81,10 @@ void CScreenMatchResult::enter()
     loadMatchInfo(m_match);
 }
 
-bool CScreenMatchResult::leave()
+void CScreenMatchResult::leave()
 {
     m_homeEventsList->resetList();
     m_awayEventsList->resetList();
-    return true;
 }
 
 void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
@@ -253,6 +252,6 @@ int CScreenMatchResult::getRandomNGoals()
 
 bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_game->nextScreen(m_game->getGameScreen());
-	return true;
+    m_game->nextScreen(m_game->getGameScreen());
+    return true;
 }

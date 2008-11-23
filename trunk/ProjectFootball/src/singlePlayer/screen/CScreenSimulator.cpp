@@ -248,7 +248,7 @@ void CScreenSimulator::enter()
 }
 
 
-bool CScreenSimulator::leave()
+void CScreenSimulator::leave()
 {
     if(m_simulator != NULL) {
         delete m_simulator;
@@ -260,7 +260,6 @@ bool CScreenSimulator::leave()
         delete m_match;
         m_match = NULL;
     }
-    return true;
 }
 
 
@@ -421,50 +420,50 @@ void CScreenSimulator::endMatchEvent()
 
 bool CScreenSimulator::backButtonClicked(const CEGUI::EventArgs& e)
 {
-  m_game->previousScreen();
-  return true;
+    m_game->previousScreen();
+    return true;
 }
 
 bool CScreenSimulator::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-  m_game->nextScreen(m_game->getMatchResultScreen());
-  return true;
+    m_game->nextScreen(m_game->getMatchResultScreen());
+    return true;
 }
 
 bool CScreenSimulator::startButtonClicked(const CEGUI::EventArgs& e)
 {
-  m_simulator->startMatch();
-  return true;
+    m_simulator->startMatch();
+    return true;
 }
 
 bool CScreenSimulator::zoomButtonClicked(const CEGUI::EventArgs& e)
 {
-  toogleZoom();
-  return true;
+    toogleZoom();
+    return true;
 }
 
 bool CScreenSimulator::formation433ButtonClicked(const CEGUI::EventArgs& e)
 {
-  m_simulator->changeFormationEvent(0);
-  return true;
+    m_simulator->changeFormationEvent(0);
+    return true;
 }
 
 bool CScreenSimulator::formation442ButtonClicked(const CEGUI::EventArgs& e)
 {
-  m_simulator->changeFormationEvent(1);
-  return true;
+    m_simulator->changeFormationEvent(1);
+    return true;
 }
 
 bool CScreenSimulator::frameWindowCloseClicked(const CEGUI::EventArgs& e)
 {
-  toogleZoom();
-  return true;
+    toogleZoom();
+    return true;
 }
 
 bool CScreenSimulator::view2DButtonClicked(const CEGUI::EventArgs& e)
 {
-  setup2DView();
-  return true;
+    setup2DView();
+    return true;
 }
 
 bool CScreenSimulator::view3DButtonClicked(const CEGUI::EventArgs& e)
@@ -475,5 +474,5 @@ bool CScreenSimulator::view3DButtonClicked(const CEGUI::EventArgs& e)
     viewport->setClearEveryFrame(true);
     viewport->setBackgroundColour(Ogre::ColourValue::Black);
 
-  return true;
+    return true;
 }

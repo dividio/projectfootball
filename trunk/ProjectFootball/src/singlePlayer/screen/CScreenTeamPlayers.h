@@ -35,7 +35,7 @@ public:
     virtual ~CScreenTeamPlayers();
 
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
 
 private:
     bool lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);

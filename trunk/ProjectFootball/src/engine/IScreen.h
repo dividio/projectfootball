@@ -24,14 +24,14 @@
 class IScreen
 {
 public:
-	virtual ~IScreen(){}
+    virtual ~IScreen(){}
 
     virtual void enter() =0;
-    virtual bool leave() =0;
+    virtual void leave() =0;
     virtual void update()=0;
 
 protected:
-	IScreen(){}
+    IScreen(){}
 };
 
 #endif /*ISCREEN_H_*/

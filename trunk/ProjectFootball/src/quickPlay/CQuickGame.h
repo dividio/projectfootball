@@ -26,12 +26,12 @@
 class CQuickGame : public CSinglePlayerGame
 {
 public:
-	CQuickGame(const CPfUsers *user);
-	virtual ~CQuickGame();
+    CQuickGame(const CPfUsers *user);
+    virtual ~CQuickGame();
 
     // CScreen
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
 };
 
 #endif /*CQUICKGAME_H_*/

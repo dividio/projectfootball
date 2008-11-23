@@ -24,7 +24,6 @@
 #include <string>
 
 #include "db/dao/factory/IDAOFactory.h"
-#include "db/sqlite/dao/factory/CDAOFactorySQLite.h"
 
 #include "option/CSinglePlayerOptionManager.h"
 #include "report/CSinglePlayerReportRegister.h"
@@ -37,9 +36,9 @@
 class CSinglePlayerGame : public IGame
 {
 public:
-	CSinglePlayerGame(const CPfUsers *user, const char *gameName);
-	CSinglePlayerGame(const CPfGames *game);
-	virtual ~CSinglePlayerGame();
+    CSinglePlayerGame(const CPfUsers *user, const char *gameName);
+    CSinglePlayerGame(const CPfGames *game);
+    virtual ~CSinglePlayerGame();
 
     IDAOFactory*           			getIDAOFactory();
     CSinglePlayerEventStrategy*  	getEventStrategy();
@@ -48,11 +47,11 @@ public:
 
     // IScreen
     virtual void enter();
-    virtual bool leave();
+    virtual void leave();
     virtual void update();
 
     // IGame
-	virtual CPfGames* save();
+    virtual CPfGames* save();
 
     virtual void exit();
     virtual void previousScreen();
@@ -69,16 +68,13 @@ public:
 private:
     void setGameOptionsDefaultValues();
     void createSinglePlayerScreens();
-    void copyFile(const std::string &origin, const std::string &destination);
 
 protected:
     CPfGames                    *m_game;
-    CDAOFactorySQLite           *m_daoFactory;
+    IDAOFactory					*m_daoFactory;
     CSinglePlayerEventStrategy  *m_eventStrategy;
     CSinglePlayerReportRegister *m_reportRegister;
     CSinglePlayerOptionManager  *m_optionManager;
-    std::string                 m_database_filepath;
-    std::string                 m_database_tmp_filepath;
 
     std::vector<IScreen*> 	 	m_screenStack;
 

@@ -85,7 +85,7 @@ void CScreenTeamPlayers::enter()
 }
 
 
-bool CScreenTeamPlayers::leave()
+void CScreenTeamPlayers::leave()
 {
     saveTeamPlayersList();
     switch (m_selectedPlayers) {
@@ -105,7 +105,6 @@ bool CScreenTeamPlayers::leave()
             break;
     }
     m_selectedPlayers = NONE;
-    return true;
 }
 
 
