@@ -146,7 +146,7 @@ CScreenSimulator::~CScreenSimulator()
 bool CScreenSimulator::keyDownHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
-    int move = 2;
+    float move = 0.2;
     switch (ke.scancode)
     {
     case CEGUI::Key::W:
@@ -177,7 +177,7 @@ bool CScreenSimulator::keyDownHandler(const CEGUI::EventArgs& e)
 bool CScreenSimulator::keyUpHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
-    int move = 2;
+    float move = 0.2;
     switch (ke.scancode)
     {
     case CEGUI::Key::W:
@@ -209,9 +209,9 @@ bool CScreenSimulator::keyUpHandler(const CEGUI::EventArgs& e)
 
 void CScreenSimulator::enter()
 {
-	CScreen::enter();
+    CScreen::enter();
 
-//    m_sceneMgr->clearScene();
+    m_sceneMgr->clearScene();
     m_direction = Ogre::Vector3::ZERO;
 
     m_continueButton->setEnabled(false);
@@ -421,50 +421,50 @@ void CScreenSimulator::endMatchEvent()
 
 bool CScreenSimulator::backButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_game->previousScreen();
-	return true;
+  m_game->previousScreen();
+  return true;
 }
 
 bool CScreenSimulator::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_game->nextScreen(m_game->getMatchResultScreen());
-	return true;
+  m_game->nextScreen(m_game->getMatchResultScreen());
+  return true;
 }
 
 bool CScreenSimulator::startButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_simulator->startMatch();
-	return true;
+  m_simulator->startMatch();
+  return true;
 }
 
 bool CScreenSimulator::zoomButtonClicked(const CEGUI::EventArgs& e)
 {
-	toogleZoom();
-	return true;
+  toogleZoom();
+  return true;
 }
 
 bool CScreenSimulator::formation433ButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_simulator->changeFormationEvent(0);
-	return true;
+  m_simulator->changeFormationEvent(0);
+  return true;
 }
 
 bool CScreenSimulator::formation442ButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_simulator->changeFormationEvent(1);
-	return true;
+  m_simulator->changeFormationEvent(1);
+  return true;
 }
 
 bool CScreenSimulator::frameWindowCloseClicked(const CEGUI::EventArgs& e)
 {
-	toogleZoom();
-	return true;
+  toogleZoom();
+  return true;
 }
 
 bool CScreenSimulator::view2DButtonClicked(const CEGUI::EventArgs& e)
 {
-	setup2DView();
-	return true;
+  setup2DView();
+  return true;
 }
 
 bool CScreenSimulator::view3DButtonClicked(const CEGUI::EventArgs& e)
@@ -475,5 +475,5 @@ bool CScreenSimulator::view3DButtonClicked(const CEGUI::EventArgs& e)
     viewport->setClearEveryFrame(true);
     viewport->setBackgroundColour(Ogre::ColourValue::Black);
 
-	return true;
+  return true;
 }
