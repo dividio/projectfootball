@@ -37,6 +37,8 @@ public:
 
     virtual std::vector<CPfGames*>* findByXFkUser(int XFkUser);
     virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser);
+    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType);
+    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType);
     virtual CPfGames* findByXGame(int XGame);
     virtual CPfGames* findByXGame(const std::string &XGame);
     virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName);

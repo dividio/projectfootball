@@ -48,6 +48,20 @@ std::vector<CPfGames*>* CPfGamesDAOSQLite::findByXFkUser(const std::string &XFkU
     return loadVector(sql);
 }
 
+std::vector<CPfGames*>* CPfGamesDAOSQLite::findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType)
+{
+    std::ostringstream stream;
+    stream << XFkUser;
+    return findByXFkUserAndSGameType(stream.str(), SGameType);
+}
+
+std::vector<CPfGames*>* CPfGamesDAOSQLite::findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType)
+{
+    std::string sql("SELECT * FROM PF_GAMES WHERE ");
+    sql = sql+"X_FK_USER='"+XFkUser+"' AND S_GAME_TYPE='"+SGameType+"' ORDER BY D_LAST_SAVED DESC";
+    return loadVector(sql);
+}
+
 CPfGames* CPfGamesDAOSQLite::findByXGame(int XGame)
 {
     std::ostringstream stream;
