@@ -3191,7 +3191,7 @@ static int _wrap_CPfMatches_setDMatch(lua_State* L) {
   
   SWIG_check_num_args("setDMatch",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDMatch",1,"CPfMatches *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("setDMatch",2,"CDate &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("setDMatch",2,"CDate const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CPfMatches,0))){
     SWIG_fail_ptr("CPfMatches_setDMatch",1,SWIGTYPE_p_CPfMatches);
@@ -3202,7 +3202,7 @@ static int _wrap_CPfMatches_setDMatch(lua_State* L) {
     SWIG_fail_ptr("CPfMatches_setDMatch",2,SWIGTYPE_p_CDate);
   }
   
-  (arg1)->setDMatch(*arg2);
+  (arg1)->setDMatch((CDate const &)*arg2);
   
   return SWIG_arg;
   
@@ -4301,6 +4301,29 @@ fail:
 }
 
 
+static int _wrap_IDAOFactory_save(lua_State* L) {
+  int SWIG_arg = 0;
+  IDAOFactory *arg1 = (IDAOFactory *) 0 ;
+  
+  SWIG_check_num_args("save",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("save",1,"IDAOFactory *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_IDAOFactory,0))){
+    SWIG_fail_ptr("IDAOFactory_save",1,SWIGTYPE_p_IDAOFactory);
+  }
+  
+  (arg1)->save();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_IDAOFactory_getIPfCompetitionPhasesDAO(lua_State* L) {
   int SWIG_arg = 0;
   IDAOFactory *arg1 = (IDAOFactory *) 0 ;
@@ -4623,6 +4646,7 @@ static swig_lua_method swig_IDAOFactory_methods[] = {
     {"beginTransaction", _wrap_IDAOFactory_beginTransaction}, 
     {"commit", _wrap_IDAOFactory_commit}, 
     {"rollback", _wrap_IDAOFactory_rollback}, 
+    {"save", _wrap_IDAOFactory_save}, 
     {"getIPfCompetitionPhasesDAO", _wrap_IDAOFactory_getIPfCompetitionPhasesDAO}, 
     {"getIPfRankingDAO", _wrap_IDAOFactory_getIPfRankingDAO}, 
     {"getIPfGameStatesDAO", _wrap_IDAOFactory_getIPfGameStatesDAO}, 
@@ -6743,7 +6767,6 @@ fail:
 static int _wrap_IScreen_leave(lua_State* L) {
   int SWIG_arg = 0;
   IScreen *arg1 = (IScreen *) 0 ;
-  bool result;
   
   SWIG_check_num_args("leave",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"IScreen *");
@@ -6752,8 +6775,8 @@ static int _wrap_IScreen_leave(lua_State* L) {
     SWIG_fail_ptr("IScreen_leave",1,SWIGTYPE_p_IScreen);
   }
   
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  (arg1)->leave();
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -6830,7 +6853,6 @@ fail:
 static int _wrap_CScreen_leave(lua_State* L) {
   int SWIG_arg = 0;
   CScreen *arg1 = (CScreen *) 0 ;
-  bool result;
   
   SWIG_check_num_args("leave",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreen *");
@@ -6839,8 +6861,8 @@ static int _wrap_CScreen_leave(lua_State* L) {
     SWIG_fail_ptr("CScreen_leave",1,SWIGTYPE_p_CScreen);
   }
   
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  (arg1)->leave();
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7199,7 +7221,6 @@ fail:
 static int _wrap_CScreenSimulator_leave(lua_State* L) {
   int SWIG_arg = 0;
   CScreenSimulator *arg1 = (CScreenSimulator *) 0 ;
-  bool result;
   
   SWIG_check_num_args("leave",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenSimulator *");
@@ -7208,8 +7229,8 @@ static int _wrap_CScreenSimulator_leave(lua_State* L) {
     SWIG_fail_ptr("CScreenSimulator_leave",1,SWIGTYPE_p_CScreenSimulator);
   }
   
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  (arg1)->leave();
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7436,7 +7457,6 @@ fail:
 static int _wrap_CScreenSelectTeam_leave(lua_State* L) {
   int SWIG_arg = 0;
   CScreenSelectTeam *arg1 = (CScreenSelectTeam *) 0 ;
-  bool result;
   
   SWIG_check_num_args("leave",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenSelectTeam *");
@@ -7445,8 +7465,8 @@ static int _wrap_CScreenSelectTeam_leave(lua_State* L) {
     SWIG_fail_ptr("CScreenSelectTeam_leave",1,SWIGTYPE_p_CScreenSelectTeam);
   }
   
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  (arg1)->leave();
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7585,7 +7605,6 @@ fail:
 static int _wrap_CScreenTeamPlayers_leave(lua_State* L) {
   int SWIG_arg = 0;
   CScreenTeamPlayers *arg1 = (CScreenTeamPlayers *) 0 ;
-  bool result;
   
   SWIG_check_num_args("leave",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenTeamPlayers *");
@@ -7594,8 +7613,8 @@ static int _wrap_CScreenTeamPlayers_leave(lua_State* L) {
     SWIG_fail_ptr("CScreenTeamPlayers_leave",1,SWIGTYPE_p_CScreenTeamPlayers);
   }
   
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  (arg1)->leave();
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7734,7 +7753,6 @@ fail:
 static int _wrap_CScreenMatchResult_leave(lua_State* L) {
   int SWIG_arg = 0;
   CScreenMatchResult *arg1 = (CScreenMatchResult *) 0 ;
-  bool result;
   
   SWIG_check_num_args("leave",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("leave",1,"CScreenMatchResult *");
@@ -7743,8 +7761,8 @@ static int _wrap_CScreenMatchResult_leave(lua_State* L) {
     SWIG_fail_ptr("CScreenMatchResult_leave",1,SWIGTYPE_p_CScreenMatchResult);
   }
   
-  result = (bool)(arg1)->leave();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  (arg1)->leave();
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13191,18 +13209,19 @@ fail:
 static int _wrap_StateMachineCReferee_setCurrentState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setCurrentState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCurrentState",1,"CStateMachine< CReferee > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setCurrentState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setCurrentState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CReferee_t,0))){
     SWIG_fail_ptr("StateMachineCReferee_setCurrentState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setCurrentState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setCurrentState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13217,18 +13236,19 @@ fail:
 static int _wrap_StateMachineCReferee_setGlobalState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setGlobalState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setGlobalState",1,"CStateMachine< CReferee > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setGlobalState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setGlobalState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CReferee_t,0))){
     SWIG_fail_ptr("StateMachineCReferee_setGlobalState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setGlobalState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setGlobalState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13243,18 +13263,19 @@ fail:
 static int _wrap_StateMachineCReferee_setPreviousState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setPreviousState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setPreviousState",1,"CStateMachine< CReferee > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setPreviousState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setPreviousState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CReferee_t,0))){
     SWIG_fail_ptr("StateMachineCReferee_setPreviousState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setPreviousState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setPreviousState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13292,18 +13313,19 @@ fail:
 static int _wrap_StateMachineCReferee_changeState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("changeState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("changeState",1,"CStateMachine< CReferee > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("changeState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("changeState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CReferee_t,0))){
     SWIG_fail_ptr("StateMachineCReferee_changeState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->changeState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->changeState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13369,20 +13391,23 @@ fail:
 }
 
 
-static int _wrap_StateMachineCReferee_currentState(lua_State* L) {
+static int _wrap_StateMachineCReferee_previousState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
-  SWIG_check_num_args("currentState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("currentState",1,"CStateMachine< CReferee > const *");
+  SWIG_check_num_args("previousState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("previousState",1,"CStateMachine< CReferee > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CReferee_t,0))){
-    SWIG_fail_ptr("StateMachineCReferee_currentState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
+    SWIG_fail_ptr("StateMachineCReferee_previousState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  result = ((CStateMachine< CReferee > const *)arg1)->currentState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CReferee > const *)arg1)->previousState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13393,20 +13418,23 @@ fail:
 }
 
 
-static int _wrap_StateMachineCReferee_previousState(lua_State* L) {
+static int _wrap_StateMachineCReferee_currentState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
-  SWIG_check_num_args("previousState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("previousState",1,"CStateMachine< CReferee > const *");
+  SWIG_check_num_args("currentState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("currentState",1,"CStateMachine< CReferee > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CReferee_t,0))){
-    SWIG_fail_ptr("StateMachineCReferee_previousState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
+    SWIG_fail_ptr("StateMachineCReferee_currentState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  result = ((CStateMachine< CReferee > const *)arg1)->previousState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CReferee > const *)arg1)->currentState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13420,7 +13448,7 @@ fail:
 static int _wrap_StateMachineCReferee_globalState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CReferee > *arg1 = (CStateMachine< CReferee > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
   SWIG_check_num_args("globalState",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("globalState",1,"CStateMachine< CReferee > const *");
@@ -13429,8 +13457,11 @@ static int _wrap_StateMachineCReferee_globalState(lua_State* L) {
     SWIG_fail_ptr("StateMachineCReferee_globalState",1,SWIGTYPE_p_CStateMachineT_CReferee_t);
   }
   
-  result = ((CStateMachine< CReferee > const *)arg1)->globalState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CReferee > const *)arg1)->globalState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13480,8 +13511,8 @@ static swig_lua_method swig_CStateMachine_Sl_CReferee_Sg__methods[] = {
     {"changeState", _wrap_StateMachineCReferee_changeState}, 
     {"handleMessage", _wrap_StateMachineCReferee_handleMessage}, 
     {"revertToPreviousState", _wrap_StateMachineCReferee_revertToPreviousState}, 
-    {"currentState", _wrap_StateMachineCReferee_currentState}, 
     {"previousState", _wrap_StateMachineCReferee_previousState}, 
+    {"currentState", _wrap_StateMachineCReferee_currentState}, 
     {"globalState", _wrap_StateMachineCReferee_globalState}, 
     {"isInState", _wrap_StateMachineCReferee_isInState}, 
     {0,0}
@@ -13520,18 +13551,19 @@ fail:
 static int _wrap_StateMachineCTeam_setCurrentState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setCurrentState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCurrentState",1,"CStateMachine< CTeam > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setCurrentState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setCurrentState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CTeam_t,0))){
     SWIG_fail_ptr("StateMachineCTeam_setCurrentState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setCurrentState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setCurrentState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13546,18 +13578,19 @@ fail:
 static int _wrap_StateMachineCTeam_setGlobalState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setGlobalState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setGlobalState",1,"CStateMachine< CTeam > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setGlobalState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setGlobalState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CTeam_t,0))){
     SWIG_fail_ptr("StateMachineCTeam_setGlobalState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setGlobalState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setGlobalState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13572,18 +13605,19 @@ fail:
 static int _wrap_StateMachineCTeam_setPreviousState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setPreviousState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setPreviousState",1,"CStateMachine< CTeam > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setPreviousState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setPreviousState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CTeam_t,0))){
     SWIG_fail_ptr("StateMachineCTeam_setPreviousState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setPreviousState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setPreviousState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13621,18 +13655,19 @@ fail:
 static int _wrap_StateMachineCTeam_changeState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("changeState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("changeState",1,"CStateMachine< CTeam > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("changeState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("changeState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CTeam_t,0))){
     SWIG_fail_ptr("StateMachineCTeam_changeState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->changeState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->changeState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13698,20 +13733,23 @@ fail:
 }
 
 
-static int _wrap_StateMachineCTeam_currentState(lua_State* L) {
+static int _wrap_StateMachineCTeam_previousState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
-  SWIG_check_num_args("currentState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("currentState",1,"CStateMachine< CTeam > const *");
+  SWIG_check_num_args("previousState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("previousState",1,"CStateMachine< CTeam > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CTeam_t,0))){
-    SWIG_fail_ptr("StateMachineCTeam_currentState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
+    SWIG_fail_ptr("StateMachineCTeam_previousState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  result = ((CStateMachine< CTeam > const *)arg1)->currentState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CTeam > const *)arg1)->previousState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13722,20 +13760,23 @@ fail:
 }
 
 
-static int _wrap_StateMachineCTeam_previousState(lua_State* L) {
+static int _wrap_StateMachineCTeam_currentState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
-  SWIG_check_num_args("previousState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("previousState",1,"CStateMachine< CTeam > const *");
+  SWIG_check_num_args("currentState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("currentState",1,"CStateMachine< CTeam > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CTeam_t,0))){
-    SWIG_fail_ptr("StateMachineCTeam_previousState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
+    SWIG_fail_ptr("StateMachineCTeam_currentState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  result = ((CStateMachine< CTeam > const *)arg1)->previousState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CTeam > const *)arg1)->currentState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13749,7 +13790,7 @@ fail:
 static int _wrap_StateMachineCTeam_globalState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CTeam > *arg1 = (CStateMachine< CTeam > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
   SWIG_check_num_args("globalState",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("globalState",1,"CStateMachine< CTeam > const *");
@@ -13758,8 +13799,11 @@ static int _wrap_StateMachineCTeam_globalState(lua_State* L) {
     SWIG_fail_ptr("StateMachineCTeam_globalState",1,SWIGTYPE_p_CStateMachineT_CTeam_t);
   }
   
-  result = ((CStateMachine< CTeam > const *)arg1)->globalState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CTeam > const *)arg1)->globalState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -13809,8 +13853,8 @@ static swig_lua_method swig_CStateMachine_Sl_CTeam_Sg__methods[] = {
     {"changeState", _wrap_StateMachineCTeam_changeState}, 
     {"handleMessage", _wrap_StateMachineCTeam_handleMessage}, 
     {"revertToPreviousState", _wrap_StateMachineCTeam_revertToPreviousState}, 
-    {"currentState", _wrap_StateMachineCTeam_currentState}, 
     {"previousState", _wrap_StateMachineCTeam_previousState}, 
+    {"currentState", _wrap_StateMachineCTeam_currentState}, 
     {"globalState", _wrap_StateMachineCTeam_globalState}, 
     {"isInState", _wrap_StateMachineCTeam_isInState}, 
     {0,0}
@@ -13849,18 +13893,19 @@ fail:
 static int _wrap_StateMachineCFootballPlayer_setCurrentState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setCurrentState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCurrentState",1,"CStateMachine< CFootballPlayer > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setCurrentState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setCurrentState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t,0))){
     SWIG_fail_ptr("StateMachineCFootballPlayer_setCurrentState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setCurrentState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setCurrentState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13875,18 +13920,19 @@ fail:
 static int _wrap_StateMachineCFootballPlayer_setGlobalState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setGlobalState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setGlobalState",1,"CStateMachine< CFootballPlayer > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setGlobalState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setGlobalState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t,0))){
     SWIG_fail_ptr("StateMachineCFootballPlayer_setGlobalState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setGlobalState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setGlobalState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13901,18 +13947,19 @@ fail:
 static int _wrap_StateMachineCFootballPlayer_setPreviousState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("setPreviousState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setPreviousState",1,"CStateMachine< CFootballPlayer > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("setPreviousState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("setPreviousState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t,0))){
     SWIG_fail_ptr("StateMachineCFootballPlayer_setPreviousState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->setPreviousState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->setPreviousState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -13950,18 +13997,19 @@ fail:
 static int _wrap_StateMachineCFootballPlayer_changeState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string arg2 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
   
   SWIG_check_num_args("changeState",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("changeState",1,"CStateMachine< CFootballPlayer > *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("changeState",2,"std::string");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("changeState",2,"std::string const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t,0))){
     SWIG_fail_ptr("StateMachineCFootballPlayer_changeState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  (&arg2)->assign(lua_tostring(L,2),lua_strlen(L,2));
-  (arg1)->changeState(arg2);
+  temp2.assign(lua_tostring(L,2),lua_strlen(L,2)); arg2=&temp2;
+  (arg1)->changeState((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -14027,20 +14075,23 @@ fail:
 }
 
 
-static int _wrap_StateMachineCFootballPlayer_currentState(lua_State* L) {
+static int _wrap_StateMachineCFootballPlayer_previousState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
-  SWIG_check_num_args("currentState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("currentState",1,"CStateMachine< CFootballPlayer > const *");
+  SWIG_check_num_args("previousState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("previousState",1,"CStateMachine< CFootballPlayer > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t,0))){
-    SWIG_fail_ptr("StateMachineCFootballPlayer_currentState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
+    SWIG_fail_ptr("StateMachineCFootballPlayer_previousState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  result = ((CStateMachine< CFootballPlayer > const *)arg1)->currentState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CFootballPlayer > const *)arg1)->previousState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -14051,20 +14102,23 @@ fail:
 }
 
 
-static int _wrap_StateMachineCFootballPlayer_previousState(lua_State* L) {
+static int _wrap_StateMachineCFootballPlayer_currentState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
-  SWIG_check_num_args("previousState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("previousState",1,"CStateMachine< CFootballPlayer > const *");
+  SWIG_check_num_args("currentState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("currentState",1,"CStateMachine< CFootballPlayer > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t,0))){
-    SWIG_fail_ptr("StateMachineCFootballPlayer_previousState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
+    SWIG_fail_ptr("StateMachineCFootballPlayer_currentState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  result = ((CStateMachine< CFootballPlayer > const *)arg1)->previousState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CFootballPlayer > const *)arg1)->currentState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -14078,7 +14132,7 @@ fail:
 static int _wrap_StateMachineCFootballPlayer_globalState(lua_State* L) {
   int SWIG_arg = 0;
   CStateMachine< CFootballPlayer > *arg1 = (CStateMachine< CFootballPlayer > *) 0 ;
-  std::string result;
+  std::string *result = 0 ;
   
   SWIG_check_num_args("globalState",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("globalState",1,"CStateMachine< CFootballPlayer > const *");
@@ -14087,8 +14141,11 @@ static int _wrap_StateMachineCFootballPlayer_globalState(lua_State* L) {
     SWIG_fail_ptr("StateMachineCFootballPlayer_globalState",1,SWIGTYPE_p_CStateMachineT_CFootballPlayer_t);
   }
   
-  result = ((CStateMachine< CFootballPlayer > const *)arg1)->globalState();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  {
+    std::string const &_result_ref = ((CStateMachine< CFootballPlayer > const *)arg1)->globalState();
+    result = (std::string *) &_result_ref;
+  }
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -14138,8 +14195,8 @@ static swig_lua_method swig_CStateMachine_Sl_CFootballPlayer_Sg__methods[] = {
     {"changeState", _wrap_StateMachineCFootballPlayer_changeState}, 
     {"handleMessage", _wrap_StateMachineCFootballPlayer_handleMessage}, 
     {"revertToPreviousState", _wrap_StateMachineCFootballPlayer_revertToPreviousState}, 
-    {"currentState", _wrap_StateMachineCFootballPlayer_currentState}, 
     {"previousState", _wrap_StateMachineCFootballPlayer_previousState}, 
+    {"currentState", _wrap_StateMachineCFootballPlayer_currentState}, 
     {"globalState", _wrap_StateMachineCFootballPlayer_globalState}, 
     {"isInState", _wrap_StateMachineCFootballPlayer_isInState}, 
     {0,0}
