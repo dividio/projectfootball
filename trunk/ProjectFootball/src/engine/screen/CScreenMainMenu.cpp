@@ -48,7 +48,7 @@ CScreenMainMenu::CScreenMainMenu()
 
     // i18n support
     m_quickPlayButton->setText((CEGUI::utf8*)gettext("Quick Play"));
-    m_loadGameButton->setText((CEGUI::utf8*)gettext("New/Load Game"));
+    m_loadGameButton->setText((CEGUI::utf8*)gettext("Single Player"));
     m_configButton->setText((CEGUI::utf8*)gettext("Config"));
     m_creditsButton->setText((CEGUI::utf8*)gettext("Credits"));
     m_quitButton->setText((CEGUI::utf8*)gettext("Quit"));
@@ -77,37 +77,37 @@ bool CScreenMainMenu::quickPlayButtonClicked(const CEGUI::EventArgs& e)
     IPfGamesDAO                         *gamesDAO   = masterDatabase->getIPfGamesDAO();
     std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_QUICKPLAY);
     if( gamesList==NULL || gamesList->size()==0 ){
-    	CLog::getInstance()->error("[CScreenMainMenu::quickPlayButtonClicked] No quick game found");
+        CLog::getInstance()->error("[CScreenMainMenu::quickPlayButtonClicked] No quick game found");
     }else if( gamesList->size()>1 ){
-    	CLog::getInstance()->error("[CScreenMainMenu::quickPlayButtonClicked] Too many quick game found");
+        CLog::getInstance()->error("[CScreenMainMenu::quickPlayButtonClicked] Too many quick game found");
     }else{
         CGameEngine::getInstance()->loadGame(gamesList->at(0)->getXGame());
     }
     gamesDAO->freeVector(gamesList);
 
-	return true;
+    return true;
 }
 
 bool CScreenMainMenu::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getLoadGameScreen());
-	return true;
+    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getLoadGameScreen());
+    return true;
 }
 
 bool CScreenMainMenu::configButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getConfigScreen());
-	return true;
+    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getConfigScreen());
+    return true;
 }
 
 bool CScreenMainMenu::creditsButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getCreditsScreen());
-	return true;
+    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getCreditsScreen());
+    return true;
 }
 
 bool CScreenMainMenu::quitButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->exit();
-	return true;
+    CGameEngine::getInstance()->exit();
+    return true;
 }
