@@ -34,7 +34,13 @@ double CClock::getCurrentTime()
     return m_currentTime;
 }
 
-void CClock::addTime( double time )
+double CClock::getTimeSinceLastFrame()
 {
-    m_currentTime += time;
+    return m_timeSinceLastFrame;
+}
+
+void CClock::addTime( double timeSinceLastFrame )
+{
+    m_currentTime += timeSinceLastFrame;
+    m_timeSinceLastFrame = timeSinceLastFrame;
 }

@@ -40,18 +40,26 @@ CTimer::~CTimer()
 
 void CTimer::reset()
 {
-    m_previousTime = m_clock.getCurrentTime();
+    m_currentTime = 0;
+    m_previousTime = 0;
 }
 
 
 bool CTimer::nextTick()
 {
-    double currentTime 	= m_clock.getCurrentTime();
-    double timeLapse	= currentTime - m_previousTime;
-    if( timeLapse>m_period && m_period>0 ){
-    	m_previousTime = currentTime;
-    	return true;
-    }else{
-    	return false;
+    double auxTime;
+    bool tick = false;
+    auxTime = m_currentTime;
+    m_currentTime += m_clock.getTimeSinceLastFrame();
+    if(m_period > 0) {
+        m_previousTime += (m_currentTime - auxTime);
+        if(m_previousTime >= m_period) {
+            m_previousTime -= m_period;
+            tick = true;
+        }
+    } else {
+        tick = true;
     }
+
+    return tick;
 }

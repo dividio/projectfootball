@@ -34,8 +34,8 @@ public:
     bool nextTick();
 
 private:
-	IClock&	m_clock;
-    double 	m_initTime;
+    IClock&	m_clock;
+    double 	m_currentTime;
     double 	m_previousTime;
     double 	m_period;
 };
