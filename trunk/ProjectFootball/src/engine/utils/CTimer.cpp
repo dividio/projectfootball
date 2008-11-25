@@ -40,26 +40,27 @@ CTimer::~CTimer()
 
 void CTimer::reset()
 {
-    m_currentTime = 0;
-    m_previousTime = 0;
+    m_previousTime = m_clock.getCurrentTime();
 }
 
 
 bool CTimer::nextTick()
 {
-    double auxTime;
     bool tick = false;
-    auxTime = m_currentTime;
-    m_currentTime += m_clock.getTimeSinceLastFrame();
-    if(m_period > 0) {
-        m_previousTime += (m_currentTime - auxTime);
-        if(m_previousTime >= m_period) {
-            m_previousTime -= m_period;
-            tick = true;
+    if( m_period>0 ){
+        double currentTime  = m_clock.getCurrentTime();
+        if( currentTime<m_previousTime ){
+            // clock overflow detected
+            m_previousTime = currentTime;
         }
-    } else {
-        tick = true;
-    }
 
+        double timeLapse    = currentTime - m_previousTime;
+        if( timeLapse>m_period ){
+            m_previousTime += m_period;
+            tick = true;
+        }else{
+            tick = false;
+        }
+    }
     return tick;
 }
