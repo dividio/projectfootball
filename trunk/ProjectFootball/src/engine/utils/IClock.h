@@ -24,8 +24,7 @@
 class IClock
 {
 public:
-	virtual double getCurrentTime() =0;
-	virtual double getTimeSinceLastFrame() =0;
+    virtual double getCurrentTime() =0;
 };
 
 #endif /*ICLOCK_H_*/

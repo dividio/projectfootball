@@ -28,18 +28,16 @@ class CClock : public IClock
 {
     friend class CGameEngine;
 public:
-    ~CClock();
+    virtual ~CClock();
 
-    double getCurrentTime();
-    double getTimeSinceLastFrame();
+    virtual double getCurrentTime();
 
 protected:
-	CClock();
-	void addTime( double timeSinceLastFrame );
+    CClock();
+    void addTime( double time );
 
 private:
     double m_currentTime;
-    double m_timeSinceLastFrame;
 };
 
 #endif /*CCLOCK_H_*/
