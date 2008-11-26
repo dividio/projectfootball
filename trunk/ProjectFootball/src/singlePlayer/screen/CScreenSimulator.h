@@ -90,7 +90,7 @@ private:
     Ogre::Camera            *m_cam3D;
     Ogre::SceneNode         *m_cam2DNode;
     Ogre::SceneNode         *m_cam3DNode;
-    Ogre::Vector3           m_direction;
+    Ogre::Vector3            m_direction;
     Ogre::SceneManager      *m_sceneMgr;    // The simulation SceneManager
     Ogre::SceneNode         *m_camNode;     // The SceneNode the camera is currently attached to
     Ogre::RenderTexture     *m_renderTexture;
@@ -102,6 +102,8 @@ private:
     CPfMatches              *m_match;
 
     CSinglePlayerGame		*m_game;
+
+    double                   m_previousUpdateTime;
 
     void loadTeamPlayers();
     void toogleZoom();

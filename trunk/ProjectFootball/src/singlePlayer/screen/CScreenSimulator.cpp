@@ -146,7 +146,7 @@ CScreenSimulator::~CScreenSimulator()
 bool CScreenSimulator::keyDownHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
-    float move = 0.2;
+    float move = 15;
     switch (ke.scancode)
     {
     case CEGUI::Key::W:
@@ -177,7 +177,7 @@ bool CScreenSimulator::keyDownHandler(const CEGUI::EventArgs& e)
 bool CScreenSimulator::keyUpHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
-    float move = 0.2;
+    float move = 15;
     switch (ke.scancode)
     {
     case CEGUI::Key::W:
@@ -213,6 +213,7 @@ void CScreenSimulator::enter()
 
     m_sceneMgr->clearScene();
     m_direction = Ogre::Vector3::ZERO;
+    m_previousUpdateTime = CGameEngine::getInstance()->getClock().getCurrentTime();
 
     m_continueButton->setEnabled(false);
     m_backButton->setEnabled(true);
@@ -266,10 +267,10 @@ void CScreenSimulator::leave()
 void CScreenSimulator::update()
 {
     static btVector3 ballPositionOld = m_simulator->getBallPosition();
-    static double prevTime = CGameEngine::getInstance()->getClock().getCurrentTime();
 
     double currentTime = CGameEngine::getInstance()->getClock().getCurrentTime();
-    double timeLapse = currentTime - prevTime;
+    double timeLapse = currentTime - m_previousUpdateTime;
+    m_previousUpdateTime = currentTime;
     Ogre::Vector3 pos = m_cam3DNode->getPosition();
     if(pos.y <= 5 && m_direction.y < 0) {
         m_direction.y = 0;
