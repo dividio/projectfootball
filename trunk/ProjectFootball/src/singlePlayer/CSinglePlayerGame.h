@@ -22,16 +22,19 @@
 #define CSINGLEPLAYERGAME_H_
 
 #include <string>
-
-#include "db/dao/factory/IDAOFactory.h"
-
-#include "option/CSinglePlayerOptionManager.h"
-#include "report/CSinglePlayerReportRegister.h"
-#include "event/strategy/CSinglePlayerEventStrategy.h"
+#include <vector>
 
 #include "../engine/IGame.h"
-#include "../engine/db/bean/CPfGames.h"
-#include "../engine/db/bean/CPfUsers.h"
+
+
+//Forward declarations
+class CPfGames;
+class CPfUsers;
+class IDAOFactory;
+class CSinglePlayerOptionManager;
+class CSinglePlayerReportRegister;
+class CSinglePlayerEventStrategy;
+
 
 class CSinglePlayerGame : public IGame
 {

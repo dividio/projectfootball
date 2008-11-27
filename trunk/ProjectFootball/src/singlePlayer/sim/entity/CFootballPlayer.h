@@ -26,12 +26,13 @@
 #include <string>
 
 #include "CMovingEntity.h"
-#include "../CSteeringBehaviors.h"
 #include "../fsm/CStateMachine.h"
-#include "../../db/bean/CPfTeamPlayers.h"
 
+//Forward declarations
 class CSimulationManager;
 class CTeam;
+class CSteeringBehaviors;
+class CPfTeamPlayers;
 
 /**
  * This class represents a football player in the simulation manager.

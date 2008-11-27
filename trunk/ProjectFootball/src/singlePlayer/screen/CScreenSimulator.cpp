@@ -18,13 +18,19 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenSimulator.h"
+
 #include <stdio.h>
 #include <libintl.h>
 
-#include "CScreenSimulator.h"
 #include "../sim/entity/CReferee.h"
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
+#include "../CSinglePlayerGame.h"
+#include "../sim/CSimulationManager.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../db/bean/CPfMatches.h"
+
 
 CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
  :CScreen("simulator.layout")

@@ -20,6 +20,7 @@
 
 
 #include "CFormation.h"
+
 #include "../../../utils/CLog.h"
 
 CFormation::CFormation()

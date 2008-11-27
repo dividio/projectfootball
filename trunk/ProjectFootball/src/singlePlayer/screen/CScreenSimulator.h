@@ -29,8 +29,12 @@
 
 #include "../../engine/CScreen.h"
 
-#include "../CSinglePlayerGame.h"
-#include "../sim/CSimulationManager.h"
+
+//Forward declarations
+class CSinglePlayerGame;
+class CSimulationManager;
+class CPfMatches;
+
 
 #define SIMULATION_SCENE_MANAGER_NODE_NAME	"Simulation SceneManager"
 

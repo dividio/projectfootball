@@ -18,26 +18,37 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CSimulationManager.h"
+
 #include <stdlib.h>
 #include <cmath>
 
-#include "CSimulationManager.h"
-
+#include "CSimulationWorld.h"
 #include "message/CMessageDispatcher.h"
 #include "message/MessageTypes.h"
 #include "entity/CEntityManager.h"
 #include "entity/CFootballPlayer.h"
 #include "entity/CReferee.h"
 #include "entity/CTeam.h"
+#include "entity/CField.h"
+#include "entity/CBall.h"
 
+#include "../CSinglePlayerGame.h"
+#include "../db/bean/CPfMatches.h"
+#include "../db/bean/CPfTeams.h"
 #include "../event/match/CStartMatchEvent.h"
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"
+#include "../event/strategy/CSinglePlayerEventStrategy.h"
 #include "../screen/CScreenSimulator.h"
 
 #include "../../audio/CAudioSystem.h"
 #include "../../engine/option/CSystemOptionManager.h"
+#include "../../engine/utils/CTimer.h"
 #include "../../utils/CLog.h"
+#include "../bullet/LinearMath/btVector3.h"
+#include "../bullet/BulletDynamics/Dynamics/btRigidBody.h"
+
 
 CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
 {

@@ -20,6 +20,10 @@
 
 
 #include "CMessageDispatcher.h"
+
+#include "CMessage.h"
+#include "../../../engine/utils/CStopWatch.h"
+#include "../entity/CBaseGameEntity.h"
 #include "../entity/CEntityManager.h"
 #include "../../../utils/CLog.h"
 

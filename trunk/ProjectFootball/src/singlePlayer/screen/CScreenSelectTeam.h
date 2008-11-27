@@ -23,12 +23,14 @@
 
 #include "../../engine/CScreen.h"
 
-#include "../CSinglePlayerGame.h"
 
-#include "../db/bean/CPfTeams.h"
-#include "../db/bean/CPfConfederations.h"
-#include "../db/bean/CPfCountries.h"
-#include "../db/bean/CPfCompetitions.h"
+//Forward declarations
+class CSinglePlayerGame;
+class CPfTeams;
+class CPfConfederations;
+class CPfCountries;
+class CPfCompetitions;
+
 
 class CScreenSelectTeam : public CScreen
 {

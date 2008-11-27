@@ -27,13 +27,15 @@
 
 #include "CBaseGameEntity.h"
 #include "../fsm/CStateMachine.h"
-#include "../tactic/CFormation.h"
-#include "../tactic/CStrategicPosition.h"
-#include "../../db/bean/CPfTeams.h"
-#include "../../db/bean/CPfTeamPlayers.h"
 
+
+//Forward declarations
 class CSimulationManager;
 class CFootballPlayer;
+class CFormation;
+class CStrategicPosition;
+class CPfTeams;
+class CPfTeamPlayers;
 
 class CTeam: public CBaseGameEntity
 {

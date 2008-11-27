@@ -18,10 +18,13 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CField.h"
+
 #include <Ogre.h>
 
-#include "CField.h"
 #include "../../screen/CScreenSimulator.h"
+#include "../../../utils/geometry/CRectangle.h"
+#include "../../../bullet/btBulletDynamicsCommon.h"
 
 
 CField::CField()

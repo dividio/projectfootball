@@ -18,12 +18,15 @@
 *                                                                             *
 ******************************************************************************/
 
-
 #include "CBaseGameEntity.h"
+
 #include "CEntityManager.h"
+#include "../../../bullet/btBulletDynamicsCommon.h"
+#include "../message/CMessage.h"
 
 
 int CBaseGameEntity::m_nextValidID = 0;
+
 
 CBaseGameEntity::CBaseGameEntity()
 {

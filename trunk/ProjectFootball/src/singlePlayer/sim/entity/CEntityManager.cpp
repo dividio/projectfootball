@@ -18,9 +18,11 @@
 *                                                                             *
 ******************************************************************************/
 
-
 #include "CEntityManager.h"
+
+#include "CBaseGameEntity.h"
 #include "../../../utils/CLog.h"
+
 
 CEntityManager* CEntityManager::getInstance()
 {

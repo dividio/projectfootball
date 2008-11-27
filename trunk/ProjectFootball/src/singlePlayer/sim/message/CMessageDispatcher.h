@@ -24,9 +24,10 @@
 
 #include <set>
 
-#include "CMessage.h"
-#include "../entity/CBaseGameEntity.h"
-#include "../../../engine/utils/CStopWatch.h"
+//Forward declarations
+class CMessage;
+class CBaseGameEntity;
+class CStopWatch;
 
 class CMessageDispatcher
 {

@@ -21,9 +21,17 @@
 #include "CFootballPlayer.h"
 
 #include "CTeam.h"
-#include "../CSimulationManager.h"
+#include "CField.h"
+#include "CBall.h"
 #include "CReferee.h"
+#include "../../../bullet/btBulletDynamicsCommon.h"
+#include "../CSimulationManager.h"
 #include "../../screen/CScreenSimulator.h"
+#include "../CSteeringBehaviors.h"
+#include "../tactic/CStrategicPosition.h"
+#include "../../db/bean/CPfTeamPlayers.h"
+#include "../../../utils/geometry/CRectangle.h"
+
 
 
 std::string CFootballPlayer::m_pCtorName = "CFootballPlayer_p_ctor";

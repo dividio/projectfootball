@@ -22,7 +22,7 @@
 #ifndef CLINE2D_H_
 #define CLINE2D_H_
 
-#include "../../bullet/btBulletDynamicsCommon.h"
+#include "../../bullet/LinearMath/btVector3.h"
 
 /** This class represents lines in 2D by the formula ay + bx + c = 0.
  *  b= -m = -(y2-y1)/(x2-x1) and c = -b' = -(y1 - b*x1) in classic y = mx + b' formula

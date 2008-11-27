@@ -22,7 +22,7 @@
 #ifndef CRECTANGLE_H_
 #define CRECTANGLE_H_
 
-#include "../../bullet/btBulletDynamicsCommon.h"
+#include "../../bullet/LinearMath/btVector3.h"
 
 class CRectangle
 {

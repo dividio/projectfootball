@@ -18,11 +18,14 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CBall.h"
+
 #include <Ogre.h>
 
-#include "CBall.h"
+#include "../../../bullet/btBulletDynamicsCommon.h"
 #include "../../screen/CScreenSimulator.h"
 #include "../../../utils/CLog.h"
+
 
 CBall::CBall()
 : CMovingEntity()

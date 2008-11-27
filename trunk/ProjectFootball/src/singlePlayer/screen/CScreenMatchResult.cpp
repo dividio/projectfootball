@@ -18,10 +18,19 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenMatchResult.h"
+
 #include <libintl.h>
 
-#include "CScreenMatchResult.h"
+#include "../CSinglePlayerGame.h"
 #include "../utils/CLog.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../db/bean/CPfMatches.h"
+#include "../event/match/CEndMatchEvent.h"
+#include "../event/match/CGoalMatchEvent.h"
+#include "../event/match/CStartMatchEvent.h"
+#include "../event/strategy/CSinglePlayerEventStrategy.h"
+
 
 CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
  :CScreen("matchResult.layout")

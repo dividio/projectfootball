@@ -18,11 +18,15 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenGame.h"
+
 #include <libintl.h>
 
-#include "CScreenGame.h"
+#include "../CSinglePlayerGame.h"
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
+#include "../db/dao/factory/IDAOFactory.h"
+
 
 CScreenGame::CScreenGame(CSinglePlayerGame *game)
     :CScreen("game.layout")

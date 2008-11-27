@@ -21,8 +21,11 @@
 #ifndef CSCREENRESULTS_H_
 #define CSCREENRESULTS_H_
 
-#include "../CSinglePlayerGame.h"
 #include "../../engine/CScreen.h"
+
+//Forward declarations
+class CSinglePlayerGame;
+
 
 class CScreenResults : public CScreen
 {

@@ -23,7 +23,8 @@
 #define CFIELD_H_
 
 #include "CBaseGameEntity.h"
-#include "../../../utils/geometry/CRectangle.h"
+
+class CRectangle;
 
 class CField : public CBaseGameEntity
 {

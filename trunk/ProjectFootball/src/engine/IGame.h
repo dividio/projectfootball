@@ -22,7 +22,8 @@
 #define IGAME_H_
 
 #include "IScreen.h"
-#include "db/bean/CPfGames.h"
+
+class CPfGames;
 
 class IGame : public IScreen
 {

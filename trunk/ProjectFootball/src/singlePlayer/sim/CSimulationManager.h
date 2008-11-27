@@ -24,20 +24,20 @@
 #include <string>
 #include <vector>
 
-#include "CSimulationWorld.h"
-
-#include "entity/CBall.h"
-#include "entity/CField.h"
-
-#include "../../engine/utils/CTimer.h"
-
-#include "../CSinglePlayerGame.h"
-#include "../db/bean/CPfMatches.h"
-#include "../event/match/CGoalMatchEvent.h"
-
+//Forward declarations
+class CSinglePlayerGame;
+class CSimulationWorld;
 class CFootballPlayer;
 class CTeam;
 class CReferee;
+class CBall;
+class CField;
+class CTimer;
+class CPfMatches;
+class CGoalMatchEvent;
+class btVector3;
+
+
 
 class CSimulationManager
 {

@@ -22,8 +22,12 @@
 #ifndef CSCREENMATCHRESULT_H_
 #define CSCREENMATCHRESULT_H_
 
-#include "../CSinglePlayerGame.h"
 #include "../../engine/CScreen.h"
+
+//Forward declarations
+class CPfMatches;
+class CSinglePlayerGame;
+
 
 class CScreenMatchResult : public CScreen
 {

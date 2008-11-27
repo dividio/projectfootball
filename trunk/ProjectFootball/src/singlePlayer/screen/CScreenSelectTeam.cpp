@@ -18,11 +18,19 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenSelectTeam.h"
+
 #include <libintl.h>
 
-#include "CScreenSelectTeam.h"
 #include "CScreenGame.h"
+#include "../CSinglePlayerGame.h"
+#include "../db/bean/CPfTeams.h"
+#include "../db/bean/CPfConfederations.h"
+#include "../db/bean/CPfCountries.h"
+#include "../db/bean/CPfCompetitions.h"
+#include "../db/dao/factory/IDAOFactory.h"
 #include "../utils/CLog.h"
+
 
 CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     :CScreen("selectTeam.layout")

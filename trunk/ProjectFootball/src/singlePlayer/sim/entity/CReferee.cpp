@@ -18,9 +18,13 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CReferee.h"
+
 #include <libintl.h>
 
-#include "CReferee.h"
+#include "CFootballPlayer.h"
+#include "CTeam.h"
+#include "../../../bullet/btBulletDynamicsCommon.h"
 #include "../CSimulationManager.h"
 #include "../message/MessageTypes.h"
 #include "../fsm/CStateMachine.h"
@@ -30,6 +34,7 @@
 
 
 std::string CReferee::m_pCtorName = "CReferee_p_ctor";
+
 
 CReferee::CReferee(CSimulationManager *simulationManager)
 : CMovingEntity()

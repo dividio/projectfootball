@@ -18,13 +18,19 @@
 *                                                                             *
 ******************************************************************************/
 
-
 #include "CTeam.h"
+
+#include "CField.h"
 #include "CReferee.h"
 #include "CFootballPlayer.h"
 #include "../CSimulationManager.h"
+#include "../tactic/CFormation.h"
+#include "../tactic/CStrategicPosition.h"
+#include "../../db/bean/CPfTeams.h"
+#include "../../db/bean/CPfTeamPlayers.h"
 
 std::string CTeam::m_pCtorName = "CTeam_p_ctor";
+
 
 CTeam* CTeam::getTeam(CBaseGameEntity *team)
 {

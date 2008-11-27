@@ -24,7 +24,8 @@
 
 #include <map>
 
-#include "CBaseGameEntity.h"
+
+class CBaseGameEntity;
 
 class CEntityManager
 {

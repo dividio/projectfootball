@@ -21,6 +21,8 @@
 
 #include "CMovingEntity.h"
 
+#include "../../../bullet/btBulletDynamicsCommon.h"
+
 CMovingEntity::CMovingEntity()
 : CBaseGameEntity()
 {

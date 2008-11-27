@@ -19,7 +19,10 @@
 ******************************************************************************/
 
 #include "CTimer.h"
+
+#include "IClock.h"
 #include "../CGameEngine.h"
+
 
 CTimer::CTimer(int frequency) : m_clock(CGameEngine::getInstance()->getClock())
 {

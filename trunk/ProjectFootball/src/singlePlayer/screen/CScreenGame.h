@@ -21,8 +21,11 @@
 #ifndef CSCREENGAME_H_
 #define CSCREENGAME_H_
 
-#include "../CSinglePlayerGame.h"
 #include "../../engine/CScreen.h"
+
+//Forward declarations
+class CSinglePlayerGame;
+
 
 class CScreenGame : public CScreen
 {

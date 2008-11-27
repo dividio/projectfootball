@@ -21,7 +21,7 @@
 #ifndef CSTOPWATCH_H_
 #define CSTOPWATCH_H_
 
-#include "IClock.h"
+class IClock;
 
 class CStopWatch
 {

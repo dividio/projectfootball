@@ -18,10 +18,14 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenResults.h"
+
 #include <libintl.h>
 
-#include "CScreenResults.h"
+#include "../CSinglePlayerGame.h"
+#include "../db/dao/factory/IDAOFactory.h"
 #include "../utils/CLog.h"
+
 
 CScreenResults::CScreenResults(CSinglePlayerGame *game)
     :CScreen("results.layout")

@@ -18,10 +18,15 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenRanking.h"
+
 #include <libintl.h>
 
-#include "CScreenRanking.h"
+#include "../CSinglePlayerGame.h"
+#include "../db/bean/CPfTeams.h"
 #include "../utils/CLog.h"
+#include "../db/dao/factory/IDAOFactory.h"
+
 
 CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
     :CScreen("ranking.layout")

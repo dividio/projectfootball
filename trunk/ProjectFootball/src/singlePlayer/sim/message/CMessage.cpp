@@ -18,9 +18,9 @@
 *                                                                             *
 ******************************************************************************/
 
-#include <cmath>
-
 #include "CMessage.h"
+
+#include <cmath>
 
 
 std::string CMessage::m_pCtorName = "CMessage_p_ctor";

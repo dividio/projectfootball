@@ -19,6 +19,8 @@
 ******************************************************************************/
 
 #include "CStopWatch.h"
+
+#include "IClock.h"
 #include "../CGameEngine.h"
 
 CStopWatch::CStopWatch() : m_clock(CGameEngine::getInstance()->getClock())

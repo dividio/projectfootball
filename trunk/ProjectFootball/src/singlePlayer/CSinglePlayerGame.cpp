@@ -32,6 +32,14 @@
 #include "screen/CScreenTeamPlayers.h"
 
 #include "../engine/CGameEngine.h"
+#include "../engine/db/bean/CPfGames.h"
+#include "../engine/db/bean/CPfUsers.h"
+
+#include "db/dao/factory/IDAOFactory.h"
+
+#include "option/CSinglePlayerOptionManager.h"
+#include "report/CSinglePlayerReportRegister.h"
+#include "event/strategy/CSinglePlayerEventStrategy.h"
 
 #include "../utils/CLog.h"
 #include "../utils/CDate.h"

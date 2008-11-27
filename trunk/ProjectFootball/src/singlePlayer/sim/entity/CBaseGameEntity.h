@@ -24,8 +24,16 @@
 
 #include <Ogre.h>
 
-#include "../message/CMessage.h"
-#include "../../../bullet/btBulletDynamicsCommon.h"
+#include "../bullet/LinearMath/btMotionState.h"
+#include "../bullet/LinearMath/btVector3.h"
+#include "../bullet/LinearMath/btTransform.h"
+
+
+
+//Forward declarations
+class CMessage;
+class btRigidBody;
+class btCollisionShape;
 
 
 class CBaseGameEntity: public btMotionState

@@ -21,6 +21,9 @@
 
 #include "CStrategicPosition.h"
 
+#include "../../../bullet/LinearMath/btVector3.h"
+#include "../../../utils/geometry/CRectangle.h"
+
 
 CStrategicPosition::CStrategicPosition()
 {

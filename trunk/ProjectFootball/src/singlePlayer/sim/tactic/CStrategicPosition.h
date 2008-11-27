@@ -22,9 +22,9 @@
 #ifndef CSTRATEGICPOSITION_H_
 #define CSTRATEGICPOSITION_H_
 
-#include "../../../bullet/btBulletDynamicsCommon.h"
-#include "../../../utils/geometry/CRectangle.h"
 
+class CRectangle;
+class btVector3;
 
 enum FormationType
 {

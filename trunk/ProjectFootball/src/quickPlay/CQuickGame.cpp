@@ -19,8 +19,11 @@
 ******************************************************************************/
 
 #include "CQuickGame.h"
+
 #include "../engine/CGameEngine.h"
+#include "../singlePlayer/db/dao/factory/IDAOFactory.h"
 #include "../utils/CLog.h"
+
 
 CQuickGame::CQuickGame(const CPfUsers *user)
 : CSinglePlayerGame(user, "[-= QUICK GAME =-]")

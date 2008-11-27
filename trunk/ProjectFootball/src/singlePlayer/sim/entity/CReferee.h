@@ -25,14 +25,15 @@
 #include <string>
 
 #include "CMovingEntity.h"
-#include "CFootballPlayer.h"
-#include "CTeam.h"
 #include "../fsm/CStateMachine.h"
 
 enum GameMode {BEFORE_START, PLAY_ON, HALF_TIME, END
     ,KICK_OFF, KICK_IN, CORNER_KICK, GOAL_KICK};
 
+//Forward declarations
 class CSimulationManager;
+class CFootballPlayer;
+class CTeam;
 
 /**
  * This class implements football rules and control the game mode.

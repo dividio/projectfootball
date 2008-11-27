@@ -23,10 +23,13 @@
 
 #include "../../engine/CScreen.h"
 
-#include "../CSinglePlayerGame.h"
-#include "../db/bean/CPfTeamPlayers.h"
+
+//Forward declarations
+class CSinglePlayerGame;
+class CPfTeamPlayers;
 
 enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
+
 
 class CScreenTeamPlayers : public CScreen
 {

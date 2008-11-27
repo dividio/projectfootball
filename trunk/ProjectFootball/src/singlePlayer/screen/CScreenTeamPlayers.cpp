@@ -18,10 +18,15 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "CScreenTeamPlayers.h"
+
 #include <libintl.h>
 
-#include "CScreenTeamPlayers.h"
+#include "../CSinglePlayerGame.h"
+#include "../db/bean/CPfTeamPlayers.h"
+#include "../db/dao/factory/IDAOFactory.h"
 #include "../utils/CLog.h"
+
 
 CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     :CScreen("teamPlayers.layout")

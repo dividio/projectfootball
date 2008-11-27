@@ -21,9 +21,12 @@
 #ifndef CSCREENRANKING_H_
 #define CSCREENRANKING_H_
 
-#include "../CSinglePlayerGame.h"
-#include "../db/bean/CPfTeams.h"
 #include "../../engine/CScreen.h"
+
+//Forward declarations
+class CPfTeams;
+class CSinglePlayerGame;
+
 
 class CScreenRanking : public CScreen
 {

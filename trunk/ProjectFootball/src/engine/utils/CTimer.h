@@ -22,7 +22,7 @@
 #ifndef CTIMER_H_
 #define CTIMER_H_
 
-#include "IClock.h"
+class IClock;
 
 class CTimer
 {
