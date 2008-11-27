@@ -36,7 +36,8 @@ CScreen::CScreen(const char *layout)
 
 CScreen::~CScreen()
 {
-  CLog::getInstance()->debug("~CScreen()");
+    CLog::getInstance()->debug("~CScreen()");
+    m_windowMngr->destroyWindow(m_layout);
 }
 
 void CScreen::enter()
