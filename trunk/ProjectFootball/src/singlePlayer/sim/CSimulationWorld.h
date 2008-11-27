@@ -24,9 +24,15 @@
 
 #include <vector>
 
-#include "../bullet/btBulletDynamicsCommon.h"
-#include "entity/CBaseGameEntity.h"
+#include "../bullet/LinearMath/btAlignedObjectArray.h"
 
+class CBaseGameEntity;
+class btCollisionConfiguration;
+class btCollisionDispatcher;
+class btCollisionShape;
+class btSequentialImpulseConstraintSolver;
+class btBroadphaseInterface;
+class btDiscreteDynamicsWorld;
 
 class CSimulationWorld
 {
@@ -39,13 +45,12 @@ public:
 
 private:
     //Bullet Objects
-    btCollisionConfiguration *m_collisionConfiguration;
-    btCollisionDispatcher *m_dispatcher;
-    btSequentialImpulseConstraintSolver* m_solver;
-    btBroadphaseInterface *m_broadphase;
-    btDiscreteDynamicsWorld* m_world;
-    btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
-
+    btCollisionConfiguration                *m_collisionConfiguration;
+    btCollisionDispatcher                   *m_dispatcher;
+    btSequentialImpulseConstraintSolver     *m_solver;
+    btBroadphaseInterface                   *m_broadphase;
+    btDiscreteDynamicsWorld                 *m_world;
+    btAlignedObjectArray<btCollisionShape*>  m_collisionShapes;
 };
 
 #endif // CSIMULATIONWORLD_H_

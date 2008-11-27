@@ -18,8 +18,10 @@
 *                                                                             *
 ******************************************************************************/
 
-
 #include "CSimulationWorld.h"
+
+#include "../bullet/btBulletDynamicsCommon.h"
+#include "entity/CBaseGameEntity.h"
 #include "../utils/CLog.h"
 
 
@@ -53,6 +55,7 @@ CSimulationWorld::CSimulationWorld()
     rbInfo.m_startWorldTransform = trans;
     btRigidBody *wallBody = new btRigidBody(rbInfo);
     m_world->addRigidBody(wallBody);
+    m_collisionShapes.push_back(wallShape);
 
     wallShape = new btBoxShape(btVector3(btScalar(60.0),btScalar(10.0),btScalar(1.0)));
     rbInfo.m_collisionShape = wallShape;
@@ -61,6 +64,7 @@ CSimulationWorld::CSimulationWorld()
     rbInfo.m_startWorldTransform = trans;
     wallBody = new btRigidBody(rbInfo);
     m_world->addRigidBody(wallBody);
+    m_collisionShapes.push_back(wallShape);
 
     wallShape = new btBoxShape(btVector3(btScalar(1.0),btScalar(10.0),btScalar(45.0)));
     rbInfo.m_collisionShape = wallShape;
@@ -69,6 +73,7 @@ CSimulationWorld::CSimulationWorld()
     rbInfo.m_startWorldTransform = trans;
     wallBody = new btRigidBody(rbInfo);
     m_world->addRigidBody(wallBody);
+    m_collisionShapes.push_back(wallShape);
 
     wallShape = new btBoxShape(btVector3(btScalar(1.0),btScalar(10.0),btScalar(45.0)));
     rbInfo.m_collisionShape = wallShape;
@@ -77,6 +82,7 @@ CSimulationWorld::CSimulationWorld()
     rbInfo.m_startWorldTransform = trans;
     wallBody = new btRigidBody(rbInfo);
     m_world->addRigidBody(wallBody);
+    m_collisionShapes.push_back(wallShape);
 }
 
 
@@ -103,6 +109,7 @@ CSimulationWorld::~CSimulationWorld()
         m_collisionShapes[j] = 0;
         delete shape;
     }
+
     delete m_world;
     delete m_solver;
     delete m_broadphase;
@@ -120,4 +127,5 @@ void CSimulationWorld::update()
 void CSimulationWorld::addObject(CBaseGameEntity *object)
 {
     m_world->addRigidBody(object->getBody());
+    m_collisionShapes.push_back(object->getShape());
 }
