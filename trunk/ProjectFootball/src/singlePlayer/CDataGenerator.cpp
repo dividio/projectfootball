@@ -18,12 +18,11 @@
 *                                                                             *
 ******************************************************************************/
 
-
-#include <vector>
-#include <list>
-
 #include "CDataGenerator.h"
 
+#include <vector>
+
+#include "db/dao/factory/IDAOFactory.h"
 #include "db/bean/CPfTeams.h"
 #include "db/bean/CPfCompetitions.h"
 #include "db/bean/CPfCompetitionPhases.h"
@@ -51,6 +50,9 @@ void CDataGenerator::generateDataBase()
     m_daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
     m_daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
     m_daoFactory->executeScriptFile("data/database/scripts/inserts_registeredteams.sql");
+
+
+    generateTeamPlayers();
 
     //Matches generation
     std::vector<CPfCompetitions*> *competitions = m_daoFactory->getIPfCompetitionsDAO()->findCompetitions();
@@ -150,3 +152,57 @@ void CDataGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<C
     }
 }
 
+void CDataGenerator::generateTeamPlayers()
+{
+    std::vector<CPfTeams*>  *teams = m_daoFactory->getIPfTeamsDAO()->findTeams();
+
+    std::vector<CPfTeams*>::iterator it;
+    for(it = teams->begin(); it != teams->end(); it++) {
+        std::vector<CPfTeamPlayers*> *teamPlayers = m_daoFactory->getIPfTeamPlayersDAO()->findActiveByXFkTeam((*it)->getXTeam_str());
+        int contractedPlayers = teamPlayers->size();
+        int neededPlayers = 20 - contractedPlayers; //TODO define MAXPLAYERS
+        for( int i = 0; i < neededPlayers; i++) {
+            generatePlayer((*it), contractedPlayers+i+1);
+        }
+
+        m_daoFactory->getIPfTeamPlayersDAO()->freeVector(teamPlayers);
+    }
+
+
+    m_daoFactory->getIPfTeamsDAO()->freeVector(teams);
+}
+
+void CDataGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
+{
+    //Generate player
+    CPfTeamPlayers player;
+    IPfTeamPlayersDAO *playersDAO= m_daoFactory->getIPfTeamPlayersDAO();
+    std::string name;
+    std::string shortName;
+    generateRandomPlayerName(name, shortName);
+
+    player.setSName(name);
+    player.setSShortName(shortName);
+    player.setXFkCountry_str(team->getXFkCountry_str());
+    player.setNKickPower(80);
+    player.setNVelocity(80);
+    playersDAO->insertReg(&player);
+
+
+    //Generate player contract
+    CPfTeamPlayerContracts contract;
+    CDate date(15, 8, 2008, 17, 0, 0); // TODO: Remove magical numbers
+    IPfTeamPlayerContractsDAO *contractsDAO= m_daoFactory->getIPfTeamPlayerContractsDAO();
+
+    contract.setXFkTeam_str(team->getXTeam_str());
+    contract.setXFkTeamPlayer_str(player.getXTeamPlayer_str());
+    contract.setNLineupOrder(lineUpOrder);
+    contract.setDBegin(date);
+    contractsDAO->insertReg(&contract);
+}
+
+void CDataGenerator::generateRandomPlayerName(std::string &name, std::string &shortName)
+{
+    name = "BOooo";
+    shortName = "Bo";
+}

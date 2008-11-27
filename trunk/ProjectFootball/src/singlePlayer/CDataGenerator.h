@@ -24,11 +24,12 @@
 
 #include <list>
 
-#include "db/dao/factory/IDAOFactory.h"
-#include "db/bean/CPfCompetitions.h"
-#include "db/bean/CPfTeams.h"
-#include "../utils/CDate.h"
 
+//Forward declarations
+class CDate;
+class IDAOFactory;
+class CPfCompetitions;
+class CPfTeams;
 
 class CDataGenerator
 {
@@ -44,6 +45,9 @@ private:
     IDAOFactory *m_daoFactory;
 
     void generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date);
+    void generateTeamPlayers();
+    void generatePlayer(CPfTeams *team, int lineUpOrder);
+    void generateRandomPlayerName(std::string &name, std::string &shortName);
 };
 
 #endif /*CDATAGENERATOR_H_*/
