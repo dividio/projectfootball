@@ -18,8 +18,10 @@
 *                                                                             *
 ******************************************************************************/
 
-
 #include "CSteeringBehaviors.h"
+
+#include "entity/CMovingEntity.h"
+#include "../bullet/BulletDynamics/Dynamics/btRigidBody.h"
 
 
 CSteeringBehaviors::CSteeringBehaviors(CMovingEntity *agent)
@@ -46,7 +48,7 @@ btVector3 CSteeringBehaviors::getTarget() const
 }
 
 
-void CSteeringBehaviors::setTargetPoint(const btVector3 target)
+void CSteeringBehaviors::setTargetPoint(const btVector3 &target)
 {
     m_target.setValue(target.x(), 0, target.z());
 }
@@ -159,7 +161,7 @@ void CSteeringBehaviors::interposeOff()
 }
 
 
-btVector3 CSteeringBehaviors::seek(btVector3 target)
+btVector3 CSteeringBehaviors::seek(const btVector3 & target)
 {
     btVector3 desiredVelocity = btVector3(target - m_agent->getPosition());
     desiredVelocity.normalize();
@@ -174,7 +176,7 @@ btVector3 CSteeringBehaviors::stop()
 }
 
 
-btVector3 CSteeringBehaviors::arrive(btVector3 target, Deceleration decel)
+btVector3 CSteeringBehaviors::arrive(const btVector3 & target, Deceleration decel)
 {
     btVector3 steer(0,0,0);
     btVector3 toTarget = target - m_agent->getPosition();

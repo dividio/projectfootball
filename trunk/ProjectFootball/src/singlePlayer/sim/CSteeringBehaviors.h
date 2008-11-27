@@ -22,9 +22,10 @@
 #ifndef CSTEERINGBEHAVIORS_H_
 #define CSTEERINGBEHAVIORS_H_
 
-
-#include "entity/CMovingEntity.h"
 #include "../bullet/LinearMath/btVector3.h"
+
+//Forward declarations
+class CMovingEntity;
 
 class CSteeringBehaviors
 {
@@ -32,7 +33,7 @@ public:
     CSteeringBehaviors(CMovingEntity *agent);
     ~CSteeringBehaviors();
 
-    void setTargetPoint(const btVector3 target);
+    void setTargetPoint(const btVector3 &target);
     void setTargetEntity(CMovingEntity *entity);
     btVector3 getTarget() const;
 
@@ -69,9 +70,9 @@ private:
 
     enum Deceleration{slow = 3, normal = 2, fast = 1};
 
-    btVector3 seek(btVector3 target);
+    btVector3 seek(const btVector3 &target);
     btVector3 stop();
-    btVector3 arrive(btVector3 target, Deceleration decel);
+    btVector3 arrive(const btVector3 &target, Deceleration decel);
     btVector3 pursuit(CMovingEntity *entity);
     btVector3 interpose(CMovingEntity *objectA, CMovingEntity *objectB);
 
