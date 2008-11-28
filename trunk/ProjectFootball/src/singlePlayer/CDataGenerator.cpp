@@ -21,9 +21,11 @@
 #include "CDataGenerator.h"
 
 #include <vector>
+#include <sstream>
 
 #include "db/dao/factory/IDAOFactory.h"
 #include "db/bean/CPfTeams.h"
+#include "db/bean/CPfTeamPlayers.h"
 #include "db/bean/CPfCompetitions.h"
 #include "db/bean/CPfCompetitionPhases.h"
 #include "../utils/CDate.h"
@@ -31,6 +33,7 @@
 CDataGenerator::CDataGenerator(IDAOFactory *daoFactory)
 {
     m_daoFactory = daoFactory;
+    m_numPlayers = 1;
 }
 
 CDataGenerator::~CDataGenerator()
@@ -52,9 +55,10 @@ void CDataGenerator::generateDataBase()
     m_daoFactory->executeScriptFile("data/database/scripts/inserts_registeredteams.sql");
 
 
+    //Players Generation
     generateTeamPlayers();
 
-    //Matches generation
+    //Matches Generation
     std::vector<CPfCompetitions*> *competitions = m_daoFactory->getIPfCompetitionsDAO()->findCompetitions();
     std::vector<CPfCompetitions*>::iterator it;
     CDate date(31, 8, 2008, 17, 0, 0); // TODO: Remove magical numbers
@@ -177,15 +181,8 @@ void CDataGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
     //Generate player
     CPfTeamPlayers player;
     IPfTeamPlayersDAO *playersDAO= m_daoFactory->getIPfTeamPlayersDAO();
-    std::string name;
-    std::string shortName;
-    generateRandomPlayerName(name, shortName);
-
-    player.setSName(name);
-    player.setSShortName(shortName);
+    generateRandomPlayer(player);
     player.setXFkCountry_str(team->getXFkCountry_str());
-    player.setNKickPower(80);
-    player.setNVelocity(80);
     playersDAO->insertReg(&player);
 
 
@@ -201,8 +198,16 @@ void CDataGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
     contractsDAO->insertReg(&contract);
 }
 
-void CDataGenerator::generateRandomPlayerName(std::string &name, std::string &shortName)
+void CDataGenerator::generateRandomPlayer(CPfTeamPlayers &player)
 {
-    name = "BOooo";
-    shortName = "Bo";
+    std::ostringstream stream;
+    stream << "Team Player " << m_numPlayers; // TODO Generate real names
+    player.setSName(stream.str());
+    stream.str("");
+    stream << "TP" << m_numPlayers++;
+    player.setSShortName(stream.str());
+
+    player.setXFkCountry_str("1");
+    player.setNKickPower((rand()%49)+50);
+    player.setNVelocity((rand()%49)+50);
 }

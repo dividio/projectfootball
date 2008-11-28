@@ -30,6 +30,7 @@ class CDate;
 class IDAOFactory;
 class CPfCompetitions;
 class CPfTeams;
+class CPfTeamPlayers;
 
 class CDataGenerator
 {
@@ -43,11 +44,12 @@ public:
 
 private:
     IDAOFactory *m_daoFactory;
+    int          m_numPlayers;
 
     void generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date);
     void generateTeamPlayers();
     void generatePlayer(CPfTeams *team, int lineUpOrder);
-    void generateRandomPlayerName(std::string &name, std::string &shortName);
+    void generateRandomPlayer(CPfTeamPlayers &player);
 };
 
 #endif /*CDATAGENERATOR_H_*/
