@@ -42,7 +42,6 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_lineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_lineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
     m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::lineUpTeamPlayersListboxSelectionChanged, this));
-    //m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventMouseButtonUp, CEGUI::Event::Subscriber(&CScreenTeamPlayers::handleMCLButtomUp, this));
 
     m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/AlternateTeamPlayersList"));
     m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Alternate)"), 0, CEGUI::UDim(1.0,0));
@@ -247,66 +246,63 @@ void CScreenTeamPlayers::saveTeamPlayersList()
 
 void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
 {
-    if(!m_forcedSelection) {
-        m_forcedSelection = true;
-        CEGUI::ListboxItem *currentItem = list->getFirstSelectedItem();
-        if( currentItem != 0 ) {
-            list->clearAllSelections();
-            IPfTeamPlayersDAO *teamPlayersDAO = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
-            int xTeamPlayer = currentItem->getID();
-            switch (m_selectedPlayers) {
-                case NONE:
+    CEGUI::ListboxItem *currentItem = list->getFirstSelectedItem();
+
+    if( currentItem != NULL ) {
+        list->clearAllSelections();
+        IPfTeamPlayersDAO *teamPlayersDAO = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
+        int xTeamPlayer = currentItem->getID();
+        switch (m_selectedPlayers) {
+            case NONE:
+                m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+                m_selectedPlayers = PLAYER1;
+                m_item1 = currentItem;
+                m_selectedPlayer1List = list;
+                m_item1->setSelected(true);
+                break;
+            case PLAYER1:
+                if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
+                    delete m_selectedPlayer1;
+                    m_selectedPlayers = NONE;
+                } else {
+                    m_selectedPlayer2 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+                    m_selectedPlayers = BOTH;
+                    m_item2 = currentItem;
+                    m_selectedPlayer2List = list;
+                    m_item1->setSelected(true);
+                    m_item2->setSelected(true);
+                }
+                break;
+            case PLAYER2:
+                if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
+                    delete m_selectedPlayer2;
+                    m_selectedPlayers = NONE;
+                } else {
                     m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                    m_selectedPlayers = PLAYER1;
+                    m_selectedPlayers = BOTH;
                     m_item1 = currentItem;
                     m_selectedPlayer1List = list;
                     m_item1->setSelected(true);
-                    break;
-                case PLAYER1:
-                    if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
-                        delete m_selectedPlayer1;
-                        m_selectedPlayers = NONE;
-                    } else {
-                        m_selectedPlayer2 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                        m_selectedPlayers = BOTH;
-                        m_item2 = currentItem;
-                        m_selectedPlayer2List = list;
-                        m_item1->setSelected(true);
-                        m_item2->setSelected(true);
-                    }
-                    break;
-                case PLAYER2:
-                    if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
-                        delete m_selectedPlayer2;
-                        m_selectedPlayers = NONE;
-                    } else {
-                        m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                        m_selectedPlayers = BOTH;
-                        m_item1 = currentItem;
-                        m_selectedPlayer1List = list;
-                        m_item1->setSelected(true);
-                        m_item2->setSelected(true);
-                    }
-                    break;
-                case BOTH:
-                    if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
-                        delete m_selectedPlayer1;
-                        m_selectedPlayers = PLAYER2;
-                        m_item2->setSelected(true);
-                    } else if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
-                        delete m_selectedPlayer2;
-                        m_selectedPlayers = PLAYER1;
-                        m_item1->setSelected(true);
-                    } else {
-                        m_item1->setSelected(true);
-                        m_item2->setSelected(true);
-                    }
-                    break;
-                default:
-                    break;
-            }
+                    m_item2->setSelected(true);
+                }
+                break;
+            case BOTH:
+                if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
+                    delete m_selectedPlayer1;
+                    m_selectedPlayers = PLAYER2;
+                    m_item2->setSelected(true);
+                } else if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
+                    delete m_selectedPlayer2;
+                    m_selectedPlayers = PLAYER1;
+                    m_item1->setSelected(true);
+                } else {
+                    m_item1->setSelected(true);
+                    m_item2->setSelected(true);
+                }
+                break;
+            default:
+                break;
         }
-        m_forcedSelection = false;
     }
 }
 

@@ -65,7 +65,6 @@ private:
     CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton		*m_changePlayersButton;
     SelectedPlayers          m_selectedPlayers;
-    bool                     m_forcedSelection;
 
     CSinglePlayerGame		*m_game;
 };
