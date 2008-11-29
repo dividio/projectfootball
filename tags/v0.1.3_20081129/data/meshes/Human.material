@@ -1,0 +1,109 @@
+material player_red
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.029068 0.029068 0.029068 1.000000 4.750000
+			emissive 0.257121 0.257121 0.257121 1.000000
+			texture_unit
+			{
+				texture player_red.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+
+material goalie_red
+{
+    receive_shadows on
+    technique
+    {
+        pass
+        {
+            ambient 0.500000 0.500000 0.500000 1.000000
+            diffuse 0.640000 0.640000 0.640000 1.000000
+            specular 0.029068 0.029068 0.029068 1.000000 4.750000
+            emissive 0.257121 0.257121 0.257121 1.000000
+            texture_unit
+            {
+                texture goalie_red.tga
+                tex_address_mode wrap
+                filtering trilinear
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+
+material player_yellow
+{
+    receive_shadows on
+    technique
+    {
+        pass
+        {
+            ambient 0.500000 0.500000 0.500000 1.000000
+            diffuse 0.640000 0.640000 0.640000 1.000000
+            specular 0.029068 0.029068 0.029068 1.000000 4.750000
+            emissive 0.257121 0.257121 0.257121 1.000000
+            texture_unit
+            {
+                texture player_yellow.tga
+                tex_address_mode wrap
+                filtering trilinear
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+
+material goalie_yellow
+{
+    receive_shadows on
+    technique
+    {
+        pass
+        {
+            ambient 0.500000 0.500000 0.500000 1.000000
+            diffuse 0.640000 0.640000 0.640000 1.000000
+            specular 0.029068 0.029068 0.029068 1.000000 4.750000
+            emissive 0.257121 0.257121 0.257121 1.000000
+            texture_unit
+            {
+                texture goalie_yellow.tga
+                tex_address_mode wrap
+                filtering trilinear
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+
+material referee
+{
+    receive_shadows on
+    technique
+    {
+        pass
+        {
+            ambient 0.500000 0.500000 0.500000 1.000000
+            diffuse 0.640000 0.640000 0.640000 1.000000
+            specular 0.029068 0.029068 0.029068 1.000000 4.750000
+            emissive 0.257121 0.257121 0.257121 1.000000
+            texture_unit
+            {
+                texture referee.tga
+                tex_address_mode wrap
+                filtering trilinear
+                colour_op alpha_blend
+            }
+        }
+    }
+}
