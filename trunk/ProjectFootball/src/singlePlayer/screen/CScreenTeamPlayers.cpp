@@ -36,7 +36,9 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_game = game;
 
     m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/LineUpTeamPlayersList"));
-    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(1.0,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(0.7,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"), 1, CEGUI::UDim(0.15,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"), 2, CEGUI::UDim(0.15,0));
     m_lineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_lineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_lineUpTeamPlayersList->setUserSortControlEnabled(false);
@@ -44,7 +46,9 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::lineUpTeamPlayersListboxSelectionChanged, this));
 
     m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/AlternateTeamPlayersList"));
-    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Alternate)"), 0, CEGUI::UDim(1.0,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Alternate)"), 0, CEGUI::UDim(0.7,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"), 1, CEGUI::UDim(0.15,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"), 2, CEGUI::UDim(0.15,0));
     m_alternateTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_alternateTeamPlayersList->setUserColumnSizingEnabled(false);
     m_alternateTeamPlayersList->setUserSortControlEnabled(false);
@@ -52,7 +56,9 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::alternateTeamPlayersListboxSelectionChanged, this));
 
     m_notLineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/NotLineUpTeamPlayersList"));
-    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Not Line Up)"), 0, CEGUI::UDim(1.0,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Not Line Up)"), 0, CEGUI::UDim(0.7,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"), 1, CEGUI::UDim(0.15,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"), 2, CEGUI::UDim(0.15,0));
     m_notLineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_notLineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_notLineUpTeamPlayersList->setUserSortControlEnabled(false);
@@ -114,17 +120,8 @@ void CScreenTeamPlayers::leave()
 
 void CScreenTeamPlayers::changePlayers()
 {
-    CEGUI::ListboxItem *itemAux = m_item1;
-    m_item1->setAutoDeleted(false);
-    m_item2->setAutoDeleted(false);
-    CEGUI::MCLGridRef reference1 = m_selectedPlayer1List->getItemGridReference(m_item1);
-    CEGUI::MCLGridRef reference2 = m_selectedPlayer2List->getItemGridReference(m_item2);
-    m_selectedPlayer1List->setItem(m_item2, reference1);
-    m_selectedPlayer2List->setItem(m_item1, reference2);
-    m_item1 = m_item2;
-    m_item2 = itemAux;
-    m_item1->setAutoDeleted(true);
-    m_item2->setAutoDeleted(true);
+    changeRows(m_selectedPlayer1List, m_selectedPlayer1Row, m_selectedPlayer2List, m_selectedPlayer2Row);
+
     m_selectedPlayer1List->getHorzScrollbar()->setVisible(false);
     m_selectedPlayer1List->getVertScrollbar()->setVisible(false);
     m_selectedPlayer2List->getHorzScrollbar()->setVisible(false);
@@ -157,6 +154,14 @@ void CScreenTeamPlayers::loadTeamPlayersList()
         CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName(), teamPlayer->getXTeamPlayer());
         item->setSelectionBrushImage(sel_img);
         m_lineUpTeamPlayersList->setItem(item, 0, row_idx);
+
+        item = new CEGUI::ListboxTextItem(teamPlayer->getNVelocity_str());
+        item->setSelectionBrushImage(sel_img);
+        m_lineUpTeamPlayersList->setItem(item, 1, row_idx);
+
+        item = new CEGUI::ListboxTextItem(teamPlayer->getNKickPower_str());
+        item->setSelectionBrushImage(sel_img);
+        m_lineUpTeamPlayersList->setItem(item, 2, row_idx);
     }
     for( it=alternateTeamPlayersList->begin(); it!=alternateTeamPlayersList->end(); it++ ){
         CPfTeamPlayers *teamPlayer = (*it);
@@ -165,6 +170,14 @@ void CScreenTeamPlayers::loadTeamPlayersList()
         CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName(), teamPlayer->getXTeamPlayer());
         item->setSelectionBrushImage(sel_img);
         m_alternateTeamPlayersList->setItem(item, 0, row_idx);
+
+        item = new CEGUI::ListboxTextItem(teamPlayer->getNVelocity_str());
+        item->setSelectionBrushImage(sel_img);
+        m_alternateTeamPlayersList->setItem(item, 1, row_idx);
+
+        item = new CEGUI::ListboxTextItem(teamPlayer->getNKickPower_str());
+        item->setSelectionBrushImage(sel_img);
+        m_alternateTeamPlayersList->setItem(item, 2, row_idx);
     }
     for( it=notLineUpTeamPlayersList->begin(); it!=notLineUpTeamPlayersList->end(); it++ ){
         CPfTeamPlayers *teamPlayer = (*it);
@@ -173,6 +186,14 @@ void CScreenTeamPlayers::loadTeamPlayersList()
         CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(teamPlayer->getSName(), teamPlayer->getXTeamPlayer());
         item->setSelectionBrushImage(sel_img);
         m_notLineUpTeamPlayersList->setItem(item, 0, row_idx);
+
+        item = new CEGUI::ListboxTextItem(teamPlayer->getNVelocity_str());
+        item->setSelectionBrushImage(sel_img);
+        m_notLineUpTeamPlayersList->setItem(item, 1, row_idx);
+
+        item = new CEGUI::ListboxTextItem(teamPlayer->getNKickPower_str());
+        item->setSelectionBrushImage(sel_img);
+        m_notLineUpTeamPlayersList->setItem(item, 2, row_idx);
     }
 
     teamPlayersDAO->freeVector(lineUpTeamPlayersList);
@@ -249,6 +270,7 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
     CEGUI::ListboxItem *currentItem = list->getFirstSelectedItem();
 
     if( currentItem != NULL ) {
+        int currentRow  = list->getItemRowIndex(currentItem);
         list->clearAllSelections();
         IPfTeamPlayersDAO *teamPlayersDAO = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
         int xTeamPlayer = currentItem->getID();
@@ -256,9 +278,9 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
             case NONE:
                 m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
                 m_selectedPlayers = PLAYER1;
-                m_item1 = currentItem;
+                m_selectedPlayer1Row = currentRow;
                 m_selectedPlayer1List = list;
-                m_item1->setSelected(true);
+                changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
                 break;
             case PLAYER1:
                 if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
@@ -267,10 +289,10 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
                 } else {
                     m_selectedPlayer2 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
                     m_selectedPlayers = BOTH;
-                    m_item2 = currentItem;
+                    m_selectedPlayer2Row = currentRow;
                     m_selectedPlayer2List = list;
-                    m_item1->setSelected(true);
-                    m_item2->setSelected(true);
+                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
+                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
                 }
                 break;
             case PLAYER2:
@@ -280,24 +302,24 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
                 } else {
                     m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
                     m_selectedPlayers = BOTH;
-                    m_item1 = currentItem;
+                    m_selectedPlayer1Row = currentRow;
                     m_selectedPlayer1List = list;
-                    m_item1->setSelected(true);
-                    m_item2->setSelected(true);
+                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
+                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
                 }
                 break;
             case BOTH:
                 if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
                     delete m_selectedPlayer1;
                     m_selectedPlayers = PLAYER2;
-                    m_item2->setSelected(true);
+                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
                 } else if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
                     delete m_selectedPlayer2;
                     m_selectedPlayers = PLAYER1;
-                    m_item1->setSelected(true);
+                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
                 } else {
-                    m_item1->setSelected(true);
-                    m_item2->setSelected(true);
+                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
+                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
                 }
                 break;
             default:
@@ -341,4 +363,34 @@ bool CScreenTeamPlayers::backButtonClicked(const CEGUI::EventArgs& e)
 {
     m_game->previousScreen();
     return true;
+}
+
+void CScreenTeamPlayers::changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2)
+{
+    int columns = list1->getColumnCount();
+    for( int i = 0; i < columns; i++) {
+        CEGUI::ListboxItem *itemAux;
+        CEGUI::MCLGridRef reference1 = CEGUI::MCLGridRef(row1, i);
+        CEGUI::MCLGridRef reference2 = CEGUI::MCLGridRef(row2, i);
+        CEGUI::ListboxItem *item1 = list1->getItemAtGridReference(reference1);
+        CEGUI::ListboxItem *item2 = list2->getItemAtGridReference(reference2);
+        item1->setAutoDeleted(false);
+        item2->setAutoDeleted(false);
+        list1->setItem(item2, reference1);
+        list2->setItem(item1, reference2);
+        itemAux = item1;
+        item1 = item2;
+        item2 = itemAux;
+        item1->setAutoDeleted(true);
+        item2->setAutoDeleted(true);
+    }
+}
+
+void CScreenTeamPlayers::changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState)
+{
+    int columns = list->getColumnCount();
+    for( int i = 0; i < columns; i++) {
+        CEGUI::ListboxItem *item = list->getItemAtGridReference(CEGUI::MCLGridRef(row, i));
+        item->setSelected(newSelectionState);
+    }
 }

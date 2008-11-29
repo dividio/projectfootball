@@ -51,6 +51,8 @@ private:
     void saveTeamPlayersList();
     void changePlayers();
     void selectChanged(CEGUI::MultiColumnList *list);
+    void changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
+    void changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState);
 
     CEGUI::MultiColumnList 	*m_lineUpTeamPlayersList;
     CEGUI::MultiColumnList 	*m_alternateTeamPlayersList;
@@ -60,6 +62,8 @@ private:
     CPfTeamPlayers         	*m_selectedPlayer2;
     CEGUI::ListboxItem     	*m_item1;
     CEGUI::ListboxItem     	*m_item2;
+    int                      m_selectedPlayer1Row;
+    int                      m_selectedPlayer2Row;
     CEGUI::MultiColumnList 	*m_selectedPlayer1List;
     CEGUI::MultiColumnList 	*m_selectedPlayer2List;
     CEGUI::PushButton		*m_backButton;
