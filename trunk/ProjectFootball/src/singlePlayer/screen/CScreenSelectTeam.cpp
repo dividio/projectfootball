@@ -70,9 +70,9 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CompetitionLabel"))->setText((CEGUI::utf8*)gettext("Competition:"));
 
     // Event handle
-    m_confederationsCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::confederationsComboboxListSelectionChanged, this));
-    m_countriesCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::countriesComboboxListSelectionChanged, this));
-    m_competitionsCombobox  ->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::competitionsComboboxListSelectionChanged, this));
+    m_confederationsCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::confederationsComboboxListSelectionChanged, this));
+    m_countriesCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::countriesComboboxListSelectionChanged, this));
+    m_competitionsCombobox  ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::competitionsComboboxListSelectionChanged, this));
     m_guiTeamsList->subscribeEvent(CEGUI::Listbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxSelectionChanged, this));
     m_guiTeamsList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxMouseDoubleClick, this));
     m_selectButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::selectButtonClicked, this));
