@@ -60,8 +60,6 @@ private:
 
     CPfTeamPlayers         	*m_selectedPlayer1;
     CPfTeamPlayers         	*m_selectedPlayer2;
-    CEGUI::ListboxItem     	*m_item1;
-    CEGUI::ListboxItem     	*m_item2;
     int                      m_selectedPlayer1Row;
     int                      m_selectedPlayer2Row;
     CEGUI::MultiColumnList 	*m_selectedPlayer1List;
