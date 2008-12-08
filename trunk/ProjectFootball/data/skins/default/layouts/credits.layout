@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-    <Window Type="TaharezLook/StaticImage" Name="Credits" >
+<Window Type="DefaultWindow" Name="Credits" >
+    <Window Type="TaharezLook/StaticImage" Name="Credits/MainWindow" >
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
@@ -209,4 +210,5 @@
           <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
         </Window>
     </Window>
+</Window>
 </GUILayout>

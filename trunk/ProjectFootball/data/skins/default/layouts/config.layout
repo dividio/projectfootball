@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-    <Window Type="TaharezLook/StaticImage" Name="Config" >
+<Window Type="DefaultWindow" Name="Config" >
+    <Window Type="TaharezLook/StaticImage" Name="Config/MainWindow" >
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
@@ -48,12 +49,6 @@
                 <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
             </Window>
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="Config/Note" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="HorzFormatting" Value="HorzCentred" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.9,0},{0.795,0},{0.95,0}}" />
-        </Window>
         <Window Type="TaharezLook/Button" Name="Config/BackButton" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.95,0}}" />
@@ -64,4 +59,29 @@
             <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.95,0}}" />
         </Window>
     </Window>
+    
+    <Window Type="TaharezLook/FrameWindow" Name="Config/SaveConfirmationWindow" >
+        <Property Name="Visible" Value="false" />
+        <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+        <Property Name="SizingEnabled" Value="False" />
+        <Property Name="RollUpEnabled" Value="False" />
+        <Property Name="CloseButtonEnabled" Value="False" />
+        <Property Name="DragMovingEnabled" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="TitlebarEnabled" Value="True" />
+        <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.8,0},{0.6,0}}" />
+        <Window Type="TaharezLook/StaticText" Name="Config/SaveConfirmationWindow/Note" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.95,0},{0.5,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="Config/SaveConfirmationWindow/Confirm" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.7,0},{0.55,0},{0.9,0}}" />
+        </Window>
+    </Window>
+    
+</Window>
 </GUILayout>

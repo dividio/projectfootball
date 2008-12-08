@@ -38,13 +38,16 @@ public:
     void saveGame();
 
 private:
-	bool saveButtonClicked(const CEGUI::EventArgs& e);
-	bool mainMenuButtonClicked(const CEGUI::EventArgs& e);
-	bool rankingButtonClicked(const CEGUI::EventArgs& e);
-	bool teamPlayersButtonClicked(const CEGUI::EventArgs& e);
-	bool resultsButtonClicked(const CEGUI::EventArgs& e);
-	bool playButtonClicked(const CEGUI::EventArgs& e);
+	bool saveButtonClicked                  (const CEGUI::EventArgs& e);
+	bool mainMenuButtonClicked              (const CEGUI::EventArgs& e);
+	bool rankingButtonClicked               (const CEGUI::EventArgs& e);
+	bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
+	bool resultsButtonClicked               (const CEGUI::EventArgs& e);
+	bool playButtonClicked                  (const CEGUI::EventArgs& e);
 	bool resultModeCheckboxCheckStateChanged(const CEGUI::EventArgs& e);
+	bool saveConfirmButtonClicked           (const CEGUI::EventArgs& e);
+	bool exitConfirmButtonClicked           (const CEGUI::EventArgs& e);
+	bool exitCancelButtonClicked            (const CEGUI::EventArgs& e);
 
 
     CEGUI::Window     	*m_playerTeamText;
@@ -56,7 +59,16 @@ private:
     CEGUI::PushButton	*m_teamPlayersButton;
     CEGUI::PushButton	*m_resultsButton;
     CEGUI::PushButton 	*m_playButton;
+    CEGUI::PushButton   *m_saveConfirmButton;
+    CEGUI::PushButton   *m_exitConfirmButton;
+    CEGUI::PushButton   *m_exitCancelButton;
     CEGUI::Checkbox   	*m_resultModeCheckbox;
+    CEGUI::Window       *m_mainWindow;
+    CEGUI::FrameWindow  *m_confirmSaveWindow;
+    CEGUI::Window       *m_confirmSaveNote;
+    CEGUI::FrameWindow  *m_confirmExitWindow;
+    CEGUI::Window       *m_confirmExitNote;
+
 
     CSinglePlayerGame	*m_game;
 };

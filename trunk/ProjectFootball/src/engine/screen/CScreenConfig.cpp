@@ -32,16 +32,21 @@ CScreenConfig::CScreenConfig()
 {
     CLog::getInstance()->debug("CScreenConfig()");
 
+    m_mainWindow        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/MainWindow"));
     m_backButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/BackButton"));
     m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::backButtonClicked, this));
 
     m_saveButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveButton"));
-    m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveButtonClicked, this));
+    m_saveConfirmButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveConfirmationWindow/Confirm"));
+    m_saveButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveButtonClicked, this));
+    m_saveConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveConfirmButtonClicked, this));
 
     m_resolutionCombo   = static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
     m_rendererCombo     = static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
     m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
     m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
+    m_confirmWindow     = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveConfirmationWindow"));
+    m_confirmNote       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveConfirmationWindow/Note"));
 
     m_resolutionCombo->getEditbox()->setEnabled(false);
     m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
@@ -54,9 +59,10 @@ CScreenConfig::CScreenConfig()
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionText"))->setText((CEGUI::utf8*)gettext("Resolution:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"))->setText((CEGUI::utf8*)gettext("Fullscreen"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"))->setText((CEGUI::utf8*)gettext("Vertical Sync"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/Note"))->setText((CEGUI::utf8*)gettext("NOTE: Changes will take effect after restart"));
-    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
-    m_saveButton->setText((CEGUI::utf8*)gettext("Save"));
+    m_confirmNote      ->setText((CEGUI::utf8*)gettext("Changes will take effect after restart"));
+    m_backButton       ->setText((CEGUI::utf8*)gettext("Back"));
+    m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
+    m_saveConfirmButton->setText((CEGUI::utf8*)gettext("Ok"));
 
     m_rendererCombo->getEditbox()->setEnabled(false);
     Ogre::RenderSystemList *renderSystemList = CApplication::getInstance()->getRenderSystemList();
@@ -110,28 +116,49 @@ bool CScreenConfig::backButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenConfig::saveButtonClicked(const CEGUI::EventArgs& e)
 {
-	CSystemOptionManager::getInstance()->setVideoFullscreen(m_fullscreenCheck->isSelected());
-	CSystemOptionManager::getInstance()->setVideoVSync(m_vSyncCheck->isSelected());
+    try {
+        CSystemOptionManager::getInstance()->setVideoFullscreen(m_fullscreenCheck->isSelected());
+        CSystemOptionManager::getInstance()->setVideoVSync(m_vSyncCheck->isSelected());
 
-	CEGUI::ListboxItem *item = m_resolutionCombo->getSelectedItem();
-	if( item!=NULL ){
-		switch( item->getID() ){
-		case 1280:
-			CSystemOptionManager::getInstance()->setVideoWidth( 1280);
-			CSystemOptionManager::getInstance()->setVideoHeight(1024);
-			break;
-		case 1024:
-			CSystemOptionManager::getInstance()->setVideoWidth( 1024);
-			CSystemOptionManager::getInstance()->setVideoHeight( 768);
-			break;
-		case 800:
-			CSystemOptionManager::getInstance()->setVideoWidth(  800);
-			CSystemOptionManager::getInstance()->setVideoHeight( 600);
-			break;
-		}
-	}
+        CEGUI::ListboxItem *item = m_resolutionCombo->getSelectedItem();
+        if( item!=NULL ){
+            switch( item->getID() ){
+            case 1280:
+                CSystemOptionManager::getInstance()->setVideoWidth( 1280);
+                CSystemOptionManager::getInstance()->setVideoHeight(1024);
+                break;
+            case 1024:
+                CSystemOptionManager::getInstance()->setVideoWidth( 1024);
+                CSystemOptionManager::getInstance()->setVideoHeight( 768);
+                break;
+            case 800:
+                CSystemOptionManager::getInstance()->setVideoWidth(  800);
+                CSystemOptionManager::getInstance()->setVideoHeight( 600);
+                break;
+            }
+        }
 
-	CSystemOptionManager::getInstance()->setVideoRenderSystem(m_rendererCombo->getText().c_str());
-	CSystemOptionManager::getInstance()->saveOptions();
+        CSystemOptionManager::getInstance()->setVideoRenderSystem(m_rendererCombo->getText().c_str());
+        CSystemOptionManager::getInstance()->saveOptions();
+        m_confirmNote->setText((CEGUI::utf8*)gettext("Changes will take effect after restart"));
+    } catch(...) {
+        m_confirmNote->setText((CEGUI::utf8*)gettext("ATTENTION: Options can not be saved"));
+    }
+
+	m_mainWindow->disable();
+	m_confirmWindow->setVisible(true);
+	m_confirmWindow->activate();
+	m_confirmWindow->enable();
+
 	return true;
+}
+
+bool CScreenConfig::saveConfirmButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_confirmWindow->setVisible(false);
+    m_confirmWindow->deactivate();
+    m_confirmWindow->disable();
+    m_mainWindow->enable();
+
+    return true;
 }

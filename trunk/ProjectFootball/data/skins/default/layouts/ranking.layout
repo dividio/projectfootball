@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-  <Window Type="TaharezLook/StaticImage" Name="Ranking" >
-    <Property Name="InheritsAlpha" Value="False" />
-    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-    <Property Name="Image" Value="set:Background image:Background" />
-    <Property Name="FrameEnabled" Value="false" />
-    <Window Type="TaharezLook/StaticText" Name="Ranking/RankingLabel" >
-      <Property Name="FrameEnabled" Value="False" />
-      <Property Name="BackgroundEnabled" Value="False" />
-      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.5,0},{0.08,0}}" />
+<Window Type="DefaultWindow" Name="Ranking" >
+    <Window Type="TaharezLook/StaticImage" Name="Ranking/MainWindow" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
+        <Property Name="FrameEnabled" Value="false" />
+        <Window Type="TaharezLook/StaticText" Name="Ranking/RankingLabel" >
+          <Property Name="FrameEnabled" Value="False" />
+          <Property Name="BackgroundEnabled" Value="False" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.5,0},{0.08,0}}" />
+        </Window>
+        <Window Type="TaharezLook/MultiColumnList" Name="Ranking/RankingList" >
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.97,0},{0.7,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="Ranking/BackButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
+        </Window>
     </Window>
-    <Window Type="TaharezLook/MultiColumnList" Name="Ranking/RankingList" >
-      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.97,0},{0.7,0}}" />
-    </Window>
-    <Window Type="TaharezLook/Button" Name="Ranking/BackButton" >
-      <Property Name="Font" Value="DejaVuSans-10" />
-      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-      <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
-    </Window>
-  </Window>
+</Window>
 </GUILayout>

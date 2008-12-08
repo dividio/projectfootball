@@ -32,15 +32,21 @@ public:
     virtual void enter();
 
 private:
-	bool backButtonClicked(const CEGUI::EventArgs& e);
-	bool saveButtonClicked(const CEGUI::EventArgs& e);
+	bool backButtonClicked       (const CEGUI::EventArgs& e);
+	bool saveButtonClicked       (const CEGUI::EventArgs& e);
+	bool saveConfirmButtonClicked(const CEGUI::EventArgs& e);
 
 	CEGUI::PushButton	*m_backButton;
 	CEGUI::PushButton	*m_saveButton;
+	CEGUI::PushButton   *m_saveConfirmButton;
     CEGUI::Combobox 	*m_resolutionCombo;
     CEGUI::Combobox 	*m_rendererCombo;
     CEGUI::Checkbox 	*m_fullscreenCheck;
     CEGUI::Checkbox 	*m_vSyncCheck;
+    CEGUI::Window       *m_mainWindow;
+    CEGUI::FrameWindow  *m_confirmWindow;
+    CEGUI::Window       *m_confirmNote;
+
 };
 
 #endif /*CSCREENCONFIG_H_*/

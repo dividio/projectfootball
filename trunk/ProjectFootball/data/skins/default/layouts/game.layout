@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-    <Window Type="TaharezLook/StaticImage" Name="Game" >
+<Window Type="DefaultWindow" Name="Game" >
+    <Window Type="TaharezLook/StaticImage" Name="Game/MainWindow" >
         <Property Name="FrameEnabled" Value="False" />
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -69,4 +70,57 @@
             <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.87,0},{0.995,0},{0.91,0}}" />
         </Window>
     </Window>
+    
+    <Window Type="TaharezLook/FrameWindow" Name="Game/SaveConfirmationWindow" >
+        <Property Name="Visible" Value="false" />
+        <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+        <Property Name="SizingEnabled" Value="False" />
+        <Property Name="RollUpEnabled" Value="False" />
+        <Property Name="CloseButtonEnabled" Value="False" />
+        <Property Name="DragMovingEnabled" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="TitlebarEnabled" Value="True" />
+        <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.8,0},{0.6,0}}" />
+        <Window Type="TaharezLook/StaticText" Name="Game/SaveConfirmationWindow/Note" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.95,0},{0.5,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="Game/SaveConfirmationWindow/Confirm" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.7,0},{0.55,0},{0.9,0}}" />
+        </Window>
+    </Window>
+    
+    <Window Type="TaharezLook/FrameWindow" Name="Game/ExitConfirmationWindow" >
+        <Property Name="Visible" Value="false" />
+        <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+        <Property Name="SizingEnabled" Value="False" />
+        <Property Name="RollUpEnabled" Value="False" />
+        <Property Name="CloseButtonEnabled" Value="False" />
+        <Property Name="DragMovingEnabled" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="TitlebarEnabled" Value="True" />
+        <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.8,0},{0.6,0}}" />
+        <Window Type="TaharezLook/StaticText" Name="Game/ExitConfirmationWindow/Note" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.95,0},{0.5,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="Game/ExitConfirmationWindow/YesButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.7,0},{0.40,0},{0.9,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="Game/ExitConfirmationWindow/NoButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.60,0},{0.7,0},{0.75,0},{0.9,0}}" />
+        </Window>
+    </Window>
+    
+</Window>
 </GUILayout>
