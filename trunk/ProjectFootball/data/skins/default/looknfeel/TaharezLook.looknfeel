@@ -38,9 +38,9 @@
                     <Dim type="Width"><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height"><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="ButtonLeftNormal" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ButtonRightNormal" />
-                <Image type="Background" imageset="TaharezLook" image="ButtonMiddleNormal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ButtonLeftNormal" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ButtonRightNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="ButtonMiddleNormal" />
             </FrameComponent>
             <ImageryComponent>
                 <Area>
@@ -62,9 +62,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="ButtonLeftHighlight" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ButtonRightHighlight" />
-                <Image type="Background" imageset="TaharezLook" image="ButtonMiddleHighlight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ButtonLeftHighlight" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ButtonRightHighlight" />
+                <Image type="Background" imageset="WidgetsImageset" image="ButtonMiddleHighlight" />
             </FrameComponent>
             <ImageryComponent>
                 <Area>
@@ -86,9 +86,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="ButtonLeftPushed" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ButtonRightPushed" />
-                <Image type="Background" imageset="TaharezLook" image="ButtonMiddlePushed" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ButtonLeftPushed" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ButtonRightPushed" />
+                <Image type="Background" imageset="WidgetsImageset" image="ButtonMiddlePushed" />
             </FrameComponent>
             <ImageryComponent>
                 <Area>
@@ -160,7 +160,7 @@
             <TextComponent>
                 <Area>
                     <Dim type="LeftEdge" >
-                        <ImageDim imageset="TaharezLook" image="RadioButtonNormal" dimension="Width">
+                        <ImageDim imageset="WidgetsImageset" image="RadioButtonNormal" dimension="Width">
                             <DimOperator op="Add">
                                 <AbsoluteDim value="3" />
                             </DimOperator>
@@ -182,7 +182,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="RadioButtonNormal" />
+                <Image imageset="WidgetsImageset" image="RadioButtonNormal" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -195,7 +195,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="RadioButtonHover" />
+                <Image imageset="WidgetsImageset" image="RadioButtonHover" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -208,7 +208,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="RadioButtonMark" />
+                <Image imageset="WidgetsImageset" image="RadioButtonMark" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -286,7 +286,7 @@
             <TextComponent>
                 <Area>
                     <Dim type="LeftEdge" >
-                        <ImageDim imageset="TaharezLook" image="CheckboxNormal" dimension="Width">
+                        <ImageDim imageset="WidgetsImageset" image="CheckboxNormal" dimension="Width">
                             <DimOperator op="Add">
                                 <AbsoluteDim value="3" />
                             </DimOperator>
@@ -308,7 +308,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="CheckboxNormal" />
+                <Image imageset="WidgetsImageset" image="CheckboxNormal" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -321,7 +321,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="CheckboxHover" />
+                <Image imageset="WidgetsImageset" image="CheckboxHover" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -334,7 +334,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="CheckboxMark" />
+                <Image imageset="WidgetsImageset" image="CheckboxMark" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -425,9 +425,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="EditBoxLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="EditBoxRight" />
-                <Image type="Background" imageset="TaharezLook" image="EditBoxMiddle" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="EditBoxLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="EditBoxRight" />
+                <Image type="Background" imageset="WidgetsImageset" image="EditBoxMiddle" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="selection">
@@ -438,7 +438,7 @@
                     <Dim type="RightEdge" ><UnifiedDim scale="1.0" type="RightEdge" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="TextSelectionBrush" />
+                <Image imageset="WidgetsImageset" image="TextSelectionBrush" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -448,10 +448,10 @@
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="Width" ><ImageDim imageset="TaharezLook" image="EditBoxCarat" dimension="Width" /></Dim>
+                    <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="EditBoxCarat" dimension="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="EditBoxCarat" />
+                <Image imageset="WidgetsImageset" image="EditBoxCarat" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -504,7 +504,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="NewTitlebarLeft" />
+                <Image imageset="WidgetsImageset" image="NewTitlebarLeft" />
                 <VertFormat type="Stretched" />
             </ImageryComponent>
             <ImageryComponent>
@@ -514,9 +514,9 @@
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="SysAreaRight" dimension="Width">
+                                <ImageDim imageset="WidgetsImageset" image="SysAreaRight" dimension="Width">
                                     <DimOperator op="Add">
-                                        <ImageDim imageset="TaharezLook" image="SysAreaMiddle" dimension="Width" />
+                                        <ImageDim imageset="WidgetsImageset" image="SysAreaMiddle" dimension="Width" />
                                     </DimOperator>
                                 </ImageDim>
                             </DimOperator>
@@ -524,7 +524,7 @@
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="NewTitlebarRight" />
+                <Image imageset="WidgetsImageset" image="NewTitlebarRight" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
@@ -535,13 +535,13 @@
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="SysAreaRight" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="SysAreaRight" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="SysAreaMiddle" />
+                <Image imageset="WidgetsImageset" image="SysAreaMiddle" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
@@ -552,22 +552,22 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="SysAreaRight" />
+                <Image imageset="WidgetsImageset" image="SysAreaRight" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
             <ImageryComponent>
                 <Area>
-                    <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="NewTitlebarLeft" dimension="Width" /></Dim>
+                    <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="NewTitlebarLeft" dimension="Width" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="SysAreaRight" dimension="Width">
+                                <ImageDim imageset="WidgetsImageset" image="SysAreaRight" dimension="Width">
                                     <DimOperator op="Add">
-                                        <ImageDim imageset="TaharezLook" image="SysAreaMiddle" dimension="Width">
+                                        <ImageDim imageset="WidgetsImageset" image="SysAreaMiddle" dimension="Width">
                                             <DimOperator op="Add">
-                                                <ImageDim imageset="TaharezLook" image="NewTitlebarRight" dimension="Width" />
+                                                <ImageDim imageset="WidgetsImageset" image="NewTitlebarRight" dimension="Width" />
                                             </DimOperator>
                                         </ImageDim>
                                     </DimOperator>
@@ -577,7 +577,7 @@
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="NewTitlebarMiddle" />
+                <Image imageset="WidgetsImageset" image="NewTitlebarMiddle" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -585,7 +585,7 @@
         <ImagerySection name="caption">
             <TextComponent>
                 <Area>
-                    <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="NewTitlebarLeft" dimension="Width" /></Dim>
+                    <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="NewTitlebarLeft" dimension="Width" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="Width" ><UnifiedDim scale="1" offset="-75" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
@@ -632,19 +632,19 @@
         <Property name="NESWSizingCursorImage" value="set:TaharezLook image:MouseNeSwCursor" />
         <NamedArea name="ClientWithTitleWithFrame">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="WindowTopLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="WindowTopLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><WidgetDim widget="__auto_titlebar__" dimension="BottomEdge" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="WindowTopRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="WindowTopRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="WindowBottomEdge" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="WindowBottomEdge" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -660,19 +660,19 @@
         </NamedArea>
         <NamedArea name="ClientNoTitleWithFrame">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="WindowTopLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="WindowTopEdge" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="WindowTopLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="WindowTopEdge" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="WindowTopRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="WindowTopRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="WindowBottomEdge" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="WindowBottomEdge" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -700,9 +700,9 @@
                 <Dim type="LeftEdge" >
                     <UnifiedDim scale="1" type="LeftEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="SysAreaRight" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="SysAreaRight" dimension="Width">
                                 <DimOperator op="Add">
-                                    <ImageDim imageset="TaharezLook" image="SysAreaMiddle" dimension="Width" />
+                                    <ImageDim imageset="WidgetsImageset" image="SysAreaMiddle" dimension="Width" />
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -713,14 +713,14 @@
                         <DimOperator op="Multiply">
                             <WidgetDim widget="__auto_titlebar__" dimension="Height">
                                 <DimOperator op="Subtract">
-                                    <ImageDim imageset="TaharezLook" image="NewCloseButtonNormal" dimension="Width" />
+                                    <ImageDim imageset="WidgetsImageset" image="NewCloseButtonNormal" dimension="Width" />
                                 </DimOperator>
                             </WidgetDim>
                         </DimOperator>
                     </AbsoluteDim>
                 </Dim>
-                <Dim type="Width" ><ImageDim imageset="TaharezLook" image="NewCloseButtonNormal" dimension="Width" /></Dim>
-                <Dim type="Height" ><ImageDim imageset="TaharezLook" image="NewCloseButtonNormal" dimension="Width" /></Dim>
+                <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="NewCloseButtonNormal" dimension="Width" /></Dim>
+                <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="NewCloseButtonNormal" dimension="Width" /></Dim>
             </Area>
             <Property name="AlwaysOnTop" value="True" />
             <Property name="NormalImage" value="set:TaharezLook image:NewCloseButtonNormal" />
@@ -735,12 +735,12 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1" type="BottomEdge" /></Dim>
                 </Area>
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="WindowBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="WindowBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="WindowLeftEdge" />
-                <Image type="RightEdge" imageset="TaharezLook" image="WindowRightEdge" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="WindowBottomEdge" />
-                <Image type="Background" imageset="TaharezLook" image="ClientBrush" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="WindowBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="WindowBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="WindowLeftEdge" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="WindowRightEdge" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="WindowBottomEdge" />
+                <Image type="Background" imageset="WidgetsImageset" image="ClientBrush" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Tiled" />
             </FrameComponent>
@@ -753,14 +753,14 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="WindowTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="WindowTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="WindowBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="WindowBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="WindowLeftEdge" />
-                <Image type="RightEdge" imageset="TaharezLook" image="WindowRightEdge" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="WindowBottomEdge" />
-                <Image type="Background" imageset="TaharezLook" image="ClientBrush" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="WindowTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="WindowTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="WindowBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="WindowBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="WindowLeftEdge" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="WindowRightEdge" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="WindowBottomEdge" />
+                <Image type="Background" imageset="WidgetsImageset" image="ClientBrush" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Tiled" />
             </FrameComponent>
@@ -773,7 +773,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="ClientBrush" />
+                <Image imageset="WidgetsImageset" image="ClientBrush" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -786,7 +786,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="ClientBrush" />
+                <Image imageset="WidgetsImageset" image="ClientBrush" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -869,12 +869,12 @@
     <WidgetLook name="TaharezLook/ProgressBar">
         <NamedArea name="ProgressArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ProgressBarLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ProgressBarLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ProgressBarRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ProgressBarRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -889,9 +889,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="ProgressBarLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ProgressBarRight" />
-                <Image type="Background" imageset="TaharezLook" image="ProgressBarMiddle" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ProgressBarLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ProgressBarRight" />
+                <Image type="Background" imageset="WidgetsImageset" image="ProgressBarMiddle" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="progress_lights" >
@@ -902,7 +902,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="ProgressBarLitSegment" />
+                <Image imageset="WidgetsImageset" image="ProgressBarLitSegment" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -941,12 +941,12 @@
     <WidgetLook name="TaharezLook/AltProgressBar">
         <NamedArea name="ProgressArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="AltProgressLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="AltProgressLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="2" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="AltProgressRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="AltProgressRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -961,9 +961,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="AltProgressLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="AltProgressRight" />
-                <Image type="Background" imageset="TaharezLook" image="AltProgressMiddle" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="AltProgressLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="AltProgressRight" />
+                <Image type="Background" imageset="WidgetsImageset" image="AltProgressMiddle" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="progress_lights" >
@@ -974,7 +974,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight1" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight1" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -985,7 +985,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight2" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight2" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -996,7 +996,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight3" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight3" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1007,7 +1007,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight4" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight4" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1018,7 +1018,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight5" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight5" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1029,7 +1029,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight6" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight6" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1040,7 +1040,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight7" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight7" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1051,7 +1051,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight8" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight8" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1062,7 +1062,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight9" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight9" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1073,7 +1073,7 @@
                     <Dim type="Width" ><UnifiedDim scale="0.1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="AltProgressLight10" />
+                <Image imageset="WidgetsImageset" image="AltProgressLight10" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Tiled" />
             </ImageryComponent>
@@ -1127,7 +1127,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="TextSelectionBrush" />
+                <Image imageset="WidgetsImageset" image="TextSelectionBrush" />
                 <Colours topLeft="FF00FF00" topRight="FF00FF00" bottomLeft="FF00FF00" bottomRight="FF00FF00" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Stretched" />
@@ -1139,7 +1139,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="0.3" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="TextSelectionBrush" />
+                <Image imageset="WidgetsImageset" image="TextSelectionBrush" />
                 <Colours topLeft="FFFFFF00" topRight="FFFFFF00" bottomLeft="FFFFFF00" bottomRight="FFFFFF00" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Stretched" />
@@ -1151,7 +1151,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="0.2" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="TextSelectionBrush" />
+                <Image imageset="WidgetsImageset" image="TextSelectionBrush" />
                 <Colours topLeft="FFFF0000" topRight="FFFF0000" bottomLeft="FFFF0000" bottomRight="FFFF0000" />
                 <VertFormat type="Tiled" />
                 <HorzFormat type="Stretched" />
@@ -1190,7 +1190,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="VertSliderThumbNormal" />
+                <Image imageset="WidgetsImageset" image="VertSliderThumbNormal" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -1203,7 +1203,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="VertSliderThumbHover" />
+                <Image imageset="WidgetsImageset" image="VertSliderThumbHover" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -1254,7 +1254,7 @@
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
-                <Dim type="Height" ><ImageDim imageset="TaharezLook" image="VertSliderThumbNormal" dimension="Height" /></Dim>
+                <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="VertSliderThumbNormal" dimension="Height" /></Dim>
             </Area>
         </Child>
         <ImagerySection name="main">
@@ -1265,7 +1265,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" offset="-6" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="VertSliderBody" />
+                <Image imageset="WidgetsImageset" image="VertSliderBody" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -1299,9 +1299,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="MiniHorzScrollThumbLeftNormal" />
-                <Image type="RightEdge" imageset="TaharezLook" image="MiniHorzScrollThumbRightNormal" />
-                <Image type="Background" imageset="TaharezLook" image="MiniHorzScrollThumbMiddleNormal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="MiniHorzScrollThumbLeftNormal" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="MiniHorzScrollThumbRightNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="MiniHorzScrollThumbMiddleNormal" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="hover">
@@ -1312,9 +1312,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="MiniHorzScrollThumbLeftHover" />
-                <Image type="RightEdge" imageset="TaharezLook" image="MiniHorzScrollThumbRightHover" />
-                <Image type="Background" imageset="TaharezLook" image="MiniHorzScrollThumbMiddleHover" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="MiniHorzScrollThumbLeftHover" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="MiniHorzScrollThumbRightHover" />
+                <Image type="Background" imageset="WidgetsImageset" image="MiniHorzScrollThumbMiddleHover" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Normal">
@@ -1349,12 +1349,12 @@
     <WidgetLook name="TaharezLook/HorizontalScrollbar">
         <NamedArea name="ThumbTrackArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1.0" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MiniHorzScrollRightNormal" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="MiniHorzScrollRightNormal" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1365,7 +1365,7 @@
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                <Dim type="Width" ><ImageDim imageset="TaharezLook" image="MiniHorzScrollRightNormal" dimension="Width" /></Dim>
+                <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="MiniHorzScrollRightNormal" dimension="Width" /></Dim>
                 <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
@@ -1377,7 +1377,7 @@
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                <Dim type="Width" ><ImageDim imageset="TaharezLook" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
+                <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
                 <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
             </Area>
             <Property name="NormalImage" value="set:TaharezLook image:MiniHorzScrollLeftNormal" />
@@ -1396,18 +1396,18 @@
         <ImagerySection name="main">
             <ImageryComponent>
                 <Area>
-                    <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
+                    <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1.0" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="MiniHorzScrollRightNormal" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="MiniHorzScrollRightNormal" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="MiniHorzScrollBarSegment" />
+                <Image imageset="WidgetsImageset" image="MiniHorzScrollBarSegment" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -1441,9 +1441,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image type="TopEdge" imageset="TaharezLook" image="MiniVertScrollThumbTopNormal" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="MiniVertScrollThumbBottomNormal" />
-                <Image type="Background" imageset="TaharezLook" image="MiniVertScrollThumbMiddleNormal" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="MiniVertScrollThumbTopNormal" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="MiniVertScrollThumbBottomNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="MiniVertScrollThumbMiddleNormal" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="hover">
@@ -1454,9 +1454,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image type="TopEdge" imageset="TaharezLook" image="MiniVertScrollThumbTopHover" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="MiniVertScrollThumbBottomHover" />
-                <Image type="Background" imageset="TaharezLook" image="MiniVertScrollThumbMiddleHover" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="MiniVertScrollThumbTopHover" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="MiniVertScrollThumbBottomHover" />
+                <Image type="Background" imageset="WidgetsImageset" image="MiniVertScrollThumbMiddleHover" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Normal">
@@ -1493,12 +1493,12 @@
         <NamedArea name="ThumbTrackArea">
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
                 <Dim type="RightEdge" ><UnifiedDim scale="1.0" type="RightEdge" /></Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1.0" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MiniVertScrollDownNormal" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="MiniVertScrollDownNormal" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1509,7 +1509,7 @@
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
-                <Dim type="Height" ><ImageDim imageset="TaharezLook" image="MiniVertScrollDownNormal" dimension="Height" /></Dim>
+                <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="MiniVertScrollDownNormal" dimension="Height" /></Dim>
             </Area>
             <VertAlignment type="BottomAligned" />
             <Property name="NormalImage" value="set:TaharezLook image:MiniVertScrollDownNormal" />
@@ -1521,7 +1521,7 @@
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
-                <Dim type="Height" ><ImageDim imageset="TaharezLook" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
+                <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
             </Area>
             <Property name="NormalImage" value="set:TaharezLook image:MiniVertScrollUpNormal" />
             <Property name="HoverImage" value="set:TaharezLook image:MiniVertScrollUpHover" />
@@ -1540,17 +1540,17 @@
             <ImageryComponent>
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
+                    <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
                     <Dim type="RightEdge" ><UnifiedDim scale="1.0" type="RightEdge" /></Dim>
                     <Dim type="BottomEdge" >
                         <UnifiedDim scale="1.0" type="BottomEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="MiniVertScrollDownNormal" dimension="Height" />
+                                <ImageDim imageset="WidgetsImageset" image="MiniVertScrollDownNormal" dimension="Height" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="MiniVertScrollBarSegment" />
+                <Image imageset="WidgetsImageset" image="MiniVertScrollBarSegment" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="CentreAligned" />
             </ImageryComponent>
@@ -1577,19 +1577,19 @@
     <WidgetLook name="TaharezLook/Listbox">
         <NamedArea name="ItemRenderingArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1597,12 +1597,12 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaHScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1617,8 +1617,8 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -1629,7 +1629,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1637,8 +1637,8 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaHVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -1681,15 +1681,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="ListboxTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="ListboxTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="ListboxBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="ListboxBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="ListboxLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ListboxRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="ListboxTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="ListboxBottom" />
-                <Image type="Background" imageset="TaharezLook" image="ListboxBackdrop" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="ListboxTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="ListboxTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="ListboxBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="ListboxBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ListboxLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ListboxRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="ListboxTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="ListboxBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="ListboxBackdrop" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -1714,19 +1714,19 @@
     <WidgetLook name="TaharezLook/ComboDropList">
         <NamedArea name="ItemRenderingArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ComboboxListRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ComboboxListRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ComboboxListBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="ComboboxListBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1734,12 +1734,12 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaHScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ComboboxListRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ComboboxListRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1754,8 +1754,8 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -1766,7 +1766,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ComboboxListBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="ComboboxListBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -1774,8 +1774,8 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaHVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ComboboxListTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ComboboxListTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -1818,15 +1818,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="ComboboxListTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="ComboboxListTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="ComboboxListBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="ComboboxListBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="ComboboxListLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ComboboxListRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="ComboboxListTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="ComboboxListBottom" />
-                <Image type="Background" imageset="TaharezLook" image="ComboboxListBackdrop" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="ComboboxListTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="ComboboxListTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="ComboboxListBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="ComboboxListBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ComboboxListLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ComboboxListRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="ComboboxListTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="ComboboxListBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="ComboboxListBackdrop" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -1870,8 +1870,8 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="ComboboxEditLeft" />
-                <Image type="Background" imageset="TaharezLook" image="ComboboxEditMiddle" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ComboboxEditLeft" />
+                <Image type="Background" imageset="WidgetsImageset" image="ComboboxEditMiddle" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="selection">
@@ -1882,7 +1882,7 @@
                     <Dim type="RightEdge" ><UnifiedDim scale="1.0" type="RightEdge" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="TextSelectionBrush" />
+                <Image imageset="WidgetsImageset" image="TextSelectionBrush" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -1892,10 +1892,10 @@
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="Width" ><ImageDim imageset="TaharezLook" image="EditBoxCarat" dimension="Width" /></Dim>
+                    <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="EditBoxCarat" dimension="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="EditBoxCarat" />
+                <Image imageset="WidgetsImageset" image="EditBoxCarat" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -2004,7 +2004,7 @@
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2015,7 +2015,7 @@
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                <Dim type="Width" ><ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Width" /></Dim>
+                <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Width" /></Dim>
                 <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
@@ -2027,7 +2027,7 @@
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                 <Dim type="TopEdge" ><UnifiedDim scale="0.5" type="TopEdge" /></Dim>
-                <Dim type="Width" ><ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Width" /></Dim>
+                <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Width" /></Dim>
                 <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
@@ -2054,38 +2054,38 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="StaticTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="StaticTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="StaticBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="StaticBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="StaticLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="StaticRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="StaticTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="StaticBottom" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="StaticTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="StaticTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="StaticBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="StaticBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="StaticLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="StaticRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="StaticTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="StaticBottom" />
                 <ColourRectProperty name="FrameColours" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="background">
             <ImageryComponent>
                 <Area>
-                    <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="StaticLeft" dimension="Width" /></Dim>
-                    <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="StaticTop" dimension="Height" /></Dim>
+                    <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="StaticLeft" dimension="Width" /></Dim>
+                    <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="StaticTop" dimension="Height" /></Dim>
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="StaticRight" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="StaticRight" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="BottomEdge" >
                         <UnifiedDim scale="1" type="BottomEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="StaticBottom" dimension="Height" />
+                                <ImageDim imageset="WidgetsImageset" image="StaticBottom" dimension="Height" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="StaticBackdrop" />
+                <Image imageset="WidgetsImageset" image="StaticBackdrop" />
                 <!--<ColourRectProperty name="BackgroundColours" />-->
                 <Colours topLeft="FFFFFFFF" topRight="FFFFFFFF" bottomLeft="FFFFFFFF" bottomRight="FFFFFFFF" />
                 <VertFormat type="Stretched" />
@@ -2100,7 +2100,7 @@
                     <Dim type="RightEdge"><UnifiedDim scale="1" type="RightEdge" /></Dim>
                     <Dim type="BottomEdge"><UnifiedDim scale="1" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="StaticBackdrop" />
+                <Image imageset="WidgetsImageset" image="StaticBackdrop" />
                 <!--<ColourRectProperty name="BackgroundColours" />-->
                 <Colours topLeft="FFFFFFFF" topRight="FFFFFFFF" bottomLeft="FFFFFFFF" bottomRight="FFFFFFFF" />
                 <VertFormat type="Stretched" />
@@ -2125,19 +2125,19 @@
         <ImagerySection name="image_withframe">
             <ImageryComponent>
                 <Area>
-					<Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="StaticLeft" dimension="Width" /></Dim>
-					<Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="StaticTop" dimension="Height" /></Dim>
+					<Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="StaticLeft" dimension="Width" /></Dim>
+					<Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="StaticTop" dimension="Height" /></Dim>
 					<Dim type="RightEdge" >
 						<UnifiedDim scale="1" type="RightEdge">
 							<DimOperator op="Subtract">
-								<ImageDim imageset="TaharezLook" image="StaticRight" dimension="Width" />
+								<ImageDim imageset="WidgetsImageset" image="StaticRight" dimension="Width" />
 							</DimOperator>
 						</UnifiedDim>
 					</Dim>
 					<Dim type="BottomEdge" >
 						<UnifiedDim scale="1" type="BottomEdge">
 							<DimOperator op="Subtract">
-								<ImageDim imageset="TaharezLook" image="StaticBottom" dimension="Height" />
+								<ImageDim imageset="WidgetsImageset" image="StaticBottom" dimension="Height" />
 							</DimOperator>
 						</UnifiedDim>
 					</Dim>
@@ -2218,19 +2218,19 @@
         <Property name="BackgroundEnabled" value="True" />
         <NamedArea name="WithFrameTextRenderArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="StaticLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="StaticTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="StaticTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="StaticRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="StaticRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="StaticBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="StaticBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2238,12 +2238,12 @@
         </NamedArea>
         <NamedArea name="WithFrameTextRenderAreaHScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="StaticLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="StaticTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="StaticTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="StaticRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="StaticRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2258,8 +2258,8 @@
         </NamedArea>
         <NamedArea name="WithFrameTextRenderAreaVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="StaticLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="StaticTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="StaticTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -2270,7 +2270,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="StaticBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="StaticBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2278,8 +2278,8 @@
         </NamedArea>
         <NamedArea name="WithFrameTextRenderAreaHVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="StaticLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="StaticTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="StaticTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -2421,13 +2421,13 @@
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="HeaderBarSplitterNormal" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="HeaderBarSplitterNormal" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="HeaderBarBackdropNormal" />
+                <Image imageset="WidgetsImageset" image="HeaderBarBackdropNormal" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -2440,13 +2440,13 @@
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="HeaderBarSplitterNormal" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="HeaderBarSplitterNormal" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="HeaderBarBackdropHover" />
+                <Image imageset="WidgetsImageset" image="HeaderBarBackdropHover" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -2459,7 +2459,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="HeaderBarSplitterNormal" />
+                <Image imageset="WidgetsImageset" image="HeaderBarSplitterNormal" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
@@ -2472,7 +2472,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="HeaderBarSplitterHover" />
+                <Image imageset="WidgetsImageset" image="HeaderBarSplitterHover" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
@@ -2482,10 +2482,10 @@
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="3" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="3" /></Dim>
-                    <Dim type="Width" ><ImageDim imageset="TaharezLook" image="HeaderBarSortUp" dimension="Width" /></Dim>
-                    <Dim type="Height" ><ImageDim imageset="TaharezLook" image="HeaderBarSortUp" dimension="Height" /></Dim>
+                    <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="HeaderBarSortUp" dimension="Width" /></Dim>
+                    <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="HeaderBarSortUp" dimension="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="HeaderBarSortUp" />
+                <Image imageset="WidgetsImageset" image="HeaderBarSortUp" />
             </ImageryComponent>
         </ImagerySection>
         <ImagerySection name="descend_icon">
@@ -2493,17 +2493,17 @@
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="3" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="3" /></Dim>
-                    <Dim type="Width" ><ImageDim imageset="TaharezLook" image="HeaderBarSortDown" dimension="Width" /></Dim>
-                    <Dim type="Height" ><ImageDim imageset="TaharezLook" image="HeaderBarSortDown" dimension="Height" /></Dim>
+                    <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="HeaderBarSortDown" dimension="Width" /></Dim>
+                    <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="HeaderBarSortDown" dimension="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="HeaderBarSortDown" />
+                <Image imageset="WidgetsImageset" image="HeaderBarSortDown" />
             </ImageryComponent>
         </ImagerySection>
         <ImagerySection name="label">
             <TextComponent>
                 <Area>
                     <Dim type="LeftEdge" >
-                        <ImageDim imageset="TaharezLook" image="HeaderBarSortUp" dimension="Width">
+                        <ImageDim imageset="WidgetsImageset" image="HeaderBarSortUp" dimension="Width">
                             <DimOperator op="Add">
                                 <AbsoluteDim value="5" />
                             </DimOperator>
@@ -2608,19 +2608,19 @@
     <WidgetLook name="TaharezLook/MultiColumnList">
         <NamedArea name="ItemRenderingArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiListLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiListLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><WidgetDim widget="__auto_listheader__" dimension="BottomEdge" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiListRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiListRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiListBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiListBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2628,12 +2628,12 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaHScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiListLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiListLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><WidgetDim widget="__auto_listheader__" dimension="BottomEdge" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiListRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiListRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2648,7 +2648,7 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiListLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiListLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><WidgetDim widget="__auto_listheader__" dimension="BottomEdge" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
@@ -2660,7 +2660,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiListBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiListBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2668,7 +2668,7 @@
         </NamedArea>
         <NamedArea name="ItemRenderingAreaHVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiListLeft" dimension="Width" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiListLeft" dimension="Width" /></Dim>
                 <Dim type="TopEdge" ><WidgetDim widget="__auto_listheader__" dimension="BottomEdge" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
@@ -2726,15 +2726,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="MultiListTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="MultiListTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="MultiListBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="MultiListBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="MultiListLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="MultiListRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="MultiListTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="MultiListBottom" />
-                <Image type="Background" imageset="TaharezLook" image="MultiListBackdrop" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="MultiListTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="MultiListTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="MultiListBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="MultiListBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="MultiListLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="MultiListRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="MultiListTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="MultiListBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="MultiListBackdrop" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -2765,19 +2765,19 @@
         <Property name="SelectionBrushImage" value="set:TaharezLook image:MultiLineEditboxSelectionBrush" />
         <NamedArea name="TextArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiLineEditboxRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiLineEditboxRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiLineEditboxBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiLineEditboxBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2785,12 +2785,12 @@
         </NamedArea>
         <NamedArea name="TextAreaHScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiLineEditboxRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiLineEditboxRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2805,8 +2805,8 @@
         </NamedArea>
         <NamedArea name="TextAreaVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -2817,7 +2817,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="MultiLineEditboxBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="MultiLineEditboxBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2825,8 +2825,8 @@
         </NamedArea>
         <NamedArea name="TextAreaHVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MultiLineEditboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
@@ -2869,15 +2869,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="MultiLineEditboxTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="MultiLineEditboxTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="MultiLineEditboxBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="MultiLineEditboxBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="MultiLineEditboxLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="MultiLineEditboxRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="MultiLineEditboxTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="MultiLineEditboxBottom" />
-                <Image type="Background" imageset="TaharezLook" image="MultiLineEditboxBackdrop" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="MultiLineEditboxTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="MultiLineEditboxTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="MultiLineEditboxBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="MultiLineEditboxBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="MultiLineEditboxLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="MultiLineEditboxRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="MultiLineEditboxTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="MultiLineEditboxBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="MultiLineEditboxBackdrop" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="Carat">
@@ -2885,10 +2885,10 @@
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="Width" ><ImageDim imageset="TaharezLook" image="EditBoxCarat" dimension="Width" /></Dim>
+                    <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="EditBoxCarat" dimension="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="EditBoxCarat" />
+                <Image imageset="WidgetsImageset" image="EditBoxCarat" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -2920,19 +2920,19 @@
     <WidgetLook name="TaharezLook/Tooltip">
         <NamedArea name="TextArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="TooltipLeftEdge" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="TooltipTopEdge" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="TooltipLeftEdge" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="TooltipTopEdge" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="TooltipRightEdge" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="TooltipRightEdge" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="TooltipBottomEdge" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="TooltipBottomEdge" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -2946,33 +2946,33 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TooltipTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TooltipTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TooltipBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TooltipBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="TooltipLeftEdge" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TooltipRightEdge" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TooltipTopEdge" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TooltipBottomEdge" />
-                <Image type="Background" imageset="TaharezLook" image="TooltipMiddle" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TooltipTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TooltipTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TooltipBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TooltipBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TooltipLeftEdge" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TooltipRightEdge" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TooltipTopEdge" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TooltipBottomEdge" />
+                <Image type="Background" imageset="WidgetsImageset" image="TooltipMiddle" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="label">
             <TextComponent>
                 <Area>
-                    <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="TooltipLeftEdge" dimension="Width" /></Dim>
-                    <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="TooltipTopEdge" dimension="Height" /></Dim>
+                    <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="TooltipLeftEdge" dimension="Width" /></Dim>
+                    <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="TooltipTopEdge" dimension="Height" /></Dim>
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="TooltipRightEdge" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="TooltipRightEdge" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="BottomEdge" >
                         <UnifiedDim scale="1" type="BottomEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="TooltipBottomEdge" dimension="Height" />
+                                <ImageDim imageset="WidgetsImageset" image="TooltipBottomEdge" dimension="Height" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
@@ -3111,15 +3111,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TabButtonUpperLeftNormal" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TabButtonUpperRightNormal" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TabButtonLowerLeftNormal" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TabButtonLowerRight2Normal" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabButtonLeftNormal" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabButtonRightNormal" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TabButtonUpperNormal" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabButtonLowerNormal" />
-                <Image type="Background" imageset="TaharezLook" image="TabButtonMiddleNormal" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TabButtonUpperLeftNormal" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TabButtonUpperRightNormal" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TabButtonLowerLeftNormal" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TabButtonLowerRight2Normal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabButtonLeftNormal" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabButtonRightNormal" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabButtonUpperNormal" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabButtonLowerNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabButtonMiddleNormal" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="bot_normal">
@@ -3130,15 +3130,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TabButtonUpperLeft2Normal" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TabButtonUpperRightNormal" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TabButtonLowerLeftNormal" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TabButtonLowerRightNormal" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabButtonLeftNormal" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabButtonRightNormal" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TabButtonUpperNormal" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabButtonLowerNormal" />
-                <Image type="Background" imageset="TaharezLook" image="TabButtonMiddleNormal" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TabButtonUpperLeft2Normal" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TabButtonUpperRightNormal" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TabButtonLowerLeftNormal" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TabButtonLowerRightNormal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabButtonLeftNormal" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabButtonRightNormal" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabButtonUpperNormal" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabButtonLowerNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabButtonMiddleNormal" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="top_hover">
@@ -3149,15 +3149,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TabButtonUpperLeftNormal" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TabButtonUpperRightNormal" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TabButtonLowerLeftNormal" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TabButtonLowerRight2Normal" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabButtonLeftNormal" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabButtonRightNormal" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TabButtonUpperNormal" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabButtonLowerNormal" />
-                <Image type="Background" imageset="TaharezLook" image="TabButtonMiddleNormal" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TabButtonUpperLeftNormal" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TabButtonUpperRightNormal" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TabButtonLowerLeftNormal" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TabButtonLowerRight2Normal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabButtonLeftNormal" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabButtonRightNormal" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabButtonUpperNormal" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabButtonLowerNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabButtonMiddleNormal" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="bot_hover">
@@ -3168,15 +3168,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TabButtonUpperLeft2Normal" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TabButtonUpperRightNormal" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TabButtonLowerLeftNormal" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TabButtonLowerRightNormal" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabButtonLeftNormal" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabButtonRightNormal" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TabButtonUpperNormal" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabButtonLowerNormal" />
-                <Image type="Background" imageset="TaharezLook" image="TabButtonMiddleNormal" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TabButtonUpperLeft2Normal" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TabButtonUpperRightNormal" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TabButtonLowerLeftNormal" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TabButtonLowerRightNormal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabButtonLeftNormal" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabButtonRightNormal" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabButtonUpperNormal" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabButtonLowerNormal" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabButtonMiddleNormal" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="top_selected">
@@ -3187,12 +3187,12 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TabButtonUpperLeftSelected" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TabButtonUpperSelected" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TabButtonUpperRightSelected" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabButtonLeftSelected" />
-                <Image type="Background" imageset="TaharezLook" image="TabButtonMiddleSelected" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabButtonRightSelected" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TabButtonUpperLeftSelected" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabButtonUpperSelected" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TabButtonUpperRightSelected" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabButtonLeftSelected" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabButtonMiddleSelected" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabButtonRightSelected" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="bot_selected">
@@ -3203,12 +3203,12 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabButtonLeftSelected" />
-                <Image type="Background" imageset="TaharezLook" image="TabButtonMiddleSelected" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabButtonRightSelected" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TabButtonLowerLeftNormal" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabButtonLowerNormal" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TabButtonLowerRightNormal" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabButtonLeftSelected" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabButtonMiddleSelected" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabButtonRightSelected" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TabButtonLowerLeftNormal" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabButtonLowerNormal" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TabButtonLowerRightNormal" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="TopNormal">
@@ -3312,22 +3312,22 @@
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="BottomEdge" >
-                        <ImageDim imageset="TaharezLook" image="TabContentPaneUpperLeft" dimension="Height">
+                        <ImageDim imageset="WidgetsImageset" image="TabContentPaneUpperLeft" dimension="Height">
                             <DimOperator op="Multiply">
                                 <PropertyDim name="EnableTop" />
                             </DimOperator>
                         </ImageDim>
                     </Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="TabContentPaneUpperLeft" />
-                <Image type="TopEdge" imageset="TaharezLook" image="TabContentPaneUpper" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="TabContentPaneUpperRight" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="TabContentPaneUpperLeft" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabContentPaneUpper" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="TabContentPaneUpperRight" />
             </FrameComponent>
             <FrameComponent>
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="TopEdge" >
-                        <ImageDim imageset="TaharezLook" image="TabContentPaneUpperLeft" dimension="Height">
+                        <ImageDim imageset="WidgetsImageset" image="TabContentPaneUpperLeft" dimension="Height">
                             <DimOperator op="Multiply">
                                 <PropertyDim name="EnableTop" />
                             </DimOperator>
@@ -3337,7 +3337,7 @@
                     <Dim type="BottomEdge" >
                         <UnifiedDim scale="1" type="Height">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="TabContentPaneLowerLeft" dimension="Height">
+                                <ImageDim imageset="WidgetsImageset" image="TabContentPaneLowerLeft" dimension="Height">
                                     <DimOperator op="Multiply">
                                         <PropertyDim name="EnableBottom" />
                                     </DimOperator>
@@ -3346,9 +3346,9 @@
                         </UnifiedDim>
                     </Dim>
                 </Area>
-                <Image type="LeftEdge" imageset="TaharezLook" image="TabContentPaneLeft" />
-                <Image type="Background" imageset="TaharezLook" image="TabContentPaneMiddle" />
-                <Image type="RightEdge" imageset="TaharezLook" image="TabContentPaneRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="TabContentPaneLeft" />
+                <Image type="Background" imageset="WidgetsImageset" image="TabContentPaneMiddle" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="TabContentPaneRight" />
             </FrameComponent>
             <FrameComponent>
                 <Area>
@@ -3356,7 +3356,7 @@
                     <Dim type="TopEdge" >
                         <UnifiedDim scale="1" type="Height">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="TabContentPaneLowerLeft" dimension="Height">
+                                <ImageDim imageset="WidgetsImageset" image="TabContentPaneLowerLeft" dimension="Height">
                                     <DimOperator op="Multiply">
                                         <PropertyDim name="EnableBottom" />
                                     </DimOperator>
@@ -3367,9 +3367,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="TabContentPaneLowerLeft" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabContentPaneLower" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="TabContentPaneLowerRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="TabContentPaneLowerLeft" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabContentPaneLower" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="TabContentPaneLowerRight" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -3401,20 +3401,20 @@
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="BottomEdge" >
-                        <ImageDim imageset="TaharezLook" image="TabHorizontalFiller" dimension="Height">
+                        <ImageDim imageset="WidgetsImageset" image="TabHorizontalFiller" dimension="Height">
                             <DimOperator op="Multiply">
                                 <PropertyDim name="EnableTop" />
                             </DimOperator>
                         </ImageDim>
                     </Dim>
                 </Area>
-                <Image type="TopEdge" imageset="TaharezLook" image="TabHorizontalFiller" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="TabHorizontalFiller" />
             </FrameComponent>
             <FrameComponent>
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="TopEdge" >
-                        <ImageDim imageset="TaharezLook" image="TabHorizontalFiller" dimension="Height">
+                        <ImageDim imageset="WidgetsImageset" image="TabHorizontalFiller" dimension="Height">
                             <DimOperator op="Multiply">
                                 <PropertyDim name="EnableTop" />
                             </DimOperator>
@@ -3424,7 +3424,7 @@
                     <Dim type="BottomEdge" >
                         <UnifiedDim scale="1" type="Height">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="TabHorizontalFiller" dimension="Height">
+                                <ImageDim imageset="WidgetsImageset" image="TabHorizontalFiller" dimension="Height">
                                     <DimOperator op="Multiply">
                                         <PropertyDim name="EnableBottom" />
                                     </DimOperator>
@@ -3440,7 +3440,7 @@
                     <Dim type="TopEdge" >
                         <UnifiedDim scale="1" type="Height">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="TabHorizontalFiller" dimension="Height">
+                                <ImageDim imageset="WidgetsImageset" image="TabHorizontalFiller" dimension="Height">
                                     <DimOperator op="Multiply">
                                         <PropertyDim name="EnableBottom" />
                                     </DimOperator>
@@ -3451,7 +3451,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="BottomEdge" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="BottomEdge" imageset="TaharezLook" image="TabHorizontalFiller" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="TabHorizontalFiller" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -3523,9 +3523,9 @@
                 <Dim type="Width">
                     <WidgetDim widget="__auto_TabPane__Buttons" dimension="Height">
                         <DimOperator op="Multiply">
-                            <ImageDim imageset="TaharezLook" image="TabButtonScrollLeftNormal" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="TabButtonScrollLeftNormal" dimension="Width">
                                 <DimOperator op="Divide">
-                                    <ImageDim imageset="TaharezLook" image="TabButtonScrollLeftNormal" dimension="Height" />
+                                    <ImageDim imageset="WidgetsImageset" image="TabButtonScrollLeftNormal" dimension="Height" />
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -3545,9 +3545,9 @@
                 <Dim type="Width">
                     <WidgetDim widget="__auto_TabPane__Buttons" dimension="Height">
                         <DimOperator op="Multiply">
-                            <ImageDim imageset="TaharezLook" image="TabButtonScrollRightNormal" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="TabButtonScrollRightNormal" dimension="Width">
                                 <DimOperator op="Divide">
-                                    <ImageDim imageset="TaharezLook" image="TabButtonScrollRightNormal" dimension="Height" />
+                                    <ImageDim imageset="WidgetsImageset" image="TabButtonScrollRightNormal" dimension="Height" />
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -3595,9 +3595,9 @@
                 <Dim type="Width">
                     <FontDim type="HorzExtent">
                         <DimOperator op="Add">
-                            <ImageDim imageset="TaharezLook" image="MenuLeft" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="MenuLeft" dimension="Width">
                                 <DimOperator op="Add">
-                                    <ImageDim imageset="TaharezLook" image="MenuRight" dimension="Width" />
+                                    <ImageDim imageset="WidgetsImageset" image="MenuRight" dimension="Width" />
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -3606,9 +3606,9 @@
                 <Dim type="Height">
                     <FontDim type="LineSpacing">
                         <DimOperator op="Add">
-                            <ImageDim imageset="TaharezLook" image="MenuTop" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="MenuTop" dimension="Height">
                                 <DimOperator op="Add">
-                                    <ImageDim imageset="TaharezLook" image="MenuBottom" dimension="Height" />
+                                    <ImageDim imageset="WidgetsImageset" image="MenuBottom" dimension="Height" />
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -3623,11 +3623,11 @@
                 <Dim type="Width">
                     <FontDim type="HorzExtent">
                         <DimOperator op="Add">
-                            <ImageDim imageset="TaharezLook" image="MenuLeft" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="MenuLeft" dimension="Width">
                                 <DimOperator op="Add">
-                                    <ImageDim imageset="TaharezLook" image="MenuRight" dimension="Width">
+                                    <ImageDim imageset="WidgetsImageset" image="MenuRight" dimension="Width">
                                         <DimOperator op="Add">
-                                            <ImageDim imageset="TaharezLook" image="PopupMenuArrowLeft" dimension="Width">
+                                            <ImageDim imageset="WidgetsImageset" image="PopupMenuArrowLeft" dimension="Width">
                                                 <DimOperator op="Multiply">
                                                     <AbsoluteDim value="3" />
                                                 </DimOperator>
@@ -3642,9 +3642,9 @@
                 <Dim type="Height">
                     <FontDim type="LineSpacing">
                         <DimOperator op="Add">
-                            <ImageDim imageset="TaharezLook" image="MenuTop" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="MenuTop" dimension="Height">
                                 <DimOperator op="Add">
-                                    <ImageDim imageset="TaharezLook" image="MenuBottom" dimension="Height" />
+                                    <ImageDim imageset="WidgetsImageset" image="MenuBottom" dimension="Height" />
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -3655,19 +3655,19 @@
         <ImagerySection name="label">
             <TextComponent>
                 <Area>
-                    <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="MenuLeft" dimension="Width" /></Dim>
-                    <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="MenuTop" dimension="Height" /></Dim>
+                    <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MenuLeft" dimension="Width" /></Dim>
+                    <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="MenuTop" dimension="Height" /></Dim>
                     <Dim type="RightEdge" >
                         <UnifiedDim scale="1" type="RightEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="MenuRight" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="MenuRight" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="BottomEdge" >
                         <UnifiedDim scale="1" type="BottomEdge">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="MenuBottom" dimension="Height" />
+                                <ImageDim imageset="WidgetsImageset" image="MenuBottom" dimension="Height" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
@@ -3684,15 +3684,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="MenuTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="MenuTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="MenuBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="MenuBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="MenuLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="MenuRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="MenuTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="MenuBottom" />
-                <Image type="Background" imageset="TaharezLook" image="MenuMiddle" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="MenuTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="MenuTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="MenuBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="MenuBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="MenuLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="MenuRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="MenuTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="MenuBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="MenuMiddle" />
             </FrameComponent>
         </ImagerySection>
         <ImagerySection name="popup_arrow_right">
@@ -3703,13 +3703,13 @@
                     <Dim type="Width" >
                         <UnifiedDim scale="1" type="Width">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="PopupMenuArrowRight" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="PopupMenuArrowRight" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="PopupMenuArrowRight" />
+                <Image imageset="WidgetsImageset" image="PopupMenuArrowRight" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
@@ -3722,13 +3722,13 @@
                     <Dim type="Width" >
                         <UnifiedDim scale="1" type="Width">
                             <DimOperator op="Subtract">
-                                <ImageDim imageset="TaharezLook" image="PopupMenuArrowLeft" dimension="Width" />
+                                <ImageDim imageset="WidgetsImageset" image="PopupMenuArrowLeft" dimension="Width" />
                             </DimOperator>
                         </UnifiedDim>
                     </Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="PopupMenuArrowLeft" />
+                <Image imageset="WidgetsImageset" image="PopupMenuArrowLeft" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="RightAligned" />
             </ImageryComponent>
@@ -3830,14 +3830,14 @@
         <NamedArea name="ItemRenderArea">
             <Area>
                 <Dim type="LeftEdge" >
-                    <ImageDim imageset="TaharezLook" image="PopupMenuFrameLeft" dimension="Width">
+                    <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameLeft" dimension="Width">
                         <DimOperator op="Add">
                             <PropertyDim name="BorderWidth" />
                         </DimOperator>
                     </ImageDim>
                 </Dim>
                 <Dim type="TopEdge" >
-                    <ImageDim imageset="TaharezLook" image="PopupMenuFrameTop" dimension="Height">
+                    <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameTop" dimension="Height">
                         <DimOperator op="Add">
                             <PropertyDim name="BorderWidth" />
                         </DimOperator>
@@ -3846,7 +3846,7 @@
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="PopupMenuFrameRight" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameRight" dimension="Width">
                                 <DimOperator op="Add">
                                     <PropertyDim name="BorderWidth" />
                                 </DimOperator>
@@ -3857,7 +3857,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="PopupMenuFrameBottom" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameBottom" dimension="Height">
                                 <DimOperator op="Add">
                                     <PropertyDim name="BorderWidth" />
                                 </DimOperator>
@@ -3875,15 +3875,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="PopupMenuFrameTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="PopupMenuFrameTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="PopupMenuFrameBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="PopupMenuFrameBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="PopupMenuFrameLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="PopupMenuFrameRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="PopupMenuFrameTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="PopupMenuFrameBottom" />
-                <Image type="Background" imageset="TaharezLook" image="PopupMenuMiddle" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="PopupMenuFrameTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="PopupMenuFrameTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="PopupMenuFrameBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="PopupMenuFrameBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="PopupMenuFrameLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="PopupMenuFrameRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="PopupMenuFrameTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="PopupMenuFrameBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="PopupMenuMiddle" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -3914,14 +3914,14 @@
         <NamedArea name="ItemRenderArea">
             <Area>
                 <Dim type="LeftEdge" >
-                    <ImageDim imageset="TaharezLook" image="PopupMenuFrameLeft" dimension="Width">
+                    <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameLeft" dimension="Width">
                         <DimOperator op="Add">
                             <PropertyDim name="BorderWidth" />
                         </DimOperator>
                     </ImageDim>
                 </Dim>
                 <Dim type="TopEdge" >
-                    <ImageDim imageset="TaharezLook" image="PopupMenuFrameTop" dimension="Height">
+                    <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameTop" dimension="Height">
                         <DimOperator op="Add">
                             <PropertyDim name="BorderWidth" />
                         </DimOperator>
@@ -3930,7 +3930,7 @@
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="PopupMenuFrameRight" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameRight" dimension="Width">
                                 <DimOperator op="Add">
                                     <PropertyDim name="BorderWidth" />
                                 </DimOperator>
@@ -3941,7 +3941,7 @@
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="PopupMenuFrameBottom" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="PopupMenuFrameBottom" dimension="Height">
                                 <DimOperator op="Add">
                                     <PropertyDim name="BorderWidth" />
                                 </DimOperator>
@@ -3959,15 +3959,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="PopupMenuFrameTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="PopupMenuFrameTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="PopupMenuFrameBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="PopupMenuFrameBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="PopupMenuFrameLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="PopupMenuFrameRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="PopupMenuFrameTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="PopupMenuFrameBottom" />
-                <Image type="Background" imageset="TaharezLook" image="PopupMenuMiddle" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="PopupMenuFrameTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="PopupMenuFrameTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="PopupMenuFrameBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="PopupMenuFrameBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="PopupMenuFrameLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="PopupMenuFrameRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="PopupMenuFrameTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="PopupMenuFrameBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="PopupMenuMiddle" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">
@@ -4001,7 +4001,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="VertScrollThumbNormal" />
+                <Image imageset="WidgetsImageset" image="VertScrollThumbNormal" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -4014,7 +4014,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="VertScrollThumbHover" />
+                <Image imageset="WidgetsImageset" image="VertScrollThumbHover" />
                 <VertFormat type="Stretched" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
@@ -4056,7 +4056,7 @@
                 <Dim type="TopEdge" >
                     <WidgetDim widget="__auto_decbtn__" dimension="Height">
                         <DimOperator op="Add">
-                            <ImageDim imageset="TaharezLook" image="VertScrollTop" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="VertScrollTop" dimension="Height">
                                 <DimOperator op="Multiply">
                                     <AbsoluteDim value="0.5" />
                                 </DimOperator>
@@ -4070,7 +4070,7 @@
                         <DimOperator op="Subtract">
                             <WidgetDim widget="__auto_decbtn__" dimension="Height">
                                 <DimOperator op="Add">
-                                    <ImageDim imageset="TaharezLook" image="VertScrollTop" dimension="Height">
+                                    <ImageDim imageset="WidgetsImageset" image="VertScrollTop" dimension="Height">
                                         <DimOperator op="Multiply">
                                             <AbsoluteDim value="0.5" />
                                         </DimOperator>
@@ -4088,7 +4088,7 @@
                 <Dim type="TopEdge" >
                     <AbsoluteDim value="-1">
                         <DimOperator op="Multiply">
-                            <ImageDim imageset="TaharezLook" image="VertScrollTop" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="VertScrollTop" dimension="Height">
                                 <DimOperator op="Multiply">
                                     <AbsoluteDim value="0.5" />
                                 </DimOperator>
@@ -4100,9 +4100,9 @@
                 <Dim type="Height" >
                     <UnifiedDim scale="0.6" type="Width">
                         <DimOperator op="Multiply">
-                            <ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Width">
                                 <DimOperator op="Divide">
-                                    <ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Height"/>
+                                    <ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Height"/>
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -4118,7 +4118,7 @@
             <Area>
                 <Dim type="LeftEdge" ><UnifiedDim scale="0.25" type="LeftEdge" /></Dim>
                 <Dim type="TopEdge">
-                    <ImageDim imageset="TaharezLook" image="VertScrollTop" dimension="Height">
+                    <ImageDim imageset="WidgetsImageset" image="VertScrollTop" dimension="Height">
                         <DimOperator op="Multiply">
                             <AbsoluteDim value="0.5" />
                         </DimOperator>
@@ -4128,9 +4128,9 @@
                 <Dim type="Height" >
                     <UnifiedDim scale="0.6" type="Width">
                         <DimOperator op="Multiply">
-                            <ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Width">
+                            <ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Width">
                                 <DimOperator op="Divide">
-                                    <ImageDim imageset="TaharezLook" image="VertScrollUpNormal" dimension="Height"/>
+                                    <ImageDim imageset="WidgetsImageset" image="VertScrollUpNormal" dimension="Height"/>
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -4149,9 +4149,9 @@
                 <Dim type="Height" >
                     <UnifiedDim scale="0.4" type="Width">
                         <DimOperator op="Multiply">
-                            <ImageDim imageset="TaharezLook" image="VertScrollThumbNormal" dimension="Height">
+                            <ImageDim imageset="WidgetsImageset" image="VertScrollThumbNormal" dimension="Height">
                                 <DimOperator op="Divide">
-                                    <ImageDim imageset="TaharezLook" image="VertScrollThumbNormal" dimension="Width"/>
+                                    <ImageDim imageset="WidgetsImageset" image="VertScrollThumbNormal" dimension="Width"/>
                                 </DimOperator>
                             </ImageDim>
                         </DimOperator>
@@ -4167,9 +4167,9 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopEdge" imageset="TaharezLook" image="VertScrollTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="VertScrollBottom" />
-                <Image type="Background" imageset="TaharezLook" image="VertScrollMiddle" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="VertScrollTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="VertScrollBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="VertScrollMiddle" />
             </FrameComponent>
             <ImageryComponent>
                 <Area>
@@ -4177,7 +4177,7 @@
                     <Dim type="TopEdge" >
                         <WidgetDim widget="__auto_decbtn__" dimension="Height">
                             <DimOperator op="Add">
-                                <ImageDim imageset="TaharezLook" image="VertScrollTop" dimension="Height">
+                                <ImageDim imageset="WidgetsImageset" image="VertScrollTop" dimension="Height">
                                     <DimOperator op="Multiply">
                                         <AbsoluteDim value="0.5" />
                                     </DimOperator>
@@ -4191,7 +4191,7 @@
                             <DimOperator op="Subtract">
                                 <WidgetDim widget="__auto_decbtn__" dimension="Height">
                                     <DimOperator op="Add">
-                                        <ImageDim imageset="TaharezLook" image="VertScrollTop" dimension="Height">
+                                        <ImageDim imageset="WidgetsImageset" image="VertScrollTop" dimension="Height">
                                             <DimOperator op="Multiply">
                                                 <AbsoluteDim value="0.5" />
                                             </DimOperator>
@@ -4202,7 +4202,7 @@
                         </UnifiedDim>
                     </Dim>
                 </Area>
-                <Image imageset="TaharezLook" image="VertScrollBarSegment" />
+                <Image imageset="WidgetsImageset" image="VertScrollBarSegment" />
                 <VertFormat type="Tiled" />
             </ImageryComponent>
         </ImagerySection>
@@ -4319,19 +4319,19 @@
     <WidgetLook name="TaharezLook/ItemListbox">
         <NamedArea name="ItemRenderArea">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -4339,12 +4339,12 @@
         </NamedArea>
         <NamedArea name="ItemRenderAreaHScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" type="RightEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxRight" dimension="Width" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxRight" dimension="Width" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -4355,15 +4355,15 @@
         </NamedArea>
         <NamedArea name="ItemRenderAreaVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" offset="-12" type="RightEdge" />
                 </Dim>
                 <Dim type="BottomEdge" >
                     <UnifiedDim scale="1" type="BottomEdge">
                         <DimOperator op="Subtract">
-                            <ImageDim imageset="TaharezLook" image="ListboxBottom" dimension="Height" />
+                            <ImageDim imageset="WidgetsImageset" image="ListboxBottom" dimension="Height" />
                         </DimOperator>
                     </UnifiedDim>
                 </Dim>
@@ -4371,8 +4371,8 @@
         </NamedArea>
         <NamedArea name="ItemRenderAreaHVScroll">
             <Area>
-                <Dim type="LeftEdge" ><ImageDim imageset="TaharezLook" image="ListboxLeft" dimension="Width" /></Dim>
-                <Dim type="TopEdge" ><ImageDim imageset="TaharezLook" image="ListboxTop" dimension="Height" /></Dim>
+                <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim imageset="WidgetsImageset" image="ListboxTop" dimension="Height" /></Dim>
                 <Dim type="RightEdge" >
                     <UnifiedDim scale="1" offset="-12" type="RightEdge" />
                 </Dim>
@@ -4407,15 +4407,15 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="TopLeftCorner" imageset="TaharezLook" image="ListboxTopLeft" />
-                <Image type="TopRightCorner" imageset="TaharezLook" image="ListboxTopRight" />
-                <Image type="BottomLeftCorner" imageset="TaharezLook" image="ListboxBottomLeft" />
-                <Image type="BottomRightCorner" imageset="TaharezLook" image="ListboxBottomRight" />
-                <Image type="LeftEdge" imageset="TaharezLook" image="ListboxLeft" />
-                <Image type="RightEdge" imageset="TaharezLook" image="ListboxRight" />
-                <Image type="TopEdge" imageset="TaharezLook" image="ListboxTop" />
-                <Image type="BottomEdge" imageset="TaharezLook" image="ListboxBottom" />
-                <Image type="Background" imageset="TaharezLook" image="ListboxBackdrop" />
+                <Image type="TopLeftCorner" imageset="WidgetsImageset" image="ListboxTopLeft" />
+                <Image type="TopRightCorner" imageset="WidgetsImageset" image="ListboxTopRight" />
+                <Image type="BottomLeftCorner" imageset="WidgetsImageset" image="ListboxBottomLeft" />
+                <Image type="BottomRightCorner" imageset="WidgetsImageset" image="ListboxBottomRight" />
+                <Image type="LeftEdge" imageset="WidgetsImageset" image="ListboxLeft" />
+                <Image type="RightEdge" imageset="WidgetsImageset" image="ListboxRight" />
+                <Image type="TopEdge" imageset="WidgetsImageset" image="ListboxTop" />
+                <Image type="BottomEdge" imageset="WidgetsImageset" image="ListboxBottom" />
+                <Image type="Background" imageset="WidgetsImageset" image="ListboxBackdrop" />
             </FrameComponent>
         </ImagerySection>
         <StateImagery name="Enabled">

@@ -247,8 +247,8 @@ void CApplication::setupCEGUI()
     CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
 
     // Other CEGUI setup here.
-    CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
-    m_system->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
+    CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"Skin.scheme");
+    m_system->setDefaultMouseCursor((CEGUI::utf8*)"WidgetsImageset", (CEGUI::utf8*)"MouseArrow");
 
     int mouseVelocity = CSystemOptionManager::getInstance()->getGUIMouseVelocity();
     float mouseScale = 1.0f + (mouseVelocity/100);
