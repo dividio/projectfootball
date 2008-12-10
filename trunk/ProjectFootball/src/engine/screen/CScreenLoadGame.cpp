@@ -95,7 +95,7 @@ void CScreenLoadGame::enter()
 
 void CScreenLoadGame::loadGameList()
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
 
     m_gamesList->resetList();
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);

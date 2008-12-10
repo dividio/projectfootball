@@ -134,7 +134,7 @@ void CScreenTeamPlayers::changePlayers()
 
 void CScreenTeamPlayers::loadTeamPlayersList()
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
 
     m_lineUpTeamPlayersList->resetList();
     m_alternateTeamPlayersList->resetList();

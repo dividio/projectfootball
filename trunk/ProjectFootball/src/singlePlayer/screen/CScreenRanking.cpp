@@ -76,7 +76,7 @@ void CScreenRanking::enter()
 void CScreenRanking::loadRanking()
 {
     m_rankingList->resetList();
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("TaharezLook")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
 
     IDAOFactory                         *daoFactory		= m_game->getIDAOFactory();
     IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
