@@ -408,7 +408,7 @@
         <PropertyDefinition name="SelectedTextColour" initialValue="FF000000" redrawOnWrite="true" />
         <PropertyDefinition name="ActiveSelectionColour" initialValue="FF607FFF" redrawOnWrite="true" />
         <PropertyDefinition name="InactiveSelectionColour" initialValue="FF808080" redrawOnWrite="true" />
-        <Property name="MouseCursorImage" value="set:TaharezLook image:MouseTextBar" />
+        <Property name="MouseCursorImage" value="set:WidgetsImageset image:MouseTextBar" />
         <NamedArea name="TextArea">
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="5" /></Dim>
@@ -626,10 +626,10 @@
     <WidgetLook name="TaharezLook/FrameWindow">
         <PropertyLinkDefinition name="CaptionColour" widget="__auto_titlebar__" targetProperty="CaptionColour" initialValue="FFFFFFFF" />
         <PropertyLinkDefinition name="TitlebarFont" widget="__auto_titlebar__" targetProperty="Font" />
-        <Property name="NSSizingCursorImage" value="set:TaharezLook image:MouseNoSoCursor" />
-        <Property name="EWSizingCursorImage" value="set:TaharezLook image:MouseEsWeCursor" />
-        <Property name="NWSESizingCursorImage" value="set:TaharezLook image:MouseNwSeCursor" />
-        <Property name="NESWSizingCursorImage" value="set:TaharezLook image:MouseNeSwCursor" />
+        <Property name="NSSizingCursorImage" value="set:WidgetsImageset image:MouseNoSoCursor" />
+        <Property name="EWSizingCursorImage" value="set:WidgetsImageset image:MouseEsWeCursor" />
+        <Property name="NWSESizingCursorImage" value="set:WidgetsImageset image:MouseNwSeCursor" />
+        <Property name="NESWSizingCursorImage" value="set:WidgetsImageset image:MouseNeSwCursor" />
         <NamedArea name="ClientWithTitleWithFrame">
             <Area>
                 <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="WindowTopLeft" dimension="Width" /></Dim>
@@ -723,9 +723,9 @@
                 <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="NewCloseButtonNormal" dimension="Width" /></Dim>
             </Area>
             <Property name="AlwaysOnTop" value="True" />
-            <Property name="NormalImage" value="set:TaharezLook image:NewCloseButtonNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:NewCloseButtonHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:NewCloseButtonPressed" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:NewCloseButtonNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:NewCloseButtonHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:NewCloseButtonPressed" />
         </Child>
         <ImagerySection name="withtitle_frame">
             <FrameComponent>
@@ -1369,9 +1369,9 @@
                 <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
-            <Property name="NormalImage" value="set:TaharezLook image:MiniHorzScrollRightNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:MiniHorzScrollRightHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:MiniHorzScrollRightNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:MiniHorzScrollRightNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:MiniHorzScrollRightHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:MiniHorzScrollRightNormal" />
         </Child>
         <Child  type="TaharezLook/ImageButton" nameSuffix="__auto_decbtn__">
             <Area>
@@ -1380,9 +1380,9 @@
                 <Dim type="Width" ><ImageDim imageset="WidgetsImageset" image="MiniHorzScrollLeftNormal" dimension="Width" /></Dim>
                 <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
             </Area>
-            <Property name="NormalImage" value="set:TaharezLook image:MiniHorzScrollLeftNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:MiniHorzScrollLeftHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:MiniHorzScrollLeftNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:MiniHorzScrollLeftNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:MiniHorzScrollLeftHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:MiniHorzScrollLeftNormal" />
         </Child>
         <Child  type="TaharezLook/HorizontalScrollbarThumb" nameSuffix="__auto_thumb__">
             <Area>
@@ -1512,9 +1512,9 @@
                 <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="MiniVertScrollDownNormal" dimension="Height" /></Dim>
             </Area>
             <VertAlignment type="BottomAligned" />
-            <Property name="NormalImage" value="set:TaharezLook image:MiniVertScrollDownNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:MiniVertScrollDownHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:MiniVertScrollDownNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:MiniVertScrollDownNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:MiniVertScrollDownHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:MiniVertScrollDownNormal" />
         </Child>
         <Child  type="TaharezLook/ImageButton" nameSuffix="__auto_decbtn__">
             <Area>
@@ -1523,9 +1523,9 @@
                 <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                 <Dim type="Height" ><ImageDim imageset="WidgetsImageset" image="MiniVertScrollUpNormal" dimension="Height" /></Dim>
             </Area>
-            <Property name="NormalImage" value="set:TaharezLook image:MiniVertScrollUpNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:MiniVertScrollUpHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:MiniVertScrollUpNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:MiniVertScrollUpNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:MiniVertScrollUpHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:MiniVertScrollUpNormal" />
         </Child>
         <Child  type="TaharezLook/VerticalScrollbarThumb" nameSuffix="__auto_thumb__">
             <Area>
@@ -1853,7 +1853,7 @@
         <PropertyDefinition name="SelectedTextColour" initialValue="FF000000" redrawOnWrite="true" />
         <PropertyDefinition name="ActiveSelectionColour" initialValue="FF607FFF" redrawOnWrite="true" />
         <PropertyDefinition name="InactiveSelectionColour" initialValue="FF808080" redrawOnWrite="true" />
-        <Property name="MouseCursorImage" value="set:TaharezLook image:MouseTextBar" />
+        <Property name="MouseCursorImage" value="set:WidgetsImageset image:MouseTextBar" />
         <NamedArea name="TextArea">
             <Area>
                 <Dim type="LeftEdge" ><AbsoluteDim value="5" /></Dim>
@@ -1983,9 +1983,9 @@
                 <Dim type="Height" ><WidgetDim widget="__auto_editbox__" dimension="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
-            <Property name="NormalImage" value="set:TaharezLook image:ComboboxListButtonNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:ComboboxListButtonHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:ComboboxListButtonNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:ComboboxListButtonNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:ComboboxListButtonHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:ComboboxListButtonNormal" />
         </Child>
         <StateImagery name="Enabled" />
         <StateImagery name="Disabled" />
@@ -2019,9 +2019,9 @@
                 <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
-            <Property name="NormalImage" value="set:TaharezLook image:VertScrollUpNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:VertScrollUpHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:VertScrollUpNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:VertScrollUpNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:VertScrollUpHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:VertScrollUpNormal" />
         </Child>
         <Child  type="TaharezLook/ImageButton" nameSuffix="__auto_decbtn__">
             <Area>
@@ -2031,9 +2031,9 @@
                 <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
             </Area>
             <HorzAlignment type="RightAligned" />
-            <Property name="NormalImage" value="set:TaharezLook image:VertScrollDownNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:VertScrollDownHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:VertScrollDownNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:VertScrollDownNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:VertScrollDownHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:VertScrollDownNormal" />
         </Child>
         <StateImagery name="Enabled" />
         <StateImagery name="Disabled" />
@@ -2410,8 +2410,8 @@
     ***************************************************
     -->
     <WidgetLook name="TaharezLook/ListHeaderSegment">
-        <Property name="SizingCursorImage" value="set:TaharezLook image:MouseEsWeCursor" />
-        <Property name="MovingCursorImage" value="set:TaharezLook image:MouseMoveCursor" />
+        <Property name="SizingCursorImage" value="set:WidgetsImageset image:MouseEsWeCursor" />
+        <Property name="MovingCursorImage" value="set:WidgetsImageset image:MouseMoveCursor" />
         <ImagerySection name="segment_normal">
             <Colours topLeft="FFDDDDDD" topRight="FFDDDDDD" bottomLeft="FFDDDDDD" bottomRight="FFDDDDDD" />
             <ImageryComponent>
@@ -2761,8 +2761,8 @@
         <PropertyDefinition name="SelectedTextColour" initialValue="FF000000" redrawOnWrite="true" />
         <PropertyDefinition name="ActiveSelectionColour" initialValue="FF607FFF" redrawOnWrite="true" />
         <PropertyDefinition name="InactiveSelectionColour" initialValue="FF808080" redrawOnWrite="true" />
-        <Property name="MouseCursorImage" value="set:TaharezLook image:MouseTextBar" />
-        <Property name="SelectionBrushImage" value="set:TaharezLook image:MultiLineEditboxSelectionBrush" />
+        <Property name="MouseCursorImage" value="set:WidgetsImageset image:MouseTextBar" />
+        <Property name="SelectionBrushImage" value="set:WidgetsImageset image:MultiLineEditboxSelectionBrush" />
         <NamedArea name="TextArea">
             <Area>
                 <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="MultiLineEditboxLeft" dimension="Width" /></Dim>
@@ -3536,9 +3536,9 @@
                 </Dim>
             </Area>
             <Property name="AlwaysOnTop" value="True" />
-            <Property name="NormalImage" value="set:TaharezLook image:TabButtonScrollLeftNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:TabButtonScrollLeftHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:TabButtonScrollLeftHover" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:TabButtonScrollLeftNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:TabButtonScrollLeftHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:TabButtonScrollLeftHover" />
         </Child>
         <Child type="TaharezLook/SystemButton" nameSuffix="__auto_TabPane__ScrollRight">
             <Area>
@@ -3568,9 +3568,9 @@
                 </Dim>
             </Area>
             <Property name="AlwaysOnTop" value="True" />
-            <Property name="NormalImage" value="set:TaharezLook image:TabButtonScrollRightNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:TabButtonScrollRightHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:TabButtonScrollRightHover" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:TabButtonScrollRightNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:TabButtonScrollRightHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:TabButtonScrollRightHover" />
         </Child>
         <StateImagery name="Enabled" />
         <StateImagery name="Disabled" />
@@ -4110,9 +4110,9 @@
                 </Dim>
             </Area>
             <VertAlignment type="BottomAligned" />
-            <Property name="NormalImage" value="set:TaharezLook image:VertScrollDownNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:VertScrollDownHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:VertScrollDownNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:VertScrollDownNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:VertScrollDownHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:VertScrollDownNormal" />
         </Child>
         <Child  type="TaharezLook/ImageButton" nameSuffix="__auto_decbtn__">
             <Area>
@@ -4137,9 +4137,9 @@
                     </UnifiedDim>
                 </Dim>
             </Area>
-            <Property name="NormalImage" value="set:TaharezLook image:VertScrollUpNormal" />
-            <Property name="HoverImage" value="set:TaharezLook image:VertScrollUpHover" />
-            <Property name="PushedImage" value="set:TaharezLook image:VertScrollUpNormal" />
+            <Property name="NormalImage" value="set:WidgetsImageset image:VertScrollUpNormal" />
+            <Property name="HoverImage" value="set:WidgetsImageset image:VertScrollUpHover" />
+            <Property name="PushedImage" value="set:WidgetsImageset image:VertScrollUpNormal" />
         </Child>
         <Child  type="TaharezLook/LargeVerticalScrollbarThumb" nameSuffix="__auto_thumb__">
             <Area>
@@ -4439,7 +4439,7 @@
     <WidgetLook name="TaharezLook/ListboxItem">
         <PropertyDefinition name="TextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
         <PropertyDefinition name="SelectedTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
-        <PropertyDefinition name="SelectionBrush" initialValue="set:TaharezLook image:ListboxSelectionBrush" redrawOnWrite="true" />
+        <PropertyDefinition name="SelectionBrush" initialValue="set:WidgetsImageset image:ListboxSelectionBrush" redrawOnWrite="true" />
         <PropertyDefinition name="SelectionColour" initialValue="FF4444AA" redrawOnWrite="true" />
         <Property name="Selectable" value="True" />
         <NamedArea name="ContentSize">
