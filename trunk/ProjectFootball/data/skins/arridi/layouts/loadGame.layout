@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+<Window Type="DefaultWindow" Name="LoadGame" >
+    <Window Type="TaharezLook/StaticImage" Name="LoadGame/MainWindow" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
+        <Property Name="FrameEnabled" Value="false" />
+        <Window Type="TaharezLook/MultiColumnList" Name="LoadGame/GamesList" >
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.06,0},{0.97,0},{0.7,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Editbox" Name="LoadGame/NewGameEdit" >
+          <Property Name="MaxTextLength" Value="50" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.73,0},{0.5,0},{0.77,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="LoadGame/NewGameButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.53,0},{0.73,0},{0.70,0},{0.77,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="LoadGame/DeleteGameButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.73,0},{0.97,0},{0.77,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="LoadGame/BackButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="LoadGame/LoadGameButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.94,0}}" />
+        </Window>
+    </Window>
+    
+    <Window Type="TaharezLook/FrameWindow" Name="LoadGame/RemoveConfirmationWindow" >
+        <Property Name="Visible" Value="false" />
+        <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+        <Property Name="SizingEnabled" Value="False" />
+        <Property Name="RollUpEnabled" Value="False" />
+        <Property Name="CloseButtonEnabled" Value="False" />
+        <Property Name="DragMovingEnabled" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="TitlebarEnabled" Value="True" />
+        <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.8,0},{0.6,0}}" />
+        <Window Type="TaharezLook/StaticText" Name="LoadGame/RemoveConfirmationWindow/Note" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.95,0},{0.5,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="LoadGame/RemoveConfirmationWindow/YesButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.7,0},{0.40,0},{0.9,0}}" />
+        </Window>
+        <Window Type="TaharezLook/Button" Name="LoadGame/RemoveConfirmationWindow/NoButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.60,0},{0.7,0},{0.75,0},{0.9,0}}" />
+        </Window>
+    </Window>
+</Window>
+</GUILayout>
