@@ -38,31 +38,34 @@
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.92,0},{0.995,0},{0.97,0}}" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="Game/PlayerTeamLabel" >
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="HorzFormatting" Value="RightAligned" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.2,0},{0.08,0}}" />
+        <Window Type="TaharezLook/StaticText" Name="Game/HomeTeamName" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.24,0},{0.4,0},{0.28,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="Game/PlayerTeamText" >
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.04,0},{0.5,0},{0.08,0}}" />
+        <Window Type="TaharezLook/StaticText" Name="Game/AwayTeamName" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.24,0},{0.65,0},{0.28,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="Game/NextMatchLabel" >
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="HorzFormatting" Value="RightAligned" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.2,0},{0.12,0}}" />
+        <Window Type="TaharezLook/StaticImage" Name="Game/HomeTeamShield" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.225,0},{0.02,0},{0.375,0},{0.22,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="Game/NextMatchText" >
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.08,0},{0.5,0},{0.12,0}}" />
+        <Window Type="TaharezLook/StaticImage" Name="Game/AwayTeamShield" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.475,0},{0.02,0},{0.625,0},{0.22,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
         </Window>
         <Window Type="TaharezLook/Checkbox" Name="Game/ResultMode" >
             <Property Name="Font" Value="DejaVuSans-10" />

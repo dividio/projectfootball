@@ -36,8 +36,10 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_game = game;
 
     m_mainWindow         = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainWindow"));
-    m_playerTeamText     = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayerTeamText"));
-    m_nextMatchText      = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextMatchText"));
+    m_homeTeamName       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamName"));
+    m_awayTeamName       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamName"));
+    m_homeTeamShield     = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamShield"));
+    m_awayTeamShield     = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamShield"));
 
     m_saveButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveButton"));
     m_mainMenuButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainMenuButton"));
@@ -79,9 +81,6 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_saveConfirmButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveConfirmButtonClicked, this));
     m_exitConfirmButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitConfirmButtonClicked, this));
     m_exitCancelButton  ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitCancelButtonClicked, this));
-
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayerTeamLabel"))->setText((CEGUI::utf8*)gettext("Your Team:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextMatchLabel"))->setText((CEGUI::utf8*)gettext("Next Match:"));
 }
 
 CScreenGame::~CScreenGame()
@@ -103,22 +102,43 @@ void CScreenGame::enter()
     }
     delete resultMode;
 
-    CPfTeams    *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
-    m_playerTeamText->setText(playerTeam->getSTeam());
-    delete playerTeam;
 
+    CEGUI::String imagesetName;
     CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
     if( nextMatch==NULL ){
-        m_nextMatchText->setText("No Match");
+        CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+        m_homeTeamName  ->setText(playerTeam->getSTeam());
+        m_awayTeamName  ->setText("");
+
+        imagesetName = "TeamLogo" + playerTeam->getXTeam_str();
+        if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
+            CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, playerTeam->getSLogo());
+        }
+        m_homeTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+        m_awayTeamShield->setProperty("Image", "set: image:full_image");
+
+        delete playerTeam;
         m_playButton->setEnabled(false);
     }else{
         IPfTeamsDAO *teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
         CPfTeams    *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
         CPfTeams    *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
 
-        std::string text;
-        text += homeTeam->getSTeam()+" - "+awayTeam->getSTeam();
-        m_nextMatchText->setText(text);
+        m_homeTeamName  ->setText(homeTeam->getSTeam());
+        m_awayTeamName  ->setText(awayTeam->getSTeam());
+
+        imagesetName = "TeamLogo" + homeTeam->getXTeam_str();
+        if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
+            CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, homeTeam->getSLogo());
+        }
+        m_homeTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+
+        imagesetName = "TeamLogo" + awayTeam->getXTeam_str();
+        if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
+            CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, awayTeam->getSLogo());
+        }
+        m_awayTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+
         m_playButton->setEnabled(true);
 
         delete homeTeam;
