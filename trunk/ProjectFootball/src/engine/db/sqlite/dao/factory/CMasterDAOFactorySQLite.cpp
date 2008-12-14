@@ -40,6 +40,7 @@ CMasterDAOFactorySQLite::CMasterDAOFactorySQLite(const std::string &filepath)
         CLog::getInstance()->exception("[CMasterDAOFactorySQLite::CMasterDAOFactorySQLite] Can't open database file: '%s' --> '%s'", m_filepath_tmp.c_str(), sqlite3_errmsg(m_database));
     }
 
+    m_PfVersionDAOSQLite = new CPfVersionDAOSQLite(m_database);
     m_PfGamesDAOSQLite = new CPfGamesDAOSQLite(m_database);
     m_PfUsersDAOSQLite = new CPfUsersDAOSQLite(m_database);
 
@@ -48,6 +49,7 @@ CMasterDAOFactorySQLite::CMasterDAOFactorySQLite(const std::string &filepath)
 
 CMasterDAOFactorySQLite::~CMasterDAOFactorySQLite()
 {
+    delete m_PfVersionDAOSQLite;
     delete m_PfGamesDAOSQLite;
     delete m_PfUsersDAOSQLite;
 
@@ -150,6 +152,7 @@ bool CMasterDAOFactorySQLite::rollback()
 void CMasterDAOFactorySQLite::save()
 {
     // Closing temp database
+    m_PfVersionDAOSQLite->setSQLite(NULL);
     m_PfGamesDAOSQLite->setSQLite(NULL);
     m_PfUsersDAOSQLite->setSQLite(NULL);
 
@@ -167,8 +170,14 @@ void CMasterDAOFactorySQLite::save()
         CLog::getInstance()->exception("[CMasterDAOFactorySQLite::save] Can't open database file: '%s' --> '%s'", m_filepath_tmp.c_str(), sqlite3_errmsg(m_database));
     }
 
+    m_PfVersionDAOSQLite->setSQLite(m_database);
     m_PfGamesDAOSQLite->setSQLite(m_database);
     m_PfUsersDAOSQLite->setSQLite(m_database);
+}
+
+IPfVersionDAO* CMasterDAOFactorySQLite::getIPfVersionDAO()
+{
+    return m_PfVersionDAOSQLite;
 }
 
 IPfGamesDAO* CMasterDAOFactorySQLite::getIPfGamesDAO()

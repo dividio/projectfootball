@@ -20,34 +20,40 @@
 *       Version: 1.20                                                         *
 ******************************************************************************/
 
-#ifndef IPFGAMESDAO_H_
-#define IPFGAMESDAO_H_
+#ifndef CPFVERSIONDAOSQLITEENTITY_H_
+#define CPFVERSIONDAOSQLITEENTITY_H_
 
 #include <string>
 #include <vector>
+#include <sqlite3.h>
 
-#include "../bean/CPfGames.h"
+#include "../../../bean/CPfVersion.h"
+#include "../../../dao/IPfVersionDAO.h"
 
-class IPfGamesDAO
+class CPfVersionDAOSQLiteEntity : public IPfVersionDAO
 {
 public:
-    IPfGamesDAO(){}
-    virtual ~IPfGamesDAO(){}
+    CPfVersionDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfVersionDAOSQLiteEntity();
 
-    virtual bool deleteReg(CPfGames *reg) =0;
-    virtual bool insertReg(CPfGames *reg) =0;
-    virtual bool updateReg(CPfGames *reg) =0;
+    void setSQLite(sqlite3 *database);
 
-    virtual void freeVector(std::vector<CPfGames*>* vector) =0;
+    virtual bool deleteReg(CPfVersion *reg);
+    virtual bool insertReg(CPfVersion *reg);
+    virtual bool updateReg(CPfVersion *reg);
 
-    virtual std::vector<CPfGames*>* findByXFkUser(int XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType) =0;
-    virtual CPfGames* findByXGame(int XGame) =0;
-    virtual CPfGames* findByXGame(const std::string &XGame) =0;
-    virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName) =0;
-    virtual std::vector<CPfGames*>* findBySGameType(const std::string &SGameType) =0;
+    virtual void freeVector(std::vector<CPfVersion*>* vector);
+
+protected:
+    CPfVersion* loadRegister(const std::string &sql);
+    std::vector<CPfVersion*>* loadVector(const std::string &sql);
+
+private:
+    bool exec(const std::string &sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
+    sqlite3 *m_database;
 
 };
-#endif /*IPFGAMESDAO_H_*/
+#endif /*CPFVERSIONDAOSQLITEENTITY_H_*/

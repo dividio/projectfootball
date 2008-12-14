@@ -20,34 +20,28 @@
 *       Version: 1.20                                                         *
 ******************************************************************************/
 
-#ifndef IPFGAMESDAO_H_
-#define IPFGAMESDAO_H_
+#ifndef IPFVERSIONDAO_H_
+#define IPFVERSIONDAO_H_
 
 #include <string>
 #include <vector>
 
-#include "../bean/CPfGames.h"
+#include "../bean/CPfVersion.h"
 
-class IPfGamesDAO
+class IPfVersionDAO
 {
 public:
-    IPfGamesDAO(){}
-    virtual ~IPfGamesDAO(){}
+    IPfVersionDAO(){}
+    virtual ~IPfVersionDAO(){}
 
-    virtual bool deleteReg(CPfGames *reg) =0;
-    virtual bool insertReg(CPfGames *reg) =0;
-    virtual bool updateReg(CPfGames *reg) =0;
+    virtual bool deleteReg(CPfVersion *reg) =0;
+    virtual bool insertReg(CPfVersion *reg) =0;
+    virtual bool updateReg(CPfVersion *reg) =0;
 
-    virtual void freeVector(std::vector<CPfGames*>* vector) =0;
+    virtual void freeVector(std::vector<CPfVersion*>* vector) =0;
 
-    virtual std::vector<CPfGames*>* findByXFkUser(int XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType) =0;
-    virtual CPfGames* findByXGame(int XGame) =0;
-    virtual CPfGames* findByXGame(const std::string &XGame) =0;
-    virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName) =0;
-    virtual std::vector<CPfGames*>* findBySGameType(const std::string &SGameType) =0;
+    virtual CPfVersion* findByXVersion(int XVersion) =0;
+    virtual CPfVersion* findByXVersion(const std::string &XVersion) =0;
 
 };
-#endif /*IPFGAMESDAO_H_*/
+#endif /*IPFVERSIONDAO_H_*/

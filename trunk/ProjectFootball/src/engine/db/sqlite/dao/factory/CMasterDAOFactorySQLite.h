@@ -28,9 +28,11 @@
 
 #include "../../../dao/factory/IMasterDAOFactory.h"
 
+#include "../../../dao/IPfVersionDAO.h"
 #include "../../../dao/IPfGamesDAO.h"
 #include "../../../dao/IPfUsersDAO.h"
 
+#include "../CPfVersionDAOSQLite.h"
 #include "../CPfGamesDAOSQLite.h"
 #include "../CPfUsersDAOSQLite.h"
 
@@ -49,6 +51,7 @@ public:
 
     virtual void save();
 
+    virtual IPfVersionDAO* getIPfVersionDAO();
     virtual IPfGamesDAO* getIPfGamesDAO();
     virtual IPfUsersDAO* getIPfUsersDAO();
 
@@ -61,6 +64,7 @@ private:
     std::string m_filepath;
     std::string m_filepath_tmp;
 
+    CPfVersionDAOSQLite *m_PfVersionDAOSQLite;
     CPfGamesDAOSQLite *m_PfGamesDAOSQLite;
     CPfUsersDAOSQLite *m_PfUsersDAOSQLite;
 

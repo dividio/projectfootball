@@ -20,34 +20,93 @@
 *       Version: 1.20                                                         *
 ******************************************************************************/
 
-#ifndef IPFGAMESDAO_H_
-#define IPFGAMESDAO_H_
+#include <iostream>
+#include <sstream>
+#include <stdlib.h>
 
-#include <string>
-#include <vector>
+#include "CPfVersion.h"
 
-#include "../bean/CPfGames.h"
-
-class IPfGamesDAO
+CPfVersion::CPfVersion()
 {
-public:
-    IPfGamesDAO(){}
-    virtual ~IPfGamesDAO(){}
+    m_DDate = "";
+    m_SVersion = "";
+    m_XVersion = "0";
+}
 
-    virtual bool deleteReg(CPfGames *reg) =0;
-    virtual bool insertReg(CPfGames *reg) =0;
-    virtual bool updateReg(CPfGames *reg) =0;
+CPfVersion::CPfVersion(const CPfVersion &obj)
+{
+    m_DDate = obj.m_DDate;
+    m_SVersion = obj.m_SVersion;
+    m_XVersion = obj.m_XVersion;
+}
 
-    virtual void freeVector(std::vector<CPfGames*>* vector) =0;
+CPfVersion::~CPfVersion()
+{
+}
 
-    virtual std::vector<CPfGames*>* findByXFkUser(int XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType) =0;
-    virtual CPfGames* findByXGame(int XGame) =0;
-    virtual CPfGames* findByXGame(const std::string &XGame) =0;
-    virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName) =0;
-    virtual std::vector<CPfGames*>* findBySGameType(const std::string &SGameType) =0;
+CDate CPfVersion::getDDate() const
+{
+    return m_DDate;
+}
 
-};
-#endif /*IPFGAMESDAO_H_*/
+const std::string& CPfVersion::getDDate_str() const
+{
+    return m_DDate;
+}
+
+const std::string& CPfVersion::getSVersion() const
+{
+    return m_SVersion;
+}
+
+const std::string& CPfVersion::getSVersion_str() const
+{
+    return m_SVersion;
+}
+
+int CPfVersion::getXVersion() const
+{
+    if( m_XVersion=="" ){
+        return 0;
+    }else{
+        return atoi(m_XVersion.c_str());
+    }
+}
+
+const std::string& CPfVersion::getXVersion_str() const
+{
+    return m_XVersion;
+}
+
+void CPfVersion::setDDate(const CDate &DDate)
+{
+    m_DDate = DDate.getTimestamp();
+}
+
+void CPfVersion::setDDate_str(const std::string &DDate)
+{
+    m_DDate = DDate;
+}
+
+void CPfVersion::setSVersion(const std::string &SVersion)
+{
+    m_SVersion = SVersion;
+}
+
+void CPfVersion::setSVersion_str(const std::string &SVersion)
+{
+    m_SVersion = SVersion;
+}
+
+void CPfVersion::setXVersion(int XVersion)
+{
+    std::ostringstream stream;
+    stream << XVersion;
+    m_XVersion = stream.str();
+}
+
+void CPfVersion::setXVersion_str(const std::string &XVersion)
+{
+    m_XVersion = XVersion;
+}
+

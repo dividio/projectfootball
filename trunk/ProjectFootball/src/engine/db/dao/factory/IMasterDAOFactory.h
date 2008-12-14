@@ -23,6 +23,7 @@
 #ifndef IMASTERDAOFACTORY_H_
 #define IMASTERDAOFACTORY_H_
 
+#include "../IPfVersionDAO.h"
 #include "../IPfGamesDAO.h"
 #include "../IPfUsersDAO.h"
 
@@ -41,6 +42,7 @@ public:
 
     virtual void save() =0;
 
+    virtual IPfVersionDAO* getIPfVersionDAO() =0;
     virtual IPfGamesDAO* getIPfGamesDAO() =0;
     virtual IPfUsersDAO* getIPfUsersDAO() =0;
 

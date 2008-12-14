@@ -20,34 +20,38 @@
 *       Version: 1.20                                                         *
 ******************************************************************************/
 
-#ifndef IPFGAMESDAO_H_
-#define IPFGAMESDAO_H_
+#ifndef CPFVERSION_H_
+#define CPFVERSION_H_
 
 #include <string>
-#include <vector>
 
-#include "../bean/CPfGames.h"
+#include "../../../utils/CDate.h"
 
-class IPfGamesDAO
+class CPfVersion
 {
 public:
-    IPfGamesDAO(){}
-    virtual ~IPfGamesDAO(){}
+    CPfVersion();
+    CPfVersion(const CPfVersion &obj);
+    virtual ~CPfVersion();
 
-    virtual bool deleteReg(CPfGames *reg) =0;
-    virtual bool insertReg(CPfGames *reg) =0;
-    virtual bool updateReg(CPfGames *reg) =0;
+    CDate getDDate() const;
+    const std::string& getDDate_str() const;
+    const std::string& getSVersion() const;
+    const std::string& getSVersion_str() const;
+    int getXVersion() const;
+    const std::string& getXVersion_str() const;
 
-    virtual void freeVector(std::vector<CPfGames*>* vector) =0;
+    void setDDate(const CDate &DDate);
+    void setDDate_str(const std::string &DDate);
+    void setSVersion(const std::string &SVersion);
+    void setSVersion_str(const std::string &SVersion);
+    void setXVersion(int XVersion);
+    void setXVersion_str(const std::string &XVersion);
 
-    virtual std::vector<CPfGames*>* findByXFkUser(int XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType) =0;
-    virtual CPfGames* findByXGame(int XGame) =0;
-    virtual CPfGames* findByXGame(const std::string &XGame) =0;
-    virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName) =0;
-    virtual std::vector<CPfGames*>* findBySGameType(const std::string &SGameType) =0;
+private:
+    std::string m_DDate;
+    std::string m_SVersion;
+    std::string m_XVersion;
 
 };
-#endif /*IPFGAMESDAO_H_*/
+#endif /*CPFVERSION_H_*/

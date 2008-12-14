@@ -20,34 +20,31 @@
 *       Version: 1.20                                                         *
 ******************************************************************************/
 
-#ifndef IPFGAMESDAO_H_
-#define IPFGAMESDAO_H_
+#include <iostream>
+#include <sstream>
 
-#include <string>
-#include <vector>
+#include "CPfVersionDAOSQLite.h"
 
-#include "../bean/CPfGames.h"
-
-class IPfGamesDAO
+CPfVersionDAOSQLite::CPfVersionDAOSQLite(sqlite3 *database)
+  : CPfVersionDAOSQLiteEntity(database)
 {
-public:
-    IPfGamesDAO(){}
-    virtual ~IPfGamesDAO(){}
+}
 
-    virtual bool deleteReg(CPfGames *reg) =0;
-    virtual bool insertReg(CPfGames *reg) =0;
-    virtual bool updateReg(CPfGames *reg) =0;
+CPfVersionDAOSQLite::~CPfVersionDAOSQLite()
+{
+}
 
-    virtual void freeVector(std::vector<CPfGames*>* vector) =0;
+CPfVersion* CPfVersionDAOSQLite::findByXVersion(int XVersion)
+{
+    std::ostringstream stream;
+    stream << XVersion;
+    return findByXVersion(stream.str());
+}
 
-    virtual std::vector<CPfGames*>* findByXFkUser(int XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUser(const std::string &XFkUser) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(int XFkUser, const std::string &SGameType) =0;
-    virtual std::vector<CPfGames*>* findByXFkUserAndSGameType(const std::string &XFkUser, const std::string &SGameType) =0;
-    virtual CPfGames* findByXGame(int XGame) =0;
-    virtual CPfGames* findByXGame(const std::string &XGame) =0;
-    virtual std::vector<CPfGames*>* findBySGameName(const std::string &SGameName) =0;
-    virtual std::vector<CPfGames*>* findBySGameType(const std::string &SGameType) =0;
+CPfVersion* CPfVersionDAOSQLite::findByXVersion(const std::string &XVersion)
+{
+    std::string sql("SELECT * FROM PF_VERSION WHERE ");
+    sql = sql+"X_VERSION='"+XVersion+"'";
+    return loadRegister(sql);
+}
 
-};
-#endif /*IPFGAMESDAO_H_*/
