@@ -37,6 +37,9 @@ CScreenMainMenu::CScreenMainMenu()
     m_configButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
     m_creditsButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
     m_quitButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuitButton"));
+    m_currentDate       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDate"));
+    m_versionDate       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDate"));
+    m_version           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
 
     // Event handle
     m_quickPlayButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickPlayButtonClicked, this));
@@ -47,16 +50,33 @@ CScreenMainMenu::CScreenMainMenu()
 
     // i18n support
     m_quickPlayButton->setText((CEGUI::utf8*)gettext("Quick Play"));
-    m_loadGameButton->setText((CEGUI::utf8*)gettext("Single Player"));
-    m_configButton->setText((CEGUI::utf8*)gettext("Config"));
-    m_creditsButton->setText((CEGUI::utf8*)gettext("Credits"));
-    m_quitButton->setText((CEGUI::utf8*)gettext("Quit"));
+    m_loadGameButton ->setText((CEGUI::utf8*)gettext("Single Player"));
+    m_configButton   ->setText((CEGUI::utf8*)gettext("Config"));
+    m_creditsButton  ->setText((CEGUI::utf8*)gettext("Credits"));
+    m_quitButton     ->setText((CEGUI::utf8*)gettext("Quit"));
+    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
+    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last actualization:"));
 }
 
 
 CScreenMainMenu::~CScreenMainMenu()
 {
   CLog::getInstance()->debug("~CScreenMainMenu()");
+}
+
+void CScreenMainMenu::enter()
+{
+    CScreen::enter();
+
+    IPfVersionDAO *versionDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfVersionDAO();
+    CPfVersion    *version = versionDAO->findByXVersion(1);
+    CDate nowDate;
+    m_currentDate->setText(nowDate.format("%d/%m/%Y"));
+    m_versionDate->setText(version->getDDate().format("%d/%m/%Y"));
+    m_version    ->setText(version->getSVersion());
+
+    delete version;
+
 }
 
 bool CScreenMainMenu::quickPlayButtonClicked(const CEGUI::EventArgs& e)

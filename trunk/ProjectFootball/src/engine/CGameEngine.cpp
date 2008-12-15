@@ -26,6 +26,7 @@
 #include "utils/CClock.h"
 #include "../utils/CLog.h"
 
+#include "screen/CScreenIntro.h"
 #include "screen/CScreenMainMenu.h"
 #include "screen/CScreenLoadGame.h"
 #include "screen/CScreenConfig.h"
@@ -41,15 +42,6 @@ CGameEngine::CGameEngine() : m_screenStack()
 
     m_user = NULL;
     setUser(DEFAULT_USER);
-
-    // The config screen will be created later
-    // because OGRE is not fully initialized now
-    m_mainMenuScreen 	= new CScreenMainMenu();
-    m_loadGameScreen 	= new CScreenLoadGame();
-    m_configScreen		= NULL;
-    m_creditsScreen		= new CScreenCredits();
-
-    nextScreen(m_mainMenuScreen);
 }
 
 CGameEngine::~CGameEngine()
@@ -62,6 +54,7 @@ CGameEngine::~CGameEngine()
         delete m_user;
     }
 
+    delete m_introScreen;
     delete m_mainMenuScreen;
     delete m_loadGameScreen;
     delete m_configScreen;
@@ -155,6 +148,16 @@ IClock& CGameEngine::getClock()
     return *m_clock;
 }
 
+void CGameEngine::screenCreation()
+{
+    m_introScreen       = new CScreenIntro();
+    m_mainMenuScreen    = new CScreenMainMenu();
+    m_loadGameScreen    = new CScreenLoadGame();
+    m_configScreen      = new CScreenConfig();
+    m_creditsScreen     = new CScreenCredits();
+
+    nextScreen(m_introScreen);
+}
 
 void CGameEngine::exit()
 {
@@ -214,11 +217,6 @@ IScreen* CGameEngine::getLoadGameScreen()
 
 IScreen* CGameEngine::getConfigScreen()
 {
-    // The config screen will be created here
-    // because OGRE is now fully initialized
-    if( m_configScreen==NULL ){
-        m_configScreen = new CScreenConfig();
-    }
     return m_configScreen;
 }
 

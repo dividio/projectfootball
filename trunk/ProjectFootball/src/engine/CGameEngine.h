@@ -57,6 +57,7 @@ public:
     virtual bool frameStarted(const Ogre::FrameEvent& evt);
 
     // Screen stack
+    void screenCreation();
     void exit();
     void previousScreen();
     void nextScreen(IScreen* screen);
@@ -79,6 +80,7 @@ private:
     IClock					*m_clock;
     std::vector<IScreen*> 	 m_screenStack;
 
+    IScreen                 *m_introScreen;
     IScreen					*m_mainMenuScreen;
     IScreen					*m_loadGameScreen;
     IScreen					*m_configScreen;

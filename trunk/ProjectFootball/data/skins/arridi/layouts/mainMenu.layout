@@ -9,12 +9,12 @@
         <Property Name="Image" Value="set:Background image:Background" />
         <Property Name="FrameEnabled" Value="false" />
         <Window Type="TaharezLook/StaticText" Name="MainMenu/ProjectFootballLabel" >
-          <Property Name="Font" Value="DejaVuSans-32" />
-          <Property Name="Text" Value="Project Football" />
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.1,0},{0.5,0},{0.2,0}}" />
+            <Property Name="Font" Value="DejaVuSans-32" />
+            <Property Name="Text" Value="Project Football" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.1,0},{0.5,0},{0.2,0}}" />
         </Window>
         <Window Type="TaharezLook/Button" Name="MainMenu/QuickPlayButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
@@ -27,9 +27,9 @@
             <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.43,0},{0.8,0},{0.48,0}}" />
         </Window>
         <Window Type="TaharezLook/Button" Name="MainMenu/ConfigButton" >
-          <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.5,0},{0.8,0},{0.55,0}}" />
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.5,0},{0.8,0},{0.55,0}}" />
         </Window>
         <Window Type="TaharezLook/Button" Name="MainMenu/CreditsButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
@@ -40,6 +40,41 @@
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.64,0},{0.8,0},{0.69,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="MainMenu/CurrentDateLabel" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.95,0},{0.11,0},{1,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="MainMenu/CurrentDate" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.11,0},{0.95,0},{0.21,0},{1,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="MainMenu/VersionDateLabel" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.22,0},{0.95,0},{0.38,0},{1,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="MainMenu/VersionDate" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.38,0},{0.95,0},{0.48,0},{1,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="MainMenu/Version" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.92,0},{0,0},{1,0},{0.05,0}}" />
         </Window>
     </Window>
 </Window>

@@ -36,6 +36,8 @@ public:
     CScreenMainMenu();
     virtual ~CScreenMainMenu();
 
+    virtual void enter();
+
 private:
 	bool quickPlayButtonClicked(const CEGUI::EventArgs& e);
 	bool loadGameButtonClicked(const CEGUI::EventArgs& e);
@@ -48,5 +50,8 @@ private:
 	CEGUI::PushButton	*m_configButton;
 	CEGUI::PushButton	*m_creditsButton;
 	CEGUI::PushButton	*m_quitButton;
+	CEGUI::Window       *m_currentDate;
+	CEGUI::Window       *m_versionDate;
+	CEGUI::Window       *m_version;
 };
 #endif // CSCREENMAINMENU_H_

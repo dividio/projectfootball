@@ -286,6 +286,7 @@ void CApplication::takeScreenshot()
 void CApplication::startRenderLoop()
 {
     bool run = true;
+    CGameEngine::getInstance()->screenCreation();
     CInputManager* input = CInputManager::getInstance();
     while(run) {
         input->capture();

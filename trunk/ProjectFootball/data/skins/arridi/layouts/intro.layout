@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+<Window Type="DefaultWindow" Name="Intro" >
+    <Window Type="TaharezLook/StaticImage" Name="Intro/MainWindow" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
+        <Property Name="FrameEnabled" Value="False" />
+        <Window Type="TaharezLook/StaticImage" Name="Intro/ProjectFootballLogo" >
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.3,0},{0.75,0},{0.6,0}}" />
+            <Property Name="Image" Value="set:LogoPF image:LogoPF" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="TaharezLook/StaticText" Name="MainMenu/IkarogamesURL" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="www.ikarogames.com/projectfootball/" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.7,0},{0.7,0},{0.74,0}}" />
+        </Window>
+    </Window>
+</Window>
+</GUILayout>

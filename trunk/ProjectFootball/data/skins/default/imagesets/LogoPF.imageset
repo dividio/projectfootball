@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<Imageset Name="LogoPF" Imagefile="LogoPF.png" NativeHorzRes="512" NativeVertRes="256" AutoScaled="true" >
+        <Image Name="LogoPF" XPos="80" YPos="40" Width="350" Height="176" />
+</Imageset>
