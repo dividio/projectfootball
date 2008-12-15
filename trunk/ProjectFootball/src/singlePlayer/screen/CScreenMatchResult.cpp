@@ -76,7 +76,9 @@ CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
 CScreenMatchResult::~CScreenMatchResult()
 {
     CLog::getInstance()->debug("~CScreenMatchResult()");
-    delete m_match;
+    if(m_match != NULL) {
+        delete m_match;
+    }
 }
 
 void CScreenMatchResult::enter()
@@ -86,6 +88,9 @@ void CScreenMatchResult::enter()
     simulateMatches();
 
     IPfMatchesDAO *matchesDAO = m_game->getIDAOFactory()->getIPfMatchesDAO();
+    if(m_match != NULL) {
+        delete m_match;
+    }
     m_match = matchesDAO->findLastPlayerTeamMatch();
     loadMatchInfo(m_match);
 }
@@ -157,6 +162,7 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
         sprintf(event, gettext("Goal by %s"), player->getSName().c_str());
         item = new CEGUI::ListboxTextItem(event);
         m_homeEventsList->setItem(item, 1, row_idx);
+        delete player;
     }
     goalsDAO->freeVector(homeGoalsList);
 
@@ -172,6 +178,7 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
         sprintf(event, gettext("Goal by %s"), player->getSName().c_str());
         item = new CEGUI::ListboxTextItem(event);
         m_awayEventsList->setItem(item, 1, row_idx);
+        delete player;
     }
     goalsDAO->freeVector(awayGoalsList);
 
@@ -183,6 +190,11 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
     m_awayEventsList->handleUpdatedItemData();
     m_homeEventsList->getHorzScrollbar()->setVisible(false);
     m_awayEventsList->getHorzScrollbar()->setVisible(false);
+
+    delete competition;
+    delete competitionPhase;
+    delete awayTeam;
+    delete homeTeam;
 
 }
 

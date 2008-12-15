@@ -138,6 +138,9 @@ void CScreenRanking::loadRanking()
         }
     }
     rankingDAO->freeVector(rankingList);
+    daoFactory->getIPfTeamsDAO()->freeVector(teams);
+    delete registeredTeam;
+    delete playerTeam;
 
     m_rankingList->getHorzScrollbar()->setVisible(false);
 }
