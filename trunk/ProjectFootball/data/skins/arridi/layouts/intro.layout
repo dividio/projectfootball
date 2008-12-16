@@ -6,7 +6,6 @@
         <Property Name="InheritsAlpha" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Property Name="Image" Value="set:Background image:Background" />
         <Property Name="FrameEnabled" Value="False" />
         <Window Type="TaharezLook/StaticImage" Name="Intro/ProjectFootballLogo" >
             <Property Name="InheritsAlpha" Value="False" />
