@@ -52,7 +52,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     m_teamPlayer = new CPfTeamPlayers(*teamPlayer);
     m_stateMachine = new CStateMachine<CFootballPlayer>(this);
     Ogre::String id;
-    char charId[20];
+    std::ostringstream charId;
     m_centerOfMassOffset.setOrigin(btVector3(0,-0.9,0));
     m_sideLeft = sideLeft;
     m_team = team;
@@ -60,8 +60,8 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     m_lastKickBallCycle = -1;
 
     //m_direction.normalize();
-    sprintf(charId,"%s%d", team->getName().c_str(), m_number);
-    id = charId;
+    charId << team->getName().c_str() << m_number;
+    id = charId.str();
     m_entity = scnMgr->createEntity("Player"+id, "Human.mesh");
     if(sideLeft) {
         if(m_number == 1) {
