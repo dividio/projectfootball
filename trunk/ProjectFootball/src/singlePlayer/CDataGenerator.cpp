@@ -46,6 +46,8 @@ void CDataGenerator::generateDataBase()
 
     m_daoFactory->executeScriptFile("data/database/scripts/tables.sql");
     m_daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/view_teamplayeraverages.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/view_teamaverages.sql");
     m_daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
     m_daoFactory->executeScriptFile("data/database/scripts/inserts_gameoptions.sql");
     m_daoFactory->executeScriptFile("data/database/scripts/inserts_countries.sql");

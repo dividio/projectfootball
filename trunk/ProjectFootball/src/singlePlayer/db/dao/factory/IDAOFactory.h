@@ -25,6 +25,7 @@
 
 #include "../IPfCompetitionPhasesDAO.h"
 #include "../IPfRankingDAO.h"
+#include "../IPfTeamPlayerAveragesDAO.h"
 #include "../IPfGameStatesDAO.h"
 #include "../IPfMatchesDAO.h"
 #include "../IPfGameOptionsDAO.h"
@@ -36,6 +37,7 @@
 #include "../IPfCountriesDAO.h"
 #include "../IPfCompetitionsDAO.h"
 #include "../IPfTeamsDAO.h"
+#include "../IPfTeamAveragesDAO.h"
 
 class IDAOFactory
 {
@@ -54,6 +56,7 @@ public:
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
     virtual IPfRankingDAO* getIPfRankingDAO() =0;
+    virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO() =0;
     virtual IPfGameStatesDAO* getIPfGameStatesDAO() =0;
     virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
@@ -65,6 +68,7 @@ public:
     virtual IPfCountriesDAO* getIPfCountriesDAO() =0;
     virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
     virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
+    virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO() =0;
 
 };
 #endif /*IDAOFACTORY_H_*/

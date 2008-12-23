@@ -30,6 +30,7 @@
 
 #include "../../../dao/IPfCompetitionPhasesDAO.h"
 #include "../../../dao/IPfRankingDAO.h"
+#include "../../../dao/IPfTeamPlayerAveragesDAO.h"
 #include "../../../dao/IPfGameStatesDAO.h"
 #include "../../../dao/IPfMatchesDAO.h"
 #include "../../../dao/IPfGameOptionsDAO.h"
@@ -41,9 +42,11 @@
 #include "../../../dao/IPfCountriesDAO.h"
 #include "../../../dao/IPfCompetitionsDAO.h"
 #include "../../../dao/IPfTeamsDAO.h"
+#include "../../../dao/IPfTeamAveragesDAO.h"
 
 #include "../CPfCompetitionPhasesDAOSQLite.h"
 #include "../CPfRankingDAOSQLite.h"
+#include "../CPfTeamPlayerAveragesDAOSQLite.h"
 #include "../CPfGameStatesDAOSQLite.h"
 #include "../CPfMatchesDAOSQLite.h"
 #include "../CPfGameOptionsDAOSQLite.h"
@@ -55,6 +58,7 @@
 #include "../CPfCountriesDAOSQLite.h"
 #include "../CPfCompetitionsDAOSQLite.h"
 #include "../CPfTeamsDAOSQLite.h"
+#include "../CPfTeamAveragesDAOSQLite.h"
 
 class CDAOFactorySQLite : public IDAOFactory
 {
@@ -73,6 +77,7 @@ public:
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO();
     virtual IPfRankingDAO* getIPfRankingDAO();
+    virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO();
     virtual IPfGameStatesDAO* getIPfGameStatesDAO();
     virtual IPfMatchesDAO* getIPfMatchesDAO();
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
@@ -84,6 +89,7 @@ public:
     virtual IPfCountriesDAO* getIPfCountriesDAO();
     virtual IPfCompetitionsDAO* getIPfCompetitionsDAO();
     virtual IPfTeamsDAO* getIPfTeamsDAO();
+    virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO();
 
 
 private:
@@ -96,6 +102,7 @@ private:
 
     CPfCompetitionPhasesDAOSQLite *m_PfCompetitionPhasesDAOSQLite;
     CPfRankingDAOSQLite *m_PfRankingDAOSQLite;
+    CPfTeamPlayerAveragesDAOSQLite *m_PfTeamPlayerAveragesDAOSQLite;
     CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
     CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
     CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
@@ -107,6 +114,7 @@ private:
     CPfCountriesDAOSQLite *m_PfCountriesDAOSQLite;
     CPfCompetitionsDAOSQLite *m_PfCompetitionsDAOSQLite;
     CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
+    CPfTeamAveragesDAOSQLite *m_PfTeamAveragesDAOSQLite;
 
 };
 #endif /*CDAOFACTORYSQLITE_H_*/
