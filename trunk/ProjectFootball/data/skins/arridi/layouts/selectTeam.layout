@@ -31,7 +31,7 @@
         <Window Type="TaharezLook/StaticImage" Name="SelectTeam/Info" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.431313,0},{0.248919,0},{0.97,0},{0.869257,0}}" />
-            <Window Type="TaharezLook/StaticImage" Name="SelectTeam/TeamLogo" >
+            <Window Type="TaharezLook/StaticImage" Name="SelectTeam/TeamShield" >
                 <Property Name="FrameEnabled" Value="false" />
                 <Property Name="BackgroundEnabled" Value="false" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -54,16 +54,22 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.262723,0},{0.98,0},{0.342723,0}}" />
             </Window>
-            <Window Type="TaharezLook/StaticText" Name="SelectTeam/Budget" >
+            <Window Type="TaharezLook/StaticText" Name="SelectTeam/TeamBudget" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.37,0},{0.98,0},{0.45,0}}" />
             </Window>
-            <Window Type="TaharezLook/StaticText" Name="SelectTeam/LevelLabel" >
+            <Window Type="TaharezLook/StaticText" Name="SelectTeam/AverageLabel" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.48,0},{0.47,0},{0.56,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.48,0},{0.3,0},{0.56,0}}" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="SelectTeam/TeamAverage" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.48,0},{0.4,0},{0.56,0}}" />
             </Window>
         </Window>
         <Window Type="TaharezLook/Combobox" Name="SelectTeam/Confederation" >

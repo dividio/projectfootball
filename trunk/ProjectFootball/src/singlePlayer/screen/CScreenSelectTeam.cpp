@@ -47,24 +47,25 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     m_backButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BackButton"));
     m_guiTeamsList        		= static_cast<CEGUI::Listbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
     m_guiTeamName         		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
-    m_guiTeamBudget       		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Budget"));
-    m_guiTeamLogo         		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamLogo"));
+    m_guiTeamBudget       		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
+    m_guiTeamShield             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
+    m_guiTeamAverage            = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamAverage"));
     m_confederationsCombobox	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Confederation"));
     m_countriesCombobox      	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Country"));
     m_competitionsCombobox   	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Competition"));
 
     m_confederationsCombobox->getEditbox()->setEnabled(false);
-    m_countriesCombobox->getEditbox()->setEnabled(false);
-    m_competitionsCombobox->getEditbox()->setEnabled(false);
+    m_countriesCombobox     ->getEditbox()->setEnabled(false);
+    m_competitionsCombobox  ->getEditbox()->setEnabled(false);
     m_guiTeamsList->setWantsMultiClickEvents(true);
 
     // i18n support
-    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
+    m_backButton  ->setText((CEGUI::utf8*)gettext("Back"));
     m_selectButton->setText((CEGUI::utf8*)gettext("Select Team"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectTeamLabel"))->setText((CEGUI::utf8*)gettext("Please, select your team:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/NameLabel"))->setText((CEGUI::utf8*)gettext("Name:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BudgetLabel"))->setText((CEGUI::utf8*)gettext("Budget:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/LevelLabel"))->setText((CEGUI::utf8*)gettext("Level:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/AverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationLabel"))->setText((CEGUI::utf8*)gettext("Confederation:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryLabel"))->setText((CEGUI::utf8*)gettext("Country:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CompetitionLabel"))->setText((CEGUI::utf8*)gettext("Competition:"));
@@ -336,10 +337,17 @@ bool CScreenSelectTeam::backButtonClicked(const CEGUI::EventArgs& e)
 void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
 {
     // TODO Add more team information
-    char budget[10];
     m_guiTeamName->setProperty("Text", team->getSTeam());
-    sprintf(budget, "%d", team->getNBudget());
-    m_guiTeamBudget->setProperty("Text", budget);
+    std::ostringstream budget;
+    budget << team->getNBudget();
+    m_guiTeamBudget->setProperty("Text", budget.str());
+
+    IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
+    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    std::ostringstream average;
+    average << teamAverage->getNTotal();
+    m_guiTeamAverage->setProperty("Text", average.str());
+    delete teamAverage;
 
     //Loading logo
     CEGUI::String imagesetName = "TeamLogo" + team->getXTeam_str();
@@ -347,13 +355,14 @@ void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
         CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, team->getSLogo());
     }
 
-    m_guiTeamLogo->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+    m_guiTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
 }
 
 void CScreenSelectTeam::clearTeamInfo()
 {
     // TODO Clear all team information
-    m_guiTeamName  ->setProperty("Text", "");
-    m_guiTeamBudget->setProperty("Text", "");
-    m_guiTeamLogo  ->setProperty("Image", "");
+    m_guiTeamName   ->setProperty("Text", "");
+    m_guiTeamBudget ->setProperty("Text", "");
+    m_guiTeamAverage->setProperty("Text", "");
+    m_guiTeamShield ->setProperty("Image", "");
 }

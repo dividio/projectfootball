@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-15 22:03+0100\n"
-"PO-Revision-Date: 2008-12-15 22:05+0100\n"
+"POT-Creation-Date: 2008-12-23 13:52+0100\n"
+"PO-Revision-Date: 2008-12-23 13:53+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,11 @@ msgstr "¿Estas seguro de querer eliminar esta partida?"
 msgid "Average"
 msgstr "Media"
 
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:68
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:85
+msgid "Average:"
+msgstr "Media:"
+
 #: src/singlePlayer/screen/CScreenResults.cpp:61
 msgid "Away Team"
 msgstr "Equipo Visitante"
@@ -55,8 +60,8 @@ msgstr "Equipo Visitante"
 #: src/engine/screen/CScreenLoadGame.cpp:61
 #: src/singlePlayer/screen/CScreenSimulator.cpp:67
 #: src/singlePlayer/screen/CScreenResults.cpp:51
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:62
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:78
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:63
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:82
 #: src/singlePlayer/screen/CScreenRanking.cpp:46
 msgid "Back"
 msgstr "Volver"
@@ -69,11 +74,11 @@ msgstr "Basado en:"
 msgid "Before Start"
 msgstr "Antes de empezar"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:66
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:67
 msgid "Budget:"
 msgstr "Presupuesto:"
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:79
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:83
 msgid "Change"
 msgstr "Cambiar"
 
@@ -82,11 +87,11 @@ msgstr "Cambiar"
 msgid "Changes will take effect after restart"
 msgstr "Los cambios tendrán efecto tras reiniciar"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:70
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:71
 msgid "Competition:"
 msgstr "Competición:"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:68
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:69
 msgid "Confederation:"
 msgstr "Confederación:"
 
@@ -103,7 +108,7 @@ msgstr "Continuar"
 msgid "Corner Kick"
 msgstr "Saque de esquina"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:69
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:70
 msgid "Country:"
 msgstr "País:"
 
@@ -144,8 +149,8 @@ msgstr "Pantalla Completa"
 msgid "Goal Kick"
 msgstr "Saque de puerta"
 
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:157
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:172
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:162
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:178
 #, c-format
 msgid "Goal by %s"
 msgstr "Gol de %s"
@@ -175,10 +180,6 @@ msgstr "Saque de centro"
 msgid "Last actualization:"
 msgstr "Última actualización:"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:67
-msgid "Level:"
-msgstr "Nivel:"
-
 #: src/engine/screen/CScreenLoadGame.cpp:60
 msgid "Load Game"
 msgstr "Cargar Partida"
@@ -204,7 +205,7 @@ msgstr "Nombre (Alineación inicial)"
 msgid "Name (Not Line Up)"
 msgstr "Nombre (No convocados)"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:65
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:66
 msgid "Name:"
 msgstr "Nombre:"
 
@@ -217,11 +218,11 @@ msgstr "Nueva Partida"
 msgid "No"
 msgstr "No"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:191
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:192
 msgid "No competitions"
 msgstr "No hay competiciones"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:166
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:167
 msgid "No countries"
 msgstr "No hay países"
 
@@ -238,7 +239,7 @@ msgstr "Jugar Partido"
 msgid "Play On"
 msgstr "En juego"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:64
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:65
 msgid "Please, select your team:"
 msgstr "Por favor, selecciona tu equipo:"
 
@@ -287,7 +288,7 @@ msgstr "Volver al Menú Principal"
 msgid "Save"
 msgstr "Guardar"
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:63
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:64
 msgid "Select Team"
 msgstr "Seleccionar Equipo"
 
@@ -329,7 +330,7 @@ msgstr "Equipo"
 msgid "Team Players"
 msgstr "Plantilla"
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:80
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:84
 msgid "Team Players:"
 msgstr "Plantilla:"
 
@@ -368,6 +369,8 @@ msgstr "Zoom"
 msgid "min"
 msgstr "min"
 
+#~ msgid "Level:"
+#~ msgstr "Nivel:"
 #~ msgid "Next Match:"
 #~ msgstr "Siguiente Partido:"
 #~ msgid "Your Team:"

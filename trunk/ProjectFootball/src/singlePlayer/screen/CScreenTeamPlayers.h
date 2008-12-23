@@ -48,6 +48,7 @@ private:
     bool changePlayersButtonClicked(const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
+    void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
     void saveTeamPlayersList();
     void changePlayers();
     void selectChanged(CEGUI::MultiColumnList *list);
@@ -62,10 +63,14 @@ private:
     CPfTeamPlayers         	*m_selectedPlayer2;
     int                      m_selectedPlayer1Row;
     int                      m_selectedPlayer2Row;
+
     CEGUI::MultiColumnList 	*m_selectedPlayer1List;
     CEGUI::MultiColumnList 	*m_selectedPlayer2List;
     CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton		*m_changePlayersButton;
+    CEGUI::Window           *m_teamName;
+    CEGUI::Window           *m_teamAverage;
+    CEGUI::Window           *m_teamShield;
     SelectedPlayers          m_selectedPlayers;
 
     CSinglePlayerGame		*m_game;

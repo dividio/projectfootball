@@ -9,10 +9,39 @@
         <Property Name="Image" Value="set:Background image:Background" />
         <Property Name="FrameEnabled" Value="false" />
         <Window Type="TaharezLook/StaticText" Name="TeamPlayers/TeamPlayersLabel" >
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.5,0},{0.08,0}}" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.5,0},{0.08,0}}" />
+        </Window>
+        <Window Type="TaharezLook/StaticImage" Name="TeamPlayers/Info" >
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.75,0},{0.14,0},{0.95,0},{0.4,0}}" />
+            <Window Type="TaharezLook/StaticText" Name="TeamPlayers/TeamName" >
+              <Property Name="FrameEnabled" Value="False" />
+              <Property Name="BackgroundEnabled" Value="False" />
+              <Property Name="HorzFormatting" Value="HorzCentred" />
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.04,0},{0.9,0},{0.12,0}}" />
+            </Window>
+            <Window Type="TaharezLook/StaticImage" Name="TeamPlayers/TeamShield" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="BackgroundEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.26,0},{0.14,0},{0.74,0},{0.72,0}}" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="TeamPlayers/TeamAverageLabel" >
+              <Property Name="FrameEnabled" Value="False" />
+              <Property Name="BackgroundEnabled" Value="False" />
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.76,0},{0.7,0},{0.84,0}}" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="TeamPlayers/TeamAverage" >
+              <Property Name="FrameEnabled" Value="False" />
+              <Property Name="BackgroundEnabled" Value="False" />
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.76,0},{0.9,0},{0.84,0}}" />
+            </Window>
         </Window>
         <Window Type="TaharezLook/MultiColumnList" Name="TeamPlayers/LineUpTeamPlayersList" >
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
