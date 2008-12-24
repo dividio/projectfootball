@@ -22,6 +22,7 @@
 
 #include <vector>
 #include <sstream>
+#include <stdlib.h>
 
 #include "db/dao/factory/IDAOFactory.h"
 #include "db/bean/CPfTeams.h"
