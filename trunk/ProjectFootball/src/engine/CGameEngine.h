@@ -57,11 +57,11 @@ public:
     virtual bool frameStarted(const Ogre::FrameEvent& evt);
 
     // Screen stack
-    void screenCreation();
     void exit();
     void previousScreen();
     void nextScreen(IScreen* screen);
 
+    IScreen* getIntroScreen();
     IScreen* getMainMenuScreen();
     IScreen* getLoadGameScreen();
     IScreen* getConfigScreen();

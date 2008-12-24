@@ -42,6 +42,12 @@ CGameEngine::CGameEngine() : m_screenStack()
 
     m_user = NULL;
     setUser(DEFAULT_USER);
+
+    m_introScreen		= NULL;
+    m_mainMenuScreen	= NULL;
+    m_loadGameScreen	= NULL;
+    m_configScreen		= NULL;
+    m_creditsScreen		= NULL;
 }
 
 CGameEngine::~CGameEngine()
@@ -148,17 +154,6 @@ IClock& CGameEngine::getClock()
     return *m_clock;
 }
 
-void CGameEngine::screenCreation()
-{
-    m_introScreen       = new CScreenIntro();
-    m_mainMenuScreen    = new CScreenMainMenu();
-    m_loadGameScreen    = new CScreenLoadGame();
-    m_configScreen      = new CScreenConfig();
-    m_creditsScreen     = new CScreenCredits();
-
-    nextScreen(m_introScreen);
-}
-
 void CGameEngine::exit()
 {
     while( !m_screenStack.empty() ){
@@ -205,23 +200,43 @@ void CGameEngine::nextScreen(IScreen* screen)
     }
 }
 
+IScreen* CGameEngine::getIntroScreen()
+{
+    if( m_introScreen==NULL ){
+        m_introScreen = new CScreenIntro();
+    }
+    return m_introScreen;
+}
+
 IScreen* CGameEngine::getMainMenuScreen()
 {
+    if( m_mainMenuScreen==NULL ){
+        m_mainMenuScreen = new CScreenMainMenu();
+    }
     return m_mainMenuScreen;
 }
 
 IScreen* CGameEngine::getLoadGameScreen()
 {
+    if( m_loadGameScreen==NULL ){
+        m_loadGameScreen = new CScreenLoadGame();
+    }
     return m_loadGameScreen;
 }
 
 IScreen* CGameEngine::getConfigScreen()
 {
+    if( m_configScreen==NULL ){
+        m_configScreen = new CScreenConfig();
+    }
     return m_configScreen;
 }
 
 IScreen* CGameEngine::getCreditsScreen()
 {
+    if( m_creditsScreen==NULL ){
+        m_creditsScreen = new CScreenCredits();
+    }
     return m_creditsScreen;
 }
 
