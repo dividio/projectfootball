@@ -124,8 +124,8 @@ void CScreenGame::enter()
         CPfTeams    *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
         CPfTeams    *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
 
-        m_homeTeamName  ->setText(homeTeam->getSTeam());
-        m_awayTeamName  ->setText(awayTeam->getSTeam());
+        m_homeTeamName  ->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
+        m_awayTeamName  ->setText((CEGUI::utf8*)awayTeam->getSTeam().c_str());
 
         imagesetName = "TeamLogo" + homeTeam->getXTeam_str();
         if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {

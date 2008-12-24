@@ -125,12 +125,12 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
 
     std::string homeName = homeTeam->getSTeam();
     std::string awayName = awayTeam->getSTeam();
-    m_competitionName->setProperty("Text", competition->getSCompetition().c_str());
-    m_competitionPhaseName->setProperty("Text", competitionPhase->getSCompetitionPhase().c_str());
-    m_homeName->setProperty("Text", homeName.c_str());
-    m_awayName->setProperty("Text", awayName.c_str());
-    m_homeScore->setProperty("Text", nHomeGoals.str());
-    m_awayScore->setProperty("Text", nAwayGoals.str());
+    m_competitionName     ->setProperty("Text", (CEGUI::utf8*)competition->getSCompetition().c_str());
+    m_competitionPhaseName->setProperty("Text", (CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
+    m_homeName            ->setProperty("Text", (CEGUI::utf8*)homeName.c_str());
+    m_awayName            ->setProperty("Text", (CEGUI::utf8*)awayName.c_str());
+    m_homeScore           ->setProperty("Text", (CEGUI::utf8*)nHomeGoals.str().c_str());
+    m_awayScore           ->setProperty("Text", (CEGUI::utf8*)nAwayGoals.str().c_str());
     //Loading Home logo
     CEGUI::String imagesetHomeName = "TeamLogo" + homeTeam->getXTeam_str();
     if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetHomeName)) {
@@ -148,7 +148,7 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
     std::vector<CPfGoals*>::iterator it;
     CEGUI::ListboxTextItem *item;
     CPfTeamPlayers *player;
-    char event[40];
+    std::ostringstream event;
 
     for( it=homeGoalsList->begin(); it!=homeGoalsList->end(); it++ ){
         CPfGoals *goal = (*it);
@@ -159,10 +159,11 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
         m_homeEventsList->setItem(item, 0, row_idx);
 
         player = playersDAO->findByXTeamPlayer(goal->getXFkTeamPlayerScorer());
-        sprintf(event, gettext("Goal by %s"), player->getSName().c_str());
-        item = new CEGUI::ListboxTextItem(event);
+        event << gettext("Goal by ") << player->getSName().c_str();
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)event.str().c_str());
         m_homeEventsList->setItem(item, 1, row_idx);
         delete player;
+        event.str("");
     }
     goalsDAO->freeVector(homeGoalsList);
 
@@ -175,10 +176,11 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
         m_awayEventsList->setItem(item, 0, row_idx);
 
         player = playersDAO->findByXTeamPlayer(goal->getXFkTeamPlayerScorer());
-        sprintf(event, gettext("Goal by %s"), player->getSName().c_str());
-        item = new CEGUI::ListboxTextItem(event);
+        event << gettext("Goal by ") << player->getSName().c_str();
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)event.str().c_str());
         m_awayEventsList->setItem(item, 1, row_idx);
         delete player;
+        event.str("");
     }
     goalsDAO->freeVector(awayGoalsList);
 

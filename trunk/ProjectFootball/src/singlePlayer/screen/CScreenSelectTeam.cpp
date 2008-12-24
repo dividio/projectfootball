@@ -137,9 +137,9 @@ int CScreenSelectTeam::loadConfederationsList()
     for(it = m_confederationsList->begin(); it != m_confederationsList->end(); it++) {
         CPfConfederations *confederation = (*it);
         m_confederationsCombobox->addItem(new CEGUI::ListboxTextItem
-                (confederation->getSConfederation(), confederation->getXConfederation()));
+                ((CEGUI::utf8*)confederation->getSConfederation().c_str(), confederation->getXConfederation()));
     }
-    m_confederationsCombobox->setText(m_confederationsList->front()->getSConfederation());
+    m_confederationsCombobox->setText((CEGUI::utf8*)m_confederationsList->front()->getSConfederation().c_str());
     return m_confederationsList->front()->getXConfederation();
 }
 
@@ -158,9 +158,9 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
         for(it = m_countriesList->begin(); it != m_countriesList->end(); it++) {
             CPfCountries *country = (*it);
             m_countriesCombobox->addItem(new CEGUI::ListboxTextItem
-                    (country->getSCountry(), country->getXCountry()));
+                    ((CEGUI::utf8*)country->getSCountry().c_str(), country->getXCountry()));
         }
-        m_countriesCombobox->setText(m_countriesList->front()->getSCountry());
+        m_countriesCombobox->setText((CEGUI::utf8*)m_countriesList->front()->getSCountry().c_str());
 
         selectedCountry = m_countriesList->front()->getXCountry();
     } else {
@@ -184,9 +184,9 @@ int CScreenSelectTeam::loadCompetitionsList(int XCountry)
         for(it = m_competitionsList->begin(); it != m_competitionsList->end(); it++) {
             CPfCompetitions *competition = (*it);
             m_competitionsCombobox->addItem(new CEGUI::ListboxTextItem
-                    (competition->getSCompetition(), competition->getXCompetition()));
+                    ((CEGUI::utf8*)competition->getSCompetition().c_str(), competition->getXCompetition()));
         }
-        m_competitionsCombobox->setText(m_competitionsList->front()->getSCompetition());
+        m_competitionsCombobox->setText((CEGUI::utf8*)m_competitionsList->front()->getSCompetition().c_str());
         selectedCompetition = m_competitionsList->front()->getXCompetition();
     } else {
         m_competitionsCombobox->setText((CEGUI::utf8*)gettext("No competitions"));
@@ -211,7 +211,7 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
         for( it=m_teamsList->begin(); it!=m_teamsList->end(); it++ ){
             CPfTeams *team = (*it);
 
-            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(team->getSTeam());
+            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)team->getSTeam().c_str());
             item->setSelectionBrushImage(sel_img);
             item->setID(team->getXTeam());
             m_guiTeamsList->addItem(item);
@@ -337,16 +337,16 @@ bool CScreenSelectTeam::backButtonClicked(const CEGUI::EventArgs& e)
 void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
 {
     // TODO Add more team information
-    m_guiTeamName->setProperty("Text", team->getSTeam());
+    m_guiTeamName->setProperty("Text", (CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream budget;
     budget << team->getNBudget();
-    m_guiTeamBudget->setProperty("Text", budget.str());
+    m_guiTeamBudget->setProperty("Text", (CEGUI::utf8*)budget.str().c_str());
 
     IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
     CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
     std::ostringstream average;
     average << teamAverage->getNTotal();
-    m_guiTeamAverage->setProperty("Text", average.str());
+    m_guiTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
     delete teamAverage;
 
     //Loading logo

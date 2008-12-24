@@ -169,10 +169,10 @@ void CScreenTeamPlayers::loadTeamPlayersList()
     }
 
     CPfTeamAverages *teamAverage = teamAveragesDAO->findByXTeam(team->getXTeam_str());
-    m_teamName   ->setText(team->getSTeam());
+    m_teamName   ->setText((CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream average;
     average << teamAverage->getNTotal();
-    m_teamAverage->setText(average.str());
+    m_teamAverage->setText((CEGUI::utf8*)average.str().c_str());
     delete teamAverage;
 
     //Loading logo
@@ -188,11 +188,11 @@ void CScreenTeamPlayers::loadTeamPlayersList()
     teamPlayersDAO->freeVector(notLineUpTeamPlayersList);
     delete team;
 
-    m_lineUpTeamPlayersList->getHorzScrollbar()->setVisible(false);
+    m_lineUpTeamPlayersList   ->getHorzScrollbar()->setVisible(false);
     m_alternateTeamPlayersList->getHorzScrollbar()->setVisible(false);
     m_notLineUpTeamPlayersList->getHorzScrollbar()->setVisible(false);
 
-    m_lineUpTeamPlayersList->getVertScrollbar()->setVisible(false);
+    m_lineUpTeamPlayersList   ->getVertScrollbar()->setVisible(false);
     m_alternateTeamPlayersList->getVertScrollbar()->setVisible(false);
 }
 
@@ -203,20 +203,20 @@ void CScreenTeamPlayers::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiCol
 
     int row_idx = list->addRow();
     int XTeamPlayer = player->getXTeamPlayer();
-    CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem(player->getSName(), XTeamPlayer);
+    CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSName().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 0, row_idx);
 
-    item = new CEGUI::ListboxTextItem(player->getNVelocity_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNVelocity_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 1, row_idx);
 
-    item = new CEGUI::ListboxTextItem(player->getNKickPower_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNKickPower_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 2, row_idx);
 
     CPfTeamPlayerAverages *playerAverage = m_game->getIDAOFactory()->getIPfTeamPlayerAveragesDAO()->findByXTeamPlayer(player->getXTeamPlayer_str());
-    item = new CEGUI::ListboxTextItem(playerAverage->getNTotal_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)playerAverage->getNTotal_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 3, row_idx);
 }
@@ -373,7 +373,7 @@ bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
         CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
         std::ostringstream average;
         average << teamAverage->getNTotal();
-        m_teamAverage->setText(average.str());
+        m_teamAverage->setText((CEGUI::utf8*)average.str().c_str());
         delete teamAverage;
         delete team;
     }
@@ -411,11 +411,11 @@ void CScreenTeamPlayers::changeRows(CEGUI::MultiColumnList *list1, int row1, CEG
 
     IPfTeamPlayerAveragesDAO *teamPlayerAveragesDAO = m_game->getIDAOFactory()->getIPfTeamPlayerAveragesDAO();
     CPfTeamPlayerAverages *playerAverage = teamPlayerAveragesDAO->findByXTeamPlayer(item1->getID());
-    item1->setText(playerAverage->getNTotal_str());
+    item1->setText((CEGUI::utf8*)playerAverage->getNTotal_str().c_str());
     delete playerAverage;
 
     playerAverage = teamPlayerAveragesDAO->findByXTeamPlayer(item2->getID());
-    item2->setText(playerAverage->getNTotal_str());
+    item2->setText((CEGUI::utf8*)playerAverage->getNTotal_str().c_str());
     delete playerAverage;
 }
 

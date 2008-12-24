@@ -244,12 +244,12 @@ void CScreenSimulator::enter()
     IPfTeamsDAO *teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
     std::string homeName = teamsDAO->findByXTeam(m_match->getXFkTeamHome())->getSTeam();
     std::string awayName = teamsDAO->findByXTeam(m_match->getXFkTeamAway())->getSTeam();
-    char names[40];
-    sprintf(names, "%s vs %s", homeName.c_str(), awayName.c_str());
-    m_teamNames->setProperty("Text", names);
+    std::ostringstream names;
+    names << homeName.c_str() << " vs " << awayName.c_str();
+    m_teamNames->setProperty("Text", (CEGUI::utf8*)names.str().c_str());
     m_score->setProperty("Text", "0 - 0");
-    m_frameHomeName->setProperty("Text", homeName.c_str());
-    m_frameAwayName->setProperty("Text", awayName.c_str());
+    m_frameHomeName->setProperty("Text", (CEGUI::utf8*)homeName.c_str());
+    m_frameAwayName->setProperty("Text", (CEGUI::utf8*)awayName.c_str());
     m_frameHomeScore->setProperty("Text", "0");
     m_frameAwayScore->setProperty("Text", "0");
 }
@@ -313,10 +313,10 @@ void CScreenSimulator::addToLog(const std::string &text)
 {
     int historySize = 7;
     int shortHistorySize = 3;
-    char message[30];
+    std::ostringstream message;
     // If there's text then add it
     if(text.size()) {
-        snprintf(message, 30, "%d' - %s", m_simulator->getReferee()->getMinute(), text.c_str());
+        message << m_simulator->getReferee()->getMinute() << "' - " << text.c_str();
         // Add the Editbox text to the history Listbox
         CEGUI::ListboxTextItem* logItem;
         if(m_logHistoryList->getItemCount() == historySize) {
@@ -330,10 +330,10 @@ void CScreenSimulator::addToLog(const std::string &text)
             logItem->setAutoDeleted(false);
             m_logHistoryList->removeItem(logItem);
             logItem->setAutoDeleted(true);
-            logItem->setText(message);
+            logItem->setText((CEGUI::utf8*)message.str().c_str());
         } else {
             // Create a new listbox item
-            logItem = new CEGUI::ListboxTextItem(message);
+            logItem = new CEGUI::ListboxTextItem((CEGUI::utf8*)message.str().c_str());
         }
         m_logHistoryList->addItem(logItem);
         m_logHistoryList->ensureItemIsVisible(m_logHistoryList->getItemCount());
@@ -343,9 +343,9 @@ void CScreenSimulator::addToLog(const std::string &text)
             logItem->setAutoDeleted(false);
             m_logHistoryListShort->removeItem(logItem);
             logItem->setAutoDeleted(true);
-            logItem->setText(message);
+            logItem->setText((CEGUI::utf8*)message.str().c_str());
         } else {
-            logItem = new CEGUI::ListboxTextItem(message);
+            logItem = new CEGUI::ListboxTextItem((CEGUI::utf8*)message.str().c_str());
         }
         m_logHistoryListShort->addItem(logItem);
         m_logHistoryListShort->ensureItemIsVisible(m_logHistoryListShort->getItemCount());
@@ -368,7 +368,7 @@ void CScreenSimulator::loadTeamPlayers()
         CPfTeamPlayers *teamPlayer = (*it);
 
         int row_idx = m_teamPlayersList->addRow();
-        m_teamPlayersList->setItem(new CEGUI::ListboxTextItem(teamPlayer->getSName()), 0, row_idx);
+        m_teamPlayersList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamPlayer->getSName().c_str()), 0, row_idx);
         cont++;
     }
     teamPlayersDAO->freeVector(teamPlayersList);
@@ -408,13 +408,15 @@ void CScreenSimulator::updateScore()
     CReferee *referee = m_simulator->getReferee();
     int homeScore = referee->getHomeScore();
     int awayScore = referee->getAwayScore();
-    char score[8];
-    sprintf(score, "%d - %d", homeScore, awayScore);
-    m_score->setProperty("Text", score);
-    sprintf(score, "%d", homeScore);
-    m_frameHomeScore->setProperty("Text", score);
-    sprintf(score, "%d", awayScore);
-    m_frameAwayScore->setProperty("Text", score);
+    std::ostringstream score;
+    score << homeScore << " - " << awayScore;
+    m_score->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
+    score.str("");
+    score << homeScore;
+    m_frameHomeScore->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
+    score.str("");
+    score << awayScore;
+    m_frameAwayScore->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
 }
 
 
