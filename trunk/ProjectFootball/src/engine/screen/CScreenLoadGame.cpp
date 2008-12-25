@@ -109,7 +109,7 @@ void CScreenLoadGame::loadGameList()
         int row_idx = m_gamesList->addRow();
         m_gamesList->setRowID(row_idx, game->getXGame());
 
-        CEGUI::ListboxTextItem* itm_0 = new CEGUI::ListboxTextItem(game->getSGameName());
+        CEGUI::ListboxTextItem* itm_0 = new CEGUI::ListboxTextItem((CEGUI::utf8*)game->getSGameName().c_str());
         itm_0->setSelectionBrushImage(sel_img);
         itm_0->setID(game->getXGame());
 
