@@ -50,8 +50,15 @@ private:
 	bool exitCancelButtonClicked            (const CEGUI::EventArgs& e);
 
 
+    CEGUI::Window       *m_competitionName;
+    CEGUI::Window       *m_competitionPhaseName;
+    CEGUI::Window       *m_nextCompetitionName;
+    CEGUI::Window       *m_nextHomeTeamName;
+    CEGUI::Window       *m_nextAwayTeamName;
     CEGUI::Window     	*m_homeTeamName;
     CEGUI::Window     	*m_awayTeamName;
+    CEGUI::Window       *m_homeTeamAverage;
+    CEGUI::Window       *m_awayTeamAverage;
     CEGUI::Window       *m_homeTeamShield;
     CEGUI::Window       *m_awayTeamShield;
 
