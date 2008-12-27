@@ -50,6 +50,7 @@
         </Window>
         <Window Type="TaharezLook/StaticText" Name="MainMenu/CurrentDate" >
             <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="TextColours" Value="tl:FFFFFF00 tr:FFFFFF00 bl:FFFFFF00 br:FFFFFF00" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="BackgroundEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -64,6 +65,7 @@
         </Window>
         <Window Type="TaharezLook/StaticText" Name="MainMenu/VersionDate" >
             <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="TextColours" Value="tl:FFFFFF00 tr:FFFFFF00 bl:FFFFFF00 br:FFFFFF00" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="BackgroundEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
