@@ -115,8 +115,11 @@ void CScreenGame::enter()
     CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
     if( nextMatch==NULL ){
         CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
-        m_homeTeamName  ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
-        m_awayTeamName  ->setText("");
+        m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
+        m_awayTeamName        ->setText("");
+        m_competitionName     ->setText("");
+        m_competitionPhaseName->setText("");
+
 
         imagesetName = "TeamLogo" + playerTeam->getXTeam_str();
         if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
