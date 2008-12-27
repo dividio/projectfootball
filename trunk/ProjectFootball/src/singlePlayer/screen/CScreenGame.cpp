@@ -117,6 +117,7 @@ void CScreenGame::enter()
         CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
         m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
         m_awayTeamName        ->setText("");
+        m_awayTeamAverage     ->setText("");
         m_competitionName     ->setText("");
         m_competitionPhaseName->setText("");
 
