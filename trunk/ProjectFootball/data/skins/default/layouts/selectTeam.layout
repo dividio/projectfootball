@@ -35,7 +35,7 @@
                 <Property Name="FrameEnabled" Value="false" />
                 <Property Name="BackgroundEnabled" Value="false" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.3,0},{0.4,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.3,0},{0.33,0}}" />
             </Window>
             <Window Type="TaharezLook/StaticText" Name="SelectTeam/NameLabel" >
                 <Property Name="Font" Value="DejaVuSans-10" />

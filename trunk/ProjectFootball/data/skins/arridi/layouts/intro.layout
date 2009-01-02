@@ -10,7 +10,7 @@
         <Window Type="TaharezLook/StaticImage" Name="Intro/ProjectFootballLogo" >
             <Property Name="InheritsAlpha" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.3,0},{0.75,0},{0.6,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.275,0},{0.75,0},{0.6,0}}" />
             <Property Name="Image" Value="set:LogoPF image:LogoPF" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="BackgroundEnabled" Value="False" />

@@ -58,14 +58,14 @@
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.37,0},{0.11,0},{0.47,0},{0.27,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.37,0},{0.11,0},{0.4675,0},{0.24,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
         <Window Type="TaharezLook/StaticImage" Name="Game/AwayTeamShield" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.53,0},{0.11,0},{0.63,0},{0.27,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.53,0},{0.11,0},{0.6275,0},{0.24,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
         <Window Type="TaharezLook/StaticText" Name="Game/HomeTeamAverage" >

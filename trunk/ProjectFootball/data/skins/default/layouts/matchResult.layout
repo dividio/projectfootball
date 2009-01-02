@@ -41,13 +41,13 @@
             <Property Name="FrameEnabled" Value="false" />
             <Property Name="BackgroundEnabled" Value="false" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.2,0},{0.17,0},{0.43,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.2,0},{0.194,0},{0.43,0}}" />
         </Window>
         <Window Type="TaharezLook/StaticImage" Name="MatchResult/AwayTeamLogo" >
             <Property Name="FrameEnabled" Value="false" />
             <Property Name="BackgroundEnabled" Value="false" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.83,0},{0.2,0},{0.98,0},{0.43,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.806,0},{0.2,0},{0.98,0},{0.43,0}}" />
         </Window>
         <Window Type="TaharezLook/Listbox" Name="MatchResult/ResultsList" >
             <Property Name="Font" Value="DejaVuSans-10" />
