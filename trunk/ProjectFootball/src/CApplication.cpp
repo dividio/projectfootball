@@ -90,14 +90,14 @@ Ogre::RenderSystemList* CApplication::getRenderSystemList()
 
 void CApplication::createRoot()
 {
-    m_root = new Ogre::Root("plugins.cfg", "");
+    m_root = new Ogre::Root("data/plugins.cfg", "");
 }
 
 void CApplication::defineResources()
 {
     Ogre::String secName, typeName, archName;
     Ogre::ConfigFile cf;
-    cf.load("resources.cfg");
+    cf.load("data/resources.cfg");
 
     Ogre::String skin = CSystemOptionManager::getInstance()->getGUISkin();
     Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
@@ -308,7 +308,7 @@ int main(int argc, char **argv)
     try{
 
         setlocale(LC_ALL, "");
-        bindtextdomain("projectfootball", "data/po");
+        bindtextdomain("projectfootball", "data/i18n");
         textdomain("projectfootball");
         bind_textdomain_codeset("projectfootball", "UTF-8");
 
