@@ -1,6 +1,6 @@
 # run this script from the root directory to re-generate the .pot file
 #
-# ./data/po/update_pot.sh
+# ./data/i18n/update_pot.sh
 
 CPP_FILE_LIST=`find ./src -name '*.cpp' -print`
 
@@ -12,6 +12,6 @@ echo $CPP_FILE_LIST
 
 echo "---------------------------"
 echo "    Generating .pot file..."
-xgettext    -d projectfootball -s --keyword=_ -p ./data/po -o projectfootball.pot $CPP_FILE_LIST
+xgettext    -d projectfootball -s --keyword=_ -p ./data/i18n -o projectfootball.pot $CPP_FILE_LIST
 echo "    Done"
 echo "---------------------------"
