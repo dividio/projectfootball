@@ -232,7 +232,7 @@ void CScreenMatchResult::simulateMatches()
             int nAwayGoals = getRandomNGoals();
 
             if( nHomeGoals>0 ){
-                std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveByXFkTeam(match->getXFkTeamHome());
+                std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(match->getXFkTeamHome());
                 while( nHomeGoals>0 ){
                     CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
                     CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamHome(), teamPlayer->getXTeamPlayer(), rand()%90, false);
@@ -242,7 +242,7 @@ void CScreenMatchResult::simulateMatches()
                 teamPlayersDAO->freeVector(teamPlayesList);
             }
             if( nAwayGoals>0 ){
-                std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findActiveByXFkTeam(match->getXFkTeamAway());
+                std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(match->getXFkTeamAway());
                 while( nAwayGoals>0 ){
                     CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
                     CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamAway(), teamPlayer->getXTeamPlayer(), rand()%90, false);
