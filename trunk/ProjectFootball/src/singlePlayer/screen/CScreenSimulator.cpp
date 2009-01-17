@@ -242,8 +242,8 @@ void CScreenSimulator::enter()
     setup2DView();
     loadTeamPlayers();
     IPfTeamsDAO *teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
-    std::string homeName = teamsDAO->findByXTeam(m_match->getXFkTeamHome())->getSTeam();
-    std::string awayName = teamsDAO->findByXTeam(m_match->getXFkTeamAway())->getSTeam();
+    std::string homeName = teamsDAO->findByXTeam(m_match->getXFkTeamHome())->getSShortName();
+    std::string awayName = teamsDAO->findByXTeam(m_match->getXFkTeamAway())->getSShortName();
     std::ostringstream names;
     names << homeName.c_str() << " vs " << awayName.c_str();
     m_teamNames->setProperty("Text", (CEGUI::utf8*)names.str().c_str());
