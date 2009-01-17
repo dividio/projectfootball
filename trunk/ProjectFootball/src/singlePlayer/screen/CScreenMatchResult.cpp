@@ -234,7 +234,11 @@ void CScreenMatchResult::simulateMatches()
             if( nHomeGoals>0 ){
                 std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(match->getXFkTeamHome());
                 while( nHomeGoals>0 ){
-                    CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
+                    int numPlayer = rand()%teamPlayesList->size();
+                    if(numPlayer == 0) { //Goalie don't score
+                        numPlayer = 10;
+                    }
+                    CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
                     CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamHome(), teamPlayer->getXTeamPlayer(), rand()%90, false);
                     m_game->getEventStrategy()->process(goalMatchEvent);
                     nHomeGoals--;
@@ -244,7 +248,11 @@ void CScreenMatchResult::simulateMatches()
             if( nAwayGoals>0 ){
                 std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(match->getXFkTeamAway());
                 while( nAwayGoals>0 ){
-                    CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](rand()%teamPlayesList->size());
+                    int numPlayer = rand()%teamPlayesList->size();
+                    if(numPlayer == 0) { //Goalie don't score
+                        numPlayer = 10;
+                    }
+                    CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
                     CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamAway(), teamPlayer->getXTeamPlayer(), rand()%90, false);
                     m_game->getEventStrategy()->process(goalMatchEvent);
                     nAwayGoals--;
