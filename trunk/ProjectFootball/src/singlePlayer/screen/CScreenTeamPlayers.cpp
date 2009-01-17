@@ -130,9 +130,7 @@ void CScreenTeamPlayers::changePlayers()
     changeRows(m_selectedPlayer1List, m_selectedPlayer1Row, m_selectedPlayer2List, m_selectedPlayer2Row);
 
     m_selectedPlayer1List->getHorzScrollbar()->setVisible(false);
-    m_selectedPlayer1List->getVertScrollbar()->setVisible(false);
     m_selectedPlayer2List->getHorzScrollbar()->setVisible(false);
-    m_selectedPlayer2List->getVertScrollbar()->setVisible(false);
     delete m_selectedPlayer1;
     delete m_selectedPlayer2;
     m_selectedPlayers = NONE;
