@@ -43,8 +43,22 @@ CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(int XTeam)
 
 CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(const std::string &XTeam)
 {
-    std::string sql("SELECT * FROM PF_TEAM_AVERAGES WHERE ");
-    sql = sql+"X_TEAM='"+XTeam+"'";
+    std::string sql("SELECT X_TEAM, AVG(DEFENSE) AS N_DEFENSE, AVG(ATTACK) AS N_ATTACK, AVG(TOTAL) AS N_TOTAL ");
+    sql = sql +     "FROM ( SELECT TPC.X_FK_TEAM AS X_TEAM," +
+                                 " TP.N_VELOCITY AS DEFENSE," +
+                                 " TP.N_KICK_POWER AS ATTACK," +
+                                 " (TP.N_VELOCITY+TP.N_KICK_POWER) / 2 AS TOTAL " +
+                           "FROM PF_TEAM_PLAYERS TP, " +
+                                "PF_TEAM_PLAYER_CONTRACTS TPC, " +
+                                "PF_TEAMS T "
+                           "WHERE  TPC.X_FK_TEAM_PLAYER = TP.X_TEAM_PLAYER " +
+                            "AND   TPC.X_FK_TEAM = T.X_TEAM " +
+                            "AND   TPC.D_BEGIN <= CURRENT_TIMESTAMP " +
+                            "AND  (TPC.D_END IS NULL OR TPC.D_END > CURRENT_TIMESTAMP) " +
+                            "AND   TPC.N_LINEUP_ORDER >= 1 " +
+                            "AND   TPC.N_LINEUP_ORDER <= 11 " +
+                            "AND   T.X_TEAM='"+XTeam+"') " +
+                   "GROUP BY X_TEAM";
     return loadRegister(sql);
 }
 
