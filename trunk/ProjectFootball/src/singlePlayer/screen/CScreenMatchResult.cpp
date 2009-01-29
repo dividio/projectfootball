@@ -205,7 +205,6 @@ void CScreenMatchResult::simulateMatches()
     IDAOFactory         *daoFactory = m_game->getIDAOFactory();
     IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
     IPfMatchesDAO       *matchesDAO = daoFactory->getIPfMatchesDAO();
-    IPfTeamPlayersDAO   *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
     CPfMatches          *userMatch;
 
     CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
@@ -224,45 +223,7 @@ void CScreenMatchResult::simulateMatches()
 
     for( it=matchesList->begin(); it!=matchesList->end(); it++ ){
         CPfMatches *match = (*it);
-        if( !match->getLPlayed() ){
-            CStartMatchEvent    startMatchEvent(match->getXMatch());
-            m_game->getEventStrategy()->process(startMatchEvent);
-
-            int nHomeGoals = getRandomNGoals();
-            int nAwayGoals = getRandomNGoals();
-
-            if( nHomeGoals>0 ){
-                std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(match->getXFkTeamHome());
-                while( nHomeGoals>0 ){
-                    int numPlayer = rand()%teamPlayesList->size();
-                    if(numPlayer == 0) { //Goalie don't score
-                        numPlayer = 10;
-                    }
-                    CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
-                    CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamHome(), teamPlayer->getXTeamPlayer(), rand()%90, false);
-                    m_game->getEventStrategy()->process(goalMatchEvent);
-                    nHomeGoals--;
-                }
-                teamPlayersDAO->freeVector(teamPlayesList);
-            }
-            if( nAwayGoals>0 ){
-                std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(match->getXFkTeamAway());
-                while( nAwayGoals>0 ){
-                    int numPlayer = rand()%teamPlayesList->size();
-                    if(numPlayer == 0) { //Goalie don't score
-                        numPlayer = 10;
-                    }
-                    CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
-                    CGoalMatchEvent goalMatchEvent(match->getXMatch(), match->getXFkTeamAway(), teamPlayer->getXTeamPlayer(), rand()%90, false);
-                    m_game->getEventStrategy()->process(goalMatchEvent);
-                    nAwayGoals--;
-                }
-                teamPlayersDAO->freeVector(teamPlayesList);
-            }
-
-            CEndMatchEvent endMatchEvent(match->getXMatch());
-            m_game->getEventStrategy()->process(endMatchEvent);
-        }
+        simulateMatch(match);
     }
     matchesDAO->freeVector(matchesList);
 
@@ -271,15 +232,77 @@ void CScreenMatchResult::simulateMatches()
     delete userMatch;
 }
 
-int CScreenMatchResult::getRandomNGoals()
+void CScreenMatchResult::simulateMatch(CPfMatches *match)
 {
-    int n = rand()%100;
+    if( !match->getLPlayed() ){
+        IDAOFactory        *daoFactory     = m_game->getIDAOFactory();
+        IPfTeamPlayersDAO  *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
+        IPfTeamAveragesDAO *teamsAvgDAO    = daoFactory->getIPfTeamAveragesDAO();
 
-    if( n>=0  && n<15  ){ return 0; }
-    if( n>=15 && n<50  ){ return 1; }
-    if( n>=50 && n<90  ){ return 2; }
-    if( n>=90 && n<100 ){ return 3; }
+        CStartMatchEvent    startMatchEvent(match->getXMatch());
+        m_game->getEventStrategy()->process(startMatchEvent);
+
+        int xHomeTeam  = match->getXFkTeamHome();
+        int xAwayTeam  = match->getXFkTeamAway();
+        CPfTeamAverages *homeTeamAvg = teamsAvgDAO->findByXTeam(xHomeTeam);
+        CPfTeamAverages *awayTeamAvg = teamsAvgDAO->findByXTeam(xAwayTeam);
+        int nHomeGoals = getRandomNGoals(homeTeamAvg, awayTeamAvg);
+        int nAwayGoals = getRandomNGoals(awayTeamAvg, homeTeamAvg);
+
+        delete homeTeamAvg;
+        delete awayTeamAvg;
+
+        if( nHomeGoals>0 ){
+            std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xHomeTeam);
+            while( nHomeGoals>0 ){
+                int numPlayer = rand()%teamPlayesList->size();
+                if(numPlayer == 0) { //Goalie don't score
+                    numPlayer = 10;
+                }
+                CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
+                CGoalMatchEvent goalMatchEvent(match->getXMatch(), xHomeTeam, teamPlayer->getXTeamPlayer(), rand()%90, false);
+                m_game->getEventStrategy()->process(goalMatchEvent);
+                nHomeGoals--;
+            }
+            teamPlayersDAO->freeVector(teamPlayesList);
+        }
+        if( nAwayGoals>0 ){
+            std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xAwayTeam);
+            while( nAwayGoals>0 ){
+                int numPlayer = rand()%teamPlayesList->size();
+                if(numPlayer == 0) { //Goalie don't score
+                    numPlayer = 10;
+                }
+                CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
+                CGoalMatchEvent goalMatchEvent(match->getXMatch(), xAwayTeam, teamPlayer->getXTeamPlayer(), rand()%90, false);
+                m_game->getEventStrategy()->process(goalMatchEvent);
+                nAwayGoals--;
+            }
+            teamPlayersDAO->freeVector(teamPlayesList);
+        }
+
+        CEndMatchEvent endMatchEvent(match->getXMatch());
+        m_game->getEventStrategy()->process(endMatchEvent);
+    }
 }
+
+
+int CScreenMatchResult::getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam)
+{
+    int goals = 0;
+    int teamFactor = attackTeam->getNTotal() - defenseTeam->getNTotal();
+
+    int n = rand()%100 + teamFactor;
+
+         if( n<25  )         { goals = 0; }
+    else if( n>=25 && n<55  ){ goals = 1; }
+    else if( n>=55 && n<80  ){ goals = 2; }
+    else if( n>=80 && n<96  ){ goals = 3; }
+    else if( n>=96 && n<100 ){ goals = 4; }
+    else if( n>=100 )        { goals = 5; }
+    return goals;
+}
+
 
 bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)
 {

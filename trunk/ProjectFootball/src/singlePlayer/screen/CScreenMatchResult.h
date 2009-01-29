@@ -27,6 +27,7 @@
 //Forward declarations
 class CPfMatches;
 class CSinglePlayerGame;
+class CPfTeamAverages;
 
 
 class CScreenMatchResult : public CScreen
@@ -60,7 +61,8 @@ private:
      * TODO Simulate all matches with Date less or equal than current user match
      */
     void simulateMatches();
-    int  getRandomNGoals();
+    void simulateMatch(CPfMatches *match);
+    int getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam);
     void loadMatchInfo(CPfMatches *match);
 };
 
