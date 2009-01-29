@@ -49,8 +49,9 @@ bool CPfCompetitionsDAOSQLiteEntity::deleteReg(CPfCompetitions *reg)
 
 bool CPfCompetitionsDAOSQLiteEntity::insertReg(CPfCompetitions *reg)
 {
-    std::string sql("INSERT INTO PF_COMPETITIONS (S_COMPETITION,X_FK_COUNTRY) VALUES (");
+    std::string sql("INSERT INTO PF_COMPETITIONS (S_COMPETITION,D_FUNDATION,X_FK_COUNTRY) VALUES (");
     sql += (reg->getSCompetition_str()=="")?"NULL":"'"+reg->getSCompetition_str()+"'";
+    sql += (reg->getDFundation_str()=="")?",NULL":",'"+reg->getDFundation_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",NULL":",'"+reg->getXFkCountry_str()+"'";
     sql += ")";
     if( exec(sql) ){
@@ -66,6 +67,7 @@ bool CPfCompetitionsDAOSQLiteEntity::updateReg(CPfCompetitions *reg)
     std::string sql("UPDATE PF_COMPETITIONS SET ");
     sql += (reg->getSCompetition_str()=="")?" S_COMPETITION=NULL":" S_COMPETITION='"+reg->getSCompetition_str()+"'";
     sql += (reg->getXCompetition_str()=="")?",X_COMPETITION=NULL":",X_COMPETITION='"+reg->getXCompetition_str()+"'";
+    sql += (reg->getDFundation_str()=="")?",D_FUNDATION=NULL":",D_FUNDATION='"+reg->getDFundation_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",X_FK_COUNTRY=NULL":",X_FK_COUNTRY='"+reg->getXFkCountry_str()+"'";
     sql += " WHERE X_COMPETITION='"+reg->getXCompetition_str()+"'";
     return exec(sql);
@@ -137,6 +139,8 @@ int CPfCompetitionsDAOSQLiteEntity::callbackRegister(void *object, int nColumns,
                 destiny->setSCompetition_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_COMPETITION")==0 ){
                 destiny->setXCompetition_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "D_FUNDATION")==0 ){
+                destiny->setDFundation_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
@@ -156,6 +160,8 @@ int CPfCompetitionsDAOSQLiteEntity::callbackVector(void *object, int nColumns, c
                 destiny->setSCompetition_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_COMPETITION")==0 ){
                 destiny->setXCompetition_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "D_FUNDATION")==0 ){
+                destiny->setDFundation_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }

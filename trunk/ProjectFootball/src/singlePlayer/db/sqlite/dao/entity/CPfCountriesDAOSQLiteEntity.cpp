@@ -49,10 +49,12 @@ bool CPfCountriesDAOSQLiteEntity::deleteReg(CPfCountries *reg)
 
 bool CPfCountriesDAOSQLiteEntity::insertReg(CPfCountries *reg)
 {
-    std::string sql("INSERT INTO PF_COUNTRIES (S_COUNTRY,S_FLAG,X_FK_CONFEDERATION) VALUES (");
-    sql += (reg->getSCountry_str()=="")?"NULL":"'"+reg->getSCountry_str()+"'";
+    std::string sql("INSERT INTO PF_COUNTRIES (X_FK_CONFEDERATION,S_FLAG,S_CAPITAL,S_COUNTRY,S_SHORT_NAME) VALUES (");
+    sql += (reg->getXFkConfederation_str()=="")?"NULL":"'"+reg->getXFkConfederation_str()+"'";
     sql += (reg->getSFlag_str()=="")?",NULL":",'"+reg->getSFlag_str()+"'";
-    sql += (reg->getXFkConfederation_str()=="")?",NULL":",'"+reg->getXFkConfederation_str()+"'";
+    sql += (reg->getSCapital_str()=="")?",NULL":",'"+reg->getSCapital_str()+"'";
+    sql += (reg->getSCountry_str()=="")?",NULL":",'"+reg->getSCountry_str()+"'";
+    sql += (reg->getSShortName_str()=="")?",NULL":",'"+reg->getSShortName_str()+"'";
     sql += ")";
     if( exec(sql) ){
         reg->setXCountry(sqlite3_last_insert_rowid(m_database));
@@ -65,10 +67,12 @@ bool CPfCountriesDAOSQLiteEntity::insertReg(CPfCountries *reg)
 bool CPfCountriesDAOSQLiteEntity::updateReg(CPfCountries *reg)
 {
     std::string sql("UPDATE PF_COUNTRIES SET ");
-    sql += (reg->getSCountry_str()=="")?" S_COUNTRY=NULL":" S_COUNTRY='"+reg->getSCountry_str()+"'";
-    sql += (reg->getXCountry_str()=="")?",X_COUNTRY=NULL":",X_COUNTRY='"+reg->getXCountry_str()+"'";
+    sql += (reg->getXFkConfederation_str()=="")?" X_FK_CONFEDERATION=NULL":" X_FK_CONFEDERATION='"+reg->getXFkConfederation_str()+"'";
     sql += (reg->getSFlag_str()=="")?",S_FLAG=NULL":",S_FLAG='"+reg->getSFlag_str()+"'";
-    sql += (reg->getXFkConfederation_str()=="")?",X_FK_CONFEDERATION=NULL":",X_FK_CONFEDERATION='"+reg->getXFkConfederation_str()+"'";
+    sql += (reg->getSCapital_str()=="")?",S_CAPITAL=NULL":",S_CAPITAL='"+reg->getSCapital_str()+"'";
+    sql += (reg->getSCountry_str()=="")?",S_COUNTRY=NULL":",S_COUNTRY='"+reg->getSCountry_str()+"'";
+    sql += (reg->getXCountry_str()=="")?",X_COUNTRY=NULL":",X_COUNTRY='"+reg->getXCountry_str()+"'";
+    sql += (reg->getSShortName_str()=="")?",S_SHORT_NAME=NULL":",S_SHORT_NAME='"+reg->getSShortName_str()+"'";
     sql += " WHERE X_COUNTRY='"+reg->getXCountry_str()+"'";
     return exec(sql);
 }
@@ -135,14 +139,18 @@ int CPfCountriesDAOSQLiteEntity::callbackRegister(void *object, int nColumns, ch
     if( object!=NULL ){
         CPfCountries *destiny = (CPfCountries*)object;
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "S_COUNTRY")==0 ){
+            if( strcmp(sColumn[i], "X_FK_CONFEDERATION")==0 ){
+                destiny->setXFkConfederation_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_FLAG")==0 ){
+                destiny->setSFlag_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_CAPITAL")==0 ){
+                destiny->setSCapital_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_COUNTRY")==0 ){
                 destiny->setSCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_COUNTRY")==0 ){
                 destiny->setXCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "S_FLAG")==0 ){
-                destiny->setSFlag_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_CONFEDERATION")==0 ){
-                destiny->setXFkConfederation_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
+                destiny->setSShortName_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
         error = 0; // All OK
@@ -156,14 +164,18 @@ int CPfCountriesDAOSQLiteEntity::callbackVector(void *object, int nColumns, char
         std::vector<CPfCountries*> *container = (std::vector<CPfCountries*> *)object;
         CPfCountries *destiny = new CPfCountries();
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "S_COUNTRY")==0 ){
+            if( strcmp(sColumn[i], "X_FK_CONFEDERATION")==0 ){
+                destiny->setXFkConfederation_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_FLAG")==0 ){
+                destiny->setSFlag_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_CAPITAL")==0 ){
+                destiny->setSCapital_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_COUNTRY")==0 ){
                 destiny->setSCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_COUNTRY")==0 ){
                 destiny->setXCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "S_FLAG")==0 ){
-                destiny->setSFlag_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_CONFEDERATION")==0 ){
-                destiny->setXFkConfederation_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
+                destiny->setSShortName_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
         container->push_back(destiny);

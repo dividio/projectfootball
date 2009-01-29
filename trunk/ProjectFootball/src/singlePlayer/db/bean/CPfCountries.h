@@ -32,29 +32,39 @@ public:
     CPfCountries(const CPfCountries &obj);
     virtual ~CPfCountries();
 
+    int getXFkConfederation() const;
+    const std::string& getXFkConfederation_str() const;
+    const std::string& getSFlag() const;
+    const std::string& getSFlag_str() const;
+    const std::string& getSCapital() const;
+    const std::string& getSCapital_str() const;
     const std::string& getSCountry() const;
     const std::string& getSCountry_str() const;
     int getXCountry() const;
     const std::string& getXCountry_str() const;
-    const std::string& getSFlag() const;
-    const std::string& getSFlag_str() const;
-    int getXFkConfederation() const;
-    const std::string& getXFkConfederation_str() const;
+    const std::string& getSShortName() const;
+    const std::string& getSShortName_str() const;
 
+    void setXFkConfederation(int XFkConfederation);
+    void setXFkConfederation_str(const std::string &XFkConfederation);
+    void setSFlag(const std::string &SFlag);
+    void setSFlag_str(const std::string &SFlag);
+    void setSCapital(const std::string &SCapital);
+    void setSCapital_str(const std::string &SCapital);
     void setSCountry(const std::string &SCountry);
     void setSCountry_str(const std::string &SCountry);
     void setXCountry(int XCountry);
     void setXCountry_str(const std::string &XCountry);
-    void setSFlag(const std::string &SFlag);
-    void setSFlag_str(const std::string &SFlag);
-    void setXFkConfederation(int XFkConfederation);
-    void setXFkConfederation_str(const std::string &XFkConfederation);
+    void setSShortName(const std::string &SShortName);
+    void setSShortName_str(const std::string &SShortName);
 
 private:
+    std::string m_XFkConfederation;
+    std::string m_SFlag;
+    std::string m_SCapital;
     std::string m_SCountry;
     std::string m_XCountry;
-    std::string m_SFlag;
-    std::string m_XFkConfederation;
+    std::string m_SShortName;
 
 };
 #endif /*CPFCOUNTRIES_H_*/

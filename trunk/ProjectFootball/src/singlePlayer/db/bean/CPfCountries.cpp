@@ -28,22 +28,60 @@
 
 CPfCountries::CPfCountries()
 {
+    m_XFkConfederation = "0";
+    m_SFlag = "";
+    m_SCapital = "";
     m_SCountry = "";
     m_XCountry = "0";
-    m_SFlag = "";
-    m_XFkConfederation = "0";
+    m_SShortName = "";
 }
 
 CPfCountries::CPfCountries(const CPfCountries &obj)
 {
+    m_XFkConfederation = obj.m_XFkConfederation;
+    m_SFlag = obj.m_SFlag;
+    m_SCapital = obj.m_SCapital;
     m_SCountry = obj.m_SCountry;
     m_XCountry = obj.m_XCountry;
-    m_SFlag = obj.m_SFlag;
-    m_XFkConfederation = obj.m_XFkConfederation;
+    m_SShortName = obj.m_SShortName;
 }
 
 CPfCountries::~CPfCountries()
 {
+}
+
+int CPfCountries::getXFkConfederation() const
+{
+    if( m_XFkConfederation=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkConfederation.c_str());
+    }
+}
+
+const std::string& CPfCountries::getXFkConfederation_str() const
+{
+    return m_XFkConfederation;
+}
+
+const std::string& CPfCountries::getSFlag() const
+{
+    return m_SFlag;
+}
+
+const std::string& CPfCountries::getSFlag_str() const
+{
+    return m_SFlag;
+}
+
+const std::string& CPfCountries::getSCapital() const
+{
+    return m_SCapital;
+}
+
+const std::string& CPfCountries::getSCapital_str() const
+{
+    return m_SCapital;
 }
 
 const std::string& CPfCountries::getSCountry() const
@@ -70,28 +108,46 @@ const std::string& CPfCountries::getXCountry_str() const
     return m_XCountry;
 }
 
-const std::string& CPfCountries::getSFlag() const
+const std::string& CPfCountries::getSShortName() const
 {
-    return m_SFlag;
+    return m_SShortName;
 }
 
-const std::string& CPfCountries::getSFlag_str() const
+const std::string& CPfCountries::getSShortName_str() const
 {
-    return m_SFlag;
+    return m_SShortName;
 }
 
-int CPfCountries::getXFkConfederation() const
+void CPfCountries::setXFkConfederation(int XFkConfederation)
 {
-    if( m_XFkConfederation=="" ){
-        return 0;
-    }else{
-        return atoi(m_XFkConfederation.c_str());
-    }
+    std::ostringstream stream;
+    stream << XFkConfederation;
+    m_XFkConfederation = stream.str();
 }
 
-const std::string& CPfCountries::getXFkConfederation_str() const
+void CPfCountries::setXFkConfederation_str(const std::string &XFkConfederation)
 {
-    return m_XFkConfederation;
+    m_XFkConfederation = XFkConfederation;
+}
+
+void CPfCountries::setSFlag(const std::string &SFlag)
+{
+    m_SFlag = SFlag;
+}
+
+void CPfCountries::setSFlag_str(const std::string &SFlag)
+{
+    m_SFlag = SFlag;
+}
+
+void CPfCountries::setSCapital(const std::string &SCapital)
+{
+    m_SCapital = SCapital;
+}
+
+void CPfCountries::setSCapital_str(const std::string &SCapital)
+{
+    m_SCapital = SCapital;
 }
 
 void CPfCountries::setSCountry(const std::string &SCountry)
@@ -116,25 +172,13 @@ void CPfCountries::setXCountry_str(const std::string &XCountry)
     m_XCountry = XCountry;
 }
 
-void CPfCountries::setSFlag(const std::string &SFlag)
+void CPfCountries::setSShortName(const std::string &SShortName)
 {
-    m_SFlag = SFlag;
+    m_SShortName = SShortName;
 }
 
-void CPfCountries::setSFlag_str(const std::string &SFlag)
+void CPfCountries::setSShortName_str(const std::string &SShortName)
 {
-    m_SFlag = SFlag;
-}
-
-void CPfCountries::setXFkConfederation(int XFkConfederation)
-{
-    std::ostringstream stream;
-    stream << XFkConfederation;
-    m_XFkConfederation = stream.str();
-}
-
-void CPfCountries::setXFkConfederation_str(const std::string &XFkConfederation)
-{
-    m_XFkConfederation = XFkConfederation;
+    m_SShortName = SShortName;
 }
 

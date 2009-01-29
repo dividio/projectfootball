@@ -25,6 +25,8 @@
 
 #include <string>
 
+#include "../../../utils/CDate.h"
+
 class CPfCompetitions
 {
 public:
@@ -36,6 +38,8 @@ public:
     const std::string& getSCompetition_str() const;
     int getXCompetition() const;
     const std::string& getXCompetition_str() const;
+    CDate getDFundation() const;
+    const std::string& getDFundation_str() const;
     int getXFkCountry() const;
     const std::string& getXFkCountry_str() const;
 
@@ -43,12 +47,15 @@ public:
     void setSCompetition_str(const std::string &SCompetition);
     void setXCompetition(int XCompetition);
     void setXCompetition_str(const std::string &XCompetition);
+    void setDFundation(const CDate &DFundation);
+    void setDFundation_str(const std::string &DFundation);
     void setXFkCountry(int XFkCountry);
     void setXFkCountry_str(const std::string &XFkCountry);
 
 private:
     std::string m_SCompetition;
     std::string m_XCompetition;
+    std::string m_DFundation;
     std::string m_XFkCountry;
 
 };

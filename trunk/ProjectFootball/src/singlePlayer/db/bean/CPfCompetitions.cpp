@@ -30,6 +30,7 @@ CPfCompetitions::CPfCompetitions()
 {
     m_SCompetition = "";
     m_XCompetition = "0";
+    m_DFundation = "";
     m_XFkCountry = "0";
 }
 
@@ -37,6 +38,7 @@ CPfCompetitions::CPfCompetitions(const CPfCompetitions &obj)
 {
     m_SCompetition = obj.m_SCompetition;
     m_XCompetition = obj.m_XCompetition;
+    m_DFundation = obj.m_DFundation;
     m_XFkCountry = obj.m_XFkCountry;
 }
 
@@ -66,6 +68,16 @@ int CPfCompetitions::getXCompetition() const
 const std::string& CPfCompetitions::getXCompetition_str() const
 {
     return m_XCompetition;
+}
+
+CDate CPfCompetitions::getDFundation() const
+{
+    return m_DFundation;
+}
+
+const std::string& CPfCompetitions::getDFundation_str() const
+{
+    return m_DFundation;
 }
 
 int CPfCompetitions::getXFkCountry() const
@@ -102,6 +114,16 @@ void CPfCompetitions::setXCompetition(int XCompetition)
 void CPfCompetitions::setXCompetition_str(const std::string &XCompetition)
 {
     m_XCompetition = XCompetition;
+}
+
+void CPfCompetitions::setDFundation(const CDate &DFundation)
+{
+    m_DFundation = DFundation.getTimestamp();
+}
+
+void CPfCompetitions::setDFundation_str(const std::string &DFundation)
+{
+    m_DFundation = DFundation;
 }
 
 void CPfCompetitions::setXFkCountry(int XFkCountry)
