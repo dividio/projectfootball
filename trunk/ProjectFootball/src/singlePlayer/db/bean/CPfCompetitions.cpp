@@ -29,16 +29,16 @@
 CPfCompetitions::CPfCompetitions()
 {
     m_SCompetition = "";
+    m_DFoundation = "";
     m_XCompetition = "0";
-    m_DFundation = "";
     m_XFkCountry = "0";
 }
 
 CPfCompetitions::CPfCompetitions(const CPfCompetitions &obj)
 {
     m_SCompetition = obj.m_SCompetition;
+    m_DFoundation = obj.m_DFoundation;
     m_XCompetition = obj.m_XCompetition;
-    m_DFundation = obj.m_DFundation;
     m_XFkCountry = obj.m_XFkCountry;
 }
 
@@ -56,6 +56,16 @@ const std::string& CPfCompetitions::getSCompetition_str() const
     return m_SCompetition;
 }
 
+CDate CPfCompetitions::getDFoundation() const
+{
+    return m_DFoundation;
+}
+
+const std::string& CPfCompetitions::getDFoundation_str() const
+{
+    return m_DFoundation;
+}
+
 int CPfCompetitions::getXCompetition() const
 {
     if( m_XCompetition=="" ){
@@ -68,16 +78,6 @@ int CPfCompetitions::getXCompetition() const
 const std::string& CPfCompetitions::getXCompetition_str() const
 {
     return m_XCompetition;
-}
-
-CDate CPfCompetitions::getDFundation() const
-{
-    return m_DFundation;
-}
-
-const std::string& CPfCompetitions::getDFundation_str() const
-{
-    return m_DFundation;
 }
 
 int CPfCompetitions::getXFkCountry() const
@@ -104,6 +104,16 @@ void CPfCompetitions::setSCompetition_str(const std::string &SCompetition)
     m_SCompetition = SCompetition;
 }
 
+void CPfCompetitions::setDFoundation(const CDate &DFoundation)
+{
+    m_DFoundation = DFoundation.getTimestamp();
+}
+
+void CPfCompetitions::setDFoundation_str(const std::string &DFoundation)
+{
+    m_DFoundation = DFoundation;
+}
+
 void CPfCompetitions::setXCompetition(int XCompetition)
 {
     std::ostringstream stream;
@@ -114,16 +124,6 @@ void CPfCompetitions::setXCompetition(int XCompetition)
 void CPfCompetitions::setXCompetition_str(const std::string &XCompetition)
 {
     m_XCompetition = XCompetition;
-}
-
-void CPfCompetitions::setDFundation(const CDate &DFundation)
-{
-    m_DFundation = DFundation.getTimestamp();
-}
-
-void CPfCompetitions::setDFundation_str(const std::string &DFundation)
-{
-    m_DFundation = DFundation;
 }
 
 void CPfCompetitions::setXFkCountry(int XFkCountry)
