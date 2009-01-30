@@ -121,13 +121,10 @@ void CScreenGame::enter()
         m_competitionName     ->setText("");
         m_competitionPhaseName->setText("");
 
-
-        imagesetName = "TeamLogo" + playerTeam->getXTeam_str();
-        if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
-            CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, playerTeam->getSLogo());
-        }
-        m_homeTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+        // Team Shields
+        m_homeTeamShield->setProperty("Image", "set:"+ playerTeam->getSLogo() +" image:"+playerTeam->getSLogo()+"_b");
         m_awayTeamShield->setProperty("Image", "set: image:full_image");
+
 
         delete playerTeam;
         m_playButton->setEnabled(false);
