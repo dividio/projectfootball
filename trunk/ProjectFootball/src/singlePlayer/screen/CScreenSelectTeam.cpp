@@ -349,12 +349,7 @@ void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
     m_guiTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
     delete teamAverage;
 
-    //Loading logo
-//    CEGUI::String imagesetName = "TeamLogo" + team->getXTeam_str();
-//    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
-//        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, team->getSLogo());
-//    }
-
+    //Loading Shield
     m_guiTeamShield->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
 }
 
