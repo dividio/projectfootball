@@ -158,9 +158,9 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
         for(it = m_countriesList->begin(); it != m_countriesList->end(); it++) {
             CPfCountries *country = (*it);
             m_countriesCombobox->addItem(new CEGUI::ListboxTextItem
-                    ((CEGUI::utf8*)country->getSCountry().c_str(), country->getXCountry()));
+                    ((CEGUI::utf8*)country->getSShortName().c_str(), country->getXCountry()));
         }
-        m_countriesCombobox->setText((CEGUI::utf8*)m_countriesList->front()->getSCountry().c_str());
+        m_countriesCombobox->setText((CEGUI::utf8*)m_countriesList->front()->getSShortName().c_str());
 
         selectedCountry = m_countriesList->front()->getXCountry();
     } else {
