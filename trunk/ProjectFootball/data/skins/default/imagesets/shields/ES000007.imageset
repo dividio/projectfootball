@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<Imageset Name="ES000007" Imagefile="ES000007.png" NativeHorzRes="256" NativeVertRes="128" AutoScaled="true">
+	<Image Name="ES000007_b" XPos="0" YPos="0" Width="128" Height="128" />
+	<Image Name="ES000007_n" XPos="138" YPos="31" Width="64" Height="64" />
+	<Image Name="ES000007_s" XPos="217" YPos="47" Width="32" Height="32" />
+	
+</Imageset>

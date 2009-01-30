@@ -173,13 +173,8 @@ void CScreenTeamPlayers::loadTeamPlayersList()
     m_teamAverage->setText((CEGUI::utf8*)average.str().c_str());
     delete teamAverage;
 
-    //Loading logo
-    CEGUI::String imagesetName = "TeamLogo" + team->getXTeam_str();
-    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
-        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, team->getSLogo());
-    }
-
-    m_teamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+    //Loading Shield
+    m_teamShield->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
 
     teamPlayersDAO->freeVector(lineUpTeamPlayersList);
     teamPlayersDAO->freeVector(alternateTeamPlayersList);

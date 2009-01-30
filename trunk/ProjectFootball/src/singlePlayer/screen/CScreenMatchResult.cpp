@@ -131,19 +131,12 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
     m_awayName            ->setProperty("Text", (CEGUI::utf8*)awayName.c_str());
     m_homeScore           ->setProperty("Text", (CEGUI::utf8*)nHomeGoals.str().c_str());
     m_awayScore           ->setProperty("Text", (CEGUI::utf8*)nAwayGoals.str().c_str());
-    //Loading Home logo
-    CEGUI::String imagesetHomeName = "TeamLogo" + homeTeam->getXTeam_str();
-    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetHomeName)) {
-        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetHomeName, homeTeam->getSLogo());
-    }
-    m_homeLogo->setProperty("Image", "set:"+ imagesetHomeName +" image:full_image");
 
-    //Loading Away logo
-    CEGUI::String imagesetAwayName = "TeamLogo" + awayTeam->getXTeam_str();
-    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetAwayName)) {
-        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetAwayName, awayTeam->getSLogo());
-    }
-    m_awayLogo->setProperty("Image", "set:"+ imagesetAwayName +" image:full_image");
+    //Loading Home Shield
+    m_homeLogo->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+
+    //Loading Away Shield
+    m_awayLogo->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
 
     std::vector<CPfGoals*>::iterator it;
     CEGUI::ListboxTextItem *item;

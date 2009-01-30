@@ -161,18 +161,9 @@ void CScreenGame::enter()
         average.str("");
         delete teamAverage;
 
-        // Team Logos
-        imagesetName = "TeamLogo" + homeTeam->getXTeam_str();
-        if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
-            CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, homeTeam->getSLogo());
-        }
-        m_homeTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
-
-        imagesetName = "TeamLogo" + awayTeam->getXTeam_str();
-        if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
-            CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, awayTeam->getSLogo());
-        }
-        m_awayTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+        // Team Shields
+        m_homeTeamShield->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+        m_awayTeamShield->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
 
         m_playButton->setEnabled(true);
 

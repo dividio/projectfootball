@@ -350,12 +350,12 @@ void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
     delete teamAverage;
 
     //Loading logo
-    CEGUI::String imagesetName = "TeamLogo" + team->getXTeam_str();
-    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
-        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, team->getSLogo());
-    }
+//    CEGUI::String imagesetName = "TeamLogo" + team->getXTeam_str();
+//    if(!CEGUI::ImagesetManager::getSingleton().isImagesetPresent(imagesetName)) {
+//        CEGUI::ImagesetManager::getSingleton().createImagesetFromImageFile(imagesetName, team->getSLogo());
+//    }
 
-    m_guiTeamShield->setProperty("Image", "set:"+ imagesetName +" image:full_image");
+    m_guiTeamShield->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
 }
 
 void CScreenSelectTeam::clearTeamInfo()

@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<Imageset Name="ES000003" Imagefile="ES000003.png" NativeHorzRes="256" NativeVertRes="128" AutoScaled="true">
-	<Image Name="default_team_shield_b" XPos="0" YPos="0" Width="128" Height="128" />
-	<Image Name="default_team_shield_n" XPos="138" YPos="31" Width="64" Height="64" />
-	<Image Name="default_team_shield_s" XPos="217" YPos="47" Width="32" Height="32" />
-	
-</Imageset>

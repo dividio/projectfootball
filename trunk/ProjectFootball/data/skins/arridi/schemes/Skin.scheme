@@ -2,6 +2,27 @@
 <GUIScheme Name="TaharezLook">
   <Imageset Name="Background" Filename="MenuBackground.imageset"/>
   <Imageset Name="LogoPF" Filename="LogoPF.imageset"/>
+  <Imageset Name="default_team_shield" Filename="default_team_shield.imageset"/>
+  <Imageset Name="ES000001" Filename="ES000001.imageset"/>
+  <Imageset Name="ES000002" Filename="ES000002.imageset"/>
+  <Imageset Name="ES000003" Filename="ES000003.imageset"/>
+  <Imageset Name="ES000004" Filename="ES000004.imageset"/>
+  <Imageset Name="ES000005" Filename="ES000005.imageset"/>
+  <Imageset Name="ES000006" Filename="ES000006.imageset"/>
+  <Imageset Name="ES000007" Filename="ES000007.imageset"/>
+  <Imageset Name="ES000008" Filename="ES000008.imageset"/>
+  <Imageset Name="ES000009" Filename="ES000009.imageset"/>
+  <Imageset Name="ES000010" Filename="ES000010.imageset"/>
+  <Imageset Name="ES000011" Filename="ES000011.imageset"/>
+  <Imageset Name="ES000012" Filename="ES000012.imageset"/>
+  <Imageset Name="ES000013" Filename="ES000013.imageset"/>
+  <Imageset Name="ES000014" Filename="ES000014.imageset"/>
+  <Imageset Name="ES000015" Filename="ES000015.imageset"/>
+  <Imageset Name="ES000016" Filename="ES000016.imageset"/>
+  <Imageset Name="ES000017" Filename="ES000017.imageset"/>
+  <Imageset Name="ES000018" Filename="ES000018.imageset"/>
+  <Imageset Name="ES000019" Filename="ES000019.imageset"/>
+  <Imageset Name="ES000020" Filename="ES000020.imageset"/>
   <Imageset Name="WidgetsImageset" Filename="TaharezLook.imageset" />
     <Font Name="DejaVuSans-10" Filename="DejaVuSans-10.font" />
     <Font Name="DejaVuSans-18" Filename="DejaVuSans-18.font" />
