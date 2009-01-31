@@ -62,3 +62,18 @@ std::vector<CPfCountries*>* CPfCountriesDAOSQLite::findByXFkConfederation(const 
     return loadVector(sql);
 }
 
+
+std::vector<CPfCountries*>* CPfCountriesDAOSQLite::findByXFkConfederationWithLeague(int XFkConfederation)
+{
+    std::ostringstream stream;
+    stream << XFkConfederation;
+    return findByXFkConfederationWithLeague(stream.str());
+}
+
+std::vector<CPfCountries*>* CPfCountriesDAOSQLite::findByXFkConfederationWithLeague(const std::string &XFkConfederation)
+{
+    std::string sql("SELECT DISTINCT CT.* FROM PF_COUNTRIES CT, PF_COMPETITIONS CP ");
+    sql = sql +     "WHERE CT.X_FK_CONFEDERATION='"+XFkConfederation+"'" +
+                      "AND CT.X_COUNTRY = CP.X_FK_COUNTRY";
+    return loadVector(sql);
+}

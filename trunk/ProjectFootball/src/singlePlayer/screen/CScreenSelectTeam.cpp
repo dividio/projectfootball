@@ -130,7 +130,7 @@ int CScreenSelectTeam::loadConfederationsList()
     if(m_confederationsList!=NULL) {
         confederationsDAO->freeVector(m_confederationsList);
     }
-    m_confederationsList = confederationsDAO->findConfederations();
+    m_confederationsList = confederationsDAO->findConfederationsWithLeague();
 
 
     std::vector<CPfConfederations*>::iterator it;
@@ -150,7 +150,7 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
     if(m_countriesList!=NULL) {
         countriesDAO->freeVector(m_countriesList);
     }
-    m_countriesList = countriesDAO->findByXFkConfederation(XConfederation);
+    m_countriesList = countriesDAO->findByXFkConfederationWithLeague(XConfederation);
     int selectedCountry = -1;
 
     if(!m_countriesList->empty()) {

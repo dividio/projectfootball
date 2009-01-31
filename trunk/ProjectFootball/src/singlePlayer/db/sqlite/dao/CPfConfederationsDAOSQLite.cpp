@@ -54,3 +54,11 @@ std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findConfederations(
     return loadVector(sql);
 }
 
+std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findConfederationsWithLeague()
+{
+    std::string sql("SELECT DISTINCT CN.* ");
+    sql = sql +     "FROM PF_CONFEDERATIONS CN, PF_COUNTRIES CT, PF_COMPETITIONS CP " +
+                    "WHERE CN.X_CONFEDERATION = CT.X_FK_CONFEDERATION " +
+                      "AND CT.X_COUNTRY = CP.X_FK_COUNTRY";
+    return loadVector(sql);
+}

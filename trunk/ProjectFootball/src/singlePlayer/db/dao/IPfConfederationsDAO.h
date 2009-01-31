@@ -43,6 +43,7 @@ public:
     virtual CPfConfederations* findByXConfederation(int XConfederation) =0;
     virtual CPfConfederations* findByXConfederation(const std::string &XConfederation) =0;
     virtual std::vector<CPfConfederations*>* findConfederations() =0;
+    virtual std::vector<CPfConfederations*>* findConfederationsWithLeague() =0;
 
 };
 #endif /*IPFCONFEDERATIONSDAO_H_*/
