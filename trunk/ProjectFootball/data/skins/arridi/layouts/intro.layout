@@ -15,7 +15,7 @@
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="TaharezLook/StaticText" Name="MainMenu/IkarogamesURL" >
+        <Window Type="TaharezLook/StaticText" Name="Intro/IkarogamesURL" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Text" Value="www.ikarogames.com/projectfootball/" />
             <Property Name="FrameEnabled" Value="False" />
