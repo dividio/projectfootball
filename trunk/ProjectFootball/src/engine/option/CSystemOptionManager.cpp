@@ -330,7 +330,7 @@ void CSystemOptionManager::setDefaultValues()
     setGeneralFailSafeMode(false);
 
     setGUIMouseVelocity(150);
-    setGUISkin("DefaultSkin");
+    setGUISkin("TaharezLook");
     setGUIXMLParser("TinyXMLParser");
 
     setVideoRenderSystem("OpenGL Rendering Subsystem");

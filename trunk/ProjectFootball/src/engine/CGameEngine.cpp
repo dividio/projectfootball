@@ -140,6 +140,7 @@ bool CGameEngine::frameEnded(const Ogre::FrameEvent& evt)
 bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
 {
     ((CClock*)m_clock)->addTime(evt.timeSinceLastFrame);
+    CEGUI::System::getSingleton().injectTimePulse( evt.timeSinceLastFrame );
     if( m_screenStack.empty() ){
         CLog::getInstance()->info("-== Stopping Main Loop ==-");
         return false;

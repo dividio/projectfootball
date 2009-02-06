@@ -2914,10 +2914,10 @@
 
     <!--
     ***************************************************
-        TaharezLook/Tooltip
+        ArridiDesign/Tooltip
     ***************************************************
     -->
-    <WidgetLook name="TaharezLook/Tooltip">
+    <WidgetLook name="ArridiDesign/Tooltip">
         <NamedArea name="TextArea">
             <Area>
                 <Dim type="LeftEdge" ><ImageDim imageset="WidgetsImageset" image="TooltipLeftEdge" dimension="Width" /></Dim>

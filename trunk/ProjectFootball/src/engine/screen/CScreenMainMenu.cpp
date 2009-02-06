@@ -53,7 +53,8 @@ CScreenMainMenu::CScreenMainMenu()
     m_loadGameButton ->setText((CEGUI::utf8*)gettext("Single Player"));
     m_configButton   ->setText((CEGUI::utf8*)gettext("Config"));
     m_creditsButton  ->setText((CEGUI::utf8*)gettext("Credits"));
-    m_quitButton     ->setText((CEGUI::utf8*)gettext("Quit"));
+    m_quitButton     ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
+    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Quit"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last actualization:"));
 }
