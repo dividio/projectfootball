@@ -79,7 +79,7 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_teamShield  = static_cast<CEGUI::Window *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamShield"));
 
     // i18n support
-    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
+    m_backButton->setTooltipText((CEGUI::utf8*)gettext("Back"));
     m_changePlayersButton->setText((CEGUI::utf8*)gettext("Change"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel"))->setText((CEGUI::utf8*)gettext("Team Players:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));

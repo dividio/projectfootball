@@ -43,7 +43,7 @@ CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
     m_rankingList->setUserSortControlEnabled(false);
 
     // i18n support
-    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
+    m_backButton->setTooltipText((CEGUI::utf8*)gettext("Back"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
 
     // Event handle

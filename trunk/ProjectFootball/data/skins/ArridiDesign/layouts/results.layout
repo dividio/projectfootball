@@ -30,7 +30,6 @@
         </Window>
         <Window Type="TaharezLook/Button" Name="Results/BackButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="Text" Value="Back" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
         </Window>

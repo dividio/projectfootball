@@ -48,7 +48,7 @@ CScreenResults::CScreenResults(CSinglePlayerGame *game)
     m_resultsList->setWantsMultiClickEvents(true);
 
     // i18n support
-    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
+    m_backButton->setTooltipText((CEGUI::utf8*)gettext("Back"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/ResultsLabel"))->setText((CEGUI::utf8*)gettext("Results:"));
 
     // Event handle

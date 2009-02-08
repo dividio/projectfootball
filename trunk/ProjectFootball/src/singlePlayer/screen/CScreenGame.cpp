@@ -69,7 +69,7 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_rankingButton     ->setText((CEGUI::utf8*)gettext("Ranking"));
     m_teamPlayersButton ->setText((CEGUI::utf8*)gettext("Team Players"));
     m_resultsButton     ->setText((CEGUI::utf8*)gettext("Results"));
-    m_playButton        ->setText((CEGUI::utf8*)gettext("Play Match"));
+    m_playButton        ->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
     m_resultModeCheckbox->setText((CEGUI::utf8*)gettext("Result Mode"));
     m_confirmSaveNote   ->setText((CEGUI::utf8*)gettext("The game has been saved"));
     m_confirmExitNote   ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game?"));
