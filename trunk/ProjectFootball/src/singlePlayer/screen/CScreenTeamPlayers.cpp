@@ -71,6 +71,9 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_backButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/BackButton"));
     m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::backButtonClicked, this));
 
+    m_gameMenuButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/GameMenuButton"));
+    m_gameMenuButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::gameMenuButtonClicked, this));
+
     m_changePlayersButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/ChangeButton"));
     m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::changePlayersButtonClicked, this));
 
@@ -79,7 +82,8 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_teamShield  = static_cast<CEGUI::Window *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamShield"));
 
     // i18n support
-    m_backButton->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_backButton    ->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_gameMenuButton->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
     m_changePlayersButton->setText((CEGUI::utf8*)gettext("Change"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel"))->setText((CEGUI::utf8*)gettext("Team Players:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));
@@ -378,6 +382,12 @@ bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
 bool CScreenTeamPlayers::backButtonClicked(const CEGUI::EventArgs& e)
 {
     m_game->previousScreen();
+    return true;
+}
+
+bool CScreenTeamPlayers::gameMenuButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_game->nextScreen(m_game->getGameScreen());
     return true;
 }
 

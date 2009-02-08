@@ -35,19 +35,22 @@ CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
 
     m_game = game;
 
-    m_rankingList 	= static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
-    m_backButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/BackButton"));
+    m_rankingList    = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
+    m_backButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/BackButton"));
+    m_gameMenuButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/GameMenuButton"));
 
     m_rankingList->setUserColumnDraggingEnabled(false);
     m_rankingList->setUserColumnSizingEnabled(false);
     m_rankingList->setUserSortControlEnabled(false);
 
     // i18n support
-    m_backButton->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_backButton    ->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_gameMenuButton->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
 
     // Event handle
-    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::backButtonClicked, this));
+    m_backButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::backButtonClicked, this));
+    m_gameMenuButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::gameMenuButtonClicked, this));
 
     m_rankingList->addColumn("",     0, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.60,0));
@@ -163,4 +166,10 @@ bool CScreenRanking::backButtonClicked(const CEGUI::EventArgs& e)
 {
 	m_game->previousScreen();
 	return true;
+}
+
+bool CScreenRanking::gameMenuButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_game->nextScreen(m_game->getGameScreen());
+    return true;
 }

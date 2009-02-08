@@ -18,10 +18,15 @@
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.97,0},{0.7,0}}" />
         </Window>
+        <Window Type="TaharezLook/Button" Name="Ranking/GameMenuButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.15,0},{0.94,0}}" />
+        </Window>
         <Window Type="TaharezLook/Button" Name="Ranking/BackButton" >
           <Property Name="Font" Value="DejaVuSans-10" />
           <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.95,0},{0.15,0},{0.99,0}}" />
         </Window>
     </Window>
 </Window>

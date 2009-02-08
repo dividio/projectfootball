@@ -39,12 +39,14 @@ public:
 private:
     void loadRanking();
     bool backButtonClicked(const CEGUI::EventArgs& e);
+    bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
 
     // TODO Ranking for all competitions
     bool isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam);
 
     CEGUI::MultiColumnList  *m_rankingList;
     CEGUI::PushButton		*m_backButton;
+    CEGUI::PushButton       *m_gameMenuButton;
 
     CSinglePlayerGame		*m_game;
 };

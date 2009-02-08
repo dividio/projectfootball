@@ -37,7 +37,8 @@ CScreenResults::CScreenResults(CSinglePlayerGame *game)
     m_competitionsCombobox      = static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/CompetitionCombo"));
     m_competitionPhasesCombobox = static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/CompetitionPhaseCombo"));
     m_resultsList               = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/ResultsList"));
-    m_backButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/BackButton"));
+    m_backButton                = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/BackButton"));
+    m_gameMenuButton            = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/GameMenuButton"));
 
     m_competitionsCombobox->getEditbox()->setEnabled(false);
     m_competitionPhasesCombobox->getEditbox()->setEnabled(false);
@@ -48,13 +49,15 @@ CScreenResults::CScreenResults(CSinglePlayerGame *game)
     m_resultsList->setWantsMultiClickEvents(true);
 
     // i18n support
-    m_backButton->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_backButton    ->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_gameMenuButton->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/ResultsLabel"))->setText((CEGUI::utf8*)gettext("Results:"));
 
     // Event handle
     m_competitionsCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::competitionsComboboxListSelectionChanged, this));
     m_competitionPhasesCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::competitionPhasesComboboxListSelectionChanged, this));
-    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::backButtonClicked, this));
+    m_backButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::backButtonClicked, this));
+    m_gameMenuButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::gameMenuButtonClicked, this));
 
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Home Team"),   0, CEGUI::UDim(0.4,0));
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       1, CEGUI::UDim(0.1,0));
@@ -183,4 +186,10 @@ bool CScreenResults::backButtonClicked(const CEGUI::EventArgs& e)
 {
 	m_game->previousScreen();
 	return true;
+}
+
+bool CScreenResults::gameMenuButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_game->nextScreen(m_game->getGameScreen());
+    return true;
 }

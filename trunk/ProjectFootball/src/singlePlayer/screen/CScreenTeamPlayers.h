@@ -45,6 +45,7 @@ private:
     bool alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
     bool notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
     bool backButtonClicked(const CEGUI::EventArgs& e);
+    bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
     bool changePlayersButtonClicked(const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
@@ -67,6 +68,7 @@ private:
     CEGUI::MultiColumnList 	*m_selectedPlayer1List;
     CEGUI::MultiColumnList 	*m_selectedPlayer2List;
     CEGUI::PushButton		*m_backButton;
+    CEGUI::PushButton       *m_gameMenuButton;
     CEGUI::PushButton		*m_changePlayersButton;
     CEGUI::Window           *m_teamName;
     CEGUI::Window           *m_teamAverage;
