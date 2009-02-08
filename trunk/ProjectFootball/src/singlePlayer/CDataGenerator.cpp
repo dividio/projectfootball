@@ -165,7 +165,7 @@ void CDataGenerator::generateTeamPlayers()
     for(it = teams->begin(); it != teams->end(); it++) {
         std::vector<CPfTeamPlayers*> *teamPlayers = m_daoFactory->getIPfTeamPlayersDAO()->findActiveByXFkTeam((*it)->getXTeam_str());
         int contractedPlayers = teamPlayers->size();
-        int neededPlayers = 20 - contractedPlayers; //TODO define MAXPLAYERS
+        int neededPlayers = 17 - contractedPlayers; //TODO define MAXPLAYERS
         for( int i = 0; i < neededPlayers; i++) {
             generatePlayer((*it), contractedPlayers+i+1);
         }
