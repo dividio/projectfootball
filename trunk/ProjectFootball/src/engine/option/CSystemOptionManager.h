@@ -104,6 +104,9 @@ public:
     int            getSimulationMaxBallVelocity();
     void           setSimulationMaxBallVelocity(int maxBallVelocity);
 
+    int            getSimulationMaxPlayerVelocity();
+    void           setSimulationMaxPlayerVelocity(int maxPlayerVelocity);
+
     int            getSimulationMaxKickPower();
     void           setSimulationMaxKickPower(int maxKickPower);
 

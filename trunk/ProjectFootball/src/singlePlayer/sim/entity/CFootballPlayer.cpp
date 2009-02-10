@@ -25,6 +25,7 @@
 #include "CBall.h"
 #include "CReferee.h"
 #include "../../../bullet/btBulletDynamicsCommon.h"
+#include "../../../engine/option/CSystemOptionManager.h"
 #include "../CSimulationManager.h"
 #include "../../screen/CScreenSimulator.h"
 #include "../CSteeringBehaviors.h"
@@ -58,6 +59,12 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     m_team = team;
     m_number = number; //TODO
     m_lastKickBallCycle = -1;
+
+    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+    int maxPlayerVelocity = optionManager->getSimulationMaxPlayerVelocity();
+    int maxKickPower      = optionManager->getSimulationMaxKickPower();
+    m_maxVelocity  = maxPlayerVelocity * (m_teamPlayer->getNVelocity()/100.0);
+    m_maxKickPower = maxKickPower      * (m_teamPlayer->getNKickPower()/100.0);
 
     //m_direction.normalize();
     charId << team->getName().c_str() << m_number;
@@ -173,6 +180,15 @@ CFootballPlayer::~CFootballPlayer()
     delete m_stateMachine;
 }
 
+double CFootballPlayer::getMaxKickPower() const
+{
+    return m_maxKickPower;
+}
+
+double CFootballPlayer::getMaxVelocity() const
+{
+    return m_maxVelocity;
+}
 
 CSimulationManager* CFootballPlayer::getSimulationManager()
 {

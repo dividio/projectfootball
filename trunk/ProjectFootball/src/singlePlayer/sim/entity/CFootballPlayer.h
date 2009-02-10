@@ -46,6 +46,8 @@ public:
     CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team, bool sideLeft);
     ~CFootballPlayer();
 
+    double                          getMaxKickPower() const;
+    double                          getMaxVelocity() const;
     CStateMachine<CFootballPlayer>* getFSM();
     CSteeringBehaviors*             getSteering() const;
     btVector3                       getStrategicPosition() const;
@@ -99,6 +101,8 @@ private:
     bool                             m_sideLeft;
     int                              m_lastKickBallCycle;
     int                              m_number;
+    double                           m_maxKickPower;
+    double                           m_maxVelocity;
 };
 
 #endif // CFOOTBALLPLAYER_H_

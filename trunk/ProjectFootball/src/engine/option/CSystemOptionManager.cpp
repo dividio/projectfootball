@@ -286,6 +286,16 @@ void CSystemOptionManager::setSimulationMaxBallVelocity(int maxBallVelocity)
     setIntOption("Simulation", "MaxBallVelocity", maxBallVelocity);
 }
 
+int CSystemOptionManager::getSimulationMaxPlayerVelocity()
+{
+    return getIntOption("Simulation", "MaxPlayerVelocity");
+}
+
+void CSystemOptionManager::setSimulationMaxPlayerVelocity(int maxPlayerVelocity)
+{
+    setIntOption("Simulation", "MaxPlayerVelocity", maxPlayerVelocity);
+}
+
 int CSystemOptionManager::getSimulationMaxKickPower()
 {
     return getIntOption("Simulation", "MaxKickPower");
@@ -344,6 +354,7 @@ void CSystemOptionManager::setDefaultValues()
     setSimulationLogicFrequency(30);
     setSimulationPhysicsFrequency(60);
     setSimulationMaxBallVelocity(25);
+    setSimulationMaxPlayerVelocity(10);
     setSimulationMaxKickPower(25);
 }
 

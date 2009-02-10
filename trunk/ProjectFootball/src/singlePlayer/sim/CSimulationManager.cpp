@@ -264,14 +264,20 @@ btVector3 CSimulationManager::getBallPosition() const
 
 void CSimulationManager::dash(CFootballPlayer *player, btVector3 power)
 {
-    btVector3 impulse;
-    double maxDash = 10.0;
-    btRigidBody *body = player->getBody();
-    btVector3 currentVelocity = body->getLinearVelocity();
-    btVector3 newVelocity = currentVelocity;
     if(player->canDoActions()) {
+        btVector3 impulse;
+        CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+        int maxDash = optionManager->getSimulationMaxPlayerVelocity();
+        double maxPlayerDash = player->getMaxVelocity();
+        btRigidBody *body = player->getBody();
+        btVector3 currentVelocity = body->getLinearVelocity();
+        btVector3 newVelocity = currentVelocity;
         newVelocity += power;
-        truncateVector(&newVelocity, maxDash);
+        if(maxPlayerDash > maxDash) {
+            truncateVector(&newVelocity, maxDash);
+        } else {
+            truncateVector(&newVelocity, maxPlayerDash);
+        }
         //printf("Cycle: %d Player: %s Power: %f Mass: %f NewVelocity: %f\n", m_referee->getCycle(), player->getIdent().c_str(), power.length(), 1.0/body->getInvMass(), newVelocity.length());
         body->setLinearVelocity(newVelocity);
     }
@@ -292,14 +298,20 @@ void CSimulationManager::move(CFootballPlayer *player, int x, int z)
 
 void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 {
-    btVector3 impulse;
-    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-    int maxBallVelocity = optionManager->getSimulationMaxBallVelocity();
-    int maxKickPower = optionManager->getSimulationMaxKickPower();
-    btRigidBody *ballBody = m_ball->getBody();
-    btVector3 velocity;
     if(player->canKickBall(m_referee->getCycle()) && player->canDoActions()) {
-        truncateVector(&power, maxKickPower);
+        btVector3 impulse;
+        CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+        int    maxBallVelocity = optionManager->getSimulationMaxBallVelocity();
+        int    maxKickPower = optionManager->getSimulationMaxKickPower();
+        double maxPlayerKickPower = player->getMaxKickPower();
+        btRigidBody *ballBody = m_ball->getBody();
+        btVector3 velocity;
+
+        if (maxPlayerKickPower > maxKickPower) {
+            truncateVector(&power, maxKickPower);
+        } else {
+            truncateVector(&power, maxPlayerKickPower);
+        }
         ballBody->applyCentralImpulse(power);
         velocity = ballBody->getLinearVelocity();
         truncateVector(&velocity, maxBallVelocity);
