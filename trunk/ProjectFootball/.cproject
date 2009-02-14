@@ -43,7 +43,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1131655999" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.1331932228" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="SDL_mixer"/>
-<listOptionValue builtIn="false" value="boost_filesystem"/>
+<listOptionValue builtIn="false" value="boost_filesystem-mt"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua5.1"/>
 <listOptionValue builtIn="false" value="OIS"/>
@@ -384,7 +384,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1640002519" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.219275127" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="SDL_mixer"/>
-<listOptionValue builtIn="false" value="boost_filesystem"/>
+<listOptionValue builtIn="false" value="boost_filesystem-mt"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua5.1"/>
 <listOptionValue builtIn="false" value="OIS"/>
