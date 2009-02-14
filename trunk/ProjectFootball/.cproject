@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 4.0.0?>
 
 <cproject>
@@ -43,6 +43,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1131655999" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.1331932228" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="SDL_mixer"/>
+<listOptionValue builtIn="false" value="boost_filesystem"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua5.1"/>
 <listOptionValue builtIn="false" value="OIS"/>
@@ -340,6 +341,7 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cconfiguration>
 <cconfiguration id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994">
 <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994" moduleId="org.eclipse.cdt.core.settings" name="Release">
@@ -382,6 +384,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1640002519" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
 <option id="gnu.cpp.link.option.libs.219275127" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="SDL_mixer"/>
+<listOptionValue builtIn="false" value="boost_filesystem"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua5.1"/>
 <listOptionValue builtIn="false" value="OIS"/>
@@ -656,6 +659,7 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">

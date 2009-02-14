@@ -26,6 +26,7 @@
 #include "engine/CGameEngine.h"
 #include "utils/CInputManager.h"
 #include "utils/CLuaManager.h"
+#include "utils/CResourceManager.h"
 #include "engine/option/CSystemOptionManager.h"
 #include "utils/CLog.h"
 
@@ -95,25 +96,7 @@ void CApplication::createRoot()
 
 void CApplication::defineResources()
 {
-    Ogre::String secName, typeName, archName;
-    Ogre::ConfigFile cf;
-    cf.load("data/resources.cfg");
-
-    Ogre::String skin = CSystemOptionManager::getInstance()->getGUISkin();
-    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
-    while (seci.hasMoreElements()) {
-        secName = seci.peekNextKey();
-
-        Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-        Ogre::ConfigFile::SettingsMultiMap::iterator i;
-        if(secName == "General" || secName == skin) {
-            for (i = settings->begin(); i != settings->end(); ++i) {
-                typeName = i->first;
-                archName = i->second;
-                Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
-            }
-        }
-    }
+    CResourceManager::getInstance()->defineResources();
 }
 
 void CApplication::setupRenderSystem()

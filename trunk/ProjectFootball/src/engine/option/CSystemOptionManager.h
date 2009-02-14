@@ -69,8 +69,14 @@ public:
     const char *   getGUISkin();
     void           setGUISkin(const char * skin);
 
+    const char *   getGUIShields();
+    void           setGUIShields(const char * shields);
+
+    const char *   getGUIFlags();
+    void           setGUIFlags(const char * flags);
+
     const char *   getGUIXMLParser();
-    void           setGUIXMLParser(const char * skin);
+    void           setGUIXMLParser(const char * parser);
 
     // Video options
     const char *   getVideoRenderSystem();

@@ -185,6 +185,26 @@ void CSystemOptionManager::setGUISkin(const char * skin)
     setStringOption("GUI", "Skin", skin);
 }
 
+const char * CSystemOptionManager::getGUIShields()
+{
+    return getStringOption("GUI", "Shields");
+}
+
+void CSystemOptionManager::setGUIShields(const char * shields)
+{
+    setStringOption("GUI", "Shields", shields);
+}
+
+const char * CSystemOptionManager::getGUIFlags()
+{
+    return getStringOption("GUI", "Flags");
+}
+
+void CSystemOptionManager::setGUIFlags(const char * flags)
+{
+    setStringOption("GUI", "Flags", flags);
+}
+
 const char * CSystemOptionManager::getGUIXMLParser()
 {
     return getStringOption("GUI", "XMLParser");
@@ -341,6 +361,8 @@ void CSystemOptionManager::setDefaultValues()
 
     setGUIMouseVelocity(150);
     setGUISkin("TaharezLook");
+    setGUIShields("default");
+    setGUIFlags("default");
     setGUIXMLParser("TinyXMLParser");
 
     setVideoRenderSystem("OpenGL Rendering Subsystem");
