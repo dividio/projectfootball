@@ -64,8 +64,8 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_confirmExitNote    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/Note"));
 
     // i18n support
-    m_saveButton        ->setText((CEGUI::utf8*)gettext("Save"));
-    m_mainMenuButton    ->setText((CEGUI::utf8*)gettext("Return to Main Menu"));
+    m_saveButton        ->setTooltipText((CEGUI::utf8*)gettext("Save"));
+    m_mainMenuButton    ->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
     m_rankingButton     ->setText((CEGUI::utf8*)gettext("Ranking"));
     m_teamPlayersButton ->setText((CEGUI::utf8*)gettext("Team Players"));
     m_resultsButton     ->setText((CEGUI::utf8*)gettext("Results"));
