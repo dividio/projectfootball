@@ -51,6 +51,7 @@ private:
 
 
     CEGUI::Window       *m_competitionName;
+    CEGUI::Window       *m_competitionCountryFlag;
     CEGUI::Window       *m_competitionPhaseName;
     CEGUI::Window       *m_nextCompetitionName;
     CEGUI::Window       *m_nextHomeTeamName;

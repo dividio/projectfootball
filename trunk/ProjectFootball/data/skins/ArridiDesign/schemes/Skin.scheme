@@ -23,6 +23,8 @@
   <Imageset Name="ES000018" Filename="ES000018.imageset"/>
   <Imageset Name="ES000019" Filename="ES000019.imageset"/>
   <Imageset Name="ES000020" Filename="ES000020.imageset"/>
+  <Imageset Name="spain" Filename="spain.imageset"/>
+  <Imageset Name="england" Filename="england.imageset"/>
   <Imageset Name="WidgetsImageset" Filename="TaharezLook.imageset" />
     <Font Name="DejaVuSans-10" Filename="DejaVuSans-10.font" />
     <Font Name="DejaVuSans-18" Filename="DejaVuSans-18.font" />
