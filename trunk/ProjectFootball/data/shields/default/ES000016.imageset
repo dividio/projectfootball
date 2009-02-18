@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
-<Imageset Name="ES000016" Imagefile="ES000016.png" NativeHorzRes="256" NativeVertRes="128" AutoScaled="true">
+<Imageset Name="ES000016" Imagefile="ES000016.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true">
 	<Image Name="ES000016_b" XPos="0" YPos="0" Width="128" Height="128" />
 	<Image Name="ES000016_n" XPos="138" YPos="31" Width="64" Height="64" />
 	<Image Name="ES000016_s" XPos="217" YPos="47" Width="32" Height="32" />
-	
 </Imageset>
