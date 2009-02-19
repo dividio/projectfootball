@@ -23,6 +23,7 @@
 #include <libintl.h>
 
 #include "../CSinglePlayerGame.h"
+#include "../option/CSinglePlayerOptionManager.h"
 #include "../utils/CLog.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../db/bean/CPfMatches.h"
@@ -196,17 +197,16 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
 void CScreenMatchResult::simulateMatches()
 {
     IDAOFactory         *daoFactory = m_game->getIDAOFactory();
-    IPfGameOptionsDAO   *optionsDAO = daoFactory->getIPfGameOptionsDAO();
     IPfMatchesDAO       *matchesDAO = daoFactory->getIPfMatchesDAO();
     CPfMatches          *userMatch;
 
-    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
-    if(resultMode->getSValue() == "true") { //result mode
+    bool resultMode = m_game->getOptionManager()->getMatchResultMode();
+
+    if(resultMode) { //result mode
         userMatch = matchesDAO->findNextPlayerTeamMatch();
     } else {
         userMatch = matchesDAO->findLastPlayerTeamMatch();
     }
-    delete resultMode;
 
     srand(time(NULL));
     daoFactory->beginTransaction();

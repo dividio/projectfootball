@@ -80,7 +80,6 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfUsers *user, const char *gameName)
     m_reportRegister        = new CSinglePlayerReportRegister();
     m_eventStrategy         = new CSinglePlayerEventStrategy(m_daoFactory, m_reportRegister);
     m_optionManager         = new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
-    setGameOptionsDefaultValues();
     createSinglePlayerScreens();
 }
 
@@ -93,7 +92,6 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game) : m_screenStack()
     m_reportRegister        = new CSinglePlayerReportRegister();
     m_eventStrategy         = new CSinglePlayerEventStrategy(m_daoFactory, m_reportRegister);
     m_optionManager         = new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
-    setGameOptionsDefaultValues();
     createSinglePlayerScreens();
 }
 
@@ -168,6 +166,7 @@ void CSinglePlayerGame::update()
 
 CPfGames* CSinglePlayerGame::save()
 {
+    m_optionManager->saveOptions();
     m_daoFactory->save();
 
     CDate nowDate;
