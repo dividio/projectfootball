@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+<Window Type="DefaultWindow" Name="Credits" >
+    <Window Type="TaharezLook/StaticImage" Name="Credits/MainWindow" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
+        <Property Name="FrameEnabled" Value="false" />
+            <Window Type="TaharezLook/StaticText" Name="Credits/ProjectFootballLabel" >
+                <Property Name="Font" Value="DejaVuSans-32" />
+                <Property Name="Text" Value="Project Football" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.045625,0},{0.0414759,0},{0.515625,0},{0.141476,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/IkaroGamesLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="by Ikaro Games: www.ikarogames.com" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.23168,0},{0.0916541,0},{0.59668,0},{0.201654,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/BasedLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.815,0},{0.2,0},{0.85,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/Ogre3DLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Ogre 3D" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.08,0},{0.85,0},{0.15,0},{0.885,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/Ogre3DURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://www.ogre3d.org/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.885,0},{0.2,0},{0.92,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/CEGUILabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="CEGUI" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.08,0},{0.92,0},{0.15,0},{0.955,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/CEGUIURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://www.cegui.org.uk/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.955,0},{0.2,0},{0.99,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SQLiteLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="SQLite" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.27,0},{0.85,0},{0.35,0},{0.885,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SQLiteURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://www.sqlite.org/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.22,0},{0.885,0},{0.37,0},{0.92,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SWIGLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="SWIG" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.27,0},{0.92,0},{0.35,0},{0.955,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SWIGURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://www.swig.org/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.22,0},{0.955,0},{0.37,0},{0.99,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/BulletLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Bullet Physics" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.85,0},{0.56,0},{0.885,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/BulletURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://www.bulletphysics.com/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.39,0},{0.885,0},{0.6,0},{0.92,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/OISLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="OIS" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.47,0},{0.92,0},{0.55,0},{0.955,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/OISURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://sourceforge.net/projects/wgois/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.37,0},{0.955,0},{0.62,0},{0.99,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SDLMixerLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="SDL Mixer" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.65,0},{0.88,0},{0.75,0},{0.915,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SDLMixerURLLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="http://www.libsdl.org/projects/SDL_mixer/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.58,0},{0.915,0},{0.84,0},{0.95,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DBM_DA" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="David Ballesteros Mayo &quot;DIVIDIO&quot;" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.28,0},{0.26,0},{0.5,0},{0.295,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DDB_DA" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="David Domínguez Bocanegra" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.28,0},{0.225,0},{0.5,0},{0.26,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/ThanksLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.07,0},{0.77,0},{0.3,0},{0.805,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/Pere_T" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Jaime Peregrín Millán" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.675,0},{0.27,0},{0.71,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DJChapLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Carlos Javier Bastian Lérida &quot;DJ CHAP N.A&quot;" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.64,0},{0.75,0},{0.675,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/JBP_M3D" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Juan Carlos Becerra Permuy" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.535,0},{0.27,0},{0.57,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/AllUsersLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.745,0},{0.75,0},{0.82,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/Button" Name="Credits/BackButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.94,0},{0.99,0},{0.98,0}}" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DBM_P" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="David Ballesteros Mayo &quot;DIVIDIO&quot;" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.4,0},{0.27,0},{0.435,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DDB_P" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="David Dominguez Bocanegra" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.365,0},{0.27,0},{0.4,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DAplLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.32,0},{0.19,0},{0.45,0},{0.225,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/JMA_DA" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="José Miguel Arriba Díaz &quot;CHEMO&quot;" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.28,0},{0.295,0},{0.5,0},{0.33,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/CodedLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.09,0},{0.33,0},{0.1875,0},{0.365,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DGraLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.33,0},{0.6,0},{0.365,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/Mod3DLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.09,0},{0.5,0},{0.18,0},{0.535,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/InfDBLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.5,0},{0.7,0},{0.535,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/TextLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.09,0},{0.605,0},{0.16375,0},{0.64,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SN_IDB" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Sergio Noguera &quot;KIRBY_FIRE&quot;" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.535,0},{0.710001,0},{0.57,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/SoundLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.605,0},{0.65,0},{0.64,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/JMA_DG" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="José Miguel Arriba Díaz &quot;CHEMO&quot; (Skin ArridiDesign)" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.365,0},{0.75,0},{0.4,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/DBM_DG" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="David Ballesteros Mayo &quot;DIVIDIO&quot; (Skin TaharezLook)" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.4,0},{0.75,0},{0.435,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/JBP_T" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Juan Carlos Becerra Permuy" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.64,0},{0.27,0},{0.675,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="TaharezLook/StaticText" Name="Credits/JMA_T" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="José Miguel Arriba Díaz &quot;CHEMO&quot;" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.71,0},{0.27,0},{0.745,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+    </Window>
+</Window>
+</GUILayout>

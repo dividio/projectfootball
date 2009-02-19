@@ -155,7 +155,7 @@ void CScreenGame::enter()
         m_homeTeamName        ->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
         m_awayTeamName        ->setText((CEGUI::utf8*)awayTeam->getSTeam().c_str());
 
-        m_competitionCountryFlag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag());
+        m_competitionCountryFlag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag() + "_flag");
 
         // Team Averages
         IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();

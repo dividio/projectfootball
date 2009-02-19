@@ -49,6 +49,8 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     m_guiTeamName         		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
     m_guiTeamBudget       		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
     m_guiTeamShield             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
+    m_guiConfederationImage     = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationImage"));
+    m_guiCountryImage           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryImage"));
     m_guiTeamAverage            = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamAverage"));
     m_confederationsCombobox	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Confederation"));
     m_countriesCombobox      	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Country"));
@@ -139,7 +141,10 @@ int CScreenSelectTeam::loadConfederationsList()
         m_confederationsCombobox->addItem(new CEGUI::ListboxTextItem
                 ((CEGUI::utf8*)confederation->getSConfederation().c_str(), confederation->getXConfederation()));
     }
-    m_confederationsCombobox->setText((CEGUI::utf8*)m_confederationsList->front()->getSConfederation().c_str());
+
+    CPfConfederations *conf = m_confederationsList->front();
+    m_confederationsCombobox->setText((CEGUI::utf8*)conf->getSConfederation().c_str());
+    m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_flag");
     return m_confederationsList->front()->getXConfederation();
 }
 
@@ -160,7 +165,9 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
             m_countriesCombobox->addItem(new CEGUI::ListboxTextItem
                     ((CEGUI::utf8*)country->getSShortName().c_str(), country->getXCountry()));
         }
-        m_countriesCombobox->setText((CEGUI::utf8*)m_countriesList->front()->getSShortName().c_str());
+        CPfCountries *country = m_countriesList->front();
+        m_countriesCombobox->setText((CEGUI::utf8*)country->getSShortName().c_str());
+        m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_flag");
 
         selectedCountry = m_countriesList->front()->getXCountry();
     } else {
@@ -248,10 +255,15 @@ bool CScreenSelectTeam::confederationsComboboxListSelectionChanged(const CEGUI::
 {
     CEGUI::ListboxItem *item = m_confederationsCombobox->getSelectedItem();
     if(item!=0) {
+        IPfConfederationsDAO *confederationsDAO = m_game->getIDAOFactory()->getIPfConfederationsDAO();
+        CPfConfederations    *conf = confederationsDAO->findByXConfederation(item->getID());
+
         m_confederationsCombobox->setText(item->getText());
+        m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_flag");
         m_countriesCombobox->clearAllSelections();
         m_countriesCombobox->resetList();
         m_countriesCombobox->getEditbox()->setText("");
+        m_guiCountryImage->setProperty("Image", "set: image:full_image");
         m_competitionsCombobox->clearAllSelections();
         m_competitionsCombobox->resetList();
         m_competitionsCombobox->getEditbox()->setText("");
@@ -270,7 +282,11 @@ bool CScreenSelectTeam::countriesComboboxListSelectionChanged(const CEGUI::Event
 {
     CEGUI::ListboxItem *item = m_countriesCombobox->getSelectedItem();
     if(item!=0) {
+        IPfCountriesDAO *countriesDAO = m_game->getIDAOFactory()->getIPfCountriesDAO();
+        CPfCountries    *country = countriesDAO->findByXCountry(item->getID());
+
         m_countriesCombobox->setText(item->getText());
+        m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_flag");
         m_competitionsCombobox->clearAllSelections();
         m_competitionsCombobox->resetList();
         m_competitionsCombobox->getEditbox()->setText("");

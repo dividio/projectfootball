@@ -35,9 +35,16 @@ CScreenCredits::CScreenCredits()
 
     // i18n support
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/BasedLabel"))->setText((CEGUI::utf8*)gettext("Based on:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/CodedLabel"))->setText((CEGUI::utf8*)gettext("Designed and coded by:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/CodedLabel"))->setText((CEGUI::utf8*)gettext("Programming:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/ThanksLabel"))->setText((CEGUI::utf8*)gettext("Thanks to:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/AllUsersLabel"))->setText((CEGUI::utf8*)gettext("... and to all users who tested the game ;-)"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/SoundLabel"))->setText((CEGUI::utf8*)gettext("Sound efects:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/TextLabel"))->setText((CEGUI::utf8*)gettext("Textures:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/InfDBLabel"))->setText((CEGUI::utf8*)gettext("Data base information:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/Mod3DLabel"))->setText((CEGUI::utf8*)gettext("3D modeling:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/DGraLabel"))->setText((CEGUI::utf8*)gettext("Graphic design:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/DAplLabel"))->setText((CEGUI::utf8*)gettext("Application design:"));
+
     m_backButton->setText((CEGUI::utf8*)gettext("Back"));
 }
 

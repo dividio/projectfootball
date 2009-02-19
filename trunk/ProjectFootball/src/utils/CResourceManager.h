@@ -36,6 +36,7 @@ private:
     void defineSkin();
     void defineShields();
     void defineFlags();
+    void defineConfederations();
 };
 
 #endif /* CRESOURCEMANAGER_H_ */

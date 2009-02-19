@@ -1,4 +1,4 @@
 <?xml version="1.0" ?>
 <Imageset Name="spain" Imagefile="spain.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true">
-	<Image Name="spain" XPos="0" YPos="0" Width="256" Height="171" />
+	<Image Name="spain_flag" XPos="0" YPos="0" Width="256" Height="171" />
 </Imageset>

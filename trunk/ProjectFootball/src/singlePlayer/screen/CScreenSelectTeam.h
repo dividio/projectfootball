@@ -65,6 +65,8 @@ private:
     CEGUI::Window                   *m_guiTeamBudget;
     CEGUI::Window                   *m_guiTeamAverage;
     CEGUI::Window                   *m_guiTeamShield;
+    CEGUI::Window                   *m_guiConfederationImage;
+    CEGUI::Window                   *m_guiCountryImage;
     CEGUI::Combobox                 *m_confederationsCombobox;
     CEGUI::Combobox                 *m_countriesCombobox;
     CEGUI::Combobox                 *m_competitionsCombobox;
