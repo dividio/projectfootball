@@ -26,6 +26,7 @@
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
 #include "../db/dao/factory/IDAOFactory.h"
+#include "../option/CSinglePlayerOptionManager.h"
 
 
 CScreenGame::CScreenGame(CSinglePlayerGame *game)
@@ -101,16 +102,7 @@ void CScreenGame::enter()
 {
 	CScreen::enter();
 
-    IPfGameOptionsDAO   *optionsDAO = m_game->getIDAOFactory()->getIPfGameOptionsDAO();
-
-    CPfGameOptions *resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
-    if(resultMode->getSValue() == "true") { //result mode
-        m_resultModeCheckbox->setSelected(true);
-    } else {
-        m_resultModeCheckbox->setSelected(false);
-    }
-    delete resultMode;
-
+    m_resultModeCheckbox->setSelected(m_game->getOptionManager()->getMatchResultMode());
 
     CEGUI::String imagesetName;
     CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
@@ -237,29 +229,18 @@ bool CScreenGame::resultsButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenGame::playButtonClicked(const CEGUI::EventArgs& e)
 {
-    CPfGameOptions *resultMode = m_game->getIDAOFactory()->getIPfGameOptionsDAO()->findBySCategoryAndSAttribute("Match", "ResultMode");
-    if(resultMode->getSValue() == "true") {
+    if( m_game->getOptionManager()->getMatchResultMode() ){
     	m_game->nextScreen(m_game->getMatchResultScreen());
     } else {
     	m_game->nextScreen(m_game->getSimulatorScreen());
     }
-    delete resultMode;
 
 	return true;
 }
 
 bool CScreenGame::resultModeCheckboxCheckStateChanged(const CEGUI::EventArgs& e)
 {
-    IPfGameOptionsDAO	*optionsDAO = m_game->getIDAOFactory()->getIPfGameOptionsDAO();
-    CPfGameOptions		*resultMode = optionsDAO->findBySCategoryAndSAttribute("Match", "ResultMode");
-
-    if(m_resultModeCheckbox->isSelected()) {
-        resultMode->setSValue("true");
-    } else {
-        resultMode->setSValue("false");
-    }
-    optionsDAO->updateReg(resultMode);
-    delete resultMode;
+    m_game->getOptionManager()->setMatchResultMode(m_resultModeCheckbox->isSelected());
 
 	return true;
 }
