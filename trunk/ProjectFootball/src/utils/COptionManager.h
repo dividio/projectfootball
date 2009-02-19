@@ -23,6 +23,8 @@
 
 #include <map>
 
+#include "CDate.h"
+
 class COptionManager {
 public:
 	COptionManager();
@@ -60,7 +62,7 @@ protected:
      * @param category Category of the searched option
      * @param option Option searched
      *
-     * @return String asociate to the option if it's found, or the defaultValue else
+     * @return String asociate to the option
      *
      * @throw If the option don't exists, then this function throw a exception
      */
@@ -73,7 +75,7 @@ protected:
      * @param category Category of the searched option
      * @param option Option searched
      *
-     * @return int value asociate to the option if it's found, or the defaultValue else
+     * @return int value asociate to the option
      *
      * @throw If the option don't exists, then this function throw a exception
      */
@@ -86,11 +88,24 @@ protected:
      * @param category Category of the searched option
      * @param option Option searched
      *
-     * @return boolean value asociate to the option if it's found, or the defaultValue else
+     * @return boolean value asociate to the option
      *
      * @throw If the option don't exists, then this function throw a exception
      */
     bool getBooleanOption( const char *category, const char *option);
+
+
+    /**
+     * This function return the CDate value associate to an option of a category
+     *
+     * @param category Category of the searched option
+     * @param option Option searched
+     *
+     * @return CDate value asociate to the option
+     *
+     * @throw If the option don't exists, then this function throw a exception
+     */
+    CDate getDateOption( const char *category, const char *option);
 
 
     /**
@@ -124,6 +139,17 @@ protected:
      * @param value Boolean value of the option
      */
     void setBooleanOption( const char *category, const char *option, bool value );
+
+
+    /**
+     * This function set the value asociate to an option of a category.
+     * If the option not exists, then it's created
+     *
+     * @param category Category of the searched option
+     * @param option Option to set with the associate value
+     * @param value CDate value of the option
+     */
+    void setDateOption( const char *category, const char *option, const CDate *value );
 
 
 private:

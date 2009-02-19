@@ -124,6 +124,27 @@ bool COptionManager::getBooleanOption( const char *category, const char *option 
     return strcmp( optionsList->operator[](o), "true" ) == 0;
 }
 
+CDate COptionManager::getDateOption( const char *category, const char *option )
+{
+    // First, search the category
+    std::map<const char *, const char *> *optionsList = searchCategory( category );
+    if( optionsList == NULL ){
+        // If not found then throw exception
+        CLog::getInstance()->exception("[COptionManager::getDateOption] Option not found: Category: '%s', Option: '%s'", category, option);
+    }
+
+    // Now, search the option
+    const char *o = searchOption( optionsList, option );
+    if( o == NULL ){
+        // If not found then throw exception
+        CLog::getInstance()->exception("[COptionManager::getDateOption] Option not found: Category: '%s', Option: '%s'", category, option);
+    }
+
+    // Return the option value
+    CDate date(optionsList->operator[](o));
+    return date;
+}
+
 void COptionManager::setStringOption( const char *category, const char *option, const char *value )
 {
     // First, search the category
@@ -163,6 +184,11 @@ void COptionManager::setBooleanOption( const char *category, const char *option,
     }else{
         setStringOption( category, option, "false" );
     }
+}
+
+void COptionManager::setDateOption( const char *category, const char *option, const CDate *value )
+{
+	setStringOption( category, option, value->getTimestamp().c_str() );
 }
 
 std::map<const char *, const char *> * COptionManager::searchCategory( const char *category )
