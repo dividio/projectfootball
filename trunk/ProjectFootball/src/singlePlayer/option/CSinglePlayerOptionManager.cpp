@@ -34,7 +34,6 @@ CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOp
 
 CSinglePlayerOptionManager::~CSinglePlayerOptionManager()
 {
-	saveOptions();
 	cleanOptions();
 
     CLog::getInstance()->info("Game Option manager deinitialized");
@@ -71,7 +70,7 @@ void CSinglePlayerOptionManager::saveOptions()
             const char *value  = itOptions->second;
 
             CPfGameOptions *gameOption = m_gameOptionsDAO->findBySCategoryAndSAttribute(category, option);
-            if( gameOption->getXOption_str()=="" ){
+            if( gameOption->getXOption()==0 ){
                 // Don't exists this option
                 gameOption->setSCategory(category);
                 gameOption->setSAttribute(option);
