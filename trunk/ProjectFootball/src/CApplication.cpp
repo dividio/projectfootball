@@ -50,6 +50,8 @@ CApplication::~CApplication()
 {
     CLog::getInstance()->debug("~CApplication()");
 
+    delete CGameEngine::getInstance();
+
     m_inputManager->destroyInputObject(m_keyboard);
     m_inputManager->destroyInputObject(m_mouse);
     OIS::InputManager::destroyInputSystem(m_inputManager);
@@ -305,7 +307,7 @@ int main(int argc, char **argv)
             systemOptionManager->setGUISkin("TaharezLook");
             systemOptionManager->setVideoFullscreen(false);
             systemOptionManager->setVideoRTTPreferredMode("Copy");
-        } else {
+        }else{
             systemOptionManager->setGeneralFailSafeMode(true);
             systemOptionManager->saveOptions();
         }
@@ -317,27 +319,27 @@ int main(int argc, char **argv)
         systemOptionManager->setGeneralFailSafeMode(false);
         systemOptionManager->saveOptions();
     }
-    catch(Ogre::Exception &e){
     #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-        MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        catch(Ogre::Exception &e){
+            MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred in Ogre!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        }
+        catch(CEGUI::Exception &e){
+            MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        }
+        catch(...){
+            MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        }
     #else
-        CLog::getInstance()->error("An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
+        catch(Ogre::Exception &e){
+            CLog::getInstance()->error("An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
+        }
+        catch(CEGUI::Exception &e){
+            CLog::getInstance()->error("An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
+        }
+        catch(...){
+            CLog::getInstance()->error("Unexpected exception!");
+        }
     #endif
-    }
-    catch(CEGUI::Exception &e){
-    #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-        MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
-    #else
-        CLog::getInstance()->error("An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
-    #endif
-    }
-    catch(...){
-    #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-        MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
-    #else
-        CLog::getInstance()->error("Unexpected exception!");
-    #endif
-    }
 
     return 0;
 }

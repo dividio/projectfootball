@@ -73,6 +73,8 @@ protected:
 private:
     CGameEngine();
 
+    static CGameEngine		*m_instance;
+
     CPfUsers                *m_user;
     IGame              		*m_game;
     CMasterDAOFactorySQLite *m_masterDatabase;

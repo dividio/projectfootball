@@ -32,6 +32,8 @@
 #include "screen/CScreenConfig.h"
 #include "screen/CScreenCredits.h"
 
+CGameEngine* CGameEngine::m_instance = NULL;
+
 CGameEngine::CGameEngine() : m_screenStack()
 {
     m_clock = new CClock();
@@ -69,12 +71,17 @@ CGameEngine::~CGameEngine()
     m_masterDatabase->save();
     delete m_masterDatabase;
     delete m_clock;
+
+    m_instance = NULL;
 }
 
 CGameEngine* CGameEngine::getInstance()
 {
-    static CGameEngine instance;
-    return &instance;
+    if( m_instance==NULL ){
+        m_instance = new CGameEngine();
+    }
+
+    return m_instance;
 }
 
 void CGameEngine::setUser(int xUser)
