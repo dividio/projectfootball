@@ -27,12 +27,76 @@
 
 #include "CSystemOptionManager.h"
 #include "../../utils/CLog.h"
-#include "../../utils/optionsUtil.h"
+
+
+char * trim( char *s )
+{
+    int  i;
+
+    // First, from the beggining of the string iterate forward
+    // to the first character that not validate isspace(). Copying
+    // the rest of the string to the beggining.
+    i = 0;
+    while( isspace(s[i]) ){
+      i++;
+    }
+    if( i!=0 ){
+        strcpy(&(s[0]), &(s[i]) );
+    }
+
+    // Later, from the end of the string iterate backward to the first
+    // character that not validate isspace(). Invalidating the rest of
+    // the string
+    i = strlen(s)-1;
+    while( i>=0 && isspace(s[i]) ){
+      i--;
+    }
+    s[i+1] = '\0';
+
+    return s;
+}
+
+
+char * getSentence( char *sentence, const char *line )
+{
+    // First, copy the line to the sentence
+    strcpy( sentence, line );
+    // Later, detele comments from the sentence
+    strtok( sentence, "#" );
+    // trim the sentence
+    trim( sentence );
+    // Finally, if it's a comment line (start with '#'), then
+    // return empty string
+    if( sentence[0] == '#' ){
+        sentence[0] = '\0';
+    }
+
+    return sentence;
+}
+
+
+void getAssignment( char *attribute, char *value, const char *sentence )
+{
+    // First, create temp buffer and copy sentence to it
+    char *buffer = new char[strlen(sentence)+1];
+    strcpy( buffer, sentence );
+
+    // Copy the attribute
+    strcpy( attribute, trim( strtok( buffer, "=" ) ) );
+    // Copy the value
+    strcpy( value, trim( strtok( NULL, "=" ) ) );
+
+    // Free reserved buffer
+    delete[] buffer;
+}
+
 
 CSystemOptionManager::CSystemOptionManager()
-   : m_categoriesList()
+ : COptionManager()
 {
-    loadOptions();
+	cleanOptions();
+	setDefaultValues();
+	loadOptions();
 
     CLog::getInstance()->info("System Option manager initialized");
 }
@@ -40,8 +104,8 @@ CSystemOptionManager::CSystemOptionManager()
 
 CSystemOptionManager::~CSystemOptionManager()
 {
-    saveOptions();
-    cleanOptions();
+	saveOptions();
+	cleanOptions();
 
     CLog::getInstance()->info("System Option manager deinitialized");
 }
@@ -56,9 +120,6 @@ CSystemOptionManager* CSystemOptionManager::getInstance()
 
 void CSystemOptionManager::loadOptions()
 {
-    cleanOptions();
-    setDefaultValues();
-
     // Open the config file
     FILE *file = fopen( CONFIG_FILE, "r" );
     if( file==NULL ){
@@ -144,6 +205,33 @@ void CSystemOptionManager::saveOptions()
     fclose( file );
 
     CLog::getInstance()->info("System Options saved: --> \"%s\"", CONFIG_FILE);
+}
+
+
+void CSystemOptionManager::setDefaultValues()
+{
+    setGeneralMasterDatebasePath("data/database/master.sql3");
+    setGeneralFailSafeMode(false);
+
+    setGUIMouseVelocity(150);
+    setGUISkin("TaharezLook");
+    setGUIShields("default");
+    setGUIFlags("default");
+    setGUIXMLParser("TinyXMLParser");
+
+    setVideoRenderSystem("OpenGL Rendering Subsystem");
+    setVideoWidth(1024);
+    setVideoHeight(768);
+    setVideoFullscreen(true);
+    setVideoVSync(true);
+    setVideoRTTPreferredMode("Copy");
+
+    setSimulationMatchDuration(2000);
+    setSimulationLogicFrequency(30);
+    setSimulationPhysicsFrequency(60);
+    setSimulationMaxBallVelocity(25);
+    setSimulationMaxPlayerVelocity(10);
+    setSimulationMaxKickPower(25);
 }
 
 
@@ -323,244 +411,4 @@ int CSystemOptionManager::getSimulationMaxKickPower()
 void CSystemOptionManager::setSimulationMaxKickPower(int maxKickPower)
 {
     setIntOption("Simulation", "MaxKickPower", maxKickPower);
-}
-
-
-void CSystemOptionManager::cleanOptions()
-{
-    std::map< const char *, std::map<const char *, const char *>* >::iterator itCategories;
-
-    for( itCategories = m_categoriesList.begin(); itCategories != m_categoriesList.end(); itCategories++ ){
-        const char                                      *category       = itCategories->first;
-        std::map<const char *, const char *>            *optionsList    = itCategories->second;
-        std::map<const char *, const char *>::iterator  itOptions;
-
-        for( itOptions = optionsList->begin(); itOptions != optionsList->end(); itOptions++ ){
-            const char *option = itOptions->first;
-            const char *value  = itOptions->second;
-
-            // Free memory
-            delete []option;
-            delete []value;
-        }
-
-        // Free memory
-        delete []category;
-        optionsList->clear();
-        delete optionsList;
-    }
-
-    m_categoriesList.clear();
-}
-
-
-void CSystemOptionManager::setDefaultValues()
-{
-    setGeneralMasterDatebasePath("data/database/master.sql3");
-    setGeneralFailSafeMode(false);
-
-    setGUIMouseVelocity(150);
-    setGUISkin("TaharezLook");
-    setGUIShields("default");
-    setGUIFlags("default");
-    setGUIXMLParser("TinyXMLParser");
-
-    setVideoRenderSystem("OpenGL Rendering Subsystem");
-    setVideoWidth(1024);
-    setVideoHeight(768);
-    setVideoFullscreen(true);
-    setVideoVSync(true);
-    setVideoRTTPreferredMode("Copy");
-
-    setSimulationMatchDuration(2000);
-    setSimulationLogicFrequency(30);
-    setSimulationPhysicsFrequency(60);
-    setSimulationMaxBallVelocity(25);
-    setSimulationMaxPlayerVelocity(10);
-    setSimulationMaxKickPower(25);
-}
-
-
-const char * CSystemOptionManager::getStringOption( const char *category, const char *option )
-{
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSystemOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSystemOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Return the option value
-    return optionsList->operator[](o);
-}
-
-
-int CSystemOptionManager::getIntOption( const char *category, const char *option )
-{
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSystemOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSystemOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Return the option value
-    return atoi(optionsList->operator[](o));
-}
-
-
-bool CSystemOptionManager::getBooleanOption( const char *category, const char *option )
-{
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSystemOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSystemOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Return the option value
-    return strcmp( optionsList->operator[](o), "true" ) == 0;
-}
-
-
-void CSystemOptionManager::setStringOption( const char *category, const char *option, const char *value )
-{
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then create the option
-        createOption( optionsList, option, value );
-    }else{
-        // Else delete old value
-        delete [] optionsList->operator[](o);
-        // and set the new value
-        char *v = new char[strlen(value)+1];
-        strcpy( v, value );
-        optionsList->operator[](o) = v;
-    }
-}
-
-
-void CSystemOptionManager::setIntOption( const char *category, const char *option, int value )
-{
-    char buffer[50];
-    sprintf( buffer, "%d", value );
-
-    setStringOption( category, option, buffer );
-}
-
-
-void CSystemOptionManager::setBooleanOption( const char *category, const char *option, bool value )
-{
-    if( value ){
-        setStringOption( category, option, "true" );
-    }else{
-        setStringOption( category, option, "false" );
-    }
-}
-
-
-std::map<const char *, const char *> * CSystemOptionManager::searchCategory( const char *category )
-{
-    bool found = false;
-    std::map< const char *, std::map<const char *, const char *>* >::iterator it;
-
-    const char *c;
-
-    for( it = m_categoriesList.begin(); it != m_categoriesList.end() && !found; it++ ){
-
-        c = it->first;
-        if( strcmp( c, category ) == 0 ){
-            found = true;
-        }
-    }
-
-    if( found ){
-        return m_categoriesList[c];
-    }else{
-        return NULL;
-    }
-}
-
-
-const char * CSystemOptionManager::searchOption( std::map<const char *, const char *> *map, const char *option )
-{
-    bool found = false;
-    std::map<const char *, const char *>::iterator it;
-
-    const char *o;
-
-    for( it = map->begin(); it != map->end() && !found; it++ ){
-
-        o = it->first;
-        if( strcmp( o, option ) == 0 ){
-            found = true;
-        }
-    }
-
-    if( found ){
-        return o;
-    }else{
-        return NULL;
-    }
-}
-
-
-std::map<const char *, const char *> * CSystemOptionManager::createCategory( const char *category )
-{
-    // First, create the new options list
-    std::map<const char *, const char *> *optionsList = new std::map<const char *, const char *>();
-    // Copy the category name
-    char *c = new char[strlen(category)+1];
-    strcpy( c, category );
-    // Associate the options list with the category inside of the categories list
-    m_categoriesList[c] = optionsList;
-
-    // Finally, return the options list of the category
-    return optionsList;
-}
-
-
-const char * CSystemOptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
-{
-    // First, copu the option and the value
-    char *o = new char[strlen(option)+1];
-    char *v = new char[strlen(value)+1];
-
-    strcpy( o, option );
-    strcpy( v ,value );
-
-    // Insert the option in the options list
-    map->operator[](o) = v;
-
-    // return the option create
-    return o;
 }

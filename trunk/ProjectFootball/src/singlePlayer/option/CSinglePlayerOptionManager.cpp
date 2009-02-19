@@ -18,18 +18,15 @@
 *                                                                             *
 ******************************************************************************/
 
-#include <sstream>
-#include <stdlib.h>
-#include <string.h>
-
 #include "CSinglePlayerOptionManager.h"
 #include "../../utils/CLog.h"
 
 CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
-   : m_categoriesList()
+: m_gameOptionsDAO(gameOptionsDAO), COptionManager()
 {
-    m_gameOptionsDAO = gameOptionsDAO;
-    loadOptions();
+	cleanOptions();
+	setDefaultValues();
+	loadOptions();
 
     CLog::getInstance()->info("Game Option manager initialized");
 }
@@ -37,8 +34,8 @@ CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOp
 
 CSinglePlayerOptionManager::~CSinglePlayerOptionManager()
 {
-    saveOptions();
-    cleanOptions();
+	saveOptions();
+	cleanOptions();
 
     CLog::getInstance()->info("Game Option manager deinitialized");
 }
@@ -46,9 +43,6 @@ CSinglePlayerOptionManager::~CSinglePlayerOptionManager()
 
 void CSinglePlayerOptionManager::loadOptions()
 {
-    cleanOptions();
-    setDefaultValues();
-
     std::vector<CPfGameOptions*>            *gameOptionsVector  = m_gameOptionsDAO->findAll();
     std::vector<CPfGameOptions*>::iterator  itGameOptions;
 
@@ -88,6 +82,7 @@ void CSinglePlayerOptionManager::saveOptions()
                 gameOption->setSValue(value);
                 m_gameOptionsDAO->updateReg(gameOption);
             }
+            delete gameOption;
         }
     }
 
@@ -95,220 +90,35 @@ void CSinglePlayerOptionManager::saveOptions()
 }
 
 
-void CSinglePlayerOptionManager::cleanOptions()
-{
-    std::map< const char *, std::map<const char *, const char *>* >::iterator itCategories;
-
-    for( itCategories = m_categoriesList.begin(); itCategories != m_categoriesList.end(); itCategories++ ){
-        const char                                      *category       = itCategories->first;
-        std::map<const char *, const char *>            *optionsList    = itCategories->second;
-        std::map<const char *, const char *>::iterator  itOptions;
-
-        for( itOptions = optionsList->begin(); itOptions != optionsList->end(); itOptions++ ){
-            const char *option = itOptions->first;
-            const char *value  = itOptions->second;
-
-            // Free memory
-            delete []option;
-            delete []value;
-        }
-
-        // Free memory
-        delete []category;
-        optionsList->clear();
-        delete optionsList;
-    }
-
-    m_categoriesList.clear();
-}
-
-
 void CSinglePlayerOptionManager::setDefaultValues()
 {
-    // nothing at the moment
+    setMatchResultMode(false);
 }
 
 
-const char * CSinglePlayerOptionManager::getStringOption( const char *category, const char *option )
+int	CSinglePlayerOptionManager::getGamePlayerTeam()
 {
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Return the option value
-    return optionsList->operator[](o);
+	return getIntOption("Game", "PlayerTeam");
+}
+void CSinglePlayerOptionManager::setGamePlayerTeam(int xPlayerTeam)
+{
+	setIntOption("Game", "PlayerTeam", xPlayerTeam);
 }
 
-
-int CSinglePlayerOptionManager::getIntOption( const char *category, const char *option )
+bool CSinglePlayerOptionManager::getGameNew()
 {
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Return the option value
-    return atoi(optionsList->operator[](o));
+	return getBooleanOption("Game", "New");;
+}
+void CSinglePlayerOptionManager::setGameNew(bool newGame)
+{
+	setBooleanOption("Game", "New", newGame);
 }
 
-
-bool CSinglePlayerOptionManager::getBooleanOption( const char *category, const char *option )
+bool CSinglePlayerOptionManager::getMatchResultMode()
 {
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then throw exception
-        CLog::getInstance()->exception("[CSinglePlayerOptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
-    }
-
-    // Return the option value
-    return strcmp( optionsList->operator[](o), "true" ) == 0;
+	return getBooleanOption("Match", "ResultMode");
 }
-
-
-void CSinglePlayerOptionManager::setStringOption( const char *category, const char *option, const char *value )
+void CSinglePlayerOptionManager::setMatchResultMode(bool mode)
 {
-    // First, search the category
-    std::map<const char *, const char *> *optionsList = searchCategory( category );
-    if( optionsList == NULL ){
-        // If not found then create the category
-        optionsList = createCategory( category );
-    }
-
-    // Now, search the option
-    const char *o = searchOption( optionsList, option );
-    if( o == NULL ){
-        // If not found then create the option
-        createOption( optionsList, option, value );
-    }else{
-        // Else delete old value
-        delete [] optionsList->operator[](o);
-        // and set the new value
-        char *v = new char[strlen(value)+1];
-        strcpy( v, value );
-        optionsList->operator[](o) = v;
-    }
-}
-
-
-void CSinglePlayerOptionManager::setIntOption( const char *category, const char *option, int value )
-{
-    char buffer[50];
-    sprintf( buffer, "%d", value );
-
-    setStringOption( category, option, buffer );
-}
-
-
-void CSinglePlayerOptionManager::setBooleanOption( const char *category, const char *option, bool value )
-{
-    if( value ){
-      setStringOption( category, option, "true" );
-    }else{
-      setStringOption( category, option, "false" );
-    }
-}
-
-
-std::map<const char *, const char *> * CSinglePlayerOptionManager::searchCategory( const char *category )
-{
-    bool found = false;
-    std::map< const char *, std::map<const char *, const char *>* >::iterator it;
-
-    const char *c;
-
-    for( it = m_categoriesList.begin(); it != m_categoriesList.end() && !found; it++ ){
-
-        c = it->first;
-        if( strcmp( c, category ) == 0 ){
-            found = true;
-        }
-    }
-
-    if( found ){
-        return m_categoriesList[c];
-    }else{
-        return NULL;
-    }
-}
-
-
-const char * CSinglePlayerOptionManager::searchOption( std::map<const char *, const char *> *map, const char *option )
-{
-    bool found = false;
-    std::map<const char *, const char *>::iterator it;
-
-    const char *o;
-
-    for( it = map->begin(); it != map->end() && !found; it++ ){
-
-        o = it->first;
-        if( strcmp( o, option ) == 0 ){
-            found = true;
-        }
-    }
-
-    if( found ){
-        return o;
-    }else{
-        return NULL;
-    }
-}
-
-
-std::map<const char *, const char *> * CSinglePlayerOptionManager::createCategory( const char *category )
-{
-    // First, create the new options list
-    std::map<const char *, const char *> *optionsList = new std::map<const char *, const char *>();
-    // Copy the category name
-    char *c = new char[strlen(category)+1];
-    strcpy( c, category );
-    // Associate the options list with the category inside of the categories list
-    m_categoriesList[c] = optionsList;
-
-    // Finally, return the options list of the category
-    return optionsList;
-}
-
-
-const char * CSinglePlayerOptionManager::createOption( std::map<const char *, const char *> *map, const char *option, const char *value )
-{
-    // First, copu the option and the value
-    char *o = new char[strlen(option)+1];
-    char *v = new char[strlen(value)+1];
-
-    strcpy( o, option );
-    strcpy( v ,value );
-
-    // Insert the option in the options list
-    map->operator[](o) = v;
-
-    // return the option create
-    return o;
+	setBooleanOption("Match", "ResultMode", mode);
 }
