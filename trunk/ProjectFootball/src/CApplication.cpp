@@ -237,6 +237,7 @@ void CApplication::setupCEGUI()
     std::string tooltipName = CSystemOptionManager::getInstance()->getGUISkin();
     tooltipName += "/Tooltip";
     m_system->setDefaultTooltip((CEGUI::utf8*)tooltipName.c_str());
+    m_system->setDefaultFont("DejaVuSans-10");
 
     int mouseVelocity = CSystemOptionManager::getInstance()->getGUIMouseVelocity();
     float mouseScale = 1.0f + (mouseVelocity/100);
