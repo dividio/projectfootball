@@ -1190,9 +1190,10 @@ class CSQLiteDDLRenderer(UtilRenderer) :
     for k in klasses.keys() :
       klass     = klasses[k]
       tableName = klass.name.upper()
-      for a in klass.attributes.keys() :
-        if a[:2]=="X_" :
-          file.write("CREATE INDEX "+tableName+"_"+a.upper()+" ON "+tableName+" ("+a.upper()+");\n")
+      if klass.stereotype!="VIEW" :
+        for a in klass.attributes.keys() :
+            if a[:2]=="X_" :
+                file.write("CREATE INDEX "+tableName+"_"+a.upper()+" ON "+tableName+" ("+a.upper()+");\n")
 
   def render(self, path, klasses) :
     self.renderTables(path, klasses)
