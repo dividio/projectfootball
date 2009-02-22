@@ -27,11 +27,12 @@
 #include "utils/CClock.h"
 #include "../utils/CLog.h"
 
-#include "screen/CScreenIntro.h"
-#include "screen/CScreenMainMenu.h"
-#include "screen/CScreenLoadGame.h"
 #include "screen/CScreenConfig.h"
 #include "screen/CScreenCredits.h"
+#include "screen/CScreenIntro.h"
+#include "screen/CScreenLoadGame.h"
+#include "screen/CScreenMainMenu.h"
+#include "screen/CScreenNewManagerGame.h"
 
 CGameEngine* CGameEngine::m_instance = NULL;
 
@@ -55,11 +56,12 @@ CGameEngine::CGameEngine() : m_screenStack()
     m_user = NULL;
     setUser(DEFAULT_USER);
 
-    m_introScreen		= NULL;
-    m_mainMenuScreen	= NULL;
-    m_loadGameScreen	= NULL;
-    m_configScreen		= NULL;
-    m_creditsScreen		= NULL;
+    m_introScreen			= NULL;
+    m_mainMenuScreen		= NULL;
+    m_loadGameScreen		= NULL;
+    m_newManagerGameScreen	= NULL;
+    m_configScreen			= NULL;
+    m_creditsScreen			= NULL;
 }
 
 CGameEngine::~CGameEngine()
@@ -75,6 +77,7 @@ CGameEngine::~CGameEngine()
     delete m_introScreen;
     delete m_mainMenuScreen;
     delete m_loadGameScreen;
+    delete m_newManagerGameScreen;
     delete m_configScreen;
     delete m_creditsScreen;
 
@@ -240,6 +243,14 @@ IScreen* CGameEngine::getLoadGameScreen()
         m_loadGameScreen = new CScreenLoadGame();
     }
     return m_loadGameScreen;
+}
+
+IScreen* CGameEngine::getNewManagerGameScreen()
+{
+    if( m_newManagerGameScreen==NULL ){
+    	m_newManagerGameScreen = new CScreenNewManagerGame();
+    }
+    return m_newManagerGameScreen;
 }
 
 IScreen* CGameEngine::getConfigScreen()

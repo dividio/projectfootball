@@ -35,8 +35,6 @@ CScreenLoadGame::CScreenLoadGame()
     m_backButton		   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/BackButton"));
     m_loadGameButton       = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
     m_deleteGameButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
-    m_newGameButton        = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/NewGameButton"));
-    m_newGameEditbox       = static_cast<CEGUI::Editbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/NewGameEdit"));
     m_confirmRemoveWindow  = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow"));
     m_confirmRemoveNote    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow/Note"));
     m_removeConfirmButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow/YesButton"));
@@ -55,7 +53,6 @@ CScreenLoadGame::CScreenLoadGame()
     m_gamesList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(0.7,0));
     m_gamesList->addColumn((CEGUI::utf8*)gettext("Date"), 1, CEGUI::UDim(0.3,0));
 
-    m_newGameButton       ->setText((CEGUI::utf8*)gettext("New Game"));
     m_deleteGameButton    ->setText((CEGUI::utf8*)gettext("Delete Game"));
     m_loadGameButton      ->setText((CEGUI::utf8*)gettext("Load Game"));
     m_backButton          ->setText((CEGUI::utf8*)gettext("Back"));
@@ -65,12 +62,10 @@ CScreenLoadGame::CScreenLoadGame()
 
     // Event handle
     m_backButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::backButtonClicked, this));
-    m_newGameButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::newGameButtonClicked, this));
     m_loadGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::loadGameButtonClicked, this));
     m_deleteGameButton   ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::deleteGameButtonClicked, this));
     m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListSelectChanged, this));
     m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListDoubleClick, this));
-    m_newGameEditbox     ->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::newGameEditboxTextChanged, this));
     m_removeConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::removeConfirmButtonClicked, this));
     m_removeCancelButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::removeCancelButtonClicked, this));
 
@@ -89,8 +84,6 @@ void CScreenLoadGame::enter()
 
     m_loadGameButton->setEnabled(false);
     m_deleteGameButton->setEnabled(false);
-    m_newGameButton->setEnabled(false);
-    m_newGameEditbox->setText("");
 }
 
 void CScreenLoadGame::loadGameList()
@@ -144,35 +137,9 @@ bool CScreenLoadGame::gamesListSelectChanged(const CEGUI::EventArgs& e)
     return true;
 }
 
-bool CScreenLoadGame::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
-{
-    if( m_newGameEditbox->getText().compare("")!=0 ){
-        m_newGameButton->setEnabled(true);
-    }else{
-        m_newGameButton->setEnabled(false);
-    }
-}
-
 bool CScreenLoadGame::backButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->previousScreen();
-    return true;
-}
-
-bool CScreenLoadGame::newGameButtonClicked(const CEGUI::EventArgs& e)
-{
-    IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
-    const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
-
-    if( user==NULL || user->getXUser()==0 ){
-        CLog::getInstance()->exception("[CScreenLoadGame::newGameButtonClicked] User not defined");
-    }
-
-    CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(user, m_newGameEditbox->getText().c_str()));
-    CGameEngine::getInstance()->save();
-
-    m_newGameEditbox->setText("");
-
     return true;
 }
 

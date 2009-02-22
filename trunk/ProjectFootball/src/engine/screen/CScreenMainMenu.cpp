@@ -32,32 +32,32 @@ CScreenMainMenu::CScreenMainMenu()
 {
     CLog::getInstance()->debug("CScreenMainMenu()");
 
-    m_quickPlayButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickPlayButton"));
-    m_loadGameButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/LoadGameButton"));
-    m_configButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
-    m_creditsButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
-    m_quickLoadButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickLoadButton"));
-    m_loadButton	    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/LoadButton"));
-    m_quitButton		  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuitButton"));
-    m_currentDate       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDate"));
-    m_versionDate       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDate"));
-    m_version           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
+    m_quickPlayButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickPlayButton"));
+    m_newManagerGameButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/NewManagerGameButton"));
+    m_configButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
+    m_creditsButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
+    m_quickLoadButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickLoadButton"));
+    m_loadGameButton	    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/LoadGameButton"));
+    m_quitButton		  	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuitButton"));
+    m_currentDate       	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDate"));
+    m_versionDate       	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDate"));
+    m_version           	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
 
     // Event handle
     m_quickPlayButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickPlayButtonClicked, this));
-    m_loadGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadGameButtonClicked, this));
+    m_newManagerGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::newManagerGameButtonClicked, this));
     m_configButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::configButtonClicked, this));
     m_creditsButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::creditsButtonClicked, this));
-    m_loadButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadButtonClicked, this));
+    m_loadGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadGameButtonClicked, this));
     m_quitButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quitButtonClicked, this));
 
     // i18n support
     m_quickPlayButton->setText((CEGUI::utf8*)gettext("Quick Play"));
-    m_loadGameButton ->setText((CEGUI::utf8*)gettext("Single Player"));
+    m_newManagerGameButton ->setText((CEGUI::utf8*)gettext("Single Player"));
     m_configButton   ->setText((CEGUI::utf8*)gettext("Config"));
     m_creditsButton  ->setText((CEGUI::utf8*)gettext("Credits"));
     m_quickLoadButton ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
-    m_loadButton     ->setTooltipText((CEGUI::utf8*)gettext("Load"));
+    m_loadGameButton     ->setTooltipText((CEGUI::utf8*)gettext("Load"));
     m_quitButton     ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Quit"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
@@ -99,9 +99,9 @@ bool CScreenMainMenu::quickPlayButtonClicked(const CEGUI::EventArgs& e)
     return true;
 }
 
-bool CScreenMainMenu::loadGameButtonClicked(const CEGUI::EventArgs& e)
+bool CScreenMainMenu::newManagerGameButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getLoadGameScreen());
+    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getNewManagerGameScreen());
     return true;
 }
 
@@ -117,7 +117,7 @@ bool CScreenMainMenu::creditsButtonClicked(const CEGUI::EventArgs& e)
     return true;
 }
 
-bool CScreenMainMenu::loadButtonClicked(const CEGUI::EventArgs& e)
+bool CScreenMainMenu::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getLoadGameScreen());
     return true;

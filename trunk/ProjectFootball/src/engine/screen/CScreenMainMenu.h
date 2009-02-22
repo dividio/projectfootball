@@ -40,18 +40,18 @@ public:
 
 private:
 	bool quickPlayButtonClicked(const CEGUI::EventArgs& e);
-	bool loadGameButtonClicked(const CEGUI::EventArgs& e);
+	bool newManagerGameButtonClicked(const CEGUI::EventArgs& e);
 	bool configButtonClicked(const CEGUI::EventArgs& e);
 	bool creditsButtonClicked(const CEGUI::EventArgs& e);
-	bool loadButtonClicked(const CEGUI::EventArgs& e);
+	bool loadGameButtonClicked(const CEGUI::EventArgs& e);
 	bool quitButtonClicked(const CEGUI::EventArgs& e);
 
 	CEGUI::PushButton	*m_quickPlayButton;
-	CEGUI::PushButton	*m_loadGameButton;
+	CEGUI::PushButton	*m_newManagerGameButton;
 	CEGUI::PushButton	*m_configButton;
 	CEGUI::PushButton	*m_creditsButton;
 	CEGUI::PushButton	*m_quickLoadButton;
-	CEGUI::PushButton	*m_loadButton;
+	CEGUI::PushButton	*m_loadGameButton;
 	CEGUI::PushButton	*m_quitButton;
 	CEGUI::Window       *m_currentDate;
 	CEGUI::Window       *m_versionDate;

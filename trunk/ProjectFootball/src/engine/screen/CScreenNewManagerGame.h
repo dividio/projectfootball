@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -18,38 +18,27 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENLOADGAME_H_
-#define CSCREENLOADGAME_H_
+#ifndef CSCREENNEWMANAGERGAME_H_
+#define CSCREENNEWMANAGERGAME_H_
 
 #include "../CScreen.h"
 
-class CScreenLoadGame : public CScreen
+class CScreenNewManagerGame : public CScreen
 {
 public:
-    CScreenLoadGame();
-	virtual ~CScreenLoadGame();
+    CScreenNewManagerGame();
+	virtual ~CScreenNewManagerGame();
 
     virtual void enter();
 
 private:
-    void loadGameList();
-    bool gamesListDoubleClick       (const CEGUI::EventArgs& e);
-    bool gamesListSelectChanged     (const CEGUI::EventArgs& e);
+    bool newGameEditboxTextChanged  (const CEGUI::EventArgs& e);
 	bool backButtonClicked          (const CEGUI::EventArgs& e);
-	bool loadGameButtonClicked      (const CEGUI::EventArgs& e);
-	bool deleteGameButtonClicked    (const CEGUI::EventArgs& e);
-    bool removeConfirmButtonClicked (const CEGUI::EventArgs& e);
-    bool removeCancelButtonClicked  (const CEGUI::EventArgs& e);
+	bool newGameButtonClicked       (const CEGUI::EventArgs& e);
 
 	CEGUI::PushButton		*m_backButton;
-    CEGUI::MultiColumnList  *m_gamesList;
-    CEGUI::PushButton       *m_loadGameButton;
-    CEGUI::PushButton       *m_deleteGameButton;
-    CEGUI::PushButton       *m_removeConfirmButton;
-    CEGUI::PushButton       *m_removeCancelButton;
-    CEGUI::Window           *m_mainWindow;
-    CEGUI::FrameWindow      *m_confirmRemoveWindow;
-    CEGUI::Window           *m_confirmRemoveNote;
+    CEGUI::Editbox          *m_newGameEditbox;
+    CEGUI::PushButton       *m_newGameButton;
 };
 
-#endif /*CSCREENLOADGAME_H_*/
+#endif /* CSCREENNEWMANAGERGAME_H_ */

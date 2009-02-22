@@ -64,6 +64,7 @@ public:
     IScreen* getIntroScreen();
     IScreen* getMainMenuScreen();
     IScreen* getLoadGameScreen();
+    IScreen* getNewManagerGameScreen();
     IScreen* getConfigScreen();
     IScreen* getCreditsScreen();
 
@@ -85,6 +86,7 @@ private:
     IScreen                 *m_introScreen;
     IScreen					*m_mainMenuScreen;
     IScreen					*m_loadGameScreen;
+    IScreen					*m_newManagerGameScreen;
     IScreen					*m_configScreen;
     IScreen					*m_creditsScreen;
 };
