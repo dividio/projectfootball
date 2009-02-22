@@ -144,7 +144,7 @@ int CScreenSelectTeam::loadConfederationsList()
 
     CPfConfederations *conf = m_confederationsList->front();
     m_confederationsCombobox->setText((CEGUI::utf8*)conf->getSConfederation().c_str());
-    m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_flag");
+    m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_map");
     return m_confederationsList->front()->getXConfederation();
 }
 
@@ -167,7 +167,7 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
         }
         CPfCountries *country = m_countriesList->front();
         m_countriesCombobox->setText((CEGUI::utf8*)country->getSShortName().c_str());
-        m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_flag");
+        m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_map");
 
         selectedCountry = m_countriesList->front()->getXCountry();
     } else {
@@ -259,7 +259,7 @@ bool CScreenSelectTeam::confederationsComboboxListSelectionChanged(const CEGUI::
         CPfConfederations    *conf = confederationsDAO->findByXConfederation(item->getID());
 
         m_confederationsCombobox->setText(item->getText());
-        m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_flag");
+        m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_map");
         m_countriesCombobox->clearAllSelections();
         m_countriesCombobox->resetList();
         m_countriesCombobox->getEditbox()->setText("");
@@ -286,7 +286,7 @@ bool CScreenSelectTeam::countriesComboboxListSelectionChanged(const CEGUI::Event
         CPfCountries    *country = countriesDAO->findByXCountry(item->getID());
 
         m_countriesCombobox->setText(item->getText());
-        m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_flag");
+        m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_map");
         m_competitionsCombobox->clearAllSelections();
         m_competitionsCombobox->resetList();
         m_competitionsCombobox->getEditbox()->setText("");

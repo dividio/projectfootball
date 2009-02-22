@@ -34,17 +34,18 @@ CScreenCredits::CScreenCredits()
     m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenCredits::backButtonClicked, this));
 
     // i18n support
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/ApplicationLabel"))->setText((CEGUI::utf8*)gettext("Application Design :"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/CodeLabel"))->setText((CEGUI::utf8*)gettext("Programming:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/GraphicLabel"))->setText((CEGUI::utf8*)gettext("Graphic Design:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/3DLabel"))->setText((CEGUI::utf8*)gettext("3D Modeling:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/DatabaseLabel"))->setText((CEGUI::utf8*)gettext("Database Information :"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/TexturesLabel"))->setText((CEGUI::utf8*)gettext("Textures:"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/SoundLabel"))->setText((CEGUI::utf8*)gettext("Sound Effects:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/BasedLabel"))->setText((CEGUI::utf8*)gettext("Based on:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/CodedLabel"))->setText((CEGUI::utf8*)gettext("Programming:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/ThanksLabel"))->setText((CEGUI::utf8*)gettext("Thanks to:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/AllUsersLabel"))->setText((CEGUI::utf8*)gettext("... and to all users who tested the game ;-)"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/SoundLabel"))->setText((CEGUI::utf8*)gettext("Sound efects:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/TextLabel"))->setText((CEGUI::utf8*)gettext("Textures:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/InfDBLabel"))->setText((CEGUI::utf8*)gettext("Data base information:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/Mod3DLabel"))->setText((CEGUI::utf8*)gettext("3D modeling:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/DGraLabel"))->setText((CEGUI::utf8*)gettext("Graphic design:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/DAplLabel"))->setText((CEGUI::utf8*)gettext("Application design:"));
-
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/AllUsersLabel"))->setText((CEGUI::utf8*)gettext("... all the users who participated on website and game forums and,\n    of course, to all the users who tested the game"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/StaffTextLabel"))->setText((CEGUI::utf8*)gettext("All the people who have spent our time and efforts\n with this humble football manager, we are looking\n    forward to you enjoying our work, because\n from the beginning we have always chased a goal :"));
+    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/GoalLabel"))->setText((CEGUI::utf8*)gettext(" MAKING FOOTBALL FANS TO ENJOY "));
     m_backButton->setText((CEGUI::utf8*)gettext("Back"));
 }
 

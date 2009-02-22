@@ -304,7 +304,7 @@ int main(int argc, char **argv)
         if( systemOptionManager->getGeneralFailSafeMode() ) {
             systemOptionManager->setVideoWidth(800);
             systemOptionManager->setVideoHeight(600);
-            systemOptionManager->setGUISkin("TaharezLook");
+            systemOptionManager->setGUISkin("ArridiDesign");
             systemOptionManager->setVideoFullscreen(false);
             systemOptionManager->setVideoRTTPreferredMode("Copy");
         }else{
