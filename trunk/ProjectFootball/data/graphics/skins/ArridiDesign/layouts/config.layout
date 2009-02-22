@@ -1,87 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-<Window Type="DefaultWindow" Name="Config" >
-    <Window Type="TaharezLook/StaticImage" Name="Config/MainWindow" >
-        <Property Name="InheritsAlpha" Value="False" />
+    <Window Type="DefaultWindow" Name="Config" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Property Name="Image" Value="set:Background image:Background" />
-        <Property Name="FrameEnabled" Value="false" />
-        <Window Type="TaharezLook/FrameWindow" Name="Config/Video" >
+        <Window Type="ArridiDesign/StaticImage" Name="Config/MainWindow" >
+            <Property Name="Image" Value="set:Background image:Background" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window Type="ArridiDesign/FrameWindow" Name="Config/Video" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+                <Property Name="SizingEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TitlebarEnabled" Value="True" />
+                <Property Name="UnifiedAreaRect" Value="{{0.218477,0},{0.190305,0},{0.757813,0},{0.713447,0}}" />
+                <Property Name="DragMovingEnabled" Value="False" />
+                <Property Name="CloseButtonEnabled" Value="False" />
+                <Window Type="ArridiDesign/StaticText" Name="Config/RendererText" >
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="RightAligned" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.1,0},{0.25,0},{0.2,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Config/ResolutionText" >
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="RightAligned" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.2,0},{0.25,0},{0.3,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/Combobox" Name="Config/RendererCombo" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.1,0},{0.888437,0},{0.5,0}}" />
+                    <Property Name="MaxEditTextLength" Value="1073741823" />
+                </Window>
+                <Window Type="ArridiDesign/Combobox" Name="Config/ResolutionCombo" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.248189,0},{0.2,0},{0.886627,0},{0.6,0}}" />
+                    <Property Name="MaxEditTextLength" Value="1073741823" />
+                </Window>
+                <Window Type="ArridiDesign/CheckBox" Name="Config/FullScreenCheck" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.3,0},{0.95,0},{0.4,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/CheckBox" Name="Config/VSyncCheck" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
+                </Window>
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Config/BackButton" >
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.219453,0},{0.646819,0},{0.389453,0},{0.696819,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Config/SaveButton" >
+                <Property Name="Text" Value="Save" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.589063,0},{0.64173,0},{0.759063,0},{0.69173,0}}" />
+            </Window>
+        </Window>
+        <Window Type="ArridiDesign/FrameWindow" Name="Config/SaveConfirmationWindow" >
+            <Property Name="Visible" Value="False" />
             <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+            <Property Name="RollUpEnabled" Value="False" />
             <Property Name="SizingEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="TitlebarEnabled" Value="True" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.03,0},{0.5,0},{0.445,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.8,0},{0.6,0}}" />
             <Property Name="DragMovingEnabled" Value="False" />
             <Property Name="CloseButtonEnabled" Value="False" />
-            <Window Type="TaharezLook/StaticText" Name="Config/RendererText" >
-                <Property Name="HorzFormatting" Value="RightAligned" />
-                <Property Name="FrameEnabled" Value="False" />
-                <Property Name="BackgroundEnabled" Value="False" />
+            <Window Type="ArridiDesign/StaticText" Name="Config/SaveConfirmationWindow/Note" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="HorzFormatting" Value="HorzCentred" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.1,0},{0.25,0},{0.2,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.95,0},{0.5,0}}" />
             </Window>
-            <Window Type="TaharezLook/StaticText" Name="Config/ResolutionText" >
-                <Property Name="HorzFormatting" Value="RightAligned" />
-                <Property Name="FrameEnabled" Value="False" />
-                <Property Name="BackgroundEnabled" Value="False" />
+            <Window Type="ArridiDesign/bButton" Name="Config/SaveConfirmationWindow/Confirm" >
+                <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.2,0},{0.25,0},{0.3,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.7,0},{0.55,0},{0.9,0}}" />
             </Window>
-            <Window Type="TaharezLook/Combobox" Name="Config/RendererCombo" >
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.1,0},{0.95,0},{0.5,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
-            </Window>
-            <Window Type="TaharezLook/Combobox" Name="Config/ResolutionCombo" >
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.2,0},{0.95,0},{0.6,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
-            </Window>
-            <Window Type="TaharezLook/Checkbox" Name="Config/FullScreenCheck" >
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.3,0},{0.95,0},{0.4,0}}" />
-            </Window>
-            <Window Type="TaharezLook/Checkbox" Name="Config/VSyncCheck" >
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
-            </Window>
-        </Window>
-        <Window Type="TaharezLook/Button" Name="Config/BackButton" >
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.95,0}}" />
-        </Window>
-        <Window Type="TaharezLook/Button" Name="Config/SaveButton" >
-            <Property Name="Text" Value="Save" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.95,0}}" />
         </Window>
     </Window>
-    
-    <Window Type="TaharezLook/FrameWindow" Name="Config/SaveConfirmationWindow" >
-        <Property Name="Visible" Value="false" />
-        <Property Name="TitlebarFont" Value="DejaVuSans-10" />
-        <Property Name="SizingEnabled" Value="False" />
-        <Property Name="RollUpEnabled" Value="False" />
-        <Property Name="CloseButtonEnabled" Value="False" />
-        <Property Name="DragMovingEnabled" Value="False" />
-        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-        <Property Name="TitlebarEnabled" Value="True" />
-        <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.8,0},{0.6,0}}" />
-        <Window Type="TaharezLook/StaticText" Name="Config/SaveConfirmationWindow/Note" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="HorzFormatting" Value="HorzCentred" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.95,0},{0.5,0}}" />
-        </Window>
-        <Window Type="TaharezLook/Button" Name="Config/SaveConfirmationWindow/Confirm" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.7,0},{0.55,0},{0.9,0}}" />
-        </Window>
-    </Window>
-    
-</Window>
 </GUILayout>

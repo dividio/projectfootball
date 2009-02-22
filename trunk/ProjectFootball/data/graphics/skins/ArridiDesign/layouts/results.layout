@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-<Window Type="DefaultWindow" Name="Results" >
-    <Window Type="TaharezLook/StaticImage" Name="Results/MainWindow" >
-        <Property Name="InheritsAlpha" Value="False" />
-        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Property Name="Image" Value="set:Background image:Background" />
-        <Property Name="FrameEnabled" Value="false" />
-        <Window Type="TaharezLook/StaticText" Name="Results/ResultsLabel" >
-          <Property Name="FrameEnabled" Value="False" />
-          <Property Name="BackgroundEnabled" Value="False" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.04,0},{0.5,0},{0.08,0}}" />
-        </Window>
-        <Window Type="TaharezLook/Combobox" Name="Results/CompetitionCombo" >
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.04,0},{0.8,0},{0.2,0}}" />
-          <Property Name="MaxEditTextLength" Value="1073741823" />
-        </Window>
-        <Window Type="TaharezLook/Combobox" Name="Results/CompetitionPhaseCombo" >
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.81,0},{0.04,0},{0.97,0},{0.2,0}}" />
-          <Property Name="MaxEditTextLength" Value="1073741823" />
-        </Window>
-        <Window Type="TaharezLook/MultiColumnList" Name="Results/ResultsList" >
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.97,0},{0.7,0}}" />
-        </Window>
-        <Window Type="TaharezLook/Button" Name="Results/GameMenuButton" >
-          <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.15,0},{0.94,0}}" />
-        </Window>
-        <Window Type="TaharezLook/Button" Name="Results/BackButton" >
-          <Property Name="Font" Value="DejaVuSans-10" />
-          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.95,0},{0.15,0},{0.99,0}}" />
+    <Window Type="DefaultWindow" Name="Results" >
+        <Window Type="ArridiDesign/StaticImage" Name="Results/MainWindow" >
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Property Name="Image" Value="set:Background image:Background" />
+            <Property Name="FrameEnabled" Value="false" />
+            <Window Type="ArridiDesign/StaticText" Name="Results/ResultsLabel" >
+              <Property Name="FrameEnabled" Value="False" />
+              <Property Name="BackgroundEnabled" Value="False" />
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.0719922,0},{0.16341,0},{0.541992,0},{0.20341,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="Results/CompetitionCombo" >
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.04,0},{0.8,0},{0.2,0}}" />
+              <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="Results/CompetitionPhaseCombo" >
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.81,0},{0.04,0},{0.97,0},{0.2,0}}" />
+              <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/MultiColumnList" Name="Results/ResultsList" >
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.0339063,0},{0.207226,0},{0.780547,0},{0.827226,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Results/RankingButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.5,0},{1.02,0},{0.56,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Results/TeamPlayersButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.55,0},{1.02,0},{0.61,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Results/ResultsButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.6,0},{1.02,0},{0.66,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/gameMenuButton" Name="Results/GameMenuButton" >
+              <Property Name="Font" Value="DejaVuSans-10" />
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.962890625,0},{0.82552083333333333333333333333333,0},{1.0,0},{0.8828125,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/backBallButton" Name="Results/BackButton" >
+              <Property Name="Font" Value="DejaVuSans-10" />
+              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+              <Property Name="UnifiedAreaRect" Value="{{0.8935546875,0},{0.92578125,0},{0.9462890625,0},{0.99609375,0}}" />
+            </Window>
         </Window>
     </Window>
-</Window>
 </GUILayout>
