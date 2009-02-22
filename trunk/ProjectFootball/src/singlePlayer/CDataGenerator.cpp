@@ -45,15 +45,15 @@ void CDataGenerator::generateDataBase()
 {
     m_daoFactory->beginTransaction();
 
-    m_daoFactory->executeScriptFile("data/database/scripts/tables.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/view_ranking.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/indexes.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/inserts_gameoptions.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/inserts_countries.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/inserts_teams.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/inserts_teamplayers.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/inserts_competitions.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/inserts_registeredteams.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/tables.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/view_ranking.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/indexes.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_gameoptions.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_countries.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teams.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_competitions.sql");
+    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_registeredteams.sql");
 
 
     //Players Generation
@@ -80,7 +80,7 @@ void CDataGenerator::generateCompetitionMatches(CPfCompetitions *competition, CD
     int numPhases = phases->size();
     int returnOffset = numPhases/2;
     CDate returnDate = date;
-    returnDate += (7*returnOffset);
+    returnDate.setDay(returnDate.getDay()+7*returnOffset);
 
     std::list<CPfTeams*> *homeList = new std::list<CPfTeams*>();
     std::list<CPfTeams*> *awayList = new std::list<CPfTeams*>();
@@ -99,8 +99,8 @@ void CDataGenerator::generateCompetitionMatches(CPfCompetitions *competition, CD
     generateMatches(homeList, awayList, phases->operator[](0)->getXCompetitionPhase(), date);
     generateMatches(awayList, homeList, phases->operator[](returnOffset)->getXCompetitionPhase(), returnDate);
     for(count=1; count < numPhases/2; count++) {
-        date += 7;
-        returnDate += 7;
+        date.setDay(date.getDay()+7);
+        returnDate.setDay(returnDate.getDay()+7);
 
         if(count % 2 != 0) {
             auxList = homeList;
