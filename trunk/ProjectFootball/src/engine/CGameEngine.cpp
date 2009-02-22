@@ -20,6 +20,7 @@
 
 #include <time.h>
 #include <stdlib.h>
+#include <boost/filesystem.hpp>
 
 #include "CGameEngine.h"
 #include "option/CSystemOptionManager.h"
@@ -40,7 +41,16 @@ CGameEngine::CGameEngine() : m_screenStack()
     m_game	= NULL;
 
     const char *masterDatabasePath = CSystemOptionManager::getInstance()->getGeneralMasterDatebasePath();
-    m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
+    if( boost::filesystem::exists(masterDatabasePath) ){
+    	m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
+    }
+    else{
+    	m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
+    	m_masterDatabase->executeScriptFile("data/database/scripts/master/tables.sql");
+        m_masterDatabase->executeScriptFile("data/database/scripts/master/indexes.sql");
+        m_masterDatabase->executeScriptFile("data/database/scripts/master/inserts_version.sql");
+        m_masterDatabase->executeScriptFile("data/database/scripts/master/inserts_users.sql");
+    }
 
     m_user = NULL;
     setUser(DEFAULT_USER);
