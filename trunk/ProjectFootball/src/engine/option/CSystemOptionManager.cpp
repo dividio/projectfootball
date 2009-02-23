@@ -214,7 +214,7 @@ void CSystemOptionManager::setDefaultValues()
     setGeneralFailSafeMode(false);
 
     setGUIMouseVelocity(150);
-    setGUISkin("TaharezLook");
+    setGUISkin("ArridiDesign");
     setGUIShields("default");
     setGUIFlags("default");
     setGUIXMLParser("TinyXMLParser");
