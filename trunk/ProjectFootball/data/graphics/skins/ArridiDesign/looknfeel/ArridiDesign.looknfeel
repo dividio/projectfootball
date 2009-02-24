@@ -936,7 +936,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image type="Background" imageset="WidgetsImageset" image="exButtonPushed" />
+                <Image type="Background" imageset="WidgetsImageset" image="exButtonHighlight" />
             </FrameComponent>
             <ImageryComponent>
                 <Area>

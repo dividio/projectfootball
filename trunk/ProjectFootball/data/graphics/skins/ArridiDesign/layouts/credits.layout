@@ -124,7 +124,7 @@
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="Credits/DJChapLabel" >
                 <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="Text" Value="Carlos Javier Bastian Lérida (DJ Chap N.A)" />
+                <Property Name="Text" Value="Carlos Javier Bastian Lérida &quot;DJ CHAP N.A&quot;" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.34,0},{0.5,0},{0.7,0},{0.53,0}}" />
@@ -218,7 +218,7 @@
             <Window Type="ArridiDesign/bButton" Name="Credits/BackButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.8935546875,0},{0.91015625,0},{1.1181640625,0},{0.983072917,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.800781,0},{0.91779,0},{1.02539,0},{0.990707,0}}" />
             </Window>
         </Window>
     </Window>
