@@ -16,7 +16,7 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.691406,0},{0.582031,0},{0.964844,0},{0.65625,0}}" />
             </Window>
-            <Window Type="ArridiDesign/mButtonRight" Name="MainMenu/QuickPlayButton" >
+            <Window Type="ArridiDesign/mButtonRight" Name="MainMenu/VirtualChampionshipButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.65625,0},{0.673177,0},{0.929688,0},{0.747396,0}}" />

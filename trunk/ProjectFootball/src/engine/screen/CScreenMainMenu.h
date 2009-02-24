@@ -39,7 +39,7 @@ public:
     virtual void enter();
 
 private:
-	bool virtualCompetitionButtonClicked(const CEGUI::EventArgs& e);
+	bool virtualChampionshipButtonClicked(const CEGUI::EventArgs& e);
 	bool newManagerGameButtonClicked(const CEGUI::EventArgs& e);
 	bool configButtonClicked(const CEGUI::EventArgs& e);
 	bool creditsButtonClicked(const CEGUI::EventArgs& e);
@@ -47,7 +47,7 @@ private:
 	bool quickLoadButtonClicked(const CEGUI::EventArgs& e);
 	bool quitButtonClicked(const CEGUI::EventArgs& e);
 
-	CEGUI::PushButton	*m_virtualCompetitionButton;
+	CEGUI::PushButton	*m_virtualChampionshipButton;
 	CEGUI::PushButton	*m_newManagerGameButton;
 	CEGUI::PushButton	*m_configButton;
 	CEGUI::PushButton	*m_creditsButton;
