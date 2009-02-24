@@ -81,6 +81,20 @@ void CScreenMainMenu::enter()
     m_versionDate->setText(version->getDDate().format("%d/%m/%Y"));
     m_version    ->setText(version->getSVersion());
 
+    IPfGamesDAO*            gamesDAO    = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    std::vector<CPfGames*> *gamesList   = gamesDAO->findByXFkUser(CGameEngine::getInstance()->getCurrentUser()->getXUser_str());
+
+    if(gamesList != NULL) {
+        if(!gamesList->empty()) {
+            m_quickLoadButton->setEnabled(true);
+        } else {
+            m_quickLoadButton->setEnabled(false);
+        }
+        gamesDAO->freeVector(gamesList);
+    } else {
+        m_quickLoadButton->setEnabled(false);
+    }
+
     delete version;
 
 }
