@@ -23,8 +23,8 @@
 
 #include "CScreenMainMenu.h"
 #include "../CGameEngine.h"
-#include "../../quickPlay/CQuickGame.h"
 #include "../../utils/CLog.h"
+#include "../../singlePlayer/CSinglePlayerGame.h"
 
 
 CScreenMainMenu::CScreenMainMenu()
@@ -32,7 +32,7 @@ CScreenMainMenu::CScreenMainMenu()
 {
     CLog::getInstance()->debug("CScreenMainMenu()");
 
-    m_quickPlayButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickPlayButton"));
+    m_virtualCompetitionButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickPlayButton"));
     m_newManagerGameButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/NewManagerGameButton"));
     m_configButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
     m_creditsButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
@@ -44,24 +44,24 @@ CScreenMainMenu::CScreenMainMenu()
     m_version           	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
 
     // Event handle
-    m_quickPlayButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickPlayButtonClicked, this));
+    m_virtualCompetitionButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::virtualCompetitionButtonClicked, this));
     m_newManagerGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::newManagerGameButtonClicked, this));
     m_configButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::configButtonClicked, this));
     m_creditsButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::creditsButtonClicked, this));
     m_loadGameButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadGameButtonClicked, this));
+    m_quickLoadButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickLoadButtonClicked, this));
     m_quitButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quitButtonClicked, this));
 
     // i18n support
-    m_quickPlayButton->setText((CEGUI::utf8*)gettext("Quick Play"));
-    m_newManagerGameButton ->setText((CEGUI::utf8*)gettext("Single Player"));
-    m_configButton   ->setText((CEGUI::utf8*)gettext("Config"));
-    m_creditsButton  ->setText((CEGUI::utf8*)gettext("Credits"));
-    m_quickLoadButton ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
-    m_loadGameButton     ->setTooltipText((CEGUI::utf8*)gettext("Load"));
-    m_quitButton     ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
-    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Quit"));
+    m_virtualCompetitionButton->setText((CEGUI::utf8*)gettext("Virtual Championship"));
+    m_newManagerGameButton    ->setText((CEGUI::utf8*)gettext("Manager League"));
+    m_configButton            ->setText((CEGUI::utf8*)gettext("Config"));
+    m_creditsButton           ->setText((CEGUI::utf8*)gettext("Credits"));
+    m_quickLoadButton         ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
+    m_loadGameButton          ->setTooltipText((CEGUI::utf8*)gettext("Load"));
+    m_quitButton              ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
-    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last actualization:"));
+    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last update:"));
 }
 
 
@@ -85,17 +85,9 @@ void CScreenMainMenu::enter()
 
 }
 
-bool CScreenMainMenu::quickPlayButtonClicked(const CEGUI::EventArgs& e)
+bool CScreenMainMenu::virtualCompetitionButtonClicked(const CEGUI::EventArgs& e)
 {
-    const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
-
-    if( user==NULL || user->getXUser()==0 ){
-        CLog::getInstance()->exception("[CScreenMainMenu::quickPlayButtonClicked] User not defined");
-    }
-
-    CGameEngine::getInstance()->loadGame(new CQuickGame(user));
-    CGameEngine::getInstance()->save();
-
+    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getNewVirtualGameScreen());
     return true;
 }
 
@@ -120,6 +112,22 @@ bool CScreenMainMenu::creditsButtonClicked(const CEGUI::EventArgs& e)
 bool CScreenMainMenu::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getLoadGameScreen());
+    return true;
+}
+
+bool CScreenMainMenu::quickLoadButtonClicked(const CEGUI::EventArgs& e)
+{
+    IPfGamesDAO*            gamesDAO    = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+    std::vector<CPfGames*> *gamesList   = gamesDAO->findByXFkUser(CGameEngine::getInstance()->getCurrentUser()->getXUser_str());
+
+    if(gamesList != NULL) {
+        if(!gamesList->empty()) {
+            CPfGames *game = gamesList->front();
+            CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(game));
+        }
+        gamesDAO->freeVector(gamesList);
+    }
+
     return true;
 }
 

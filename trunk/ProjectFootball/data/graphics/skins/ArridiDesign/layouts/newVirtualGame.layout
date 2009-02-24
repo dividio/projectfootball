@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+<Window Type="DefaultWindow" Name="NewVirtualGame" >
+    <Window Type="ArridiDesign/StaticImage" Name="NewVirtualGame/MainWindow" >
+        <Property Name="InheritsAlpha" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property Name="Image" Value="set:Background image:Background" />
+        <Property Name="FrameEnabled" Value="false" />
+        <Window Type="ArridiDesign/bButton" Name="NewVirtualGame/BackButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/bButton" Name="NewVirtualGame/StartButton" >
+          <Property Name="Font" Value="DejaVuSans-10" />
+          <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.9,0},{0.97,0},{0.94,0}}" />
+        </Window>
+    </Window>
+</Window>
+</GUILayout>

@@ -33,6 +33,7 @@
 #include "screen/CScreenLoadGame.h"
 #include "screen/CScreenMainMenu.h"
 #include "screen/CScreenNewManagerGame.h"
+#include "screen/CScreenNewVirtualGame.h"
 
 CGameEngine* CGameEngine::m_instance = NULL;
 
@@ -60,6 +61,7 @@ CGameEngine::CGameEngine() : m_screenStack()
     m_mainMenuScreen		= NULL;
     m_loadGameScreen		= NULL;
     m_newManagerGameScreen	= NULL;
+    m_newVirtualGameScreen  = NULL;
     m_configScreen			= NULL;
     m_creditsScreen			= NULL;
 }
@@ -78,6 +80,7 @@ CGameEngine::~CGameEngine()
     delete m_mainMenuScreen;
     delete m_loadGameScreen;
     delete m_newManagerGameScreen;
+    delete m_newVirtualGameScreen;
     delete m_configScreen;
     delete m_creditsScreen;
 
@@ -251,6 +254,14 @@ IScreen* CGameEngine::getNewManagerGameScreen()
     	m_newManagerGameScreen = new CScreenNewManagerGame();
     }
     return m_newManagerGameScreen;
+}
+
+IScreen* CGameEngine::getNewVirtualGameScreen()
+{
+    if( m_newVirtualGameScreen==NULL ){
+        m_newVirtualGameScreen = new CScreenNewVirtualGame();
+    }
+    return m_newVirtualGameScreen;
 }
 
 IScreen* CGameEngine::getConfigScreen()
