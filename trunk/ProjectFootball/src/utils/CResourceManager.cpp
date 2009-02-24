@@ -124,7 +124,7 @@ void CResourceManager::defineFlags()
 {
     Ogre::String flags = CSystemOptionManager::getInstance()->getGUIFlags();
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/flags/" + flags;
+    archName = "data/graphics/countries/" + flags;
     typeName = "FileSystem";
     secName  = flags;
     boost::filesystem::path path(archName.c_str());
