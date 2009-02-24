@@ -1,5 +1,0 @@
-<?xml version="1.0" ?>
-<Imageset Name="england" Imagefile="england.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true">
-    <Image Name="england_flag" XPos="0" YPos="0" Width="256" Height="171" />
-    <Image Name="england_map" XPos="0" YPos="171" Width="224" Height="201" />
-</Imageset>
