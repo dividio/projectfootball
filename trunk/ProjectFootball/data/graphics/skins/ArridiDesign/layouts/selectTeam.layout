@@ -1,128 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-<Window Type="DefaultWindow" Name="SelectTeam" >
-    <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/MainWindow" >
-        <Property Name="FrameEnabled" Value="False" />
-        <Property Name="InheritsAlpha" Value="False" />
-        <Property Name="Image" Value="set:Background image:Background" />
+    <Window Type="DefaultWindow" Name="SelectTeam" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="ArridiDesign/StaticText" Name="SelectTeam/SelectTeamLabel" >
+        <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/MainWindow" >
+            <Property Name="Image" Value="set:SelectTeam image:SelectTeam" />
             <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.19,0},{0.4,0},{0.24,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/ItemListbox" Name="SelectTeam/TeamsList" >
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.248919,0},{0.4,0},{0.868919,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="SelectTeam/BackButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.94,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="SelectTeam/SelectButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.75,0},{0.9,0},{0.97,0},{0.94,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/Info" >
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.431313,0},{0.248919,0},{0.97,0},{0.869257,0}}" />
-            <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/TeamShield" >
-                <Property Name="FrameEnabled" Value="false" />
-                <Property Name="BackgroundEnabled" Value="false" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/SelectTeamLabel" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.3,0},{0.33,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.626322,0},{0.0207888,0},{0.996321,0},{0.0707896,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
             </Window>
-            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/NameLabel" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="FrameEnabled" Value="false" />
+            <Window Type="ArridiDesign/ItemListbox" Name="SelectTeam/TeamsList" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.04,0},{0.98,0},{0.12,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.407952,0},{0.296516,0},{0.915991,0}}" />
             </Window>
-            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamName" >
+            <Window Type="ArridiDesign/bButton" Name="SelectTeam/BackButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.15,0},{0.98,0},{0.23,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{-0.0393359,0},{0.92799,0},{0.130664,0},{0.995979,0}}" />
             </Window>
-            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/BudgetLabel" >
+            <Window Type="ArridiDesign/bButton" Name="SelectTeam/SelectButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.828125,0},{0.924173,0},{1.04813,0},{0.999796,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/Info" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.262723,0},{0.98,0},{0.342723,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamBudget" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.37,0},{0.98,0},{0.45,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.375649,0},{0.438486,0},{0.936797,0},{0.604627,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+                <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/TeamShield" >
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.797858,0},{0.000449089,0},{0.997858,0},{0.996226,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/NameLabel" >
+                    <Property Name="Font" Value="DejaVuSans-9" />
+                    <Property Name="TextColours" Value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.00227583,0},{0.0170267,0},{0.1551,0},{0.204236,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamName" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="TextColours" Value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.14846,0},{0.00450259,0},{0.442232,0},{0.199369,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/BudgetLabel" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="TextColours" Value="tl:FFFF9900 tr:FFFF9900 bl:FFFF9900 br:FFFF9900" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.0318608,0},{0.706873,0},{0.216011,0},{0.894082,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamBudget" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="TextColours" Value="tl:FFFF6600 tr:FFFF6600 bl:FFFF6600 br:FFFF6600" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.212851,0},{0.683968,0},{0.452691,0},{0.878834,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="SelectTeam/AverageLabel" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.48,0},{0.3,0},{0.56,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.818833,0},{0.627966,0},{0.872442,0},{0.656292,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamAverage" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="HorzCentred" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.887185,0},{0.640024,0},{0.920649,0},{0.677205,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Confederation" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{-0.00808594,0},{0.0978116,0},{0.28379,0},{0.257812,0}}" />
+                <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/ConfederationImage" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.136451,0},{0.2592,0},{0.403829,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Country" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.757032,0},{0.100356,0},{1,0},{0.264173,0}}" />
+                <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/CountryImage" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.798892,0},{0.137723,0},{0.998516,0},{0.406373,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Competition" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.369495,0},{0.116895,0},{0.651585,0},{0.276895,0}}" />
+                <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/ConfederationLabel" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.48,0},{0.4,0},{0.56,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.0643511,0},{0.28,0},{0.114351,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/CountryLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.825099,0},{0.068168,0},{0.943768,0},{0.118168,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="SelectTeam/CompetitionLabel" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.387319,0},{0.0808906,0},{0.637319,0},{0.130891,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
             </Window>
         </Window>
-        <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Confederation" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.08,0},{0.28,0},{0.24,0}}" />
-            <Property Name="MaxEditTextLength" Value="1073741823" />
-        </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/ConfederationImage" >
-            <Property Name="FrameEnabled" Value="false" />
-            <Property Name="BackgroundEnabled" Value="false" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.115,0},{0.125,0},{0.185,0},{0.185,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Country" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.375,0},{0.08,0},{0.615,0},{0.24,0}}" />
-            <Property Name="MaxEditTextLength" Value="1073741823" />
-        </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/CountryImage" >
-            <Property Name="FrameEnabled" Value="false" />
-            <Property Name="BackgroundEnabled" Value="false" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.460,0},{0.125,0},{0.520,0},{0.185,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Competition" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.72,0},{0.08,0},{0.97,0},{0.24,0}}" />
-            <Property Name="MaxEditTextLength" Value="1073741823" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="SelectTeam/ConfederationLabel" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="FrameEnabled" Value="false" />
-            <Property Name="BackgroundEnabled" Value="false" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.03,0},{0.28,0},{0.08,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="SelectTeam/CountryLabel" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="FrameEnabled" Value="false" />
-            <Property Name="BackgroundEnabled" Value="false" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.375,0},{0.03,0},{0.615,0},{0.08,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="SelectTeam/CompetitionLabel" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="FrameEnabled" Value="false" />
-            <Property Name="BackgroundEnabled" Value="false" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.72,0},{0.03,0},{0.97,0},{0.08,0}}" />
-        </Window>
     </Window>
-</Window>
 </GUILayout>

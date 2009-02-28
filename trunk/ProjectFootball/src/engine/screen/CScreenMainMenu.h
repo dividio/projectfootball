@@ -47,8 +47,12 @@ private:
 	bool quickLoadButtonClicked(const CEGUI::EventArgs& e);
 	bool quitButtonClicked(const CEGUI::EventArgs& e);
 
+  CEGUI::PushButton	*m_OnLineCommunityButton;
 	CEGUI::PushButton	*m_virtualChampionshipButton;
 	CEGUI::PushButton	*m_newManagerGameButton;
+	CEGUI::PushButton	*m_ProfessionalCareerButton;
+	CEGUI::PushButton	*m_EditorButton;
+	CEGUI::PushButton	*m_FootLibraryButton;
 	CEGUI::PushButton	*m_configButton;
 	CEGUI::PushButton	*m_creditsButton;
 	CEGUI::PushButton	*m_quickLoadButton;

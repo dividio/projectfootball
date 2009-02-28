@@ -32,8 +32,12 @@ CScreenMainMenu::CScreenMainMenu()
 {
     CLog::getInstance()->debug("CScreenMainMenu()");
 
-    m_virtualChampionshipButton	= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VirtualChampionshipButton"));
+    m_OnLineCommunityButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/OnLineCommunityButton"));
+    m_virtualChampionshipButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VirtualChampionshipButton"));
     m_newManagerGameButton	    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/NewManagerGameButton"));
+    m_ProfessionalCareerButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ProfessionalCareerButton"));
+    m_EditorButton              = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/EditorButton"));
+    m_FootLibraryButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/FootLibraryButton"));
     m_configButton			    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
     m_creditsButton			    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
     m_quickLoadButton		    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickLoadButton"));
@@ -53,13 +57,17 @@ CScreenMainMenu::CScreenMainMenu()
     m_quitButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quitButtonClicked, this));
 
     // i18n support
+    m_OnLineCommunityButton    ->setText((CEGUI::utf8*)gettext("On-line Community"));
     m_virtualChampionshipButton->setText((CEGUI::utf8*)gettext("Virtual Championship"));
-    m_newManagerGameButton    ->setText((CEGUI::utf8*)gettext("Manager League"));
-    m_configButton            ->setText((CEGUI::utf8*)gettext("Config"));
-    m_creditsButton           ->setText((CEGUI::utf8*)gettext("Credits"));
-    m_quickLoadButton         ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
-    m_loadGameButton          ->setTooltipText((CEGUI::utf8*)gettext("Load"));
-    m_quitButton              ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
+    m_newManagerGameButton     ->setText((CEGUI::utf8*)gettext("Manager League"));
+    m_ProfessionalCareerButton ->setText((CEGUI::utf8*)gettext("Professional Career"));
+    m_EditorButton             ->setText((CEGUI::utf8*)gettext("Editor"));
+    m_FootLibraryButton        ->setText((CEGUI::utf8*)gettext("Football Library"));
+    m_configButton             ->setText((CEGUI::utf8*)gettext("Config"));
+    m_creditsButton            ->setText((CEGUI::utf8*)gettext("Credits"));
+    m_quickLoadButton          ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
+    m_loadGameButton           ->setTooltipText((CEGUI::utf8*)gettext("Load"));
+    m_quitButton               ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
     m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last update:"));
 }
