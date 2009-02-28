@@ -194,9 +194,10 @@
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="Credits/BasedLabel" >
                 <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="TextColours" Value="tl:FFCCCCCC tr:FFCCCCCC bl:FFCCCCCC br:FFCCCCCC" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.00851563,0},{0.831158,0},{0.878516,0},{0.866158,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.00851563,0},{0.864237,0},{0.178614,0},{0.899237,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="Credits/StaffTextLabel" >
@@ -219,6 +220,14 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.800781,0},{0.91779,0},{1.02539,0},{0.990707,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="Credits/PFcopyright" >
+                <Property Name="Font" Value="DejaVuSans-6" />
+                <Property Name="Text" Value="Copyright 2007-2009 - Project Football 2007-2009" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.780547,0},{0.978372,0},{0.993402,0},{1.00445,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
             </Window>
         </Window>
     </Window>

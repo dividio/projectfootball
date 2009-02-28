@@ -2,88 +2,115 @@
 
 <GUILayout >
     <Window Type="DefaultWindow" Name="TeamPlayers" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Window Type="ArridiDesign/StaticImage" Name="TeamPlayers/MainWindow" >
+            <Property Name="Image" Value="set:Generic image:Generic" />
+            <Property Name="FrameEnabled" Value="False" />
             <Property Name="InheritsAlpha" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-            <Property Name="Image" Value="set:Background image:Background" />
-            <Property Name="FrameEnabled" Value="false" />
             <Window Type="ArridiDesign/StaticText" Name="TeamPlayers/TeamPlayersLabel" >
                 <Property Name="FrameEnabled" Value="False" />
-                <Property Name="BackgroundEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.142305,0},{0.148142,0},{0.612305,0},{0.188142,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/StaticImage" Name="TeamPlayers/Info" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.660157,0},{0.394453,0},{0.832812,0},{0.654452,0}}" />
                 <Window Type="ArridiDesign/StaticText" Name="TeamPlayers/TeamName" >
-                  <Property Name="FrameEnabled" Value="False" />
-                  <Property Name="BackgroundEnabled" Value="False" />
-                  <Property Name="HorzFormatting" Value="HorzCentred" />
-                  <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                  <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.04,0},{0.9,0},{0.12,0}}" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.04,0},{0.9,0},{0.12,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="TeamPlayers/TeamShield" >
                     <Property Name="FrameEnabled" Value="False" />
-                    <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.215,0},{0.14,0},{0.785,0},{0.725,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="TeamPlayers/TeamAverageLabel" >
-                  <Property Name="FrameEnabled" Value="False" />
-                  <Property Name="BackgroundEnabled" Value="False" />
-                  <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                  <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.76,0},{0.7,0},{0.84,0}}" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.76,0},{0.7,0},{0.84,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="TeamPlayers/TeamAverage" >
-                  <Property Name="FrameEnabled" Value="False" />
-                  <Property Name="BackgroundEnabled" Value="False" />
-                  <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                  <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.76,0},{0.9,0},{0.84,0}}" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.76,0},{0.9,0},{0.84,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="TeamPlayers/LineUpTeamPlayersList" >
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.117891,0},{0.189415,0},{0.642383,0},{0.472074,0}}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.117891,0},{0.189415,0},{0.642383,0},{0.472074,0}}" />
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="TeamPlayers/AlternateTeamPlayersList" >
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.116914,0},{0.475713,0},{0.642383,0},{0.690712,0}}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.116914,0},{0.475713,0},{0.642383,0},{0.690712,0}}" />
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="TeamPlayers/NotLineUpTeamPlayersList" >
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.115938,0},{0.695624,0},{0.641407,0},{0.933614,0}}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.115938,0},{0.695624,0},{0.641407,0},{0.933614,0}}" />
             </Window>
             <Window Type="ArridiDesign/bButton" Name="TeamPlayers/ChangeButton" >
-              <Property Name="Font" Value="DejaVuSans-10" />
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.669922,0},{0.758524,0},{0.819924,0},{0.798524,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/bButton" Name="TeamPlayers/RankingButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.5,0},{1.02,0},{0.56,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.669922,0},{0.758524,0},{0.819924,0},{0.813791,0}}" />
             </Window>
-            <Window Type="ArridiDesign/bButton" Name="TeamPlayers/TeamPlayersButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
+            <Window Type="ArridiDesign/GNS_Button1" Name="TeamPlayers/TeamPlayersButton" >
+                <Property Name="Font" Value="DejaVuSans-9" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.55,0},{1.02,0},{0.61,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.896484,0},{0.515625,0},{1,0},{0.541667,0}}" />
             </Window>
-            <Window Type="ArridiDesign/bButton" Name="TeamPlayers/ResultsButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
+            <Window Type="ArridiDesign/GNS_Button2" Name="TeamPlayers/ResultsButton" >
+                <Property Name="Font" Value="DejaVuSans-9" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.6,0},{1.02,0},{0.66,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.8984375,0},{0.54296875,0},{1.0,0},{0.56901041666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button3" Name="TeamPlayers/RankingButton" >
+                <Property Name="Font" Value="DejaVuSans-9" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.900390625,0},{0.5703125,0},{1.0,0},{0.59635416666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button4" Name="TeamPlayers/GNS4" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.90136718752,0},{0.59765625,0},{1,0},{0.623697916666666666666666666666670,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button5" Name="TeamPlayers/GNS5" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.90234375,0},{0.625,0},{1,0},{0.65104166666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button6" Name="TeamPlayers/GNS6" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.9033203125,0},{0.65234375,0},{1,0},{0.67838541666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button7" Name="TeamPlayers/GNS7" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.902343755,0},{0.6796875,0},{1,0},{0.70572916666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button8" Name="TeamPlayers/GNS8" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.900390625,0},{0.70703125,0},{1,0},{0.73307291666666666666666666666667,0}}" />
             </Window>
             <Window Type="ArridiDesign/gameMenuButton" Name="TeamPlayers/GameMenuButton" >
-              <Property Name="Font" Value="DejaVuSans-10" />
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.962890625,0},{0.82552083333333333333333333333333,0},{1.0,0},{0.8828125,0}}" />
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.962891,0},{0.742824,0},{1,0},{0.800116,0}}" />
             </Window>
             <Window Type="ArridiDesign/backBallButton" Name="TeamPlayers/BackButton" >
-              <Property Name="Font" Value="DejaVuSans-10" />
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.8935546875,0},{0.92578125,0},{0.9462890625,0},{0.99609375,0}}" />
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.893555,0},{0.925781,0},{0.946289,0},{0.996094,0}}" />
             </Window>
         </Window>
     </Window>

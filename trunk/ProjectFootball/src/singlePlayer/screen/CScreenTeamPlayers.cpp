@@ -76,6 +76,15 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
 
     m_changePlayersButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/ChangeButton"));
     m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::changePlayersButtonClicked, this));
+       
+    m_rankingButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/RankingButton"));
+    m_rankingButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::rankingButtonClicked, this));
+    
+    m_teamPlayersButton	 = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersButton"));
+    m_teamPlayersButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::teamPlayersButtonClicked, this));
+    
+    m_resultsButton	     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/ResultsButton"));
+    m_resultsButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::resultsButtonClicked, this));
 
     m_teamName    = static_cast<CEGUI::Window *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamName"));
     m_teamAverage = static_cast<CEGUI::Window *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverage"));
@@ -85,6 +94,9 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     m_backButton    ->setTooltipText((CEGUI::utf8*)gettext("Back"));
     m_gameMenuButton->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
     m_changePlayersButton->setText((CEGUI::utf8*)gettext("Change"));
+    m_rankingButton     ->setText((CEGUI::utf8*)gettext("Ranking"));
+    m_teamPlayersButton ->setText((CEGUI::utf8*)gettext("Team Players"));
+    m_resultsButton     ->setText((CEGUI::utf8*)gettext("Results"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel"))->setText((CEGUI::utf8*)gettext("Team Players:"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));
 }
@@ -200,7 +212,7 @@ void CScreenTeamPlayers::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiCol
 
     int row_idx = list->addRow();
     int XTeamPlayer = player->getXTeamPlayer();
-    CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSName().c_str(), XTeamPlayer);
+    CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSShortName().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 0, row_idx);
 
@@ -430,4 +442,22 @@ void CScreenTeamPlayers::changeRowSelection(CEGUI::MultiColumnList *list, int ro
         CEGUI::ListboxItem *item = list->getItemAtGridReference(CEGUI::MCLGridRef(row, i));
         item->setSelected(newSelectionState);
     }
+}
+
+bool CScreenTeamPlayers::rankingButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getRankingScreen());
+	return true;
+}
+
+bool CScreenTeamPlayers::teamPlayersButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getTeamPlayersScreen());
+	return true;
+}
+
+bool CScreenTeamPlayers::resultsButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getResultsScreen());
+	return true;
 }

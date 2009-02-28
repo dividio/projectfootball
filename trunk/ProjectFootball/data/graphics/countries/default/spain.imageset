@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <Imageset Name="spain" Imagefile="spain.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true">
 	<Image Name="spain_flag" XPos="0" YPos="0" Width="256" Height="171" />
+	<Image Name="spain_mo_flag" XPos="224" YPos="171" Width="266" Height="177" />
 	<Image Name="spain_map" XPos="0" YPos="171" Width="224" Height="201" />
 </Imageset>

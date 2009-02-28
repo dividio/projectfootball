@@ -47,6 +47,9 @@ private:
     bool backButtonClicked(const CEGUI::EventArgs& e);
     bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
     bool changePlayersButtonClicked(const CEGUI::EventArgs& e);
+    bool rankingButtonClicked               (const CEGUI::EventArgs& e);
+	  bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
+  	bool resultsButtonClicked               (const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
     void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
@@ -70,6 +73,9 @@ private:
     CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton       *m_gameMenuButton;
     CEGUI::PushButton		*m_changePlayersButton;
+    CEGUI::PushButton	*m_rankingButton;
+    CEGUI::PushButton	*m_teamPlayersButton;
+    CEGUI::PushButton	*m_resultsButton;
     CEGUI::Window           *m_teamName;
     CEGUI::Window           *m_teamAverage;
     CEGUI::Window           *m_teamShield;

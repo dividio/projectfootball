@@ -40,6 +40,9 @@ private:
     bool competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e);
     bool backButtonClicked(const CEGUI::EventArgs& e);
     bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
+    bool rankingButtonClicked               (const CEGUI::EventArgs& e);
+	  bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
+  	bool resultsButtonClicked               (const CEGUI::EventArgs& e);
 
     void loadCompetitions();
     void loadCompetitionPhases();
@@ -50,6 +53,9 @@ private:
     CEGUI::MultiColumnList  *m_resultsList;
     CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton       *m_gameMenuButton;
+    CEGUI::PushButton	*m_rankingButton;
+    CEGUI::PushButton	*m_teamPlayersButton;
+    CEGUI::PushButton	*m_resultsButton;
 
     CSinglePlayerGame		*m_game;
 };

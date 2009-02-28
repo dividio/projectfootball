@@ -1,12 +1,14 @@
 <?xml version="1.0" ?>
 <Imageset Name="WidgetsImageset" Imagefile="ArridiDesign.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true">
-
-	<Image Name="mButtonNormalRight" XPos="0" YPos="0" Width="280" Height="57" />
-	<Image Name="mButtonHighlightRight" XPos="0" YPos="114" Width="280" Height="57" />
-	<Image Name="mButtonPushedRight" XPos="0" YPos="57" Width="280" Height="57" />
-	<Image Name="mButtonNormalLeft" XPos="280" YPos="0" Width="280" Height="57" />
-	<Image Name="mButtonHighlightLeft" XPos="280" YPos="114" Width="280" Height="57" />
-	<Image Name="mButtonPushedLeft" XPos="280" YPos="57" Width="280" Height="57" />	
+  
+  <Image Name="MouseArrow" XPos="565" YPos="50" Width="27" Height="25" />
+  <Image Name="MouseHighlight" XPos="566" YPos="78" Width="27" Height="25" /> 
+	<Image Name="mRightButtonNormal" XPos="0" YPos="0" Width="280" Height="57" />
+	<Image Name="mRightButtonHighlight" XPos="0" YPos="114" Width="280" Height="57" />
+	<Image Name="mRightButtonPushed" XPos="0" YPos="57" Width="280" Height="57" />
+	<Image Name="mLeftButtonNormal" XPos="280" YPos="0" Width="280" Height="57" />
+	<Image Name="mLeftButtonHighlight" XPos="280" YPos="114" Width="280" Height="57" />
+	<Image Name="mLeftButtonPushed" XPos="280" YPos="57" Width="280" Height="57" />	
 	<Image Name="mquickLoadButtonNormal" XPos="315" YPos="171" Width="32" Height="32" />
 	<Image Name="mquickLoadButtonHighlight" XPos="315" YPos="203" Width="32" Height="32" />
 	<Image Name="mquickLoadButtonPushed" XPos="315" YPos="235" Width="32" Height="32" />	
@@ -15,7 +17,6 @@
 	<Image Name="mLoadButtonPushed" XPos="283" YPos="235" Width="32" Height="32" />
 	<Image Name="exButtonNormal" XPos="0" YPos="171" Width="94" Height="93" />
 	<Image Name="exButtonHighlight" XPos="94" YPos="171" Width="94" Height="93" />
-	<Image Name="exButtonPushed" XPos="188" YPos="171" Width="94" Height="93" />
 	<Image Name="TooltipTopLeft" XPos="348" YPos="173" Width="4" Height="4" />
 	<Image Name="TooltipTopRight" XPos="356" YPos="173" Width="5" Height="4" />
 	<Image Name="TooltipBottomLeft" XPos="348" YPos="181" Width="4" Height="5" />
@@ -24,14 +25,72 @@
 	<Image Name="TooltipRightEdge" XPos="356" YPos="178" Width="5" Height="2" />
 	<Image Name="TooltipTopEdge" XPos="353" YPos="173" Width="2" Height="4" />
 	<Image Name="TooltipBottomEdge" XPos="353" YPos="181" Width="2" Height="5" />
-	<Image Name="TooltipMiddle" XPos="353" YPos="178" Width="2" Height="2" />
+	<Image Name="TooltipMiddle" XPos="353" YPos="178" Width="2" Height="2" /> 
+  <Image Name="bButtonNormal" XPos="0" YPos="264" Width="230" Height="56" />
+	<Image Name="bButtonPushed" XPos="0" YPos="320" Width="230" Height="56" />
+	<Image Name="bButtonHighlight" XPos="0" YPos="376" Width="230" Height="56" />
+	<Image Name="CheckBoxNormal" XPos="560" YPos="0" Width="16" Height="16" />
+	<Image Name="CheckBoxHighlight" XPos="560" YPos="32" Width="16" Height="16" />
+	<Image Name="CheckBoxFull" XPos="560" YPos="16" Width="16" Height="16" />
+	<Image Name="RadioButtonNormal" XPos="580" YPos="0" Width="16" Height="16" />
+	<Image Name="RadioButtonHighlight" XPos="580" YPos="32" Width="16" Height="16" />
+	<Image Name="RadioButtonFull" XPos="580" YPos="16" Width="16" Height="16" />
+	<Image Name="ComboboxListButtonNormal" XPos="553" YPos="268" Width="52" Height="46" />
+	<Image Name="ComboboxListButtonHover" XPos="553" YPos="314" Width="52" Height="46" />
+	<Image Name="ComboboxEditLeft" XPos="233" YPos="268" Width="34" Height="46" />
+	<Image Name="ComboboxEditMiddle" XPos="269" YPos="268" Width="282" Height="46" />
+	<Image Name="EditBoxLeft" XPos="233" YPos="314" Width="12" Height="36" />
+	<Image Name="EditBoxMiddle" XPos="245" YPos="314" Width="6" Height="36" />
+	<Image Name="EditBoxRight" XPos="251" YPos="314" Width="12" Height="36" />
+	<Image Name="EditBoxCarat" XPos="263" YPos="320" Width="8" Height="19" />
+	<Image Name="GNS_Button1Normal" XPos="0" YPos="575" Width="106" Height="20" />
+	<Image Name="GNS_Button2Normal" XPos="0" YPos="596" Width="104" Height="20" />
+	<Image Name="GNS_Button3Normal" XPos="0" YPos="617" Width="102" Height="20" />
+	<Image Name="GNS_Button4Normal" XPos="0" YPos="638" Width="101" Height="20" />
+	<Image Name="GNS_Button5Normal" XPos="0" YPos="659" Width="100" Height="20" />
+	<Image Name="GNS_Button6Normal" XPos="0" YPos="680" Width="99" Height="20" />
+	<Image Name="GNS_Button7Normal" XPos="0" YPos="701" Width="100" Height="20" />
+	<Image Name="GNS_Button8Normal" XPos="0" YPos="722" Width="102" Height="20" />
+	<Image Name="GNS_Button1Highlight" XPos="110" YPos="575" Width="106" Height="20" />
+	<Image Name="GNS_Button2Highlight" XPos="110" YPos="596" Width="104" Height="20" />
+	<Image Name="GNS_Button3Highlight" XPos="110" YPos="617" Width="102" Height="20" />
+	<Image Name="GNS_Button4Highlight" XPos="110" YPos="638" Width="101" Height="20" />
+	<Image Name="GNS_Button5Highlight" XPos="110" YPos="659" Width="100" Height="20" />
+	<Image Name="GNS_Button6Highlight" XPos="110" YPos="680" Width="99" Height="20" />
+	<Image Name="GNS_Button7Highlight" XPos="110" YPos="701" Width="100" Height="20" />
+	<Image Name="GNS_Button8Highlight" XPos="110" YPos="722" Width="102" Height="20" />
+	
+	
+	<Image Name="GameQuitButtonNormal" XPos="0" YPos="432" Width="40" Height="40" />
+	<Image Name="GameQuitButtonHighlight" XPos="0" YPos="472" Width="40" Height="40" />
+	<Image Name="GameQuitButtonPushed" XPos="0" YPos="512" Width="40" Height="40" />
+	
+	<Image Name="GameExitButtonNormal" XPos="40" YPos="432" Width="40" Height="40" />
+	<Image Name="GameExitButtonHighlight" XPos="40" YPos="472" Width="40" Height="40" />
+	<Image Name="GameExitButtonPushed" XPos="40" YPos="512" Width="40" Height="40" />
+	
+	<Image Name="GameConfigButtonNormal" XPos="80" YPos="432" Width="40" Height="40" />
+	<Image Name="GameConfigButtonHighlight" XPos="80" YPos="472" Width="40" Height="40" />
+	<Image Name="GameConfigButtonPushed" XPos="80" YPos="512" Width="40" Height="40" />
+	
+	<Image Name="GameSaveButtonNormal" XPos="120" YPos="432" Width="40" Height="40" />
+	<Image Name="GameSaveButtonHighlight" XPos="120" YPos="472" Width="40" Height="40" />
+	<Image Name="GameSaveButtonPushed" XPos="120" YPos="512" Width="40" Height="40" />
+	
+	<Image Name="GameQuickSaveButtonNormal" XPos="160" YPos="432" Width="40" Height="40" />
+	<Image Name="GameQuickSaveButtonHighlight" XPos="160" YPos="472" Width="40" Height="40" />
+	<Image Name="GameQuickSaveButtonPushed" XPos="160" YPos="512" Width="40" Height="40" />
+	
+	<Image Name="GameHelpButtonNormal" XPos="230" YPos="350" Width="56" Height="56" />
+	<Image Name="GameHelpButtonHighlight" XPos="286" YPos="350" Width="56" Height="56" />
 	
 	
 	
 	
-	<Image Name="bButtonNormal" XPos="0" YPos="509" Width="230" Height="56" />
-	<Image Name="bButtonPushed" XPos="0" YPos="565" Width="230" Height="56" />
-	<Image Name="bButtonHighlight" XPos="0" YPos="621" Width="230" Height="56" />
+	
+	
+	
+	
 	
 	<Image Name="blueBallButtonNormal" XPos="500" YPos="500" Width="81" Height="79" />
 	<Image Name="blueBallButtonPushed" XPos="700" YPos="500" Width="81" Height="79" />
@@ -47,30 +106,24 @@
 	
 	
 	
-	<Image Name="CheckBoxNormal" XPos="585" YPos="0" Width="16" Height="16" />
-	<Image Name="CheckBoxHighlight" XPos="585" YPos="32" Width="16" Height="16" />
-	<Image Name="CheckBoxFull" XPos="585" YPos="16" Width="16" Height="16" />
-	<Image Name="RadioButtonNormal" XPos="605" YPos="0" Width="16" Height="16" />
-	<Image Name="RadioButtonHighlight" XPos="605" YPos="32" Width="16" Height="16" />
-	<Image Name="RadioButtonFull" XPos="605" YPos="16" Width="16" Height="16" />
-  <Image Name="MousePrueba" XPos="311" YPos="575" Width="27" Height="25" />
+
   
-  <Image Name="MouseArrow" XPos="400" YPos="600" Width="31" Height="25" XOffset="0" YOffset="0" />
   
-  <Image Name="ComboboxListButtonNormal" XPos="0" YPos="700" Width="52" Height="46" />
-	<Image Name="ComboboxListButtonHover" XPos="60" YPos="700" Width="52" Height="46" />
-	
-	<Image Name="ComboboxEditLeft" XPos="150" YPos="700" Width="320" Height="46" />
+  
+  
 	
 	<Image Name="ClientBrush" XPos="702" YPos="2" Width="64" Height="64" />
-	<Image Name="WindowLeftEdge" XPos="706" YPos="95" Width="1" Height="22" XOffset="4" />
-	<Image Name="WindowRightEdge" XPos="734" YPos="95" Width="1" Height="22" XOffset="-5" />
+	
+	<Image Name="WindowRightEdge" XPos="706" YPos="95" Width="1" Height="22" XOffset="4" />
+	<Image Name="WindowLeftEdge" XPos="363" YPos="182" Width="8" Height="3" XOffset="-5" />
 	<Image Name="WindowTopEdge" XPos="709" YPos="68" Width="23" Height="1" />
 	<Image Name="WindowBottomEdge" XPos="709" YPos="143" Width="23" Height="1" />
-	<Image Name="WindowTopLeft" XPos="702" YPos="68" Width="5" Height="24" />
+	
+	<Image Name="WindowTopLeft" XPos="363" YPos="173" Width="8" Height="9" />
 	<Image Name="WindowTopRight" XPos="734" YPos="68" Width="5" Height="24" />
 	<Image Name="WindowBottomLeft" XPos="702" YPos="120" Width="5" Height="24" />
 	<Image Name="WindowBottomRight" XPos="734" YPos="120" Width="5" Height="24" />
+	
 	<Image Name="ButtonLeftNormal" XPos="768" YPos="20" Width="12" Height="16" />
 	<Image Name="ButtonMiddleNormal" XPos="782" YPos="20" Width="12" Height="16" />
 	<Image Name="ButtonRightNormal" XPos="796" YPos="20" Width="12" Height="16" />
@@ -108,10 +161,7 @@
 	<Image Name="ProgressBarRight" XPos="788" YPos="74" Width="6" Height="12" />
 	<Image Name="ProgressBarDimSegment" XPos="796" YPos="74" Width="8" Height="12" />
 	<Image Name="ProgressBarLitSegment" XPos="806" YPos="74" Width="8" Height="12" />
-	<Image Name="EditBoxLeft" XPos="741" YPos="108" Width="4" Height="18" />
-	<Image Name="EditBoxMiddle" XPos="747" YPos="108" Width="4" Height="18" />
-	<Image Name="EditBoxRight" XPos="753" YPos="108" Width="4" Height="18" />
-	<Image Name="EditBoxCarat" XPos="760" YPos="108" Width="4" Height="18" />
+
 	<Image Name="SpinnerUpNormal" XPos="768" YPos="110" Width="10" Height="6" />
 	<Image Name="SpinnerDownNormal" XPos="768" YPos="118" Width="10" Height="6" />
 	<Image Name="SpinnerUpHover" XPos="782" YPos="110" Width="10" Height="6" />
@@ -170,7 +220,7 @@
 
 	
 	
-	<Image Name="ComboboxEditMiddle" XPos="848" YPos="2" Width="8" Height="16" />
+
 	
 	
 	

@@ -39,6 +39,9 @@ CScreenResults::CScreenResults(CSinglePlayerGame *game)
     m_resultsList               = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/ResultsList"));
     m_backButton                = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/BackButton"));
     m_gameMenuButton            = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/GameMenuButton"));
+    m_rankingButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/RankingButton"));
+    m_teamPlayersButton	 = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/TeamPlayersButton"));
+    m_resultsButton	     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/ResultsButton"));
 
     m_competitionsCombobox->getEditbox()->setEnabled(false);
     m_competitionPhasesCombobox->getEditbox()->setEnabled(false);
@@ -51,6 +54,9 @@ CScreenResults::CScreenResults(CSinglePlayerGame *game)
     // i18n support
     m_backButton    ->setTooltipText((CEGUI::utf8*)gettext("Back"));
     m_gameMenuButton->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
+    m_rankingButton     ->setText((CEGUI::utf8*)gettext("Ranking"));
+    m_teamPlayersButton ->setText((CEGUI::utf8*)gettext("Team Players"));
+    m_resultsButton     ->setText((CEGUI::utf8*)gettext("Results"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Results/ResultsLabel"))->setText((CEGUI::utf8*)gettext("Results:"));
 
     // Event handle
@@ -58,6 +64,9 @@ CScreenResults::CScreenResults(CSinglePlayerGame *game)
     m_competitionPhasesCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::competitionPhasesComboboxListSelectionChanged, this));
     m_backButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::backButtonClicked, this));
     m_gameMenuButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::gameMenuButtonClicked, this));
+    m_rankingButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::rankingButtonClicked, this));
+    m_teamPlayersButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::teamPlayersButtonClicked, this));
+    m_resultsButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenResults::resultsButtonClicked, this));
 
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Home Team"),   0, CEGUI::UDim(0.4,0));
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       1, CEGUI::UDim(0.1,0));
@@ -192,4 +201,22 @@ bool CScreenResults::gameMenuButtonClicked(const CEGUI::EventArgs& e)
 {
     m_game->nextScreen(m_game->getGameScreen());
     return true;
+}
+
+bool CScreenResults::rankingButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getRankingScreen());
+	return true;
+}
+
+bool CScreenResults::teamPlayersButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getTeamPlayersScreen());
+	return true;
+}
+
+bool CScreenResults::resultsButtonClicked(const CEGUI::EventArgs& e)
+{
+	m_game->nextScreen(m_game->getResultsScreen());
+	return true;
 }

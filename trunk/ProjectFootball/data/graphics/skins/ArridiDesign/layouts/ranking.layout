@@ -2,46 +2,73 @@
 
 <GUILayout >
     <Window Type="DefaultWindow" Name="Ranking" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Window Type="ArridiDesign/StaticImage" Name="Ranking/MainWindow" >
+            <Property Name="Image" Value="set:Generic image:Generic" />
+            <Property Name="FrameEnabled" Value="False" />
             <Property Name="InheritsAlpha" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-            <Property Name="Image" Value="set:Background image:Background" />
-            <Property Name="FrameEnabled" Value="false" />
             <Window Type="ArridiDesign/StaticText" Name="Ranking/RankingLabel" >
-              <Property Name="FrameEnabled" Value="False" />
-              <Property Name="BackgroundEnabled" Value="False" />
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.0798047,0},{0.159593,0},{0.549805,0},{0.199593,0}}" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0798047,0},{0.159593,0},{0.549805,0},{0.199593,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="Ranking/RankingList" >
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.0417188,0},{0.199593,0},{0.781523,0},{0.819593,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/bButton" Name="Ranking/RankingButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.5,0},{1.02,0},{0.56,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0417188,0},{0.199593,0},{0.781523,0},{0.819593,0}}" />
             </Window>
-            <Window Type="ArridiDesign/bButton" Name="Ranking/TeamPlayersButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
+            <Window Type="ArridiDesign/GNS_Button1" Name="Ranking/TeamPlayersButton" >
+                <Property Name="Font" Value="DejaVuSans-9" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.55,0},{1.02,0},{0.61,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.896484,0},{0.515625,0},{1,0},{0.541667,0}}" />
             </Window>
-            <Window Type="ArridiDesign/bButton" Name="Ranking/ResultsButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
+            <Window Type="ArridiDesign/GNS_Button2" Name="Ranking/ResultsButton" >
+                <Property Name="Font" Value="DejaVuSans-9" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.85,0},{0.6,0},{1.02,0},{0.66,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.8984375,0},{0.54296875,0},{1.0,0},{0.56901041666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button3" Name="Ranking/RankingButton" >
+                <Property Name="Font" Value="DejaVuSans-9" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.900390625,0},{0.5703125,0},{1.0,0},{0.59635416666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button4" Name="Ranking/GNS4" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.90136718752,0},{0.59765625,0},{1,0},{0.623697916666666666666666666666670,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button5" Name="Ranking/GNS5" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.90234375,0},{0.625,0},{1,0},{0.65104166666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button6" Name="Ranking/GNS6" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.9033203125,0},{0.65234375,0},{1,0},{0.67838541666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button7" Name="Ranking/GNS7" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.902343755,0},{0.6796875,0},{1,0},{0.70572916666666666666666666666667,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/GNS_Button8" Name="Ranking/GNS8" >
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.900390625,0},{0.70703125,0},{1,0},{0.73307291666666666666666666666667,0}}" />
             </Window>
             <Window Type="ArridiDesign/gameMenuButton" Name="Ranking/GameMenuButton" >
-              <Property Name="Font" Value="DejaVuSans-10" />
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.962890625,0},{0.82552083333333333333333333333333,0},{1.0,0},{0.8828125,0}}" />
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.962891,0},{0.742823,0},{1,0},{0.800115,0}}" />
             </Window>
             <Window Type="ArridiDesign/backBallButton" Name="Ranking/BackButton" >
-              <Property Name="Font" Value="DejaVuSans-10" />
-              <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-              <Property Name="UnifiedAreaRect" Value="{{0.8935546875,0},{0.92578125,0},{0.9462890625,0},{0.99609375,0}}" />
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.893555,0},{0.925781,0},{0.946289,0},{0.996094,0}}" />
             </Window>
         </Window>
     </Window>

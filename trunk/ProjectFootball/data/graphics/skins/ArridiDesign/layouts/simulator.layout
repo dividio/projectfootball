@@ -1,165 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-<Window Type="DefaultWindow" Name="Simulator" >
-    <Window Type="ArridiDesign/StaticImage" Name="Simulator/MainWindow" >
-        <Property Name="FrameEnabled" Value="False" />
+    <Window Type="DefaultWindow" Name="Simulator" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Property Name="Image" Value="set:Background image:Background" />
-        <Window Type="ArridiDesign/bButton" Name="Simulator/BackButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.92,0},{0.7,0},{0.97,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="Simulator/ContinueButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.92,0},{0.995,0},{0.97,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="Simulator/Image" >
+        <Window Type="ArridiDesign/StaticImage" Name="Simulator/MainWindow" >
+            <Property Name="Image" Value="set:Background image:Background" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.12,0},{0.995,0},{0.589,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="Simulator/StartButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.01,0},{0.75,0},{0.06,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="Simulator/ZoomButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.01,0},{0.95,0},{0.06,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/TabControl" Name="Simulator/TabControl1" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="TabHeight" Value="{0,38}" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="TabPanePosition" Value="Top" />
-            <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.07,0},{0.5,0},{0.97,0}}" />
-            <Window Type="DefaultWindow" Name="Simulator/TeamTab" >
-                <Property Name="Visible" Value="True" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window Type="ArridiDesign/bButton" Name="Simulator/BackButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-                <Window Type="ArridiDesign/MultiColumnList" Name="Simulator/TeamPlayersList" >
-                  <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                  <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.5,0}}" />
-                  <Property Name="ColumnsMovable" Value="False" />
-                  <Property Name="ColumnsSizable" Value="False" />
-                  <Property Name="SortSettingEnabled" Value="False" />
-                  <Property Name="ForceHorzScrollbar" Value="False" />
+                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.92,0},{0.7,0},{0.977634,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Simulator/ContinueButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.821,0},{0.92,0},{0.995,0},{0.98145,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticImage" Name="Simulator/Image" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.12,0},{0.995,0},{0.589,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Simulator/StartButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.01,0},{0.75,0},{0.0689058,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Simulator/ZoomButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.01,0},{0.95,0},{0.0714503,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/TabControl" Name="Simulator/TabControl1" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="TabHeight" Value="{0,38}" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TabPanePosition" Value="Top" />
+                <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.07,0},{0.5,0},{0.97,0}}" />
+                <Window Type="DefaultWindow" Name="Simulator/TeamTab" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    <Window Type="ArridiDesign/MultiColumnList" Name="Simulator/TeamPlayersList" >
+                        <Property Name="ColumnsMovable" Value="False" />
+                        <Property Name="ColumnsSizable" Value="False" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.5,0}}" />
+                        <Property Name="SortSettingEnabled" Value="False" />
+                    </Window>
+                </Window>
+                <Window Type="DefaultWindow" Name="Simulator/FormationTab" >
+                    <Property Name="Visible" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    <Window Type="ArridiDesign/bButton" Name="Simulator/433Button" >
+                        <Property Name="Font" Value="DejaVuSans-10" />
+                        <Property Name="Text" Value="4-3-3" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.25,0},{0.7,0},{0.35,0}}" />
+                    </Window>
+                    <Window Type="ArridiDesign/bButton" Name="Simulator/442Button" >
+                        <Property Name="Font" Value="DejaVuSans-10" />
+                        <Property Name="Text" Value="4-4-2" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.45,0},{0.7,0},{0.55,0}}" />
+                    </Window>
                 </Window>
             </Window>
-            <Window Type="DefaultWindow" Name="Simulator/FormationTab" >
-                <Property Name="Visible" Value="False" />
+            <Window Type="ArridiDesign/TabControl" Name="Simulator/TabControl2" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="TabHeight" Value="{0,38}" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-                <Window Type="ArridiDesign/bButton" Name="Simulator/433Button" >
-                    <Property Name="Font" Value="DejaVuSans-10" />
-                    <Property Name="Text" Value="4-3-3" />
+                <Property Name="TabPanePosition" Value="Top" />
+                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.62,0},{0.995,0},{0.9,0}}" />
+                <Window Type="DefaultWindow" Name="Simulator/LogTab" >
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.25,0},{0.7,0},{0.35,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    <Window Type="ArridiDesign/Listbox" Name="Simulator/Log" >
+                        <Property Name="Font" Value="DejaVuSans-10" />
+                        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                    </Window>
                 </Window>
-                <Window Type="ArridiDesign/bButton" Name="Simulator/442Button" >
-                    <Property Name="Font" Value="DejaVuSans-10" />
-                    <Property Name="Text" Value="4-4-2" />
-                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.45,0},{0.7,0},{0.55,0}}" />
-                </Window>
-            </Window>
-        </Window>
-        <Window Type="ArridiDesign/TabControl" Name="Simulator/TabControl2" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="TabHeight" Value="{0,38}" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="TabPanePosition" Value="Top" />
-            <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.62,0},{0.995,0},{0.9,0}}" />
-            <Window Type="DefaultWindow" Name="Simulator/LogTab" >
-                <Property Name="Visible" Value="True" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-                <Window Type="ArridiDesign/Listbox" Name="Simulator/Log" >
-                    <Property Name="Font" Value="DejaVuSans-10" />
+                <Window Type="DefaultWindow" Name="Simulator/StatisticsTab" >
+                    <Property Name="Visible" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
                 </Window>
             </Window>
-            <Window Type="DefaultWindow" Name="Simulator/StatisticsTab" >
+            <Window Type="ArridiDesign/FrameWindow" Name="Simulator/FrameWindow" >
+                <Property Name="Visible" Value="False" />
+                <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+                <Property Name="RollUpEnabled" Value="False" />
+                <Property Name="SizingEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+                <Property Name="TitlebarEnabled" Value="True" />
+                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.01,0},{1,0},{0.99,0}}" />
+                <Property Name="DragMovingEnabled" Value="False" />
+                <Window Type="ArridiDesign/bButton" Name="Simulator/Frame/2DButton" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.05,0},{0.65,0},{0.1,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/bButton" Name="Simulator/Frame/3DButton" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.68,0},{0.05,0},{0.98,0},{0.1,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/bButton" Name="Simulator/Frame/StartButton" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.05,0},{0.32,0},{0.1,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticImage" Name="Simulator/Frame/Image" >
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1485,0},{0.14,0},{0.8515,0},{0.857,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/Listbox" Name="Simulator/Frame/Log" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.87,0},{0.7,0},{0.99,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/HomeName" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.015,0},{0.15,0},{0.14,0},{0.2,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/AwayName" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.86,0},{0.15,0},{0.985,0},{0.2,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/HomeScore" >
+                    <Property Name="Font" Value="DejaVuSans-32" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.015,0},{0.25,0},{0.14,0},{0.4,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/AwayScore" >
+                    <Property Name="Font" Value="DejaVuSans-32" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.86,0},{0.25,0},{0.985,0},{0.4,0}}" />
+                </Window>
             </Window>
-        </Window>
-        <Window Type="ArridiDesign/FrameWindow" Name="Simulator/FrameWindow" >
-            <Property Name="Visible" Value="False" />
-            <Property Name="TitlebarFont" Value="DejaVuSans-10" />
-            <Property Name="SizingEnabled" Value="False" />
-            <Property Name="RollUpEnabled" Value="False" />
-            <Property Name="DragMovingEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="TitlebarEnabled" Value="True" />
-            <Property Name="UnifiedAreaRect" Value="{{0,0},{0.01,0},{1,0},{0.99,0}}" />
-            <Window Type="ArridiDesign/bButton" Name="Simulator/Frame/2DButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.35,0},{0.05,0},{0.65,0},{0.1,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/bButton" Name="Simulator/Frame/3DButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.68,0},{0.05,0},{0.98,0},{0.1,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/bButton" Name="Simulator/Frame/StartButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.05,0},{0.32,0},{0.1,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/StaticImage" Name="Simulator/Frame/Image" >
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.1485,0},{0.14,0},{0.8515,0},{0.857,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/Listbox" Name="Simulator/Frame/Log" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.87,0},{0.7,0},{0.99,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/HomeName" >
+            <Window Type="ArridiDesign/StaticText" Name="Simulator/TeamNames" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="HorzFormatting" Value="HorzCentred" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.015,0},{0.15,0},{0.14,0},{0.2,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.01,0},{0.4,0},{0.06,0}}" />
             </Window>
-            <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/AwayName" >
+            <Window Type="ArridiDesign/StaticText" Name="Simulator/Score" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="HorzFormatting" Value="HorzCentred" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.86,0},{0.15,0},{0.985,0},{0.2,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.46,0},{0.01,0},{0.54,0},{0.06,0}}" />
             </Window>
-            <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/HomeScore" >
-                <Property Name="Font" Value="DejaVuSans-32" />
-                <Property Name="HorzFormatting" Value="HorzCentred" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.015,0},{0.25,0},{0.14,0},{0.4,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/StaticText" Name="Simulator/Frame/AwayScore" >
-                <Property Name="Font" Value="DejaVuSans-32" />
-                <Property Name="HorzFormatting" Value="HorzCentred" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.86,0},{0.25,0},{0.985,0},{0.4,0}}" />
-            </Window>
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="Simulator/TeamNames" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="HorzFormatting" Value="HorzCentred" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.01,0},{0.4,0},{0.06,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="Simulator/Score" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="HorzFormatting" Value="HorzCentred" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.46,0},{0.01,0},{0.54,0},{0.06,0}}" />
         </Window>
     </Window>
-</Window>
 </GUILayout>
