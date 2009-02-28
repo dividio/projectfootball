@@ -24,8 +24,9 @@
 
 #include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfTeams.h"
-#include "../utils/CLog.h"
 #include "../db/dao/factory/IDAOFactory.h"
+#include "../option/CSinglePlayerOptionManager.h"
+#include "../utils/CLog.h"
 
 
 CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
@@ -99,7 +100,7 @@ void CScreenRanking::loadRanking()
     int cont = 1;
 
     // TODO Ranking for all competitions
-    CPfTeams *playerTeam = daoFactory->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams *playerTeam = daoFactory->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
     CPfRegisteredTeams *registeredTeam = daoFactory->getIPfRegisteredTeamsDAO()->findByXFkTeam(playerTeam->getXTeam());
     std::vector<CPfTeams*> *teams = daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(registeredTeam->getXFkCompetition());
 

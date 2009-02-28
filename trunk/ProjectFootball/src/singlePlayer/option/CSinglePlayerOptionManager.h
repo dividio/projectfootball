@@ -21,8 +21,11 @@
 #ifndef CSINGLEPLAYEROPTIONMANAGER_H_
 #define CSINGLEPLAYEROPTIONMANAGER_H_
 
+#include "../../utils/CDate.h"
 #include "../../utils/COptionManager.h"
 #include "../db/dao/IPfGameOptionsDAO.h"
+
+class CDate;
 
 class CSinglePlayerOptionManager : public COptionManager
 {
@@ -60,6 +63,8 @@ public:
     void		setGamePlayerTeam(int xPlayerTeam);
     bool		getGameNew();
     void		setGameNew(bool newGame);
+    CDate		getGameCurrentDate();
+    void		setGameCurrentDate(const CDate &date);
 
     // Match options
     bool		getMatchResultMode();

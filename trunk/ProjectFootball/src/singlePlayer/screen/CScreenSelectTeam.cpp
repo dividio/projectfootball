@@ -18,9 +18,9 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CScreenSelectTeam.h"
-
 #include <libintl.h>
+
+#include "CScreenSelectTeam.h"
 
 #include "CScreenGame.h"
 #include "../CSinglePlayerGame.h"
@@ -29,6 +29,7 @@
 #include "../db/bean/CPfCountries.h"
 #include "../db/bean/CPfCompetitions.h"
 #include "../db/dao/factory/IDAOFactory.h"
+#include "../option/CSinglePlayerOptionManager.h"
 #include "../utils/CLog.h"
 #include "../utils/gui/CImageListboxItem.h"
 
@@ -334,20 +335,9 @@ bool CScreenSelectTeam::teamsListboxMouseDoubleClick(const CEGUI::EventArgs& e)
 bool CScreenSelectTeam::selectButtonClicked(const CEGUI::EventArgs& e)
 {
     CEGUI::ItemEntry* item = m_guiTeamsList->getFirstSelectedItem();
-    std::ostringstream xTeam;
-    xTeam << item->getID();
-
-    IPfGameStatesDAO *gameStateDAO = m_game->getIDAOFactory()->getIPfGameStatesDAO();
-
-    CPfGameStates playerTeam;
-    playerTeam.setSState(S_STATE_PLAYERTEAM);
-    playerTeam.setSValue(xTeam.str());
-    gameStateDAO->insertReg(&playerTeam);
-
-    CPfGameStates *newGameState = gameStateDAO->findBySState(S_STATE_NEWGAME);
-    newGameState->setSValue("false");
-    gameStateDAO->updateReg(newGameState);
-    delete newGameState;
+    
+    m_game->getOptionManager()->setGamePlayerTeam(item->getID());
+    m_game->getOptionManager()->setGameNew(false);
 
     m_game->nextScreen(m_game->getGameScreen());
     return true;

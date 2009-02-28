@@ -145,7 +145,7 @@ bool CScreenMainMenu::quickLoadButtonClicked(const CEGUI::EventArgs& e)
     if(gamesList != NULL) {
         if(!gamesList->empty()) {
             CPfGames *game = gamesList->front();
-            CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(game));
+            CGameEngine::getInstance()->loadGame(CSinglePlayerGame::load(game));
         }
         gamesDAO->freeVector(gamesList);
     }

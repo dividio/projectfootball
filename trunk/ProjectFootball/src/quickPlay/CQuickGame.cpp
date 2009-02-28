@@ -22,6 +22,7 @@
 
 #include "../engine/CGameEngine.h"
 #include "../singlePlayer/db/dao/factory/IDAOFactory.h"
+#include "../singlePlayer/option/CSinglePlayerOptionManager.h"
 #include "../utils/CLog.h"
 
 
@@ -30,22 +31,16 @@ CQuickGame::CQuickGame(const CPfUsers *user)
 {
     CLog::getInstance()->debug("CQuickGame::CQuickGame");
 
-    IPfGameStatesDAO    *gameStateDAO   = m_daoFactory->getIPfGameStatesDAO();
     IPfTeamsDAO         *teamsDAO       = m_daoFactory->getIPfTeamsDAO();
 
     std::vector<CPfTeams*> *teamsList = teamsDAO->findTeams();
     if( teamsList->empty() ){
         CLog::getInstance()->exception("[CQuickGame::CQuickGame] Teams list is empty");
     }
-    CPfGameStates playerTeam;
-    playerTeam.setSState(S_STATE_PLAYERTEAM);
-    playerTeam.setSValue(teamsList->at(rand()%teamsList->size())->getXTeam_str());
-    gameStateDAO->insertReg(&playerTeam);
 
-    CPfGameStates newGameState;
-    newGameState.setSState(S_STATE_NEWGAME);
-    newGameState.setSValue("false");
-    gameStateDAO->insertReg(&newGameState);
+    getOptionManager()->setGamePlayerTeam(teamsList->at(rand()%teamsList->size())->getXTeam());
+    getOptionManager()->setGameNew(false);
+    getOptionManager()->saveOptions();
 
     teamsDAO->freeVector(teamsList);
 

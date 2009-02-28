@@ -41,7 +41,6 @@ public:
     virtual CPfTeams* findByXFkCountry(const std::string &XFkCountry);
     virtual std::vector<CPfTeams*>* findTeams();
     virtual std::vector<CPfTeams*>* findTeamsByXCompetition(int XCompetition);
-    virtual CPfTeams* findPlayerTeam();
 
 };
 #endif /*CPFTEAMSDAOSQLITE_H_*/

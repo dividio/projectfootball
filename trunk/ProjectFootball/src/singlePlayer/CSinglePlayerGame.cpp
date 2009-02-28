@@ -19,9 +19,23 @@
 ******************************************************************************/
 
 #include "CSinglePlayerGame.h"
+
+#include <vector>
+#include <boost/filesystem.hpp>
+
 #include "CDataGenerator.h"
 
+#include "db/bean/CPfMatches.h"
+#include "db/dao/factory/IDAOFactory.h"
 #include "db/sqlite/dao/factory/CDAOFactorySQLite.h"
+
+#include "event/IGameEvent.h"
+#include "event/CEventsQueue.h"
+#include "event/CEventConsumer.h"
+#include "event/match/CMatchEvent.h"
+
+#include "option/CSinglePlayerOptionManager.h"
+#include "report/CSinglePlayerReportRegister.h"
 
 #include "screen/CScreenGame.h"
 #include "screen/CScreenMatchResult.h"
@@ -35,12 +49,6 @@
 #include "../engine/db/bean/CPfGames.h"
 #include "../engine/db/bean/CPfUsers.h"
 
-#include "db/dao/factory/IDAOFactory.h"
-
-#include "option/CSinglePlayerOptionManager.h"
-#include "report/CSinglePlayerReportRegister.h"
-#include "event/strategy/CSinglePlayerEventStrategy.h"
-
 #include "../utils/CLog.h"
 #include "../utils/CDate.h"
 
@@ -49,13 +57,16 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfUsers *user, const char *gameName)
     CLog::getInstance()->debug("CSinglePlayerGame::CSinglePlayerGame");
 
     const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string filename = "data/database/savedgames/";
+    std::string filename = "";
 
     srand(time(NULL));
-    for( int i=0; i<8; i++ ){
-        filename += str[rand()%52];
-    }
-    filename += ".sql3";
+    do{
+    	filename = "data/database/savedgames/";
+    	for( int i=0; i<8; i++ ){
+    		filename += str[rand()%52];
+    	}
+    	filename += ".sql3";
+    }while(boost::filesystem::exists(filename));
 
     CDate nowDate;
 
@@ -72,15 +83,17 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfUsers *user, const char *gameName)
     CDataGenerator dataGenerator(m_daoFactory);
     dataGenerator.generateDataBase();
 
-    CPfGameStates newGameState;
-    newGameState.setSState(S_STATE_NEWGAME);
-    newGameState.setSValue("true");
-    m_daoFactory->getIPfGameStatesDAO()->insertReg(&newGameState);
-
     m_reportRegister        = new CSinglePlayerReportRegister();
-    m_eventStrategy         = new CSinglePlayerEventStrategy(m_daoFactory, m_reportRegister);
+    m_eventsQueue			= new CEventsQueue();
+    m_eventConsumer			= new CEventConsumer(this);
+
     m_optionManager         = new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
+    m_optionManager->setGameNew(true);
+    CDate date(15, 8, 2008, 0, 0, 0); // 15/08/2008 0:00:00
+    m_optionManager->setGameCurrentDate(date);
+
     createSinglePlayerScreens();
+    loadGameEvents();
 }
 
 CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game) : m_screenStack()
@@ -90,9 +103,12 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game) : m_screenStack()
     m_game					= new CPfGames(*game);
     m_daoFactory			= new CDAOFactorySQLite(m_game->getSConnectionString());
     m_reportRegister        = new CSinglePlayerReportRegister();
-    m_eventStrategy         = new CSinglePlayerEventStrategy(m_daoFactory, m_reportRegister);
+    m_eventsQueue			= new CEventsQueue();
+    m_eventConsumer			= new CEventConsumer(this);
     m_optionManager         = new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
+
     createSinglePlayerScreens();
+    loadGameEvents();
 }
 
 CSinglePlayerGame::~CSinglePlayerGame()
@@ -109,7 +125,7 @@ CSinglePlayerGame::~CSinglePlayerGame()
 
     delete m_optionManager;
     delete m_reportRegister;
-    delete m_eventStrategy;
+    delete m_eventsQueue;
     delete m_daoFactory;
     delete m_game;
 }
@@ -117,11 +133,6 @@ CSinglePlayerGame::~CSinglePlayerGame()
 IDAOFactory* CSinglePlayerGame::getIDAOFactory()
 {
     return m_daoFactory;
-}
-
-CSinglePlayerEventStrategy* CSinglePlayerGame::getEventStrategy()
-{
-    return m_eventStrategy;
 }
 
 CSinglePlayerReportRegister* CSinglePlayerGame::getReportRegister()
@@ -134,17 +145,24 @@ CSinglePlayerOptionManager* CSinglePlayerGame::getOptionManager()
     return m_optionManager;
 }
 
+CEventsQueue* CSinglePlayerGame::getEventsQueue()
+{
+	return m_eventsQueue;
+}
+
+CEventConsumer* CSinglePlayerGame::getEventConsumer()
+{
+	return m_eventConsumer;
+}
+
 void CSinglePlayerGame::enter()
 {
     // Test if this game is a new game
-    IPfGameStatesDAO 	*gameStateDAO 	= m_daoFactory->getIPfGameStatesDAO();
-    CPfGameStates 		*newGameState	= gameStateDAO->findBySState(S_STATE_NEWGAME);
-    if( newGameState->getSValue()=="true" ){
+	if( m_optionManager->getGameNew() ){
         nextScreen(m_selectTeamScreen);
     }else{
         nextScreen(m_gameScreen);
     }
-    delete 	newGameState;
 }
 
 void CSinglePlayerGame::leave()
@@ -164,9 +182,19 @@ void CSinglePlayerGame::update()
     }
 }
 
+IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
+{
+	return new CSinglePlayerGame(user, gameName);
+}
+
+IGame* CSinglePlayerGame::load(const CPfGames *game)
+{
+	return new CSinglePlayerGame(game);
+}
+
 CPfGames* CSinglePlayerGame::save()
 {
-    m_optionManager->saveOptions();
+	m_optionManager->saveOptions();
     m_daoFactory->save();
 
     CDate nowDate;
@@ -190,7 +218,7 @@ void CSinglePlayerGame::previousScreen()
         m_screenStack.pop_back();
 
         if( !m_screenStack.empty() ){
-            m_screenStack.back()->enter();
+        	m_screenStack.back()->enter();
         }
     }
 }
@@ -211,7 +239,7 @@ void CSinglePlayerGame::nextScreen(IScreen* screen)
                 m_screenStack.back()->leave();
                 m_screenStack.pop_back();
             }else{
-                m_screenStack.back()->enter();
+            	m_screenStack.back()->enter();
                 break;
             }
         }
@@ -258,7 +286,7 @@ IScreen* CSinglePlayerGame::getTeamPlayersScreen()
 
 void CSinglePlayerGame::setGameOptionsDefaultValues()
 {
-    // nothing at the moment
+	getOptionManager()->setDefaultValues();
 }
 
 void CSinglePlayerGame::createSinglePlayerScreens()
@@ -270,4 +298,26 @@ void CSinglePlayerGame::createSinglePlayerScreens()
     m_selectTeamScreen	= new CScreenSelectTeam(this);
     m_simulatorScreen	= new CScreenSimulator(this);
     m_teamPlayersScreen	= new CScreenTeamPlayers(this);
+}
+
+void CSinglePlayerGame::loadGameEvents()
+{
+	// Load match events
+	IPfMatchesDAO *matchesDAO = m_daoFactory->getIPfMatchesDAO();
+
+	std::vector<CPfMatches*>* 			matchesList = matchesDAO->findMatchesNotPlayed();
+	std::vector<CPfMatches*>::iterator 	itMatches;
+
+	for( itMatches=matchesList->begin(); itMatches!=matchesList->end(); itMatches++ ){
+		CPfMatches*	match 	= *itMatches;
+
+		CDate		date	= match->getDMatch();
+		date.setHour(0);
+		date.setMin(0);
+		date.setSec(0);
+
+		m_eventsQueue->push(new CMatchEvent(date, match->getXMatch()));
+	}
+
+	matchesDAO->freeVector(matchesList);
 }

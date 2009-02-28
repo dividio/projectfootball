@@ -25,7 +25,9 @@
 #include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfTeamPlayers.h"
 #include "../db/dao/factory/IDAOFactory.h"
-#include "../utils/CLog.h"
+#include "../option/CSinglePlayerOptionManager.h"
+
+#include "../../utils/CLog.h"
 
 
 CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
@@ -161,7 +163,7 @@ void CScreenTeamPlayers::loadTeamPlayersList()
     m_alternateTeamPlayersList->resetList();
     m_notLineUpTeamPlayersList->resetList();
 
-    CPfTeams                        *team                       = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams                        *team                       = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
     IPfTeamPlayersDAO               *teamPlayersDAO             = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
     IPfTeamAveragesDAO              *teamAveragesDAO            = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
     std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
@@ -212,7 +214,7 @@ void CScreenTeamPlayers::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiCol
 
     int row_idx = list->addRow();
     int XTeamPlayer = player->getXTeamPlayer();
-    CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSShortName().c_str(), XTeamPlayer);
+	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSShortName().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 0, row_idx);
 
@@ -235,7 +237,7 @@ void CScreenTeamPlayers::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiCol
 void CScreenTeamPlayers::saveTeamPlayersList()
 {
     m_game->getIDAOFactory()->beginTransaction();
-    CPfTeams                    *team                   = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams                    *team                   = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
     IPfTeamPlayerContractsDAO   *teamPlayerContractsDAO = m_game->getIDAOFactory()->getIPfTeamPlayerContractsDAO();
 
     int i;
@@ -379,7 +381,7 @@ bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
         saveTeamPlayersList();
 
         IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
-        CPfTeams           *team            = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+        CPfTeams           *team            = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
         CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
         std::ostringstream average;
         average << teamAverage->getNTotal();

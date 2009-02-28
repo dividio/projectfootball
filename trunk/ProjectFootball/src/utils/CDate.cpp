@@ -248,38 +248,6 @@ void CDate::setSec(int seconds)
     mktime(&m_tm);
 }
 
-CDate& CDate::operator +=(int nDays)
-{
-    m_tm.tm_mday += nDays;
-    mktime(&m_tm);
-
-    return *this;
-}
-
-CDate& CDate::operator ++()
-{
-    m_tm.tm_mday++;
-    mktime(&m_tm);
-
-    return *this;
-}
-
-CDate& CDate::operator -=(int nDays)
-{
-    m_tm.tm_mday -= nDays;
-    mktime(&m_tm);
-
-    return *this;
-}
-
-CDate& CDate::operator --()
-{
-    m_tm.tm_mday--;
-    mktime(&m_tm);
-
-    return *this;
-}
-
 CDate& CDate::operator =(const CDate &date)
 {
     m_tm = date.m_tm;
@@ -302,22 +270,29 @@ bool CDate::operator !=(const CDate &date) const
 
 bool CDate::operator <(const CDate &date) const
 {
-    return  this->m_tm.tm_year<date.m_tm.tm_year
-            || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon<date.m_tm.tm_mon)
-            || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon==date.m_tm.tm_mon && this->m_tm.tm_mday<date.m_tm.tm_mday)
-            || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon==date.m_tm.tm_mon && this->m_tm.tm_mday==date.m_tm.tm_mday && this->m_tm.tm_hour<date.m_tm.tm_hour)
-            || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon==date.m_tm.tm_mon && this->m_tm.tm_mday==date.m_tm.tm_mday && this->m_tm.tm_hour==date.m_tm.tm_hour && this->m_tm.tm_min<date.m_tm.tm_min)
-            || (this->m_tm.tm_year==date.m_tm.tm_year && this->m_tm.tm_mon==date.m_tm.tm_mon && this->m_tm.tm_mday==date.m_tm.tm_mday && this->m_tm.tm_hour==date.m_tm.tm_hour && this->m_tm.tm_min==date.m_tm.tm_min && this->m_tm.tm_sec<date.m_tm.tm_sec);
+    if( this->m_tm.tm_year<date.m_tm.tm_year	){	return true;	}
+    if( this->m_tm.tm_year>date.m_tm.tm_year	){	return false;	}
+    if( this->m_tm.tm_mon<date.m_tm.tm_mon		){	return true;	}
+    if( this->m_tm.tm_mon>date.m_tm.tm_mon		){	return false;	}
+    if( this->m_tm.tm_mday<date.m_tm.tm_mday	){	return true;	}
+    if( this->m_tm.tm_mday>date.m_tm.tm_mday	){	return false;	}
+    if( this->m_tm.tm_hour<date.m_tm.tm_hour	){	return true;	}
+    if( this->m_tm.tm_hour>date.m_tm.tm_hour	){	return false;	}
+    if( this->m_tm.tm_min<date.m_tm.tm_min		){	return true;	}
+    if( this->m_tm.tm_min>date.m_tm.tm_min		){	return false;	}
+    if( this->m_tm.tm_sec<date.m_tm.tm_sec		){	return true;	}
+
+    return false;
 }
 
 bool CDate::operator <=(const CDate &date) const
 {
-    return this->operator <(date) || this->operator ==(date);
+    return !date.operator <(*this);
 }
 
 bool CDate::operator >(const CDate &date) const
 {
-    return !this->operator <(date) && !this->operator ==(date);
+    return date.operator <(*this);
 }
 
 bool CDate::operator >=(const CDate &date) const

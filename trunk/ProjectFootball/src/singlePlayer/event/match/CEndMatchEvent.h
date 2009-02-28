@@ -21,18 +21,15 @@
 #ifndef CENDMATCHEVENT_H_
 #define CENDMATCHEVENT_H_
 
-#include "IMatchEvent.h"
+#include "CMatchEvent.h"
 
-class CEndMatchEvent : public IMatchEvent
+class CEndMatchEvent : public CMatchEvent
 {
 public:
-	CEndMatchEvent(int xMatch);
-	virtual ~CEndMatchEvent();
+    CEndMatchEvent(const CDate &eventdate, int xMatch);
+    virtual ~CEndMatchEvent();
 
-    virtual int getXMatch();
-
-private:
-    int m_xMatch;
+    virtual void visitor(IEventVisitor &visitor) const;
 };
 
 #endif /*CENDMATCHEVENT_H_*/

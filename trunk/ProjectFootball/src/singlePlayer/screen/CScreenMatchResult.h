@@ -38,11 +38,13 @@ public:
 
     virtual void enter();
     virtual void leave();
+    virtual void update();
 
 private:
     bool continueButtonClicked(const CEGUI::EventArgs& e);
+    void loadMatchInfo();
 
-    CPfMatches              *m_match;
+private:
     CEGUI::Window           *m_competitionName;
     CEGUI::Window           *m_competitionPhaseName;
     CEGUI::Window           *m_homeName;
@@ -56,14 +58,8 @@ private:
     CEGUI::PushButton		*m_continueButton;
 
     CSinglePlayerGame		*m_game;
+    bool					 m_loadMatchInfo;
 
-    /** Simulate others matches of same competition phase than m_match
-     * TODO Simulate all matches with Date less or equal than current user match
-     */
-    void simulateMatches();
-    void simulateMatch(CPfMatches *match);
-    int getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam);
-    void loadMatchInfo(CPfMatches *match);
 };
 
 #endif /*CSCREENMATCHRESULT_H_*/

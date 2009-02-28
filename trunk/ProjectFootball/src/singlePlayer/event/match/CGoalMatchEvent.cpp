@@ -20,9 +20,9 @@
 
 #include "CGoalMatchEvent.h"
 
-CGoalMatchEvent::CGoalMatchEvent(int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal)
+CGoalMatchEvent::CGoalMatchEvent(const CDate &eventdate, int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal)
+: CMatchEvent(eventdate, xMatch)
 {
-    m_xMatch        = xMatch;
     m_xTeamScorer   = xTeamScorer;
     m_xTeplScorer   = xTeamPlayerScorer;
     m_nMinute       = nMinute;
@@ -33,27 +33,26 @@ CGoalMatchEvent::~CGoalMatchEvent()
 {
 }
 
-int CGoalMatchEvent::getXMatch()
-{
-    return m_xMatch;
+void CGoalMatchEvent::visitor(IEventVisitor &visitor) const{
+	visitor.goalMatchEventVisitor(*this);
 }
 
-int CGoalMatchEvent::getXTeamScorer()
+int CGoalMatchEvent::getXTeamScorer() const
 {
     return m_xTeamScorer;
 }
 
-int CGoalMatchEvent::getXTeamPlayerScorer()
+int CGoalMatchEvent::getXTeamPlayerScorer() const
 {
     return m_xTeplScorer;
 }
 
-int CGoalMatchEvent::getNMinute()
+int CGoalMatchEvent::getNMinute() const
 {
     return m_nMinute;
 }
 
-bool CGoalMatchEvent::getLOwnGoal()
+bool CGoalMatchEvent::getLOwnGoal() const
 {
     return m_lOwnGoal;
 }

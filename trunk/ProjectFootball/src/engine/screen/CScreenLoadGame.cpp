@@ -147,7 +147,7 @@ bool CScreenLoadGame::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
     CPfGames *game = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO()->findByXGame(itm->getID());
-    CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(game));
+    CGameEngine::getInstance()->loadGame(CSinglePlayerGame::load(game));
     delete game;
 
     return true;

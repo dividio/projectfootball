@@ -23,14 +23,15 @@
 #include <libintl.h>
 
 #include "../CSinglePlayerGame.h"
-#include "../option/CSinglePlayerOptionManager.h"
 #include "../utils/CLog.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../db/bean/CPfMatches.h"
+#include "../event/CEventsQueue.h"
+#include "../event/CEventConsumer.h"
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"
 #include "../event/match/CStartMatchEvent.h"
-#include "../event/strategy/CSinglePlayerEventStrategy.h"
+#include "../option/CSinglePlayerOptionManager.h"
 
 
 CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
@@ -38,8 +39,8 @@ CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
 {
     CLog::getInstance()->debug("CScreenMatchResult()");
 
-    m_game = game;
-    m_match = NULL;
+    m_game			= game;
+    m_loadMatchInfo = true;
 
     m_competitionName		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/Competition"));
     m_competitionPhaseName	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/CompetitionPhase"));
@@ -77,47 +78,50 @@ CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
 CScreenMatchResult::~CScreenMatchResult()
 {
     CLog::getInstance()->debug("~CScreenMatchResult()");
-    if(m_match != NULL) {
-        delete m_match;
-    }
 }
 
 void CScreenMatchResult::enter()
 {
     CScreen::enter();
-
-    simulateMatches();
-
-    IPfMatchesDAO *matchesDAO = m_game->getIDAOFactory()->getIPfMatchesDAO();
-    if(m_match != NULL) {
-        delete m_match;
-    }
-    m_match = matchesDAO->findLastPlayerTeamMatch();
-    loadMatchInfo(m_match);
 }
 
 void CScreenMatchResult::leave()
 {
     m_homeEventsList->resetList();
     m_awayEventsList->resetList();
+
+    m_loadMatchInfo = true;
 }
 
-void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
+void CScreenMatchResult::update()
 {
-    IDAOFactory             *daoFactory           = m_game->getIDAOFactory();
-    IPfMatchesDAO           *matchesDAO           = daoFactory->getIPfMatchesDAO();
-    IPfGoalsDAO             *goalsDAO             = daoFactory->getIPfGoalsDAO();
-    IPfTeamPlayersDAO       *playersDAO           = daoFactory->getIPfTeamPlayersDAO();
-    IPfCompetitionsDAO      *competitionsDAO      = daoFactory->getIPfCompetitionsDAO();
-    IPfCompetitionPhasesDAO *competitionPhasesDAO = daoFactory->getIPfCompetitionPhasesDAO();
-    IPfTeamsDAO             *teamsDAO             = daoFactory->getIPfTeamsDAO();
+	CScreen::update();
 
-    CPfTeams                *homeTeam         = teamsDAO->findByXTeam(match->getXFkTeamHome());
-    CPfTeams                *awayTeam         = teamsDAO->findByXTeam(match->getXFkTeamAway());
-    CPfCompetitionPhases    *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
-    CPfCompetitions         *competition      = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
-    std::vector<CPfGoals*>  *homeGoalsList    = goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), homeTeam->getXTeam());
-    std::vector<CPfGoals*>  *awayGoalsList    = goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), awayTeam->getXTeam());
+	if( m_loadMatchInfo ){
+		m_game->getEventConsumer()->consumeCurrentDayEvents();
+		loadMatchInfo();
+
+		m_loadMatchInfo = false;
+	}
+}
+
+void CScreenMatchResult::loadMatchInfo()
+{
+    IDAOFactory				*daoFactory				= m_game->getIDAOFactory();
+    IPfMatchesDAO			*matchesDAO				= daoFactory->getIPfMatchesDAO();
+    IPfGoalsDAO				*goalsDAO				= daoFactory->getIPfGoalsDAO();
+    IPfTeamPlayersDAO		*playersDAO      		= daoFactory->getIPfTeamPlayersDAO();
+    IPfCompetitionsDAO		*competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
+    IPfCompetitionPhasesDAO	*competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
+    IPfTeamsDAO				*teamsDAO				= daoFactory->getIPfTeamsDAO();
+
+    CPfMatches				*match				= matchesDAO->findLastTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
+    CPfTeams				*homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
+    CPfTeams				*awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
+    CPfCompetitionPhases	*competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
+    CPfCompetitions			*competition		= competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
+    std::vector<CPfGoals*>	*homeGoalsList		= goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), homeTeam->getXTeam());
+    std::vector<CPfGoals*>	*awayGoalsList		= goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), awayTeam->getXTeam());
 
     std::ostringstream nHomeGoals;
     nHomeGoals << homeGoalsList->size();
@@ -191,111 +195,8 @@ void CScreenMatchResult::loadMatchInfo(CPfMatches *match)
     delete competitionPhase;
     delete awayTeam;
     delete homeTeam;
-
+    delete match;
 }
-
-void CScreenMatchResult::simulateMatches()
-{
-    IDAOFactory         *daoFactory = m_game->getIDAOFactory();
-    IPfMatchesDAO       *matchesDAO = daoFactory->getIPfMatchesDAO();
-    CPfMatches          *userMatch;
-
-    bool resultMode = m_game->getOptionManager()->getMatchResultMode();
-
-    if(resultMode) { //result mode
-        userMatch = matchesDAO->findNextPlayerTeamMatch();
-    } else {
-        userMatch = matchesDAO->findLastPlayerTeamMatch();
-    }
-
-    srand(time(NULL));
-    daoFactory->beginTransaction();
-
-    std::vector<CPfMatches*>*           matchesList = matchesDAO->findByXFkCompetitionPhase(userMatch->getXFkCompetitionPhase());
-    std::vector<CPfMatches*>::iterator  it;
-
-    for( it=matchesList->begin(); it!=matchesList->end(); it++ ){
-        CPfMatches *match = (*it);
-        simulateMatch(match);
-    }
-    matchesDAO->freeVector(matchesList);
-
-    daoFactory->commit();
-
-    delete userMatch;
-}
-
-void CScreenMatchResult::simulateMatch(CPfMatches *match)
-{
-    if( !match->getLPlayed() ){
-        IDAOFactory        *daoFactory     = m_game->getIDAOFactory();
-        IPfTeamPlayersDAO  *teamPlayersDAO = daoFactory->getIPfTeamPlayersDAO();
-        IPfTeamAveragesDAO *teamsAvgDAO    = daoFactory->getIPfTeamAveragesDAO();
-
-        CStartMatchEvent    startMatchEvent(match->getXMatch());
-        m_game->getEventStrategy()->process(startMatchEvent);
-
-        int xHomeTeam  = match->getXFkTeamHome();
-        int xAwayTeam  = match->getXFkTeamAway();
-        CPfTeamAverages *homeTeamAvg = teamsAvgDAO->findByXTeam(xHomeTeam);
-        CPfTeamAverages *awayTeamAvg = teamsAvgDAO->findByXTeam(xAwayTeam);
-        int nHomeGoals = getRandomNGoals(homeTeamAvg, awayTeamAvg);
-        int nAwayGoals = getRandomNGoals(awayTeamAvg, homeTeamAvg);
-
-        delete homeTeamAvg;
-        delete awayTeamAvg;
-
-        if( nHomeGoals>0 ){
-            std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xHomeTeam);
-            while( nHomeGoals>0 ){
-                int numPlayer = rand()%teamPlayesList->size();
-                if(numPlayer == 0) { //Goalie don't score
-                    numPlayer = 10;
-                }
-                CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
-                CGoalMatchEvent goalMatchEvent(match->getXMatch(), xHomeTeam, teamPlayer->getXTeamPlayer(), rand()%90, false);
-                m_game->getEventStrategy()->process(goalMatchEvent);
-                nHomeGoals--;
-            }
-            teamPlayersDAO->freeVector(teamPlayesList);
-        }
-        if( nAwayGoals>0 ){
-            std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xAwayTeam);
-            while( nAwayGoals>0 ){
-                int numPlayer = rand()%teamPlayesList->size();
-                if(numPlayer == 0) { //Goalie don't score
-                    numPlayer = 10;
-                }
-                CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
-                CGoalMatchEvent goalMatchEvent(match->getXMatch(), xAwayTeam, teamPlayer->getXTeamPlayer(), rand()%90, false);
-                m_game->getEventStrategy()->process(goalMatchEvent);
-                nAwayGoals--;
-            }
-            teamPlayersDAO->freeVector(teamPlayesList);
-        }
-
-        CEndMatchEvent endMatchEvent(match->getXMatch());
-        m_game->getEventStrategy()->process(endMatchEvent);
-    }
-}
-
-
-int CScreenMatchResult::getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam)
-{
-    int goals = 0;
-    int teamFactor = attackTeam->getNTotal() - defenseTeam->getNTotal();
-
-    int n = rand()%100 + teamFactor;
-
-         if( n<25  )         { goals = 0; }
-    else if( n>=25 && n<55  ){ goals = 1; }
-    else if( n>=55 && n<80  ){ goals = 2; }
-    else if( n>=80 && n<96  ){ goals = 3; }
-    else if( n>=96 && n<100 ){ goals = 4; }
-    else if( n>=100 )        { goals = 5; }
-    return goals;
-}
-
 
 bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)
 {

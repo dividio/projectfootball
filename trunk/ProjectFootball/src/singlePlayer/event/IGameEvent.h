@@ -21,11 +21,17 @@
 #ifndef IGAMEEVENT_H_
 #define IGAMEEVENT_H_
 
+#include "../../utils/CDate.h"
+#include "IEventVisitor.h"
+
 class IGameEvent
 {
 public:
-	IGameEvent() {}
-	virtual ~IGameEvent() {}
+    IGameEvent() {}
+    virtual ~IGameEvent() {}
+
+    virtual const CDate& getDate() const =0;
+    virtual void visitor(IEventVisitor &visitor) const =0;
 };
 
 #endif /*IGAMEEVENT_H_*/

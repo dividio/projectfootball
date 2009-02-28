@@ -23,10 +23,12 @@
 #include <libintl.h>
 
 #include "../CSinglePlayerGame.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../event/CEventConsumer.h"
+#include "../option/CSinglePlayerOptionManager.h"
+
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
-#include "../db/dao/factory/IDAOFactory.h"
-#include "../option/CSinglePlayerOptionManager.h"
 
 
 CScreenGame::CScreenGame(CSinglePlayerGame *game)
@@ -105,9 +107,9 @@ void CScreenGame::enter()
     m_resultModeCheckbox->setSelected(m_game->getOptionManager()->getMatchResultMode());
 
     CEGUI::String imagesetName;
-    CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextPlayerTeamMatch();
+    CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
     if( nextMatch==NULL ){
-        CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+        CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
         m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
 
         IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
@@ -229,11 +231,11 @@ bool CScreenGame::resultsButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenGame::playButtonClicked(const CEGUI::EventArgs& e)
 {
-    if( m_game->getOptionManager()->getMatchResultMode() ){
-    	m_game->nextScreen(m_game->getMatchResultScreen());
-    } else {
-    	m_game->nextScreen(m_game->getSimulatorScreen());
-    }
+	if( m_game->getEventConsumer()->getLastEvent()!=NULL ){
+		m_game->getEventConsumer()->consumeLastEvent();
+	}else{
+		m_game->getEventConsumer()->consumeEvents();
+	}
 
 	return true;
 }

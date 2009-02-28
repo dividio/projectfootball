@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -18,52 +18,24 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CDATE_H_
-#define CDATE_H_
+#ifndef IEVENTVISITOR_H_
+#define IEVENTVISITOR_H_
 
-#include <time.h>
-#include <string>
+// Forward declarations
+class CMatchEvent;
+class CStartMatchEvent;
+class CGoalMatchEvent;
+class CEndMatchEvent;
 
-class CDate
-{
+class IEventVisitor {
 public:
-    CDate();
-    CDate(const CDate &date);
-    CDate(int day, int month, int year);
-    CDate(int day, int month, int year, int hour, int minutes, int seconds);
-    CDate(const std::string &timestamp);
-    virtual ~CDate();
+	IEventVisitor() {}
+	virtual ~IEventVisitor() {}
 
-    std::string format(const std::string &format) const;
-    std::string getTimestamp() const;
-
-    bool isValid() const;
-
-    int getYear()  const;
-    int getMonth() const;
-    int getDay()   const;
-    int getHour()  const;
-    int getMin()   const;
-    int getSec()   const;
-
-    void setYear(int year);
-    void setMonth(int month);
-    void setDay(int day);
-    void setHour(int hour);
-    void setMin(int minutes);
-    void setSec(int seconds);
-
-    CDate& operator =(const CDate &date);
-
-    bool operator ==(const CDate &date) const;
-    bool operator !=(const CDate &date) const;
-    bool operator <(const CDate &date)  const;
-    bool operator <=(const CDate &date) const;
-    bool operator >(const CDate &date)  const;
-    bool operator >=(const CDate &date) const;
-
-private:
-    struct tm m_tm;
+	virtual void matchEventVisitor(const CMatchEvent &event) =0;
+	virtual void startMatchEventVisitor(const CStartMatchEvent &event) =0;
+	virtual void goalMatchEventVisitor(const CGoalMatchEvent &event) =0;
+	virtual void endMatchEventVisitor(const CEndMatchEvent &event) =0;
 };
 
-#endif /*CDATE_H_*/
+#endif /* IEVENTVISITOR_H_ */

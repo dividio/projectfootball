@@ -44,8 +44,11 @@ public:
     virtual CPfMatches* findByXFkTeamAway(int XFkTeamAway);
     virtual CPfMatches* findByXFkTeamAway(const std::string &XFkTeamAway);
     virtual std::vector<CPfMatches*>* findMatches();
-    virtual CPfMatches* findNextPlayerTeamMatch();
-    virtual CPfMatches* findLastPlayerTeamMatch();
+    virtual std::vector<CPfMatches*>* findMatchesNotPlayed();
+    virtual CPfMatches* findNextTeamMatch(int XTeam);
+    virtual CPfMatches* findNextTeamMatch(const std::string &XTeam);
+    virtual CPfMatches* findLastTeamMatch(int XTeam);
+    virtual CPfMatches* findLastTeamMatch(const std::string &XTeam);
 
 };
 #endif /*CPFMATCHESDAOSQLITE_H_*/

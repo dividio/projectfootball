@@ -30,8 +30,7 @@
 
 #include "../../../dao/IPfCompetitionPhasesDAO.h"
 #include "../../../dao/IPfRankingDAO.h"
-#include "../../../dao/IPfTeamPlayerAveragesDAO.h"
-#include "../../../dao/IPfGameStatesDAO.h"
+#include "../../../dao/IPfTeamAveragesDAO.h"
 #include "../../../dao/IPfMatchesDAO.h"
 #include "../../../dao/IPfGameOptionsDAO.h"
 #include "../../../dao/IPfRegisteredTeamsDAO.h"
@@ -42,12 +41,11 @@
 #include "../../../dao/IPfCountriesDAO.h"
 #include "../../../dao/IPfCompetitionsDAO.h"
 #include "../../../dao/IPfTeamsDAO.h"
-#include "../../../dao/IPfTeamAveragesDAO.h"
+#include "../../../dao/IPfTeamPlayerAveragesDAO.h"
 
 #include "../CPfCompetitionPhasesDAOSQLite.h"
 #include "../CPfRankingDAOSQLite.h"
-#include "../CPfTeamPlayerAveragesDAOSQLite.h"
-#include "../CPfGameStatesDAOSQLite.h"
+#include "../CPfTeamAveragesDAOSQLite.h"
 #include "../CPfMatchesDAOSQLite.h"
 #include "../CPfGameOptionsDAOSQLite.h"
 #include "../CPfRegisteredTeamsDAOSQLite.h"
@@ -58,7 +56,7 @@
 #include "../CPfCountriesDAOSQLite.h"
 #include "../CPfCompetitionsDAOSQLite.h"
 #include "../CPfTeamsDAOSQLite.h"
-#include "../CPfTeamAveragesDAOSQLite.h"
+#include "../CPfTeamPlayerAveragesDAOSQLite.h"
 
 class CDAOFactorySQLite : public IDAOFactory
 {
@@ -77,8 +75,7 @@ public:
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO();
     virtual IPfRankingDAO* getIPfRankingDAO();
-    virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO();
-    virtual IPfGameStatesDAO* getIPfGameStatesDAO();
+    virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO();
     virtual IPfMatchesDAO* getIPfMatchesDAO();
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
     virtual IPfRegisteredTeamsDAO* getIPfRegisteredTeamsDAO();
@@ -89,7 +86,7 @@ public:
     virtual IPfCountriesDAO* getIPfCountriesDAO();
     virtual IPfCompetitionsDAO* getIPfCompetitionsDAO();
     virtual IPfTeamsDAO* getIPfTeamsDAO();
-    virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO();
+    virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO();
 
 
 private:
@@ -102,8 +99,7 @@ private:
 
     CPfCompetitionPhasesDAOSQLite *m_PfCompetitionPhasesDAOSQLite;
     CPfRankingDAOSQLite *m_PfRankingDAOSQLite;
-    CPfTeamPlayerAveragesDAOSQLite *m_PfTeamPlayerAveragesDAOSQLite;
-    CPfGameStatesDAOSQLite *m_PfGameStatesDAOSQLite;
+    CPfTeamAveragesDAOSQLite *m_PfTeamAveragesDAOSQLite;
     CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
     CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
     CPfRegisteredTeamsDAOSQLite *m_PfRegisteredTeamsDAOSQLite;
@@ -114,7 +110,7 @@ private:
     CPfCountriesDAOSQLite *m_PfCountriesDAOSQLite;
     CPfCompetitionsDAOSQLite *m_PfCompetitionsDAOSQLite;
     CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
-    CPfTeamAveragesDAOSQLite *m_PfTeamAveragesDAOSQLite;
+    CPfTeamPlayerAveragesDAOSQLite *m_PfTeamPlayerAveragesDAOSQLite;
 
 };
 #endif /*CDAOFACTORYSQLITE_H_*/

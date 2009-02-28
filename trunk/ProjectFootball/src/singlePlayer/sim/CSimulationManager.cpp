@@ -36,21 +36,25 @@
 #include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfMatches.h"
 #include "../db/bean/CPfTeams.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../event/CEventsQueue.h"
 #include "../event/match/CStartMatchEvent.h"
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"
-#include "../event/strategy/CSinglePlayerEventStrategy.h"
+#include "../option/CSinglePlayerOptionManager.h"
 #include "../screen/CScreenSimulator.h"
 
 #include "../../audio/CAudioSystem.h"
+#include "../../bullet/LinearMath/btVector3.h"
+#include "../../bullet/BulletDynamics/Dynamics/btRigidBody.h"
 #include "../../engine/option/CSystemOptionManager.h"
 #include "../../engine/utils/CTimer.h"
 #include "../../utils/CLog.h"
-#include "../bullet/LinearMath/btVector3.h"
-#include "../bullet/BulletDynamics/Dynamics/btRigidBody.h"
+#include "../../utils/CDate.h"
 
 
 CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
+: m_goalEvents()
 {
     CLog::getInstance()->debug("CSimulationManager()");
 
@@ -150,8 +154,8 @@ void CSimulationManager::update()
 
 void CSimulationManager::addToLog(const std::string &text)
 {
-	CScreenSimulator* screenSimulator = (CScreenSimulator*) m_game->getSimulatorScreen();
-	screenSimulator->addToLog(text);
+    CScreenSimulator* screenSimulator = (CScreenSimulator*) m_game->getSimulatorScreen();
+    screenSimulator->addToLog(text);
 }
 
 
@@ -206,9 +210,10 @@ void CSimulationManager::startMatch()
 
 void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal)
 {
-    CGoalMatchEvent *event = new CGoalMatchEvent(m_match->getXMatch(), teamScorer->getXTeam(),
-                                                 playerScorer->getXTeamPlayer(), minute, ownGoal);
-    m_goalEvents.push_back(event);
+    CDate goalDate(m_match->getDMatch());
+    goalDate.setMin(goalDate.getMin()+minute);
+
+    m_goalEvents.push_back(new CGoalMatchEvent(goalDate, m_match->getXMatch(), teamScorer->getXTeam(), playerScorer->getXTeamPlayer(), minute, ownGoal));
     CScreenSimulator *screen = (CScreenSimulator*) m_game->getSimulatorScreen();
     screen->updateScore();
 }
@@ -216,15 +221,21 @@ void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *play
 
 void CSimulationManager::endMatchEvent()
 {
-    CSinglePlayerEventStrategy *eventStrategy = m_game->getEventStrategy();
-    CStartMatchEvent startMatchEvent(m_match->getXMatch());
-    CEndMatchEvent endMatchEvent(m_match->getXMatch());
-    eventStrategy->process(startMatchEvent);
+    // Start match event
+    m_game->getEventsQueue()->push(new CStartMatchEvent(m_match->getDMatch(), m_match->getXMatch()));
+
+    // Goals events
     std::vector<CGoalMatchEvent*>::iterator it;
     for(it = m_goalEvents.begin(); it!=m_goalEvents.end(); it++) {
-        eventStrategy->process(*(*it));
+        m_game->getEventsQueue()->push((*it));
     }
-    eventStrategy->process(endMatchEvent);
+
+    // End match event
+    CDate endDate(m_match->getDMatch());
+    endDate.setMin(endDate.getMin()+90);
+    m_game->getEventsQueue()->push(new CEndMatchEvent(endDate, m_match->getXMatch()));
+
+    // Send notitify to simulator screen
     CScreenSimulator *screen = (CScreenSimulator*) m_game->getSimulatorScreen();
     screen->endMatchEvent();
 }
@@ -232,7 +243,7 @@ void CSimulationManager::endMatchEvent()
 
 void CSimulationManager::changeFormationEvent(int pos)
 {
-    CPfTeams *team = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams *team = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
     int xTeam = team->getXTeam();
     if(xTeam == m_homeTeam->getXTeam()) {
         m_homeTeam->changeFormation(pos);

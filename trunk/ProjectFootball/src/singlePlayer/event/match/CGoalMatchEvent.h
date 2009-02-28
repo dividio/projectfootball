@@ -21,22 +21,22 @@
 #ifndef CGOALMATCHEVENT_H_
 #define CGOALMATCHEVENT_H_
 
-#include "IMatchEvent.h"
+#include "CMatchEvent.h"
 
-class CGoalMatchEvent : public IMatchEvent
+class CGoalMatchEvent : public CMatchEvent
 {
 public:
-	CGoalMatchEvent(int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal);
-	virtual ~CGoalMatchEvent();
+    CGoalMatchEvent(const CDate &eventdate, int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal);
+    virtual ~CGoalMatchEvent();
 
-	virtual int getXMatch();
-	int    getXTeamScorer();
-	int    getXTeamPlayerScorer();
-	int    getNMinute();
-	bool   getLOwnGoal();
+    virtual void visitor(IEventVisitor &visitor) const;
+
+    int    getXTeamScorer() const;
+    int    getXTeamPlayerScorer() const;
+    int    getNMinute() const;
+    bool   getLOwnGoal() const;
 
 private:
-    int m_xMatch;
     int m_xTeamScorer;
     int m_xTeplScorer;
     int m_nMinute;

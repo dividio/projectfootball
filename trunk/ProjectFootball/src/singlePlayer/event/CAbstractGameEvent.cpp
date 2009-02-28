@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -18,18 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef IMATCHEVENT_H_
-#define IMATCHEVENT_H_
+#include "CAbstractGameEvent.h"
 
-#include "../IGameEvent.h"
-
-class IMatchEvent : public IGameEvent
+CAbstractGameEvent::CAbstractGameEvent(const CDate &eventdate)
+: m_eventdate(eventdate)
 {
-public:
-	IMatchEvent(){}
-	virtual ~IMatchEvent(){}
+}
 
-	virtual int getXMatch() =0;
-};
+CAbstractGameEvent::~CAbstractGameEvent()
+{
+}
 
-#endif /*IMATCHEVENT_H_*/
+const CDate& CAbstractGameEvent::getDate() const
+{
+    return m_eventdate;
+}

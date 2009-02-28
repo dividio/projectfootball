@@ -20,16 +20,15 @@
 
 #include "CEndMatchEvent.h"
 
-CEndMatchEvent::CEndMatchEvent(int xMatch)
+CEndMatchEvent::CEndMatchEvent(const CDate &eventdate, int xMatch)
+: CMatchEvent(eventdate, xMatch)
 {
-    m_xMatch = xMatch;
 }
 
 CEndMatchEvent::~CEndMatchEvent()
 {
 }
 
-int CEndMatchEvent::getXMatch()
-{
-    return m_xMatch;
+void CEndMatchEvent::visitor(IEventVisitor &visitor) const{
+	visitor.endMatchEventVisitor(*this);
 }

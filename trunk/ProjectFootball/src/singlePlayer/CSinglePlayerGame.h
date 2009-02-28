@@ -26,27 +26,26 @@
 
 #include "../engine/IGame.h"
 
-
 //Forward declarations
 class CPfGames;
 class CPfUsers;
 class IDAOFactory;
 class CSinglePlayerOptionManager;
 class CSinglePlayerReportRegister;
-class CSinglePlayerEventStrategy;
-
+class IGameEvent;
+class CEventsQueue;
+class CEventConsumer;
 
 class CSinglePlayerGame : public IGame
 {
 public:
-    CSinglePlayerGame(const CPfUsers *user, const char *gameName);
-    CSinglePlayerGame(const CPfGames *game);
     virtual ~CSinglePlayerGame();
 
     IDAOFactory*           			getIDAOFactory();
-    CSinglePlayerEventStrategy*  	getEventStrategy();
     CSinglePlayerReportRegister*	getReportRegister();
     CSinglePlayerOptionManager*    	getOptionManager();
+    CEventsQueue*					getEventsQueue();
+    CEventConsumer*					getEventConsumer();
 
     // IScreen
     virtual void enter();
@@ -54,6 +53,8 @@ public:
     virtual void update();
 
     // IGame
+    static IGame* newGame(const CPfUsers *user, const char *gameName);
+    static IGame* load(const CPfGames *game);
     virtual CPfGames* save();
 
     virtual void exit();
@@ -68,14 +69,21 @@ public:
     IScreen* getSimulatorScreen();
     IScreen* getTeamPlayersScreen();
 
+protected:
+    CSinglePlayerGame(const CPfUsers *user, const char *gameName);
+    CSinglePlayerGame(const CPfGames *game);
+
 private:
+
     void setGameOptionsDefaultValues();
     void createSinglePlayerScreens();
+    void loadGameEvents();
 
 protected:
     CPfGames                    *m_game;
     IDAOFactory					*m_daoFactory;
-    CSinglePlayerEventStrategy  *m_eventStrategy;
+    CEventsQueue				*m_eventsQueue;
+    CEventConsumer				*m_eventConsumer;
     CSinglePlayerReportRegister *m_reportRegister;
     CSinglePlayerOptionManager  *m_optionManager;
 

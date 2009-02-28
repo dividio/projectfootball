@@ -121,3 +121,12 @@ void CSinglePlayerOptionManager::setMatchResultMode(bool mode)
 {
 	setBooleanOption("Match", "ResultMode", mode);
 }
+
+CDate CSinglePlayerOptionManager::getGameCurrentDate()
+{
+	return getDateOption("Game", "CurrentDate");
+}
+void CSinglePlayerOptionManager::setGameCurrentDate(const CDate &date)
+{
+	setDateOption("Game", "CurrentDate", &date);
+}

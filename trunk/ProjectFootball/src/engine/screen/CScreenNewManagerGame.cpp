@@ -82,8 +82,7 @@ bool CScreenNewManagerGame::newGameButtonClicked(const CEGUI::EventArgs& e)
         CLog::getInstance()->exception("[CScreenNewManagerGame::newGameButtonClicked] User not defined");
     }
 
-    CGameEngine::getInstance()->loadGame(new CSinglePlayerGame(user, m_newGameEditbox->getText().c_str()));
-    CGameEngine::getInstance()->save();
+    CGameEngine::getInstance()->loadGame(CSinglePlayerGame::newGame(user, m_newGameEditbox->getText().c_str()));
 
     m_newGameEditbox->setText("");
 

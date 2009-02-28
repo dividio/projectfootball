@@ -23,13 +23,15 @@
 #include <stdio.h>
 #include <libintl.h>
 
-#include "../sim/entity/CReferee.h"
-#include "../../engine/CGameEngine.h"
-#include "../../utils/CLog.h"
 #include "../CSinglePlayerGame.h"
-#include "../sim/CSimulationManager.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../db/bean/CPfMatches.h"
+#include "../option/CSinglePlayerOptionManager.h"
+#include "../sim/CSimulationManager.h"
+#include "../sim/entity/CReferee.h"
+
+#include "../../engine/CGameEngine.h"
+#include "../../utils/CLog.h"
 
 
 CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
@@ -78,7 +80,7 @@ CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/StatisticsTab"))->setText((CEGUI::utf8*)gettext("Statistics"));
 
     // Event handle
-    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::backButtonClicked, this));
+//    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::backButtonClicked, this)); // TODO: Remove back button from this screen
     m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::continueButtonClicked, this));
     m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this));
     m_zoomButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::zoomButtonClicked, this));
@@ -222,10 +224,10 @@ void CScreenSimulator::enter()
     m_previousUpdateTime = CGameEngine::getInstance()->getClock().getCurrentTime();
 
     m_continueButton->setEnabled(false);
-    m_backButton->setEnabled(true);
+    m_backButton->setEnabled(false); // TODO: Remove back button from this screen
 
     IPfMatchesDAO *matchesDAO = m_game->getIDAOFactory()->getIPfMatchesDAO();
-    m_match = matchesDAO->findNextPlayerTeamMatch();
+    m_match = matchesDAO->findNextTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
     m_simulator = new CSimulationManager(m_match->getXMatch(), m_game);
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
@@ -358,7 +360,7 @@ void CScreenSimulator::loadTeamPlayers()
     m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(1.0,0));
     m_teamPlayersList->resetList();
 
-    CPfTeams                                *team               = m_game->getIDAOFactory()->getIPfTeamsDAO()->findPlayerTeam();
+    CPfTeams                                *team               = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
     IPfTeamPlayersDAO                       *teamPlayersDAO     = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
     std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
     std::vector<CPfTeamPlayers*>::iterator  it;
