@@ -14,7 +14,7 @@
             <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.19,0},{0.4,0},{0.24,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="ArridiDesign/Listbox" Name="SelectTeam/TeamsList" >
+        <Window Type="ArridiDesign/ItemListbox" Name="SelectTeam/TeamsList" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.248919,0},{0.4,0},{0.868919,0}}" />
         </Window>

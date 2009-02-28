@@ -30,6 +30,7 @@
 #include "../db/bean/CPfCompetitions.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../utils/CLog.h"
+#include "../utils/gui/CImageListboxItem.h"
 
 
 CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
@@ -45,7 +46,7 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
 
     m_selectButton        		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
     m_backButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BackButton"));
-    m_guiTeamsList        		= static_cast<CEGUI::Listbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
+    m_guiTeamsList        		= static_cast<CEGUI::ItemListbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
     m_guiTeamName         		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
     m_guiTeamBudget       		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
     m_guiTeamShield             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
@@ -218,9 +219,16 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
         for( it=m_teamsList->begin(); it!=m_teamsList->end(); it++ ){
             CPfTeams *team = (*it);
 
-            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)team->getSTeam().c_str());
-            item->setSelectionBrushImage(sel_img);
+//            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)team->getSTeam().c_str());
+            CEGUI::WindowManager * m_WndMgr = CEGUI::WindowManager::getSingletonPtr();
+            CEGUI::CImageListboxItem *item = (CEGUI::CImageListboxItem*)m_WndMgr->createWindow("ArridiDesign/ImageListboxItem", (CEGUI::utf8*)team->getSTeam().c_str());
+            //item->setSelectionBrushImage(sel_img);
             item->setID(team->getXTeam());
+            //item->setProperty()
+            //item->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
+            std::cout << "Hijos: "<<item->getChildCount() << " " << item->getChildAtIdx(0)->getName() <<std::endl;
+            item->getChildAtIdx(0)->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
+            item->setText((CEGUI::utf8*)team->getSTeam().c_str());
             m_guiTeamsList->addItem(item);
         }
     }
@@ -230,8 +238,9 @@ bool CScreenSelectTeam::teamsListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     if(m_guiTeamsList->getFirstSelectedItem()!=0 && m_teamsList!=0) {
         m_selectButton->setEnabled(true);
-        CEGUI::ListboxItem* item = m_guiTeamsList->getFirstSelectedItem();
+        CEGUI::ItemEntry* item = m_guiTeamsList->getFirstSelectedItem();
         int xTeam = item->getID();
+        std::cout << xTeam << std::endl;
 
         std::vector<CPfTeams*>::iterator it;
         bool found=false;
@@ -324,7 +333,7 @@ bool CScreenSelectTeam::teamsListboxMouseDoubleClick(const CEGUI::EventArgs& e)
 
 bool CScreenSelectTeam::selectButtonClicked(const CEGUI::EventArgs& e)
 {
-    CEGUI::ListboxItem* item = m_guiTeamsList->getFirstSelectedItem();
+    CEGUI::ItemEntry* item = m_guiTeamsList->getFirstSelectedItem();
     std::ostringstream xTeam;
     xTeam << item->getID();
 

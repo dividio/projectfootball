@@ -99,6 +99,7 @@
 <FalagardMapping WindowType="ArridiDesign/ComboDropList" TargetType="CEGUI/ComboDropList" Renderer="Falagard/Listbox" LookNFeel="ArridiDesign/ComboDropList" />
 <FalagardMapping WindowType="ArridiDesign/ComboEditbox"  TargetType="CEGUI/Editbox"	 Renderer="Falagard/Editbox" LookNFeel="ArridiDesign/ComboEditbox" />
 <FalagardMapping WindowType="ArridiDesign/Combobox"	TargetType="CEGUI/Combobox"	 Renderer="Falagard/Default" LookNFeel="ArridiDesign/Combobox" />
+<FalagardMapping WindowType="ArridiDesign/ItemListbox"       TargetType="CEGUI/ItemListbox"       Renderer="Falagard/ItemListbox"       LookNFeel="ArridiDesign/ItemListbox" />
 <FalagardMapping WindowType="ArridiDesign/Listbox"           TargetType="CEGUI/Listbox"           Renderer="Falagard/Listbox"           LookNFeel="ArridiDesign/Listbox" />
 <FalagardMapping WindowType="ArridiDesign/ListHeader"        TargetType="CEGUI/ListHeader"        Renderer="Falagard/ListHeader"        LookNFeel="ArridiDesign/ListHeader" />
 <FalagardMapping WindowType="ArridiDesign/ListHeaderSegment" TargetType="CEGUI/ListHeaderSegment" Renderer="Falagard/ListHeaderSegment" LookNFeel="ArridiDesign/ListHeaderSegment" />

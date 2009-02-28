@@ -29,6 +29,7 @@
 #include "utils/CResourceManager.h"
 #include "engine/option/CSystemOptionManager.h"
 #include "utils/CLog.h"
+#include "utils/gui/guiBinds.h"
 
 
 CApplication::CApplication()
@@ -234,10 +235,12 @@ void CApplication::setupCEGUI()
     // Other CEGUI setup here.
     CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"Skin.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"WidgetsImageset", (CEGUI::utf8*)"MouseArrow");
-    std::string tooltipName = CSystemOptionManager::getInstance()->getGUISkin();
-    tooltipName += "/Tooltip";
+    std::string guiName = CSystemOptionManager::getInstance()->getGUISkin();
+    std::string tooltipName = guiName + "/Tooltip";
     m_system->setDefaultTooltip((CEGUI::utf8*)tooltipName.c_str());
     m_system->setDefaultFont("DejaVuSans-10");
+
+    CEGUI::bindNewWidgets(guiName);
 
     int mouseVelocity = CSystemOptionManager::getInstance()->getGUIMouseVelocity();
     float mouseScale = 1.0f + (mouseVelocity/100);
