@@ -52,47 +52,76 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_homeTeamShield         = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamShield"));
     m_awayTeamShield         = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamShield"));
 
-    m_saveButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveButton"));
-    m_mainMenuButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainMenuButton"));
-    m_rankingButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/RankingButton"));
-    m_teamPlayersButton	 = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/TeamPlayersButton"));
-    m_resultsButton	     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultsButton"));
-    m_playButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayButton"));
-    m_saveConfirmButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Confirm"));
-    m_exitConfirmButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/YesButton"));
-    m_exitCancelButton   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/NoButton"));
-    m_resultModeCheckbox = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultMode"));
-    m_confirmSaveWindow  = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow"));
-    m_confirmSaveNote    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Note"));
-    m_confirmExitWindow  = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow"));
-    m_confirmExitNote    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/Note"));
+    m_gnsStatisticsWindow    = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GNS_Statistics"));
+    m_gnsApparelWindow       = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GNS_Apparel"));
+
+    m_saveButton            = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveButton"));
+    m_mainMenuButton        = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainMenuButton"));
+    m_gameExitButton        = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitButton"));
+    m_rankingButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/RankingButton"));
+    m_teamPlayersButton	    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/TeamPlayersButton"));
+    m_resultsButton	        = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultsButton"));
+    m_playButton            = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayButton"));
+    m_saveConfirmButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Confirm"));
+    m_exitConfirmButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/YesButton"));
+    m_exitCancelButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/NoButton"));
+    m_gameExitConfirmButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/YesButton"));
+    m_gameExitCancelButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/NoButton"));
+    m_radioApparelButton    = static_cast<CEGUI::RadioButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/Apparel"));
+    m_radioStatisticsButton = static_cast<CEGUI::RadioButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/Statistics"));
+    m_resultModeCheckbox    = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultMode"));
+    m_confirmSaveWindow     = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow"));
+    m_confirmSaveNote       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Note"));
+    m_confirmExitWindow     = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow"));
+    m_confirmExitNote       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/Note"));
+    m_confirmGameExitWindow = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow"));
+    m_confirmGameExitNote   = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/Note"));
 
     // i18n support
-    m_saveButton        ->setTooltipText((CEGUI::utf8*)gettext("Save"));
-    m_mainMenuButton    ->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
-    m_rankingButton     ->setText((CEGUI::utf8*)gettext("Ranking"));
-    m_teamPlayersButton ->setText((CEGUI::utf8*)gettext("Team Players"));
-    m_resultsButton     ->setText((CEGUI::utf8*)gettext("Results"));
-    m_playButton        ->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
-    m_resultModeCheckbox->setText((CEGUI::utf8*)gettext("Result Mode"));
-    m_confirmSaveNote   ->setText((CEGUI::utf8*)gettext("The game has been saved"));
-    m_confirmExitNote   ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game?"));
-    m_saveConfirmButton ->setText((CEGUI::utf8*)gettext("Ok"));
-    m_exitConfirmButton ->setText((CEGUI::utf8*)gettext("Yes"));
-    m_exitCancelButton  ->setText((CEGUI::utf8*)gettext("No"));
+    m_saveButton           ->setTooltipText((CEGUI::utf8*)gettext("Save"));
+    m_mainMenuButton       ->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
+    m_gameExitButton       ->setTooltipText((CEGUI::utf8*)gettext("Exit to OS"));
+    m_rankingButton        ->setText((CEGUI::utf8*)gettext("Ranking"));
+    m_teamPlayersButton    ->setText((CEGUI::utf8*)gettext("Team Players"));
+    m_resultsButton        ->setText((CEGUI::utf8*)gettext("Results"));
+    m_playButton           ->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
+    m_resultModeCheckbox   ->setText((CEGUI::utf8*)gettext("Result Mode"));
+    m_confirmSaveNote      ->setText((CEGUI::utf8*)gettext("The game has been saved"));
+    m_confirmExitNote      ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game?"));
+    m_confirmGameExitNote  ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game and return to the Operation System?"));
+    m_saveConfirmButton    ->setText((CEGUI::utf8*)gettext("Ok"));
+    m_exitConfirmButton    ->setText((CEGUI::utf8*)gettext("Yes"));
+    m_exitCancelButton     ->setText((CEGUI::utf8*)gettext("No"));
+    m_gameExitConfirmButton->setText((CEGUI::utf8*)gettext("Yes"));
+    m_gameExitCancelButton ->setText((CEGUI::utf8*)gettext("No"));
+    m_radioApparelButton   ->setTooltipText((CEGUI::utf8*)gettext("Apparel"));
+    m_radioStatisticsButton->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextEventLabel"))->setText((CEGUI::utf8*)gettext("Next event:"));
 
     // Event handle
-    m_saveButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveButtonClicked, this));
-    m_mainMenuButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::mainMenuButtonClicked, this));
-    m_rankingButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::rankingButtonClicked, this));
-    m_teamPlayersButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::teamPlayersButtonClicked, this));
-    m_resultsButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::resultsButtonClicked, this));
-    m_playButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::playButtonClicked, this));
-    m_resultModeCheckbox->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CScreenGame::resultModeCheckboxCheckStateChanged, this));
-    m_saveConfirmButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveConfirmButtonClicked, this));
-    m_exitConfirmButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitConfirmButtonClicked, this));
-    m_exitCancelButton  ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitCancelButtonClicked, this));
+    m_saveButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveButtonClicked, this));
+    m_mainMenuButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::mainMenuButtonClicked, this));
+    m_gameExitButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitButtonClicked, this));
+    m_rankingButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::rankingButtonClicked, this));
+    m_teamPlayersButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::teamPlayersButtonClicked, this));
+    m_resultsButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::resultsButtonClicked, this));
+    m_playButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::playButtonClicked, this));
+    m_resultModeCheckbox   ->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CScreenGame::resultModeCheckboxCheckStateChanged, this));
+    m_saveConfirmButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveConfirmButtonClicked, this));
+    m_exitConfirmButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitConfirmButtonClicked, this));
+    m_exitCancelButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitCancelButtonClicked, this));
+    m_gameExitConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitConfirmButtonClicked, this));
+    m_gameExitCancelButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitCancelButtonClicked, this));
+    m_radioApparelButton   ->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
+    m_radioStatisticsButton->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
+
+    // Group GNS windows
+    m_gnsWindowGroup.push_back(m_gnsStatisticsWindow);
+    m_gnsWindowGroup.push_back(m_gnsApparelWindow);
+
+    // Bind GNS windows to radio buttons
+    m_radioApparelButton   ->setUserData(m_gnsApparelWindow);
+    m_radioStatisticsButton->setUserData(m_gnsStatisticsWindow);
 }
 
 CScreenGame::~CScreenGame()
@@ -179,6 +208,7 @@ void CScreenGame::enter()
         delete awayTeam;
         delete nextMatch;
     }
+    m_radioStatisticsButton->setSelected(true);
 }
 
 void CScreenGame::saveGame()
@@ -209,6 +239,15 @@ bool CScreenGame::mainMenuButtonClicked(const CEGUI::EventArgs& e)
     m_confirmExitWindow->activate();
     m_confirmExitWindow->enable();
 	return true;
+}
+
+bool CScreenGame::gameExitButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_mainWindow->disable();
+    m_confirmGameExitWindow->setVisible(true);
+    m_confirmGameExitWindow->activate();
+    m_confirmGameExitWindow->enable();
+    return true;
 }
 
 bool CScreenGame::rankingButtonClicked(const CEGUI::EventArgs& e)
@@ -275,4 +314,48 @@ bool CScreenGame::exitCancelButtonClicked(const CEGUI::EventArgs& e)
     m_mainWindow->enable();
 
     return true;
+}
+
+bool CScreenGame::gameExitConfirmButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_confirmGameExitWindow->setVisible(false);
+    m_confirmGameExitWindow->deactivate();
+    m_confirmGameExitWindow->disable();
+    m_mainWindow->enable();
+    m_game->exit();
+    CGameEngine::getInstance()->exit();
+    return true;
+}
+
+bool CScreenGame::gameExitCancelButtonClicked(const CEGUI::EventArgs& e)
+{
+    m_confirmGameExitWindow->setVisible(false);
+    m_confirmGameExitWindow->deactivate();
+    m_confirmGameExitWindow->disable();
+    m_mainWindow->enable();
+
+    return true;
+}
+
+bool CScreenGame::gnsRadioButtonClicked(const CEGUI::EventArgs& e)
+{
+    CEGUI::RadioButton *button = m_radioApparelButton->getSelectedButtonInGroup();
+    CEGUI::FrameWindow *gnsWindow = (CEGUI::FrameWindow*)button->getUserData();
+    showGNS(gnsWindow);
+
+    return true;
+}
+
+void CScreenGame::showGNS(CEGUI::FrameWindow *gnsWindow)
+{
+
+    std::list<CEGUI::FrameWindow*>::iterator it;
+    for(it = m_gnsWindowGroup.begin(); it != m_gnsWindowGroup.end(); it++) {
+        CEGUI::FrameWindow *w = (*it);
+        if(w->getName() == gnsWindow->getName()) {
+            w->setVisible(true);
+        } else {
+            w->setVisible(false);
+        }
+    }
 }

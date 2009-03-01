@@ -40,6 +40,7 @@ public:
 private:
 	bool saveButtonClicked                  (const CEGUI::EventArgs& e);
 	bool mainMenuButtonClicked              (const CEGUI::EventArgs& e);
+	bool gameExitButtonClicked              (const CEGUI::EventArgs& e);
 	bool rankingButtonClicked               (const CEGUI::EventArgs& e);
 	bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
 	bool resultsButtonClicked               (const CEGUI::EventArgs& e);
@@ -48,6 +49,10 @@ private:
 	bool saveConfirmButtonClicked           (const CEGUI::EventArgs& e);
 	bool exitConfirmButtonClicked           (const CEGUI::EventArgs& e);
 	bool exitCancelButtonClicked            (const CEGUI::EventArgs& e);
+	bool gameExitConfirmButtonClicked       (const CEGUI::EventArgs& e);
+    bool gameExitCancelButtonClicked        (const CEGUI::EventArgs& e);
+    bool gnsRadioButtonClicked              (const CEGUI::EventArgs& e);
+	void showGNS                            (CEGUI::FrameWindow *gnsWindow);
 
 
     CEGUI::Window       *m_competitionName;
@@ -65,6 +70,7 @@ private:
 
     CEGUI::PushButton	*m_saveButton;
     CEGUI::PushButton	*m_mainMenuButton;
+    CEGUI::PushButton   *m_gameExitButton;
     CEGUI::PushButton	*m_rankingButton;
     CEGUI::PushButton	*m_teamPlayersButton;
     CEGUI::PushButton	*m_resultsButton;
@@ -72,12 +78,22 @@ private:
     CEGUI::PushButton   *m_saveConfirmButton;
     CEGUI::PushButton   *m_exitConfirmButton;
     CEGUI::PushButton   *m_exitCancelButton;
+    CEGUI::PushButton   *m_gameExitConfirmButton;
+    CEGUI::PushButton   *m_gameExitCancelButton;
     CEGUI::Checkbox   	*m_resultModeCheckbox;
     CEGUI::Window       *m_mainWindow;
+    CEGUI::FrameWindow  *m_gnsStatisticsWindow;
+    CEGUI::FrameWindow  *m_gnsApparelWindow;
+    CEGUI::RadioButton  *m_radioStatisticsButton;
+    CEGUI::RadioButton  *m_radioApparelButton;
     CEGUI::FrameWindow  *m_confirmSaveWindow;
     CEGUI::Window       *m_confirmSaveNote;
     CEGUI::FrameWindow  *m_confirmExitWindow;
     CEGUI::Window       *m_confirmExitNote;
+    CEGUI::FrameWindow  *m_confirmGameExitWindow;
+    CEGUI::Window       *m_confirmGameExitNote;
+
+    std::list<CEGUI::FrameWindow*> m_gnsWindowGroup;
 
 
     CSinglePlayerGame	*m_game;
