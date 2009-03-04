@@ -19,7 +19,6 @@
 ******************************************************************************/
 
 #include "CEventsQueue.h"
-#include "../../utils/CLog.h"
 
 bool eventsCompare(const IGameEvent* x, const IGameEvent* y){
     return (x->getDate()) > (y->getDate());
@@ -41,7 +40,6 @@ CEventsQueue::~CEventsQueue()
 void CEventsQueue::push(IGameEvent *event)
 {
     m_queue.push(event);
-    CLog::getInstance()->debug("event_queue[push]:%d", m_queue.size());
 }
 
 IGameEvent* CEventsQueue::pop(const CDate *date)
@@ -53,7 +51,6 @@ IGameEvent* CEventsQueue::pop(const CDate *date)
     IGameEvent *event = m_queue.top();
     if( date==NULL || event->getDate()< (*date) ){
         m_queue.pop();
-        CLog::getInstance()->debug("event_queue[pop]:%d", m_queue.size());
         return event;
     }
     else{
