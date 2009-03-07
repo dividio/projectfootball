@@ -23,7 +23,7 @@
 #include <vector>
 #include <boost/filesystem.hpp>
 
-#include "CSeasonGenerator.h"
+#include "CDataBaseGenerator.h"
 
 #include "db/bean/CPfMatches.h"
 #include "db/dao/factory/IDAOFactory.h"
@@ -80,7 +80,7 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfUsers *user, const char *gameName)
     m_game->setXFkUser(user->getXUser());
 
     m_daoFactory = new CDAOFactorySQLite(m_game->getSConnectionString());
-    CSeasonGenerator dataGenerator(m_daoFactory);
+    CDataBaseGenerator dataGenerator(m_daoFactory);
     dataGenerator.generateDataBase();
 
     m_reportRegister        = new CSinglePlayerReportRegister();

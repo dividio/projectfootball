@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef CSEASONGENERATOR_H_
-#define CSEASONGENERATOR_H_
+#ifndef CDATABASEGENERATOR_H_
+#define CDATABASEGENERATOR_H_
 
 #include <list>
 
@@ -32,11 +32,11 @@ class CPfCompetitions;
 class CPfTeams;
 class CPfTeamPlayers;
 
-class CSeasonGenerator
+class CDataBaseGenerator
 {
 public:
-    CSeasonGenerator(IDAOFactory *daoFactory);
-    virtual ~CSeasonGenerator();
+    CDataBaseGenerator(IDAOFactory *daoFactory);
+    virtual ~CDataBaseGenerator();
 
     void generateDataBase();
     void generateCompetitionMatches(CPfCompetitions *competition, CDate date);
@@ -52,4 +52,4 @@ private:
     void generateRandomPlayer(CPfTeamPlayers &player);
 };
 
-#endif /*CSEASONGENERATOR_H_*/
+#endif /*CDATABASEGENERATOR_H_*/

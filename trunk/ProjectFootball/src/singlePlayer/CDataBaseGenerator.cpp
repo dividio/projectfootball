@@ -18,7 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CSeasonGenerator.h"
+#include "CDataBaseGenerator.h"
 
 #include <vector>
 #include <sstream>
@@ -31,17 +31,17 @@
 #include "db/bean/CPfCompetitionPhases.h"
 #include "../utils/CDate.h"
 
-CSeasonGenerator::CSeasonGenerator(IDAOFactory *daoFactory)
+CDataBaseGenerator::CDataBaseGenerator(IDAOFactory *daoFactory)
 {
     m_daoFactory = daoFactory;
     m_numPlayers = 1;
 }
 
-CSeasonGenerator::~CSeasonGenerator()
+CDataBaseGenerator::~CDataBaseGenerator()
 {
 }
 
-void CSeasonGenerator::generateDataBase()
+void CDataBaseGenerator::generateDataBase()
 {
     m_daoFactory->beginTransaction();
 
@@ -72,7 +72,7 @@ void CSeasonGenerator::generateDataBase()
     m_daoFactory->getIPfCompetitionsDAO()->freeVector(competitions);
 }
 
-void CSeasonGenerator::generateCompetitionMatches(CPfCompetitions *competition, CDate date)
+void CDataBaseGenerator::generateCompetitionMatches(CPfCompetitions *competition, CDate date)
 {
     std::vector<CPfTeams*>              *teams = m_daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(competition->getXCompetition());
     std::vector<CPfCompetitionPhases*>  *phases = m_daoFactory->getIPfCompetitionPhasesDAO()->findByXFkCompetition(competition->getXCompetition_str());
@@ -138,7 +138,7 @@ void CSeasonGenerator::generateCompetitionMatches(CPfCompetitions *competition, 
 
 }
 
-void CSeasonGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date)
+void CDataBaseGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date)
 {
     CPfMatches match;
     IPfMatchesDAO *matchesDAO= m_daoFactory->getIPfMatchesDAO();
@@ -157,7 +157,7 @@ void CSeasonGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list
     }
 }
 
-void CSeasonGenerator::generateTeamPlayers()
+void CDataBaseGenerator::generateTeamPlayers()
 {
     std::vector<CPfTeams*>  *teams = m_daoFactory->getIPfTeamsDAO()->findTeams();
 
@@ -177,7 +177,7 @@ void CSeasonGenerator::generateTeamPlayers()
     m_daoFactory->getIPfTeamsDAO()->freeVector(teams);
 }
 
-void CSeasonGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
+void CDataBaseGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
 {
     //Generate player
     CPfTeamPlayers player;
@@ -199,7 +199,7 @@ void CSeasonGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
     contractsDAO->insertReg(&contract);
 }
 
-void CSeasonGenerator::generateRandomPlayer(CPfTeamPlayers &player)
+void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player)
 {
     std::ostringstream stream;
     stream << "Team Player " << m_numPlayers; // TODO Generate real names
