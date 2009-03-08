@@ -78,8 +78,8 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     m_confederationsCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::confederationsComboboxListSelectionChanged, this));
     m_countriesCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::countriesComboboxListSelectionChanged, this));
     m_competitionsCombobox  ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::competitionsComboboxListSelectionChanged, this));
-    m_guiTeamsList->subscribeEvent(CEGUI::Listbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxSelectionChanged, this));
-    m_guiTeamsList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxMouseDoubleClick, this));
+    m_guiTeamsList->subscribeEvent(CEGUI::ItemListbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxSelectionChanged, this));
+    m_guiTeamsList->subscribeEvent(CEGUI::ItemListbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxMouseDoubleClick, this));
     m_selectButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::selectButtonClicked, this));
     m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::backButtonClicked, this));
 
@@ -216,18 +216,13 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
     m_teamsList = teamsDAO->findTeamsByXCompetition(XCompetition);
 
     if(!m_teamsList->empty()) {
+		CEGUI::WindowManager * m_WndMgr = CEGUI::WindowManager::getSingletonPtr();
         std::vector<CPfTeams*>::iterator it;
         for( it=m_teamsList->begin(); it!=m_teamsList->end(); it++ ){
             CPfTeams *team = (*it);
-
-//            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)team->getSTeam().c_str());
-            CEGUI::WindowManager * m_WndMgr = CEGUI::WindowManager::getSingletonPtr();
+            
             CEGUI::CImageListboxItem *item = (CEGUI::CImageListboxItem*)m_WndMgr->createWindow("ArridiDesign/ImageListboxItem", (CEGUI::utf8*)team->getSTeam().c_str());
-            //item->setSelectionBrushImage(sel_img);
             item->setID(team->getXTeam());
-            //item->setProperty()
-            //item->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
-            std::cout << "Hijos: "<<item->getChildCount() << " " << item->getChildAtIdx(0)->getName() <<std::endl;
             item->getChildAtIdx(0)->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
             item->setText((CEGUI::utf8*)team->getSTeam().c_str());
             m_guiTeamsList->addItem(item);
@@ -335,7 +330,7 @@ bool CScreenSelectTeam::teamsListboxMouseDoubleClick(const CEGUI::EventArgs& e)
 bool CScreenSelectTeam::selectButtonClicked(const CEGUI::EventArgs& e)
 {
     CEGUI::ItemEntry* item = m_guiTeamsList->getFirstSelectedItem();
-    
+
     m_game->getOptionManager()->setGamePlayerTeam(item->getID());
     m_game->getOptionManager()->setGameNew(false);
 
