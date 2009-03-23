@@ -219,6 +219,19 @@ bool clickAudioEvent(const CEGUI::EventArgs &e)
     return true;
 }
 
+bool mouseOverAudioEvent(const CEGUI::EventArgs &e)
+{
+    const CEGUI::WindowEventArgs& we = static_cast<const CEGUI::WindowEventArgs&>(e);
+    if( (we.window->testClassName( CEGUI::PushButton::EventNamespace  ) ||
+         we.window->testClassName( CEGUI::RadioButton::EventNamespace ) ||
+         we.window->testClassName( CEGUI::Checkbox::EventNamespace    ))&&
+       !we.window->isAutoWindow() ) {
+       // It's a push button (and not an auto window, from scrollbars)
+        CAudioSystem::MOUSE_OVER->play();
+    }
+    return true;
+}
+
 void CApplication::setupCEGUI()
 {
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
@@ -249,6 +262,11 @@ void CApplication::setupCEGUI()
     CEGUI::GlobalEventSet::getSingleton().subscribeEvent(
        CEGUI::PushButton::EventNamespace+"/"+CEGUI::PushButton::EventClicked,
        CEGUI::Event::Subscriber(&clickAudioEvent)
+    );
+
+    CEGUI::GlobalEventSet::getSingleton().subscribeEvent(
+       CEGUI::Window::EventNamespace+"/"+CEGUI::Window::EventMouseEnters,
+       CEGUI::Event::Subscriber(&mouseOverAudioEvent)
     );
 }
 

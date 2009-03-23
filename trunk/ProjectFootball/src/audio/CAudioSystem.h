@@ -29,6 +29,7 @@ public:
     static CAudioSystem* getInstance();
     virtual ~CAudioSystem();
     static IAudioFile* CLICK;
+    static IAudioFile* MOUSE_OVER;
     static IAudioFile* LOW_KICK;
 
 private:
