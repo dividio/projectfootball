@@ -61,6 +61,17 @@
 	<Image Name="GNS_Button8Highlight" XPos="110" YPos="722" Width="102" Height="20" />
 	
 	
+	<Image Name="GNSApparelNormal" XPos="250" YPos="570" Width="54" Height="54" />
+	<Image Name="GNSApparelHighlight" XPos="250" YPos="624" Width="54" Height="54" />
+	<Image Name="GNSApparelFull" XPos="250" YPos="678" Width="54" Height="54" />
+	
+	<Image Name="GNSStatisticsNormal" XPos="304" YPos="570" Width="54" Height="54" />
+	<Image Name="GNSStatisticsHighlight" XPos="304" YPos="624" Width="54" Height="54" />
+	<Image Name="GNSStatisticsFull" XPos="304" YPos="678" Width="54" Height="54" />
+	
+	
+	
+	
 	<Image Name="GameQuitButtonNormal" XPos="0" YPos="432" Width="40" Height="40" />
 	<Image Name="GameQuitButtonHighlight" XPos="0" YPos="472" Width="40" Height="40" />
 	<Image Name="GameQuitButtonPushed" XPos="0" YPos="512" Width="40" Height="40" />

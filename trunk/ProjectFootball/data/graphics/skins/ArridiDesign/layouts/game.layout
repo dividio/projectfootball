@@ -338,16 +338,6 @@
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.621,0},{0.87,0},{0.795,0},{0.91,0}}" />
                 </Window>
-                <Window Type="ArridiDesign/RadioButton" Name="Game/Statistics" >
-                    <Property Name="Font" Value="DejaVuSans-10" />
-                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.621,0},{0.7,0},{0.795,0},{0.74,0}}" />
-                </Window>
-                <Window Type="ArridiDesign/RadioButton" Name="Game/Apparel" >
-                    <Property Name="Font" Value="DejaVuSans-10" />
-                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />                    
-                    <Property Name="UnifiedAreaRect" Value="{{0.621,0},{0.76,0},{0.795,0},{0.8,0}}" />
-                </Window>
                 <Window Type="ArridiDesign/GameHelpButton" Name="Game/HelpButton" >
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{-0.0127326,0},{0.93893,0},{0.0457884,0},{1.01527,0}}" />
