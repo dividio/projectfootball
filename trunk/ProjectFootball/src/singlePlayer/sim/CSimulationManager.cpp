@@ -129,10 +129,6 @@ CSimulationManager::~CSimulationManager()
         delete m_awayTeam;
     }
 
-    while(!m_goalEvents.empty()) {
-        delete m_goalEvents.back();
-        m_goalEvents.pop_back();
-    }
     delete m_match;
 }
 
