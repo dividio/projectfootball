@@ -20,9 +20,9 @@
 
 #include "CSimulationWorld.h"
 
-#include "../bullet/btBulletDynamicsCommon.h"
 #include "entity/CBaseGameEntity.h"
-#include "../utils/CLog.h"
+#include "../../bullet/btBulletDynamicsCommon.h"
+#include "../../utils/CLog.h"
 
 
 CSimulationWorld::CSimulationWorld()

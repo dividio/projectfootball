@@ -24,9 +24,9 @@
 
 #include <Ogre.h>
 
-#include "../bullet/LinearMath/btMotionState.h"
-#include "../bullet/LinearMath/btVector3.h"
-#include "../bullet/LinearMath/btTransform.h"
+#include "../../../bullet/LinearMath/btMotionState.h"
+#include "../../../bullet/LinearMath/btVector3.h"
+#include "../../../bullet/LinearMath/btTransform.h"
 
 
 

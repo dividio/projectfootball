@@ -21,7 +21,7 @@
 #include "CSteeringBehaviors.h"
 
 #include "entity/CMovingEntity.h"
-#include "../bullet/BulletDynamics/Dynamics/btRigidBody.h"
+#include "../../bullet/BulletDynamics/Dynamics/btRigidBody.h"
 
 
 CSteeringBehaviors::CSteeringBehaviors(CMovingEntity *agent)

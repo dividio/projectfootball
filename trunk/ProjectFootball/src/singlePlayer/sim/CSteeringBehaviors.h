@@ -22,7 +22,7 @@
 #ifndef CSTEERINGBEHAVIORS_H_
 #define CSTEERINGBEHAVIORS_H_
 
-#include "../bullet/LinearMath/btVector3.h"
+#include "../../bullet/LinearMath/btVector3.h"
 
 //Forward declarations
 class CMovingEntity;

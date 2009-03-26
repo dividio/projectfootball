@@ -24,7 +24,7 @@
 
 #include <vector>
 
-#include "../bullet/LinearMath/btAlignedObjectArray.h"
+#include "../../bullet/LinearMath/btAlignedObjectArray.h"
 
 class CBaseGameEntity;
 class btCollisionConfiguration;
