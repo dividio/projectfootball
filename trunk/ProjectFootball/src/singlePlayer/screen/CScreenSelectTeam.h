@@ -60,7 +60,7 @@ private:
 
     CEGUI::PushButton				*m_backButton;
     CEGUI::PushButton               *m_selectButton;
-    CEGUI::ItemListbox                  *m_guiTeamsList;
+    CEGUI::ItemListbox              *m_guiTeamsList;
     CEGUI::Window                   *m_guiTeamName;
     CEGUI::Window                   *m_guiTeamBudget;
     CEGUI::Window                   *m_guiTeamAverage;
