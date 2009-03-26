@@ -22,6 +22,9 @@
 
 #include <string.h>
 
+const CDate CDate::MIN_DATE("1970-01-01 00:00:00");
+const CDate CDate::MAX_DATE("9999-12-31 00:00:00");
+
 CDate::CDate()
 {
     memset(&m_tm, 0, sizeof(m_tm));
@@ -180,6 +183,16 @@ bool CDate::isValid() const
             && m_tm.tm_hour>=0 && m_tm.tm_hour<=23
             && m_tm.tm_min>=0 && m_tm.tm_min<=59
             && m_tm.tm_sec>=0 && m_tm.tm_sec<=59;
+}
+
+bool CDate::isLeap() const
+{
+	return isLeap(m_tm.tm_year+1900);
+}
+
+bool CDate::isLeap(int year)
+{
+	return (year%4==0 && year%100!=0) || year%400==0;
 }
 
 int CDate::getYear() const

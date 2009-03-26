@@ -38,6 +38,8 @@ public:
     std::string getTimestamp() const;
 
     bool isValid() const;
+    bool isLeap() const;
+    static bool isLeap(int year);
 
     int getYear()  const;
     int getMonth() const;
@@ -61,6 +63,10 @@ public:
     bool operator <=(const CDate &date) const;
     bool operator >(const CDate &date)  const;
     bool operator >=(const CDate &date) const;
+
+public:
+	static const CDate MIN_DATE;
+	static const CDate MAX_DATE;
 
 private:
     struct tm m_tm;
