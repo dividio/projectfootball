@@ -43,25 +43,40 @@ CPfTeams* CPfTeamsDAOSQLite::findByXTeam(int XTeam)
 
 CPfTeams* CPfTeamsDAOSQLite::findByXTeam(const std::string &XTeam)
 {
-    std::string sql("SELECT * FROM PF_TEAMS WHERE ");
-    sql = sql+"X_TEAM='"+XTeam+"'";
+    std::string sql(
+    		"SELECT * "
+    		"FROM PF_TEAMS ");
+    sql +=  "WHERE X_TEAM='"+XTeam+"'";
     return loadRegister(sql);
 }
 
-std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findTeams()
+std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findAll()
 {
     std::string sql("SELECT * FROM PF_TEAMS");
     return loadVector(sql);
 }
 
-std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findTeamsByXCompetition(int XCompetition)
+std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findByXFKCompetitionAndXFKSeason(int XFKCompetition, int XFKSeason)
 {
-    std::ostringstream stream;
-    stream << XCompetition;
-    std::string sql("SELECT * FROM PF_TEAMS WHERE X_TEAM IN ");
-    sql = sql + "(SELECT X_FK_TEAM FROM PF_REGISTERED_TEAMS WHERE X_FK_COMPETITION='"+stream.str()+"')";
-    sql = sql + " ORDER BY S_TEAM";
-    return loadVector(sql);
+    std::ostringstream strXFKCompetition;
+    strXFKCompetition << XFKCompetition;
+
+    std::ostringstream strXFKSeason;
+    strXFKSeason << XFKSeason;
+
+    return findByXFKCompetitionAndXFKSeason(strXFKCompetition.str(), strXFKSeason.str());
+}
+
+std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findByXFKCompetitionAndXFKSeason(const std::string &XFKCompetition, const std::string &XFKSeason)
+{
+	std::string sql(
+			"SELECT T.* "
+			"FROM PF_TEAMS T "
+			"  JOIN PF_TEAMS_BY_COMPETITIONS TBC ON TBC.X_FK_TEAM=T.X_TEAM "
+			"  JOIN PF_COMPETITIONS_BY_SEASON CBS ON CBS.X_COMPETITION_BY_SEASON=TBC.X_FK_COMPETITION_BY_SEASON ");
+	sql +=	"WHERE CBS.X_FK_SEASON='"+XFKSeason+"' AND CBS.X_FK_COMPETITION='"+XFKCompetition+"' ";
+	sql +=	"ORDER BY T.S_TEAM";
+	return loadVector(sql);
 }
 
 CPfTeams* CPfTeamsDAOSQLite::findByXFkCountry(int XFkCountry)
@@ -73,7 +88,9 @@ CPfTeams* CPfTeamsDAOSQLite::findByXFkCountry(int XFkCountry)
 
 CPfTeams* CPfTeamsDAOSQLite::findByXFkCountry(const std::string &XFkCountry)
 {
-    std::string sql("SELECT * FROM PF_TEAMS WHERE ");
-    sql = sql+"X_FK_COUNTRY='"+XFkCountry+"'";
+    std::string sql(
+    		"SELECT * "
+    		"FROM PF_TEAMS ");
+    sql +=  "WHERE X_FK_COUNTRY='"+XFkCountry+"'";
     return loadRegister(sql);
 }

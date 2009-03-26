@@ -29,6 +29,7 @@ CEndMatchEvent::~CEndMatchEvent()
 {
 }
 
-void CEndMatchEvent::visitor(IEventVisitor &visitor) const{
+void CEndMatchEvent::visitor(IEventVisitor &visitor) const
+{
 	visitor.endMatchEventVisitor(*this);
 }

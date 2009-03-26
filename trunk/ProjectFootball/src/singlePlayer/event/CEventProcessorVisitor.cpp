@@ -24,12 +24,20 @@
 #include <time.h>
 
 #include "CEventsQueue.h"
+
+#include "season/CStartSeasonEvent.h"
+#include "season/CEndSeasonEvent.h"
+
+#include "competition/CStartCompetitionEvent.h"
+#include "competition/CEndCompetitionEvent.h"
+
 #include "match/CMatchEvent.h"
 #include "match/CStartMatchEvent.h"
 #include "match/CGoalMatchEvent.h"
 #include "match/CEndMatchEvent.h"
 
 #include "../CSinglePlayerGame.h"
+#include "../CSeasonGenerator.h"
 #include "../db/bean/CPfGoals.h"
 #include "../db/bean/CPfMatches.h"
 #include "../db/bean/CPfTeamAverages.h"
@@ -59,6 +67,26 @@ CEventProcessorVisitor::~CEventProcessorVisitor()
 		delete goalsVector;
 	}
 	m_matchesMap.clear();
+}
+
+void CEventProcessorVisitor::startSeasonEventVisitor(const CStartSeasonEvent &event)
+{
+	// Nothing to do
+}
+
+void CEventProcessorVisitor::endSeasonEventVisitor(const CEndSeasonEvent &event)
+{
+	CSeasonGenerator::generateSeason(m_game);
+}
+
+void CEventProcessorVisitor::startCompetitionEventVisitor(const CStartCompetitionEvent &event)
+{
+	// Nothing to do
+}
+
+void CEventProcessorVisitor::endCompetitionEventVisitor(const CEndCompetitionEvent &event)
+{
+	// Nothing to do
 }
 
 void CEventProcessorVisitor::matchEventVisitor(const CMatchEvent &event)

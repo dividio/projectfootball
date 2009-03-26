@@ -33,7 +33,7 @@ CQuickGame::CQuickGame(const CPfUsers *user)
 
     IPfTeamsDAO         *teamsDAO       = m_daoFactory->getIPfTeamsDAO();
 
-    std::vector<CPfTeams*> *teamsList = teamsDAO->findTeams();
+    std::vector<CPfTeams*> *teamsList = teamsDAO->findAll();
     if( teamsList->empty() ){
         CLog::getInstance()->exception("[CQuickGame::CQuickGame] Teams list is empty");
     }

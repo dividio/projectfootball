@@ -24,7 +24,8 @@
 
 #include "../CSinglePlayerGame.h"
 #include "../db/dao/factory/IDAOFactory.h"
-#include "../utils/CLog.h"
+
+#include "../../utils/CLog.h"
 
 
 CScreenResults::CScreenResults(CSinglePlayerGame *game)
@@ -155,18 +156,18 @@ void CScreenResults::loadResultsList()
                 std::ostringstream nAwayGoals;
                 nAwayGoals << awayGoalsList->size();
 
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamHome->getSTeam().c_str()),    0, row_idx);
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)nHomeGoals.str().c_str()),        1, row_idx);
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamAway->getSTeam().c_str()),    2, row_idx);
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)nAwayGoals.str().c_str()),        3, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamHome->getSTeam().c_str()),	0, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)nHomeGoals.str().c_str()),		1, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamAway->getSTeam().c_str()),	2, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)nAwayGoals.str().c_str()),		3, row_idx);
 
                 goalsDAO->freeVector(homeGoalsList);
                 goalsDAO->freeVector(awayGoalsList);
             }else{
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamHome->getSTeam().c_str()),    0, row_idx);
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)"-"),                     1, row_idx);
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamAway->getSTeam().c_str()),    2, row_idx);
-                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)"-"),                     3, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamHome->getSTeam().c_str()),	0, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)"-"),							1, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)teamAway->getSTeam().c_str()),	2, row_idx);
+                m_resultsList->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)"-"),							3, row_idx);
             }
 
             delete teamHome;

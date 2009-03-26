@@ -38,8 +38,10 @@ public:
     virtual std::vector<CPfCompetitions*>*  findCompetitions();
     virtual CPfCompetitions* findByXCompetition(int XCompetition);
     virtual CPfCompetitions* findByXCompetition(const std::string &XCompetition);
-    virtual std::vector<CPfCompetitions*>* findByXFkCountry(int XFkCountry);
-    virtual std::vector<CPfCompetitions*>* findByXFkCountry(const std::string &XFkCountry);
+    virtual std::vector<CPfCompetitions*>* findByXFkCountryAndXFKSeason(int XFkCountry, int XFKseason);
+    virtual std::vector<CPfCompetitions*>* findByXFkCountryAndXFKSeason(const std::string &XFkCountry, const std::string &XFKSeason);
+    virtual std::vector<CPfCompetitions*>* findByXFkSeason(int XFKSeason);
+    virtual std::vector<CPfCompetitions*>* findByXFkSeason(const std::string &XFKSeason);
 
 };
 #endif /*CPFCOMPETITIONSDAOSQLITE_H_*/

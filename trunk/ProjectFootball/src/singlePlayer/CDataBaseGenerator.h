@@ -35,21 +35,19 @@ class CPfTeamPlayers;
 class CDataBaseGenerator
 {
 public:
-    CDataBaseGenerator(IDAOFactory *daoFactory);
     virtual ~CDataBaseGenerator();
 
-    void generateDataBase();
-    void generateCompetitionMatches(CPfCompetitions *competition, CDate date);
+    static void generateDataBase(IDAOFactory *daoFactory);
 
+protected:
+    CDataBaseGenerator();
 
 private:
-    IDAOFactory *m_daoFactory;
-    int          m_numPlayers;
+    static int	m_numPlayers;
 
-    void generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date);
-    void generateTeamPlayers();
-    void generatePlayer(CPfTeams *team, int lineUpOrder);
-    void generateRandomPlayer(CPfTeamPlayers &player);
+    static void generateTeamPlayers(IDAOFactory *daoFactory);
+    static void generatePlayer(IDAOFactory *daoFactory, CPfTeams *team, int lineUpOrder);
+    static void generateRandomPlayer(CPfTeamPlayers &player);
 };
 
 #endif /*CDATABASEGENERATOR_H_*/

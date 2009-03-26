@@ -23,6 +23,7 @@
 #include "CScreenSelectTeam.h"
 
 #include "CScreenGame.h"
+
 #include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfTeams.h"
 #include "../db/bean/CPfConfederations.h"
@@ -30,9 +31,9 @@
 #include "../db/bean/CPfCompetitions.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../option/CSinglePlayerOptionManager.h"
-#include "../utils/CLog.h"
-#include "../utils/gui/CImageListboxItem.h"
 
+#include "../../utils/CLog.h"
+#include "../../utils/gui/CImageListboxItem.h"
 
 CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     :CScreen("selectTeam.layout")
@@ -44,6 +45,7 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     m_countriesList			= NULL;
     m_competitionsList		= NULL;
     m_teamsList				= NULL;
+    m_lastSeason			= NULL;
 
     m_selectButton        		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
     m_backButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BackButton"));
@@ -94,6 +96,7 @@ void CScreenSelectTeam::enter()
 {
     CScreen::enter();
 
+    loadLastSeason();
     int confederation = loadConfederationsList();
     int country       = loadCountriesList(confederation);
     int competition   = loadCompetitionsList(country);
@@ -120,6 +123,10 @@ void CScreenSelectTeam::leave()
         m_game->getIDAOFactory()->getIPfTeamsDAO()->freeVector(m_teamsList);
         m_teamsList = NULL;
     }
+    if( m_lastSeason!=NULL ){
+    	delete m_lastSeason;
+    	m_lastSeason = NULL;
+    }
 
     m_confederationsCombobox->resetList();
     m_countriesCombobox     ->resetList();
@@ -128,13 +135,27 @@ void CScreenSelectTeam::leave()
     clearTeamInfo();
 }
 
+void CScreenSelectTeam::loadLastSeason()
+{
+	if( m_lastSeason!=NULL ){
+		delete m_lastSeason;
+		m_lastSeason = NULL;
+	}
+
+	IPfSeasonsDAO *seasonsDAO = m_game->getIDAOFactory()->getIPfSeasonsDAO();
+	m_lastSeason = seasonsDAO->findLastSeason();
+	if( m_lastSeason==NULL || m_lastSeason->getXSeason_str()=="" ){
+		CLog::getInstance()->exception("[CScreenSelectTeam::loadLastSeason] Last season not found");
+	}
+}
+
 int CScreenSelectTeam::loadConfederationsList()
 {
     IPfConfederationsDAO *confederationsDAO = m_game->getIDAOFactory()->getIPfConfederationsDAO();
     if(m_confederationsList!=NULL) {
         confederationsDAO->freeVector(m_confederationsList);
     }
-    m_confederationsList = confederationsDAO->findConfederationsWithLeague();
+    m_confederationsList = confederationsDAO->findByXFKSeasonWithLeague(m_lastSeason->getXSeason_str());
 
 
     std::vector<CPfConfederations*>::iterator it;
@@ -157,7 +178,7 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
     if(m_countriesList!=NULL) {
         countriesDAO->freeVector(m_countriesList);
     }
-    m_countriesList = countriesDAO->findByXFkConfederationWithLeague(XConfederation);
+    m_countriesList = countriesDAO->findByXFkConfederationAndXFKSeasonWithLeague(XConfederation, m_lastSeason->getXSeason());
     int selectedCountry = -1;
 
     if(!m_countriesList->empty()) {
@@ -181,11 +202,11 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
 
 int CScreenSelectTeam::loadCompetitionsList(int XCountry)
 {
-    IPfCompetitionsDAO *competitionsDAO = m_game->getIDAOFactory()->getIPfCompetitionsDAO();
+    IPfCompetitionsDAO 	*competitionsDAO 	= m_game->getIDAOFactory()->getIPfCompetitionsDAO();
     if(m_competitionsList!=NULL) {
         competitionsDAO->freeVector(m_competitionsList);
     }
-    m_competitionsList = competitionsDAO->findByXFkCountry(XCountry);
+    m_competitionsList = competitionsDAO->findByXFkCountryAndXFKSeason(XCountry, m_lastSeason->getXSeason());
     int selectedCompetition = -1;
 
     if(!m_competitionsList->empty()) {
@@ -213,7 +234,7 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
     if(m_teamsList!=NULL) {
         teamsDAO->freeVector(m_teamsList);
     }
-    m_teamsList = teamsDAO->findTeamsByXCompetition(XCompetition);
+    m_teamsList = teamsDAO->findByXFKCompetitionAndXFKSeason(XCompetition, m_lastSeason->getXSeason());
 
     if(!m_teamsList->empty()) {
 		CEGUI::WindowManager * m_WndMgr = CEGUI::WindowManager::getSingletonPtr();
@@ -232,7 +253,7 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
 
 bool CScreenSelectTeam::teamsListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
-    if(m_guiTeamsList->getFirstSelectedItem()!=0 && m_teamsList!=0) {
+    if(m_guiTeamsList->getFirstSelectedItem()!=0 && m_teamsList!=NULL) {
         m_selectButton->setEnabled(true);
         CEGUI::ItemEntry* item = m_guiTeamsList->getFirstSelectedItem();
         int xTeam = item->getID();

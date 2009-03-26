@@ -27,10 +27,22 @@ class CStartMatchEvent;
 class CGoalMatchEvent;
 class CEndMatchEvent;
 
+class CStartCompetitionEvent;
+class CEndCompetitionEvent;
+
+class CStartSeasonEvent;
+class CEndSeasonEvent;
+
 class IEventVisitor {
 public:
 	IEventVisitor() {}
 	virtual ~IEventVisitor() {}
+
+	virtual void startSeasonEventVisitor(const CStartSeasonEvent &event) =0;
+	virtual void endSeasonEventVisitor(const CEndSeasonEvent &event) =0;
+
+	virtual void startCompetitionEventVisitor(const CStartCompetitionEvent &event) =0;
+	virtual void endCompetitionEventVisitor(const CEndCompetitionEvent &event) =0;
 
 	virtual void matchEventVisitor(const CMatchEvent &event) =0;
 	virtual void startMatchEventVisitor(const CStartMatchEvent &event) =0;

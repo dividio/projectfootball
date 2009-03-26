@@ -23,7 +23,6 @@
 #include <libintl.h>
 
 #include "../CSinglePlayerGame.h"
-#include "../utils/CLog.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../db/bean/CPfMatches.h"
 #include "../event/CEventsQueue.h"
@@ -32,6 +31,8 @@
 #include "../event/match/CGoalMatchEvent.h"
 #include "../event/match/CStartMatchEvent.h"
 #include "../option/CSinglePlayerOptionManager.h"
+
+#include "../../utils/CLog.h"
 
 
 CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)

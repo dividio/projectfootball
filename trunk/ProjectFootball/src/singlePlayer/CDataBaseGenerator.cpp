@@ -29,159 +29,64 @@
 #include "db/bean/CPfTeamPlayers.h"
 #include "db/bean/CPfCompetitions.h"
 #include "db/bean/CPfCompetitionPhases.h"
+
 #include "../utils/CDate.h"
 
-CDataBaseGenerator::CDataBaseGenerator(IDAOFactory *daoFactory)
+int CDataBaseGenerator::m_numPlayers = 1;
+
+CDataBaseGenerator::CDataBaseGenerator()
 {
-    m_daoFactory = daoFactory;
-    m_numPlayers = 1;
 }
 
 CDataBaseGenerator::~CDataBaseGenerator()
 {
 }
 
-void CDataBaseGenerator::generateDataBase()
+void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
 {
-    m_daoFactory->beginTransaction();
+	daoFactory->beginTransaction();
 
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/tables.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/view_ranking.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/indexes.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_gameoptions.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_countries.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teams.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_competitions.sql");
-    m_daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_registeredteams.sql");
+	daoFactory->executeScriptFile("data/database/scripts/singleplayer/tables.sql");
+	daoFactory->executeScriptFile("data/database/scripts/singleplayer/view_ranking.sql");
+	daoFactory->executeScriptFile("data/database/scripts/singleplayer/indexes.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_gameoptions.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_countries.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teams.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_competitions.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_seasons.sql");
 
 
     //Players Generation
-    generateTeamPlayers();
-
-    //Matches Generation
-    std::vector<CPfCompetitions*> *competitions = m_daoFactory->getIPfCompetitionsDAO()->findCompetitions();
-    std::vector<CPfCompetitions*>::iterator it;
-    CDate date(31, 8, 2008, 17, 0, 0); // TODO: Remove magical numbers
-
-    for(it = competitions->begin(); it != competitions->end(); it++) {
-        generateCompetitionMatches((*it), date);
-    }
-
-    m_daoFactory->commit();
-    m_daoFactory->getIPfCompetitionsDAO()->freeVector(competitions);
+    generateTeamPlayers(daoFactory);
+    daoFactory->commit();
 }
 
-void CDataBaseGenerator::generateCompetitionMatches(CPfCompetitions *competition, CDate date)
+void CDataBaseGenerator::generateTeamPlayers(IDAOFactory *daoFactory)
 {
-    std::vector<CPfTeams*>              *teams = m_daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(competition->getXCompetition());
-    std::vector<CPfCompetitionPhases*>  *phases = m_daoFactory->getIPfCompetitionPhasesDAO()->findByXFkCompetition(competition->getXCompetition_str());
-    int numTeams = teams->size();
-    int numPhases = phases->size();
-    int returnOffset = numPhases/2;
-    CDate returnDate = date;
-    returnDate.setDay(returnDate.getDay()+7*returnOffset);
-
-    std::list<CPfTeams*> *homeList = new std::list<CPfTeams*>();
-    std::list<CPfTeams*> *awayList = new std::list<CPfTeams*>();
-    std::list<CPfTeams*> *auxList;
-
-    int count;
-    std::vector<CPfTeams*>::iterator it;
-    for(count = 0, it = teams->begin(); it!=teams->end(); count++, it++) {
-        if(count<numTeams/2) {
-            homeList->push_back((*it));
-        } else {
-            awayList->push_back((*it));
-        }
-    }
-
-    generateMatches(homeList, awayList, phases->operator[](0)->getXCompetitionPhase(), date);
-    generateMatches(awayList, homeList, phases->operator[](returnOffset)->getXCompetitionPhase(), returnDate);
-    for(count=1; count < numPhases/2; count++) {
-        date.setDay(date.getDay()+7);
-        returnDate.setDay(returnDate.getDay()+7);
-
-        if(count % 2 != 0) {
-            auxList = homeList;
-            homeList = awayList;
-            awayList = auxList;
-
-            CPfTeams* auxTeam = awayList->back();
-            awayList->pop_back();
-            awayList->push_front(auxTeam);
-        } else {
-            auxList = homeList;
-            homeList = awayList;
-            awayList = auxList;
-
-            CPfTeams* homeFront = homeList->front();
-            homeList->pop_front();
-            CPfTeams* awayFront = awayList->front();
-            awayList->pop_front();
-            CPfTeams* homeBack = homeList->back();
-            homeList->pop_back();
-
-            homeList->push_back(homeFront);
-            homeList->push_front(awayFront);
-            awayList->push_back(homeBack);
-        }
-
-        generateMatches(homeList, awayList, phases->operator[](count)->getXCompetitionPhase(), date);
-        generateMatches(awayList, homeList, phases->operator[](count + returnOffset)->getXCompetitionPhase(), returnDate);
-    }
-
-    delete awayList;
-    delete homeList;
-    m_daoFactory->getIPfCompetitionPhasesDAO()->freeVector(phases);
-    m_daoFactory->getIPfTeamsDAO()->freeVector(teams);
-
-}
-
-void CDataBaseGenerator::generateMatches(std::list<CPfTeams*>* homeList, std::list<CPfTeams*>* awayList, int XCompetitionPhase, const CDate &date)
-{
-    CPfMatches match;
-    IPfMatchesDAO *matchesDAO= m_daoFactory->getIPfMatchesDAO();
-    std::list<CPfTeams*>::iterator itHome;
-    std::list<CPfTeams*>::iterator itAway;
-    for(itHome = homeList->begin(), itAway = awayList->begin(); itHome != homeList->end(); itHome++, itAway++) {
-        CPfTeams *homeTeam = (*itHome);
-        CPfTeams *awayTeam = (*itAway);
-
-        match.setDMatch(date);
-        match.setLPlayed(false);
-        match.setXFkCompetitionPhase(XCompetitionPhase);
-        match.setXFkTeamAway(awayTeam->getXTeam());
-        match.setXFkTeamHome(homeTeam->getXTeam());
-        matchesDAO->insertReg(&match);
-    }
-}
-
-void CDataBaseGenerator::generateTeamPlayers()
-{
-    std::vector<CPfTeams*>  *teams = m_daoFactory->getIPfTeamsDAO()->findTeams();
+    std::vector<CPfTeams*>  *teams = daoFactory->getIPfTeamsDAO()->findAll();
 
     std::vector<CPfTeams*>::iterator it;
     for(it = teams->begin(); it != teams->end(); it++) {
-        std::vector<CPfTeamPlayers*> *teamPlayers = m_daoFactory->getIPfTeamPlayersDAO()->findActiveByXFkTeam((*it)->getXTeam_str());
+        std::vector<CPfTeamPlayers*> *teamPlayers = daoFactory->getIPfTeamPlayersDAO()->findActiveByXFkTeam((*it)->getXTeam_str());
         int contractedPlayers = teamPlayers->size();
         int neededPlayers = 17 - contractedPlayers; //TODO define MAXPLAYERS
         for( int i = 0; i < neededPlayers; i++) {
-            generatePlayer((*it), contractedPlayers+i+1);
+            generatePlayer(daoFactory, (*it), contractedPlayers+i+1);
         }
 
-        m_daoFactory->getIPfTeamPlayersDAO()->freeVector(teamPlayers);
+        daoFactory->getIPfTeamPlayersDAO()->freeVector(teamPlayers);
     }
 
 
-    m_daoFactory->getIPfTeamsDAO()->freeVector(teams);
+    daoFactory->getIPfTeamsDAO()->freeVector(teams);
 }
 
-void CDataBaseGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
+void CDataBaseGenerator::generatePlayer(IDAOFactory *daoFactory, CPfTeams *team, int lineUpOrder)
 {
     //Generate player
     CPfTeamPlayers player;
-    IPfTeamPlayersDAO *playersDAO= m_daoFactory->getIPfTeamPlayersDAO();
+    IPfTeamPlayersDAO *playersDAO= daoFactory->getIPfTeamPlayersDAO();
     generateRandomPlayer(player);
     player.setXFkCountry_str(team->getXFkCountry_str());
     playersDAO->insertReg(&player);
@@ -190,7 +95,7 @@ void CDataBaseGenerator::generatePlayer(CPfTeams *team, int lineUpOrder)
     //Generate player contract
     CPfTeamPlayerContracts contract;
     CDate date(15, 8, 2008, 17, 0, 0); // TODO: Remove magical numbers
-    IPfTeamPlayerContractsDAO *contractsDAO= m_daoFactory->getIPfTeamPlayerContractsDAO();
+    IPfTeamPlayerContractsDAO *contractsDAO= daoFactory->getIPfTeamPlayerContractsDAO();
 
     contract.setXFkTeam_str(team->getXTeam_str());
     contract.setXFkTeamPlayer_str(player.getXTeamPlayer_str());

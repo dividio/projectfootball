@@ -155,81 +155,9 @@ void CScreenGame::enter()
 	CScreen::enter();
 
     m_resultModeCheckbox->setSelected(m_game->getOptionManager()->getMatchResultMode());
-
-    CEGUI::String imagesetName;
-    CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
-    if( nextMatch==NULL ){
-        CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
-        m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
-
-        IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
-        CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(playerTeam->getXTeam_str());
-        std::ostringstream average;
-        average << teamAverage->getNTotal();
-        m_homeTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
-        average.str("");
-        delete teamAverage;
-
-        m_awayTeamName        ->setText("");
-        m_awayTeamAverage     ->setText("");
-        m_competitionName     ->setText("");
-        m_competitionPhaseName->setText("");
-
-        // Team Shields
-        m_homeTeamShield->setProperty("Image", "set:"+ playerTeam->getSLogo() +" image:"+playerTeam->getSLogo()+"_b");
-        m_awayTeamShield->setProperty("Image", "set: image:full_image");
-
-
-        delete playerTeam;
-        m_playButton->setEnabled(false);
-    }else{
-        IDAOFactory             *daoFactory           = m_game->getIDAOFactory();
-        IPfCompetitionsDAO      *competitionsDAO      = daoFactory->getIPfCompetitionsDAO();
-        IPfCountriesDAO         *countriesDAO         = daoFactory->getIPfCountriesDAO();
-        IPfCompetitionPhasesDAO *competitionPhasesDAO = daoFactory->getIPfCompetitionPhasesDAO();
-        IPfTeamsDAO             *teamsDAO = daoFactory->getIPfTeamsDAO();
-        CPfTeams                *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
-        CPfTeams                *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
-        CPfCompetitionPhases    *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(nextMatch->getXFkCompetitionPhase());
-        CPfCompetitions         *competition      = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
-        CPfCountries            *country          = countriesDAO->findByXCountry(competition->getXFkCountry_str());
-
-        m_competitionName     ->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
-        m_competitionPhaseName->setText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
-        m_homeTeamName        ->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
-        m_awayTeamName        ->setText((CEGUI::utf8*)awayTeam->getSTeam().c_str());
-
-        m_competitionCountryFlag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag() + "_mo_flag");
-
-        // Team Averages
-        IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
-        CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
-        std::ostringstream average;
-        average << teamAverage->getNTotal();
-        m_homeTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
-        average.str("");
-        delete teamAverage;
-
-        teamAverage = teamAveragesDAO->findByXTeam(awayTeam->getXTeam_str());
-        average << teamAverage->getNTotal();
-        m_awayTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
-        average.str("");
-        delete teamAverage;
-
-        // Team Shields
-        m_homeTeamShield->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
-        m_awayTeamShield->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
-
-        m_playButton->setEnabled(true);
-
-        delete country;
-        delete competition;
-        delete competitionPhase;
-        delete homeTeam;
-        delete awayTeam;
-        delete nextMatch;
-    }
     m_radioStatisticsButton->setSelected(true);
+
+    updateNextMatch();
 }
 
 void CScreenGame::saveGame()
@@ -297,6 +225,7 @@ bool CScreenGame::playButtonClicked(const CEGUI::EventArgs& e)
 		m_game->getEventConsumer()->consumeEvents();
 	}
 
+	updateNextMatch();
 	return true;
 }
 
@@ -378,5 +307,81 @@ void CScreenGame::showGNS(CEGUI::FrameWindow *gnsWindow)
         } else {
             w->setVisible(false);
         }
+    }
+}
+
+void CScreenGame::updateNextMatch()
+{
+    CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
+    if( nextMatch==NULL ){
+        CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
+        m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
+
+        IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
+        CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(playerTeam->getXTeam_str());
+        std::ostringstream average;
+        average << teamAverage->getNTotal();
+        m_homeTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
+        average.str("");
+        delete teamAverage;
+
+        m_awayTeamName        ->setText("");
+        m_awayTeamAverage     ->setText("");
+        m_competitionName     ->setText("");
+        m_competitionPhaseName->setText("");
+
+        // Team Shields
+        m_homeTeamShield->setProperty("Image", "set:"+ playerTeam->getSLogo() +" image:"+playerTeam->getSLogo()+"_b");
+        m_awayTeamShield->setProperty("Image", "set: image:full_image");
+
+
+        delete playerTeam;
+        m_playButton->setEnabled(false);
+    }else{
+        IDAOFactory             *daoFactory           = m_game->getIDAOFactory();
+        IPfCompetitionsDAO      *competitionsDAO      = daoFactory->getIPfCompetitionsDAO();
+        IPfCountriesDAO         *countriesDAO         = daoFactory->getIPfCountriesDAO();
+        IPfCompetitionPhasesDAO *competitionPhasesDAO = daoFactory->getIPfCompetitionPhasesDAO();
+        IPfTeamsDAO             *teamsDAO = daoFactory->getIPfTeamsDAO();
+        CPfTeams                *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
+        CPfTeams                *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
+        CPfCompetitionPhases    *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(nextMatch->getXFkCompetitionPhase());
+        CPfCompetitions         *competition      = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
+        CPfCountries            *country          = countriesDAO->findByXCountry(competition->getXFkCountry_str());
+
+        m_competitionName     ->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
+        m_competitionPhaseName->setText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
+        m_homeTeamName        ->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
+        m_awayTeamName        ->setText((CEGUI::utf8*)awayTeam->getSTeam().c_str());
+
+        m_competitionCountryFlag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag() + "_mo_flag");
+
+        // Team Averages
+        IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
+        CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
+        std::ostringstream average;
+        average << teamAverage->getNTotal();
+        m_homeTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
+        average.str("");
+        delete teamAverage;
+
+        teamAverage = teamAveragesDAO->findByXTeam(awayTeam->getXTeam_str());
+        average << teamAverage->getNTotal();
+        m_awayTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
+        average.str("");
+        delete teamAverage;
+
+        // Team Shields
+        m_homeTeamShield->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+        m_awayTeamShield->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
+
+        m_playButton->setEnabled(true);
+
+        delete country;
+        delete competition;
+        delete competitionPhase;
+        delete homeTeam;
+        delete awayTeam;
+        delete nextMatch;
     }
 }

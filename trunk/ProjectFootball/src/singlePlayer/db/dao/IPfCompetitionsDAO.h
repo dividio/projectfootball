@@ -43,8 +43,12 @@ public:
     virtual std::vector<CPfCompetitions*>*  findCompetitions() =0;
     virtual CPfCompetitions* findByXCompetition(int XCompetition) =0;
     virtual CPfCompetitions* findByXCompetition(const std::string &XCompetition) =0;
-    virtual std::vector<CPfCompetitions*>* findByXFkCountry(int XFkCountry) =0;
-    virtual std::vector<CPfCompetitions*>* findByXFkCountry(const std::string &XFkCountry) =0;
+//    virtual std::vector<CPfCompetitions*>* findByXFkCountry(int XFkCountry) =0;
+//    virtual std::vector<CPfCompetitions*>* findByXFkCountry(const std::string &XFkCountry) =0;
+    virtual std::vector<CPfCompetitions*>* findByXFkCountryAndXFKSeason(int XFkCountry, int XFKseason) =0;
+    virtual std::vector<CPfCompetitions*>* findByXFkCountryAndXFKSeason(const std::string &XFkCountry, const std::string &XFKSeason) =0;
+    virtual std::vector<CPfCompetitions*>* findByXFkSeason(int XFKSeason) =0;
+    virtual std::vector<CPfCompetitions*>* findByXFkSeason(const std::string &XFKSeason) =0;
 
 };
 #endif /*IPFCOMPETITIONSDAO_H_*/

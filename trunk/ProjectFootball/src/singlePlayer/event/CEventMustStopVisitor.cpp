@@ -20,6 +20,12 @@
 
 #include "CEventMustStopVisitor.h"
 
+#include "season/CStartSeasonEvent.h"
+#include "season/CEndSeasonEvent.h"
+
+#include "competition/CStartCompetitionEvent.h"
+#include "competition/CEndCompetitionEvent.h"
+
 #include "match/CMatchEvent.h"
 #include "match/CStartMatchEvent.h"
 #include "match/CGoalMatchEvent.h"
@@ -37,6 +43,26 @@ CEventMustStopVisitor::CEventMustStopVisitor(CSinglePlayerGame *game)
 
 CEventMustStopVisitor::~CEventMustStopVisitor()
 {
+}
+
+void CEventMustStopVisitor::startSeasonEventVisitor(const CStartSeasonEvent &event)
+{
+	m_eventMustStop = false;
+}
+
+void CEventMustStopVisitor::endSeasonEventVisitor(const CEndSeasonEvent &event)
+{
+	m_eventMustStop = false;
+}
+
+void CEventMustStopVisitor::startCompetitionEventVisitor(const CStartCompetitionEvent &event)
+{
+	m_eventMustStop = false;
+}
+
+void CEventMustStopVisitor::endCompetitionEventVisitor(const CEndCompetitionEvent &event)
+{
+	m_eventMustStop = false;
 }
 
 void CEventMustStopVisitor::matchEventVisitor(const CMatchEvent &event)

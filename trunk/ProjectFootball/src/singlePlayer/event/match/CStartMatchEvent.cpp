@@ -29,6 +29,7 @@ CStartMatchEvent::~CStartMatchEvent()
 {
 }
 
-void CStartMatchEvent::visitor(IEventVisitor &visitor) const{
+void CStartMatchEvent::visitor(IEventVisitor &visitor) const
+{
 	visitor.startMatchEventVisitor(*this);
 }

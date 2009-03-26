@@ -65,6 +65,8 @@ public:
     void		setGameNew(bool newGame);
     CDate		getGameCurrentDate();
     void		setGameCurrentDate(const CDate &date);
+    int			getGameCurrentSeason();
+    void		setGameCurrentSeason(int xSeason);
 
     // Match options
     bool		getMatchResultMode();

@@ -53,6 +53,7 @@ private:
     bool gameExitCancelButtonClicked        (const CEGUI::EventArgs& e);
     bool gnsRadioButtonClicked              (const CEGUI::EventArgs& e);
 	void showGNS                            (CEGUI::FrameWindow *gnsWindow);
+	void updateNextMatch					();
 
 
     CEGUI::Window       *m_competitionName;

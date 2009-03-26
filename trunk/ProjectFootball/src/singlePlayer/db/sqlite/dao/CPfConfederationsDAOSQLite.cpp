@@ -43,22 +43,33 @@ CPfConfederations* CPfConfederationsDAOSQLite::findByXConfederation(int XConfede
 
 CPfConfederations* CPfConfederationsDAOSQLite::findByXConfederation(const std::string &XConfederation)
 {
-    std::string sql("SELECT * FROM PF_CONFEDERATIONS WHERE ");
-    sql = sql+"X_CONFEDERATION='"+XConfederation+"'";
+    std::string sql(
+    		"SELECT * "
+    		"FROM PF_CONFEDERATIONS ");
+    sql +=  "WHERE X_CONFEDERATION='"+XConfederation+"'";
     return loadRegister(sql);
 }
 
-std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findConfederations()
+std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findAll()
 {
-    std::string sql("SELECT * FROM PF_CONFEDERATIONS");
-    return loadVector(sql);
+    return loadVector("SELECT * FROM PF_CONFEDERATIONS");
 }
 
-std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findConfederationsWithLeague()
+std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findByXFKSeasonWithLeague(int XFKSeason)
 {
-    std::string sql("SELECT DISTINCT CN.* ");
-    sql = sql +     "FROM PF_CONFEDERATIONS CN, PF_COUNTRIES CT, PF_COMPETITIONS CP " +
-                    "WHERE CN.X_CONFEDERATION = CT.X_FK_CONFEDERATION " +
-                      "AND CT.X_COUNTRY = CP.X_FK_COUNTRY";
-    return loadVector(sql);
+    std::ostringstream stream;
+    stream << XFKSeason;
+    return findByXFKSeasonWithLeague(stream.str());
+}
+
+std::vector<CPfConfederations*>* CPfConfederationsDAOSQLite::findByXFKSeasonWithLeague(const std::string &XFKSeason)
+{
+	std::string sql(
+			"SELECT DISTINCT CF.* "
+			"FROM PF_CONFEDERATIONS CF "
+			"  JOIN PF_COUNTRIES CU ON CU.X_FK_CONFEDERATION=CF.X_CONFEDERATION "
+			"  JOIN PF_COMPETITIONS CO ON CO.X_FK_COUNTRY=CU.X_COUNTRY "
+			"  JOIN PF_COMPETITIONS_BY_SEASON CBS ON CBS.X_FK_COMPETITION=CO.X_COMPETITION ");
+	sql +=  "WHERE CBS.X_FK_SEASON='"+XFKSeason+"'";
+	return loadVector(sql);
 }

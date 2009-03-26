@@ -24,7 +24,8 @@ bool eventsCompare(const IGameEvent* x, const IGameEvent* y){
     return (x->getDate()) > (y->getDate());
 }
 
-CEventsQueue::CEventsQueue() : m_queue(eventsCompare)
+CEventsQueue::CEventsQueue()
+: m_queue(eventsCompare), m_observers()
 {
 }
 
@@ -37,9 +38,28 @@ CEventsQueue::~CEventsQueue()
     }
 }
 
+void CEventsQueue::addObserver(const IEventsQueueObserver &observer)
+{
+	m_observers.push_back(&observer);
+}
+
+void CEventsQueue::removeObserver(const IEventsQueueObserver &observer)
+{
+	m_observers.remove(&observer);
+}
+
 void CEventsQueue::push(IGameEvent *event)
 {
     m_queue.push(event);
+
+    // notify to the observers
+    if( !m_observers.empty() ){
+    	std::list<const IEventsQueueObserver*>::iterator itObservers;
+    	for( itObservers=m_observers.begin(); itObservers!=m_observers.end(); itObservers++ ){
+    		const IEventsQueueObserver *observer = *itObservers;
+    		observer->eventPushed(*event);
+    	}
+    }
 }
 
 IGameEvent* CEventsQueue::pop(const CDate *date)
@@ -51,6 +71,16 @@ IGameEvent* CEventsQueue::pop(const CDate *date)
     IGameEvent *event = m_queue.top();
     if( date==NULL || event->getDate()< (*date) ){
         m_queue.pop();
+
+        // notify to the observers
+        if( !m_observers.empty() ){
+        	std::list<const IEventsQueueObserver*>::iterator itObservers;
+        	for( itObservers=m_observers.begin(); itObservers!=m_observers.end(); itObservers++ ){
+        		const IEventsQueueObserver *observer = *itObservers;
+        		observer->eventPopped(*event);
+        	}
+        }
+
         return event;
     }
     else{

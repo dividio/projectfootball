@@ -26,7 +26,8 @@
 #include "../db/bean/CPfTeams.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../option/CSinglePlayerOptionManager.h"
-#include "../utils/CLog.h"
+
+#include "../../utils/CLog.h"
 
 
 CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
@@ -88,74 +89,74 @@ void CScreenRanking::enter()
 
 void CScreenRanking::loadRanking()
 {
-    m_rankingList->resetList();
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
-
-    IDAOFactory                         *daoFactory		= m_game->getIDAOFactory();
-    IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
-    std::vector<CPfRanking*>            *rankingList    = rankingDAO->findRanking();
-    std::vector<CPfRanking*>::iterator  it;
-    CEGUI::ListboxTextItem *item;
-    char position[4];
-    int cont = 1;
-
-    // TODO Ranking for all competitions
-    CPfTeams *playerTeam = daoFactory->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
-    CPfRegisteredTeams *registeredTeam = daoFactory->getIPfRegisteredTeamsDAO()->findByXFkTeam(playerTeam->getXTeam());
-    std::vector<CPfTeams*> *teams = daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(registeredTeam->getXFkCompetition());
-
-    for( it=rankingList->begin(); it!=rankingList->end(); it++ ){
-        CPfRanking *ranking = (*it);
-        if(isInSameCompetition(teams, ranking->getSTeam())) {
-            sprintf(position, "%d", cont);
-
-            int row_idx = m_rankingList->addRow();
-
-            item = new CEGUI::ListboxTextItem(position);
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 0, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getSTeam().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 1, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPoints_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 2, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPlayed_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 3, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNWins_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 4, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNDraws_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 5, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNLosses_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 6, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsFor_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 7, row_idx);
-
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsAgainst_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 8, row_idx);
-
-            cont++;
-        }
-    }
-    rankingDAO->freeVector(rankingList);
-    daoFactory->getIPfTeamsDAO()->freeVector(teams);
-    delete registeredTeam;
-    delete playerTeam;
-
-    m_rankingList->getHorzScrollbar()->setVisible(false);
+//    m_rankingList->resetList();
+//    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+//
+//    IDAOFactory                         *daoFactory		= m_game->getIDAOFactory();
+//    IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
+//    std::vector<CPfRanking*>            *rankingList    = rankingDAO->findRanking();
+//    std::vector<CPfRanking*>::iterator  it;
+//    CEGUI::ListboxTextItem *item;
+//    char position[4];
+//    int cont = 1;
+//
+//    // TODO Ranking for all competitions
+//    CPfTeams *playerTeam = daoFactory->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
+//    CPfRegisteredTeams *registeredTeam = daoFactory->getIPfRegisteredTeamsDAO()->findByXFkTeam(playerTeam->getXTeam());
+//    std::vector<CPfTeams*> *teams = daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(registeredTeam->getXFkCompetition());
+//
+//    for( it=rankingList->begin(); it!=rankingList->end(); it++ ){
+//        CPfRanking *ranking = (*it);
+//        if(isInSameCompetition(teams, ranking->getSTeam())) {
+//            sprintf(position, "%d", cont);
+//
+//            int row_idx = m_rankingList->addRow();
+//
+//            item = new CEGUI::ListboxTextItem(position);
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 0, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getSTeam().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 1, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPoints_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 2, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPlayed_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 3, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNWins_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 4, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNDraws_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 5, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNLosses_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 6, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsFor_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 7, row_idx);
+//
+//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsAgainst_str().c_str());
+//            item->setSelectionBrushImage(sel_img);
+//            m_rankingList->setItem(item, 8, row_idx);
+//
+//            cont++;
+//        }
+//    }
+//    rankingDAO->freeVector(rankingList);
+//    daoFactory->getIPfTeamsDAO()->freeVector(teams);
+//    delete registeredTeam;
+//    delete playerTeam;
+//
+//    m_rankingList->getHorzScrollbar()->setVisible(false);
 }
 
 bool CScreenRanking::isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam)

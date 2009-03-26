@@ -31,14 +31,12 @@ CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOp
     CLog::getInstance()->info("Game Option manager initialized");
 }
 
-
 CSinglePlayerOptionManager::~CSinglePlayerOptionManager()
 {
 	cleanOptions();
 
     CLog::getInstance()->info("Game Option manager deinitialized");
 }
-
 
 void CSinglePlayerOptionManager::loadOptions()
 {
@@ -54,7 +52,6 @@ void CSinglePlayerOptionManager::loadOptions()
 
     CLog::getInstance()->info("Game Options loaded");
 }
-
 
 void CSinglePlayerOptionManager::saveOptions()
 {
@@ -88,12 +85,10 @@ void CSinglePlayerOptionManager::saveOptions()
     CLog::getInstance()->info("Game Options saved");
 }
 
-
 void CSinglePlayerOptionManager::setDefaultValues()
 {
     setMatchResultMode(false);
 }
-
 
 int	CSinglePlayerOptionManager::getGamePlayerTeam()
 {
@@ -129,4 +124,13 @@ CDate CSinglePlayerOptionManager::getGameCurrentDate()
 void CSinglePlayerOptionManager::setGameCurrentDate(const CDate &date)
 {
 	setDateOption("Game", "CurrentDate", &date);
+}
+
+int CSinglePlayerOptionManager::getGameCurrentSeason()
+{
+	return getIntOption("Game", "CurrentSeason");
+}
+void CSinglePlayerOptionManager::setGameCurrentSeason(int xSeason)
+{
+	setIntOption("Game", "CurrentSeason", xSeason);
 }

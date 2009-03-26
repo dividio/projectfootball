@@ -39,8 +39,8 @@ public:
     virtual CPfCountries* findByXCountry(const std::string &XCountry);
     virtual std::vector<CPfCountries*>* findByXFkConfederation(int XFkConfederation);
     virtual std::vector<CPfCountries*>* findByXFkConfederation(const std::string &XFkConfederation);
-    virtual std::vector<CPfCountries*>* findByXFkConfederationWithLeague(int XFkConfederation);
-    virtual std::vector<CPfCountries*>* findByXFkConfederationWithLeague(const std::string &XFkConfederation);
+    virtual std::vector<CPfCountries*>* findByXFkConfederationAndXFKSeasonWithLeague(int XFkConfederation, int XFKSeason);
+    virtual std::vector<CPfCountries*>* findByXFkConfederationAndXFKSeasonWithLeague(const std::string &XFkConfederation, const std::string &XFKSeason);
 
 };
 #endif /*CPFCOUNTRIESDAOSQLITE_H_*/

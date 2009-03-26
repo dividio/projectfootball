@@ -26,10 +26,11 @@
 
 //Forward declarations
 class CSinglePlayerGame;
-class CPfTeams;
 class CPfConfederations;
 class CPfCountries;
 class CPfCompetitions;
+class CPfSeasons;
+class CPfTeams;
 
 
 class CScreenSelectTeam : public CScreen
@@ -50,6 +51,7 @@ private:
     bool selectButtonClicked(const CEGUI::EventArgs& e);
     bool backButtonClicked(const CEGUI::EventArgs& e);
 
+    void loadLastSeason();
     int  loadConfederationsList();
     int  loadCountriesList     (int XConfederation);
     int  loadCompetitionsList  (int XCountry);
@@ -75,6 +77,7 @@ private:
     std::vector<CPfCountries*>      *m_countriesList;
     std::vector<CPfCompetitions*>   *m_competitionsList;
     std::vector<CPfTeams*>			*m_teamsList;
+    CPfSeasons						*m_lastSeason;
 
     CSinglePlayerGame				*m_game;
 };

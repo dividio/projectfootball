@@ -48,22 +48,47 @@ CPfCompetitions* CPfCompetitionsDAOSQLite::findByXCompetition(int XCompetition)
 
 CPfCompetitions* CPfCompetitionsDAOSQLite::findByXCompetition(const std::string &XCompetition)
 {
-    std::string sql("SELECT * FROM PF_COMPETITIONS WHERE ");
-    sql = sql+"X_COMPETITION='"+XCompetition+"'";
+    std::string sql(
+    		"SELECT * "
+    		"FROM PF_COMPETITIONS ");
+    sql +=  "WHERE X_COMPETITION='"+XCompetition+"'";
     return loadRegister(sql);
 }
 
-std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkCountry(int XFkCountry)
+std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkCountryAndXFKSeason(int XFkCountry, int XFKseason)
 {
-    std::ostringstream stream;
-    stream << XFkCountry;
-    return findByXFkCountry(stream.str());
+    std::ostringstream strXFKCountry;
+    strXFKCountry << XFkCountry;
+
+    std::ostringstream strXFKSeason;
+    strXFKSeason << XFKseason;
+    return findByXFkCountryAndXFKSeason(strXFKCountry.str(), strXFKSeason.str());
 }
 
-std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkCountry(const std::string &XFkCountry)
+std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkCountryAndXFKSeason(const std::string &XFkCountry, const std::string &XFKSeason)
 {
-    std::string sql("SELECT * FROM PF_COMPETITIONS WHERE ");
-    sql = sql+"X_FK_COUNTRY='"+XFkCountry+"'";
+    std::string sql(
+    		"SELECT CO.* "
+    		"FROM PF_COMPETITIONS CO "
+    		"  JOIN PF_COMPETITIONS_BY_SEASON CBS ON CBS.X_FK_COMPETITION=CO.X_COMPETITION ");
+    sql +=  "WHERE CO.X_FK_COUNTRY='"+XFkCountry+"' AND CBS.X_FK_SEASON='"+XFKSeason+"' ";
     return loadVector(sql);
+}
+
+std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkSeason(int XFKSeason)
+{
+    std::ostringstream stream;
+    stream << XFKSeason;
+    return findByXFkSeason(stream.str());
+}
+
+std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkSeason(const std::string &XFKSeason)
+{
+	std::string sql(
+			"SELECT CO.* "
+			"FROM PF_COMPETITIONS CO "
+			"  JOIN PF_COMPETITIONS_BY_SEASON CBS ON CBS.X_FK_COMPETITION=CO.X_COMPETITION ");
+	sql +=  "WHERE CBS.X_FK_SEASON='"+XFKSeason+"'";
+	return loadVector(sql);
 }
 

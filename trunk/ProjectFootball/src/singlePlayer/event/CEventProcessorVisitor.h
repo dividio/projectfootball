@@ -36,6 +36,12 @@ public:
 	CEventProcessorVisitor(CSinglePlayerGame *game);
 	virtual ~CEventProcessorVisitor();
 
+	virtual void startSeasonEventVisitor(const CStartSeasonEvent &event);
+	virtual void endSeasonEventVisitor(const CEndSeasonEvent &event);
+
+	virtual void startCompetitionEventVisitor(const CStartCompetitionEvent &event);
+	virtual void endCompetitionEventVisitor(const CEndCompetitionEvent &event);
+
 	virtual void matchEventVisitor(const CMatchEvent &event);
 	virtual void startMatchEventVisitor(const CStartMatchEvent &event);
 	virtual void goalMatchEventVisitor(const CGoalMatchEvent &event);
