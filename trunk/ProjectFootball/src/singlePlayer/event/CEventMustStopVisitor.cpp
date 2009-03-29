@@ -72,6 +72,9 @@ void CEventMustStopVisitor::matchEventVisitor(const CMatchEvent &event)
 	int				 xPlayerTeam	= m_game->getOptionManager()->getGamePlayerTeam();
 
 	m_eventMustStop = (match->getXFkTeamAway()==xPlayerTeam || match->getXFkTeamHome()==xPlayerTeam);
+	if( m_eventMustStop ){
+		m_game->setCurrentMatch(match);
+	}
 	delete match;
 }
 

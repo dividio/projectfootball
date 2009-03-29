@@ -21,17 +21,29 @@
 #ifndef CQUICKGAME_H_
 #define CQUICKGAME_H_
 
-#include "../singlePlayer/CSinglePlayerGame.h"
+#include "../engine/IGame.h"
 
-class CQuickGame : public CSinglePlayerGame
+// Forward declarations
+class CPfGames;
+class CPfUsers;
+class CSinglePlayerGame;
+
+class CQuickGame : public IGame
 {
 public:
     CQuickGame(const CPfUsers *user);
     virtual ~CQuickGame();
 
+    // IGame
+	virtual CPfGames* save();
+
     // CScreen
     virtual void enter();
     virtual void leave();
+    virtual void update();
+
+private:
+	CSinglePlayerGame	*m_game;
 };
 
 #endif /*CQUICKGAME_H_*/

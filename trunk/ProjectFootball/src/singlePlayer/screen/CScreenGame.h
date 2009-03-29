@@ -56,6 +56,7 @@ private:
 	void updateNextMatch					();
 
 
+	CEGUI::Window		*m_seasonName;
     CEGUI::Window       *m_competitionName;
     CEGUI::Window       *m_competitionCountryFlag;
     CEGUI::Window       *m_competitionPhaseName;

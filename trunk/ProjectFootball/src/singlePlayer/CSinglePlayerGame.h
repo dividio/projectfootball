@@ -29,6 +29,7 @@
 //Forward declarations
 class CPfGames;
 class CPfUsers;
+class CPfMatches;
 class IDAOFactory;
 class CSinglePlayerOptionManager;
 class CSinglePlayerReportRegister;
@@ -69,14 +70,14 @@ public:
     IScreen* getSimulatorScreen();
     IScreen* getTeamPlayersScreen();
 
+    // Game progression
+    const CPfMatches* 	getCurrentMatch();
+    void				setCurrentMatch(const CPfMatches* match);
+
 protected:
-    CSinglePlayerGame(const CPfUsers *user, const char *gameName);
-    CSinglePlayerGame(const CPfGames *game);
+	CSinglePlayerGame(const CPfGames *game);
 
 private:
-
-    void setGameOptionsDefaultValues();
-    void createSinglePlayerScreens();
     void loadGameEvents();
 
 protected:
@@ -96,6 +97,8 @@ protected:
     IScreen						*m_selectTeamScreen;
     IScreen						*m_simulatorScreen;
     IScreen						*m_teamPlayersScreen;
+
+    const CPfMatches			*m_currentMatch;
 };
 
 #endif /*CSINGLEPLAYERGAME_H_*/

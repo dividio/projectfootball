@@ -136,8 +136,6 @@ CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
     m_groundImage->setProperty(     "Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
     m_groundFrameImage->setProperty("Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
     m_groundFrameImage->disable();
-
-    m_match = NULL;
 }
 
 
@@ -226,9 +224,8 @@ void CScreenSimulator::enter()
     m_continueButton->setEnabled(false);
     m_backButton->setEnabled(false); // TODO: Remove back button from this screen
 
-    IPfMatchesDAO *matchesDAO = m_game->getIDAOFactory()->getIPfMatchesDAO();
-    m_match = matchesDAO->findNextTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
-    m_simulator = new CSimulationManager(m_match->getXMatch(), m_game);
+    const CPfMatches *match	= m_game->getCurrentMatch();
+    m_simulator = new CSimulationManager(match->getXMatch(), m_game);
     m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
     // create the 3D camera node/pitch node
@@ -244,8 +241,8 @@ void CScreenSimulator::enter()
     setup2DView();
     loadTeamPlayers();
     IPfTeamsDAO *teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
-    std::string homeName = teamsDAO->findByXTeam(m_match->getXFkTeamHome())->getSShortName();
-    std::string awayName = teamsDAO->findByXTeam(m_match->getXFkTeamAway())->getSShortName();
+    std::string homeName = teamsDAO->findByXTeam(match->getXFkTeamHome())->getSShortName();
+    std::string awayName = teamsDAO->findByXTeam(match->getXFkTeamAway())->getSShortName();
     std::ostringstream names;
     names << homeName.c_str() << " vs " << awayName.c_str();
     m_teamNames->setProperty("Text", (CEGUI::utf8*)names.str().c_str());
@@ -264,10 +261,6 @@ void CScreenSimulator::leave()
         m_simulator = NULL;
         m_logHistoryList->resetList();
         m_logHistoryListShort->resetList();
-    }
-    if( m_match!=NULL ){
-        delete m_match;
-        m_match = NULL;
     }
 }
 

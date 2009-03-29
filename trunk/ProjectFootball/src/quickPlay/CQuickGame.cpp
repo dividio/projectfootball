@@ -21,47 +21,53 @@
 #include "CQuickGame.h"
 
 #include "../engine/CGameEngine.h"
+
+#include "../singlePlayer/CSinglePlayerGame.h"
 #include "../singlePlayer/db/dao/factory/IDAOFactory.h"
 #include "../singlePlayer/option/CSinglePlayerOptionManager.h"
 #include "../utils/CLog.h"
 
 
 CQuickGame::CQuickGame(const CPfUsers *user)
-: CSinglePlayerGame(user, "[-= QUICK GAME =-]")
 {
     CLog::getInstance()->debug("CQuickGame::CQuickGame");
+    m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= QUICK GAME =-]"));
 
-    IPfTeamsDAO         *teamsDAO       = m_daoFactory->getIPfTeamsDAO();
+    IPfTeamsDAO	*teamsDAO	= m_game->getIDAOFactory()->getIPfTeamsDAO();
 
     std::vector<CPfTeams*> *teamsList = teamsDAO->findAll();
     if( teamsList->empty() ){
         CLog::getInstance()->exception("[CQuickGame::CQuickGame] Teams list is empty");
     }
 
-    getOptionManager()->setGamePlayerTeam(teamsList->at(rand()%teamsList->size())->getXTeam());
-    getOptionManager()->setGameNew(false);
-    getOptionManager()->saveOptions();
+    m_game->getOptionManager()->setGamePlayerTeam(teamsList->at(rand()%teamsList->size())->getXTeam());
+    m_game->getOptionManager()->setGameNew(false);
 
     teamsDAO->freeVector(teamsList);
-
-    m_game->setSGameType(S_GAME_TYPE_QUICKPLAY);
-    CSinglePlayerGame::save();
 }
 
 CQuickGame::~CQuickGame()
 {
     CLog::getInstance()->debug("CQuickGame::~CQuickGame");
+    delete m_game;
+}
+
+CPfGames* CQuickGame::save()
+{
+	CPfGames *game = m_game->save();
+	game->setSGameType(S_GAME_TYPE_QUICKPLAY);
+	return game;
 }
 
 void CQuickGame::enter()
 {
-    CSinglePlayerGame::enter();
-    nextScreen(m_simulatorScreen);
+	m_game->enter();
+    m_game->nextScreen(m_game->getSimulatorScreen());
 }
 
 void CQuickGame::leave()
 {
-    CSinglePlayerGame::leave();
+	m_game->leave();
 
     IPfGamesDAO                         *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
     std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_QUICKPLAY);
@@ -74,4 +80,9 @@ void CQuickGame::leave()
         gamesDAO->deleteReg(game);
     }
     gamesDAO->freeVector(gamesList);
+}
+
+void CQuickGame::update()
+{
+	m_game->update();
 }

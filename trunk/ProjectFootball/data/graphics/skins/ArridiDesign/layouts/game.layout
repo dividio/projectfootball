@@ -288,7 +288,17 @@
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="VertFormatting" Value="TopAligned" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.404408,0},{0,0},{0.501668,0},{0.018,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.354408,0},{0,0},{0.451668,0},{0.018,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Game/SeasonName" >
+                    <Property Name="Font" Value="DejaVuSans-8" />
+                    <Property Name="TextColours" Value="tl:FFFFFF00 tr:FFFFFF00 bl:FFFFFF00 br:FFFFFF00" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="HorzCentred" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="VertFormatting" Value="TopAligned" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.464408,0},{0,0},{0.551668,0},{0.018,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Game/CompetitionPhase" >
@@ -298,7 +308,7 @@
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="VertFormatting" Value="TopAligned" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.510266,0},{0,0},{0.603614,0},{0.018,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.560266,0},{0,0},{0.653614,0},{0.018,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Game/NextEventLabel" >

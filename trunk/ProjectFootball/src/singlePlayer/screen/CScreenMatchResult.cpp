@@ -92,6 +92,10 @@ void CScreenMatchResult::leave()
     m_awayEventsList->resetList();
 
     m_loadMatchInfo = true;
+    m_game->setCurrentMatch(NULL);
+
+    // Consume events until the next stop event
+    m_game->getEventConsumer()->consumeEvents();
 }
 
 void CScreenMatchResult::update()
@@ -109,14 +113,13 @@ void CScreenMatchResult::update()
 void CScreenMatchResult::loadMatchInfo()
 {
     IDAOFactory				*daoFactory				= m_game->getIDAOFactory();
-    IPfMatchesDAO			*matchesDAO				= daoFactory->getIPfMatchesDAO();
     IPfGoalsDAO				*goalsDAO				= daoFactory->getIPfGoalsDAO();
     IPfTeamPlayersDAO		*playersDAO      		= daoFactory->getIPfTeamPlayersDAO();
     IPfCompetitionsDAO		*competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
     IPfCompetitionPhasesDAO	*competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
     IPfTeamsDAO				*teamsDAO				= daoFactory->getIPfTeamsDAO();
 
-    CPfMatches				*match				= matchesDAO->findLastTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
+    const CPfMatches		*match				= m_game->getCurrentMatch();
     CPfTeams				*homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
     CPfTeams				*awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
     CPfCompetitionPhases	*competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
@@ -196,7 +199,6 @@ void CScreenMatchResult::loadMatchInfo()
     delete competitionPhase;
     delete awayTeam;
     delete homeTeam;
-    delete match;
 }
 
 bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)

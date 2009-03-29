@@ -99,12 +99,7 @@ private:
     Ogre::SceneNode         *m_camNode;     // The SceneNode the camera is currently attached to
     Ogre::RenderTexture     *m_renderTexture;
 
-
-
     CSimulationManager      *m_simulator;
-
-    CPfMatches              *m_match;
-
     CSinglePlayerGame		*m_game;
 
     double                   m_previousUpdateTime;

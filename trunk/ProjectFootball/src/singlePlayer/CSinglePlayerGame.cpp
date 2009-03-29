@@ -56,83 +56,35 @@
 #include "../utils/CLog.h"
 #include "../utils/CDate.h"
 
-CSinglePlayerGame::CSinglePlayerGame(const CPfUsers *user, const char *gameName) : m_screenStack()
+CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game)
+: m_screenStack()
 {
     CLog::getInstance()->debug("CSinglePlayerGame::CSinglePlayerGame");
+	m_game				= new CPfGames(*game);
 
-    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string filename = "";
+	// If the database doesn't exists (is a new game or the file was deleted)
+	// then it will be created a new database and will be generated the new data,
+	// otherwise only load the current date from the database
+	bool existsDataBase	= boost::filesystem::exists(m_game->getSConnectionString());
+	m_daoFactory		= new CDAOFactorySQLite(m_game->getSConnectionString());
+	if( !existsDataBase ){ CDataBaseGenerator::generateDataBase(m_daoFactory); }
 
-    srand(time(NULL));
-    do{
-    	filename = "data/database/savedgames/";
-    	for( int i=0; i<8; i++ ){
-    		filename += str[rand()%52];
-    	}
-    	filename += ".sql3";
-    }while(boost::filesystem::exists(filename));
+	m_reportRegister	= new CSinglePlayerReportRegister();
+	m_eventsQueue		= new CEventsQueue();
+	m_eventConsumer		= new CEventConsumer(this);
+	m_optionManager		= new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
 
-    CDate nowDate;
+	// screens
+    m_gameScreen		= new CScreenGame(this);
+    m_matchResultScreen	= new CScreenMatchResult(this);
+    m_rankingScreen		= new CScreenRanking(this);
+    m_resultsScreen		= new CScreenResults(this);
+    m_selectTeamScreen	= new CScreenSelectTeam(this);
+    m_simulatorScreen	= new CScreenSimulator(this);
+    m_teamPlayersScreen	= new CScreenTeamPlayers(this);
 
-    m_game = new CPfGames();
-    m_game->setXGame_str("");
-    m_game->setDLastSaved(nowDate);
-    m_game->setSDriverName("SQLite");
-    m_game->setSConnectionString(filename);
-    m_game->setSGameName(gameName);
-    m_game->setSGameType(S_GAME_TYPE_SINGLEPLAYER);
-    m_game->setXFkUser(user->getXUser());
-
-    m_daoFactory = new CDAOFactorySQLite(m_game->getSConnectionString());
-    CDataBaseGenerator::generateDataBase(m_daoFactory);
-
-    m_reportRegister        = new CSinglePlayerReportRegister();
-    m_eventsQueue			= new CEventsQueue();
-    m_eventConsumer			= new CEventConsumer(this);
-
-    m_optionManager         = new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
-    m_optionManager->setGameNew(true);
-
-    // retrieve the last season in the database and the end date of the itself
-    CDate		maxDate = CDate::MIN_DATE;
-    CPfSeasons *season = m_daoFactory->getIPfSeasonsDAO()->findLastSeason();
-    if( season->getXSeason()==0 ){
-    	CLog::getInstance()->exception("The last season is NULL");
-    }
-
-	IPfCompetitionsBySeasonDAO *competitionBySeasonDAO = m_daoFactory->getIPfCompetitionsBySeasonDAO();
-	std::vector<CPfCompetitionsBySeason*> *competitionsBySeasonList = competitionBySeasonDAO->findByXFkSeason(season->getXSeason_str());
-	std::vector<CPfCompetitionsBySeason*>::iterator itCompetitionsBySeason;
-	for( itCompetitionsBySeason=competitionsBySeasonList->begin(); itCompetitionsBySeason!=competitionsBySeasonList->end(); itCompetitionsBySeason++ ){
-		CPfCompetitionsBySeason *competitionBySeason = *itCompetitionsBySeason;
-		if( competitionBySeason->getDEndCompetition()>maxDate ){
-			maxDate = competitionBySeason->getDEndCompetition();
-		}
-	}
-
-    m_optionManager->setGameCurrentDate(maxDate);
-    m_optionManager->setGameCurrentSeason(season->getXSeason());
-
-	competitionBySeasonDAO->freeVector(competitionsBySeasonList);
-    delete season;
-
-    createSinglePlayerScreens();
-    loadGameEvents();
-}
-
-CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game) : m_screenStack()
-{
-    CLog::getInstance()->debug("CSinglePlayerGame::CSinglePlayerGame");
-
-    m_game					= new CPfGames(*game);
-    m_daoFactory			= new CDAOFactorySQLite(m_game->getSConnectionString());
-    m_reportRegister        = new CSinglePlayerReportRegister();
-    m_eventsQueue			= new CEventsQueue();
-    m_eventConsumer			= new CEventConsumer(this);
-    m_optionManager         = new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
-
-    createSinglePlayerScreens();
-    loadGameEvents();
+    // game progression
+    m_currentMatch		= NULL;
 }
 
 CSinglePlayerGame::~CSinglePlayerGame()
@@ -149,9 +101,12 @@ CSinglePlayerGame::~CSinglePlayerGame()
 
     delete m_optionManager;
     delete m_reportRegister;
+    delete m_eventConsumer;
     delete m_eventsQueue;
     delete m_daoFactory;
     delete m_game;
+
+    delete m_currentMatch;
 }
 
 IDAOFactory* CSinglePlayerGame::getIDAOFactory()
@@ -208,12 +163,71 @@ void CSinglePlayerGame::update()
 
 IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
 {
-	return new CSinglePlayerGame(user, gameName);
+    CLog::getInstance()->debug("CSinglePlayerGame::newGame");
+
+    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    std::string filename = "";
+
+    srand(time(NULL));
+    do{
+    	filename = "data/database/savedgames/";
+    	for( int i=0; i<8; i++ ){
+    		filename += str[rand()%52];
+    	}
+    	filename += ".sql3";
+    }while(boost::filesystem::exists(filename));
+
+    CDate nowDate;
+    CPfGames game;
+    game.setDLastSaved(nowDate);
+    game.setSDriverName("SQLite");
+    game.setSConnectionString(filename);
+    game.setSGameName(gameName);
+    game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
+    game.setXFkUser(user->getXUser());
+
+    // With this way, here we only need to set the initial environment for
+    // a new game, forgetting the creation of attributes for a CSinglePlayerGame
+    // object. This task rests now on constructor.
+	CSinglePlayerGame *singlePlayerGame = new CSinglePlayerGame(&game);
+
+    // retrieve the last season in the database and the end date of the itself
+    CDate		maxDate = CDate::MIN_DATE;
+    CPfSeasons *season	= singlePlayerGame->m_daoFactory->getIPfSeasonsDAO()->findLastSeason();
+    if( season->getXSeason()==0 ){
+    	CLog::getInstance()->exception("The last season is NULL");
+    }
+
+	IPfCompetitionsBySeasonDAO 						*competitionBySeasonDAO		= singlePlayerGame->m_daoFactory->getIPfCompetitionsBySeasonDAO();
+	std::vector<CPfCompetitionsBySeason*> 			*competitionsBySeasonList	= competitionBySeasonDAO->findByXFkSeason(season->getXSeason_str());
+	std::vector<CPfCompetitionsBySeason*>::iterator itCompetitionsBySeason;
+	for( itCompetitionsBySeason=competitionsBySeasonList->begin(); itCompetitionsBySeason!=competitionsBySeasonList->end(); itCompetitionsBySeason++ ){
+		CPfCompetitionsBySeason *competitionBySeason = *itCompetitionsBySeason;
+		if( competitionBySeason->getDEndCompetition()>maxDate ){
+			maxDate = competitionBySeason->getDEndCompetition();
+		}
+	}
+
+	singlePlayerGame->m_optionManager->setGameNew(true);
+	singlePlayerGame->m_optionManager->setGameCurrentDate(maxDate);
+	singlePlayerGame->m_optionManager->setGameCurrentSeason(season->getXSeason());
+
+	competitionBySeasonDAO->freeVector(competitionsBySeasonList);
+    delete season;
+
+    singlePlayerGame->loadGameEvents();
+
+    return singlePlayerGame;
 }
 
 IGame* CSinglePlayerGame::load(const CPfGames *game)
 {
-	return new CSinglePlayerGame(game);
+    CLog::getInstance()->debug("CSinglePlayerGame::load");
+
+	CSinglePlayerGame *singlePlayerGame = new CSinglePlayerGame(game);
+	singlePlayerGame->loadGameEvents();
+
+	return singlePlayerGame;
 }
 
 CPfGames* CSinglePlayerGame::save()
@@ -228,7 +242,6 @@ CPfGames* CSinglePlayerGame::save()
 
 void CSinglePlayerGame::exit()
 {
-    // TODO: Confirm current game unload
     CLog::getInstance()->debug("CSinglePlayerGame::exit()");
     CGameEngine::getInstance()->unloadCurrentGame();
 }
@@ -308,20 +321,15 @@ IScreen* CSinglePlayerGame::getTeamPlayersScreen()
     return m_teamPlayersScreen;
 }
 
-void CSinglePlayerGame::setGameOptionsDefaultValues()
+const CPfMatches* CSinglePlayerGame::getCurrentMatch()
 {
-	getOptionManager()->setDefaultValues();
+	return m_currentMatch;
 }
 
-void CSinglePlayerGame::createSinglePlayerScreens()
+void CSinglePlayerGame::setCurrentMatch(const CPfMatches *match)
 {
-    m_gameScreen		= new CScreenGame(this);
-    m_matchResultScreen	= new CScreenMatchResult(this);
-    m_rankingScreen		= new CScreenRanking(this);
-    m_resultsScreen		= new CScreenResults(this);
-    m_selectTeamScreen	= new CScreenSelectTeam(this);
-    m_simulatorScreen	= new CScreenSimulator(this);
-    m_teamPlayersScreen	= new CScreenTeamPlayers(this);
+	delete m_currentMatch;
+	m_currentMatch = (match!=NULL)?new CPfMatches(*match):NULL;
 }
 
 void CSinglePlayerGame::loadGameEvents()
@@ -352,12 +360,7 @@ void CSinglePlayerGame::loadGameEvents()
 				someMatchPlayed = true;
 				someCompetitionStarted = true;
 			}else{
-				CDate		date	= match->getDMatch();
-				date.setHour(0);
-				date.setMin(0);
-				date.setSec(0);
-
-				m_eventsQueue->push(new CMatchEvent(date, match->getXMatch()));
+				m_eventsQueue->push(new CMatchEvent(match->getDMatch(), match->getXMatch()));
 			}
 		}
 		if( !someMatchPlayed ){

@@ -39,38 +39,39 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
 
     m_game = game;
 
-    m_mainWindow             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainWindow"));
-    m_competitionName        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/CompetitionName"));
-    m_competitionCountryFlag = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/CompetitionCountryFlag"));
-    m_competitionPhaseName   = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/CompetitionPhase"));
-    m_nextCompetitionName    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextCompetitionName"));
-    m_nextHomeTeamName       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextHomeTeamName"));
-    m_nextAwayTeamName       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextAwayTeamName"));
-    m_homeTeamName           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamName"));
-    m_awayTeamName           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamName"));
-    m_homeTeamAverage        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamAverage"));
-    m_awayTeamAverage        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamAverage"));
-    m_homeTeamShield         = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamShield"));
-    m_awayTeamShield         = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamShield"));
-    m_saveButton             = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveButton"));
-    m_mainMenuButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainMenuButton"));
-    m_gameExitButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitButton"));
-    m_rankingButton          = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/RankingButton"));
-    m_teamPlayersButton	     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/TeamPlayersButton"));
-    m_resultsButton	         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultsButton"));
-    m_playButton             = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayButton"));
-    m_saveConfirmButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Confirm"));
-    m_exitConfirmButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/YesButton"));
-    m_exitCancelButton       = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/NoButton"));
-    m_gameExitConfirmButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/YesButton"));
-    m_gameExitCancelButton   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/NoButton"));
-    m_resultModeCheckbox     = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultMode"));
-    m_confirmSaveWindow      = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow"));
-    m_confirmSaveNote        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Note"));
-    m_confirmExitWindow      = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow"));
-    m_confirmExitNote        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/Note"));
-    m_confirmGameExitWindow  = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow"));
-    m_confirmGameExitNote    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/Note"));
+    m_mainWindow				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainWindow"));
+    m_seasonName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SeasonName"));
+    m_competitionName			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/CompetitionName"));
+    m_competitionCountryFlag	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/CompetitionCountryFlag"));
+    m_competitionPhaseName		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/CompetitionPhase"));
+    m_nextCompetitionName		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextCompetitionName"));
+    m_nextHomeTeamName			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextHomeTeamName"));
+    m_nextAwayTeamName			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextAwayTeamName"));
+    m_homeTeamName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamName"));
+    m_awayTeamName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamName"));
+    m_homeTeamAverage			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamAverage"));
+    m_awayTeamAverage			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamAverage"));
+    m_homeTeamShield			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/HomeTeamShield"));
+    m_awayTeamShield			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/AwayTeamShield"));
+    m_saveButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveButton"));
+    m_mainMenuButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainMenuButton"));
+    m_gameExitButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitButton"));
+    m_rankingButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/RankingButton"));
+    m_teamPlayersButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/TeamPlayersButton"));
+    m_resultsButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultsButton"));
+    m_playButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/PlayButton"));
+    m_saveConfirmButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Confirm"));
+    m_exitConfirmButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/YesButton"));
+    m_exitCancelButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/NoButton"));
+    m_gameExitConfirmButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/YesButton"));
+    m_gameExitCancelButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/NoButton"));
+    m_resultModeCheckbox		= static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ResultMode"));
+    m_confirmSaveWindow			= static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow"));
+    m_confirmSaveNote			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/SaveConfirmationWindow/Note"));
+    m_confirmExitWindow			= static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow"));
+    m_confirmExitNote			= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/ExitConfirmationWindow/Note"));
+    m_confirmGameExitWindow		= static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow"));
+    m_confirmGameExitNote		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GameExitConfirmationWindow/Note"));
 
     // GNS windows
     m_gnsStatisticsWindow    = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GNS_Statistics"));
@@ -312,8 +313,8 @@ void CScreenGame::showGNS(CEGUI::FrameWindow *gnsWindow)
 
 void CScreenGame::updateNextMatch()
 {
-    CPfMatches  *nextMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findNextTeamMatch(m_game->getOptionManager()->getGamePlayerTeam());
-    if( nextMatch==NULL ){
+    const CPfMatches  *match = m_game->getCurrentMatch();
+    if( match==NULL ){
         CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
         m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
 
@@ -325,30 +326,33 @@ void CScreenGame::updateNextMatch()
         average.str("");
         delete teamAverage;
 
-        m_awayTeamName        ->setText("");
-        m_awayTeamAverage     ->setText("");
+        m_seasonName          ->setText("");
         m_competitionName     ->setText("");
         m_competitionPhaseName->setText("");
+        m_awayTeamName        ->setText("");
+        m_awayTeamAverage     ->setText("");
 
         // Team Shields
         m_homeTeamShield->setProperty("Image", "set:"+ playerTeam->getSLogo() +" image:"+playerTeam->getSLogo()+"_b");
         m_awayTeamShield->setProperty("Image", "set: image:full_image");
 
-
         delete playerTeam;
-        m_playButton->setEnabled(false);
     }else{
-        IDAOFactory             *daoFactory           = m_game->getIDAOFactory();
-        IPfCompetitionsDAO      *competitionsDAO      = daoFactory->getIPfCompetitionsDAO();
-        IPfCountriesDAO         *countriesDAO         = daoFactory->getIPfCountriesDAO();
-        IPfCompetitionPhasesDAO *competitionPhasesDAO = daoFactory->getIPfCompetitionPhasesDAO();
-        IPfTeamsDAO             *teamsDAO = daoFactory->getIPfTeamsDAO();
-        CPfTeams                *homeTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamHome());
-        CPfTeams                *awayTeam = teamsDAO->findByXTeam(nextMatch->getXFkTeamAway());
-        CPfCompetitionPhases    *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(nextMatch->getXFkCompetitionPhase());
-        CPfCompetitions         *competition      = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
-        CPfCountries            *country          = countriesDAO->findByXCountry(competition->getXFkCountry_str());
+        IDAOFactory             *daoFactory				= m_game->getIDAOFactory();
+        IPfCountriesDAO         *countriesDAO			= daoFactory->getIPfCountriesDAO();
+        IPfSeasonsDAO			*seasonsDAO				= daoFactory->getIPfSeasonsDAO();
+        IPfCompetitionsDAO      *competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
+        IPfCompetitionPhasesDAO *competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
+        IPfTeamsDAO             *teamsDAO				= daoFactory->getIPfTeamsDAO();
 
+        CPfTeams                *homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
+        CPfTeams                *awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
+        CPfCompetitionPhases    *competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
+        CPfCompetitions         *competition		= competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
+        CPfSeasons				*season				= seasonsDAO->findByXSeason(match->getXFkSeason());
+        CPfCountries            *country			= countriesDAO->findByXCountry(competition->getXFkCountry_str());
+
+        m_seasonName          ->setText((CEGUI::utf8*)season->getSSeason().c_str());
         m_competitionName     ->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
         m_competitionPhaseName->setText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
         m_homeTeamName        ->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
@@ -375,13 +379,11 @@ void CScreenGame::updateNextMatch()
         m_homeTeamShield->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
         m_awayTeamShield->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
 
-        m_playButton->setEnabled(true);
-
         delete country;
+        delete season;
         delete competition;
         delete competitionPhase;
         delete homeTeam;
         delete awayTeam;
-        delete nextMatch;
     }
 }

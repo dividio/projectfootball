@@ -65,7 +65,7 @@ std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhase(int XFk
 std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase)
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE ");
-    sql = sql+"X_FK_COMPETITION_PHASE='"+XFkCompetitionPhase+"'";
+    sql += "X_FK_COMPETITION_PHASE='"+XFkCompetitionPhase+"'";
     return loadVector(sql);
 }
 
@@ -79,7 +79,7 @@ CPfMatches* CPfMatchesDAOSQLite::findByXFkTeamHome(int XFkTeamHome)
 CPfMatches* CPfMatchesDAOSQLite::findByXFkTeamHome(const std::string &XFkTeamHome)
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE ");
-    sql = sql+"X_FK_TEAM_HOME='"+XFkTeamHome+"'";
+    sql += "X_FK_TEAM_HOME='"+XFkTeamHome+"'";
     return loadRegister(sql);
 }
 
@@ -93,7 +93,7 @@ CPfMatches* CPfMatchesDAOSQLite::findByXMatch(int XMatch)
 CPfMatches* CPfMatchesDAOSQLite::findByXMatch(const std::string &XMatch)
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE ");
-    sql = sql+"X_MATCH='"+XMatch+"'";
+    sql += "X_MATCH='"+XMatch+"'";
     return loadRegister(sql);
 }
 
@@ -107,7 +107,7 @@ CPfMatches* CPfMatchesDAOSQLite::findByXFkTeamAway(int XFkTeamAway)
 CPfMatches* CPfMatchesDAOSQLite::findByXFkTeamAway(const std::string &XFkTeamAway)
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE ");
-    sql = sql+"X_FK_TEAM_AWAY='"+XFkTeamAway+"'";
+    sql += "X_FK_TEAM_AWAY='"+XFkTeamAway+"'";
     return loadRegister(sql);
 }
 
@@ -121,32 +121,4 @@ std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findMatchesNotPlayed()
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='N' ORDER BY D_MATCH");
     return loadVector(sql);
-}
-
-CPfMatches* CPfMatchesDAOSQLite::findNextTeamMatch(int XTeam)
-{
-    std::ostringstream stream;
-    stream << XTeam;
-    return findNextTeamMatch(stream.str());
-}
-
-CPfMatches* CPfMatchesDAOSQLite::findNextTeamMatch(const std::string &XTeam)
-{
-    std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='N'");
-    sql = sql + "AND (X_FK_TEAM_HOME='"+XTeam+"' OR X_FK_TEAM_AWAY='"+XTeam+"') ORDER BY D_MATCH";
-    return loadRegister(sql);
-}
-
-CPfMatches* CPfMatchesDAOSQLite::findLastTeamMatch(int XTeam)
-{
-    std::ostringstream stream;
-    stream << XTeam;
-    return findLastTeamMatch(stream.str());
-}
-
-CPfMatches* CPfMatchesDAOSQLite::findLastTeamMatch(const std::string &XTeam)
-{
-    std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='Y'");
-    sql = sql + "AND (X_FK_TEAM_HOME='"+XTeam+"' OR X_FK_TEAM_AWAY='"+XTeam+"') ORDER BY D_MATCH DESC";
-    return loadRegister(sql);
 }

@@ -135,7 +135,7 @@ void CGameEngine::save()
 {
     if( m_game!=NULL ){
         CPfGames *game = m_game->save();
-        if( game->getXGame_str()=="" ){
+        if( game->getXGame()==0 ){
             m_masterDatabase->getIPfGamesDAO()->insertReg(game);
         }else{
             m_masterDatabase->getIPfGamesDAO()->updateReg(game);
