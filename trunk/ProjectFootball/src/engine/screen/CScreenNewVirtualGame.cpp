@@ -24,7 +24,7 @@
 #include "CScreenNewVirtualGame.h"
 #include "../CGameEngine.h"
 #include "../../utils/CLog.h"
-#include "../../quickPlay/CQuickGame.h"
+#include "../../friendlyMatch/CFriendlyMatchGame.h"
 
 CScreenNewVirtualGame::CScreenNewVirtualGame()
 :CScreen("newVirtualGame.layout")
@@ -66,7 +66,7 @@ bool CScreenNewVirtualGame::startButtonClicked(const CEGUI::EventArgs& e)
         CLog::getInstance()->exception("[CScreenVirtualGame::virtualCompetitionButtonClicked] User not defined");
     }
 
-    CGameEngine::getInstance()->loadGame(new CQuickGame(user));
+    CGameEngine::getInstance()->loadGame(new CFriendlyMatchGame(user));
     CGameEngine::getInstance()->save();
     //CGameEngine::getInstance()->previousScreen();
     return true;

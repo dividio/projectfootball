@@ -22,7 +22,7 @@
 #define CGAMEENGINE_H_
 
 #define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
-#define S_GAME_TYPE_QUICKPLAY       "QUICK_PLAY"
+#define S_GAME_TYPE_FRIENDLYMATCH    "FRIENDLY_MATCH"
 
 #include <string>
 #include <vector>

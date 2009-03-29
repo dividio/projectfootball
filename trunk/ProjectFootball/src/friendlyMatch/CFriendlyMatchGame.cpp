@@ -18,26 +18,25 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CQuickGame.h"
+#include "CFriendlyMatchGame.h"
 
 #include "../engine/CGameEngine.h"
-
 #include "../singlePlayer/CSinglePlayerGame.h"
 #include "../singlePlayer/db/dao/factory/IDAOFactory.h"
 #include "../singlePlayer/option/CSinglePlayerOptionManager.h"
 #include "../utils/CLog.h"
 
 
-CQuickGame::CQuickGame(const CPfUsers *user)
+CFriendlyMatchGame::CFriendlyMatchGame(const CPfUsers *user)
 {
-    CLog::getInstance()->debug("CQuickGame::CQuickGame");
-    m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= QUICK GAME =-]"));
+    CLog::getInstance()->debug("CFriendlyMatchGame::CFriendlyMatchGame");
+    m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= FRIENDLY MATCH GAME =-]"));
 
-    IPfTeamsDAO	*teamsDAO	= m_game->getIDAOFactory()->getIPfTeamsDAO();
+    IPfTeamsDAO *teamsDAO   = m_game->getIDAOFactory()->getIPfTeamsDAO();
 
     std::vector<CPfTeams*> *teamsList = teamsDAO->findAll();
     if( teamsList->empty() ){
-        CLog::getInstance()->exception("[CQuickGame::CQuickGame] Teams list is empty");
+        CLog::getInstance()->exception("[CFriendlyMatchGame::CFriendlyMatchGame] Teams list is empty");
     }
 
     m_game->getOptionManager()->setGamePlayerTeam(teamsList->at(rand()%teamsList->size())->getXTeam());
@@ -46,31 +45,31 @@ CQuickGame::CQuickGame(const CPfUsers *user)
     teamsDAO->freeVector(teamsList);
 }
 
-CQuickGame::~CQuickGame()
+CFriendlyMatchGame::~CFriendlyMatchGame()
 {
-    CLog::getInstance()->debug("CQuickGame::~CQuickGame");
+    CLog::getInstance()->debug("CFriendlyMatchGame::~CFriendlyMatchGame");
     delete m_game;
 }
 
-CPfGames* CQuickGame::save()
+CPfGames* CFriendlyMatchGame::save()
 {
-	CPfGames *game = m_game->save();
-	game->setSGameType(S_GAME_TYPE_QUICKPLAY);
-	return game;
+    CPfGames *game = m_game->save();
+    game->setSGameType(S_GAME_TYPE_FRIENDLYMATCH);
+    return game;
 }
 
-void CQuickGame::enter()
+void CFriendlyMatchGame::enter()
 {
-	m_game->enter();
+    m_game->enter();
     m_game->nextScreen(m_game->getSimulatorScreen());
 }
 
-void CQuickGame::leave()
+void CFriendlyMatchGame::leave()
 {
-	m_game->leave();
+    m_game->leave();
 
     IPfGamesDAO                         *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
-    std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_QUICKPLAY);
+    std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_FRIENDLYMATCH);
     std::vector<CPfGames*>::iterator    it;
     for( it=gamesList->begin(); it!=gamesList->end(); it++ ){
         CPfGames *game = (*it);
@@ -82,7 +81,7 @@ void CQuickGame::leave()
     gamesDAO->freeVector(gamesList);
 }
 
-void CQuickGame::update()
+void CFriendlyMatchGame::update()
 {
-	m_game->update();
+    m_game->update();
 }

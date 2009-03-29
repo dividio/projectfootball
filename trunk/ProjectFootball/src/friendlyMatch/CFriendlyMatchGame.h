@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CQUICKGAME_H_
-#define CQUICKGAME_H_
+#ifndef CFRIENDLYMATCHGAME_H_
+#define CFRIENDLYMATCHGAME_H_
 
 #include "../engine/IGame.h"
 
@@ -28,14 +28,14 @@ class CPfGames;
 class CPfUsers;
 class CSinglePlayerGame;
 
-class CQuickGame : public IGame
+class CFriendlyMatchGame : public IGame
 {
 public:
-    CQuickGame(const CPfUsers *user);
-    virtual ~CQuickGame();
+    CFriendlyMatchGame(const CPfUsers *user);
+    virtual ~CFriendlyMatchGame();
 
     // IGame
-	virtual CPfGames* save();
+    virtual CPfGames* save();
 
     // CScreen
     virtual void enter();
@@ -43,7 +43,7 @@ public:
     virtual void update();
 
 private:
-	CSinglePlayerGame	*m_game;
+    CSinglePlayerGame   *m_game;
 };
 
-#endif /*CQUICKGAME_H_*/
+#endif /*CFRIENDLYMATCHGAME_H_*/
