@@ -248,6 +248,7 @@ void CSimulationManager::changeFormationEvent(int pos)
     } else {
         CLog::getInstance()->error("Can't switch formation, team %d is not playing the match.", xTeam);
     }
+    delete team;
 }
 
 
