@@ -37,8 +37,8 @@ public:
 
     virtual std::vector<CPfMatches*>* findByXFkCompetitionAndXFkSeason(int XFkCompetition, int XFkSeason);
     virtual std::vector<CPfMatches*>* findByXFkCompetitionAndXFkSeason(const std::string &XFkCompetition, const std::string &XFkSeason);
-    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(int XFkCompetitionPhase);
-    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase);
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhaseAndXFkSeason(int XFkCompetitionPhase, int XFkSeason);
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhaseAndXFkSeason(const std::string &XFkCompetitionPhase, const std::string &XFkSeason);
     virtual CPfMatches* findByXFkTeamHome(int XFkTeamHome);
     virtual CPfMatches* findByXFkTeamHome(const std::string &XFkTeamHome);
     virtual CPfMatches* findByXMatch(int XMatch);
@@ -47,6 +47,8 @@ public:
     virtual CPfMatches* findByXFkTeamAway(const std::string &XFkTeamAway);
     virtual std::vector<CPfMatches*>* findMatches();
     virtual std::vector<CPfMatches*>* findMatchesNotPlayed();
+    virtual CPfMatches* findLastTeamMatch(int XTeam);
+    virtual CPfMatches* findLastTeamMatch(const std::string &XTeam);
 
 };
 #endif /*CPFMATCHESDAOSQLITE_H_*/

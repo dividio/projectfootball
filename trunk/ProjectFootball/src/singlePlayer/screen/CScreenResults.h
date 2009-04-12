@@ -36,26 +36,26 @@ public:
 	virtual void enter();
 
 private:
-    bool competitionsComboboxListSelectionChanged(const CEGUI::EventArgs& e);
+    bool competitionsComboboxListSelectionChanged     (const CEGUI::EventArgs& e);
     bool competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e);
-    bool backButtonClicked(const CEGUI::EventArgs& e);
-    bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
-    bool rankingButtonClicked               (const CEGUI::EventArgs& e);
-	  bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
-  	bool resultsButtonClicked               (const CEGUI::EventArgs& e);
+    bool backButtonClicked                            (const CEGUI::EventArgs& e);
+    bool gameMenuButtonClicked                        (const CEGUI::EventArgs& e);
+    bool rankingButtonClicked                         (const CEGUI::EventArgs& e);
+	bool teamPlayersButtonClicked                     (const CEGUI::EventArgs& e);
+  	bool resultsButtonClicked                         (const CEGUI::EventArgs& e);
 
-    void loadCompetitions();
-    void loadCompetitionPhases();
-    void loadResultsList();
+    void loadCompetitions(int XCountry, int Seasson, int XCompetition = -1);
+    void loadCompetitionPhases(int XCompetition, int XCompetitionPhase = -1);
+    void loadResultsList(int XCompetitionPhase);
 
     CEGUI::Combobox         *m_competitionsCombobox;
     CEGUI::Combobox         *m_competitionPhasesCombobox;
     CEGUI::MultiColumnList  *m_resultsList;
     CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton       *m_gameMenuButton;
-    CEGUI::PushButton	*m_rankingButton;
-    CEGUI::PushButton	*m_teamPlayersButton;
-    CEGUI::PushButton	*m_resultsButton;
+    CEGUI::PushButton	    *m_rankingButton;
+    CEGUI::PushButton	    *m_teamPlayersButton;
+    CEGUI::PushButton	    *m_resultsButton;
 
     CSinglePlayerGame		*m_game;
 };

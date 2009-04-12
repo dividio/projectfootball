@@ -55,17 +55,21 @@ std::vector<CPfMatches*>*  CPfMatchesDAOSQLite::findByXFkCompetitionAndXFkSeason
 	return loadVector(sql);
 }
 
-std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhase(int XFkCompetitionPhase)
+std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhaseAndXFkSeason(int XFkCompetitionPhase, int XFkSeason)
 {
     std::ostringstream stream;
     stream << XFkCompetitionPhase;
-    return findByXFkCompetitionPhase(stream.str());
+
+    std::ostringstream strXFkSeason;
+    strXFkSeason << XFkSeason;
+
+    return findByXFkCompetitionPhaseAndXFkSeason(stream.str(), strXFkSeason.str());
 }
 
-std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase)
+std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findByXFkCompetitionPhaseAndXFkSeason(const std::string &XFkCompetitionPhase, const std::string &XFkSeason)
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE ");
-    sql += "X_FK_COMPETITION_PHASE='"+XFkCompetitionPhase+"'";
+    sql += "X_FK_COMPETITION_PHASE='"+XFkCompetitionPhase+"' AND X_FK_SEASON='"+XFkSeason+"'";
     return loadVector(sql);
 }
 
@@ -121,4 +125,18 @@ std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findMatchesNotPlayed()
 {
     std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='N' ORDER BY D_MATCH");
     return loadVector(sql);
+}
+
+CPfMatches* CPfMatchesDAOSQLite::findLastTeamMatch(int XTeam)
+{
+    std::ostringstream stream;
+    stream << XTeam;
+    return findLastTeamMatch(stream.str());
+}
+
+CPfMatches* CPfMatchesDAOSQLite::findLastTeamMatch(const std::string &XTeam)
+{
+    std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='Y'");
+    sql = sql + "AND (X_FK_TEAM_HOME='"+XTeam+"' OR X_FK_TEAM_AWAY='"+XTeam+"') ORDER BY D_MATCH DESC";
+    return loadRegister(sql);
 }

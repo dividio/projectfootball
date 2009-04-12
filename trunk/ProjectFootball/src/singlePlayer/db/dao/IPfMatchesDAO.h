@@ -42,8 +42,8 @@ public:
 
     virtual std::vector<CPfMatches*>* findByXFkCompetitionAndXFkSeason(int XFkCompetition, int XFkSeason) =0;
     virtual std::vector<CPfMatches*>* findByXFkCompetitionAndXFkSeason(const std::string &XFkCompetition, const std::string &XFkSeason) =0;
-    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(int XFkCompetitionPhase) =0;
-    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase) =0;
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhaseAndXFkSeason(int XFkCompetitionPhase, int XFkSeason) =0;
+    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhaseAndXFkSeason(const std::string &XFkCompetitionPhase, const std::string &XFkSeason) =0;
     virtual CPfMatches* findByXFkTeamHome(int XFkTeamHome) =0;
     virtual CPfMatches* findByXFkTeamHome(const std::string &XFkTeamHome) =0;
     virtual CPfMatches* findByXMatch(int XMatch) =0;
@@ -52,6 +52,8 @@ public:
     virtual CPfMatches* findByXFkTeamAway(const std::string &XFkTeamAway) =0;
     virtual std::vector<CPfMatches*>* findMatches() =0;
     virtual std::vector<CPfMatches*>* findMatchesNotPlayed() =0;
+    virtual CPfMatches* findLastTeamMatch(int XTeam) =0;
+    virtual CPfMatches* findLastTeamMatch(const std::string &XTeam) =0;
 
 };
 #endif /*IPFMATCHESDAO_H_*/
