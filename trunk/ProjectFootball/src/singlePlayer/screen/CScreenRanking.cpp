@@ -114,47 +114,47 @@ void CScreenRanking::loadRanking(int XSeason, int XCompetition)
 
     for( it=rankingList->begin(); it!=rankingList->end(); it++ ){
         CPfRanking *ranking = (*it);
+        sprintf(position, "%d", cont);
 
+        int row_idx = m_rankingList->addRow();
 
-            int row_idx = m_rankingList->addRow();
+        item = new CEGUI::ListboxTextItem(position);
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 0, row_idx);
 
-            item = new CEGUI::ListboxTextItem(position);
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 0, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getSTeam().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 1, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getSTeam().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 1, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPoints_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 2, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPoints_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 2, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPlayed_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 3, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPlayed_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 3, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNWins_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 4, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNWins_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 4, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNDraws_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 5, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNDraws_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 5, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNLosses_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 6, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNLosses_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 6, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsFor_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 7, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsFor_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 7, row_idx);
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsAgainst_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_rankingList->setItem(item, 8, row_idx);
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsAgainst_str().c_str());
-            item->setSelectionBrushImage(sel_img);
-            m_rankingList->setItem(item, 8, row_idx);
-
-            cont++;
+        cont++;
     }
     rankingDAO->freeVector(rankingList);
 
