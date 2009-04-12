@@ -96,9 +96,9 @@ void CScreenResults::enter()
         loadResultsList(lastCompetitionPhase->getXCompetitionPhase());
         delete lastCompetition;
         delete lastCompetitionPhase;
-        delete lastMatch;
 	}
-    delete playerTeam;
+	delete lastMatch;
+	delete playerTeam;
 }
 
 void CScreenResults::loadCompetitions(int XCountry, int XSeasson, int XCompetition)
