@@ -35,6 +35,6 @@ public:
     virtual ~IPfRankingDAO(){}
 
     virtual void freeVector(std::vector<CPfRanking*>* vector) =0;
-    virtual std::vector<CPfRanking*>* findRanking() =0;
+    virtual std::vector<CPfRanking*>* findRankingByXSeasonAndXCompetition(int XSeason, int XCompetition) =0;
 };
 #endif /*IPFRANKINGDAO_H_*/

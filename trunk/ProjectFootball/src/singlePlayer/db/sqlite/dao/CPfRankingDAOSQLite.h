@@ -35,6 +35,6 @@ public:
     CPfRankingDAOSQLite(sqlite3 *database);
     virtual ~CPfRankingDAOSQLite();
 
-    virtual std::vector<CPfRanking*>* findRanking();
+    virtual std::vector<CPfRanking*>* findRankingByXSeasonAndXCompetition(int XSeason, int XCompetition);
 };
 #endif /*CPFRANKINGDAOSQLITE_H_*/

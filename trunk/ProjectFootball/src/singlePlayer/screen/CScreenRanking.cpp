@@ -37,9 +37,9 @@ CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
 
     m_game = game;
 
-    m_rankingList    = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
-    m_backButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/BackButton"));
-    m_gameMenuButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/GameMenuButton"));
+    m_rankingList        = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingList"));
+    m_backButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/BackButton"));
+    m_gameMenuButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/GameMenuButton"));
     m_rankingButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingButton"));
     m_teamPlayersButton	 = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/TeamPlayersButton"));
     m_resultsButton	     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/ResultsButton"));
@@ -49,19 +49,19 @@ CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
     m_rankingList->setUserSortControlEnabled(false);
 
     // i18n support
-    m_backButton    ->setTooltipText((CEGUI::utf8*)gettext("Back"));
-    m_gameMenuButton->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
-    m_rankingButton     ->setText((CEGUI::utf8*)gettext("Ranking"));
-    m_teamPlayersButton ->setText((CEGUI::utf8*)gettext("Team Players"));
-    m_resultsButton     ->setText((CEGUI::utf8*)gettext("Results"));
+    m_backButton       ->setTooltipText((CEGUI::utf8*)gettext("Back"));
+    m_gameMenuButton   ->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
+    m_rankingButton    ->setText((CEGUI::utf8*)gettext("Ranking"));
+    m_teamPlayersButton->setText((CEGUI::utf8*)gettext("Team Players"));
+    m_resultsButton    ->setText((CEGUI::utf8*)gettext("Results"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Ranking/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
 
     // Event handle
-    m_backButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::backButtonClicked, this));
-    m_gameMenuButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::gameMenuButtonClicked, this));
-    m_rankingButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::rankingButtonClicked, this));
-    m_teamPlayersButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::teamPlayersButtonClicked, this));
-    m_resultsButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::resultsButtonClicked, this));
+    m_backButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::backButtonClicked, this));
+    m_gameMenuButton   ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::gameMenuButtonClicked, this));
+    m_rankingButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::rankingButtonClicked, this));
+    m_teamPlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::teamPlayersButtonClicked, this));
+    m_resultsButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenRanking::resultsButtonClicked, this));
 
     m_rankingList->addColumn("",     0, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.60,0));
@@ -84,79 +84,81 @@ void CScreenRanking::enter()
 {
 	CScreen::enter();
 
-    loadRanking();
+    CPfTeams   *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
+    CPfMatches *lastMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findLastTeamMatch(playerTeam->getXTeam_str());
+    if(lastMatch->getXMatch() > 0) {
+        CPfCompetitionPhases *lastCompetitionPhase = m_game->getIDAOFactory()->getIPfCompetitionPhasesDAO()->findByXCompetitionPhase(lastMatch->getXFkCompetitionPhase_str());
+
+        int XSeason = lastMatch->getXFkSeason();
+        int XCompetition = lastCompetitionPhase->getXFkCompetition();
+        loadRanking(XSeason, XCompetition);
+
+        delete lastCompetitionPhase;
+    }
+    delete lastMatch;
+    delete playerTeam;
 }
 
-void CScreenRanking::loadRanking()
+void CScreenRanking::loadRanking(int XSeason, int XCompetition)
 {
-//    m_rankingList->resetList();
-//    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
-//
-//    IDAOFactory                         *daoFactory		= m_game->getIDAOFactory();
-//    IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
-//    std::vector<CPfRanking*>            *rankingList    = rankingDAO->findRanking();
-//    std::vector<CPfRanking*>::iterator  it;
-//    CEGUI::ListboxTextItem *item;
-//    char position[4];
-//    int cont = 1;
-//
-//    // TODO Ranking for all competitions
-//    CPfTeams *playerTeam = daoFactory->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
-//    CPfRegisteredTeams *registeredTeam = daoFactory->getIPfRegisteredTeamsDAO()->findByXFkTeam(playerTeam->getXTeam());
-//    std::vector<CPfTeams*> *teams = daoFactory->getIPfTeamsDAO()->findTeamsByXCompetition(registeredTeam->getXFkCompetition());
-//
-//    for( it=rankingList->begin(); it!=rankingList->end(); it++ ){
-//        CPfRanking *ranking = (*it);
-//        if(isInSameCompetition(teams, ranking->getSTeam())) {
-//            sprintf(position, "%d", cont);
-//
-//            int row_idx = m_rankingList->addRow();
-//
-//            item = new CEGUI::ListboxTextItem(position);
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 0, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getSTeam().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 1, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPoints_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 2, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPlayed_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 3, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNWins_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 4, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNDraws_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 5, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNLosses_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 6, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsFor_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 7, row_idx);
-//
-//            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsAgainst_str().c_str());
-//            item->setSelectionBrushImage(sel_img);
-//            m_rankingList->setItem(item, 8, row_idx);
-//
-//            cont++;
-//        }
-//    }
-//    rankingDAO->freeVector(rankingList);
-//    daoFactory->getIPfTeamsDAO()->freeVector(teams);
-//    delete registeredTeam;
-//    delete playerTeam;
-//
-//    m_rankingList->getHorzScrollbar()->setVisible(false);
+    m_rankingList->resetList();
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+
+    IDAOFactory                         *daoFactory		= m_game->getIDAOFactory();
+    IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
+    std::vector<CPfRanking*>            *rankingList    = rankingDAO->findRankingByXSeasonAndXCompetition(XSeason, XCompetition);
+    std::vector<CPfRanking*>::iterator  it;
+    CEGUI::ListboxTextItem *item;
+    char position[4];
+    int cont = 1;
+
+    for( it=rankingList->begin(); it!=rankingList->end(); it++ ){
+        CPfRanking *ranking = (*it);
+
+
+            int row_idx = m_rankingList->addRow();
+
+            item = new CEGUI::ListboxTextItem(position);
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 0, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getSTeam().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 1, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPoints_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 2, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNPlayed_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 3, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNWins_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 4, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNDraws_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 5, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNLosses_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 6, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsFor_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 7, row_idx);
+
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)ranking->getNGoalsAgainst_str().c_str());
+            item->setSelectionBrushImage(sel_img);
+            m_rankingList->setItem(item, 8, row_idx);
+
+            cont++;
+    }
+    rankingDAO->freeVector(rankingList);
+
+    m_rankingList->getHorzScrollbar()->setVisible(false);
 }
 
 bool CScreenRanking::isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam)

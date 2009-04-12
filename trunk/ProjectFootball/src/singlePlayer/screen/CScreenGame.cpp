@@ -162,8 +162,10 @@ void CScreenGame::enter()
     CPfMatches *lastMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findLastTeamMatch(playerTeam->getXTeam_str());
     if(lastMatch->getXMatch() > 0) {
         m_resultsButton->setEnabled(true);
+        m_rankingButton->setEnabled(true);
     } else {
         m_resultsButton->setEnabled(false);
+        m_rankingButton->setEnabled(false);
     }
 
     delete lastMatch;

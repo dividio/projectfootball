@@ -37,13 +37,13 @@ public:
     virtual void enter();
 
 private:
-    void loadRanking();
-    bool backButtonClicked(const CEGUI::EventArgs& e);
-    bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
-    bool rankingButtonClicked               (const CEGUI::EventArgs& e);
-	  bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
-	  bool resultsButtonClicked               (const CEGUI::EventArgs& e);
-    
+    void loadRanking              (int XSeason, int XCompetition);
+    bool backButtonClicked        (const CEGUI::EventArgs& e);
+    bool gameMenuButtonClicked    (const CEGUI::EventArgs& e);
+    bool rankingButtonClicked     (const CEGUI::EventArgs& e);
+	bool teamPlayersButtonClicked (const CEGUI::EventArgs& e);
+	bool resultsButtonClicked     (const CEGUI::EventArgs& e);
+
     // TODO Ranking for all competitions
     bool isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam);
 
