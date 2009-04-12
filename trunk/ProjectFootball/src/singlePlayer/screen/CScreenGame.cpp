@@ -75,7 +75,7 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
 
     // GNS windows
     m_gnsStatisticsWindow    = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GNS_Statistics"));
-    m_gnsApparelWindow       = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GNS_Apparel"));
+    m_gnsChangingRoomWindow       = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/GNS_ChangingRoom"));
 
     // GNS radio buttons
     std::string guiName = CSystemOptionManager::getInstance()->getGUISkin();
@@ -83,13 +83,13 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     std::string radioGNSName;
     CEGUI::Window* window2 = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/MainWindow2"));
 
-    m_radioApparelButton = new CEGUI::RadioButton((CEGUI::utf8*)radioButtonName.c_str(), "Game/Apparel");
-    window2->addChildWindow(m_radioApparelButton);
-    m_radioApparelButton->setPosition( CEGUI::UVector2( CEGUI::UDim( 0.6f, 0 ), CEGUI::UDim( 0.7f, 0 ) ) );
-    m_radioApparelButton->setSize( CEGUI::UVector2( CEGUI::UDim( 0.1f, 0 ), CEGUI::UDim( 0.05f, 0 ) ) );
-    m_radioApparelButton->setWindowRenderer("Falagard/ToggleButton");
-    radioGNSName = guiName + "/GNSApparel";
-    m_radioApparelButton->setLookNFeel((CEGUI::utf8*)radioGNSName.c_str());
+    m_radioChangingRoomButton = new CEGUI::RadioButton((CEGUI::utf8*)radioButtonName.c_str(), "Game/ChangingRoom");
+    window2->addChildWindow(m_radioChangingRoomButton);
+    m_radioChangingRoomButton->setPosition( CEGUI::UVector2( CEGUI::UDim( 0.6f, 0 ), CEGUI::UDim( 0.7f, 0 ) ) );
+    m_radioChangingRoomButton->setSize( CEGUI::UVector2( CEGUI::UDim( 0.1f, 0 ), CEGUI::UDim( 0.05f, 0 ) ) );
+    m_radioChangingRoomButton->setWindowRenderer("Falagard/ToggleButton");
+    radioGNSName = guiName + "/GNSChangingRoom";
+    m_radioChangingRoomButton->setLookNFeel((CEGUI::utf8*)radioGNSName.c_str());
 
     m_radioStatisticsButton = new CEGUI::RadioButton((CEGUI::utf8*)radioButtonName.c_str(), "Game/Statistics");
     window2->addChildWindow(m_radioStatisticsButton);
@@ -101,10 +101,10 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
 
     // Group GNS windows
     m_gnsWindowGroup.push_back(m_gnsStatisticsWindow);
-    m_gnsWindowGroup.push_back(m_gnsApparelWindow);
+    m_gnsWindowGroup.push_back(m_gnsChangingRoomWindow);
 
     // Bind GNS windows to radio buttons
-    m_radioApparelButton   ->setUserData(m_gnsApparelWindow);
+    m_radioChangingRoomButton   ->setUserData(m_gnsChangingRoomWindow);
     m_radioStatisticsButton->setUserData(m_gnsStatisticsWindow);
 
     // i18n support
@@ -124,7 +124,7 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_exitCancelButton     ->setText((CEGUI::utf8*)gettext("No"));
     m_gameExitConfirmButton->setText((CEGUI::utf8*)gettext("Yes"));
     m_gameExitCancelButton ->setText((CEGUI::utf8*)gettext("No"));
-    m_radioApparelButton   ->setTooltipText((CEGUI::utf8*)gettext("Apparel"));
+    m_radioChangingRoomButton   ->setTooltipText((CEGUI::utf8*)gettext("Changing Room"));
     m_radioStatisticsButton->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextEventLabel"))->setText((CEGUI::utf8*)gettext("Next event:"));
 
@@ -142,7 +142,7 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_exitCancelButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitCancelButtonClicked, this));
     m_gameExitConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitConfirmButtonClicked, this));
     m_gameExitCancelButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitCancelButtonClicked, this));
-    m_radioApparelButton   ->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
+    m_radioChangingRoomButton   ->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
     m_radioStatisticsButton->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
 }
 
@@ -156,7 +156,7 @@ void CScreenGame::enter()
 	CScreen::enter();
 
     m_resultModeCheckbox->setSelected(m_game->getOptionManager()->getMatchResultMode());
-    m_radioStatisticsButton->setSelected(true);
+    m_radioChangingRoomButton->setSelected(true);
 
     updateNextMatch();
 }
@@ -290,7 +290,7 @@ bool CScreenGame::gameExitCancelButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenGame::gnsRadioButtonClicked(const CEGUI::EventArgs& e)
 {
-    CEGUI::RadioButton *button = m_radioApparelButton->getSelectedButtonInGroup();
+    CEGUI::RadioButton *button = m_radioChangingRoomButton->getSelectedButtonInGroup();
     CEGUI::FrameWindow *gnsWindow = (CEGUI::FrameWindow*)button->getUserData();
     showGNS(gnsWindow);
 

@@ -61,9 +61,9 @@
 	<Image Name="GNS_Button8Highlight" XPos="110" YPos="722" Width="102" Height="20" />
 	
 	
-	<Image Name="GNSApparelNormal" XPos="250" YPos="570" Width="54" Height="54" />
-	<Image Name="GNSApparelHighlight" XPos="250" YPos="624" Width="54" Height="54" />
-	<Image Name="GNSApparelFull" XPos="250" YPos="678" Width="54" Height="54" />
+	<Image Name="GNSChangingRoomNormal" XPos="250" YPos="570" Width="54" Height="54" />
+	<Image Name="GNSChangingRoomHighlight" XPos="250" YPos="624" Width="54" Height="54" />
+	<Image Name="GNSChangingRoomFull" XPos="250" YPos="678" Width="54" Height="54" />
 	
 	<Image Name="GNSStatisticsNormal" XPos="304" YPos="570" Width="54" Height="54" />
 	<Image Name="GNSStatisticsHighlight" XPos="304" YPos="624" Width="54" Height="54" />

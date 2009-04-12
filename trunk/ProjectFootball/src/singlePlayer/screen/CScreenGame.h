@@ -85,9 +85,9 @@ private:
     CEGUI::Checkbox   	*m_resultModeCheckbox;
     CEGUI::Window       *m_mainWindow;
     CEGUI::FrameWindow  *m_gnsStatisticsWindow;
-    CEGUI::FrameWindow  *m_gnsApparelWindow;
+    CEGUI::FrameWindow  *m_gnsChangingRoomWindow;
     CEGUI::RadioButton  *m_radioStatisticsButton;
-    CEGUI::RadioButton  *m_radioApparelButton;
+    CEGUI::RadioButton  *m_radioChangingRoomButton;
     CEGUI::FrameWindow  *m_confirmSaveWindow;
     CEGUI::Window       *m_confirmSaveNote;
     CEGUI::FrameWindow  *m_confirmExitWindow;

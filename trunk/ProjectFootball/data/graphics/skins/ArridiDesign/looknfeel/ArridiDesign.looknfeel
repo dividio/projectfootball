@@ -3818,10 +3818,10 @@
     </WidgetLook>  
                
     --------------------------------------------
-    -   ArridiDesign/GNSApparel                -
+    -   ArridiDesign/GNSChangingRoom                -
     --------------------------------------------
     
-    <WidgetLook name="ArridiDesign/GNSApparel">
+    <WidgetLook name="ArridiDesign/GNSChangingRoom">
 		<PropertyDefinition name="NormalTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
         <PropertyDefinition name="HoverTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
         <PropertyDefinition name="PushedTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
@@ -3831,7 +3831,7 @@
             <TextComponent>
                 <Area>
                     <Dim type="LeftEdge" >
-                        <ImageDim imageset="WidgetsImageset" image="GNSApparelNormal" dimension="Width">
+                        <ImageDim imageset="WidgetsImageset" image="GNSChangingRoomNormal" dimension="Width">
                             <DimOperator op="Add">
                                 <AbsoluteDim value="3" />
                             </DimOperator>
@@ -3853,7 +3853,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="WidgetsImageset" image="GNSApparelNormal" />
+                <Image imageset="WidgetsImageset" image="GNSChangingRoomNormal" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -3866,7 +3866,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="WidgetsImageset" image="GNSApparelHighlight" />
+                <Image imageset="WidgetsImageset" image="GNSChangingRoomHighlight" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
@@ -3879,7 +3879,7 @@
                     <Dim type="Width" ><UnifiedDim scale="1" type="Width" /></Dim>
                     <Dim type="Height" ><UnifiedDim scale="1" type="Height" /></Dim>
                 </Area>
-                <Image imageset="WidgetsImageset" image="GNSApparelFull" />
+                <Image imageset="WidgetsImageset" image="GNSChangingRoomFull" />
                 <VertFormat type="CentreAligned" />
                 <HorzFormat type="LeftAligned" />
             </ImageryComponent>
