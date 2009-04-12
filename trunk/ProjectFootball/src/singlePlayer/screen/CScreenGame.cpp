@@ -104,46 +104,46 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
     m_gnsWindowGroup.push_back(m_gnsChangingRoomWindow);
 
     // Bind GNS windows to radio buttons
-    m_radioChangingRoomButton   ->setUserData(m_gnsChangingRoomWindow);
-    m_radioStatisticsButton->setUserData(m_gnsStatisticsWindow);
+    m_radioChangingRoomButton->setUserData(m_gnsChangingRoomWindow);
+    m_radioStatisticsButton  ->setUserData(m_gnsStatisticsWindow);
 
     // i18n support
-    m_saveButton           ->setTooltipText((CEGUI::utf8*)gettext("Save"));
-    m_mainMenuButton       ->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
-    m_gameExitButton       ->setTooltipText((CEGUI::utf8*)gettext("Exit to OS"));
-    m_rankingButton        ->setText((CEGUI::utf8*)gettext("Ranking"));
-    m_teamPlayersButton    ->setText((CEGUI::utf8*)gettext("Team Players"));
-    m_resultsButton        ->setText((CEGUI::utf8*)gettext("Results"));
-    m_playButton           ->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
-    m_resultModeCheckbox   ->setText((CEGUI::utf8*)gettext("Result Mode"));
-    m_confirmSaveNote      ->setText((CEGUI::utf8*)gettext("The game has been saved"));
-    m_confirmExitNote      ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game?"));
-    m_confirmGameExitNote  ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game and return to the Operation System?"));
-    m_saveConfirmButton    ->setText((CEGUI::utf8*)gettext("Ok"));
-    m_exitConfirmButton    ->setText((CEGUI::utf8*)gettext("Yes"));
-    m_exitCancelButton     ->setText((CEGUI::utf8*)gettext("No"));
-    m_gameExitConfirmButton->setText((CEGUI::utf8*)gettext("Yes"));
-    m_gameExitCancelButton ->setText((CEGUI::utf8*)gettext("No"));
-    m_radioChangingRoomButton   ->setTooltipText((CEGUI::utf8*)gettext("Changing Room"));
-    m_radioStatisticsButton->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
+    m_saveButton             ->setTooltipText((CEGUI::utf8*)gettext("Save"));
+    m_mainMenuButton         ->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
+    m_gameExitButton         ->setTooltipText((CEGUI::utf8*)gettext("Exit to OS"));
+    m_rankingButton          ->setText((CEGUI::utf8*)gettext("Ranking"));
+    m_teamPlayersButton      ->setText((CEGUI::utf8*)gettext("Team Players"));
+    m_resultsButton          ->setText((CEGUI::utf8*)gettext("Results"));
+    m_playButton             ->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
+    m_resultModeCheckbox     ->setText((CEGUI::utf8*)gettext("Result Mode"));
+    m_confirmSaveNote        ->setText((CEGUI::utf8*)gettext("The game has been saved"));
+    m_confirmExitNote        ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game?"));
+    m_confirmGameExitNote    ->setText((CEGUI::utf8*)gettext("Are you sure you want to exit this game and return to the Operation System?"));
+    m_saveConfirmButton      ->setText((CEGUI::utf8*)gettext("Ok"));
+    m_exitConfirmButton      ->setText((CEGUI::utf8*)gettext("Yes"));
+    m_exitCancelButton       ->setText((CEGUI::utf8*)gettext("No"));
+    m_gameExitConfirmButton  ->setText((CEGUI::utf8*)gettext("Yes"));
+    m_gameExitCancelButton   ->setText((CEGUI::utf8*)gettext("No"));
+    m_radioChangingRoomButton->setTooltipText((CEGUI::utf8*)gettext("Changing Room"));
+    m_radioStatisticsButton  ->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Game/NextEventLabel"))->setText((CEGUI::utf8*)gettext("Next event:"));
 
     // Event handle
-    m_saveButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveButtonClicked, this));
-    m_mainMenuButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::mainMenuButtonClicked, this));
-    m_gameExitButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitButtonClicked, this));
-    m_rankingButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::rankingButtonClicked, this));
-    m_teamPlayersButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::teamPlayersButtonClicked, this));
-    m_resultsButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::resultsButtonClicked, this));
-    m_playButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::playButtonClicked, this));
-    m_resultModeCheckbox   ->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CScreenGame::resultModeCheckboxCheckStateChanged, this));
-    m_saveConfirmButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveConfirmButtonClicked, this));
-    m_exitConfirmButton    ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitConfirmButtonClicked, this));
-    m_exitCancelButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitCancelButtonClicked, this));
-    m_gameExitConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitConfirmButtonClicked, this));
-    m_gameExitCancelButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitCancelButtonClicked, this));
-    m_radioChangingRoomButton   ->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
-    m_radioStatisticsButton->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
+    m_saveButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveButtonClicked, this));
+    m_mainMenuButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::mainMenuButtonClicked, this));
+    m_gameExitButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitButtonClicked, this));
+    m_rankingButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::rankingButtonClicked, this));
+    m_teamPlayersButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::teamPlayersButtonClicked, this));
+    m_resultsButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::resultsButtonClicked, this));
+    m_playButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::playButtonClicked, this));
+    m_resultModeCheckbox     ->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CScreenGame::resultModeCheckboxCheckStateChanged, this));
+    m_saveConfirmButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::saveConfirmButtonClicked, this));
+    m_exitConfirmButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitConfirmButtonClicked, this));
+    m_exitCancelButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::exitCancelButtonClicked, this));
+    m_gameExitConfirmButton  ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitConfirmButtonClicked, this));
+    m_gameExitCancelButton   ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenGame::gameExitCancelButtonClicked, this));
+    m_radioChangingRoomButton->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
+    m_radioStatisticsButton  ->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CScreenGame::gnsRadioButtonClicked, this));
 }
 
 CScreenGame::~CScreenGame()
@@ -155,8 +155,19 @@ void CScreenGame::enter()
 {
 	CScreen::enter();
 
-    m_resultModeCheckbox->setSelected(m_game->getOptionManager()->getMatchResultMode());
+    m_resultModeCheckbox     ->setSelected(m_game->getOptionManager()->getMatchResultMode());
     m_radioChangingRoomButton->setSelected(true);
+
+    CPfTeams   *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
+    CPfMatches *lastMatch  = m_game->getIDAOFactory()->getIPfMatchesDAO()->findLastTeamMatch(playerTeam->getXTeam_str());
+    if(lastMatch->getXMatch() > 0) {
+        m_resultsButton->setEnabled(true);
+    } else {
+        m_resultsButton->setEnabled(false);
+    }
+
+    delete lastMatch;
+    delete playerTeam;
 
     updateNextMatch();
 }
