@@ -1481,7 +1481,7 @@
         <Property name="MouseCursorImage" value="set:WidgetsImageset image:MouseTextBar" />
         <NamedArea name="TextArea">
             <Area>
-                <Dim type="LeftEdge" ><AbsoluteDim value="5" /></Dim>
+                <Dim type="LeftEdge" ><AbsoluteDim value="25" /></Dim>
                 <Dim type="TopEdge" ><AbsoluteDim value="5" /></Dim>
                 <Dim type="RightEdge" ><UnifiedDim scale="1.0" offset="-5" type="RightEdge" /></Dim>
                 <Dim type="BottomEdge" ><UnifiedDim scale="1.0" offset="-5" type="BottomEdge" /></Dim>
