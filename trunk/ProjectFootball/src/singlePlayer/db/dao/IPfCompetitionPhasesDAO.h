@@ -44,6 +44,8 @@ public:
     virtual CPfCompetitionPhases* findByXCompetitionPhase(const std::string &XCompetitionPhase) =0;
     virtual std::vector<CPfCompetitionPhases*>* findByXFkCompetition(int XFkCompetition) =0;
     virtual std::vector<CPfCompetitionPhases*>* findByXFkCompetition(const std::string &XFkCompetition) =0;
+    virtual CPfCompetitionPhases* findLastCompetitionPhase(int XFkCompetition, int XSeason) =0;
+    virtual CPfCompetitionPhases* findLastCompetitionPhase(const std::string &XFkCompetition, const std::string &XSeason) =0;
 
 };
 #endif /*IPFCOMPETITIONPHASESDAO_H_*/

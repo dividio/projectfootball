@@ -24,6 +24,7 @@
 #include "../../engine/CScreen.h"
 
 //Forward declarations
+class CPfSeasons;
 class CSinglePlayerGame;
 
 
@@ -34,8 +35,11 @@ public:
 	virtual ~CScreenResults();
 
 	virtual void enter();
+	virtual void leave();
 
 private:
+    bool confederationsComboboxListSelectionChanged   (const CEGUI::EventArgs& e);
+    bool countriesComboboxListSelectionChanged        (const CEGUI::EventArgs& e);
     bool competitionsComboboxListSelectionChanged     (const CEGUI::EventArgs& e);
     bool competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e);
     bool backButtonClicked                            (const CEGUI::EventArgs& e);
@@ -44,10 +48,15 @@ private:
 	bool teamPlayersButtonClicked                     (const CEGUI::EventArgs& e);
   	bool resultsButtonClicked                         (const CEGUI::EventArgs& e);
 
-    void loadCompetitions(int XCountry, int Seasson, int XCompetition = -1);
+  	void loadConfederations   (int XSeason, int XConfederation = -1);
+  	void loadCountries        (int XSeason, int XConfederation, int XCountry = -1);
+  	void loadCompetitions     (int XSeason, int XCountry, int XCompetition = -1);
     void loadCompetitionPhases(int XCompetition, int XCompetitionPhase = -1);
-    void loadResultsList(int XCompetitionPhase);
+    void loadResultsList      (int XCompetitionPhase);
+    void loadLastSeason       ();
 
+    CEGUI::Combobox         *m_confederationsCombobox;
+    CEGUI::Combobox         *m_countriesCombobox;
     CEGUI::Combobox         *m_competitionsCombobox;
     CEGUI::Combobox         *m_competitionPhasesCombobox;
     CEGUI::MultiColumnList  *m_resultsList;
@@ -57,6 +66,7 @@ private:
     CEGUI::PushButton	    *m_teamPlayersButton;
     CEGUI::PushButton	    *m_resultsButton;
 
+    CPfSeasons              *m_lastSeason;
     CSinglePlayerGame		*m_game;
 };
 

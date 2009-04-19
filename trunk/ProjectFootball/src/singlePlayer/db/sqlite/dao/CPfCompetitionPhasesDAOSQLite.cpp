@@ -62,3 +62,22 @@ std::vector<CPfCompetitionPhases*>* CPfCompetitionPhasesDAOSQLite::findByXFkComp
     return loadVector(sql);
 }
 
+CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findLastCompetitionPhase(int XFkCompetition, int XSeason)
+{
+    std::ostringstream stream;
+    stream << XFkCompetition;
+    std::ostringstream stream2;
+    stream2 << XSeason;
+    return findLastCompetitionPhase(stream.str(), stream2.str());
+}
+
+CPfCompetitionPhases* CPfCompetitionPhasesDAOSQLite::findLastCompetitionPhase(const std::string &XFkCompetition, const std::string &XSeason)
+{
+    std::string sql("SELECT PH.* FROM PF_COMPETITION_PHASES PH ");
+    sql = sql +     "JOIN PF_MATCHES M ON PH.X_COMPETITION_PHASE = M.X_FK_COMPETITION_PHASE "
+                    "AND M.X_FK_SEASON = '" + XSeason + "' AND M.L_PLAYED = 'Y' "
+                    "WHERE PH.X_FK_COMPETITION = '"+XFkCompetition+"' "
+                    "ORDER BY M.D_MATCH DESC";
+    std::cout << sql << std::endl;
+    return loadRegister(sql);
+}
