@@ -13,12 +13,30 @@
             <Window Type="ArridiDesign/StaticText" Name="Ranking/RankingLabel" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0798047,0},{0.159593,0},{0.549805,0},{0.199593,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.36,0},{0.3,0},{0.4,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="Ranking/ConfederationCombo" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.1,0},{0.45,0},{0.24,0}}" />
+                <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="Ranking/CountryCombo" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.55,0},{0.1,0},{0.75,0},{0.24,0}}" />
+                <Property Name="MaxEditTextLength" Value="1073741823" />
+            </Window>
+            <Window Type="ArridiDesign/Combobox" Name="Ranking/CompetitionCombo" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.24,0},{0.45,0},{0.4,0}}" />
+                <Property Name="MaxEditTextLength" Value="1073741823" />
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="Ranking/RankingList" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0417188,0},{0.199593,0},{0.781523,0},{0.819593,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.4,0},{0.7,0},{0.94,0}}" />
             </Window>
             <Window Type="ArridiDesign/GNS_Button1" Name="Ranking/TeamPlayersButton" >
                 <Property Name="Font" Value="DejaVuSans-9" />

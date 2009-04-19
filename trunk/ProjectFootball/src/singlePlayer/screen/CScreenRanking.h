@@ -25,6 +25,7 @@
 
 //Forward declarations
 class CPfTeams;
+class CPfSeasons;
 class CSinglePlayerGame;
 
 
@@ -35,25 +36,36 @@ public:
 	virtual ~CScreenRanking();
 
     virtual void enter();
+    virtual void leave();
 
 private:
-    void loadRanking              (int XSeason, int XCompetition);
-    bool backButtonClicked        (const CEGUI::EventArgs& e);
-    bool gameMenuButtonClicked    (const CEGUI::EventArgs& e);
-    bool rankingButtonClicked     (const CEGUI::EventArgs& e);
-	bool teamPlayersButtonClicked (const CEGUI::EventArgs& e);
-	bool resultsButtonClicked     (const CEGUI::EventArgs& e);
 
-    // TODO Ranking for all competitions
-    bool isInSameCompetition(std::vector<CPfTeams*> *teams, std::string STeam);
+    bool confederationsComboboxListSelectionChanged (const CEGUI::EventArgs& e);
+    bool countriesComboboxListSelectionChanged      (const CEGUI::EventArgs& e);
+    bool competitionsComboboxListSelectionChanged   (const CEGUI::EventArgs& e);
+    bool backButtonClicked                          (const CEGUI::EventArgs& e);
+    bool gameMenuButtonClicked                      (const CEGUI::EventArgs& e);
+    bool rankingButtonClicked                       (const CEGUI::EventArgs& e);
+	bool teamPlayersButtonClicked                   (const CEGUI::EventArgs& e);
+	bool resultsButtonClicked                       (const CEGUI::EventArgs& e);
 
+	void loadRanking        (int XSeason, int XCompetition);
+    void loadConfederations (int XSeason, int XConfederation = -1);
+    void loadCountries      (int XSeason, int XConfederation, int XCountry = -1);
+    void loadCompetitions   (int XSeason, int XCountry, int XCompetition = -1);
+    void loadLastSeason     ();
+
+    CEGUI::Combobox         *m_confederationsCombobox;
+    CEGUI::Combobox         *m_countriesCombobox;
+    CEGUI::Combobox         *m_competitionsCombobox;
     CEGUI::MultiColumnList  *m_rankingList;
     CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton       *m_gameMenuButton;
-    CEGUI::PushButton	*m_rankingButton;
-    CEGUI::PushButton	*m_teamPlayersButton;
-    CEGUI::PushButton	*m_resultsButton;
+    CEGUI::PushButton	    *m_rankingButton;
+    CEGUI::PushButton	    *m_teamPlayersButton;
+    CEGUI::PushButton	    *m_resultsButton;
 
+    CPfSeasons              *m_lastSeason;
     CSinglePlayerGame		*m_game;
 };
 
