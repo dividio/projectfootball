@@ -13,7 +13,7 @@
             <Window Type="ArridiDesign/StaticText" Name="Results/ResultsLabel" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.4,0},{0.3,0},{0.44,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.36,0},{0.3,0},{0.4,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/Combobox" Name="Results/ConfederationCombo" >
@@ -42,7 +42,7 @@
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="Results/ResultsList" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0339063,0},{0.45,0},{0.780547,0},{0.827226,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.4,0},{0.7,0},{0.83,0}}" />
             </Window>
             <Window Type="ArridiDesign/GNS_Button1" Name="Results/TeamPlayersButton" >
                 <Property Name="Font" Value="DejaVuSans-9" />
