@@ -278,7 +278,7 @@ bool CScreenSelectTeam::teamsListboxSelectionChanged(const CEGUI::EventArgs& e)
 bool CScreenSelectTeam::confederationsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_confederationsCombobox->getSelectedItem();
-    if(item!=0) {
+    if(item != NULL) {
         IPfConfederationsDAO *confederationsDAO = m_game->getIDAOFactory()->getIPfConfederationsDAO();
         CPfConfederations    *conf = confederationsDAO->findByXConfederation(item->getID());
 
@@ -305,7 +305,7 @@ bool CScreenSelectTeam::confederationsComboboxListSelectionChanged(const CEGUI::
 bool CScreenSelectTeam::countriesComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_countriesCombobox->getSelectedItem();
-    if(item!=0) {
+    if(item != NULL) {
         IPfCountriesDAO *countriesDAO = m_game->getIDAOFactory()->getIPfCountriesDAO();
         CPfCountries    *country = countriesDAO->findByXCountry(item->getID());
 
@@ -327,7 +327,7 @@ bool CScreenSelectTeam::countriesComboboxListSelectionChanged(const CEGUI::Event
 bool CScreenSelectTeam::competitionsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_competitionsCombobox->getSelectedItem();
-    if(item!=0) {
+    if(item != NULL) {
         m_competitionsCombobox->setText(item->getText());
         m_guiTeamsList->resetList();
         m_selectButton->setEnabled(false);
