@@ -2,110 +2,79 @@
 Project Football README
 -----------------------
 
-Indice:
+Index:
 
-1- Licencia del software
-2- Dependencias de ejecución
-3- Instrucciones de compilación
-4- Opciones de configuración
-5- Más información
+1- Software License
+2- Dependencies
+3- Compiling
+4- Configure options
+5- More information
 
 
 
 
 -------------------------
-1- Licencia del software
+1- Software License
 -------------------------
 
-+ El código fuente de este software se distribuye bajo la licencia GPL
-versión 2, excepto el código fuente incluido en el directório src/bullet,
-el cual se distribuye bajo la licencia Zlib.
++ Project Football source code is under GPL 2 License (see Source-License.txt). Souce code in src/bullet
+is under Zlib license (see Bullet-License.txt).
 
-+ El contenido de la licencia GPL 2 puede consultarse en el fichero COPYRIGHT.txt
-
-+ El contenido de licencia Zlib para la librería Bullet en el directorio src/bullet, se encuentra
-en el fichero BulletLicense.txt
++ Project Football data files, art, and sound, are under 
+Creative Commons Attribution-ShareAlike 3.0 license (see Data-License.txt).
 
 
 -----------------------------
-2- Dependencias de ejecución
+2- Dependencies
 -----------------------------
 
-Para ejecutar Project Football es necesario tener las siguientes librerías:
+To play Project Football you need de following libraries:
 
-- Ogre 1.4.3 (libogre14)
-- Cegui 0.5.0 (libcegui-mk2-1)
-- OIS (libois1)
-- Sqlite 3 (libsqlite3-0)
-- SDL_mixer (libsdl-mixer1.2)
-- Lua 5.1 (liblua5.1-0)
-
-Entre paréntesis está el nombre del paquete que es necesario instalar en Debian y Ubuntu.
-
-Según algunas pruebas realizadas en distintos sistemas, parece que en determinadas
-distribuciones hace falta instalar algún paquete adicional. A continuación podéis encontrar
-los casos especiales conocidos.
-
-+ Debian Unstable:
-- Instalar las librerías arriba indicadas.
-- Instalar el paquete libceguiogre14 para probar el binario y libceguiogre-dev para poder
-compilar el código fuente.
-
-+ Ubuntu 7.10:
-- Instalar las librerías arriba indicadas.
-- Instalar el paquete libcegui-mk2-dev
-
+- Ogre   1.6.x
+- Cegui  0.6.x
+- OIS    1.2.x
+- Sqlite 3
+- SDL_mixer 1.2
+- Lua 5.1
+- Boost FileSystem >= 1.35
 
 --------------------------------
-3- Instrucciones de compilación
+3- Compiling
 --------------------------------
 
-- En sistemas Debian y Ubuntu hay que instalar primero los siguientes paquetes:
-
-libogre-dev libcegui-mk2-dev libois-dev libsqlite3-dev
-libsdl-mixer1.2-dev liblua5.1-0-dev
-
-- En Debian Unstable hay que añadir también libceguiogre-dev
-
-- Para compilar, ejecutar desde el directorio ProjectFootball el siguiente comando:
+- To compile, run this script:
 sh build.sh
 
-- Para ejecutar Project Football, ejecutar el comando:
+- To play Project Football, run the followig command:
 ./ProjectFootball
 
 
 -----------------------------
-4- Opciones de configuración
+4- Configuration options
 -----------------------------
 
-Project Football cuenta con varias opciones de configuración, con el objetivo de
-adaptarse lo mejor posible a la máquina del usuario, y se almacenan en
-el fichero "data/ProjectFootball.ini". Pasemos a ver algunas de ellas:
+Project Football options are in "data/ProjectFootball.ini" file.
+
+These are the principal options:
 
 [General]
-  FailSafeMode = [true | false]               // Nos indica si se ha iniciado el
-                                              // "modo seguro de video"
+  FailSafeMode = [true | false]               // Switches failsafe video mode
 
 [GUI]
-  Skin = [DefaultSkin | CleanSkin]            // Nos indica el Skin a utilizar
-  XMLParser = [XercesParser | TinyXMLParser]  // Parser de XML a utilizar por CEGUI
+  Skin = [DefaultSkin | CleanSkin]            // Switches application skin
+  XMLParser = [XercesParser | TinyXMLParser]  // Parser XML for CEGUI
 
 [Video]
-  RenderSystem = OpenGL Rendering Subsystem   // Sistema de Render a utilizar
-  VSync = [true | false]                      // Activación de la sincronización vertical
-  RTTPreferredMode = [FBO | PBuffer | Copy]   // Modo de renderizado a textura
-
-La opción RTT Preferred Mode puede provocar problemas en determinados sistemas. La
-opción por defecto es "FBO", si se encuentran problemas al arrancar la aplicación
-se pueden probar los modos "PBuffer" o "Copy", siendo este último el modo más lento
-pero que debería funcionar en más sistemas.
+  RenderSystem = OpenGL Rendering Subsystem   // Render system for Ogre
+  VSync = [true | false]                      // Vertical syncronization
+  RTTPreferredMode = [FBO | PBuffer | Copy]   // Render to texture mode
 
 
 -------------------
-5- Más información
+5- More information
 -------------------
 
-Visita la web de Ikaro Games para conocer las últimas novedades sobre Project Football:
+Visit Ikaro Games web site to know the latest news about Project Football:
 
-http://www.ikarogames.com
+http://www.ikarogames.com/projectfootball/
 
