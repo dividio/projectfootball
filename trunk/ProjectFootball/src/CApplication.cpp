@@ -191,7 +191,7 @@ void CApplication::setupInputSystem()
     OIS::ParamList pl;
 
     m_window->getCustomAttribute("WINDOW", &windowHnd);
-    windowHndStr << windowHnd;
+    windowHndStr << (unsigned int) windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
     //Disable mouse and keyboard grab for debug
     //pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
@@ -206,6 +206,17 @@ void CApplication::setupInputSystem()
 
         m_keyboard->setEventCallback(CInputManager::getInstance());
         m_mouse->setEventCallback(CInputManager::getInstance());
+
+        // Get window size
+        unsigned int width, height, depth;
+        int left, top;
+        m_window->getMetrics( width, height, depth, left, top );
+
+        // Set mouse region
+        const OIS::MouseState &mouseState = m_mouse->getMouseState();
+        mouseState.width  = width;
+        mouseState.height = height;
+
     }
     catch (const OIS::Exception &e)
     {

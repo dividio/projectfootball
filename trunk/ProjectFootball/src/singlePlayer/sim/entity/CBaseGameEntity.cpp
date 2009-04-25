@@ -72,7 +72,7 @@ void CBaseGameEntity::setWorldTransform(const btTransform& centerOfMassWorldTran
 
 btTransform CBaseGameEntity::getGraphicTrans() const
 {
-    Ogre::Vector3 v(m_node->getWorldPosition());
+    Ogre::Vector3 v(m_node->_getDerivedPosition());
     btTransform trans;
     trans.setIdentity();
     trans.setOrigin(btVector3(v.x,v.y,v.z));
@@ -104,7 +104,7 @@ btRigidBody* CBaseGameEntity::getBody()
 
 btVector3 CBaseGameEntity::getPosition() const
 {
-    Ogre::Vector3 v(m_node->getWorldPosition());
+    Ogre::Vector3 v(m_node->_getDerivedPosition());
     return btVector3(v.x,v.y,v.z);
 }
 
