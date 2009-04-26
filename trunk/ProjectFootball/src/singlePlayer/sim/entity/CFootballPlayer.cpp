@@ -126,11 +126,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
         Ogre::ColourValue colour = Ogre::ColourValue::Red;
         pass->setDiffuse(colour);
         pass->setAmbient(colour);
-        pass->setSpecular(colour);
-        pass->setSelfIllumination(colour);
-        //pass->setEmissive(ColourValue(0,0,0,colour.a));
-        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-        pass->setDepthWriteEnabled(false);
+        pass->setDepthWriteEnabled(true);
     } else {
         matptr = Ogre::MaterialManager::getSingleton().createOrRetrieve("Blue"+id, "General").first;
         matptr->setReceiveShadows(true);
@@ -138,11 +134,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
         Ogre::ColourValue colour = Ogre::ColourValue::Blue;
         pass->setDiffuse(colour);
         pass->setAmbient(colour);
-        pass->setSpecular(colour);
-        pass->setSelfIllumination(colour);
-        //pass->setEmissive(ColourValue(0,0,0,colour.a));
-        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-        pass->setDepthWriteEnabled(false);
+        pass->setDepthWriteEnabled(true);
     }
     circle->begin(matptr->getName(), Ogre::RenderOperation::OT_TRIANGLE_LIST);
 

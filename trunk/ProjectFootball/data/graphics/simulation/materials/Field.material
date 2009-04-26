@@ -10,6 +10,7 @@ material Field_auv.002
             diffuse 0.800000 0.800000 0.800000 1.000000
             specular 0.000000 0.000000 0.000000 1.000000 12.750000
             emissive 0.000000 0.000000 0.000000 1.000000
+            depth_write off
             texture_unit
             {
                 texture Field1024.tga
