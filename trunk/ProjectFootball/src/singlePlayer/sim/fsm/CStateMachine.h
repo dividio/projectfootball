@@ -53,27 +53,27 @@ void callFunction(const char *state, const char *function, T *entity)
     lua_settop(luaVM, 0);
     lua_getglobal(luaVM, state);
     if(!lua_istable(luaVM, -1)) {
-        CLog::getInstance()->error("Scripted state \"%s\" doesn't exist", state);
+        LOG_ERROR("Scripted state \"%s\" doesn't exist", state);
     } else {
         lua_pushstring(luaVM, function);
         lua_gettable(luaVM, -2);
         if(!lua_isfunction(luaVM, -1)) {
-            CLog::getInstance()->error("Function \"%s\" in state \"%s\" doesn't exist", function, state);
+            LOG_ERROR("Function \"%s\" in state \"%s\" doesn't exist", function, state);
         } else {
             pushObjectInLua(luaVM, entity);
             int error = lua_pcall(luaVM, 1, 0, 0);
             // handle errors
             switch (error) {
                 case LUA_ERRRUN:
-                    CLog::getInstance()->error("Runtime error in \"%s\" function at state \"%s\" ", function, state);
+                    LOG_ERROR("Runtime error in \"%s\" function at state \"%s\" ", function, state);
                     lua_pop(luaVM, 1);
                     break;
                 case LUA_ERRMEM:
-                    CLog::getInstance()->error("Memory alocation error in \"%s\" function at state \"%s\" ", function, state);
+                    LOG_ERROR("Memory alocation error in \"%s\" function at state \"%s\" ", function, state);
                     lua_pop(luaVM, 1);
                     break;
                 case LUA_ERRERR:
-                    CLog::getInstance()->error("Error handler error in \"%s\" function at state \"%s\" ", function, state);
+                    LOG_ERROR("Error handler error in \"%s\" function at state \"%s\" ", function, state);
                     lua_pop(luaVM, 1);
                     break;
                 default:
@@ -94,12 +94,12 @@ bool messageFunction(const char *state, const CMessage &message, T *entity)
     lua_settop(luaVM, 0);
     lua_getglobal(luaVM, state);
     if(!lua_istable(luaVM, -1)) {
-        CLog::getInstance()->error("Scripted state \"%s\" doesn't exist", state);
+        LOG_ERROR("Scripted state \"%s\" doesn't exist", state);
     } else {
         lua_pushstring(luaVM, "OnMessage");
         lua_gettable(luaVM, -2);
         if(!lua_isfunction(luaVM, -1)) {
-            CLog::getInstance()->error("Function \"OnMessage\" in state \"%s\" doesn't exist", state);
+            LOG_ERROR("Function \"OnMessage\" in state \"%s\" doesn't exist", state);
         } else {
             pushObjectInLua(luaVM, entity);
             pushObjectInLua(luaVM, &msg);
@@ -110,15 +110,15 @@ bool messageFunction(const char *state, const CMessage &message, T *entity)
             // handle errors
             switch (error) {
                 case LUA_ERRRUN:
-                    CLog::getInstance()->error("Runtime error in \"OnMessage\" function at state \"%s\" ", state);
+                    LOG_ERROR("Runtime error in \"OnMessage\" function at state \"%s\" ", state);
                     lua_pop(luaVM, 1);
                     break;
                 case LUA_ERRMEM:
-                    CLog::getInstance()->error("Memory alocation error in \"OnMessage\" function at state \"%s\" ", state);
+                    LOG_ERROR("Memory alocation error in \"OnMessage\" function at state \"%s\" ", state);
                     lua_pop(luaVM, 1);
                     break;
                 case LUA_ERRERR:
-                    CLog::getInstance()->error("Error handler error in \"OnMessage\" function at state \"%s\" ", state);
+                    LOG_ERROR("Error handler error in \"OnMessage\" function at state \"%s\" ", state);
                     lua_pop(luaVM, 1);
                     break;
                 default:
@@ -174,7 +174,7 @@ public:
             m_currentState = newState;
             callFunction<entity_type>(m_currentState.c_str(), "Enter", m_owner);
         } else {
-            CLog::getInstance()->error("Can not change to empty state.");
+            LOG_ERROR("Can not change to empty state.");
         }
     };
 

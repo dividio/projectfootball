@@ -32,7 +32,7 @@ CBall::CBall()
 {
 	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
 
-    CLog::getInstance()->debug("CBall()");
+    LOG_DEBUG("CBall()");
     m_centerOfMassOffset.setOrigin(btVector3(0,-0.5,0));
     m_entity = scnMgr->createEntity("Ball", "Ball.mesh");
     m_node = scnMgr->getRootSceneNode()->createChildSceneNode("BallNode", Ogre::Vector3(0, 0, 0));
@@ -59,7 +59,7 @@ CBall::CBall()
 
 CBall::~CBall()
 {
-    CLog::getInstance()->debug("~CBall()");
+    LOG_DEBUG("~CBall()");
 }
 
 

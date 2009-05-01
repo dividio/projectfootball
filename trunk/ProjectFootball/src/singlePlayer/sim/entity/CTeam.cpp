@@ -39,7 +39,7 @@ CTeam* CTeam::getTeam(CBaseGameEntity *team)
 
 CTeam::CTeam(CSimulationManager *simulationManager, const CPfTeams *team, std::vector<CPfTeamPlayers*> *playersVector, bool sideLeft)
 {
-    CLog::getInstance()->debug("CTeam()");
+    LOG_DEBUG("CTeam()");
 
     m_simulationManager = simulationManager;
 
@@ -118,7 +118,7 @@ CTeam::CTeam(CSimulationManager *simulationManager, const CPfTeams *team, std::v
 
 CTeam::~CTeam()
 {
-    CLog::getInstance()->debug("~CTeam()");
+    LOG_DEBUG("~CTeam()");
     // TODO
     while(!m_formations.empty()) {
         delete m_formations.back();

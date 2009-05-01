@@ -27,7 +27,7 @@
 
 CSimulationWorld::CSimulationWorld()
 {
-    CLog::getInstance()->debug("CSimulationWorld()");
+    LOG_DEBUG("CSimulationWorld()");
 
     //Bullet initialization
     m_collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -88,7 +88,7 @@ CSimulationWorld::CSimulationWorld()
 
 CSimulationWorld::~CSimulationWorld()
 {
-    CLog::getInstance()->debug("~CSimulationWorld()");
+    LOG_DEBUG("~CSimulationWorld()");
 
     //Delete Bullet objects in reverse order
 

@@ -42,7 +42,7 @@ CReferee::CReferee(CSimulationManager *simulationManager)
 	m_simulationManager = simulationManager;
 	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
 
-    CLog::getInstance()->debug("CReferee()");
+	LOG_DEBUG("CReferee()");
     CLuaManager::getInstance()->runScript("data/scripts/referee.lua");
     m_stateMachine = new CStateMachine<CReferee>(this);
     m_stateMachine->setGlobalState("SRf_Global");
@@ -75,7 +75,7 @@ CReferee::CReferee(CSimulationManager *simulationManager)
 
 CReferee::~CReferee()
 {
-    CLog::getInstance()->debug("~CReferee()");
+    LOG_DEBUG("~CReferee()");
     delete m_stateMachine;
     delete m_kickPosition;
 }

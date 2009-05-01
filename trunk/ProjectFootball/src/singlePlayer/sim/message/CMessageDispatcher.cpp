@@ -38,14 +38,14 @@ CMessageDispatcher* CMessageDispatcher::getInstance()
 
 CMessageDispatcher::CMessageDispatcher()
 {
-    CLog::getInstance()->debug("CMessageDispatcher()");
+    LOG_DEBUG("CMessageDispatcher()");
     m_stopWatch = new CStopWatch();
 }
 
 
 CMessageDispatcher::~CMessageDispatcher()
 {
-    CLog::getInstance()->debug("~CMessageDispatcher()");
+    LOG_DEBUG("~CMessageDispatcher()");
     delete m_stopWatch;
 }
 
@@ -55,7 +55,7 @@ void CMessageDispatcher::dispatchMsg(double delay, int sender, int receiver, int
     CBaseGameEntity *entity = CEntityManager::getInstance()->getEntityFromID(receiver);
 
     if(entity == NULL) {
-        CLog::getInstance()->debug("Entity %d doesn't exist", receiver);
+        LOG_DEBUG("Entity %d doesn't exist", receiver);
         return;
     }
 
@@ -95,7 +95,7 @@ void CMessageDispatcher::reset()
 void CMessageDispatcher::discharge(CBaseGameEntity *receiver, const CMessage &msg)
 {
     if(!receiver->handleMessage(msg)) {
-        CLog::getInstance()->debug("Entity %d can't handle messagge from entity %d",
+        LOG_DEBUG("Entity %d can't handle messagge from entity %d",
                 receiver->getID(), msg.Sender);
     }
 }

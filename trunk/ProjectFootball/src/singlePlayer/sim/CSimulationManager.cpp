@@ -56,7 +56,7 @@
 CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
 : m_goalEvents()
 {
-    CLog::getInstance()->debug("CSimulationManager()");
+    LOG_DEBUG("CSimulationManager()");
 
     m_game = game;
 
@@ -109,7 +109,7 @@ CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
 
 CSimulationManager::~CSimulationManager()
 {
-    CLog::getInstance()->debug("~CSimulationManager()");
+    LOG_DEBUG("~CSimulationManager()");
 
     CMessageDispatcher::getInstance()->reset();
     CEntityManager::getInstance()->reset();
@@ -246,7 +246,7 @@ void CSimulationManager::changeFormationEvent(int pos)
     } else if(xTeam == m_awayTeam->getXTeam()) {
         m_awayTeam->changeFormation(pos);
     } else {
-        CLog::getInstance()->error("Can't switch formation, team %d is not playing the match.", xTeam);
+        LOG_ERROR("Can't switch formation, team %d is not playing the match.", xTeam);
     }
     delete team;
 }

@@ -56,7 +56,7 @@ CStrategicPosition* CFormation::getPlayerStrategicPosition(int player) const
 {
     CStrategicPosition* pos = 0;
     if(player >= 11 || player < 0) {
-        CLog::getInstance()->exception("Can't access to CStrategicPosition number %d", player);
+        LOG_ERROR("Can't access to CStrategicPosition number %d", player);
     } else {
         pos = m_positions[player];
     }

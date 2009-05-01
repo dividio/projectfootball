@@ -166,7 +166,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
 
 CFootballPlayer::~CFootballPlayer()
 {
-    CLog::getInstance()->debug("~CFootballPlayer()");
+    LOG_DEBUG("~CFootballPlayer()");
     delete m_teamPlayer;
     delete m_steeringBehavior;
     delete m_stateMachine;

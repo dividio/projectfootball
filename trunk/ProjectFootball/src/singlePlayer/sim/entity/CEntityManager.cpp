@@ -33,13 +33,13 @@ CEntityManager* CEntityManager::getInstance()
 
 CEntityManager::CEntityManager()
 {
-    CLog::getInstance()->debug("CEntityManager()");
+    LOG_DEBUG("CEntityManager()");
 }
 
 
 CEntityManager::~CEntityManager()
 {
-    CLog::getInstance()->debug("~CEntityManager()");
+    LOG_DEBUG("~CEntityManager()");
     reset();
 }
 
@@ -63,7 +63,7 @@ CBaseGameEntity* CEntityManager::getEntityFromID(int id) const
     if(it != m_entityMap.end()) {
         value = it->second;
     } else {
-        CLog::getInstance()->error("Invalid entity ID: %d", id);
+        LOG_ERROR("Invalid entity ID: %d", id);
     }
 
     return value;
