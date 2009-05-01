@@ -36,6 +36,7 @@
 
 #include "option/CSinglePlayerOptionManager.h"
 
+#include "../exceptions/PFException.h"
 #include "../utils/CDate.h"
 #include "../utils/CLog.h"
 
@@ -58,7 +59,7 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame *game)
 
 	CPfSeasons *season = seasonsDAO->findLastSeason();
 	if( season==NULL || season->getXSeason_str()=="" ){
-		CLog::getInstance()->exception("[CSeasonGenerator::generateSeason] Last season was not found, new season generation is aborted.");
+		throw PFEXCEPTION("[CSeasonGenerator::generateSeason] Last season was not found, new season generation is aborted.");
 	}
 
 	int year = season->getNYear()+1;
@@ -148,10 +149,10 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame *game, const CPfC
 	int halfNPhases	= nPhases/2;
 
 	if( nTeams%2!=0 ){
-		CLog::getInstance()->exception("Number of teams must be a multiple of two: #teams:%d", nTeams);
+		throw PFEXCEPTION("Number of teams must be a multiple of two: #teams:%d", nTeams);
 	}
 	if( nPhases%2!=0 ){
-		CLog::getInstance()->exception("Number of phases must be a multiple of two: #phases:%d", nPhases);
+		throw PFEXCEPTION("Number of phases must be a multiple of two: #phases:%d", nPhases);
 	}
 
 	std::list<CPfTeams*> 				*homeTeamsList	= new std::list<CPfTeams*>();

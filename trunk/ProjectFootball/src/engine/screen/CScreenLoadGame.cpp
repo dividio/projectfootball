@@ -29,7 +29,7 @@
 CScreenLoadGame::CScreenLoadGame()
     :CScreen("loadGame.layout")
 {
-    CLog::getInstance()->debug("CScreenLoadGame()");
+    LOG_DEBUG("CScreenLoadGame()");
 
     m_mainWindow           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/MainWindow"));
     m_backButton		   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/BackButton"));
@@ -73,7 +73,7 @@ CScreenLoadGame::CScreenLoadGame()
 
 CScreenLoadGame::~CScreenLoadGame()
 {
-    CLog::getInstance()->debug("~CScreenLoadGame()");
+    LOG_DEBUG("~CScreenLoadGame()");
 }
 
 void CScreenLoadGame::enter()

@@ -30,7 +30,7 @@
 CScreenConfig::CScreenConfig()
     :CScreen("config.layout")
 {
-    CLog::getInstance()->debug("CScreenConfig()");
+    LOG_DEBUG("CScreenConfig()");
 
     m_mainWindow        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/MainWindow"));
     m_backButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/BackButton"));
@@ -75,7 +75,7 @@ CScreenConfig::CScreenConfig()
 
 CScreenConfig::~CScreenConfig()
 {
-    CLog::getInstance()->debug("~CScreenConfig()");
+    LOG_DEBUG("~CScreenConfig()");
 }
 
 void CScreenConfig::enter()

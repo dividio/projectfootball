@@ -52,13 +52,13 @@ bool CLuaFunctor::operator()(const CEGUI::EventArgs& args) const
         if (!lua_isfunction(m_luaVM,-1))
         {
             lua_settop(m_luaVM,top);
-            CLog::getInstance()->error("Unable to call Lua global: '%s' as name not represent a global Lua function", m_function.c_str());
+            LOG_ERROR("Unable to call Lua global: '%s' as name not represent a global Lua function", m_function.c_str());
             return true;
         }
         // reference function
         m_index = luaL_ref(m_luaVM, LUA_REGISTRYINDEX);
         m_initFlag = false;
-        CLog::getInstance()->debug("Late binding of callback '%s' performed", m_function.c_str());
+        LOG_DEBUG("Late binding of callback '%s' performed", m_function.c_str());
         m_function.clear();
     }
 
@@ -70,15 +70,15 @@ bool CLuaFunctor::operator()(const CEGUI::EventArgs& args) const
     // handle errors
     switch (error) {
         case LUA_ERRRUN:
-            CLog::getInstance()->error("Runtime error in %s", m_function.c_str());
+            LOG_ERROR("Runtime error in %s", m_function.c_str());
             lua_pop(m_luaVM, 1);
             break;
         case LUA_ERRMEM:
-            CLog::getInstance()->error("Memory alocation error in %s", m_function.c_str());
+            LOG_ERROR("Memory alocation error in %s", m_function.c_str());
             lua_pop(m_luaVM, 1);
             break;
         case LUA_ERRERR:
-            CLog::getInstance()->error("Error handler error in %s", m_function.c_str());
+            LOG_ERROR("Error handler error in %s", m_function.c_str());
             lua_pop(m_luaVM, 1);
             break;
         default:

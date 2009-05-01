@@ -21,6 +21,7 @@
 #include "CFriendlyMatchGame.h"
 
 #include "../engine/CGameEngine.h"
+#include "../exceptions/PFException.h"
 #include "../singlePlayer/CSinglePlayerGame.h"
 #include "../singlePlayer/db/dao/factory/IDAOFactory.h"
 #include "../singlePlayer/option/CSinglePlayerOptionManager.h"
@@ -29,14 +30,14 @@
 
 CFriendlyMatchGame::CFriendlyMatchGame(const CPfUsers *user)
 {
-    CLog::getInstance()->debug("CFriendlyMatchGame::CFriendlyMatchGame");
+    LOG_DEBUG("CFriendlyMatchGame::CFriendlyMatchGame");
     m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= FRIENDLY MATCH GAME =-]"));
 
     IPfTeamsDAO *teamsDAO   = m_game->getIDAOFactory()->getIPfTeamsDAO();
 
     std::vector<CPfTeams*> *teamsList = teamsDAO->findAll();
     if( teamsList->empty() ){
-        CLog::getInstance()->exception("[CFriendlyMatchGame::CFriendlyMatchGame] Teams list is empty");
+        throw PFEXCEPTION("[CFriendlyMatchGame::CFriendlyMatchGame] Teams list is empty");
     }
 
     m_game->getOptionManager()->setGamePlayerTeam(teamsList->at(rand()%teamsList->size())->getXTeam());
@@ -47,7 +48,7 @@ CFriendlyMatchGame::CFriendlyMatchGame(const CPfUsers *user)
 
 CFriendlyMatchGame::~CFriendlyMatchGame()
 {
-    CLog::getInstance()->debug("CFriendlyMatchGame::~CFriendlyMatchGame");
+    LOG_DEBUG("CFriendlyMatchGame::~CFriendlyMatchGame");
     delete m_game;
 }
 

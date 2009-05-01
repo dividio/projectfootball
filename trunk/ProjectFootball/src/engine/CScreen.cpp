@@ -24,7 +24,7 @@
 
 CScreen::CScreen(const char *layout)
 {
-    CLog::getInstance()->debug("CScreen()");
+    LOG_DEBUG("CScreen()");
 
     m_root			= Ogre::Root::getSingletonPtr();
     m_system		= CEGUI::System::getSingletonPtr();
@@ -36,7 +36,7 @@ CScreen::CScreen(const char *layout)
 
 CScreen::~CScreen()
 {
-    CLog::getInstance()->debug("~CScreen()");
+    LOG_DEBUG("~CScreen()");
     m_windowMngr->destroyWindow(m_layout);
 }
 

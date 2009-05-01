@@ -27,13 +27,14 @@
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../option/CSinglePlayerOptionManager.h"
 
+#include "../../exceptions/PFException.h"
 #include "../../utils/CLog.h"
 
 
 CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
     :CScreen("ranking.layout")
 {
-    CLog::getInstance()->debug("CScreenRanking()");
+    LOG_DEBUG("CScreenRanking()");
 
     m_game = game;
     m_lastSeason = NULL;
@@ -88,7 +89,7 @@ CScreenRanking::CScreenRanking(CSinglePlayerGame *game)
 
 CScreenRanking::~CScreenRanking()
 {
-    CLog::getInstance()->debug("~CScreenRanking()");
+    LOG_DEBUG("~CScreenRanking()");
 }
 
 void CScreenRanking::enter()
@@ -296,7 +297,7 @@ void CScreenRanking::loadLastSeason()
     IPfSeasonsDAO *seasonsDAO = m_game->getIDAOFactory()->getIPfSeasonsDAO();
     m_lastSeason = seasonsDAO->findLastSeason();
     if( m_lastSeason==NULL || m_lastSeason->getXSeason_str()=="" ){
-        CLog::getInstance()->exception("[CScreenResults::loadLastSeason] Last season not found");
+        throw PFEXCEPTION("[CScreenResults::loadLastSeason] Last season not found");
     }
 }
 

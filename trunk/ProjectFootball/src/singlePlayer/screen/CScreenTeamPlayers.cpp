@@ -33,7 +33,7 @@
 CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
     :CScreen("teamPlayers.layout")
 {
-    CLog::getInstance()->debug("CScreenTeamPlayers()");
+    LOG_DEBUG("CScreenTeamPlayers()");
 
     m_game = game;
 
@@ -78,13 +78,13 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
 
     m_changePlayersButton = static_cast<CEGUI::PushButton *>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/ChangeButton"));
     m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::changePlayersButtonClicked, this));
-       
+
     m_rankingButton      = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/RankingButton"));
     m_rankingButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::rankingButtonClicked, this));
-    
+
     m_teamPlayersButton	 = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersButton"));
     m_teamPlayersButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::teamPlayersButtonClicked, this));
-    
+
     m_resultsButton	     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"TeamPlayers/ResultsButton"));
     m_resultsButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::resultsButtonClicked, this));
 
@@ -106,7 +106,7 @@ CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame *game)
 
 CScreenTeamPlayers::~CScreenTeamPlayers()
 {
-    CLog::getInstance()->debug("~CScreenTeamPlayers()");
+    LOG_DEBUG("~CScreenTeamPlayers()");
 }
 
 

@@ -32,13 +32,14 @@
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../option/CSinglePlayerOptionManager.h"
 
+#include "../../exceptions/PFException.h"
 #include "../../utils/CLog.h"
 #include "../../utils/gui/CImageListboxItem.h"
 
 CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     :CScreen("selectTeam.layout")
 {
-    CLog::getInstance()->debug("CScreenSelectTeam()");
+    LOG_DEBUG("CScreenSelectTeam()");
 
     m_game = game;
     m_confederationsList	= NULL;
@@ -89,7 +90,7 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
 
 CScreenSelectTeam::~CScreenSelectTeam()
 {
-    CLog::getInstance()->debug("~CScreenSelectTeam()");
+    LOG_DEBUG("~CScreenSelectTeam()");
 }
 
 void CScreenSelectTeam::enter()
@@ -145,7 +146,7 @@ void CScreenSelectTeam::loadLastSeason()
 	IPfSeasonsDAO *seasonsDAO = m_game->getIDAOFactory()->getIPfSeasonsDAO();
 	m_lastSeason = seasonsDAO->findLastSeason();
 	if( m_lastSeason==NULL || m_lastSeason->getXSeason_str()=="" ){
-		CLog::getInstance()->exception("[CScreenSelectTeam::loadLastSeason] Last season not found");
+		throw PFEXCEPTION("[CScreenSelectTeam::loadLastSeason] Last season not found");
 	}
 }
 

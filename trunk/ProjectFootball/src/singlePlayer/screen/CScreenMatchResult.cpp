@@ -38,7 +38,7 @@
 CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
  :CScreen("matchResult.layout")
 {
-    CLog::getInstance()->debug("CScreenMatchResult()");
+    LOG_DEBUG("CScreenMatchResult()");
 
     m_game			= game;
     m_loadMatchInfo = true;
@@ -78,7 +78,7 @@ CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
 
 CScreenMatchResult::~CScreenMatchResult()
 {
-    CLog::getInstance()->debug("~CScreenMatchResult()");
+    LOG_DEBUG("~CScreenMatchResult()");
 }
 
 void CScreenMatchResult::enter()

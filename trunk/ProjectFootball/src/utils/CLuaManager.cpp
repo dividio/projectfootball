@@ -26,10 +26,10 @@
 
 CLuaManager::CLuaManager()
 {
-    CLog::getInstance()->debug("CLuaManager()");
+    LOG_DEBUG("CLuaManager()");
     m_luaVM = luaL_newstate();
     if(NULL == m_luaVM) {
-        CLog::getInstance()->error("Error initializing lua");
+        LOG_ERROR("Error initializing lua");
     } else {
         luaL_openlibs(m_luaVM);
         luaopen_PF(m_luaVM);
@@ -48,7 +48,7 @@ CLuaManager* CLuaManager::getInstance()
 
 CLuaManager::~CLuaManager()
 {
-    CLog::getInstance()->debug("~CLuaManager()");
+    LOG_DEBUG("~CLuaManager()");
     lua_close(m_luaVM);
 }
 
@@ -69,19 +69,19 @@ void CLuaManager::executeScriptFile(const CEGUI::String& filename, const CEGUI::
         int result = lua_pcall(m_luaVM,0,0,0);
         switch (result) {
             case LUA_ERRRUN:
-                CLog::getInstance()->error("Runtime error in %s", filename.c_str());
+                LOG_ERROR("Runtime error in %s", filename.c_str());
                 break;
             case LUA_ERRMEM:
-                CLog::getInstance()->error("Memory alocation error in %s", filename.c_str());
+                LOG_ERROR("Memory alocation error in %s", filename.c_str());
                 break;
             case LUA_ERRERR:
-                CLog::getInstance()->error("Error handler error in %s", filename.c_str());
+                LOG_ERROR("Error handler error in %s", filename.c_str());
                 break;
             default:
                 break;
         }
     } else {
-        CLog::getInstance()->error("Unable to load %s", filename.c_str());
+        LOG_ERROR("Unable to load %s", filename.c_str());
     }
 }
 
@@ -97,7 +97,7 @@ int CLuaManager::executeScriptGlobal(const CEGUI::String& function_name)
     if (!lua_isfunction(m_luaVM,-1))
     {
         lua_settop(m_luaVM,top);
-        CLog::getInstance()->error("Unable to get Lua global: '%s' as name not represent a global Lua function", function_name.c_str());
+        LOG_ERROR("Unable to get Lua global: '%s' as name not represent a global Lua function", function_name.c_str());
         return -1;
     }
 
@@ -108,15 +108,15 @@ int CLuaManager::executeScriptGlobal(const CEGUI::String& function_name)
     switch (error) {
         case LUA_ERRRUN:
             lua_settop(m_luaVM,top);
-            CLog::getInstance()->error("Runtime error in %s global function", function_name.c_str());
+            LOG_ERROR("Runtime error in %s global function", function_name.c_str());
             return -1;
         case LUA_ERRMEM:
             lua_settop(m_luaVM,top);
-            CLog::getInstance()->error("Memory alocation error in %s global function", function_name.c_str());
+            LOG_ERROR("Memory alocation error in %s global function", function_name.c_str());
             return -1;
         case LUA_ERRERR:
             lua_settop(m_luaVM,top);
-            CLog::getInstance()->error("Error handler error in %s global function", function_name.c_str());
+            LOG_ERROR("Error handler error in %s global function", function_name.c_str());
             return -1;
         default:
             break;
@@ -127,7 +127,7 @@ int CLuaManager::executeScriptGlobal(const CEGUI::String& function_name)
     {
         // log that return value is invalid. return -1 and move on.
         lua_settop(m_luaVM,top);
-        CLog::getInstance()->error("Unable to get Lua global : '%s' return value as it's not a number", function_name.c_str());
+        LOG_ERROR("Unable to get Lua global : '%s' return value as it's not a number", function_name.c_str());
         return -1;
     }
 
@@ -150,7 +150,7 @@ bool CLuaManager::executeScriptedEventHandler(const CEGUI::String& handler_name,
     if (!lua_isfunction(m_luaVM,-1))
     {
         lua_settop(m_luaVM,top);
-        CLog::getInstance()->error("Unable to get Lua event handler: '%s' as name not represent a global Lua function", handler_name.c_str());
+        LOG_ERROR("Unable to get Lua event handler: '%s' as name not represent a global Lua function", handler_name.c_str());
         return true;
     }
 
@@ -165,13 +165,13 @@ bool CLuaManager::executeScriptedEventHandler(const CEGUI::String& handler_name,
     // handle errors
     switch (error) {
         case LUA_ERRRUN:
-            CLog::getInstance()->error("Runtime error in %s event handler", handler_name.c_str());
+            LOG_ERROR("Runtime error in %s event handler", handler_name.c_str());
             break;
         case LUA_ERRMEM:
-            CLog::getInstance()->error("Memory alocation error in %s event handler", handler_name.c_str());
+            LOG_ERROR("Memory alocation error in %s event handler", handler_name.c_str());
             break;
         case LUA_ERRERR:
-            CLog::getInstance()->error("Error handler error in %s event handler", handler_name.c_str());
+            LOG_ERROR("Error handler error in %s event handler", handler_name.c_str());
             break;
         default:
             break;
@@ -193,22 +193,22 @@ void CLuaManager::executeString(const CEGUI::String& str)
         // handle errors
         switch (error) {
             case LUA_ERRRUN:
-                CLog::getInstance()->error("Runtime error in string: %s", str.c_str());
+                LOG_ERROR("Runtime error in string: %s", str.c_str());
                 lua_settop(m_luaVM,top);
                 break;
             case LUA_ERRMEM:
-                CLog::getInstance()->error("Memory alocation error in string: %s", str.c_str());
+                LOG_ERROR("Memory alocation error in string: %s", str.c_str());
                 lua_settop(m_luaVM,top);
                 break;
             case LUA_ERRERR:
-                CLog::getInstance()->error("Error handler error in string: %s", str.c_str());
+                LOG_ERROR("Error handler error in string: %s", str.c_str());
                 lua_settop(m_luaVM,top);
                 break;
             default:
                 break;
         }
     } else {
-        CLog::getInstance()->error("Unable to load string: %s", str.c_str());
+        LOG_ERROR("Unable to load string: %s", str.c_str());
         lua_settop(m_luaVM,top);
     }
 
@@ -253,19 +253,19 @@ void CLuaManager::runScript(const char* file)
         int result = lua_pcall(m_luaVM,0,0,0);
         switch (result) {
             case LUA_ERRRUN:
-                CLog::getInstance()->error("Runtime error in %s", file);
+                LOG_ERROR("Runtime error in %s", file);
                 break;
             case LUA_ERRMEM:
-                CLog::getInstance()->error("Memory alocation error in %s", file);
+                LOG_ERROR("Memory alocation error in %s", file);
                 break;
             case LUA_ERRERR:
-                CLog::getInstance()->error("Error handler error in %s", file);
+                LOG_ERROR("Error handler error in %s", file);
                 break;
             default:
                 break;
         }
     } else {
-      CLog::getInstance()->error("Unable to load %s", file);
+      LOG_ERROR("Unable to load %s", file);
     }
 }
 

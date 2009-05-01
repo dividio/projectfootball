@@ -30,7 +30,7 @@
 CScreenMainMenu::CScreenMainMenu()
  :CScreen("mainMenu.layout")
 {
-    CLog::getInstance()->debug("CScreenMainMenu()");
+    LOG_DEBUG("CScreenMainMenu()");
 
     m_OnLineCommunityButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/OnLineCommunityButton"));
     m_virtualChampionshipButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VirtualChampionshipButton"));
@@ -75,7 +75,7 @@ CScreenMainMenu::CScreenMainMenu()
 
 CScreenMainMenu::~CScreenMainMenu()
 {
-  CLog::getInstance()->debug("~CScreenMainMenu()");
+  LOG_DEBUG("~CScreenMainMenu()");
 }
 
 void CScreenMainMenu::enter()

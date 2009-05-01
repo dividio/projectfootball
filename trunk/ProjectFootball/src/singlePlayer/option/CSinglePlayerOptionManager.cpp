@@ -28,14 +28,14 @@ CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOp
 	setDefaultValues();
 	loadOptions();
 
-    CLog::getInstance()->info("Game Option manager initialized");
+    LOG_INFO("Game Option manager initialized");
 }
 
 CSinglePlayerOptionManager::~CSinglePlayerOptionManager()
 {
 	cleanOptions();
 
-    CLog::getInstance()->info("Game Option manager deinitialized");
+    LOG_INFO("Game Option manager deinitialized");
 }
 
 void CSinglePlayerOptionManager::loadOptions()
@@ -50,7 +50,7 @@ void CSinglePlayerOptionManager::loadOptions()
 
     m_gameOptionsDAO->freeVector(gameOptionsVector);
 
-    CLog::getInstance()->info("Game Options loaded");
+    LOG_INFO("Game Options loaded");
 }
 
 void CSinglePlayerOptionManager::saveOptions()
@@ -82,7 +82,7 @@ void CSinglePlayerOptionManager::saveOptions()
         }
     }
 
-    CLog::getInstance()->info("Game Options saved");
+    LOG_INFO("Game Options saved");
 }
 
 void CSinglePlayerOptionManager::setDefaultValues()

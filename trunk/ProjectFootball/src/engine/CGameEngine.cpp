@@ -165,7 +165,7 @@ bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
     ((CClock*)m_clock)->addTime(evt.timeSinceLastFrame);
     CEGUI::System::getSingleton().injectTimePulse( evt.timeSinceLastFrame );
     if( m_screenStack.empty() ){
-        CLog::getInstance()->info("-== Stopping Main Loop ==-");
+        LOG_INFO("-== Stopping Main Loop ==-");
         return false;
     }else{
         m_screenStack.back()->update();
@@ -189,7 +189,7 @@ void CGameEngine::exit()
 
 void CGameEngine::previousScreen()
 {
-    CLog::getInstance()->debug("CGameEngine::previousScreen()");
+    LOG_DEBUG("CGameEngine::previousScreen()");
     // cleanup the current state
     if(!m_screenStack.empty()) {
         m_screenStack.back()->leave();
@@ -200,7 +200,7 @@ void CGameEngine::previousScreen()
 
 void CGameEngine::nextScreen(IScreen* screen)
 {
-    CLog::getInstance()->debug("CGameEngine::nextScreen()");
+    LOG_DEBUG("CGameEngine::nextScreen()");
     bool found = false;
     for( int i=m_screenStack.size()-1; i>=0 && !found; i-- ){
         if( m_screenStack[i]==screen ){

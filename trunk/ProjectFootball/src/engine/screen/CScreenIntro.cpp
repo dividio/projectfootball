@@ -14,7 +14,7 @@
 CScreenIntro::CScreenIntro()
  :CScreen("intro.layout")
 {
-    CLog::getInstance()->debug("CScreenIntro()");
+    LOG_DEBUG("CScreenIntro()");
     m_timer = new CTimer(1);
     m_introTime = 5;
     m_elapsedTime = 0;
@@ -26,7 +26,7 @@ CScreenIntro::CScreenIntro()
 
 CScreenIntro::~CScreenIntro()
 {
-    CLog::getInstance()->debug("~CScreenIntro()");
+    LOG_DEBUG("~CScreenIntro()");
     delete m_timer;
 }
 

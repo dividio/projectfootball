@@ -37,7 +37,7 @@
 CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
  :CScreen("simulator.layout")
 {
-    CLog::getInstance()->debug("CScreenSimulator()");
+    LOG_DEBUG("CScreenSimulator()");
 
     m_game = game;
     m_simulator = NULL;
@@ -141,7 +141,7 @@ CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
 
 CScreenSimulator::~CScreenSimulator()
 {
-    CLog::getInstance()->debug("~CScreenSimulator()");
+    LOG_DEBUG("~CScreenSimulator()");
     CEGUI::ImagesetManager::getSingleton().destroyImageset("RttImageset");
     Ogre::TextureManager::getSingleton().remove("RttTex");
     m_root->destroySceneManager(m_sceneMgr);

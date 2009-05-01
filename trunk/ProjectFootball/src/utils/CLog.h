@@ -22,8 +22,31 @@
 #ifndef CLOG_H_
 #define CLOG_H_
 
-#include <stdarg.h>
 #include <stdio.h>
+
+#ifdef NDEBUG
+
+#define LOG_DEBUG(format, ...)
+#define LOG_INFO(format, ...)		CLog::getInstance()->log("[INFO]\t"    format, ## __VA_ARGS__);
+#define LOG_WARNING(format, ...)	CLog::getInstance()->log("[WARNING]\t" format, ## __VA_ARGS__);
+#define LOG_ERROR(format, ...)		CLog::getInstance()->log("[ERROR]\t"   format, ## __VA_ARGS__);
+#define LOG_FATAL(format, ...)		CLog::getInstance()->log("[FATAL]\t"   format, ## __VA_ARGS__);
+
+#else /* Not NDEBUG */
+
+#define _LOG_QUOTE_AUX_(x) #x
+#define _LOG_QUOTE_(x) _LOG_QUOTE_AUX_(x)
+#define __LOG_INFO_FORMAT__ "%-80s"
+#define __LOG_INFO__ "[" __FILE__ ":" _LOG_QUOTE_(__LINE__) "]: "
+
+#define LOG_DEBUG(format, ...)		CLog::getInstance()->log("[DEBUG]\t"   __LOG_INFO_FORMAT__ format, __LOG_INFO__, ## __VA_ARGS__);
+#define LOG_INFO(format, ...)		CLog::getInstance()->log("[INFO]\t"    __LOG_INFO_FORMAT__ format, __LOG_INFO__, ## __VA_ARGS__);
+#define LOG_WARNING(format, ...)	CLog::getInstance()->log("[WARNING]\t" __LOG_INFO_FORMAT__ format, __LOG_INFO__, ## __VA_ARGS__);
+#define LOG_ERROR(format, ...)		CLog::getInstance()->log("[ERROR]\t"   __LOG_INFO_FORMAT__ format, __LOG_INFO__, ## __VA_ARGS__);
+#define LOG_FATAL(format, ...)		CLog::getInstance()->log("[FATAL]\t"   __LOG_INFO_FORMAT__ format, __LOG_INFO__, ## __VA_ARGS__);
+
+#endif // NDEBUG
+
 
 class CLog
 {
@@ -42,59 +65,12 @@ public:
 
 
     /**
-     * Print a debug message into the log
+     * Print a log message into the log
      *
      * @param format Format of debug message to write into the log
      * @param ... all others parameters
      */
-    void debug( const char *format, ... );
-
-
-    /**
-     * Print a info message into the log
-     *
-     * @param format Format of info message to write into the log
-     * @param ... all others parameters
-     */
-    void info( const char *format, ... );
-
-
-    /**
-     * Print a warning message into the log
-     *
-     * @param format Format of warning message to write into the log
-     * @param ... all others parameters
-     */
-    void warning( const char *format, ... );
-
-
-    /**
-     * Print a error message into the log
-     *
-     * @param format Format of error message to write into the log
-     * @param ... all others parameters
-     */
-    void error( const char *format, ... );
-
-
-    /**
-     * Print a error message into the log and trow a exception
-     *
-     * @param format Format of error message to write into the log
-     * @param ... all others parameters
-     */
-    void exception( const char *format, ... );
-
-
-    bool isDebugActive();
-    bool isInfoActive();
-    bool isWarningActive();
-    bool isErrorActive();
-
-    void setDebugActive( bool active );
-    void setInfoActive( bool active );
-    void setWarningActive( bool active );
-    void setErrorActive( bool active );
+    void log( const char *format, ... );
 
 
 private:
@@ -105,23 +81,9 @@ private:
 	CLog();
 
 
-    /**
-     * Print into the log the message indicated if the condition is true
-     *
-     * @param label Label of the log message
-     * @param format Format of the message to write into the log
-     * @param parameters all others parameters
-     */
-    void printLog( const char *label, const char *format, va_list parameters );
-
-
 private:
 
     FILE    *m_log;
-    bool    m_debug;
-    bool    m_info;
-    bool    m_warning;
-    bool    m_error;
 
 };
 

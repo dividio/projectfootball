@@ -25,6 +25,7 @@
 #include "CResourceManager.h"
 #include "CLog.h"
 #include "../engine/option/CSystemOptionManager.h"
+#include "../exceptions/PFException.h"
 
 
 
@@ -37,12 +38,12 @@ CResourceManager* CResourceManager::getInstance()
 
 CResourceManager::CResourceManager()
 {
-    CLog::getInstance()->debug("CResourceManager()");
+    LOG_DEBUG("CResourceManager()");
 }
 
 CResourceManager::~CResourceManager()
 {
-    CLog::getInstance()->debug("~CResourceManager()");
+    LOG_DEBUG("~CResourceManager()");
 }
 
 void CResourceManager::defineResources()
@@ -64,7 +65,7 @@ void CResourceManager::defineGeneral()
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 
 
@@ -73,7 +74,7 @@ void CResourceManager::defineGeneral()
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 
     archName = "data/graphics/simulation/materials";
@@ -81,7 +82,7 @@ void CResourceManager::defineGeneral()
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 }
 
@@ -101,7 +102,7 @@ void CResourceManager::defineSkin()
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName+"/lua_scripts", typeName, secName);
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName+"/schemes", typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 }
 
@@ -116,7 +117,7 @@ void CResourceManager::defineShields()
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 }
 
@@ -131,7 +132,7 @@ void CResourceManager::defineFlags()
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 }
 
@@ -146,6 +147,6 @@ void CResourceManager::defineConfederations()
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
     } else {
-        CLog::getInstance()->exception("Can't load \"%s\" directory", archName.c_str());
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 }

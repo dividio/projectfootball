@@ -23,13 +23,14 @@
 
 #include "CScreenNewManagerGame.h"
 #include "../CGameEngine.h"
+#include "../../exceptions/PFException.h"
 #include "../../singlePlayer/CSinglePlayerGame.h"
 #include "../../utils/CLog.h"
 
 CScreenNewManagerGame::CScreenNewManagerGame()
     :CScreen("newManagerGame.layout")
 {
-    CLog::getInstance()->debug("CScreenNewManagerGame()");
+    LOG_DEBUG("CScreenNewManagerGame()");
 
     m_backButton		   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/BackButton"));
     m_newGameButton        = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/NewGameButton"));
@@ -47,7 +48,7 @@ CScreenNewManagerGame::CScreenNewManagerGame()
 
 CScreenNewManagerGame::~CScreenNewManagerGame()
 {
-    CLog::getInstance()->debug("~CScreenNewManagerGame()");
+    LOG_DEBUG("~CScreenNewManagerGame()");
 }
 
 void CScreenNewManagerGame::enter()
@@ -79,7 +80,7 @@ bool CScreenNewManagerGame::newGameButtonClicked(const CEGUI::EventArgs& e)
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 
     if( user==NULL || user->getXUser()==0 ){
-        CLog::getInstance()->exception("[CScreenNewManagerGame::newGameButtonClicked] User not defined");
+        throw PFEXCEPTION("[CScreenNewManagerGame::newGameButtonClicked] User not defined");
     }
 
     CGameEngine::getInstance()->loadGame(CSinglePlayerGame::newGame(user, m_newGameEditbox->getText().c_str()));

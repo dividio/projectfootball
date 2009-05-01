@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include "CMusicSDLAudioFile.h"
+#include "../../exceptions/PFException.h"
 #include "../../utils/CLog.h"
 
 CMusicSDLAudioFile::CMusicSDLAudioFile( std::string filepath )
@@ -26,7 +27,7 @@ CMusicSDLAudioFile::CMusicSDLAudioFile( std::string filepath )
     m_filepath  = filepath;
     m_music     = Mix_LoadMUS(m_filepath.c_str());
     if( m_music==NULL ){
-        CLog::getInstance()->exception("CMusicSDLAudioFile[filepath: %s]: %s", m_filepath.c_str(), Mix_GetError());
+        throw PFEXCEPTION("CMusicSDLAudioFile[filepath: %s]: %s", m_filepath.c_str(), Mix_GetError());
     }
 }
 
@@ -70,10 +71,10 @@ void CMusicSDLAudioFile::play()
     if( isPlaying() || isPaused() ){
         Mix_HaltMusic();
         Mix_PlayMusic(m_music, 0);
-        CLog::getInstance()->info("Playing CMusicSDLAudioFile... [%s]", m_filepath.c_str());
+        LOG_INFO("Playing CMusicSDLAudioFile... [%s]", m_filepath.c_str());
     }else{
         Mix_PlayMusic(m_music, 0);
-        CLog::getInstance()->info("Playing CMusicSDLAudioFile... [%s]", m_filepath.c_str());
+        LOG_INFO("Playing CMusicSDLAudioFile... [%s]", m_filepath.c_str());
     }
 }
 

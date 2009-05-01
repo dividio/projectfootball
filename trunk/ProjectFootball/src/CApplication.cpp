@@ -22,19 +22,24 @@
 #include <libintl.h>
 
 #include "CApplication.h"
+
 #include "audio/CAudioSystem.h"
+
 #include "engine/CGameEngine.h"
+#include "engine/option/CSystemOptionManager.h"
+
+#include "exceptions/PFException.h"
+
 #include "utils/CInputManager.h"
+#include "utils/CLog.h"
 #include "utils/CLuaManager.h"
 #include "utils/CResourceManager.h"
-#include "engine/option/CSystemOptionManager.h"
-#include "utils/CLog.h"
 #include "utils/gui/guiBinds.h"
 
 
 CApplication::CApplication()
 {
-    CLog::getInstance()->debug("CApplication()");
+	LOG_DEBUG("CApplication()");
 
     createRoot();
     defineResources();
@@ -49,7 +54,7 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-    CLog::getInstance()->debug("~CApplication()");
+    LOG_DEBUG("~CApplication()");
 
     delete CGameEngine::getInstance();
 
@@ -125,7 +130,7 @@ void CApplication::setupRenderSystem()
     }
 
     if (!renderSystemFound) {
-        CLog::getInstance()->exception("Specified render system (%s) not found, exiting...", val.c_str());
+        throw PFEXCEPTION("Specified render system (%s) not found, exiting...", val.c_str());
     }
 
 }
@@ -157,13 +162,13 @@ void CApplication::createRenderWindow()
         m_window = m_root->createRenderWindow("Project Football", width, height, fullscreen, &opts);
     }
     try {
-        CLog::getInstance()->debug("Creating debug texture.");
+        LOG_DEBUG("Creating debug texture.");
         Ogre::TexturePtr debugTexture = m_root->getTextureManager()->createManual("DebugText",
                 Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 2, 2,
                 0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
-        CLog::getInstance()->debug("Debug texture created.");
+        LOG_DEBUG("Debug texture created.");
     } catch (Ogre::RenderingAPIException &e){
-        CLog::getInstance()->error("Error creating debug texture, using Copy mode now. Please restart the application.");
+        LOG_ERROR("Error creating debug texture, using Copy mode now. Please restart the application.");
         CSystemOptionManager::getInstance()->setVideoRTTPreferredMode("Copy");
     }
 }
@@ -194,8 +199,8 @@ void CApplication::setupInputSystem()
     windowHndStr << (unsigned int) windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
     //Disable mouse and keyboard grab for debug
-    //pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
-    //pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
+    pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+    pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
     m_inputManager = OIS::InputManager::createInputSystem(pl);
 
     try
@@ -359,18 +364,24 @@ int main(int argc, char **argv)
         catch(CEGUI::Exception &e){
             MessageBoxA(NULL, e.getMessage().c_str(), "An exception has occurred in CEGUI!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
+        catch(PFException &e){
+            MessageBoxA(NULL, e.what(), "An exception has occurred in ProjectFootball", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        }
         catch(...){
             MessageBoxA(NULL, "", "Unexpected exception!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     #else
         catch(Ogre::Exception &e){
-            CLog::getInstance()->error("An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
+            LOG_FATAL("An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
         }
         catch(CEGUI::Exception &e){
-            CLog::getInstance()->error("An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
+        	LOG_FATAL("An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
+        }
+        catch(PFException &e){
+        	LOG_FATAL("An exception has occurred in ProjectFootball: %s\n", e.what());
         }
         catch(...){
-            CLog::getInstance()->error("Unexpected exception!");
+        	LOG_FATAL("Unexpected exception!");
         }
     #endif
 

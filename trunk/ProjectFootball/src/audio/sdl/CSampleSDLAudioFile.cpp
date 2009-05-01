@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 #include "CSampleSDLAudioFile.h"
+#include "../../exceptions/PFException.h"
 #include "../../utils/CLog.h"
 
 CSampleSDLAudioFile::CSampleSDLAudioFile(std::string filepath)
@@ -27,7 +28,7 @@ CSampleSDLAudioFile::CSampleSDLAudioFile(std::string filepath)
     m_channel   = -1;
     m_chunk     = Mix_LoadWAV(m_filepath.c_str());
     if( m_chunk==NULL ){
-        CLog::getInstance()->exception("CSampleSDLAudioFile[filepath: %s]: %s", m_filepath.c_str(), Mix_GetError());
+        throw PFEXCEPTION("CSampleSDLAudioFile[filepath: %s]: %s", m_filepath.c_str(), Mix_GetError());
     }
 }
 
@@ -74,7 +75,7 @@ void CSampleSDLAudioFile::play()
 {
     if( m_channel==-1 ){
         m_channel = Mix_PlayChannel(-1, m_chunk, 0);
-//        CLog::getInstance()->info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
+//        log_info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
     }else{
         if( isPlaying() ){
             stop();
@@ -83,7 +84,7 @@ void CSampleSDLAudioFile::play()
             pause();
         }else{
             Mix_PlayChannel(m_channel, m_chunk, 0);
-//            CLog::getInstance()->info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
+//            log_info("Playing CSampleSDLAudioFile... [%s]", m_filepath.c_str());
         }
     }
 }

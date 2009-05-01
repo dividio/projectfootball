@@ -35,7 +35,7 @@
 CScreenGame::CScreenGame(CSinglePlayerGame *game)
     :CScreen("game.layout")
 {
-    CLog::getInstance()->debug("CScreenGame()");
+    LOG_DEBUG("CScreenGame()");
 
     m_game = game;
 
@@ -148,7 +148,7 @@ CScreenGame::CScreenGame(CSinglePlayerGame *game)
 
 CScreenGame::~CScreenGame()
 {
-    CLog::getInstance()->debug("~CScreenGame()");
+    LOG_DEBUG("~CScreenGame()");
 }
 
 void CScreenGame::enter()

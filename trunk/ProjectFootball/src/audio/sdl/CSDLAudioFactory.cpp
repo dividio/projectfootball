@@ -28,19 +28,19 @@ CSDLAudioFactory::CSDLAudioFactory()
     : m_audioFileList()
 {
     if( SDL_Init(SDL_INIT_AUDIO)!=0 ){
-        CLog::getInstance()->error(" Error during the initiation of SDL: %s", SDL_GetError());
+        LOG_ERROR(" Error during the initiation of SDL: %s", SDL_GetError());
         m_sdlInitialized = false;
         return;
     }
 
     if( Mix_OpenAudio( AUDIO_FREQUENCY, AUDIO_FORMAT, AUDIO_CHANNELS, AUDIO_BUFFERS )!=0 ){
-        CLog::getInstance()->error(" Error during the initiation of SDL_mixer: %s", Mix_GetError());
+        LOG_ERROR(" Error during the initiation of SDL_mixer: %s", Mix_GetError());
         m_sdlInitialized = false;
         return;
     }
 
     if( Mix_QuerySpec(&m_frequency, &m_format, &m_channels)==0 ){
-        CLog::getInstance()->error(" Error during the querySpec of SDL_mixer: %s", Mix_GetError());
+        LOG_ERROR(" Error during the querySpec of SDL_mixer: %s", Mix_GetError());
         m_sdlInitialized = true;
     }else{
         const char * format_str = "";
@@ -54,10 +54,10 @@ CSDLAudioFactory::CSDLAudioFactory()
         case AUDIO_S16MSB:  format_str = "S16MSB";  break;
         }
 
-        CLog::getInstance()->info("Audio enabled. SDL information:");
-        CLog::getInstance()->info("  Frequency:  %d", m_frequency);
-        CLog::getInstance()->info("  Format:     %s", format_str);
-        CLog::getInstance()->info("  Channels:   %d", m_channels);
+        LOG_INFO("Audio enabled. SDL information:");
+        LOG_INFO("  Frequency:  %d", m_frequency);
+        LOG_INFO("  Format:     %s", format_str);
+        LOG_INFO("  Channels:   %d", m_channels);
         m_sdlInitialized = true;
     }
 }
@@ -96,7 +96,7 @@ IAudioFile * CSDLAudioFactory::createMusicAudioFile(std::string filepath )
         m_audioFileList.push_back(audioFile);
         return audioFile;
     }catch(...){
-        CLog::getInstance()->error("CSDLAudioFactory::createMusicAudioFile: Error creating the music audio file [filepath: '%s']. Loading dummy audio file.", filepath.c_str());
+        LOG_ERROR("CSDLAudioFactory::createMusicAudioFile: Error creating the music audio file [filepath: '%s']. Loading dummy audio file.", filepath.c_str());
         if(audioFile!=NULL){
             delete audioFile;
         }
@@ -117,7 +117,7 @@ IAudioFile * CSDLAudioFactory::createSampleAudioFile( std::string filepath )
         m_audioFileList.push_back(audioFile);
         return audioFile;
     }catch(...){
-        CLog::getInstance()->error("CSDLAudioFactory::createSampleAudioFile: Error creating the sample audio file [filepath: '%s']. Loading dummy audio file.", filepath.c_str());
+        LOG_ERROR("CSDLAudioFactory::createSampleAudioFile: Error creating the sample audio file [filepath: '%s']. Loading dummy audio file.", filepath.c_str());
         if(audioFile!=NULL){
             delete audioFile;
         }

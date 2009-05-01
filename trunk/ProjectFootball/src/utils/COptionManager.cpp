@@ -23,6 +23,7 @@
 
 #include "COptionManager.h"
 #include "CLog.h"
+#include "../exceptions/PFException.h"
 
 COptionManager::COptionManager()
 {
@@ -70,14 +71,14 @@ const char * COptionManager::getStringOption( const char *category, const char *
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getStringOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -90,14 +91,14 @@ int COptionManager::getIntOption( const char *category, const char *option )
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getIntOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -110,14 +111,14 @@ bool COptionManager::getBooleanOption( const char *category, const char *option 
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getBooleanOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value
@@ -130,14 +131,14 @@ CDate COptionManager::getDateOption( const char *category, const char *option )
     std::map<const char *, const char *> *optionsList = searchCategory( category );
     if( optionsList == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getDateOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getDateOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Now, search the option
     const char *o = searchOption( optionsList, option );
     if( o == NULL ){
         // If not found then throw exception
-        CLog::getInstance()->exception("[COptionManager::getDateOption] Option not found: Category: '%s', Option: '%s'", category, option);
+        throw PFEXCEPTION("[COptionManager::getDateOption] Option not found: Category: '%s', Option: '%s'", category, option);
     }
 
     // Return the option value

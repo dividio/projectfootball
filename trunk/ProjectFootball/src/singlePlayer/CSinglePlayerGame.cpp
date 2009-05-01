@@ -53,13 +53,15 @@
 #include "../engine/db/bean/CPfGames.h"
 #include "../engine/db/bean/CPfUsers.h"
 
+#include "../exceptions/PFException.h"
+
 #include "../utils/CLog.h"
 #include "../utils/CDate.h"
 
 CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game)
 : m_screenStack()
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::CSinglePlayerGame");
+    LOG_DEBUG("CSinglePlayerGame::CSinglePlayerGame");
 	m_game				= new CPfGames(*game);
 
 	// If the database doesn't exists (is a new game or the file was deleted)
@@ -89,7 +91,7 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game)
 
 CSinglePlayerGame::~CSinglePlayerGame()
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::~CSinglePlayerGame");
+    LOG_DEBUG("CSinglePlayerGame::~CSinglePlayerGame");
 
     delete m_gameScreen;
     delete m_matchResultScreen;
@@ -163,7 +165,7 @@ void CSinglePlayerGame::update()
 
 IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::newGame");
+    LOG_DEBUG("CSinglePlayerGame::newGame");
 
     const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string filename = "";
@@ -195,7 +197,7 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
     CDate		maxDate = CDate::MIN_DATE;
     CPfSeasons *season	= singlePlayerGame->m_daoFactory->getIPfSeasonsDAO()->findLastSeason();
     if( season->getXSeason()==0 ){
-    	CLog::getInstance()->exception("The last season is NULL");
+    	throw PFEXCEPTION("The last season is NULL");
     }
 
 	IPfCompetitionsBySeasonDAO 						*competitionBySeasonDAO		= singlePlayerGame->m_daoFactory->getIPfCompetitionsBySeasonDAO();
@@ -222,7 +224,7 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
 
 IGame* CSinglePlayerGame::load(const CPfGames *game)
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::load");
+    LOG_DEBUG("CSinglePlayerGame::load");
 
 	CSinglePlayerGame *singlePlayerGame = new CSinglePlayerGame(game);
 	singlePlayerGame->loadGameEvents();
@@ -242,13 +244,13 @@ CPfGames* CSinglePlayerGame::save()
 
 void CSinglePlayerGame::exit()
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::exit()");
+    LOG_DEBUG("CSinglePlayerGame::exit()");
     CGameEngine::getInstance()->unloadCurrentGame();
 }
 
 void CSinglePlayerGame::previousScreen()
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::previousScreen()");
+    LOG_DEBUG("CSinglePlayerGame::previousScreen()");
     // cleanup the current state
     if(!m_screenStack.empty()) {
         m_screenStack.back()->leave();
@@ -262,7 +264,7 @@ void CSinglePlayerGame::previousScreen()
 
 void CSinglePlayerGame::nextScreen(IScreen* screen)
 {
-    CLog::getInstance()->debug("CSinglePlayerGame::nextScreen()");
+    LOG_DEBUG("CSinglePlayerGame::nextScreen()");
     bool found = false;
     for( int i=m_screenStack.size()-1; i>=0 && !found; i-- ){
         if( m_screenStack[i]==screen ){

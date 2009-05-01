@@ -23,13 +23,14 @@
 
 #include "CScreenNewVirtualGame.h"
 #include "../CGameEngine.h"
-#include "../../utils/CLog.h"
+#include "../../exceptions/PFException.h"
 #include "../../friendlyMatch/CFriendlyMatchGame.h"
+#include "../../utils/CLog.h"
 
 CScreenNewVirtualGame::CScreenNewVirtualGame()
 :CScreen("newVirtualGame.layout")
 {
-    CLog::getInstance()->debug("CScreenNewManagerGame()");
+    LOG_DEBUG("CScreenNewManagerGame()");
 
     m_backButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"NewVirtualGame/BackButton"));
     m_startButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"NewVirtualGame/StartButton"));
@@ -63,7 +64,7 @@ bool CScreenNewVirtualGame::startButtonClicked(const CEGUI::EventArgs& e)
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 
     if( user==NULL || user->getXUser()==0 ){
-        CLog::getInstance()->exception("[CScreenVirtualGame::virtualCompetitionButtonClicked] User not defined");
+        throw PFEXCEPTION("[CScreenVirtualGame::virtualCompetitionButtonClicked] User not defined");
     }
 
     CGameEngine::getInstance()->loadGame(new CFriendlyMatchGame(user));

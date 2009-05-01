@@ -28,7 +28,7 @@
 CScreenCredits::CScreenCredits()
 	:CScreen("credits.layout")
 {
-    CLog::getInstance()->debug("CScreenCredits()");
+    LOG_DEBUG("CScreenCredits()");
 
     m_backButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Credits/BackButton"));
     m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenCredits::backButtonClicked, this));
@@ -52,7 +52,7 @@ CScreenCredits::CScreenCredits()
 
 CScreenCredits::~CScreenCredits()
 {
-    CLog::getInstance()->debug("~CScreenCredits()");
+    LOG_DEBUG("~CScreenCredits()");
 }
 
 bool CScreenCredits::backButtonClicked(const CEGUI::EventArgs& e)
