@@ -199,8 +199,8 @@ void CApplication::setupInputSystem()
     windowHndStr << (unsigned int) windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
     //Disable mouse and keyboard grab for debug
-    pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
-    pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
+    //pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+    //pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
     m_inputManager = OIS::InputManager::createInputSystem(pl);
 
     try
