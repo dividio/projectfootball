@@ -21,6 +21,7 @@
 
 #include "CFormation.h"
 
+#include "../../../exceptions/PFException.h"
 #include "../../../utils/CLog.h"
 
 CFormation::CFormation()
@@ -56,7 +57,7 @@ CStrategicPosition* CFormation::getPlayerStrategicPosition(int player) const
 {
     CStrategicPosition* pos = 0;
     if(player >= 11 || player < 0) {
-        LOG_ERROR("Can't access to CStrategicPosition number %d", player);
+        throw PFEXCEPTION("Can't access to CStrategicPosition number %d", player);
     } else {
         pos = m_positions[player];
     }
