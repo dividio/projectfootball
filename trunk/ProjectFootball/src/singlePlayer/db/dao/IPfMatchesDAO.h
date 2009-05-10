@@ -54,6 +54,8 @@ public:
     virtual std::vector<CPfMatches*>* findMatchesNotPlayed() =0;
     virtual CPfMatches* findLastTeamMatch(int XTeam) =0;
     virtual CPfMatches* findLastTeamMatch(const std::string &XTeam) =0;
+    virtual std::vector<CPfMatches*>* findMatchesNotPlayedByXTeam(int XTeam) =0;
+    virtual std::vector<CPfMatches*>* findMatchesNotPlayedByXTeam(const std::string &XTeam) =0;
 
 };
 #endif /*IPFMATCHESDAO_H_*/

@@ -140,3 +140,18 @@ CPfMatches* CPfMatchesDAOSQLite::findLastTeamMatch(const std::string &XTeam)
     sql = sql + "AND (X_FK_TEAM_HOME='"+XTeam+"' OR X_FK_TEAM_AWAY='"+XTeam+"') ORDER BY D_MATCH DESC";
     return loadRegister(sql);
 }
+
+std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findMatchesNotPlayedByXTeam(int XTeam)
+{
+    std::ostringstream stream;
+    stream << XTeam;
+    return findMatchesNotPlayedByXTeam(stream.str());
+}
+
+std::vector<CPfMatches*>* CPfMatchesDAOSQLite::findMatchesNotPlayedByXTeam(const std::string &XTeam)
+{
+    std::string sql("SELECT * FROM PF_MATCHES WHERE L_PLAYED='N'");
+    sql = sql + "AND (X_FK_TEAM_HOME='"+XTeam+"' OR X_FK_TEAM_AWAY='"+XTeam+"') ORDER BY D_MATCH";
+    return loadVector(sql);
+}
+

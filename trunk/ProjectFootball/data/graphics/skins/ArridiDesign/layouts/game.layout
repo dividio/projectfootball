@@ -316,7 +316,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.806849,0},{0.193028,0},{1.00185,0},{0.233028,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.19,0},{0.3,0},{0.24,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Game/NextCompetitionName" >
@@ -324,7 +324,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.802935,0},{0.251934,0},{0.997935,0},{0.291934,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.24,0},{0.3,0},{0.29,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Game/NextHomeTeamName" >
@@ -332,7 +332,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.12,0},{0.9,0},{0.16,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.29,0},{0.15,0},{0.34,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Game/NextAwayTeamName" >
@@ -340,7 +340,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.9,0},{0.12,0},{0.995,0},{0.16,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.29,0},{0.2,0},{0.34,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/CheckBox" Name="Game/ResultMode" >

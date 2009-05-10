@@ -327,7 +327,7 @@ void CScreenGame::showGNS(CEGUI::FrameWindow *gnsWindow)
 void CScreenGame::updateNextMatch()
 {
     const CPfMatches  *match = m_game->getCurrentMatch();
-    if( match==NULL ){
+    if( match==NULL ) {
         CPfTeams *playerTeam = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
         m_homeTeamName        ->setText((CEGUI::utf8*)playerTeam->getSTeam().c_str());
 
@@ -350,7 +350,7 @@ void CScreenGame::updateNextMatch()
         m_awayTeamShield->setProperty("Image", "set: image:full_image");
 
         delete playerTeam;
-    }else{
+    } else {
         IDAOFactory             *daoFactory				= m_game->getIDAOFactory();
         IPfCountriesDAO         *countriesDAO			= daoFactory->getIPfCountriesDAO();
         IPfSeasonsDAO			*seasonsDAO				= daoFactory->getIPfSeasonsDAO();
@@ -398,5 +398,25 @@ void CScreenGame::updateNextMatch()
         delete competitionPhase;
         delete homeTeam;
         delete awayTeam;
+
+        //Load next match info
+        IPfMatchesDAO *matchesDAO = daoFactory->getIPfMatchesDAO();
+        std::vector<CPfMatches*> *nextMatches = matchesDAO->findMatchesNotPlayedByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
+        if(nextMatches->size() >= 2) {
+            homeTeam         = teamsDAO->findByXTeam((nextMatches->at(1))->getXFkTeamHome());
+            awayTeam         = teamsDAO->findByXTeam((nextMatches->at(1))->getXFkTeamAway());
+            competitionPhase = competitionPhasesDAO->findByXCompetitionPhase((nextMatches->at(1))->getXFkCompetitionPhase());
+            competition      = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
+
+            m_nextCompetitionName->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
+            m_nextHomeTeamName   ->setText((CEGUI::utf8*)homeTeam->getSShortName().c_str());
+            m_nextAwayTeamName   ->setText((CEGUI::utf8*)awayTeam->getSShortName().c_str());
+
+            delete competition;
+            delete competitionPhase;
+            delete homeTeam;
+            delete awayTeam;
+        }
+        matchesDAO->freeVector(nextMatches);
     }
 }
