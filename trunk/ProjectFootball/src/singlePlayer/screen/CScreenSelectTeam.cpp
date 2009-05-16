@@ -245,7 +245,7 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
 
             CEGUI::CImageListboxItem *item = (CEGUI::CImageListboxItem*)m_WndMgr->createWindow("ArridiDesign/ImageListboxItem", (CEGUI::utf8*)team->getSTeam().c_str());
             item->setID(team->getXTeam());
-            item->getChildAtIdx(0)->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
+            item->getChildAtIdx(0)->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_s");
             item->setText((CEGUI::utf8*)team->getSTeam().c_str());
             m_guiTeamsList->addItem(item);
         }

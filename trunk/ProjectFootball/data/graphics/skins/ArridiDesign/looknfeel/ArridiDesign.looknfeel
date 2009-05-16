@@ -8135,7 +8135,7 @@
                     <FontDim type="HorzExtent" padding="6" />
                 </Dim>
                 <Dim type="Height" >
-                    <FontDim type="LineSpacing" />
+                    <AbsoluteDim value="30" />
                 </Dim>
             </Area>
         </NamedArea>
