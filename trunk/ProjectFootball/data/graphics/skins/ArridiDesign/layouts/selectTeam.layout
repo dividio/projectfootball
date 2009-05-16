@@ -95,25 +95,25 @@
             <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Confederation" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{-0.00808594,0},{0.0978116,0},{0.28379,0},{0.257812,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0,0},{0.098,0},{0.2837,0},{0.26,0}}" />
                 <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/ConfederationImage" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.136451,0},{0.2592,0},{0.403829,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.143,0},{0.26,0},{0.4,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Country" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.757032,0},{0.100356,0},{1,0},{0.264173,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.757032,0},{0.098,0},{1,0},{0.26,0}}" />
                 <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/CountryImage" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.798892,0},{0.137723,0},{0.998516,0},{0.406373,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.8,0},{0.143,0},{1.0,0},{0.4,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Competition" >
