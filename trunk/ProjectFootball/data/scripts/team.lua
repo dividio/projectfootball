@@ -69,13 +69,13 @@ STm_HalfTime = {}
 
 STm_HalfTime["Enter"] = function(team)
     team:getCurrentFormation():setCurrentFormationType(PF.FT_Initial)
+    team:changeSide()
     local playersVector = team:getPlayers()
     local disp = PF.CMessageDispatcher_getInstance()
     local size = playersVector:size()
     for i = 0, size - 1, 1 do
         disp:dispatchMsg(0, team:getID(), playersVector[i]:getID(), PF.Msg_GoHome, nil)
     end
-    team:changeSide()
 end
 
 STm_HalfTime["Execute"] = function(team)
