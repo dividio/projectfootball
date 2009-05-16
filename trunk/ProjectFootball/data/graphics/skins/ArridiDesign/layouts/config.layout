@@ -40,13 +40,13 @@
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.1,0},{0.888437,0},{0.5,0}}" />
-                    <Property Name="MaxEditTextLength" Value="1073741823" />
+                    <Property Name="ReadOnly" Value="True" />
                 </Window>
                 <Window Type="ArridiDesign/Combobox" Name="Config/ResolutionCombo" >
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.248189,0},{0.2,0},{0.886627,0},{0.6,0}}" />
-                    <Property Name="MaxEditTextLength" Value="1073741823" />
+                    <Property Name="ReadOnly" Value="True" />
                 </Window>
                 <Window Type="ArridiDesign/CheckBox" Name="Config/FullScreenCheck" >
                     <Property Name="Font" Value="DejaVuSans-10" />

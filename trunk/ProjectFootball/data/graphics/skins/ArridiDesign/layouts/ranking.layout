@@ -20,19 +20,19 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.1,0},{0.45,0},{0.24,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
+                <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/Combobox" Name="Ranking/CountryCombo" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.55,0},{0.1,0},{0.75,0},{0.24,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
+                <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/Combobox" Name="Ranking/CompetitionCombo" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.24,0},{0.45,0},{0.4,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
+                <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/MultiColumnList" Name="Ranking/RankingList" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

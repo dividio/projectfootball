@@ -96,7 +96,7 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{-0.00808594,0},{0.0978116,0},{0.28379,0},{0.257812,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
+                <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/ConfederationImage" >
                 <Property Name="FrameEnabled" Value="False" />
@@ -108,7 +108,7 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.757032,0},{0.100356,0},{1,0},{0.264173,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
+                <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/CountryImage" >
                 <Property Name="FrameEnabled" Value="False" />
@@ -120,7 +120,7 @@
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.369495,0},{0.116895,0},{0.651585,0},{0.276895,0}}" />
-                <Property Name="MaxEditTextLength" Value="1073741823" />
+                <Property Name="ReadOnly" Value="True" />
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="SelectTeam/ConfederationLabel" >
                 <Property Name="Font" Value="DejaVuSans-10" />
