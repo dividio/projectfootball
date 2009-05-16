@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 11:23+0100\n"
+"POT-Creation-Date: 2009-05-16 18:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgid ""
 "    of course, to all the users who tested the game"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:72
+#: src/singlePlayer/screen/CScreenSimulator.cpp:74
 msgid "2D View"
 msgstr ""
 
@@ -34,11 +34,11 @@ msgstr ""
 msgid "3D Modeling:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:73
+#: src/singlePlayer/screen/CScreenSimulator.cpp:75
 msgid "3D View"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:193
+#: src/singlePlayer/screen/CScreenGame.cpp:188
 msgid "ATTENTION: Game can not be saved"
 msgstr ""
 
@@ -58,7 +58,12 @@ msgstr ""
 msgid "Application Design :"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:77
+#: src/singlePlayer/screen/CScreenGame.cpp:121
+msgid ""
+"Are you sure you want to exit this game and return to the Operation System?"
+msgstr ""
+
+#: src/singlePlayer/screen/CScreenGame.cpp:120
 msgid "Are you sure you want to exit this game?"
 msgstr ""
 
@@ -66,31 +71,31 @@ msgstr ""
 msgid "Are you sure you want to remove this game?"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:42
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:53
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:64
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:44
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:55
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:66
 msgid "Average"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:70
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:89
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:75
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:103
 msgid "Average:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenResults.cpp:64
+#: src/singlePlayer/screen/CScreenResults.cpp:83
 msgid "Away Team"
 msgstr ""
 
 #: src/engine/screen/CScreenCredits.cpp:49
 #: src/engine/screen/CScreenConfig.cpp:63
 #: src/engine/screen/CScreenLoadGame.cpp:58
-#: src/engine/screen/CScreenNewManagerGame.cpp:40
-#: src/engine/screen/CScreenNewVirtualGame.cpp:38
-#: src/singlePlayer/screen/CScreenSimulator.cpp:67
-#: src/singlePlayer/screen/CScreenResults.cpp:52
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:65
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:85
-#: src/singlePlayer/screen/CScreenRanking.cpp:47
+#: src/engine/screen/CScreenNewManagerGame.cpp:41
+#: src/engine/screen/CScreenNewVirtualGame.cpp:39
+#: src/singlePlayer/screen/CScreenSimulator.cpp:69
+#: src/singlePlayer/screen/CScreenResults.cpp:63
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:70
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:96
+#: src/singlePlayer/screen/CScreenRanking.cpp:61
 msgid "Back"
 msgstr ""
 
@@ -102,11 +107,11 @@ msgstr ""
 msgid "Before Start"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:69
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:74
 msgid "Budget:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:87
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:98
 msgid "Change"
 msgstr ""
 
@@ -115,20 +120,24 @@ msgstr ""
 msgid "Changes will take effect after restart"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:73
+#: src/singlePlayer/screen/CScreenGame.cpp:127
+msgid "Changing Room"
+msgstr ""
+
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:78
 msgid "Competition:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:71
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:76
 msgid "Confederation:"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:58
+#: src/engine/screen/CScreenMainMenu.cpp:66
 msgid "Config"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:60
-#: src/singlePlayer/screen/CScreenSimulator.cpp:68
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:62
+#: src/singlePlayer/screen/CScreenSimulator.cpp:70
 msgid "Continue"
 msgstr ""
 
@@ -136,11 +145,11 @@ msgstr ""
 msgid "Corner Kick"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:72
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:77
 msgid "Country:"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:59
+#: src/engine/screen/CScreenMainMenu.cpp:67
 msgid "Credits"
 msgstr ""
 
@@ -156,16 +165,28 @@ msgstr ""
 msgid "Delete Game"
 msgstr ""
 
+#: src/engine/screen/CScreenMainMenu.cpp:64
+msgid "Editor"
+msgstr ""
+
 #: src/singlePlayer/sim/entity/CReferee.cpp:230
 msgid "End"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:63
 #: src/singlePlayer/screen/CScreenMatchResult.cpp:65
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:67
 msgid "Event"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:76
+#: src/singlePlayer/screen/CScreenGame.cpp:113
+msgid "Exit to OS"
+msgstr ""
+
+#: src/engine/screen/CScreenMainMenu.cpp:65
+msgid "Football Library"
+msgstr ""
+
+#: src/singlePlayer/screen/CScreenSimulator.cpp:78
 msgid "Formation"
 msgstr ""
 
@@ -173,9 +194,9 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenResults.cpp:53
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:86
-#: src/singlePlayer/screen/CScreenRanking.cpp:48
+#: src/singlePlayer/screen/CScreenResults.cpp:64
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:97
+#: src/singlePlayer/screen/CScreenRanking.cpp:62
 msgid "Game Menu"
 msgstr ""
 
@@ -183,13 +204,13 @@ msgstr ""
 msgid "Goal Kick"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:156
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:173
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:164
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:181
 msgid "Goal by "
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenResults.cpp:63
-#: src/singlePlayer/screen/CScreenResults.cpp:65
+#: src/singlePlayer/screen/CScreenResults.cpp:82
+#: src/singlePlayer/screen/CScreenResults.cpp:84
 msgid "Goals"
 msgstr ""
 
@@ -201,7 +222,7 @@ msgstr ""
 msgid "Half Time"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenResults.cpp:62
+#: src/singlePlayer/screen/CScreenResults.cpp:81
 msgid "Home Team"
 msgstr ""
 
@@ -213,11 +234,11 @@ msgstr ""
 msgid "Kick Off"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:64
+#: src/engine/screen/CScreenMainMenu.cpp:72
 msgid "Last update:"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:61
+#: src/engine/screen/CScreenMainMenu.cpp:69
 msgid "Load"
 msgstr ""
 
@@ -225,62 +246,69 @@ msgstr ""
 msgid "Load Game"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:77
+#: src/singlePlayer/screen/CScreenSimulator.cpp:79
 msgid "Log"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:57
+#: src/engine/screen/CScreenMainMenu.cpp:62
 msgid "Manager League"
 msgstr ""
 
 #: src/engine/screen/CScreenLoadGame.cpp:53
-#: src/singlePlayer/screen/CScreenSimulator.cpp:358
+#: src/singlePlayer/screen/CScreenSimulator.cpp:353
 msgid "Name"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:50
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:52
 msgid "Name (Alternate)"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:39
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:41
 msgid "Name (Line Up)"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:61
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:63
 msgid "Name (Not Line Up)"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:68
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:73
 msgid "Name:"
 msgstr ""
 
-#: src/engine/screen/CScreenNewManagerGame.cpp:39
+#: src/engine/screen/CScreenNewManagerGame.cpp:40
 msgid "New Game"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:81
+#: src/singlePlayer/screen/CScreenGame.cpp:129
 msgid "Next event:"
 msgstr ""
 
 #: src/engine/screen/CScreenLoadGame.cpp:61
-#: src/singlePlayer/screen/CScreenGame.cpp:80
+#: src/singlePlayer/screen/CScreenGame.cpp:124
+#: src/singlePlayer/screen/CScreenGame.cpp:126
 msgid "No"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:199
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:223
 msgid "No competitions"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:174
+#: src/singlePlayer/screen/CScreenResults.cpp:191
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:198
+#: src/singlePlayer/screen/CScreenRanking.cpp:191
 msgid "No countries"
 msgstr ""
 
 #: src/engine/screen/CScreenConfig.cpp:65
-#: src/singlePlayer/screen/CScreenGame.cpp:78
+#: src/singlePlayer/screen/CScreenGame.cpp:122
 msgid "Ok"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:74
+#: src/engine/screen/CScreenMainMenu.cpp:60
+msgid "On-line Community"
+msgstr ""
+
+#: src/singlePlayer/screen/CScreenGame.cpp:117
 msgid "Play Match"
 msgstr ""
 
@@ -288,27 +316,34 @@ msgstr ""
 msgid "Play On"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:67
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:72
 msgid "Please, select your team:"
+msgstr ""
+
+#: src/engine/screen/CScreenMainMenu.cpp:63
+msgid "Professional Career"
 msgstr ""
 
 #: src/engine/screen/CScreenCredits.cpp:38
 msgid "Programming:"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:60
+#: src/engine/screen/CScreenMainMenu.cpp:68
 msgid "Quick Load"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:62
+#: src/engine/screen/CScreenMainMenu.cpp:70
 msgid "Quit"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:71
+#: src/singlePlayer/screen/CScreenResults.cpp:65
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:99
+#: src/singlePlayer/screen/CScreenGame.cpp:114
+#: src/singlePlayer/screen/CScreenRanking.cpp:63
 msgid "Ranking"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenRanking.cpp:49
+#: src/singlePlayer/screen/CScreenRanking.cpp:66
 msgid "Ranking:"
 msgstr ""
 
@@ -320,38 +355,41 @@ msgstr ""
 msgid "Resolution:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:75
+#: src/singlePlayer/screen/CScreenGame.cpp:118
 msgid "Result Mode"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:73
+#: src/singlePlayer/screen/CScreenResults.cpp:67
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:101
+#: src/singlePlayer/screen/CScreenGame.cpp:116
+#: src/singlePlayer/screen/CScreenRanking.cpp:65
 msgid "Results"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenResults.cpp:54
+#: src/singlePlayer/screen/CScreenResults.cpp:68
 msgid "Results:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:70
+#: src/singlePlayer/screen/CScreenGame.cpp:112
 msgid "Return to Main Menu"
 msgstr ""
 
 #: src/engine/screen/CScreenConfig.cpp:64
-#: src/singlePlayer/screen/CScreenGame.cpp:69
+#: src/singlePlayer/screen/CScreenGame.cpp:111
 msgid "Save"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSelectTeam.cpp:66
+#: src/singlePlayer/screen/CScreenSelectTeam.cpp:71
 msgid "Select Team"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:41
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:52
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:63
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:43
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:54
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:65
 msgid "Shot power"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:71
+#: src/singlePlayer/screen/CScreenSimulator.cpp:73
 msgid "Simulation View"
 msgstr ""
 
@@ -359,32 +397,36 @@ msgstr ""
 msgid "Sound Effects:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:40
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:51
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:62
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:42
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:53
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:64
 msgid "Speed"
 msgstr ""
 
-#: src/engine/screen/CScreenNewVirtualGame.cpp:39
-#: src/singlePlayer/screen/CScreenSimulator.cpp:69
-#: src/singlePlayer/screen/CScreenSimulator.cpp:74
+#: src/engine/screen/CScreenNewVirtualGame.cpp:40
+#: src/singlePlayer/screen/CScreenSimulator.cpp:71
+#: src/singlePlayer/screen/CScreenSimulator.cpp:76
 msgid "Start"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:78
+#: src/singlePlayer/screen/CScreenSimulator.cpp:80
+#: src/singlePlayer/screen/CScreenGame.cpp:128
 msgid "Statistics"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:75
-#: src/singlePlayer/screen/CScreenRanking.cpp:56
+#: src/singlePlayer/screen/CScreenSimulator.cpp:77
+#: src/singlePlayer/screen/CScreenRanking.cpp:79
 msgid "Team"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:72
+#: src/singlePlayer/screen/CScreenResults.cpp:66
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:100
+#: src/singlePlayer/screen/CScreenGame.cpp:115
+#: src/singlePlayer/screen/CScreenRanking.cpp:64
 msgid "Team Players"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:88
+#: src/singlePlayer/screen/CScreenTeamPlayers.cpp:102
 msgid "Team Players:"
 msgstr ""
 
@@ -396,12 +438,12 @@ msgstr ""
 msgid "Thanks to:"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenGame.cpp:76
-#: src/singlePlayer/screen/CScreenGame.cpp:191
+#: src/singlePlayer/screen/CScreenGame.cpp:119
+#: src/singlePlayer/screen/CScreenGame.cpp:186
 msgid "The game has been saved"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:63
+#: src/engine/screen/CScreenMainMenu.cpp:71
 msgid "Today is:"
 msgstr ""
 
@@ -413,20 +455,21 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-#: src/engine/screen/CScreenMainMenu.cpp:56
+#: src/engine/screen/CScreenMainMenu.cpp:61
 msgid "Virtual Championship"
 msgstr ""
 
 #: src/engine/screen/CScreenLoadGame.cpp:60
-#: src/singlePlayer/screen/CScreenGame.cpp:79
+#: src/singlePlayer/screen/CScreenGame.cpp:123
+#: src/singlePlayer/screen/CScreenGame.cpp:125
 msgid "Yes"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenSimulator.cpp:70
+#: src/singlePlayer/screen/CScreenSimulator.cpp:72
 msgid "Zoom"
 msgstr ""
 
-#: src/singlePlayer/screen/CScreenMatchResult.cpp:62
 #: src/singlePlayer/screen/CScreenMatchResult.cpp:64
+#: src/singlePlayer/screen/CScreenMatchResult.cpp:66
 msgid "min"
 msgstr ""
