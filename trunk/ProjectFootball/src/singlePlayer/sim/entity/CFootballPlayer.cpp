@@ -65,6 +65,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     int maxKickPower      = optionManager->getSimulationMaxKickPower();
     m_maxVelocity  = maxPlayerVelocity * (m_teamPlayer->getNVelocity()/100.0);
     m_maxKickPower = maxKickPower      * (m_teamPlayer->getNKickPower()/100.0);
+    m_maxKickDistance = optionManager->getSimulationMaxKickDistance();
 
     //m_direction.normalize();
     charId << team->getName().c_str() << m_number;
@@ -343,6 +344,18 @@ btVector3 CFootballPlayer::getKickPosition() const
     return myKickPos;
 }
 
+btVector3 CFootballPlayer::getFuturePlayerPosition(double time, btVector3 target)
+{
+    btVector3 position = getPosition();
+    btVector3 desiredVelocity = btVector3(target - position);
+    desiredVelocity.normalize();
+    desiredVelocity *= m_maxVelocity;
+
+    btVector3 vt = desiredVelocity * time;
+    btVector3 coef = desiredVelocity.normalized() * 0.5 * time * time;
+
+    return position + vt + coef;
+}
 
 btVector3 CFootballPlayer::getHomeGoalFacing() const
 {
@@ -386,7 +399,7 @@ bool CFootballPlayer::isBallKickable() const
     btVector3 toBall = ballPos - getPosition();
     btScalar dot = getHeading().dot(toBall.normalized());
     bool canKick = false;
-    if(dot > 0 && (getPosition().distance(ballPos) < 2)) {
+    if(dot > 0 && (getPosition().distance(ballPos) < m_maxKickDistance)) {
         canKick = true;
     }
     return canKick;

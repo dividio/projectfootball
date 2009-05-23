@@ -48,6 +48,7 @@ public:
 
     void  setOpponentTeam(CTeam *team);
     void  setControllingPlayer(CFootballPlayer *player);
+    void  setNearestPlayerToBall(CFootballPlayer *player);
 
     CSimulationManager* getSimulationManager();
 
@@ -87,7 +88,6 @@ private:
     std::vector<CFormation*>         m_formations;
     bool                             m_sideLeft;
 
-    void setNearestPlayersToBall();
     void setFormations();
 };
 

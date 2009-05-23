@@ -121,6 +121,14 @@ public:
     int            getSimulationMaxKickPower();
     void           setSimulationMaxKickPower(int maxKickPower);
 
+    int            getSimulationMaxKickDistance();
+    void           setSimulationMaxKickDistance(int maxKickDistance);
+
+    int            getSimulationNearestPlayerToBallCycles();
+    void           setSimulationNearestPlayerToBallCycles(int nearestPlayerToBallCycles);
+
+    int            getSimulationNearestPlayerToBallTime();
+    void           setSimulationNearestPlayerToBallTime(int nearestPlayerToBallTime);
 
 private:
 	/**

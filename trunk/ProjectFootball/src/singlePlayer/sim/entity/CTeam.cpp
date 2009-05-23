@@ -173,7 +173,6 @@ bool CTeam::handleMessage(const CMessage &msg)
 
 void CTeam::update()
 {
-    setNearestPlayersToBall();
     std::vector<CFootballPlayer*>::iterator it;
     for(it = m_players.begin(); it!=m_players.end(); it++) {
         (*it)->update();
@@ -212,22 +211,9 @@ void CTeam::changeSide()
     }
 }
 
-
-void CTeam::setNearestPlayersToBall()
+void CTeam::setNearestPlayerToBall(CFootballPlayer *player)
 {
-    btScalar minDist = 1000;
-    btScalar auxDist;
-    btVector3 playerPos;
-    btVector3 ballPos = m_simulationManager->getBallPosition();
-    std::vector<CFootballPlayer*>::iterator it;
-    for(it = m_players.begin(); it!=m_players.end(); it++) {
-        playerPos = (*it)->getPosition();
-        auxDist = playerPos.distance(ballPos);
-        if(auxDist < minDist) {
-            minDist = auxDist;
-            m_nearestPlayerToBall = (*it);
-        }
-    }
+    m_nearestPlayerToBall = player;
 }
 
 

@@ -106,7 +106,6 @@ CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
     srand(time(NULL));
 }
 
-
 CSimulationManager::~CSimulationManager()
 {
     LOG_DEBUG("~CSimulationManager()");
@@ -132,10 +131,10 @@ CSimulationManager::~CSimulationManager()
     delete m_match;
 }
 
-
 void CSimulationManager::update()
 {
     if(m_logicTimer->nextTick()) {
+        calculateNearestPlayersToBall();
         m_referee->update();
         m_homeTeam->update();
         m_awayTeam->update();
@@ -147,49 +146,41 @@ void CSimulationManager::update()
     CMessageDispatcher::getInstance()->dispatchDelayedMessages();
 }
 
-
 void CSimulationManager::addToLog(const std::string &text)
 {
     CScreenSimulator* screenSimulator = (CScreenSimulator*) m_game->getSimulatorScreen();
     screenSimulator->addToLog(text);
 }
 
-
 CSimulationWorld* CSimulationManager::getSimulationWorld()
 {
     return m_simWorld;
 }
-
 
 CReferee* CSimulationManager::getReferee()
 {
     return m_referee;
 }
 
-
 CBall* CSimulationManager::getBall()
 {
     return m_ball;
 }
-
 
 CField* CSimulationManager::getField()
 {
     return m_field;
 }
 
-
 CTeam* CSimulationManager::getHomeTeam()
 {
     return m_homeTeam;
 }
 
-
 CTeam* CSimulationManager::getAwayTeam()
 {
     return m_awayTeam;
 }
-
 
 void CSimulationManager::changePlayersSide()
 {
@@ -197,12 +188,10 @@ void CSimulationManager::changePlayersSide()
     m_awayTeam->changeSide();
 }
 
-
 void CSimulationManager::startMatch()
 {
     CMessageDispatcher::getInstance()->dispatchMsg(0, -1, m_referee->getID(), Msg_StartMatch, 0);
 }
-
 
 void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *playerScorer, int minute, bool ownGoal)
 {
@@ -213,7 +202,6 @@ void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *play
     CScreenSimulator *screen = (CScreenSimulator*) m_game->getSimulatorScreen();
     screen->updateScore();
 }
-
 
 void CSimulationManager::endMatchEvent()
 {
@@ -236,7 +224,6 @@ void CSimulationManager::endMatchEvent()
     screen->endMatchEvent();
 }
 
-
 void CSimulationManager::changeFormationEvent(int pos)
 {
     CPfTeams *team = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
@@ -251,24 +238,20 @@ void CSimulationManager::changeFormationEvent(int pos)
     delete team;
 }
 
-
 const std::string& CSimulationManager::getHomeTeamName()
 {
     return m_homeTeam->getName();
 }
-
 
 const std::string& CSimulationManager::getAwayTeamName()
 {
     return m_awayTeam->getName();
 }
 
-
 btVector3 CSimulationManager::getBallPosition() const
 {
     return m_ball->getPosition();
 }
-
 
 void CSimulationManager::dash(CFootballPlayer *player, btVector3 power)
 {
@@ -291,7 +274,6 @@ void CSimulationManager::dash(CFootballPlayer *player, btVector3 power)
     }
 }
 
-
 void CSimulationManager::move(CFootballPlayer *player, int x, int z)
 {
     if(m_referee->isMoveLegal()) {
@@ -302,7 +284,6 @@ void CSimulationManager::move(CFootballPlayer *player, int x, int z)
         player->setPosition(x,0,z);
     }
 }
-
 
 void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 {
@@ -329,11 +310,73 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
     }
 }
 
-
 void CSimulationManager::truncateVector(btVector3 *v, double max)
 {
     if (v->length() > max) {
         v->normalize();
         v->operator *=(max);
     }
+}
+
+void CSimulationManager::calculateNearestPlayersToBall()
+{
+    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
+    std::vector<CFootballPlayer*> *homePlayers = getHomeTeam()->getPlayers();
+    std::vector<CFootballPlayer*> *awayPlayers = getAwayTeam()->getPlayers();
+
+    int maxKickDistance = optionManager->getSimulationMaxKickDistance();
+    int numCycles = optionManager->getSimulationNearestPlayerToBallCycles();
+    int cycle = 0;
+    double timeToAdd = optionManager->getSimulationNearestPlayerToBallTime()*0.01;
+    double time = 0.0;
+    bool found = false;
+    btScalar minHomeDist = 1000;
+    btScalar minAwayDist = 1000;
+    btScalar auxDist;
+    std::vector<CFootballPlayer*>::iterator it;
+
+    CFootballPlayer* nearestPlayer = NULL;
+    CFootballPlayer* nearestHomePlayer = NULL;
+    CFootballPlayer* nearestAwayPlayer = NULL;
+
+    while(cycle < numCycles && !found) {
+        btVector3 ballPos = m_ball->futurePosition(time);
+
+        for(it = homePlayers->begin(); it!=homePlayers->end(); it++) {
+            btVector3 playerPos = (*it)->getFuturePlayerPosition(time, ballPos);
+            auxDist = playerPos.distance(ballPos);
+            if(auxDist < minHomeDist) {
+                minHomeDist = auxDist;
+                nearestHomePlayer = (*it);
+            }
+        }
+
+        for(it = awayPlayers->begin(); it!=awayPlayers->end(); it++) {
+            btVector3 playerPos = (*it)->getFuturePlayerPosition(time, ballPos);
+            auxDist = playerPos.distance(ballPos);
+            if(auxDist < minAwayDist) {
+                minAwayDist = auxDist;
+                nearestAwayPlayer = (*it);
+            }
+        }
+
+        if(minHomeDist < minAwayDist) {
+            nearestPlayer = nearestHomePlayer;
+            if(minHomeDist < maxKickDistance) {
+                found = true;
+            }
+        } else {
+            nearestPlayer = nearestAwayPlayer;
+            if(minAwayDist < maxKickDistance) {
+                found = true;
+            }
+        }
+
+        cycle++;
+        time += timeToAdd;
+    }
+    getHomeTeam()->setNearestPlayerToBall(nearestHomePlayer);
+    getAwayTeam()->setNearestPlayerToBall(nearestAwayPlayer);
+
+    //std::cout << cycle << " ciclos calculados" <<std::endl;
 }

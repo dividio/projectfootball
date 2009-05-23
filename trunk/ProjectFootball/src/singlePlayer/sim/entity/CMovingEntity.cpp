@@ -77,9 +77,10 @@ void CMovingEntity::setPosition(float x, float y, float z)
 
 btVector3 CMovingEntity::futurePosition(double time) const
 {
-    btVector3 vt = m_body->getLinearVelocity() * time;
+    btVector3 linearVel = m_body->getLinearVelocity();
+    btVector3 vt = linearVel * time;
 
-    btVector3 coef = m_body->getLinearVelocity().normalized() * 0.5 * time * time;
+    btVector3 coef = linearVel.normalized() * 0.5 * time * time;
 
     return getPosition() + vt + coef;
 }

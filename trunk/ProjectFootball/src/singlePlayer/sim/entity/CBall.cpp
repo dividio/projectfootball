@@ -56,12 +56,10 @@ CBall::CBall()
     m_body->setActivationState(DISABLE_DEACTIVATION);
 }
 
-
 CBall::~CBall()
 {
     LOG_DEBUG("~CBall()");
 }
-
 
 bool CBall::isInLeftGoal() const
 {
@@ -74,7 +72,6 @@ bool CBall::isInLeftGoal() const
     return result;
 }
 
-
 bool CBall::isInRightGoal() const
 {
     bool result = false;
@@ -86,7 +83,6 @@ bool CBall::isInRightGoal() const
     return result;
 }
 
-
 bool CBall::crossLeftLine() const
 {
     bool result = false;
@@ -96,7 +92,6 @@ bool CBall::crossLeftLine() const
     }
     return result;
 }
-
 
 bool CBall::crossRightLine() const
 {
@@ -108,7 +103,6 @@ bool CBall::crossRightLine() const
     return result;
 }
 
-
 bool CBall::crossTopLine() const
 {
     bool result = false;
@@ -119,7 +113,6 @@ bool CBall::crossTopLine() const
     return result;
 }
 
-
 bool CBall::crossBottomLine() const
 {
     bool result = false;
@@ -129,3 +122,4 @@ bool CBall::crossBottomLine() const
     }
     return result;
 }
+

@@ -89,6 +89,7 @@ private:
     CSinglePlayerGame				*m_game;
 
     void truncateVector(btVector3 *v, double max);
+    void calculateNearestPlayersToBall();
 };
 
 #endif // CSIMULATIONMANAGER_H_

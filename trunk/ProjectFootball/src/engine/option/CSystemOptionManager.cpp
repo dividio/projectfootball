@@ -233,6 +233,9 @@ void CSystemOptionManager::setDefaultValues()
     setSimulationMaxBallVelocity(25);
     setSimulationMaxPlayerVelocity(10);
     setSimulationMaxKickPower(25);
+    setSimulationMaxKickDistance(2);
+    setSimulationNearestPlayerToBallCycles(30);
+    setSimulationNearestPlayerToBallTime(2);
 }
 
 
@@ -409,7 +412,38 @@ int CSystemOptionManager::getSimulationMaxKickPower()
 {
     return getIntOption("Simulation", "MaxKickPower");
 }
+
 void CSystemOptionManager::setSimulationMaxKickPower(int maxKickPower)
 {
     setIntOption("Simulation", "MaxKickPower", maxKickPower);
+}
+
+int CSystemOptionManager::getSimulationMaxKickDistance()
+{
+    return getIntOption("Simulation", "MaxKickDistance");
+}
+
+void CSystemOptionManager::setSimulationMaxKickDistance(int maxKickDistance)
+{
+    setIntOption("Simulation", "MaxKickDistance", maxKickDistance);
+}
+
+int CSystemOptionManager::getSimulationNearestPlayerToBallCycles()
+{
+    return getIntOption("Simulation", "NearestPlayerToBallCycles");
+}
+
+void CSystemOptionManager::setSimulationNearestPlayerToBallCycles(int nearestPlayerToBallCycles)
+{
+    setIntOption("Simulation", "NearestPlayerToBallCycles", nearestPlayerToBallCycles);
+}
+
+int CSystemOptionManager::getSimulationNearestPlayerToBallTime()
+{
+    return getIntOption("Simulation", "NearestPlayerToBallTime");
+}
+
+void CSystemOptionManager::setSimulationNearestPlayerToBallTime(int nearestPlayerToBallTime)
+{
+    setIntOption("Simulation", "NearestPlayerToBallTime", nearestPlayerToBallTime);
 }

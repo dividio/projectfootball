@@ -52,6 +52,7 @@ public:
     CSteeringBehaviors*             getSteering() const;
     btVector3                       getStrategicPosition() const;
     btVector3                       getKickPosition() const;
+    btVector3                       getFuturePlayerPosition(double time, btVector3 target);
     btVector3                       getHomeGoalFacing() const;
     CTeam*                          getTeam() const;
     int                             getXTeamPlayer();
@@ -101,6 +102,7 @@ private:
     bool                             m_sideLeft;
     int                              m_lastKickBallCycle;
     int                              m_number;
+    int                              m_maxKickDistance;
     double                           m_maxKickPower;
     double                           m_maxVelocity;
 };
