@@ -61,8 +61,16 @@ CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame *game)
     m_game = game;
 
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-    m_logicTimer = new CTimer(optionManager->getSimulationLogicFrequency());
-    m_physicsTimer = new CTimer(optionManager->getSimulationPhysicsFrequency());
+
+    m_maxBallVelocity           = optionManager->getSimulationMaxBallVelocity();
+    m_maxPlayerVelocity         = optionManager->getSimulationMaxPlayerVelocity();
+    m_maxKickPower              = optionManager->getSimulationMaxKickPower();
+    m_maxKickDistance           = optionManager->getSimulationMaxKickDistance();
+    m_nearestPlayerToBallCycles = optionManager->getSimulationNearestPlayerToBallCycles();
+    m_nearestPlayerToBallTime   = optionManager->getSimulationNearestPlayerToBallTime() * 0.01;
+    m_logicTimer                = new CTimer(optionManager->getSimulationLogicFrequency());
+    m_physicsTimer              = new CTimer(optionManager->getSimulationPhysicsFrequency());
+
     m_simWorld = new CSimulationWorld();
 
     m_field = new CField();
@@ -257,15 +265,13 @@ void CSimulationManager::dash(CFootballPlayer *player, btVector3 power)
 {
     if(player->canDoActions()) {
         btVector3 impulse;
-        CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-        int maxDash = optionManager->getSimulationMaxPlayerVelocity();
         double maxPlayerDash = player->getMaxVelocity();
         btRigidBody *body = player->getBody();
         btVector3 currentVelocity = body->getLinearVelocity();
         btVector3 newVelocity = currentVelocity;
         newVelocity += power;
-        if(maxPlayerDash > maxDash) {
-            truncateVector(&newVelocity, maxDash);
+        if(maxPlayerDash > m_maxPlayerVelocity) {
+            truncateVector(&newVelocity, m_maxPlayerVelocity);
         } else {
             truncateVector(&newVelocity, maxPlayerDash);
         }
@@ -289,21 +295,18 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
 {
     if(player->canKickBall(m_referee->getCycle()) && player->canDoActions()) {
         btVector3 impulse;
-        CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
-        int    maxBallVelocity = optionManager->getSimulationMaxBallVelocity();
-        int    maxKickPower = optionManager->getSimulationMaxKickPower();
         double maxPlayerKickPower = player->getMaxKickPower();
         btRigidBody *ballBody = m_ball->getBody();
         btVector3 velocity;
 
-        if (maxPlayerKickPower > maxKickPower) {
-            truncateVector(&power, maxKickPower);
+        if (maxPlayerKickPower > m_maxKickPower) {
+            truncateVector(&power, m_maxKickPower);
         } else {
             truncateVector(&power, maxPlayerKickPower);
         }
         ballBody->applyCentralImpulse(power);
         velocity = ballBody->getLinearVelocity();
-        truncateVector(&velocity, maxBallVelocity);
+        truncateVector(&velocity, m_maxBallVelocity);
         ballBody->setLinearVelocity(velocity);
         CMessageDispatcher::getInstance()->dispatchMsg(0, player->getID(), m_referee->getID(), Msg_TouchBall, 0);
         CAudioSystem::LOW_KICK->play();
@@ -320,14 +323,10 @@ void CSimulationManager::truncateVector(btVector3 *v, double max)
 
 void CSimulationManager::calculateNearestPlayersToBall()
 {
-    CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
     std::vector<CFootballPlayer*> *homePlayers = getHomeTeam()->getPlayers();
     std::vector<CFootballPlayer*> *awayPlayers = getAwayTeam()->getPlayers();
 
-    int maxKickDistance = optionManager->getSimulationMaxKickDistance();
-    int numCycles = optionManager->getSimulationNearestPlayerToBallCycles();
     int cycle = 0;
-    double timeToAdd = optionManager->getSimulationNearestPlayerToBallTime()*0.01;
     double time = 0.0;
     bool found = false;
     btScalar minHomeDist = 1000;
@@ -339,7 +338,7 @@ void CSimulationManager::calculateNearestPlayersToBall()
     CFootballPlayer* nearestHomePlayer = NULL;
     CFootballPlayer* nearestAwayPlayer = NULL;
 
-    while(cycle < numCycles && !found) {
+    while(cycle < m_nearestPlayerToBallCycles && !found) {
         btVector3 ballPos = m_ball->futurePosition(time);
 
         for(it = homePlayers->begin(); it!=homePlayers->end(); it++) {
@@ -362,21 +361,19 @@ void CSimulationManager::calculateNearestPlayersToBall()
 
         if(minHomeDist < minAwayDist) {
             nearestPlayer = nearestHomePlayer;
-            if(minHomeDist < maxKickDistance) {
+            if(minHomeDist < m_maxKickDistance) {
                 found = true;
             }
         } else {
             nearestPlayer = nearestAwayPlayer;
-            if(minAwayDist < maxKickDistance) {
+            if(minAwayDist < m_maxKickDistance) {
                 found = true;
             }
         }
 
         cycle++;
-        time += timeToAdd;
+        time += m_nearestPlayerToBallTime;
     }
     getHomeTeam()->setNearestPlayerToBall(nearestHomePlayer);
     getAwayTeam()->setNearestPlayerToBall(nearestAwayPlayer);
-
-    //std::cout << cycle << " ciclos calculados" <<std::endl;
 }

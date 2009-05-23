@@ -88,6 +88,14 @@ private:
 
     CSinglePlayerGame				*m_game;
 
+    // Simulation Options
+    int                              m_maxBallVelocity;
+    int                              m_maxPlayerVelocity;
+    int                              m_maxKickPower;
+    int                              m_maxKickDistance;
+    int                              m_nearestPlayerToBallCycles;
+    double                           m_nearestPlayerToBallTime;
+
     void truncateVector(btVector3 *v, double max);
     void calculateNearestPlayersToBall();
 };
