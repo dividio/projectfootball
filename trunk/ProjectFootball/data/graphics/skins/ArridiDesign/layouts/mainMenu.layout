@@ -18,6 +18,7 @@
             </Window>
             <Window Type="ArridiDesign/mRightButton" Name="MainMenu/VirtualChampionshipButton" >
                 <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="Disabled" Value="True" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.65625,0},{0.673177,0},{0.929688,0},{0.747396,0}}" />
             </Window>
