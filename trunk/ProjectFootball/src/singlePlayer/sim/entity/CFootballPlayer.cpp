@@ -224,7 +224,7 @@ bool CFootballPlayer::canDoActions()
 
 bool CFootballPlayer::canKickBall(int cycle)
 {
-    if((cycle - m_lastKickBallCycle) > 5) {
+    if((cycle - m_lastKickBallCycle) > 8) {
         m_lastKickBallCycle = cycle;
         return true;
     }
