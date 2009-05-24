@@ -67,7 +67,6 @@ private:
     bool view2DButtonClicked(const CEGUI::EventArgs& e);
     bool view3DButtonClicked(const CEGUI::EventArgs& e);
 
-    CEGUI::PushButton		*m_backButton;
     CEGUI::PushButton		*m_continueButton;
     CEGUI::PushButton		*m_startButton;
     CEGUI::PushButton		*m_zoomButton;

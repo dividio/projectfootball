@@ -42,7 +42,6 @@ CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
     m_game = game;
     m_simulator = NULL;
 
-    m_backButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/BackButton"));
     m_continueButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/ContinueButton"));
     m_startButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/StartButton"));
     m_zoomButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/ZoomButton"));
@@ -66,7 +65,6 @@ CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
     m_frameAwayScore            = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/AwayScore"));
 
     // i18n support
-    m_backButton->setText((CEGUI::utf8*)gettext("Back"));
     m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
     m_startButton->setText((CEGUI::utf8*)gettext("Start"));
     m_zoomButton->setText((CEGUI::utf8*)gettext("Zoom"));
@@ -80,7 +78,6 @@ CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
     static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/StatisticsTab"))->setText((CEGUI::utf8*)gettext("Statistics"));
 
     // Event handle
-//    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::backButtonClicked, this)); // TODO: Remove back button from this screen
     m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::continueButtonClicked, this));
     m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this));
     m_zoomButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::zoomButtonClicked, this));
@@ -222,7 +219,6 @@ void CScreenSimulator::enter()
     m_previousUpdateTime = CGameEngine::getInstance()->getClock().getCurrentTime();
 
     m_continueButton->setEnabled(false);
-    m_backButton->setEnabled(false); // TODO: Remove back button from this screen
 
     const CPfMatches *match	= m_game->getCurrentMatch();
     m_simulator = new CSimulationManager(match->getXMatch(), m_game);
@@ -414,18 +410,9 @@ void CScreenSimulator::updateScore()
     m_frameAwayScore->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
 }
 
-
 void CScreenSimulator::endMatchEvent()
 {
-    //TODO Check if game mode is QuickPlay
-    //m_backButton->setEnabled(false);
     m_continueButton->setEnabled(true);
-}
-
-bool CScreenSimulator::backButtonClicked(const CEGUI::EventArgs& e)
-{
-    m_game->previousScreen();
-    return true;
 }
 
 bool CScreenSimulator::continueButtonClicked(const CEGUI::EventArgs& e)

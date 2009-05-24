@@ -9,11 +9,6 @@
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-            <Window Type="ArridiDesign/bButton" Name="Simulator/BackButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.526,0},{0.92,0},{0.7,0},{0.977634,0}}" />
-            </Window>
             <Window Type="ArridiDesign/bButton" Name="Simulator/ContinueButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
