@@ -21,14 +21,16 @@
 #ifndef CSCREENNEWVIRTUALGAME_H_
 #define CSCREENNEWVIRTUALGAME_H_
 
-#include "../CScreen.h"
+#include <CEGUI/CEGUI.h>
 
-class CScreenNewVirtualGame: public CScreen {
+#include "../wm/CWindowHandler.h"
+
+class CScreenNewVirtualGame: public CWindowHandler {
 public:
     CScreenNewVirtualGame();
     virtual ~CScreenNewVirtualGame();
 
-    virtual void enter();
+    virtual void init();
 
 private:
     bool backButtonClicked    (const CEGUI::EventArgs& e);

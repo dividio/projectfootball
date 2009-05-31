@@ -34,115 +34,27 @@
 #include "../../utils/CLog.h"
 
 
-CScreenSimulator::CScreenSimulator(CSinglePlayerGame *game)
- :CScreen("simulator.layout")
+CScreenSimulator::CScreenSimulator(CSinglePlayerGame &game) :
+	CWindowHandler("simulator.layout"),
+	m_game(game),
+	m_sceneMngr(NULL),
+	m_simulator(NULL),
+	m_initiated(false)
 {
     LOG_DEBUG("CScreenSimulator()");
-
-    m_game = game;
-    m_simulator = NULL;
-
-    m_continueButton			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/ContinueButton"));
-    m_startButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/StartButton"));
-    m_zoomButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/ZoomButton"));
-    m_formation433Button		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/433Button"));
-    m_formation442Button		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/442Button"));
-    m_frameWindow				= static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/FrameWindow"));
-    m_view2DButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/2DButton"));
-    m_view3DButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/3DButton"));
-    m_frameStartButtom			= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/StartButton"));
-
-    m_logHistoryList            = static_cast<CEGUI::Listbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Log"));
-    m_logHistoryListShort       = static_cast<CEGUI::Listbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/Log"));
-    m_teamPlayersList           = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/TeamPlayersList"));
-    m_groundImage               = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Image"));
-    m_groundFrameImage          = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/Image"));
-    m_teamNames                 = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/TeamNames"));
-    m_score                     = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Score"));
-    m_frameHomeName             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/HomeName"));
-    m_frameAwayName             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/AwayName"));
-    m_frameHomeScore            = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/HomeScore"));
-    m_frameAwayScore            = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/Frame/AwayScore"));
-
-    // i18n support
-    m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
-    m_startButton->setText((CEGUI::utf8*)gettext("Start"));
-    m_zoomButton->setText((CEGUI::utf8*)gettext("Zoom"));
-    m_frameWindow->setText((CEGUI::utf8*)gettext("Simulation View"));
-    m_view2DButton->setText((CEGUI::utf8*)gettext("2D View"));
-    m_view3DButton->setText((CEGUI::utf8*)gettext("3D View"));
-    m_frameStartButtom->setText((CEGUI::utf8*)gettext("Start"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/TeamTab"))->setText((CEGUI::utf8*)gettext("Team"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/FormationTab"))->setText((CEGUI::utf8*)gettext("Formation"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/LogTab"))->setText((CEGUI::utf8*)gettext("Log"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Simulator/StatisticsTab"))->setText((CEGUI::utf8*)gettext("Statistics"));
-
-    // Event handle
-    m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::continueButtonClicked, this));
-    m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this));
-    m_zoomButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::zoomButtonClicked, this));
-    m_formation433Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::formation433ButtonClicked, this));
-    m_formation442Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::formation442ButtonClicked, this));
-    m_frameWindow->subscribeEvent(CEGUI::FrameWindow::EventCloseClicked, CEGUI::Event::Subscriber(&CScreenSimulator::frameWindowCloseClicked, this));
-    m_view2DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::view2DButtonClicked, this));
-    m_view3DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::view3DButtonClicked, this));
-    m_frameStartButtom->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this));
-    m_windowMngr->getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyDown, CEGUI::Event::Subscriber(&CScreenSimulator::keyDownHandler, this));
-    m_windowMngr->getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyUp, CEGUI::Event::Subscriber(&CScreenSimulator::keyUpHandler, this));
-
-    m_direction = Ogre::Vector3::ZERO;
-    m_sceneMgr = m_root->createSceneManager(Ogre::ST_GENERIC, SIMULATION_SCENE_MANAGER_NODE_NAME);
-
-    m_cam2D = m_sceneMgr->createCamera("2D_Camera");
-    m_cam2D->setNearClipDistance(1);
-    int width = 120;
-    int height = 90;
-    double  right = width/2.0,
-            left = -width/2.0,
-            top = height/2.0,
-            bottom = -height/2.0,
-            farZ = 100.0,
-            nearZ = 10.0;
-    Ogre::Matrix4 projectionMatrix(
-            2/(right-left), 0, 0, -(right+left)/(right-left),
-            0, 2/(top-bottom), 0, -(top+bottom)/(top-bottom),
-            0, 0, -2/(farZ-nearZ), -(farZ+nearZ)/(farZ-nearZ),
-            0, 0, 0, 1
-            );
-    m_cam2D->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
-    m_cam2D->setCustomProjectionMatrix(true, projectionMatrix);
-
-    m_cam3D = m_sceneMgr->createCamera("3D_Camera");
-    m_cam3D->setProjectionType(Ogre::PT_PERSPECTIVE);
-    m_cam3D->setCustomProjectionMatrix(false);
-    m_cam3D->setNearClipDistance(5);
-
-    Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual("RttTex",
-                    Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D,
-                    (int)m_groundImage->getPixelSize().d_width, (int)m_groundImage->getPixelSize().d_height,
-                    0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
-    m_renderTexture = texturePtr->getBuffer()->getRenderTarget();
-
-    CEGUI::Texture  *cTex = m_renderer->createTexture((CEGUI::utf8*)"RttTex");
-    CEGUI::Imageset *imageSet = CEGUI::ImagesetManager::getSingleton().createImageset((CEGUI::utf8*)"RttImageset", cTex);
-    imageSet->defineImage((CEGUI::utf8*)"RttImage",
-        CEGUI::Point(0.0f, 0.0f),
-        CEGUI::Size(cTex->getWidth(), cTex->getHeight()),
-        CEGUI::Point(0.0f,0.0f));
-
-    m_groundImage->setProperty(     "Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
-    m_groundFrameImage->setProperty("Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
-    m_groundFrameImage->disable();
 }
 
 
 CScreenSimulator::~CScreenSimulator()
 {
     LOG_DEBUG("~CScreenSimulator()");
-    CEGUI::ImagesetManager::getSingleton().destroyImageset("RttImageset");
-    Ogre::TextureManager::getSingleton().remove("RttTex");
-    m_root->destroySceneManager(m_sceneMgr);
-    delete m_simulator;
+
+    if( m_initiated ){
+		CEGUI::ImagesetManager::getSingleton().destroyImageset("RttImageset");
+		Ogre::TextureManager::getSingleton().remove("RttTex");
+		Ogre::Root::getSingleton().destroySceneManager(m_sceneMngr);
+		delete m_simulator;
+    }
 }
 
 
@@ -212,41 +124,139 @@ bool CScreenSimulator::keyUpHandler(const CEGUI::EventArgs& e)
 
 void CScreenSimulator::enter()
 {
-    CScreen::enter();
-
-    m_sceneMgr->clearScene();
+    m_sceneMngr->clearScene();
     m_direction = Ogre::Vector3::ZERO;
     m_previousUpdateTime = CGameEngine::getInstance()->getClock().getCurrentTime();
 
     m_continueButton->setEnabled(false);
 
-    const CPfMatches *match	= m_game->getCurrentMatch();
-    m_simulator = new CSimulationManager(match->getXMatch(), m_game);
-    m_sceneMgr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+    const CPfMatches *match	= m_game.getCurrentMatch();
+    m_simulator = new CSimulationManager(match->getXMatch(), m_game, *this);
+    m_sceneMngr->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 
     // create the 3D camera node/pitch node
-    m_cam3DNode = m_sceneMgr->getRootSceneNode()->createChildSceneNode("3D_Camera_Node", Ogre::Vector3(0, 25, 60));
+    m_cam3DNode = m_sceneMngr->getRootSceneNode()->createChildSceneNode("3D_Camera_Node", Ogre::Vector3(0, 25, 60));
     m_cam3DNode->pitch(Ogre::Degree(0));
     m_cam3DNode->attachObject(m_cam3D);
 
     // Create the 2D camera node and make it look towards origin
-    m_cam2DNode = m_sceneMgr->getRootSceneNode()->createChildSceneNode("2D_Camera_Node", Ogre::Vector3(0, 100, 0));
+    m_cam2DNode = m_sceneMngr->getRootSceneNode()->createChildSceneNode("2D_Camera_Node", Ogre::Vector3(0, 100, 0));
     m_cam2DNode->pitch(Ogre::Degree(-90));
     m_cam2DNode->attachObject(m_cam2D);
 
     setup2DView();
     loadTeamPlayers();
-    IPfTeamsDAO *teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
+    IPfTeamsDAO *teamsDAO = m_game.getIDAOFactory()->getIPfTeamsDAO();
     std::string homeName = teamsDAO->findByXTeam(match->getXFkTeamHome())->getSShortName();
     std::string awayName = teamsDAO->findByXTeam(match->getXFkTeamAway())->getSShortName();
     std::ostringstream names;
     names << homeName.c_str() << " vs " << awayName.c_str();
-    m_teamNames->setProperty("Text", (CEGUI::utf8*)names.str().c_str());
-    m_score->setProperty("Text", "0 - 0");
-    m_frameHomeName->setProperty("Text", (CEGUI::utf8*)homeName.c_str());
-    m_frameAwayName->setProperty("Text", (CEGUI::utf8*)awayName.c_str());
-    m_frameHomeScore->setProperty("Text", "0");
-    m_frameAwayScore->setProperty("Text", "0");
+    m_teamNames->setText((CEGUI::utf8*)names.str().c_str());
+    m_score->setText("0 - 0");
+    m_frameHomeName->setText((CEGUI::utf8*)homeName.c_str());
+    m_frameAwayName->setText((CEGUI::utf8*)awayName.c_str());
+    m_frameHomeScore->setText("0");
+    m_frameAwayScore->setText("0");
+}
+
+
+void CScreenSimulator::init()
+{
+	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
+
+    m_continueButton			= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/ContinueButton"));
+    m_startButton				= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/StartButton"));
+    m_zoomButton				= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/ZoomButton"));
+    m_formation433Button		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/433Button"));
+    m_formation442Button		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/442Button"));
+    m_frameWindow				= static_cast<CEGUI::FrameWindow*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/FrameWindow"));
+    m_view2DButton				= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/2DButton"));
+    m_view3DButton				= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/3DButton"));
+    m_frameStartButtom			= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/StartButton"));
+
+    m_logHistoryList            = static_cast<CEGUI::Listbox*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Log"));
+    m_logHistoryListShort       = static_cast<CEGUI::Listbox*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/Log"));
+    m_teamPlayersList           = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/TeamPlayersList"));
+    m_groundImage               = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Image"));
+    m_groundFrameImage          = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/Image"));
+    m_teamNames                 = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/TeamNames"));
+    m_score                     = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Score"));
+    m_frameHomeName             = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/HomeName"));
+    m_frameAwayName             = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/AwayName"));
+    m_frameHomeScore            = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/HomeScore"));
+    m_frameAwayScore            = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/Frame/AwayScore"));
+
+    // i18n support
+    m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
+    m_startButton->setText((CEGUI::utf8*)gettext("Start"));
+    m_zoomButton->setText((CEGUI::utf8*)gettext("Zoom"));
+    m_frameWindow->setText((CEGUI::utf8*)gettext("Simulation View"));
+    m_view2DButton->setText((CEGUI::utf8*)gettext("2D View"));
+    m_view3DButton->setText((CEGUI::utf8*)gettext("3D View"));
+    m_frameStartButtom->setText((CEGUI::utf8*)gettext("Start"));
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/TeamTab"))->setText((CEGUI::utf8*)gettext("Team"));
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/FormationTab"))->setText((CEGUI::utf8*)gettext("Formation"));
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/LogTab"))->setText((CEGUI::utf8*)gettext("Log"));
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/StatisticsTab"))->setText((CEGUI::utf8*)gettext("Statistics"));
+
+    // Event handle
+    registerEventConnection(m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::continueButtonClicked, this)));
+    registerEventConnection(m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this)));
+    registerEventConnection(m_zoomButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::zoomButtonClicked, this)));
+    registerEventConnection(m_formation433Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::formation433ButtonClicked, this)));
+    registerEventConnection(m_formation442Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::formation442ButtonClicked, this)));
+    registerEventConnection(m_frameWindow->subscribeEvent(CEGUI::FrameWindow::EventCloseClicked, CEGUI::Event::Subscriber(&CScreenSimulator::frameWindowCloseClicked, this)));
+    registerEventConnection(m_view2DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::view2DButtonClicked, this)));
+    registerEventConnection(m_view3DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::view3DButtonClicked, this)));
+    registerEventConnection(m_frameStartButtom->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this)));
+    registerEventConnection(windowMngr.getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyDown, CEGUI::Event::Subscriber(&CScreenSimulator::keyDownHandler, this)));
+    registerEventConnection(windowMngr.getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyUp, CEGUI::Event::Subscriber(&CScreenSimulator::keyUpHandler, this)));
+
+    m_direction = Ogre::Vector3::ZERO;
+    m_sceneMngr = Ogre::Root::getSingleton().createSceneManager(Ogre::ST_GENERIC, SIMULATION_SCENE_MANAGER_NODE_NAME);
+
+    m_cam2D = m_sceneMngr->createCamera("2D_Camera");
+    m_cam2D->setNearClipDistance(1);
+    int width = 120;
+    int height = 90;
+    double  right = width/2.0,
+            left = -width/2.0,
+            top = height/2.0,
+            bottom = -height/2.0,
+            farZ = 150.0,
+            nearZ = 10.0;
+    Ogre::Matrix4 projectionMatrix(
+            2/(right-left), 0, 0, -(right+left)/(right-left),
+            0, 2/(top-bottom), 0, -(top+bottom)/(top-bottom),
+            0, 0, -2/(farZ-nearZ), -(farZ+nearZ)/(farZ-nearZ),
+            0, 0, 0, 1
+            );
+    m_cam2D->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+    m_cam2D->setCustomProjectionMatrix(true, projectionMatrix);
+
+    m_cam3D = m_sceneMngr->createCamera("3D_Camera");
+    m_cam3D->setProjectionType(Ogre::PT_PERSPECTIVE);
+    m_cam3D->setCustomProjectionMatrix(false);
+    m_cam3D->setNearClipDistance(5);
+
+    Ogre::TexturePtr texturePtr = Ogre::TextureManager::getSingleton().createManual("RttTex",
+                    Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D,
+                    (int)m_groundImage->getPixelSize().d_width, (int)m_groundImage->getPixelSize().d_height,
+                    0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+    m_renderTexture = texturePtr->getBuffer()->getRenderTarget();
+
+    CEGUI::Texture  *cTex = static_cast<CEGUI::OgreCEGUIRenderer*>(CEGUI::System::getSingleton().getRenderer())->createTexture((CEGUI::utf8*)"RttTex");
+    CEGUI::Imageset *imageSet = CEGUI::ImagesetManager::getSingleton().createImageset((CEGUI::utf8*)"RttImageset", cTex);
+    imageSet->defineImage((CEGUI::utf8*)"RttImage",
+        CEGUI::Point(0.0f, 0.0f),
+        CEGUI::Size(cTex->getWidth(), cTex->getHeight()),
+        CEGUI::Point(0.0f,0.0f));
+
+    m_groundImage->setProperty(     "Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
+    m_groundFrameImage->setProperty("Image", CEGUI::PropertyHelper::imageToString(&imageSet->getImage((CEGUI::utf8*)"RttImage")));
+    m_groundFrameImage->disable();
+
+    m_initiated = true;
 }
 
 
@@ -296,7 +306,7 @@ CSimulationManager* CScreenSimulator::getSimulationManager()
 
 Ogre::SceneManager* CScreenSimulator::getSimulationSceneManager()
 {
-    return m_sceneMgr;
+    return m_sceneMngr;
 }
 
 
@@ -349,8 +359,8 @@ void CScreenSimulator::loadTeamPlayers()
     m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(1.0,0));
     m_teamPlayersList->resetList();
 
-    CPfTeams                                *team               = m_game->getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game->getOptionManager()->getGamePlayerTeam());
-    IPfTeamPlayersDAO                       *teamPlayersDAO     = m_game->getIDAOFactory()->getIPfTeamPlayersDAO();
+    CPfTeams                                *team               = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
+    IPfTeamPlayersDAO                       *teamPlayersDAO     = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
     std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
     std::vector<CPfTeamPlayers*>::iterator  it;
 
@@ -401,13 +411,13 @@ void CScreenSimulator::updateScore()
     int awayScore = referee->getAwayScore();
     std::ostringstream score;
     score << homeScore << " - " << awayScore;
-    m_score->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
+    m_score->setText((CEGUI::utf8*)score.str().c_str());
     score.str("");
     score << homeScore;
-    m_frameHomeScore->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
+    m_frameHomeScore->setText((CEGUI::utf8*)score.str().c_str());
     score.str("");
     score << awayScore;
-    m_frameAwayScore->setProperty("Text", (CEGUI::utf8*)score.str().c_str());
+    m_frameAwayScore->setText((CEGUI::utf8*)score.str().c_str());
 }
 
 void CScreenSimulator::endMatchEvent()
@@ -417,7 +427,7 @@ void CScreenSimulator::endMatchEvent()
 
 bool CScreenSimulator::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-    m_game->nextScreen(m_game->getMatchResultScreen());
+	CGameEngine::getInstance()->getWindowManager()->nextScreen("MatchResult");
     return true;
 }
 

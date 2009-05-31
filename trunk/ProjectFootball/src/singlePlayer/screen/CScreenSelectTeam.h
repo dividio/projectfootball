@@ -21,8 +21,9 @@
 #ifndef CSCREENSELECTTEAM_H_
 #define CSCREENSELECTTEAM_H_
 
-#include "../../engine/CScreen.h"
+#include "../../engine/wm/CWindowHandler.h"
 
+#include <CEGUI/CEGUI.h>
 
 //Forward declarations
 class CSinglePlayerGame;
@@ -33,12 +34,13 @@ class CPfSeasons;
 class CPfTeams;
 
 
-class CScreenSelectTeam : public CScreen
+class CScreenSelectTeam : public CWindowHandler
 {
 public:
-    CScreenSelectTeam(CSinglePlayerGame *game);
+    CScreenSelectTeam(CSinglePlayerGame &game);
     virtual ~CScreenSelectTeam();
 
+    virtual void init();
     virtual void enter();
     virtual void leave();
 
@@ -79,7 +81,7 @@ private:
     std::vector<CPfTeams*>			*m_teamsList;
     CPfSeasons						*m_lastSeason;
 
-    CSinglePlayerGame				*m_game;
+    CSinglePlayerGame				&m_game;
 };
 
 #endif /*CSCREENSELECTTEAM_H_*/

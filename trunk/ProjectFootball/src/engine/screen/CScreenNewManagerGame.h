@@ -21,15 +21,18 @@
 #ifndef CSCREENNEWMANAGERGAME_H_
 #define CSCREENNEWMANAGERGAME_H_
 
-#include "../CScreen.h"
+#include <CEGUI/CEGUI.h>
 
-class CScreenNewManagerGame : public CScreen
+#include "../wm/CWindowHandler.h"
+
+class CScreenNewManagerGame : public CWindowHandler
 {
 public:
     CScreenNewManagerGame();
 	virtual ~CScreenNewManagerGame();
 
     virtual void enter();
+    virtual void init();
 
 private:
     bool newGameEditboxTextChanged  (const CEGUI::EventArgs& e);

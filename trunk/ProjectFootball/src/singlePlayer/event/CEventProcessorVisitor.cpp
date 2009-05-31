@@ -44,6 +44,8 @@
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../option/CSinglePlayerOptionManager.h"
 
+#include "../../engine/CGameEngine.h"
+
 CEventProcessorVisitor::CEventProcessorVisitor(CSinglePlayerGame *game)
 : IEventVisitor(), m_matchesMap()
 {
@@ -98,9 +100,11 @@ void CEventProcessorVisitor::matchEventVisitor(const CMatchEvent &event)
 	if( match->getXFkTeamAway()==xPlayerTeam || match->getXFkTeamHome()==xPlayerTeam ){
 		if( m_game->getOptionManager()->getMatchResultMode() ){
 			simulateMatch(match);
-			m_game->nextScreen(m_game->getMatchResultScreen());
+			CGameEngine::getInstance()->getWindowManager()->nextScreen("MatchResult");
+//			m_game->nextScreen(m_game->getMatchResultScreen());
 		}else{
-			m_game->nextScreen(m_game->getSimulatorScreen());
+			CGameEngine::getInstance()->getWindowManager()->nextScreen("Simulator");
+//			m_game->nextScreen(m_game->getSimulatorScreen());
 		}
 	}else{
 		simulateMatch(match);

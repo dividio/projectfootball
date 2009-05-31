@@ -1522,27 +1522,28 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_CPfTeams swig_types[12]
 #define SWIGTYPE_p_CRectangle swig_types[13]
 #define SWIGTYPE_p_CReferee swig_types[14]
-#define SWIGTYPE_p_CSimulationManager swig_types[15]
-#define SWIGTYPE_p_CSimulationWorld swig_types[16]
-#define SWIGTYPE_p_CSinglePlayerGame swig_types[17]
-#define SWIGTYPE_p_CStateMachineT_CFootballPlayer_t swig_types[18]
-#define SWIGTYPE_p_CStateMachineT_CReferee_t swig_types[19]
-#define SWIGTYPE_p_CStateMachineT_CTeam_t swig_types[20]
-#define SWIGTYPE_p_CSteeringBehaviors swig_types[21]
-#define SWIGTYPE_p_CStrategicPosition swig_types[22]
-#define SWIGTYPE_p_CTeam swig_types[23]
-#define SWIGTYPE_p_btCollisionShape swig_types[24]
-#define SWIGTYPE_p_btRigidBody swig_types[25]
-#define SWIGTYPE_p_btTransform swig_types[26]
-#define SWIGTYPE_p_btVector3 swig_types[27]
-#define SWIGTYPE_p_float swig_types[28]
-#define SWIGTYPE_p_std__string swig_types[29]
-#define SWIGTYPE_p_std__vectorT_CFootballPlayer_p_t swig_types[30]
-#define SWIGTYPE_p_std__vectorT_CFormation_p_t swig_types[31]
-#define SWIGTYPE_p_std__vectorT_CPfTeamPlayers_p_t swig_types[32]
-#define SWIGTYPE_p_void swig_types[33]
-static swig_type_info *swig_types[35];
-static swig_module_info swig_module = {swig_types, 34, 0, 0, 0, 0};
+#define SWIGTYPE_p_CScreenSimulator swig_types[15]
+#define SWIGTYPE_p_CSimulationManager swig_types[16]
+#define SWIGTYPE_p_CSimulationWorld swig_types[17]
+#define SWIGTYPE_p_CSinglePlayerGame swig_types[18]
+#define SWIGTYPE_p_CStateMachineT_CFootballPlayer_t swig_types[19]
+#define SWIGTYPE_p_CStateMachineT_CReferee_t swig_types[20]
+#define SWIGTYPE_p_CStateMachineT_CTeam_t swig_types[21]
+#define SWIGTYPE_p_CSteeringBehaviors swig_types[22]
+#define SWIGTYPE_p_CStrategicPosition swig_types[23]
+#define SWIGTYPE_p_CTeam swig_types[24]
+#define SWIGTYPE_p_btCollisionShape swig_types[25]
+#define SWIGTYPE_p_btRigidBody swig_types[26]
+#define SWIGTYPE_p_btTransform swig_types[27]
+#define SWIGTYPE_p_btVector3 swig_types[28]
+#define SWIGTYPE_p_float swig_types[29]
+#define SWIGTYPE_p_std__string swig_types[30]
+#define SWIGTYPE_p_std__vectorT_CFootballPlayer_p_t swig_types[31]
+#define SWIGTYPE_p_std__vectorT_CFormation_p_t swig_types[32]
+#define SWIGTYPE_p_std__vectorT_CPfTeamPlayers_p_t swig_types[33]
+#define SWIGTYPE_p_void swig_types[34]
+static swig_type_info *swig_types[36];
+static swig_module_info swig_module = {swig_types, 35, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2669,19 +2670,26 @@ static swig_lua_class _wrap_class_CMessageDispatcher = { "CMessageDispatcher", &
 static int _wrap_new_CSimulationManager(lua_State* L) {
   int SWIG_arg = 0;
   int arg1 ;
-  CSinglePlayerGame *arg2 = (CSinglePlayerGame *) 0 ;
+  CSinglePlayerGame *arg2 = 0 ;
+  CScreenSimulator *arg3 = 0 ;
   CSimulationManager *result = 0 ;
   
-  SWIG_check_num_args("CSimulationManager",2,2)
+  SWIG_check_num_args("CSimulationManager",3,3)
   if(!lua_isnumber(L,1)) SWIG_fail_arg("CSimulationManager",1,"int");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("CSimulationManager",2,"CSinglePlayerGame *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("CSimulationManager",2,"CSinglePlayerGame &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("CSimulationManager",3,"CScreenSimulator &");
   arg1 = (int)lua_tonumber(L, 1);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CSinglePlayerGame,0))){
     SWIG_fail_ptr("new_CSimulationManager",2,SWIGTYPE_p_CSinglePlayerGame);
   }
   
-  result = (CSimulationManager *)new CSimulationManager(arg1,arg2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_CScreenSimulator,0))){
+    SWIG_fail_ptr("new_CSimulationManager",3,SWIGTYPE_p_CScreenSimulator);
+  }
+  
+  result = (CSimulationManager *)new CSimulationManager(arg1,*arg2,*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_CSimulationManager,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -5593,6 +5601,36 @@ fail:
 }
 
 
+static int _wrap_CTeam_setNearestPlayerToBall(lua_State* L) {
+  int SWIG_arg = 0;
+  CTeam *arg1 = (CTeam *) 0 ;
+  CFootballPlayer *arg2 = (CFootballPlayer *) 0 ;
+  
+  SWIG_check_num_args("setNearestPlayerToBall",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setNearestPlayerToBall",1,"CTeam *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("setNearestPlayerToBall",2,"CFootballPlayer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CTeam,0))){
+    SWIG_fail_ptr("CTeam_setNearestPlayerToBall",1,SWIGTYPE_p_CTeam);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CTeam_setNearestPlayerToBall",2,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  (arg1)->setNearestPlayerToBall(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CTeam_getSimulationManager(lua_State* L) {
   int SWIG_arg = 0;
   CTeam *arg1 = (CTeam *) 0 ;
@@ -6155,6 +6193,7 @@ delete arg1;
 static swig_lua_method swig_CTeam_methods[] = {
     {"setOpponentTeam", _wrap_CTeam_setOpponentTeam}, 
     {"setControllingPlayer", _wrap_CTeam_setControllingPlayer}, 
+    {"setNearestPlayerToBall", _wrap_CTeam_setNearestPlayerToBall}, 
     {"getSimulationManager", _wrap_CTeam_getSimulationManager}, 
     {"getOpponentTeam", _wrap_CTeam_getOpponentTeam}, 
     {"getName", _wrap_CTeam_getName}, 
@@ -6452,6 +6491,45 @@ static int _wrap_CFootballPlayer_getKickPosition(lua_State* L) {
   }
   
   result = ((CFootballPlayer const *)arg1)->getKickPosition();
+  {
+    btVector3 * resultptr = new btVector3((const btVector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CFootballPlayer_getFuturePlayerPosition(lua_State* L) {
+  int SWIG_arg = 0;
+  CFootballPlayer *arg1 = (CFootballPlayer *) 0 ;
+  double arg2 ;
+  btVector3 arg3 ;
+  btVector3 *argp3 ;
+  btVector3 result;
+  
+  SWIG_check_num_args("getFuturePlayerPosition",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFuturePlayerPosition",1,"CFootballPlayer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("getFuturePlayerPosition",2,"double");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("getFuturePlayerPosition",3,"btVector3");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_CFootballPlayer,0))){
+    SWIG_fail_ptr("CFootballPlayer_getFuturePlayerPosition",1,SWIGTYPE_p_CFootballPlayer);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_btVector3,0))){
+    SWIG_fail_ptr("CFootballPlayer_getFuturePlayerPosition",3,SWIGTYPE_p_btVector3);
+  }
+  arg3 = *argp3;
+  
+  result = (arg1)->getFuturePlayerPosition(arg2,arg3);
   {
     btVector3 * resultptr = new btVector3((const btVector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_btVector3,1); SWIG_arg++;
@@ -6920,6 +6998,7 @@ static swig_lua_method swig_CFootballPlayer_methods[] = {
     {"getSteering", _wrap_CFootballPlayer_getSteering}, 
     {"getStrategicPosition", _wrap_CFootballPlayer_getStrategicPosition}, 
     {"getKickPosition", _wrap_CFootballPlayer_getKickPosition}, 
+    {"getFuturePlayerPosition", _wrap_CFootballPlayer_getFuturePlayerPosition}, 
     {"getHomeGoalFacing", _wrap_CFootballPlayer_getHomeGoalFacing}, 
     {"getTeam", _wrap_CFootballPlayer_getTeam}, 
     {"getXTeamPlayer", _wrap_CFootballPlayer_getXTeamPlayer}, 
@@ -10973,6 +11052,7 @@ static swig_type_info _swigt__p_CPfTeamPlayers = {"_p_CPfTeamPlayers", "CPfTeamP
 static swig_type_info _swigt__p_CPfTeams = {"_p_CPfTeams", "CPfTeams *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CRectangle = {"_p_CRectangle", "CRectangle *", 0, 0, (void*)&_wrap_class_CRectangle, 0};
 static swig_type_info _swigt__p_CReferee = {"_p_CReferee", "CReferee *", 0, 0, (void*)&_wrap_class_CReferee, 0};
+static swig_type_info _swigt__p_CScreenSimulator = {"_p_CScreenSimulator", "CScreenSimulator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CSimulationManager = {"_p_CSimulationManager", "CSimulationManager *", 0, 0, (void*)&_wrap_class_CSimulationManager, 0};
 static swig_type_info _swigt__p_CSimulationWorld = {"_p_CSimulationWorld", "CSimulationWorld *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CSinglePlayerGame = {"_p_CSinglePlayerGame", "CSinglePlayerGame *", 0, 0, (void*)0, 0};
@@ -11009,6 +11089,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CPfTeams,
   &_swigt__p_CRectangle,
   &_swigt__p_CReferee,
+  &_swigt__p_CScreenSimulator,
   &_swigt__p_CSimulationManager,
   &_swigt__p_CSimulationWorld,
   &_swigt__p_CSinglePlayerGame,
@@ -11045,6 +11126,7 @@ static swig_cast_info _swigc__p_CPfTeamPlayers[] = {  {&_swigt__p_CPfTeamPlayers
 static swig_cast_info _swigc__p_CPfTeams[] = {  {&_swigt__p_CPfTeams, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CRectangle[] = {  {&_swigt__p_CRectangle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CReferee[] = {  {&_swigt__p_CReferee, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CScreenSimulator[] = {  {&_swigt__p_CScreenSimulator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationManager[] = {  {&_swigt__p_CSimulationManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationWorld[] = {  {&_swigt__p_CSimulationWorld, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSinglePlayerGame[] = {  {&_swigt__p_CSinglePlayerGame, 0, 0, 0},{0, 0, 0, 0}};
@@ -11081,6 +11163,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CPfTeams,
   _swigc__p_CRectangle,
   _swigc__p_CReferee,
+  _swigc__p_CScreenSimulator,
   _swigc__p_CSimulationManager,
   _swigc__p_CSimulationWorld,
   _swigc__p_CSinglePlayerGame,

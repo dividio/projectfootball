@@ -27,22 +27,34 @@
 #include "../../utils/CLog.h"
 
 CScreenLoadGame::CScreenLoadGame()
-    :CScreen("loadGame.layout")
+: CWindowHandler("loadGame.layout")
 {
     LOG_DEBUG("CScreenLoadGame()");
+}
 
-    m_mainWindow           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/MainWindow"));
-    m_backButton		   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/BackButton"));
-    m_loadGameButton       = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
-    m_deleteGameButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
-    m_confirmRemoveWindow  = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow"));
-    m_confirmRemoveNote    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow/Note"));
-    m_removeConfirmButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow/YesButton"));
-    m_removeCancelButton   = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/RemoveConfirmationWindow/NoButton"));
+CScreenLoadGame::~CScreenLoadGame()
+{
+    LOG_DEBUG("~CScreenLoadGame()");
+}
 
+void CScreenLoadGame::enter()
+{
+    loadGameList();
 
+    m_loadGameButton->setEnabled(false);
+    m_deleteGameButton->setEnabled(false);
+}
 
-    m_gamesList = static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
+void CScreenLoadGame::init()
+{
+	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
+
+    m_mainWindow           = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"LoadGame/MainWindow"));
+    m_backButton		   = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"LoadGame/BackButton"));
+    m_loadGameButton       = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"LoadGame/LoadGameButton"));
+    m_deleteGameButton     = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"LoadGame/DeleteGameButton"));
+
+    m_gamesList = static_cast<CEGUI::MultiColumnList*>(windowMngr->getWindow((CEGUI::utf8*)"LoadGame/GamesList"));
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
     m_gamesList->setUserColumnDraggingEnabled(false);
     m_gamesList->setUserColumnSizingEnabled(false);
@@ -56,34 +68,13 @@ CScreenLoadGame::CScreenLoadGame()
     m_deleteGameButton    ->setText((CEGUI::utf8*)gettext("Delete Game"));
     m_loadGameButton      ->setText((CEGUI::utf8*)gettext("Load Game"));
     m_backButton          ->setText((CEGUI::utf8*)gettext("Back"));
-    m_confirmRemoveNote   ->setText((CEGUI::utf8*)gettext("Are you sure you want to remove this game?"));
-    m_removeConfirmButton ->setText((CEGUI::utf8*)gettext("Yes"));
-    m_removeCancelButton  ->setText((CEGUI::utf8*)gettext("No"));
 
     // Event handle
-    m_backButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::backButtonClicked, this));
-    m_loadGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::loadGameButtonClicked, this));
-    m_deleteGameButton   ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::deleteGameButtonClicked, this));
-    m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListSelectChanged, this));
-    m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListDoubleClick, this));
-    m_removeConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::removeConfirmButtonClicked, this));
-    m_removeCancelButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::removeCancelButtonClicked, this));
-
-}
-
-CScreenLoadGame::~CScreenLoadGame()
-{
-    LOG_DEBUG("~CScreenLoadGame()");
-}
-
-void CScreenLoadGame::enter()
-{
-    CScreen::enter();
-
-    loadGameList();
-
-    m_loadGameButton->setEnabled(false);
-    m_deleteGameButton->setEnabled(false);
+    registerEventConnection(m_backButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::backButtonClicked, this)));
+    registerEventConnection(m_loadGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::loadGameButtonClicked, this)));
+    registerEventConnection(m_deleteGameButton   ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenLoadGame::deleteGameButtonClicked, this)));
+    registerEventConnection(m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListSelectChanged, this)));
+    registerEventConnection(m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenLoadGame::gamesListDoubleClick, this)));
 }
 
 void CScreenLoadGame::loadGameList()
@@ -139,7 +130,7 @@ bool CScreenLoadGame::gamesListSelectChanged(const CEGUI::EventArgs& e)
 
 bool CScreenLoadGame::backButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->previousScreen();
+    CGameEngine::getInstance()->getWindowManager()->previousScreen();
     return true;
 }
 
@@ -147,7 +138,7 @@ bool CScreenLoadGame::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
     CPfGames *game = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO()->findByXGame(itm->getID());
-    CGameEngine::getInstance()->loadGame(CSinglePlayerGame::load(game));
+    CGameEngine::getInstance()->loadGame(CSinglePlayerGame::load(*game));
     delete game;
 
     return true;
@@ -155,15 +146,11 @@ bool CScreenLoadGame::loadGameButtonClicked(const CEGUI::EventArgs& e)
 
 bool CScreenLoadGame::deleteGameButtonClicked(const CEGUI::EventArgs& e)
 {
-    m_mainWindow->disable();
-    m_confirmRemoveWindow->setVisible(true);
-    m_confirmRemoveWindow->activate();
-    m_confirmRemoveWindow->enable();
-
+	CGameEngine::getInstance()->getWindowManager()->confirm(gettext("Are you sure you want to remove this game?"), CEGUI::Event::Subscriber(&CScreenLoadGame::deleteGameConfirmed, this));
     return true;
 }
 
-bool CScreenLoadGame::removeConfirmButtonClicked(const CEGUI::EventArgs& e)
+bool CScreenLoadGame::deleteGameConfirmed(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem* itm = m_gamesList->getFirstSelectedItem();
     int xGame = itm->getID();
@@ -177,21 +164,5 @@ bool CScreenLoadGame::removeConfirmButtonClicked(const CEGUI::EventArgs& e)
     delete game;
 
     loadGameList();
-
-    m_confirmRemoveWindow->setVisible(false);
-    m_confirmRemoveWindow->deactivate();
-    m_confirmRemoveWindow->disable();
-    m_mainWindow->enable();
-
-    return true;
-}
-
-bool CScreenLoadGame::removeCancelButtonClicked(const CEGUI::EventArgs& e)
-{
-    m_confirmRemoveWindow->setVisible(false);
-    m_confirmRemoveWindow->deactivate();
-    m_confirmRemoveWindow->disable();
-    m_mainWindow->enable();
-
     return true;
 }

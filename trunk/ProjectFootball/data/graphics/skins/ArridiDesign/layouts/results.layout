@@ -4,96 +4,39 @@
     <Window Type="DefaultWindow" Name="Results" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="ArridiDesign/StaticImage" Name="Results/MainWindow" >
-            <Property Name="Image" Value="set:Generic image:Generic" />
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="InheritsAlpha" Value="False" />
+        <Window Type="ArridiDesign/Combobox" Name="Results/ConfederationCombo" >
+            <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-            <Window Type="ArridiDesign/StaticText" Name="Results/ResultsLabel" >
-                <Property Name="FrameEnabled" Value="False" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.36,0},{0.3,0},{0.4,0}}" />
-                <Property Name="BackgroundEnabled" Value="False" />
-            </Window>
-            <Window Type="ArridiDesign/Combobox" Name="Results/ConfederationCombo" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.1,0},{0.45,0},{0.24,0}}" />
-                <Property Name="ReadOnly" Value="True" />
-            </Window>
-            <Window Type="ArridiDesign/Combobox" Name="Results/CountryCombo" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.55,0},{0.1,0},{0.75,0},{0.24,0}}" />
-                <Property Name="ReadOnly" Value="True" />
-            </Window>
-            <Window Type="ArridiDesign/Combobox" Name="Results/CompetitionCombo" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.24,0},{0.45,0},{0.4,0}}" />
-                <Property Name="ReadOnly" Value="True" />
-            </Window>
-            <Window Type="ArridiDesign/Combobox" Name="Results/CompetitionPhaseCombo" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.55,0},{0.24,0},{0.75,0},{0.4,0}}" />
-                <Property Name="ReadOnly" Value="True" />
-            </Window>
-            <Window Type="ArridiDesign/MultiColumnList" Name="Results/ResultsList" >
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.4,0},{0.7,0},{0.83,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button1" Name="Results/TeamPlayersButton" >
-                <Property Name="Font" Value="DejaVuSans-9" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.896484,0},{0.515625,0},{1,0},{0.541667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button2" Name="Results/ResultsButton" >
-                <Property Name="Font" Value="DejaVuSans-9" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.8984375,0},{0.54296875,0},{1.0,0},{0.56901041666666666666666666666667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button3" Name="Results/RankingButton" >
-                <Property Name="Font" Value="DejaVuSans-9" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.900390625,0},{0.5703125,0},{1.0,0},{0.59635416666666666666666666666667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button4" Name="Results/GNS4" >
-                <Property Name="Disabled" Value="True" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.90136718752,0},{0.59765625,0},{1,0},{0.623697916666666666666666666666670,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button5" Name="Results/GNS5" >
-                <Property Name="Disabled" Value="True" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.90234375,0},{0.625,0},{1,0},{0.65104166666666666666666666666667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button6" Name="Results/GNS6" >
-                <Property Name="Disabled" Value="True" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.9033203125,0},{0.65234375,0},{1,0},{0.67838541666666666666666666666667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button7" Name="Results/GNS7" >
-                <Property Name="Disabled" Value="True" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.902343755,0},{0.6796875,0},{1,0},{0.70572916666666666666666666666667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/GNS_Button8" Name="Results/GNS8" >
-                <Property Name="Disabled" Value="True" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.900390625,0},{0.70703125,0},{1,0},{0.73307291666666666666666666666667,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/gameMenuButton" Name="Results/GameMenuButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.962891,0},{0.742823,0},{1,0},{0.800115,0}}" />
-            </Window>
-            <Window Type="ArridiDesign/backBallButton" Name="Results/BackButton" >
-                <Property Name="Font" Value="DejaVuSans-10" />
-                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.893555,0},{0.925781,0},{0.946289,0},{0.996094,0}}" />
-            </Window>
+            <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0,0},{0.6,0},{0.175,0}}" />
+            <Property Name="ReadOnly" Value="True" />
+        </Window>
+        <Window Type="ArridiDesign/Combobox" Name="Results/CountryCombo" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0,0},{1,0},{0.175,0}}" />
+            <Property Name="ReadOnly" Value="True" />
+        </Window>
+        <Window Type="ArridiDesign/Combobox" Name="Results/CompetitionCombo" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.175,0},{0.6,0},{0.350,0}}" />
+            <Property Name="ReadOnly" Value="True" />
+        </Window>
+        <Window Type="ArridiDesign/Combobox" Name="Results/CompetitionPhaseCombo" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.175,0},{1,0},{0.350,0}}" />
+            <Property Name="ReadOnly" Value="True" />
+        </Window>
+        <Window Type="ArridiDesign/StaticText" Name="Results/ResultsLabel" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.350,0},{0.3,0},{0.375,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/MultiColumnList" Name="Results/ResultsList" >
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.375,0},{1,0},{0.9,0}}" />
         </Window>
     </Window>
 </GUILayout>

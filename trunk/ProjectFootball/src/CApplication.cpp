@@ -34,7 +34,6 @@
 #include "utils/CLog.h"
 #include "utils/CLuaManager.h"
 #include "utils/CResourceManager.h"
-#include "utils/gui/guiBinds.h"
 
 
 CApplication::CApplication()
@@ -199,8 +198,8 @@ void CApplication::setupInputSystem()
     windowHndStr << (unsigned int) windowHnd;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
     //Disable mouse and keyboard grab for debug
-    //pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
-    //pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
+//    pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+//    pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
     m_inputManager = OIS::InputManager::createInputSystem(pl);
 
     try
@@ -269,8 +268,6 @@ void CApplication::setupCEGUI()
     m_system->setDefaultTooltip((CEGUI::utf8*)tooltipName.c_str());
     m_system->setDefaultFont("DejaVuSans-10");
 
-    CEGUI::bindNewWidgets(guiName);
-
     int mouseVelocity = CSystemOptionManager::getInstance()->getGUIMouseVelocity();
     float mouseScale = 1.0f + (mouseVelocity/100);
     m_system->setMouseMoveScaling(mouseScale);
@@ -312,7 +309,7 @@ void CApplication::takeScreenshot()
 void CApplication::startRenderLoop()
 {
     bool run = true;
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getIntroScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("Intro");
     CInputManager* input = CInputManager::getInstance();
     while(run) {
         input->capture();
@@ -340,8 +337,8 @@ int main(int argc, char **argv)
 
         CSystemOptionManager *systemOptionManager = CSystemOptionManager::getInstance();
         if( systemOptionManager->getGeneralFailSafeMode() ) {
-            systemOptionManager->setVideoWidth(800);
-            systemOptionManager->setVideoHeight(600);
+            systemOptionManager->setVideoWidth(1024);
+            systemOptionManager->setVideoHeight(768);
             systemOptionManager->setGUISkin("ArridiDesign");
             systemOptionManager->setVideoFullscreen(false);
             systemOptionManager->setVideoRTTPreferredMode("Copy");
@@ -372,13 +369,13 @@ int main(int argc, char **argv)
         }
     #else
         catch(Ogre::Exception &e){
-            LOG_FATAL("An exception has occurred in Ogre: %s\n", e.getFullDescription().c_str());
+            LOG_FATAL("An exception has occurred in Ogre: %s", e.getFullDescription().c_str());
         }
         catch(CEGUI::Exception &e){
-        	LOG_FATAL("An exception has occurred in CEGUI: %s\n", e.getMessage().c_str());
+        	LOG_FATAL("An exception has occurred in CEGUI: %s", e.getMessage().c_str());
         }
         catch(PFException &e){
-        	LOG_FATAL("An exception has occurred in ProjectFootball: %s\n", e.what());
+        	LOG_FATAL("An exception has occurred in ProjectFootball: %s", e.what());
         }
         catch(...){
         	LOG_FATAL("Unexpected exception!");

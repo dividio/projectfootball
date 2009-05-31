@@ -21,16 +21,17 @@
 #ifndef IGAME_H_
 #define IGAME_H_
 
-#include "IScreen.h"
+#include <string>
 
 class CPfGames;
 
-class IGame : public IScreen
+class IGame
 {
 public:
 	virtual ~IGame(){}
 
-	virtual CPfGames* save() =0;
+	virtual CPfGames* 	save() =0;
+	virtual const char* getFirstScreenName() =0;
 
 protected:
 	IGame(){}

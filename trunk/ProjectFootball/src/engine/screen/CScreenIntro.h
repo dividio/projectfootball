@@ -8,16 +8,19 @@
 #ifndef CSCREENINTRO_H_
 #define CSCREENINTRO_H_
 
-#include "../CScreen.h"
+#include <CEGUI/CEGUI.h>
+
+#include "../wm/CWindowHandler.h"
 
 class CTimer;
 
-class CScreenIntro: public CScreen {
+class CScreenIntro: public CWindowHandler {
 public:
     CScreenIntro();
     virtual ~CScreenIntro();
 
     virtual void enter();
+    virtual void init();
     virtual void update();
 
 private:

@@ -36,6 +36,7 @@ class CSinglePlayerReportRegister;
 class IGameEvent;
 class CEventsQueue;
 class CEventConsumer;
+class IWindowHandler;
 
 class CSinglePlayerGame : public IGame
 {
@@ -48,57 +49,34 @@ public:
     CEventsQueue*					getEventsQueue();
     CEventConsumer*					getEventConsumer();
 
-    // IScreen
-    virtual void enter();
-    virtual void leave();
-    virtual void update();
-
     // IGame
-    static IGame* newGame(const CPfUsers *user, const char *gameName);
-    static IGame* load(const CPfGames *game);
+    static IGame* newGame(const CPfUsers &user, const std::string &gameName);
+    static IGame* load(const CPfGames &game);
     virtual CPfGames* save();
-
-    virtual void exit();
-    virtual void previousScreen();
-    virtual void nextScreen(IScreen* screen);
-
-    IScreen* getGameScreen();
-    IScreen* getMatchResultScreen();
-    IScreen* getRankingScreen();
-    IScreen* getResultsScreen();
-    IScreen* getSelectTeamScreen();
-    IScreen* getSimulatorScreen();
-    IScreen* getTeamPlayersScreen();
+    virtual const char* getFirstScreenName();
 
     // Game progression
     const CPfMatches* 	getCurrentMatch();
     void				setCurrentMatch(const CPfMatches* match);
 
 protected:
-	CSinglePlayerGame(const CPfGames *game);
+	CSinglePlayerGame(const CPfGames &game);
 
 private:
     void loadGameEvents();
 
 protected:
-    CPfGames                    *m_game;
-    IDAOFactory					*m_daoFactory;
-    CEventsQueue				*m_eventsQueue;
-    CEventConsumer				*m_eventConsumer;
-    CSinglePlayerReportRegister *m_reportRegister;
-    CSinglePlayerOptionManager  *m_optionManager;
+    CPfGames						*m_game;
+    IDAOFactory						*m_daoFactory;
+    CEventsQueue					*m_eventsQueue;
+    CEventConsumer					*m_eventConsumer;
+    CSinglePlayerReportRegister		*m_reportRegister;
+    CSinglePlayerOptionManager		*m_optionManager;
 
-    std::vector<IScreen*> 	 	m_screenStack;
+    std::vector<IWindowHandler*>	m_windowHandlers;
+    IWindowHandler					*m_matchInfoWindowHandler;
 
-    IScreen						*m_gameScreen;
-    IScreen						*m_matchResultScreen;
-    IScreen						*m_rankingScreen;
-    IScreen						*m_resultsScreen;
-    IScreen						*m_selectTeamScreen;
-    IScreen						*m_simulatorScreen;
-    IScreen						*m_teamPlayersScreen;
-
-    const CPfMatches			*m_currentMatch;
+    const CPfMatches				*m_currentMatch;
 };
 
 #endif /*CSINGLEPLAYERGAME_H_*/

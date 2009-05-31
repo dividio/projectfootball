@@ -22,7 +22,8 @@
 #ifndef CSCREENMATCHRESULT_H_
 #define CSCREENMATCHRESULT_H_
 
-#include "../../engine/CScreen.h"
+#include <CEGUI/CEGUI.h>
+#include "../../engine/wm/CWindowHandler.h"
 
 //Forward declarations
 class CPfMatches;
@@ -30,13 +31,13 @@ class CSinglePlayerGame;
 class CPfTeamAverages;
 
 
-class CScreenMatchResult : public CScreen
+class CScreenMatchResult : public CWindowHandler
 {
 public:
-    CScreenMatchResult(CSinglePlayerGame *game);
+    CScreenMatchResult(CSinglePlayerGame &game);
     virtual ~CScreenMatchResult();
 
-    virtual void enter();
+    virtual void init();
     virtual void leave();
     virtual void update();
 
@@ -57,7 +58,7 @@ private:
     CEGUI::MultiColumnList  *m_awayEventsList;
     CEGUI::PushButton		*m_continueButton;
 
-    CSinglePlayerGame		*m_game;
+    CSinglePlayerGame		&m_game;
     bool					 m_loadMatchInfo;
 
 };

@@ -23,7 +23,7 @@
 namespace CEGUI
 {
     CEGUI_DEFINE_WINDOW_FACTORY(CImageListboxItem)
-    const String CImageListboxItem::WidgetTypeName("CEGUI/ImageListboxItem");
+    const String CImageListboxItem::WidgetTypeName("PF/ImageListboxItem");
 
     CImageListboxItem::CImageListboxItem(const String &type, const String &name) :
             ItemEntry(type, name)

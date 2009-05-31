@@ -21,17 +21,17 @@
 #ifndef CSCREENCREDITS_H_
 #define CSCREENCREDITS_H_
 
-#include <Ogre.h>
 #include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-#include "../CScreen.h"
+#include "../wm/CWindowHandler.h"
 
-class CScreenCredits : public CScreen
+class CScreenCredits : public CWindowHandler
 {
 public:
     CScreenCredits();
     virtual ~CScreenCredits();
+
+    virtual void init();
 
 private:
 	bool backButtonClicked(const CEGUI::EventArgs& e);

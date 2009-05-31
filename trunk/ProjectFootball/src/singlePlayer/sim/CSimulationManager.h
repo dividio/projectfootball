@@ -36,13 +36,13 @@ class CTimer;
 class CPfMatches;
 class CGoalMatchEvent;
 class btVector3;
-
+class CScreenSimulator;
 
 
 class CSimulationManager
 {
 public:
-    CSimulationManager(int xMatch, CSinglePlayerGame *game);
+    CSimulationManager(int xMatch, CSinglePlayerGame &game, CScreenSimulator &screen);
     ~CSimulationManager();
 
     void update();
@@ -86,7 +86,8 @@ private:
     CField 							*m_field;
     CSimulationWorld 				*m_simWorld;
 
-    CSinglePlayerGame				*m_game;
+    CSinglePlayerGame				&m_game;
+    CScreenSimulator				&m_screenSimulator;
 
     // Simulation Options
     int                              m_maxBallVelocity;

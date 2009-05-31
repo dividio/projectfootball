@@ -35,12 +35,19 @@
 #include "screen/CScreenNewManagerGame.h"
 #include "screen/CScreenNewVirtualGame.h"
 
+#include "../singlePlayer/screen/CGNSWindowHandler.h"
+#include "../singlePlayer/screen/CScreenSelectTeam.h"
+
 CGameEngine* CGameEngine::m_instance = NULL;
 
-CGameEngine::CGameEngine() : m_screenStack()
+CGameEngine::CGameEngine()// : m_screenStack()
+: m_windowHandlers()
 {
     m_clock = new CClock();
     m_game	= NULL;
+    m_exit	= false;
+
+    m_windowManager = new CWindowManager();
 
     const char *masterDatabasePath = CSystemOptionManager::getInstance()->getGeneralMasterDatebasePath();
     if( boost::filesystem::exists(masterDatabasePath) ){
@@ -56,14 +63,6 @@ CGameEngine::CGameEngine() : m_screenStack()
 
     m_user = NULL;
     setUser(DEFAULT_USER);
-
-    m_introScreen			= NULL;
-    m_mainMenuScreen		= NULL;
-    m_loadGameScreen		= NULL;
-    m_newManagerGameScreen	= NULL;
-    m_newVirtualGameScreen  = NULL;
-    m_configScreen			= NULL;
-    m_creditsScreen			= NULL;
 }
 
 CGameEngine::~CGameEngine()
@@ -76,13 +75,14 @@ CGameEngine::~CGameEngine()
         delete m_user;
     }
 
-    delete m_introScreen;
-    delete m_mainMenuScreen;
-    delete m_loadGameScreen;
-    delete m_newManagerGameScreen;
-    delete m_newVirtualGameScreen;
-    delete m_configScreen;
-    delete m_creditsScreen;
+    if( !m_windowHandlers.empty() ){
+    	std::vector<IWindowHandler*>::iterator itWindowHandlers;
+    	for( itWindowHandlers=m_windowHandlers.begin(); itWindowHandlers!=m_windowHandlers.end(); itWindowHandlers++ ){
+    		delete (*itWindowHandlers);
+    	}
+    	m_windowHandlers.clear();
+    }
+    delete m_windowManager;
 
     m_masterDatabase->save();
     delete m_masterDatabase;
@@ -95,9 +95,22 @@ CGameEngine* CGameEngine::getInstance()
 {
     if( m_instance==NULL ){
         m_instance = new CGameEngine();
+
+        m_instance->m_windowHandlers.push_back(new CScreenIntro());
+        m_instance->m_windowHandlers.push_back(new CScreenMainMenu());
+        m_instance->m_windowHandlers.push_back(new CScreenLoadGame());
+        m_instance->m_windowHandlers.push_back(new CScreenNewManagerGame());
+        m_instance->m_windowHandlers.push_back(new CScreenNewVirtualGame());
+        m_instance->m_windowHandlers.push_back(new CScreenConfig());
+        m_instance->m_windowHandlers.push_back(new CScreenCredits());
     }
 
     return m_instance;
+}
+
+CWindowManager* CGameEngine::getWindowManager()
+{
+	return m_windowManager;
 }
 
 void CGameEngine::setUser(int xUser)
@@ -128,7 +141,7 @@ void CGameEngine::loadGame(IGame *game)
 {
     unloadCurrentGame();
     m_game = game;
-    nextScreen(m_game);
+    getWindowManager()->nextScreen(m_game->getFirstScreenName());
 }
 
 void CGameEngine::save()
@@ -147,7 +160,8 @@ void CGameEngine::save()
 void CGameEngine::unloadCurrentGame()
 {
     if( m_game!=NULL ){
-        nextScreen(m_mainMenuScreen);
+        m_windowManager->nextScreen("MainMenu");
+        m_windowManager->clearHistory();
 
         delete m_game;
         m_game = NULL;
@@ -164,11 +178,11 @@ bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
 {
     ((CClock*)m_clock)->addTime(evt.timeSinceLastFrame);
     CEGUI::System::getSingleton().injectTimePulse( evt.timeSinceLastFrame );
-    if( m_screenStack.empty() ){
+    if( m_exit ){
         LOG_INFO("-== Stopping Main Loop ==-");
         return false;
     }else{
-        m_screenStack.back()->update();
+    	m_windowManager->update();
         return true;
     }
 }
@@ -180,109 +194,5 @@ IClock& CGameEngine::getClock()
 
 void CGameEngine::exit()
 {
-    while( !m_screenStack.empty() ){
-        m_screenStack.back()->leave();
-        m_screenStack.pop_back();
-    }
-    enterScreen();
-}
-
-void CGameEngine::previousScreen()
-{
-    LOG_DEBUG("CGameEngine::previousScreen()");
-    // cleanup the current state
-    if(!m_screenStack.empty()) {
-        m_screenStack.back()->leave();
-        m_screenStack.pop_back();
-        enterScreen();
-    }
-}
-
-void CGameEngine::nextScreen(IScreen* screen)
-{
-    LOG_DEBUG("CGameEngine::nextScreen()");
-    bool found = false;
-    for( int i=m_screenStack.size()-1; i>=0 && !found; i-- ){
-        if( m_screenStack[i]==screen ){
-            found = true;
-        }
-    }
-
-    if( found ){
-        while( !m_screenStack.empty() ){
-            if( m_screenStack.back()!=screen ){
-                m_screenStack.back()->leave();
-                m_screenStack.pop_back();
-            }else{
-                m_screenStack.back()->enter();
-                break;
-            }
-        }
-    }else{
-        m_screenStack.push_back(screen);
-        m_screenStack.back()->enter();
-    }
-}
-
-IScreen* CGameEngine::getIntroScreen()
-{
-    if( m_introScreen==NULL ){
-        m_introScreen = new CScreenIntro();
-    }
-    return m_introScreen;
-}
-
-IScreen* CGameEngine::getMainMenuScreen()
-{
-    if( m_mainMenuScreen==NULL ){
-        m_mainMenuScreen = new CScreenMainMenu();
-    }
-    return m_mainMenuScreen;
-}
-
-IScreen* CGameEngine::getLoadGameScreen()
-{
-    if( m_loadGameScreen==NULL ){
-        m_loadGameScreen = new CScreenLoadGame();
-    }
-    return m_loadGameScreen;
-}
-
-IScreen* CGameEngine::getNewManagerGameScreen()
-{
-    if( m_newManagerGameScreen==NULL ){
-    	m_newManagerGameScreen = new CScreenNewManagerGame();
-    }
-    return m_newManagerGameScreen;
-}
-
-IScreen* CGameEngine::getNewVirtualGameScreen()
-{
-    if( m_newVirtualGameScreen==NULL ){
-        m_newVirtualGameScreen = new CScreenNewVirtualGame();
-    }
-    return m_newVirtualGameScreen;
-}
-
-IScreen* CGameEngine::getConfigScreen()
-{
-    if( m_configScreen==NULL ){
-        m_configScreen = new CScreenConfig();
-    }
-    return m_configScreen;
-}
-
-IScreen* CGameEngine::getCreditsScreen()
-{
-    if( m_creditsScreen==NULL ){
-        m_creditsScreen = new CScreenCredits();
-    }
-    return m_creditsScreen;
-}
-
-void CGameEngine::enterScreen()
-{
-    if(!m_screenStack.empty()) {
-        m_screenStack.back()->enter();
-    }
+	m_exit = true;
 }

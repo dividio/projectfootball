@@ -27,7 +27,7 @@
 #include <Ogre.h>
 #include <OgreCEGUIRenderer.h>
 
-#include "../../engine/CScreen.h"
+#include "../../engine/wm/CWindowHandler.h"
 
 
 //Forward declarations
@@ -38,13 +38,14 @@ class CPfMatches;
 
 #define SIMULATION_SCENE_MANAGER_NODE_NAME	"Simulation SceneManager"
 
-class CScreenSimulator : public CScreen
+class CScreenSimulator : public CWindowHandler
 {
 public:
-    CScreenSimulator(CSinglePlayerGame *game);
+    CScreenSimulator(CSinglePlayerGame &game);
     virtual ~CScreenSimulator();
 
     virtual void enter();
+    virtual void init();
     virtual void leave();
     virtual void update();
 
@@ -94,14 +95,15 @@ private:
     Ogre::SceneNode         *m_cam2DNode;
     Ogre::SceneNode         *m_cam3DNode;
     Ogre::Vector3            m_direction;
-    Ogre::SceneManager      *m_sceneMgr;    // The simulation SceneManager
+    Ogre::SceneManager      *m_sceneMngr;    // The simulation SceneManager
     Ogre::SceneNode         *m_camNode;     // The SceneNode the camera is currently attached to
     Ogre::RenderTexture     *m_renderTexture;
 
     CSimulationManager      *m_simulator;
-    CSinglePlayerGame		*m_game;
+    CSinglePlayerGame		&m_game;
 
     double                   m_previousUpdateTime;
+    bool					 m_initiated;
 
     void loadTeamPlayers();
     void toogleZoom();

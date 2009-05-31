@@ -21,35 +21,30 @@
 #ifndef CSCREENTEAMPLAYERS_H_
 #define CSCREENTEAMPLAYERS_H_
 
-#include "../../engine/CScreen.h"
-
+#include <CEGUI/CEGUI.h>
+#include "../../engine/wm/CWindowHandler.h"
 
 //Forward declarations
 class CSinglePlayerGame;
 class CPfTeamPlayers;
 
-enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
 
 
-class CScreenTeamPlayers : public CScreen
+class CScreenTeamPlayers : public CWindowHandler
 {
 public:
-    CScreenTeamPlayers(CSinglePlayerGame *game);
+    CScreenTeamPlayers(CSinglePlayerGame &game);
     virtual ~CScreenTeamPlayers();
 
     virtual void enter();
+    virtual void init();
     virtual void leave();
 
 private:
     bool lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
     bool alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
     bool notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
-    bool backButtonClicked(const CEGUI::EventArgs& e);
-    bool gameMenuButtonClicked(const CEGUI::EventArgs& e);
     bool changePlayersButtonClicked(const CEGUI::EventArgs& e);
-    bool rankingButtonClicked               (const CEGUI::EventArgs& e);
-	  bool teamPlayersButtonClicked           (const CEGUI::EventArgs& e);
-  	bool resultsButtonClicked               (const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
     void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
@@ -70,18 +65,15 @@ private:
 
     CEGUI::MultiColumnList 	*m_selectedPlayer1List;
     CEGUI::MultiColumnList 	*m_selectedPlayer2List;
-    CEGUI::PushButton		*m_backButton;
-    CEGUI::PushButton       *m_gameMenuButton;
     CEGUI::PushButton		*m_changePlayersButton;
-    CEGUI::PushButton	*m_rankingButton;
-    CEGUI::PushButton	*m_teamPlayersButton;
-    CEGUI::PushButton	*m_resultsButton;
     CEGUI::Window           *m_teamName;
     CEGUI::Window           *m_teamAverage;
-    CEGUI::Window           *m_teamShield;
+    CEGUI::Window           *m_teamCrest;
+
+    enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
     SelectedPlayers          m_selectedPlayers;
 
-    CSinglePlayerGame		*m_game;
+    CSinglePlayerGame		&m_game;
 };
 
 #endif /*CSCREENTEAMPLAYERS_H_*/

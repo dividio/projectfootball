@@ -28,34 +28,33 @@
 #include "../../utils/CLog.h"
 
 CScreenNewVirtualGame::CScreenNewVirtualGame()
-:CScreen("newVirtualGame.layout")
+:CWindowHandler("newVirtualGame.layout")
 {
     LOG_DEBUG("CScreenNewManagerGame()");
+}
 
-    m_backButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"NewVirtualGame/BackButton"));
-    m_startButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"NewVirtualGame/StartButton"));
+CScreenNewVirtualGame::~CScreenNewVirtualGame()
+{}
+
+void CScreenNewVirtualGame::init()
+{
+	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
+
+    m_backButton  = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"NewVirtualGame/BackButton"));
+    m_startButton = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"NewVirtualGame/StartButton"));
 
     // i18n support
     m_backButton ->setText((CEGUI::utf8*)gettext("Back"));
     m_startButton->setText((CEGUI::utf8*)gettext("Start"));
 
     // Event handle
-    m_backButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewVirtualGame::backButtonClicked, this));
-    m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewVirtualGame::startButtonClicked, this));
-}
-
-CScreenNewVirtualGame::~CScreenNewVirtualGame() {
-    // TODO Auto-generated destructor stub
-}
-
-void CScreenNewVirtualGame::enter()
-{
-    CScreen::enter();
+    registerEventConnection(m_backButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewVirtualGame::backButtonClicked, this)));
+    registerEventConnection(m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewVirtualGame::startButtonClicked, this)));
 }
 
 bool CScreenNewVirtualGame::backButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->previousScreen();
+    CGameEngine::getInstance()->getWindowManager()->previousScreen();
     return true;
 }
 
@@ -67,7 +66,7 @@ bool CScreenNewVirtualGame::startButtonClicked(const CEGUI::EventArgs& e)
         throw PFEXCEPTION("[CScreenVirtualGame::virtualCompetitionButtonClicked] User not defined");
     }
 
-    CGameEngine::getInstance()->loadGame(new CFriendlyMatchGame(user));
+    CGameEngine::getInstance()->loadGame(new CFriendlyMatchGame(*user));
     CGameEngine::getInstance()->save();
     //CGameEngine::getInstance()->previousScreen();
     return true;

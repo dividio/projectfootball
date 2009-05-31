@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="GNS" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        
+        <!-- GNS SECTION RADIO BUTTONS -->
+        <Window Type="ArridiDesign/RadioButton" Name="GNS/StatisticsButton" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="LookNFeel" Value="ArridiDesign/GNSStatistics" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0,0},{0.61,0},{0.085,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/RadioButton" Name="GNS/ChangingRoomButton" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="LookNFeel" Value="ArridiDesign/GNSChangingRoom" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.61,0},{0,0},{0.82,0},{0.085,0}}" />
+        </Window>
+        
+        <!-- GNS ACTIONS BUTTONS -->
+        <Window Type="ArridiDesign/GNS_Button1" Name="GNS/Action1Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.5859375,0},{0.39453125,0},{1,0},{0.427083333333,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button2" Name="GNS/Action2Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.59375,0},{0.4287109375,0},{1,0},{0.461263020833,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button3" Name="GNS/Action3Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.6015625,0},{0.462890625,0},{1,0},{0.495442708333,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button4" Name="GNS/Action4Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.60546875,0},{0.4970703125,0},{1,0},{0.529622395833,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button5" Name="GNS/Action5Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.609375,0},{0.53125,0},{1,0},{0.563802083333,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button6" Name="GNS/Action6Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.61328125,0},{0.5654296875,0},{1,0},{0.597981770833,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button7" Name="GNS/Action7Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.609375,0},{0.599609375,0},{1,0},{0.6321614583335,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_Button8" Name="GNS/Action8Button" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.6015625,0},{0.6337890625,0},{1,0},{0.666341145833,0}}" />
+        </Window>
+
+		<!-- GAME BUTTONS -->
+        <Window Type="ArridiDesign/gameMenuButton" Name="GNS/HomeButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.851564,0},{0.67852875,0},{1,0},{0.75014375,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GameConfigButton" Name="GNS/ConfigButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.555492,0},{0.75899125,0},{0.711742,0},{0.82409541,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GameQuickSaveButton" Name="GNS/QuickSaveButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.457552,0},{0.80511,0},{0.613802,0},{0.87021416,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GameSaveButton" Name="GNS/SaveButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.37136,0},{0.85123,0},{0.52761,0},{0.91633416,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GameQuitButton" Name="GNS/MainMenuButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.281252,0},{0.89257875,0},{0.437502,0},{0.95768291,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GameExitButton" Name="GNS/ExitButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.16372,0},{0.93074625,0},{0.31997,0},{0.99585041,0}}" />
+        </Window>
+        
+        <Window Type="ArridiDesign/blueBallButton" Name="GNS/PlayButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.63672,0},{0.86002625,0},{0.953124,0},{0.98860625,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/CheckBox" Name="GNS/ResultModeCheckbox" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.46511,0},{0.962564583333,0},{0.52761,0},{0.98860625,0}}" />
+        </Window>
+    </Window>
+</GUILayout>

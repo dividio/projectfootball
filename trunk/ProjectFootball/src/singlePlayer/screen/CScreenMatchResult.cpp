@@ -32,31 +32,42 @@
 #include "../event/match/CStartMatchEvent.h"
 #include "../option/CSinglePlayerOptionManager.h"
 
+#include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
 
 
-CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
- :CScreen("matchResult.layout")
+CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame &game) :
+	CWindowHandler("matchResult.layout"),
+	m_game(game)
 {
     LOG_DEBUG("CScreenMatchResult()");
+}
 
-    m_game			= game;
+CScreenMatchResult::~CScreenMatchResult()
+{
+    LOG_DEBUG("~CScreenMatchResult()");
+}
+
+void CScreenMatchResult::init()
+{
+	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
+
     m_loadMatchInfo = true;
 
-    m_competitionName		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/Competition"));
-    m_competitionPhaseName	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/CompetitionPhase"));
-    m_homeName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeName"));
-    m_awayName				= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayName"));
-    m_homeScore            	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeScore"));
-    m_awayScore            	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayScore"));
-    m_homeEventsList       	= static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamEventsList"));
-    m_awayEventsList       	= static_cast<CEGUI::MultiColumnList*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamEventsList"));
-    m_homeLogo             	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/HomeTeamLogo"));
-    m_awayLogo             	= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/AwayTeamLogo"));
-    m_continueButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MatchResult/ContinueButton"));
+    m_competitionName		= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/Competition"));
+    m_competitionPhaseName	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/CompetitionPhase"));
+    m_homeName				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeName"));
+    m_awayName				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayName"));
+    m_homeScore            	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeScore"));
+    m_awayScore            	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayScore"));
+    m_homeEventsList       	= static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeTeamEventsList"));
+    m_awayEventsList       	= static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayTeamEventsList"));
+    m_homeLogo             	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeTeamLogo"));
+    m_awayLogo             	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayTeamLogo"));
+    m_continueButton		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/ContinueButton"));
 
     // Event handle
-    m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMatchResult::continueButtonClicked, this));
+    registerEventConnection(m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMatchResult::continueButtonClicked, this)));
 
     // i18n support
     m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
@@ -76,34 +87,22 @@ CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame *game)
     m_awayEventsList->getHorzScrollbar()->setVisible(false);
 }
 
-CScreenMatchResult::~CScreenMatchResult()
-{
-    LOG_DEBUG("~CScreenMatchResult()");
-}
-
-void CScreenMatchResult::enter()
-{
-    CScreen::enter();
-}
-
 void CScreenMatchResult::leave()
 {
     m_homeEventsList->resetList();
     m_awayEventsList->resetList();
 
     m_loadMatchInfo = true;
-    m_game->setCurrentMatch(NULL);
+    m_game.setCurrentMatch(NULL);
 
     // Consume events until the next stop event
-    m_game->getEventConsumer()->consumeEvents();
+    m_game.getEventConsumer()->consumeEvents();
 }
 
 void CScreenMatchResult::update()
 {
-	CScreen::update();
-
 	if( m_loadMatchInfo ){
-		m_game->getEventConsumer()->consumeCurrentDayEvents();
+		m_game.getEventConsumer()->consumeCurrentDayEvents();
 		loadMatchInfo();
 
 		m_loadMatchInfo = false;
@@ -112,14 +111,14 @@ void CScreenMatchResult::update()
 
 void CScreenMatchResult::loadMatchInfo()
 {
-    IDAOFactory				*daoFactory				= m_game->getIDAOFactory();
+    IDAOFactory				*daoFactory				= m_game.getIDAOFactory();
     IPfGoalsDAO				*goalsDAO				= daoFactory->getIPfGoalsDAO();
     IPfTeamPlayersDAO		*playersDAO      		= daoFactory->getIPfTeamPlayersDAO();
     IPfCompetitionsDAO		*competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
     IPfCompetitionPhasesDAO	*competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
     IPfTeamsDAO				*teamsDAO				= daoFactory->getIPfTeamsDAO();
 
-    const CPfMatches		*match				= m_game->getCurrentMatch();
+    const CPfMatches		*match				= m_game.getCurrentMatch();
     CPfTeams				*homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
     CPfTeams				*awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
     CPfCompetitionPhases	*competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
@@ -134,12 +133,12 @@ void CScreenMatchResult::loadMatchInfo()
 
     std::string homeName = homeTeam->getSTeam();
     std::string awayName = awayTeam->getSTeam();
-    m_competitionName     ->setProperty("Text", (CEGUI::utf8*)competition->getSCompetition().c_str());
-    m_competitionPhaseName->setProperty("Text", (CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
-    m_homeName            ->setProperty("Text", (CEGUI::utf8*)homeName.c_str());
-    m_awayName            ->setProperty("Text", (CEGUI::utf8*)awayName.c_str());
-    m_homeScore           ->setProperty("Text", (CEGUI::utf8*)nHomeGoals.str().c_str());
-    m_awayScore           ->setProperty("Text", (CEGUI::utf8*)nAwayGoals.str().c_str());
+    m_competitionName     ->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
+    m_competitionPhaseName->setText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
+    m_homeName            ->setText((CEGUI::utf8*)homeName.c_str());
+    m_awayName            ->setText((CEGUI::utf8*)awayName.c_str());
+    m_homeScore           ->setText((CEGUI::utf8*)nHomeGoals.str().c_str());
+    m_awayScore           ->setText((CEGUI::utf8*)nAwayGoals.str().c_str());
 
     //Loading Home Shield
     m_homeLogo->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
@@ -203,6 +202,7 @@ void CScreenMatchResult::loadMatchInfo()
 
 bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-    m_game->nextScreen(m_game->getGameScreen());
+	CGameEngine::getInstance()->getWindowManager()->nextScreen("Game");
+	CGameEngine::getInstance()->getWindowManager()->clearHistory();
     return true;
 }

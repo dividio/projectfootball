@@ -1,4 +1,4 @@
-/******************************************************************************
+/*******************************************************************************
  * Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
  *                                                                             *
  * This program is free software; you can redistribute it and/or               *
@@ -18,15 +18,64 @@
  *                                                                             *
  ******************************************************************************/
 
-#include <CEGUI.h>
-#include "CImageListboxItem.h"
+#include "CWindowHandler.h"
 
-namespace CEGUI
+#include "../CGameEngine.h"
+#include "../../utils/CLog.h"
+
+CWindowHandler::CWindowHandler(const std::string &path)
+: m_path(path), m_eventConnections()
 {
-    static void bindNewWidgets(std::string guiName)
-    {
-        CEGUI::WindowFactoryManager& wfMgr = CEGUI::WindowFactoryManager::getSingleton();
-        wfMgr.addFactory(&CEGUI_WINDOW_FACTORY(CImageListboxItem));
-        wfMgr.addFalagardWindowMapping(guiName + "/ImageListboxItem", "CEGUI/ItemEntry", guiName + "/ImageListboxItem", "Falagard/ItemEntry");
-    }
+	registerWindowHandler();
+}
+
+CWindowHandler::~CWindowHandler()
+{
+	disconnectEventConnections();
+	unregisterWindowHandler();
+}
+
+void CWindowHandler::enter()
+{
+	// Nothing to do
+}
+
+void CWindowHandler::init()
+{
+	// Nothing to do
+}
+
+void CWindowHandler::leave()
+{
+    // Nothing to do
+}
+
+void CWindowHandler::update()
+{
+    // Nothing to do
+}
+
+void CWindowHandler::registerEventConnection(CEGUI::Event::Connection connection)
+{
+	m_eventConnections.push_back(connection);
+}
+
+void CWindowHandler::disconnectEventConnections()
+{
+	std::vector<CEGUI::Event::Connection>::iterator itEventConnections;
+	for( itEventConnections=m_eventConnections.begin(); itEventConnections!=m_eventConnections.end(); itEventConnections++ ){
+		(*itEventConnections)->disconnect();
+	}
+	LOG_DEBUG("#%d CEGUI::Event::Connection disconnected from '%s'", m_eventConnections.size(), m_path.c_str());
+	m_eventConnections.clear();
+}
+
+void CWindowHandler::registerWindowHandler()
+{
+	CGameEngine::getInstance()->getWindowManager()->registerWindowHandler(m_path, *this);
+}
+
+void CWindowHandler::unregisterWindowHandler()
+{
+	CGameEngine::getInstance()->getWindowManager()->unregisterWindowHandler(m_path, *this);
 }

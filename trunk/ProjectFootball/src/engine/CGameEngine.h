@@ -21,15 +21,17 @@
 #ifndef CGAMEENGINE_H_
 #define CGAMEENGINE_H_
 
-#define S_GAME_TYPE_SINGLEPLAYER    "SINGLE_PLAYER"
-#define S_GAME_TYPE_FRIENDLYMATCH    "FRIENDLY_MATCH"
+#define S_GAME_TYPE_SINGLEPLAYER	"SINGLE_PLAYER"
+#define S_GAME_TYPE_FRIENDLYMATCH	"FRIENDLY_MATCH"
 
 #include <string>
 #include <vector>
 #include <Ogre.h>
 
+#include "wm/CWindowManager.h"
+#include "wm/IWindowHandler.h"
+
 #include "IGame.h"
-#include "IScreen.h"
 #include "db/sqlite/dao/factory/CMasterDAOFactorySQLite.h"
 
 #include "utils/IClock.h"
@@ -40,12 +42,15 @@ public:
     virtual ~CGameEngine();
     static CGameEngine* getInstance();
 
+    CWindowManager*		getWindowManager();
+
     IGame*        		getCurrentGame();
     IMasterDAOFactory* 	getCMasterDAOFactory();
 
     void setUser(int xUser);
     const CPfUsers* getCurrentUser();
 
+    void exit();
     void loadGame(IGame* game);
     void save();
     void unloadCurrentGame();
@@ -56,41 +61,19 @@ public:
     virtual bool frameEnded(const Ogre::FrameEvent& evt);
     virtual bool frameStarted(const Ogre::FrameEvent& evt);
 
-    // Screen stack
-    void exit();
-    void previousScreen();
-    void nextScreen(IScreen* screen);
-
-    IScreen* getIntroScreen();
-    IScreen* getMainMenuScreen();
-    IScreen* getLoadGameScreen();
-    IScreen* getNewManagerGameScreen();
-    IScreen* getNewVirtualGameScreen();
-    IScreen* getConfigScreen();
-    IScreen* getCreditsScreen();
-
-protected:
-    void enterScreen();
-
 private:
     CGameEngine();
 
-    static CGameEngine		*m_instance;
+    static CGameEngine				*m_instance;
+    bool							m_exit;
 
-    CPfUsers                *m_user;
-    IGame              		*m_game;
-    CMasterDAOFactorySQLite *m_masterDatabase;
+    IClock							*m_clock;
+    CPfUsers                		*m_user;
+    IGame              				*m_game;
+    CMasterDAOFactorySQLite 		*m_masterDatabase;
 
-    IClock					*m_clock;
-    std::vector<IScreen*> 	 m_screenStack;
-
-    IScreen                 *m_introScreen;
-    IScreen					*m_mainMenuScreen;
-    IScreen					*m_loadGameScreen;
-    IScreen					*m_newManagerGameScreen;
-    IScreen                 *m_newVirtualGameScreen;
-    IScreen					*m_configScreen;
-    IScreen					*m_creditsScreen;
+    CWindowManager					*m_windowManager;
+    std::vector<IWindowHandler*>	m_windowHandlers;
 };
 
 #endif /*CGAMEENGINE_H_*/

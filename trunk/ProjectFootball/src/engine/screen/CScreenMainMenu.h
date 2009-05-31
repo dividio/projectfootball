@@ -26,10 +26,10 @@
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
-#include "../CScreen.h"
+#include "../wm/CWindowHandler.h"
 
 
-class CScreenMainMenu : public CScreen
+class CScreenMainMenu : public CWindowHandler
 {
 
 public:
@@ -37,6 +37,7 @@ public:
     virtual ~CScreenMainMenu();
 
     virtual void enter();
+    virtual void init();
 
 private:
 	bool virtualChampionshipButtonClicked(const CEGUI::EventArgs& e);
@@ -47,7 +48,7 @@ private:
 	bool quickLoadButtonClicked(const CEGUI::EventArgs& e);
 	bool quitButtonClicked(const CEGUI::EventArgs& e);
 
-  CEGUI::PushButton	*m_OnLineCommunityButton;
+	CEGUI::PushButton	*m_OnLineCommunityButton;
 	CEGUI::PushButton	*m_virtualChampionshipButton;
 	CEGUI::PushButton	*m_newManagerGameButton;
 	CEGUI::PushButton	*m_ProfessionalCareerButton;

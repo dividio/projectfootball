@@ -41,28 +41,30 @@
 #include "option/CSinglePlayerOptionManager.h"
 #include "report/CSinglePlayerReportRegister.h"
 
-#include "screen/CScreenGame.h"
 #include "screen/CScreenMatchResult.h"
 #include "screen/CScreenRanking.h"
 #include "screen/CScreenResults.h"
 #include "screen/CScreenSelectTeam.h"
 #include "screen/CScreenSimulator.h"
 #include "screen/CScreenTeamPlayers.h"
+#include "screen/CGNSWindowHandler.h"
+#include "screen/CMatchInfoWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../engine/db/bean/CPfGames.h"
 #include "../engine/db/bean/CPfUsers.h"
+#include "../engine/wm/IWindowHandler.h"
 
 #include "../exceptions/PFException.h"
 
 #include "../utils/CLog.h"
 #include "../utils/CDate.h"
 
-CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game)
-: m_screenStack()
+CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
+	m_windowHandlers()
 {
     LOG_DEBUG("CSinglePlayerGame::CSinglePlayerGame");
-	m_game				= new CPfGames(*game);
+	m_game				= new CPfGames(game);
 
 	// If the database doesn't exists (is a new game or the file was deleted)
 	// then it will be created a new database and will be generated the new data,
@@ -76,14 +78,15 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames *game)
 	m_eventConsumer		= new CEventConsumer(this);
 	m_optionManager		= new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
 
-	// screens
-    m_gameScreen		= new CScreenGame(this);
-    m_matchResultScreen	= new CScreenMatchResult(this);
-    m_rankingScreen		= new CScreenRanking(this);
-    m_resultsScreen		= new CScreenResults(this);
-    m_selectTeamScreen	= new CScreenSelectTeam(this);
-    m_simulatorScreen	= new CScreenSimulator(this);
-    m_teamPlayersScreen	= new CScreenTeamPlayers(this);
+	// window handlers
+    m_windowHandlers.push_back(new CGNSWindowHandler(*this));
+	m_windowHandlers.push_back((m_matchInfoWindowHandler = new CMatchInfoWindowHandler(*this)));
+	m_windowHandlers.push_back(new CScreenSelectTeam(*this));
+	m_windowHandlers.push_back(new CScreenResults(*this));
+	m_windowHandlers.push_back(new CScreenRanking(*this));
+	m_windowHandlers.push_back(new CScreenTeamPlayers(*this));
+	m_windowHandlers.push_back(new CScreenMatchResult(*this));
+	m_windowHandlers.push_back(new CScreenSimulator(*this));
 
     // game progression
     m_currentMatch		= NULL;
@@ -93,13 +96,13 @@ CSinglePlayerGame::~CSinglePlayerGame()
 {
     LOG_DEBUG("CSinglePlayerGame::~CSinglePlayerGame");
 
-    delete m_gameScreen;
-    delete m_matchResultScreen;
-    delete m_rankingScreen;
-    delete m_resultsScreen;
-    delete m_selectTeamScreen;
-    delete m_simulatorScreen;
-    delete m_teamPlayersScreen;
+    if( !m_windowHandlers.empty() ){
+    	std::vector<IWindowHandler*>::iterator itWindowHandlers;
+    	for( itWindowHandlers=m_windowHandlers.begin(); itWindowHandlers!=m_windowHandlers.end(); itWindowHandlers++ ){
+    		delete (*itWindowHandlers);
+    	}
+    	m_windowHandlers.clear();
+    }
 
     delete m_optionManager;
     delete m_reportRegister;
@@ -136,34 +139,7 @@ CEventConsumer* CSinglePlayerGame::getEventConsumer()
 	return m_eventConsumer;
 }
 
-void CSinglePlayerGame::enter()
-{
-    // Test if this game is a new game
-	if( m_optionManager->getGameNew() ){
-        nextScreen(m_selectTeamScreen);
-    }else{
-        nextScreen(m_gameScreen);
-    }
-}
-
-void CSinglePlayerGame::leave()
-{
-    while( !m_screenStack.empty() ){
-        m_screenStack.back()->leave();
-        m_screenStack.pop_back();
-    }
-}
-
-void CSinglePlayerGame::update()
-{
-    if( !m_screenStack.empty() ){
-        m_screenStack.back()->update();
-    }else{
-        exit();
-    }
-}
-
-IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
+IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameName)
 {
     LOG_DEBUG("CSinglePlayerGame::newGame");
 
@@ -186,12 +162,12 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
     game.setSConnectionString(filename);
     game.setSGameName(gameName);
     game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
-    game.setXFkUser(user->getXUser());
+    game.setXFkUser(user.getXUser());
 
     // With this way, here we only need to set the initial environment for
     // a new game, forgetting the creation of attributes for a CSinglePlayerGame
     // object. This task rests now on constructor.
-	CSinglePlayerGame *singlePlayerGame = new CSinglePlayerGame(&game);
+	CSinglePlayerGame *singlePlayerGame = new CSinglePlayerGame(game);
 
     // retrieve the last season in the database and the end date of the itself
     CDate		maxDate = CDate::MIN_DATE;
@@ -222,7 +198,7 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers *user, const char *gameName)
     return singlePlayerGame;
 }
 
-IGame* CSinglePlayerGame::load(const CPfGames *game)
+IGame* CSinglePlayerGame::load(const CPfGames &game)
 {
     LOG_DEBUG("CSinglePlayerGame::load");
 
@@ -242,85 +218,14 @@ CPfGames* CSinglePlayerGame::save()
     return m_game;
 }
 
-void CSinglePlayerGame::exit()
+const char* CSinglePlayerGame::getFirstScreenName()
 {
-    LOG_DEBUG("CSinglePlayerGame::exit()");
-    CGameEngine::getInstance()->unloadCurrentGame();
-}
-
-void CSinglePlayerGame::previousScreen()
-{
-    LOG_DEBUG("CSinglePlayerGame::previousScreen()");
-    // cleanup the current state
-    if(!m_screenStack.empty()) {
-        m_screenStack.back()->leave();
-        m_screenStack.pop_back();
-
-        if( !m_screenStack.empty() ){
-        	m_screenStack.back()->enter();
-        }
-    }
-}
-
-void CSinglePlayerGame::nextScreen(IScreen* screen)
-{
-    LOG_DEBUG("CSinglePlayerGame::nextScreen()");
-    bool found = false;
-    for( int i=m_screenStack.size()-1; i>=0 && !found; i-- ){
-        if( m_screenStack[i]==screen ){
-            found = true;
-        }
-    }
-
-    if( found ){
-        while( !m_screenStack.empty() ){
-            if( m_screenStack.back()!=screen ){
-                m_screenStack.back()->leave();
-                m_screenStack.pop_back();
-            }else{
-            	m_screenStack.back()->enter();
-                break;
-            }
-        }
+    // Test if this game is a new game
+	if( m_optionManager->getGameNew() ){
+		return "SelectTeam";
     }else{
-        m_screenStack.push_back(screen);
-        m_screenStack.back()->enter();
+    	return "Game";
     }
-}
-
-IScreen* CSinglePlayerGame::getGameScreen()
-{
-    return m_gameScreen;
-}
-
-IScreen* CSinglePlayerGame::getMatchResultScreen()
-{
-    return m_matchResultScreen;
-}
-
-IScreen* CSinglePlayerGame::getRankingScreen()
-{
-    return m_rankingScreen;
-}
-
-IScreen* CSinglePlayerGame::getResultsScreen()
-{
-    return m_resultsScreen;
-}
-
-IScreen* CSinglePlayerGame::getSelectTeamScreen()
-{
-    return m_selectTeamScreen;
-}
-
-IScreen* CSinglePlayerGame::getSimulatorScreen()
-{
-    return m_simulatorScreen;
-}
-
-IScreen* CSinglePlayerGame::getTeamPlayersScreen()
-{
-    return m_teamPlayersScreen;
 }
 
 const CPfMatches* CSinglePlayerGame::getCurrentMatch()
@@ -332,6 +237,9 @@ void CSinglePlayerGame::setCurrentMatch(const CPfMatches *match)
 {
 	delete m_currentMatch;
 	m_currentMatch = (match!=NULL)?new CPfMatches(*match):NULL;
+
+	// FIXME: do this in another way
+	m_matchInfoWindowHandler->enter();
 }
 
 void CSinglePlayerGame::loadGameEvents()

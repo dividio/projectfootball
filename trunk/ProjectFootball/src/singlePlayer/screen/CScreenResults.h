@@ -21,20 +21,22 @@
 #ifndef CSCREENRESULTS_H_
 #define CSCREENRESULTS_H_
 
-#include "../../engine/CScreen.h"
+#include <CEGUI/CEGUI.h>
+#include "../../engine/wm/CWindowHandler.h"
 
 //Forward declarations
 class CPfSeasons;
 class CSinglePlayerGame;
 
 
-class CScreenResults : public CScreen
+class CScreenResults : public CWindowHandler
 {
 public:
-    CScreenResults(CSinglePlayerGame *game);
+    CScreenResults(CSinglePlayerGame &game);
 	virtual ~CScreenResults();
 
 	virtual void enter();
+	virtual void init();
 	virtual void leave();
 
 private:
@@ -42,11 +44,6 @@ private:
     bool countriesComboboxListSelectionChanged        (const CEGUI::EventArgs& e);
     bool competitionsComboboxListSelectionChanged     (const CEGUI::EventArgs& e);
     bool competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e);
-    bool backButtonClicked                            (const CEGUI::EventArgs& e);
-    bool gameMenuButtonClicked                        (const CEGUI::EventArgs& e);
-    bool rankingButtonClicked                         (const CEGUI::EventArgs& e);
-	bool teamPlayersButtonClicked                     (const CEGUI::EventArgs& e);
-  	bool resultsButtonClicked                         (const CEGUI::EventArgs& e);
 
   	void loadConfederations   (int XSeason, int XConfederation = -1);
   	void loadCountries        (int XSeason, int XConfederation, int XCountry = -1);
@@ -60,14 +57,9 @@ private:
     CEGUI::Combobox         *m_competitionsCombobox;
     CEGUI::Combobox         *m_competitionPhasesCombobox;
     CEGUI::MultiColumnList  *m_resultsList;
-    CEGUI::PushButton		*m_backButton;
-    CEGUI::PushButton       *m_gameMenuButton;
-    CEGUI::PushButton	    *m_rankingButton;
-    CEGUI::PushButton	    *m_teamPlayersButton;
-    CEGUI::PushButton	    *m_resultsButton;
 
     CPfSeasons              *m_lastSeason;
-    CSinglePlayerGame		*m_game;
+    CSinglePlayerGame		&m_game;
 };
 
 #endif /*CSCREENRESULTS_H_*/

@@ -22,44 +22,52 @@
 
 #include "CScreenSelectTeam.h"
 
-#include "CScreenGame.h"
-
-#include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfTeams.h"
 #include "../db/bean/CPfConfederations.h"
 #include "../db/bean/CPfCountries.h"
 #include "../db/bean/CPfCompetitions.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../option/CSinglePlayerOptionManager.h"
+#include "../CSinglePlayerGame.h"
 
+#include "../../engine/CGameEngine.h"
 #include "../../exceptions/PFException.h"
 #include "../../utils/CLog.h"
 #include "../../utils/gui/CImageListboxItem.h"
 
-CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
-    :CScreen("selectTeam.layout")
+CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame &game)
+: CWindowHandler("selectTeam.layout"), m_game(game)
 {
     LOG_DEBUG("CScreenSelectTeam()");
 
-    m_game = game;
     m_confederationsList	= NULL;
     m_countriesList			= NULL;
     m_competitionsList		= NULL;
     m_teamsList				= NULL;
     m_lastSeason			= NULL;
+}
 
-    m_selectButton        		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
-    m_backButton				= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BackButton"));
-    m_guiTeamsList        		= static_cast<CEGUI::ItemListbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
-    m_guiTeamName         		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
-    m_guiTeamBudget       		= static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
-    m_guiTeamShield             = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
-    m_guiConfederationImage     = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationImage"));
-    m_guiCountryImage           = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryImage"));
-    m_guiTeamAverage            = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamAverage"));
-    m_confederationsCombobox	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Confederation"));
-    m_countriesCombobox      	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Country"));
-    m_competitionsCombobox   	= static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Competition"));
+CScreenSelectTeam::~CScreenSelectTeam()
+{
+    LOG_DEBUG("~CScreenSelectTeam()");
+}
+
+void CScreenSelectTeam::init()
+{
+	CEGUI::WindowManager	*windowMngr	= CEGUI::WindowManager::getSingletonPtr();
+
+    m_selectButton        		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectButton"));
+    m_backButton				= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BackButton"));
+    m_guiTeamsList        		= static_cast<CEGUI::ItemListbox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
+    m_guiTeamName         		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
+    m_guiTeamBudget       		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
+    m_guiTeamShield             = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
+    m_guiConfederationImage     = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationImage"));
+    m_guiCountryImage           = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryImage"));
+    m_guiTeamAverage            = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamAverage"));
+    m_confederationsCombobox	= static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Confederation"));
+    m_countriesCombobox      	= static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Country"));
+    m_competitionsCombobox   	= static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Competition"));
 
     m_confederationsCombobox->getEditbox()->setEnabled(false);
     m_countriesCombobox     ->getEditbox()->setEnabled(false);
@@ -69,34 +77,26 @@ CScreenSelectTeam::CScreenSelectTeam(CSinglePlayerGame *game)
     // i18n support
     m_backButton  ->setText((CEGUI::utf8*)gettext("Back"));
     m_selectButton->setText((CEGUI::utf8*)gettext("Select Team"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectTeamLabel"))->setText((CEGUI::utf8*)gettext("Please, select your team:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/NameLabel"))->setText((CEGUI::utf8*)gettext("Name:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BudgetLabel"))->setText((CEGUI::utf8*)gettext("Budget:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/AverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationLabel"))->setText((CEGUI::utf8*)gettext("Confederation:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryLabel"))->setText((CEGUI::utf8*)gettext("Country:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CompetitionLabel"))->setText((CEGUI::utf8*)gettext("Competition:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectTeamLabel"))->setText((CEGUI::utf8*)gettext("Please, select your team:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/NameLabel"))->setText((CEGUI::utf8*)gettext("Name:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BudgetLabel"))->setText((CEGUI::utf8*)gettext("Budget:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/AverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationLabel"))->setText((CEGUI::utf8*)gettext("Confederation:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryLabel"))->setText((CEGUI::utf8*)gettext("Country:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CompetitionLabel"))->setText((CEGUI::utf8*)gettext("Competition:"));
 
     // Event handle
-    m_confederationsCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::confederationsComboboxListSelectionChanged, this));
-    m_countriesCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::countriesComboboxListSelectionChanged, this));
-    m_competitionsCombobox  ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::competitionsComboboxListSelectionChanged, this));
-    m_guiTeamsList          ->subscribeEvent(CEGUI::ItemListbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxSelectionChanged, this));
-    m_guiTeamsList          ->subscribeEvent(CEGUI::ItemListbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxMouseDoubleClick, this));
-    m_selectButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::selectButtonClicked, this));
-    m_backButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::backButtonClicked, this));
-
-}
-
-CScreenSelectTeam::~CScreenSelectTeam()
-{
-    LOG_DEBUG("~CScreenSelectTeam()");
+    registerEventConnection(m_confederationsCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::confederationsComboboxListSelectionChanged, this)));
+    registerEventConnection(m_countriesCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::countriesComboboxListSelectionChanged, this)));
+    registerEventConnection(m_competitionsCombobox  ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenSelectTeam::competitionsComboboxListSelectionChanged, this)));
+    registerEventConnection(m_guiTeamsList          ->subscribeEvent(CEGUI::ItemListbox::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxSelectionChanged, this)));
+    registerEventConnection(m_guiTeamsList          ->subscribeEvent(CEGUI::ItemListbox::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CScreenSelectTeam::teamsListboxMouseDoubleClick, this)));
+    registerEventConnection(m_selectButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::selectButtonClicked, this)));
+    registerEventConnection(m_backButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSelectTeam::backButtonClicked, this)));
 }
 
 void CScreenSelectTeam::enter()
 {
-    CScreen::enter();
-
     loadLastSeason();
     int confederation = loadConfederationsList();
     int country       = loadCountriesList(confederation);
@@ -109,19 +109,19 @@ void CScreenSelectTeam::enter()
 void CScreenSelectTeam::leave()
 {
     if(m_confederationsList!=NULL) {
-        m_game->getIDAOFactory()->getIPfConfederationsDAO()->freeVector(m_confederationsList);
+        m_game.getIDAOFactory()->getIPfConfederationsDAO()->freeVector(m_confederationsList);
         m_confederationsList = NULL;
     }
     if(m_countriesList!=NULL) {
-        m_game->getIDAOFactory()->getIPfCountriesDAO()->freeVector(m_countriesList);
+        m_game.getIDAOFactory()->getIPfCountriesDAO()->freeVector(m_countriesList);
         m_countriesList = NULL;
     }
     if(m_competitionsList!=NULL) {
-        m_game->getIDAOFactory()->getIPfCompetitionsDAO()->freeVector(m_competitionsList);
+        m_game.getIDAOFactory()->getIPfCompetitionsDAO()->freeVector(m_competitionsList);
         m_competitionsList = NULL;
     }
     if(m_teamsList!=NULL) {
-        m_game->getIDAOFactory()->getIPfTeamsDAO()->freeVector(m_teamsList);
+        m_game.getIDAOFactory()->getIPfTeamsDAO()->freeVector(m_teamsList);
         m_teamsList = NULL;
     }
     if( m_lastSeason!=NULL ){
@@ -143,7 +143,7 @@ void CScreenSelectTeam::loadLastSeason()
 		m_lastSeason = NULL;
 	}
 
-	IPfSeasonsDAO *seasonsDAO = m_game->getIDAOFactory()->getIPfSeasonsDAO();
+	IPfSeasonsDAO *seasonsDAO = m_game.getIDAOFactory()->getIPfSeasonsDAO();
 	m_lastSeason = seasonsDAO->findLastSeason();
 	if( m_lastSeason==NULL || m_lastSeason->getXSeason_str()=="" ){
 		throw PFEXCEPTION("[CScreenSelectTeam::loadLastSeason] Last season not found");
@@ -152,7 +152,7 @@ void CScreenSelectTeam::loadLastSeason()
 
 int CScreenSelectTeam::loadConfederationsList()
 {
-    IPfConfederationsDAO *confederationsDAO = m_game->getIDAOFactory()->getIPfConfederationsDAO();
+    IPfConfederationsDAO *confederationsDAO = m_game.getIDAOFactory()->getIPfConfederationsDAO();
     if(m_confederationsList!=NULL) {
         confederationsDAO->freeVector(m_confederationsList);
     }
@@ -174,7 +174,7 @@ int CScreenSelectTeam::loadConfederationsList()
 
 int CScreenSelectTeam::loadCountriesList(int XConfederation)
 {
-    IPfCountriesDAO *countriesDAO = m_game->getIDAOFactory()->getIPfCountriesDAO();
+    IPfCountriesDAO *countriesDAO = m_game.getIDAOFactory()->getIPfCountriesDAO();
 
     if(m_countriesList!=NULL) {
         countriesDAO->freeVector(m_countriesList);
@@ -203,7 +203,7 @@ int CScreenSelectTeam::loadCountriesList(int XConfederation)
 
 int CScreenSelectTeam::loadCompetitionsList(int XCountry)
 {
-    IPfCompetitionsDAO 	*competitionsDAO 	= m_game->getIDAOFactory()->getIPfCompetitionsDAO();
+    IPfCompetitionsDAO 	*competitionsDAO 	= m_game.getIDAOFactory()->getIPfCompetitionsDAO();
     if(m_competitionsList!=NULL) {
         competitionsDAO->freeVector(m_competitionsList);
     }
@@ -230,7 +230,7 @@ void CScreenSelectTeam::loadTeamList(int XCompetition)
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("ListboxSelectionBrush");
 
-    IPfTeamsDAO* teamsDAO = m_game->getIDAOFactory()->getIPfTeamsDAO();
+    IPfTeamsDAO* teamsDAO = m_game.getIDAOFactory()->getIPfTeamsDAO();
 
     if(m_teamsList!=NULL) {
         teamsDAO->freeVector(m_teamsList);
@@ -280,7 +280,7 @@ bool CScreenSelectTeam::confederationsComboboxListSelectionChanged(const CEGUI::
 {
     CEGUI::ListboxItem *item = m_confederationsCombobox->getSelectedItem();
     if(item != NULL) {
-        IPfConfederationsDAO *confederationsDAO = m_game->getIDAOFactory()->getIPfConfederationsDAO();
+        IPfConfederationsDAO *confederationsDAO = m_game.getIDAOFactory()->getIPfConfederationsDAO();
         CPfConfederations    *conf = confederationsDAO->findByXConfederation(item->getID());
 
         m_confederationsCombobox->setText(item->getText());
@@ -307,7 +307,7 @@ bool CScreenSelectTeam::countriesComboboxListSelectionChanged(const CEGUI::Event
 {
     CEGUI::ListboxItem *item = m_countriesCombobox->getSelectedItem();
     if(item != NULL) {
-        IPfCountriesDAO *countriesDAO = m_game->getIDAOFactory()->getIPfCountriesDAO();
+        IPfCountriesDAO *countriesDAO = m_game.getIDAOFactory()->getIPfCountriesDAO();
         CPfCountries    *country = countriesDAO->findByXCountry(item->getID());
 
         m_countriesCombobox->setText(item->getText());
@@ -351,32 +351,33 @@ bool CScreenSelectTeam::selectButtonClicked(const CEGUI::EventArgs& e)
 {
     CEGUI::ItemEntry* item = m_guiTeamsList->getFirstSelectedItem();
 
-    m_game->getOptionManager()->setGamePlayerTeam(item->getID());
-    m_game->getOptionManager()->setGameNew(false);
+    m_game.getOptionManager()->setGamePlayerTeam(item->getID());
+    m_game.getOptionManager()->setGameNew(false);
 
-    m_game->nextScreen(m_game->getGameScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("Game");
+    CGameEngine::getInstance()->getWindowManager()->clearHistory();
     return true;
 }
 
 bool CScreenSelectTeam::backButtonClicked(const CEGUI::EventArgs& e)
 {
-    m_game->previousScreen();
+	CGameEngine::getInstance()->getWindowManager()->previousScreen();
     return true;
 }
 
 void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
 {
     // TODO Add more team information
-    m_guiTeamName->setProperty("Text", (CEGUI::utf8*)team->getSTeam().c_str());
+    m_guiTeamName->setText((CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream budget;
     budget << team->getNBudget();
-    m_guiTeamBudget->setProperty("Text", (CEGUI::utf8*)budget.str().c_str());
+    m_guiTeamBudget->setText((CEGUI::utf8*)budget.str().c_str());
 
-    IPfTeamAveragesDAO *teamAveragesDAO = m_game->getIDAOFactory()->getIPfTeamAveragesDAO();
+    IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
     CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
     std::ostringstream average;
     average << teamAverage->getNTotal();
-    m_guiTeamAverage->setProperty("Text", (CEGUI::utf8*)average.str().c_str());
+    m_guiTeamAverage->setText((CEGUI::utf8*)average.str().c_str());
     delete teamAverage;
 
     //Loading Shield
@@ -386,8 +387,8 @@ void CScreenSelectTeam::loadTeamInfo(CPfTeams *team)
 void CScreenSelectTeam::clearTeamInfo()
 {
     // TODO Clear all team information
-    m_guiTeamName   ->setProperty("Text", "");
-    m_guiTeamBudget ->setProperty("Text", "");
-    m_guiTeamAverage->setProperty("Text", "");
-    m_guiTeamShield ->setProperty("Image", "");
+    m_guiTeamName   ->setText("");
+    m_guiTeamBudget ->setText("");
+    m_guiTeamAverage->setText("");
+    m_guiTeamShield ->setProperty("Image", "set: image:full_image");
 }

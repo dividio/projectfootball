@@ -12,16 +12,9 @@
 
 
 CScreenIntro::CScreenIntro()
- :CScreen("intro.layout")
+ :CWindowHandler("intro.layout")
 {
     LOG_DEBUG("CScreenIntro()");
-    m_timer = new CTimer(1);
-    m_introTime = 5;
-    m_elapsedTime = 0;
-
-    m_mainWindow   = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Intro"));
-
-    m_mainWindow->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&CScreenIntro::buttonClicked, this));
 }
 
 CScreenIntro::~CScreenIntro()
@@ -32,10 +25,22 @@ CScreenIntro::~CScreenIntro()
 
 void CScreenIntro::enter()
 {
-    CScreen::enter();
+    CWindowHandler::enter();
 
     m_timer->reset();
     m_elapsedTime = 0;
+}
+
+void CScreenIntro::init()
+{
+	CWindowHandler::init();
+
+    m_timer = new CTimer(1);
+    m_introTime = 5;
+    m_elapsedTime = 0;
+
+    m_mainWindow = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"Intro"));
+    registerEventConnection(m_mainWindow->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&CScreenIntro::buttonClicked, this)));
 }
 
 void CScreenIntro::update()
@@ -43,12 +48,12 @@ void CScreenIntro::update()
     if(m_timer->nextTick()) {
         m_elapsedTime++;
         if(m_elapsedTime == m_introTime) {
-            CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getMainMenuScreen());
+            CGameEngine::getInstance()->getWindowManager()->nextScreen("MainMenu");
         }
     }
 }
 
 bool CScreenIntro::buttonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getMainMenuScreen());
+	CGameEngine::getInstance()->getWindowManager()->nextScreen("MainMenu");
 }

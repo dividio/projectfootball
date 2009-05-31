@@ -28,49 +28,9 @@
 #include "../../utils/CLog.h"
 
 CScreenConfig::CScreenConfig()
-    :CScreen("config.layout")
+: CWindowHandler("config.layout")
 {
     LOG_DEBUG("CScreenConfig()");
-
-    m_mainWindow        = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/MainWindow"));
-    m_backButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/BackButton"));
-    m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::backButtonClicked, this));
-
-    m_saveButton		= static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveButton"));
-    m_saveConfirmButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveConfirmationWindow/Confirm"));
-    m_saveButton       ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveButtonClicked, this));
-    m_saveConfirmButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveConfirmButtonClicked, this));
-
-    m_resolutionCombo   = static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
-    m_rendererCombo     = static_cast<CEGUI::Combobox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
-    m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
-    m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
-    m_confirmWindow     = static_cast<CEGUI::FrameWindow*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveConfirmationWindow"));
-    m_confirmNote       = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/SaveConfirmationWindow/Note"));
-
-    m_resolutionCombo->getEditbox()->setEnabled(false);
-    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
-    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1024x768",  1024));
-    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("800x600",   800));
-
-    // i18n support
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/Video"))->setText((CEGUI::utf8*)gettext("Video"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/RendererText"))->setText((CEGUI::utf8*)gettext("Renderer:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionText"))->setText((CEGUI::utf8*)gettext("Resolution:"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"))->setText((CEGUI::utf8*)gettext("Fullscreen"));
-    static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"))->setText((CEGUI::utf8*)gettext("Vertical Sync"));
-    m_confirmNote      ->setText((CEGUI::utf8*)gettext("Changes will take effect after restart"));
-    m_backButton       ->setText((CEGUI::utf8*)gettext("Back"));
-    m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
-    m_saveConfirmButton->setText((CEGUI::utf8*)gettext("Ok"));
-
-    m_rendererCombo->getEditbox()->setEnabled(false);
-    Ogre::RenderSystemList *renderSystemList = CApplication::getInstance()->getRenderSystemList();
-    Ogre::RenderSystemList::iterator it;
-    for( it=renderSystemList->begin(); it!=renderSystemList->end(); it++ ){
-        Ogre::RenderSystem *renderSystem = (*it);
-        m_rendererCombo->addItem(new CEGUI::ListboxTextItem(renderSystem->getName()));
-    }
 }
 
 CScreenConfig::~CScreenConfig()
@@ -80,8 +40,6 @@ CScreenConfig::~CScreenConfig()
 
 void CScreenConfig::enter()
 {
-	CScreen::enter();
-
     m_fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getVideoFullscreen());
     m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getVideoVSync());
 
@@ -108,9 +66,48 @@ void CScreenConfig::enter()
     }
 }
 
+void CScreenConfig::init()
+{
+	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
+
+    m_mainWindow        = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/MainWindow"));
+    m_backButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/BackButton"));
+    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::backButtonClicked, this)));
+
+    m_saveButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/SaveButton"));
+    registerEventConnection(m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveButtonClicked, this)));
+
+    m_resolutionCombo   = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
+    m_rendererCombo     = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
+    m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
+    m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
+
+    m_resolutionCombo->getEditbox()->setEnabled(false);
+    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
+    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1024x768",  1024));
+    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("800x600",   800));
+
+    // i18n support
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/Video"))->setText((CEGUI::utf8*)gettext("Video"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/RendererText"))->setText((CEGUI::utf8*)gettext("Renderer:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionText"))->setText((CEGUI::utf8*)gettext("Resolution:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"))->setText((CEGUI::utf8*)gettext("Fullscreen"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"))->setText((CEGUI::utf8*)gettext("Vertical Sync"));
+    m_backButton       ->setText((CEGUI::utf8*)gettext("Back"));
+    m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
+
+    m_rendererCombo->getEditbox()->setEnabled(false);
+    Ogre::RenderSystemList *renderSystemList = CApplication::getInstance()->getRenderSystemList();
+    Ogre::RenderSystemList::iterator it;
+    for( it=renderSystemList->begin(); it!=renderSystemList->end(); it++ ){
+        Ogre::RenderSystem *renderSystem = (*it);
+        m_rendererCombo->addItem(new CEGUI::ListboxTextItem(renderSystem->getName()));
+    }
+}
+
 bool CScreenConfig::backButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->previousScreen();
+	CGameEngine::getInstance()->getWindowManager()->previousScreen();
 	return true;
 }
 
@@ -140,25 +137,10 @@ bool CScreenConfig::saveButtonClicked(const CEGUI::EventArgs& e)
 
         CSystemOptionManager::getInstance()->setVideoRenderSystem(m_rendererCombo->getText().c_str());
         CSystemOptionManager::getInstance()->saveOptions();
-        m_confirmNote->setText((CEGUI::utf8*)gettext("Changes will take effect after restart"));
+        CGameEngine::getInstance()->getWindowManager()->alert(gettext("Changes will take effect after restart"));
     } catch(...) {
-        m_confirmNote->setText((CEGUI::utf8*)gettext("ATTENTION: Options can not be saved"));
+        CGameEngine::getInstance()->getWindowManager()->alert(gettext("ATTENTION: Options can not be saved"));
     }
 
-	m_mainWindow->disable();
-	m_confirmWindow->setVisible(true);
-	m_confirmWindow->activate();
-	m_confirmWindow->enable();
-
 	return true;
-}
-
-bool CScreenConfig::saveConfirmButtonClicked(const CEGUI::EventArgs& e)
-{
-    m_confirmWindow->setVisible(false);
-    m_confirmWindow->deactivate();
-    m_confirmWindow->disable();
-    m_mainWindow->enable();
-
-    return true;
 }

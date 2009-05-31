@@ -21,15 +21,18 @@
 #ifndef CSCREENLOADGAME_H_
 #define CSCREENLOADGAME_H_
 
-#include "../CScreen.h"
+#include <CEGUI/CEGUI.h>
 
-class CScreenLoadGame : public CScreen
+#include "../wm/CWindowHandler.h"
+
+class CScreenLoadGame : public CWindowHandler
 {
 public:
     CScreenLoadGame();
 	virtual ~CScreenLoadGame();
 
     virtual void enter();
+    virtual void init();
 
 private:
     void loadGameList();
@@ -38,18 +41,13 @@ private:
 	bool backButtonClicked          (const CEGUI::EventArgs& e);
 	bool loadGameButtonClicked      (const CEGUI::EventArgs& e);
 	bool deleteGameButtonClicked    (const CEGUI::EventArgs& e);
-    bool removeConfirmButtonClicked (const CEGUI::EventArgs& e);
-    bool removeCancelButtonClicked  (const CEGUI::EventArgs& e);
+    bool deleteGameConfirmed		(const CEGUI::EventArgs& e);
 
 	CEGUI::PushButton		*m_backButton;
     CEGUI::MultiColumnList  *m_gamesList;
     CEGUI::PushButton       *m_loadGameButton;
     CEGUI::PushButton       *m_deleteGameButton;
-    CEGUI::PushButton       *m_removeConfirmButton;
-    CEGUI::PushButton       *m_removeCancelButton;
     CEGUI::Window           *m_mainWindow;
-    CEGUI::FrameWindow      *m_confirmRemoveWindow;
-    CEGUI::Window           *m_confirmRemoveNote;
 };
 
 #endif /*CSCREENLOADGAME_H_*/

@@ -28,59 +28,21 @@
 
 
 CScreenMainMenu::CScreenMainMenu()
- :CScreen("mainMenu.layout")
+ :CWindowHandler("mainMenu.layout")
 {
     LOG_DEBUG("CScreenMainMenu()");
-
-    m_OnLineCommunityButton     = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/OnLineCommunityButton"));
-    m_virtualChampionshipButton = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VirtualChampionshipButton"));
-    m_newManagerGameButton	    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/NewManagerGameButton"));
-    m_ProfessionalCareerButton  = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ProfessionalCareerButton"));
-    m_EditorButton              = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/EditorButton"));
-    m_FootLibraryButton         = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/FootLibraryButton"));
-    m_configButton			    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
-    m_creditsButton			    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
-    m_quickLoadButton		    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickLoadButton"));
-    m_loadGameButton	        = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/LoadGameButton"));
-    m_quitButton		  	    = static_cast<CEGUI::PushButton*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuitButton"));
-    m_currentDate       	    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDate"));
-    m_versionDate       	    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDate"));
-    m_version           	    = static_cast<CEGUI::Window*>(m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
-
-    // Event handle
-    m_virtualChampionshipButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::virtualChampionshipButtonClicked, this));
-    m_newManagerGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::newManagerGameButtonClicked, this));
-    m_configButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::configButtonClicked, this));
-    m_creditsButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::creditsButtonClicked, this));
-    m_loadGameButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadGameButtonClicked, this));
-    m_quickLoadButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickLoadButtonClicked, this));
-    m_quitButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quitButtonClicked, this));
-
-    // i18n support
-    m_OnLineCommunityButton    ->setText((CEGUI::utf8*)gettext("On-line Community"));
-    m_virtualChampionshipButton->setText((CEGUI::utf8*)gettext("Virtual Championship"));
-    m_newManagerGameButton     ->setText((CEGUI::utf8*)gettext("Manager League"));
-    m_ProfessionalCareerButton ->setText((CEGUI::utf8*)gettext("Professional Career"));
-    m_EditorButton             ->setText((CEGUI::utf8*)gettext("Editor"));
-    m_FootLibraryButton        ->setText((CEGUI::utf8*)gettext("Football Library"));
-    m_configButton             ->setText((CEGUI::utf8*)gettext("Config"));
-    m_creditsButton            ->setText((CEGUI::utf8*)gettext("Credits"));
-    m_quickLoadButton          ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
-    m_loadGameButton           ->setTooltipText((CEGUI::utf8*)gettext("Load"));
-    m_quitButton               ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
-    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
-    m_windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last update:"));
 }
 
 
 CScreenMainMenu::~CScreenMainMenu()
 {
-  LOG_DEBUG("~CScreenMainMenu()");
+	LOG_DEBUG("~CScreenMainMenu()");
 }
 
 void CScreenMainMenu::enter()
 {
-    CScreen::enter();
+    CWindowHandler::enter();
+    CGameEngine::getInstance()->getWindowManager()->clearHistory();
 
     IPfVersionDAO *versionDAO = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfVersionDAO();
     CPfVersion    *version = versionDAO->findByXVersion(1);
@@ -107,33 +69,77 @@ void CScreenMainMenu::enter()
 
 }
 
+void CScreenMainMenu::init()
+{
+    CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
+
+    m_OnLineCommunityButton     = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/OnLineCommunityButton"));
+    m_virtualChampionshipButton = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VirtualChampionshipButton"));
+    m_newManagerGameButton	    = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/NewManagerGameButton"));
+    m_ProfessionalCareerButton  = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ProfessionalCareerButton"));
+    m_EditorButton              = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/EditorButton"));
+    m_FootLibraryButton         = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/FootLibraryButton"));
+    m_configButton			    = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/ConfigButton"));
+    m_creditsButton			    = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CreditsButton"));
+    m_quickLoadButton		    = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuickLoadButton"));
+    m_loadGameButton	        = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/LoadGameButton"));
+    m_quitButton		  	    = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/QuitButton"));
+    m_currentDate       	    = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDate"));
+    m_versionDate       	    = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDate"));
+    m_version           	    = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
+
+    // Event handle
+    registerEventConnection(m_virtualChampionshipButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::virtualChampionshipButtonClicked, this)));
+    registerEventConnection(m_newManagerGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::newManagerGameButtonClicked, this)));
+    registerEventConnection(m_configButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::configButtonClicked, this)));
+    registerEventConnection(m_creditsButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::creditsButtonClicked, this)));
+    registerEventConnection(m_loadGameButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadGameButtonClicked, this)));
+    registerEventConnection(m_quickLoadButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickLoadButtonClicked, this)));
+    registerEventConnection(m_quitButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quitButtonClicked, this)));
+
+    // i18n support
+    m_OnLineCommunityButton    ->setText((CEGUI::utf8*)gettext("On-line Community"));
+    m_virtualChampionshipButton->setText((CEGUI::utf8*)gettext("Virtual Championship"));
+    m_newManagerGameButton     ->setText((CEGUI::utf8*)gettext("Manager League"));
+    m_ProfessionalCareerButton ->setText((CEGUI::utf8*)gettext("Professional Career"));
+    m_EditorButton             ->setText((CEGUI::utf8*)gettext("Editor"));
+    m_FootLibraryButton        ->setText((CEGUI::utf8*)gettext("Football Library"));
+    m_configButton             ->setText((CEGUI::utf8*)gettext("Config"));
+    m_creditsButton            ->setText((CEGUI::utf8*)gettext("Credits"));
+    m_quickLoadButton          ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
+    m_loadGameButton           ->setTooltipText((CEGUI::utf8*)gettext("Load"));
+    m_quitButton               ->setTooltipText((CEGUI::utf8*)gettext("Quit"));
+    windowMngr->getWindow((CEGUI::utf8*)"MainMenu/CurrentDateLabel")->setText((CEGUI::utf8*)gettext("Today is:"));
+    windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last update:"));
+}
+
 bool CScreenMainMenu::virtualChampionshipButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getNewVirtualGameScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("NewVirtualGame");
     return true;
 }
 
 bool CScreenMainMenu::newManagerGameButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getNewManagerGameScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("NewManagerGame");
     return true;
 }
 
 bool CScreenMainMenu::configButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getConfigScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("Configuration");
     return true;
 }
 
 bool CScreenMainMenu::creditsButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getCreditsScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("Credits");
     return true;
 }
 
 bool CScreenMainMenu::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
-    CGameEngine::getInstance()->nextScreen(CGameEngine::getInstance()->getLoadGameScreen());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("LoadGame");
     return true;
 }
 
@@ -145,7 +151,7 @@ bool CScreenMainMenu::quickLoadButtonClicked(const CEGUI::EventArgs& e)
     if(gamesList != NULL) {
         if(!gamesList->empty()) {
             CPfGames *game = gamesList->front();
-            CGameEngine::getInstance()->loadGame(CSinglePlayerGame::load(game));
+            CGameEngine::getInstance()->loadGame(CSinglePlayerGame::load(*game));
         }
         gamesDAO->freeVector(gamesList);
     }
