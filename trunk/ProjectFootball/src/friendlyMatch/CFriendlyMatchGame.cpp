@@ -28,7 +28,7 @@
 #include "../utils/CLog.h"
 
 
-CFriendlyMatchGame::CFriendlyMatchGame(const CPfUsers *user)
+CFriendlyMatchGame::CFriendlyMatchGame(const CPfUsers &user)
 {
     LOG_DEBUG("CFriendlyMatchGame::CFriendlyMatchGame");
     m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= FRIENDLY MATCH GAME =-]"));
@@ -59,30 +59,35 @@ CPfGames* CFriendlyMatchGame::save()
     return game;
 }
 
-void CFriendlyMatchGame::enter()
+const char* CFriendlyMatchGame::getFirstScreenName()
 {
-    m_game->enter();
-    m_game->nextScreen(m_game->getSimulatorScreen());
+	return "Simulator";
 }
-
-void CFriendlyMatchGame::leave()
-{
-    m_game->leave();
-
-    IPfGamesDAO                         *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
-    std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_FRIENDLYMATCH);
-    std::vector<CPfGames*>::iterator    it;
-    for( it=gamesList->begin(); it!=gamesList->end(); it++ ){
-        CPfGames *game = (*it);
-        if( game->getSDriverName()=="SQLite" ){
-            remove(game->getSConnectionString().c_str());
-        }
-        gamesDAO->deleteReg(game);
-    }
-    gamesDAO->freeVector(gamesList);
-}
-
-void CFriendlyMatchGame::update()
-{
-    m_game->update();
-}
+//
+//void CFriendlyMatchGame::enter()
+//{
+//    m_game->enter();
+//    m_game->nextScreen(m_game->getSimulatorScreen());
+//}
+//
+//void CFriendlyMatchGame::leave()
+//{
+//    m_game->leave();
+//
+//    IPfGamesDAO                         *gamesDAO   = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
+//    std::vector<CPfGames*>              *gamesList  = gamesDAO->findBySGameType(S_GAME_TYPE_FRIENDLYMATCH);
+//    std::vector<CPfGames*>::iterator    it;
+//    for( it=gamesList->begin(); it!=gamesList->end(); it++ ){
+//        CPfGames *game = (*it);
+//        if( game->getSDriverName()=="SQLite" ){
+//            remove(game->getSConnectionString().c_str());
+//        }
+//        gamesDAO->deleteReg(game);
+//    }
+//    gamesDAO->freeVector(gamesList);
+//}
+//
+//void CFriendlyMatchGame::update()
+//{
+//    m_game->update();
+//}

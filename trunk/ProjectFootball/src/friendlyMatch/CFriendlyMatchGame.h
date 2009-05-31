@@ -31,16 +31,17 @@ class CSinglePlayerGame;
 class CFriendlyMatchGame : public IGame
 {
 public:
-    CFriendlyMatchGame(const CPfUsers *user);
+    CFriendlyMatchGame(const CPfUsers &user);
     virtual ~CFriendlyMatchGame();
 
     // IGame
     virtual CPfGames* save();
-
-    // CScreen
-    virtual void enter();
-    virtual void leave();
-    virtual void update();
+    virtual const char* getFirstScreenName();
+//
+//    // CScreen
+//    virtual void enter();
+//    virtual void leave();
+//    virtual void update();
 
 private:
     CSinglePlayerGame   *m_game;
