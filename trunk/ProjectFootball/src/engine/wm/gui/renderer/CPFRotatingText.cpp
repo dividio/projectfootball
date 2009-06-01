@@ -145,6 +145,7 @@ namespace CEGUI{
 	void CPFRotatingText::runThread()
 	{
 		LOG_DEBUG("A thread has started!");
+		m_stopThread = false;
 		for(;;){
 			if( m_stopThread ){
 				break;
@@ -154,7 +155,7 @@ namespace CEGUI{
 				d_window->requestRedraw();
 			}
 			boost::system_time time = boost::get_system_time();
-			time += boost::posix_time::milliseconds(40);
+			time += boost::posix_time::milliseconds(10);
 			m_thread.sleep(time);
 		}
 		LOG_DEBUG("A thread has finished!");

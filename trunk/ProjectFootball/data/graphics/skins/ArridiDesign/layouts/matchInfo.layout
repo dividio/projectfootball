@@ -5,7 +5,7 @@
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Window Type="ArridiDesign/RotatingText" Name="MatchInfo/InformationBanner" >
-            <Property Name="TextSpeed" Value="0.1" />
+            <Property Name="TextSpeed" Value="0.05" />
             <Property Name="Font" Value="DejaVuSans-8" />
             <Property Name="TextColours" Value="tl:FFFFFF00 tr:FFFFFF00 bl:FFFFFF00 br:FFFFFF00" />
             <Property Name="FrameEnabled" Value="False" />
