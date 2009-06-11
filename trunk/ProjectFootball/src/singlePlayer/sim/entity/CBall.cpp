@@ -23,7 +23,7 @@
 #include <Ogre.h>
 
 #include "../../../bullet/btBulletDynamicsCommon.h"
-#include "../../screen/CScreenSimulator.h"
+#include "../../wh/CSimulatorWindowHandler.h"
 #include "../../../utils/CLog.h"
 
 

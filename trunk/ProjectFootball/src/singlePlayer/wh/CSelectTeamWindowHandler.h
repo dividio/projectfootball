@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENSELECTTEAM_H_
-#define CSCREENSELECTTEAM_H_
+#ifndef CSELECTTEAMWINDOWHANDLER_H_
+#define CSELECTTEAMWINDOWHANDLER_H_
 
 #include "../../engine/wm/CWindowHandler.h"
 
@@ -34,11 +34,11 @@ class CPfSeasons;
 class CPfTeams;
 
 
-class CScreenSelectTeam : public CWindowHandler
+class CSelectTeamWindowHandler : public CWindowHandler
 {
 public:
-    CScreenSelectTeam(CSinglePlayerGame &game);
-    virtual ~CScreenSelectTeam();
+    CSelectTeamWindowHandler(CSinglePlayerGame &game);
+    virtual ~CSelectTeamWindowHandler();
 
     virtual void init();
     virtual void enter();
@@ -84,4 +84,4 @@ private:
     CSinglePlayerGame				&m_game;
 };
 
-#endif /*CSCREENSELECTTEAM_H_*/
+#endif /*CSELECTTEAMWINDOWHANDLER_H_*/

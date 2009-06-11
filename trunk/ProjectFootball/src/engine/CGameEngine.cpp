@@ -35,9 +35,6 @@
 #include "wh/CNewManagerGameWindowHandler.h"
 #include "wh/CNewVirtualGameWindowHandler.h"
 
-#include "../singlePlayer/screen/CGNSWindowHandler.h"
-#include "../singlePlayer/screen/CScreenSelectTeam.h"
-
 CGameEngine* CGameEngine::m_instance = NULL;
 
 CGameEngine::CGameEngine()// : m_screenStack()

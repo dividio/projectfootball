@@ -18,7 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CScreenTeamPlayers.h"
+#include "CTeamPlayersWindowHandler.h"
 
 #include <libintl.h>
 
@@ -31,19 +31,19 @@
 #include "../../utils/CLog.h"
 
 
-CScreenTeamPlayers::CScreenTeamPlayers(CSinglePlayerGame &game) :
+CTeamPlayersWindowHandler::CTeamPlayersWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("teamPlayers.layout"),
 	m_game(game)
 {
-    LOG_DEBUG("CScreenTeamPlayers()");
+    LOG_DEBUG("CTeamPlayersWindowHandler()");
 }
 
-CScreenTeamPlayers::~CScreenTeamPlayers()
+CTeamPlayersWindowHandler::~CTeamPlayersWindowHandler()
 {
-    LOG_DEBUG("~CScreenTeamPlayers()");
+    LOG_DEBUG("~CTeamPlayersWindowHandler()");
 }
 
-void CScreenTeamPlayers::enter()
+void CTeamPlayersWindowHandler::enter()
 {
     loadTeamPlayersList();
     m_selectedPlayers = NONE;
@@ -51,7 +51,7 @@ void CScreenTeamPlayers::enter()
     m_selectedPlayer2 = NULL;
 }
 
-void CScreenTeamPlayers::init()
+void CTeamPlayersWindowHandler::init()
 {
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
 
@@ -96,13 +96,13 @@ void CScreenTeamPlayers::init()
     windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverageLabel")->setText((CEGUI::utf8*)gettext("Average:"));
 
     // events
-    registerEventConnection(m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::lineUpTeamPlayersListboxSelectionChanged, this)));
-    registerEventConnection(m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::alternateTeamPlayersListboxSelectionChanged, this)));
-    registerEventConnection(m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CScreenTeamPlayers::notLineUpTeamPlayersListboxSelectionChanged, this)));
-    registerEventConnection(m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenTeamPlayers::changePlayersButtonClicked, this)));
+    registerEventConnection(m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::lineUpTeamPlayersListboxSelectionChanged, this)));
+    registerEventConnection(m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::alternateTeamPlayersListboxSelectionChanged, this)));
+    registerEventConnection(m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::notLineUpTeamPlayersListboxSelectionChanged, this)));
+    registerEventConnection(m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::changePlayersButtonClicked, this)));
 }
 
-void CScreenTeamPlayers::leave()
+void CTeamPlayersWindowHandler::leave()
 {
     switch (m_selectedPlayers) {
         case NONE:
@@ -123,7 +123,7 @@ void CScreenTeamPlayers::leave()
     m_selectedPlayers = NONE;
 }
 
-void CScreenTeamPlayers::changePlayers()
+void CTeamPlayersWindowHandler::changePlayers()
 {
     changeRows(m_selectedPlayer1List, m_selectedPlayer1Row, m_selectedPlayer2List, m_selectedPlayer2Row);
 
@@ -136,7 +136,7 @@ void CScreenTeamPlayers::changePlayers()
     m_selectedPlayer2List->clearAllSelections();
 }
 
-void CScreenTeamPlayers::loadTeamPlayersList()
+void CTeamPlayersWindowHandler::loadTeamPlayersList()
 {
     m_lineUpTeamPlayersList   ->resetList();
     m_alternateTeamPlayersList->resetList();
@@ -186,7 +186,7 @@ void CScreenTeamPlayers::loadTeamPlayersList()
     m_alternateTeamPlayersList->getVertScrollbar()->setVisible(false);
 }
 
-void CScreenTeamPlayers::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
+void CTeamPlayersWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
 
@@ -211,7 +211,7 @@ void CScreenTeamPlayers::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiCol
     delete playerAverage;
 }
 
-void CScreenTeamPlayers::saveTeamPlayersList()
+void CTeamPlayersWindowHandler::saveTeamPlayersList()
 {
     m_game.getIDAOFactory()->beginTransaction();
     CPfTeams                    *team                   = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
@@ -265,7 +265,7 @@ void CScreenTeamPlayers::saveTeamPlayersList()
     m_game.getIDAOFactory()->commit();
 }
 
-void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
+void CTeamPlayersWindowHandler::selectChanged(CEGUI::MultiColumnList *list)
 {
     CEGUI::ListboxItem *currentItem = list->getFirstSelectedItem();
 
@@ -328,25 +328,25 @@ void CScreenTeamPlayers::selectChanged(CEGUI::MultiColumnList *list)
     }
 }
 
-bool CScreenTeamPlayers::lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
+bool CTeamPlayersWindowHandler::lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_lineUpTeamPlayersList);
     return true;
 }
 
-bool CScreenTeamPlayers::alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
+bool CTeamPlayersWindowHandler::alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_alternateTeamPlayersList);
     return true;
 }
 
-bool CScreenTeamPlayers::notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
+bool CTeamPlayersWindowHandler::notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_notLineUpTeamPlayersList);
     return true;
 }
 
-bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
+bool CTeamPlayersWindowHandler::changePlayersButtonClicked(const CEGUI::EventArgs& e)
 {
     if(m_selectedPlayers == BOTH) {
         changePlayers();
@@ -364,7 +364,7 @@ bool CScreenTeamPlayers::changePlayersButtonClicked(const CEGUI::EventArgs& e)
     return true;
 }
 
-void CScreenTeamPlayers::changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2)
+void CTeamPlayersWindowHandler::changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2)
 {
     CEGUI::ListboxItem *item1;
     CEGUI::ListboxItem *item2;
@@ -396,7 +396,7 @@ void CScreenTeamPlayers::changeRows(CEGUI::MultiColumnList *list1, int row1, CEG
     delete playerAverage;
 }
 
-void CScreenTeamPlayers::changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState)
+void CTeamPlayersWindowHandler::changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState)
 {
     int columns = list->getColumnCount();
     for( int i = 0; i < columns; i++) {

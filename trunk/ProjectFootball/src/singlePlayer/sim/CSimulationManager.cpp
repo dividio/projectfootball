@@ -42,7 +42,7 @@
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"
 #include "../option/CSinglePlayerOptionManager.h"
-#include "../screen/CScreenSimulator.h"
+#include "../wh/CSimulatorWindowHandler.h"
 
 #include "../../audio/CAudioSystem.h"
 #include "../../bullet/LinearMath/btVector3.h"
@@ -53,10 +53,10 @@
 #include "../../utils/CDate.h"
 
 
-CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame &game, CScreenSimulator &screen) :
+CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame &game, CSimulatorWindowHandler &simulatorWH) :
 	m_goalEvents(),
 	m_game(game),
-	m_screenSimulator(screen)
+	m_simulatorWindowHandler(simulatorWH)
 {
     LOG_DEBUG("CSimulationManager()");
 
@@ -156,7 +156,7 @@ void CSimulationManager::update()
 
 void CSimulationManager::addToLog(const std::string &text)
 {
-	m_screenSimulator.addToLog(text);
+	m_simulatorWindowHandler.addToLog(text);
 }
 
 CSimulationWorld* CSimulationManager::getSimulationWorld()
@@ -206,7 +206,7 @@ void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *play
     goalDate.setMin(goalDate.getMin()+minute);
 
     m_goalEvents.push_back(new CGoalMatchEvent(goalDate, m_match->getXMatch(), teamScorer->getXTeam(), playerScorer->getXTeamPlayer(), minute, ownGoal));
-    m_screenSimulator.updateScore();
+    m_simulatorWindowHandler.updateScore();
 }
 
 void CSimulationManager::endMatchEvent()
@@ -226,7 +226,7 @@ void CSimulationManager::endMatchEvent()
     m_game.getEventsQueue()->push(new CEndMatchEvent(endDate, m_match->getXMatch()));
 
     // Send notitify to simulator screen
-    m_screenSimulator.endMatchEvent();
+    m_simulatorWindowHandler.endMatchEvent();
 }
 
 void CSimulationManager::changeFormationEvent(int pos)

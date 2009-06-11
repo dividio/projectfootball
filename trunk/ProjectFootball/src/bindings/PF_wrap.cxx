@@ -1522,9 +1522,9 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_CPfTeams swig_types[12]
 #define SWIGTYPE_p_CRectangle swig_types[13]
 #define SWIGTYPE_p_CReferee swig_types[14]
-#define SWIGTYPE_p_CScreenSimulator swig_types[15]
-#define SWIGTYPE_p_CSimulationManager swig_types[16]
-#define SWIGTYPE_p_CSimulationWorld swig_types[17]
+#define SWIGTYPE_p_CSimulationManager swig_types[15]
+#define SWIGTYPE_p_CSimulationWorld swig_types[16]
+#define SWIGTYPE_p_CSimulatorWindowHandler swig_types[17]
 #define SWIGTYPE_p_CSinglePlayerGame swig_types[18]
 #define SWIGTYPE_p_CStateMachineT_CFootballPlayer_t swig_types[19]
 #define SWIGTYPE_p_CStateMachineT_CReferee_t swig_types[20]
@@ -2671,13 +2671,13 @@ static int _wrap_new_CSimulationManager(lua_State* L) {
   int SWIG_arg = 0;
   int arg1 ;
   CSinglePlayerGame *arg2 = 0 ;
-  CScreenSimulator *arg3 = 0 ;
+  CSimulatorWindowHandler *arg3 = 0 ;
   CSimulationManager *result = 0 ;
   
   SWIG_check_num_args("CSimulationManager",3,3)
   if(!lua_isnumber(L,1)) SWIG_fail_arg("CSimulationManager",1,"int");
   if(!lua_isuserdata(L,2)) SWIG_fail_arg("CSimulationManager",2,"CSinglePlayerGame &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("CSimulationManager",3,"CScreenSimulator &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("CSimulationManager",3,"CSimulatorWindowHandler &");
   arg1 = (int)lua_tonumber(L, 1);
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_CSinglePlayerGame,0))){
@@ -2685,8 +2685,8 @@ static int _wrap_new_CSimulationManager(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_CScreenSimulator,0))){
-    SWIG_fail_ptr("new_CSimulationManager",3,SWIGTYPE_p_CScreenSimulator);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_CSimulatorWindowHandler,0))){
+    SWIG_fail_ptr("new_CSimulationManager",3,SWIGTYPE_p_CSimulatorWindowHandler);
   }
   
   result = (CSimulationManager *)new CSimulationManager(arg1,*arg2,*arg3);
@@ -11052,9 +11052,9 @@ static swig_type_info _swigt__p_CPfTeamPlayers = {"_p_CPfTeamPlayers", "CPfTeamP
 static swig_type_info _swigt__p_CPfTeams = {"_p_CPfTeams", "CPfTeams *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CRectangle = {"_p_CRectangle", "CRectangle *", 0, 0, (void*)&_wrap_class_CRectangle, 0};
 static swig_type_info _swigt__p_CReferee = {"_p_CReferee", "CReferee *", 0, 0, (void*)&_wrap_class_CReferee, 0};
-static swig_type_info _swigt__p_CScreenSimulator = {"_p_CScreenSimulator", "CScreenSimulator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CSimulationManager = {"_p_CSimulationManager", "CSimulationManager *", 0, 0, (void*)&_wrap_class_CSimulationManager, 0};
 static swig_type_info _swigt__p_CSimulationWorld = {"_p_CSimulationWorld", "CSimulationWorld *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_CSimulatorWindowHandler = {"_p_CSimulatorWindowHandler", "CSimulatorWindowHandler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CSinglePlayerGame = {"_p_CSinglePlayerGame", "CSinglePlayerGame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CStateMachineT_CFootballPlayer_t = {"_p_CStateMachineT_CFootballPlayer_t", "CStateMachine< CFootballPlayer > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CFootballPlayer_Sg_, 0};
 static swig_type_info _swigt__p_CStateMachineT_CReferee_t = {"_p_CStateMachineT_CReferee_t", "CStateMachine< CReferee > *", 0, 0, (void*)&_wrap_class_CStateMachine_Sl_CReferee_Sg_, 0};
@@ -11089,9 +11089,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CPfTeams,
   &_swigt__p_CRectangle,
   &_swigt__p_CReferee,
-  &_swigt__p_CScreenSimulator,
   &_swigt__p_CSimulationManager,
   &_swigt__p_CSimulationWorld,
+  &_swigt__p_CSimulatorWindowHandler,
   &_swigt__p_CSinglePlayerGame,
   &_swigt__p_CStateMachineT_CFootballPlayer_t,
   &_swigt__p_CStateMachineT_CReferee_t,
@@ -11126,9 +11126,9 @@ static swig_cast_info _swigc__p_CPfTeamPlayers[] = {  {&_swigt__p_CPfTeamPlayers
 static swig_cast_info _swigc__p_CPfTeams[] = {  {&_swigt__p_CPfTeams, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CRectangle[] = {  {&_swigt__p_CRectangle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CReferee[] = {  {&_swigt__p_CReferee, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CScreenSimulator[] = {  {&_swigt__p_CScreenSimulator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationManager[] = {  {&_swigt__p_CSimulationManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSimulationWorld[] = {  {&_swigt__p_CSimulationWorld, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_CSimulatorWindowHandler[] = {  {&_swigt__p_CSimulatorWindowHandler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CSinglePlayerGame[] = {  {&_swigt__p_CSinglePlayerGame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMachineT_CFootballPlayer_t[] = {  {&_swigt__p_CStateMachineT_CFootballPlayer_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CStateMachineT_CReferee_t[] = {  {&_swigt__p_CStateMachineT_CReferee_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -11163,9 +11163,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CPfTeams,
   _swigc__p_CRectangle,
   _swigc__p_CReferee,
-  _swigc__p_CScreenSimulator,
   _swigc__p_CSimulationManager,
   _swigc__p_CSimulationWorld,
+  _swigc__p_CSimulatorWindowHandler,
   _swigc__p_CSinglePlayerGame,
   _swigc__p_CStateMachineT_CFootballPlayer_t,
   _swigc__p_CStateMachineT_CReferee_t,

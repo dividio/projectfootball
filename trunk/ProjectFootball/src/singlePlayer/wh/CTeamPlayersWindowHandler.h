@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENTEAMPLAYERS_H_
-#define CSCREENTEAMPLAYERS_H_
+#ifndef CTEAMPLAYERSWINDOWHANDLER_H_
+#define CTEAMPLAYERSWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 #include "../../engine/wm/CWindowHandler.h"
@@ -30,11 +30,11 @@ class CPfTeamPlayers;
 
 
 
-class CScreenTeamPlayers : public CWindowHandler
+class CTeamPlayersWindowHandler : public CWindowHandler
 {
 public:
-    CScreenTeamPlayers(CSinglePlayerGame &game);
-    virtual ~CScreenTeamPlayers();
+    CTeamPlayersWindowHandler(CSinglePlayerGame &game);
+    virtual ~CTeamPlayersWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -76,4 +76,4 @@ private:
     CSinglePlayerGame		&m_game;
 };
 
-#endif /*CSCREENTEAMPLAYERS_H_*/
+#endif /*CTEAMPLAYERSWINDOWHANDLER_H_*/

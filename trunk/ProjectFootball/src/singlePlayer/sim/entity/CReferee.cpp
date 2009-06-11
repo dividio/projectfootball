@@ -28,7 +28,7 @@
 #include "../CSimulationManager.h"
 #include "../message/MessageTypes.h"
 #include "../fsm/CStateMachine.h"
-#include "../../screen/CScreenSimulator.h"
+#include "../../wh/CSimulatorWindowHandler.h"
 #include "../../../utils/CLog.h"
 #include "../../../engine/option/CSystemOptionManager.h"
 

@@ -18,7 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CScreenResults.h"
+#include "CResultsWindowHandler.h"
 
 #include <libintl.h>
 
@@ -31,22 +31,22 @@
 #include "../../utils/CLog.h"
 
 
-CScreenResults::CScreenResults(CSinglePlayerGame &game) :
+CResultsWindowHandler::CResultsWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("results.layout"),
 	m_game(game),
 	m_lastSeason(NULL)
 {
-    LOG_DEBUG("CScreenResults()");
+    LOG_DEBUG("CResultsWindowHandler()");
 
     m_lastSeason = NULL;
 }
 
-CScreenResults::~CScreenResults()
+CResultsWindowHandler::~CResultsWindowHandler()
 {
-    LOG_DEBUG("~CScreenResults()");
+    LOG_DEBUG("~CResultsWindowHandler()");
 }
 
-void CScreenResults::enter()
+void CResultsWindowHandler::enter()
 {
 	CPfTeams             *playerTeam           = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
 	CPfMatches           *lastMatch            = m_game.getIDAOFactory()->getIPfMatchesDAO()->findLastTeamMatch(playerTeam->getXTeam_str());
@@ -71,7 +71,7 @@ void CScreenResults::enter()
 	delete playerTeam;
 }
 
-void CScreenResults::init()
+void CResultsWindowHandler::init()
 {
     CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
     m_confederationsCombobox    = static_cast<CEGUI::Combobox*>(windowMngr.getWindow((CEGUI::utf8*)"Results/ConfederationCombo"));
@@ -94,10 +94,10 @@ void CScreenResults::init()
     static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Results/ResultsLabel"))->setText((CEGUI::utf8*)gettext("Results:"));
 
     // Event handle
-    registerEventConnection(m_confederationsCombobox   ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::confederationsComboboxListSelectionChanged, this)));
-    registerEventConnection(m_countriesCombobox        ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::countriesComboboxListSelectionChanged, this)));
-    registerEventConnection(m_competitionsCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::competitionsComboboxListSelectionChanged, this)));
-    registerEventConnection(m_competitionPhasesCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CScreenResults::competitionPhasesComboboxListSelectionChanged, this)));
+    registerEventConnection(m_confederationsCombobox   ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CResultsWindowHandler::confederationsComboboxListSelectionChanged, this)));
+    registerEventConnection(m_countriesCombobox        ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CResultsWindowHandler::countriesComboboxListSelectionChanged, this)));
+    registerEventConnection(m_competitionsCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CResultsWindowHandler::competitionsComboboxListSelectionChanged, this)));
+    registerEventConnection(m_competitionPhasesCombobox->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CResultsWindowHandler::competitionPhasesComboboxListSelectionChanged, this)));
 
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Home Team"),   0, CEGUI::UDim(0.4,0));
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       1, CEGUI::UDim(0.1,0));
@@ -105,7 +105,7 @@ void CScreenResults::init()
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       3, CEGUI::UDim(0.1,0));
 }
 
-void CScreenResults::leave()
+void CResultsWindowHandler::leave()
 {
     if( m_lastSeason!=NULL ){
         delete m_lastSeason;
@@ -113,7 +113,7 @@ void CScreenResults::leave()
     }
 }
 
-void CScreenResults::loadConfederations(int XSeason, int XConfederation)
+void CResultsWindowHandler::loadConfederations(int XSeason, int XConfederation)
 {
     m_confederationsCombobox->clearAllSelections();
     m_confederationsCombobox->resetList();
@@ -146,7 +146,7 @@ void CScreenResults::loadConfederations(int XSeason, int XConfederation)
 
 }
 
-void CScreenResults::loadCountries(int XSeason, int XConfederation, int XCountry)
+void CResultsWindowHandler::loadCountries(int XSeason, int XConfederation, int XCountry)
 {
     m_countriesCombobox->clearAllSelections();
     m_countriesCombobox->resetList();
@@ -184,7 +184,7 @@ void CScreenResults::loadCountries(int XSeason, int XConfederation, int XCountry
 
 }
 
-void CScreenResults::loadCompetitions(int XSeason, int XCountry, int XCompetition)
+void CResultsWindowHandler::loadCompetitions(int XSeason, int XCountry, int XCompetition)
 {
     m_competitionsCombobox->clearAllSelections();
     m_competitionsCombobox->resetList();
@@ -214,7 +214,7 @@ void CScreenResults::loadCompetitions(int XSeason, int XCountry, int XCompetitio
     competitionsDAO->freeVector(competitionsList);
 }
 
-void CScreenResults::loadCompetitionPhases(int XCompetition, int XCompetitionPhase)
+void CResultsWindowHandler::loadCompetitionPhases(int XCompetition, int XCompetitionPhase)
 {
     m_competitionPhasesCombobox->clearAllSelections();
     m_competitionPhasesCombobox->resetList();
@@ -245,7 +245,7 @@ void CScreenResults::loadCompetitionPhases(int XCompetition, int XCompetitionPha
         competitionPhasesDAO->freeVector(competitionPhasesList);
 }
 
-void CScreenResults::loadResultsList(int XCompetitionPhase)
+void CResultsWindowHandler::loadResultsList(int XCompetitionPhase)
 {
     m_resultsList->resetList();
 
@@ -301,7 +301,7 @@ void CScreenResults::loadResultsList(int XCompetitionPhase)
     m_resultsList->getHorzScrollbar()->setVisible(false);
 }
 
-void CScreenResults::loadLastSeason()
+void CResultsWindowHandler::loadLastSeason()
 {
     if( m_lastSeason!=NULL ){
         delete m_lastSeason;
@@ -311,11 +311,11 @@ void CScreenResults::loadLastSeason()
     IPfSeasonsDAO *seasonsDAO = m_game.getIDAOFactory()->getIPfSeasonsDAO();
     m_lastSeason = seasonsDAO->findLastSeason();
     if( m_lastSeason==NULL || m_lastSeason->getXSeason_str()=="" ){
-        throw PFEXCEPTION("[CScreenResults::loadLastSeason] Last season not found");
+        throw PFEXCEPTION("[CResultsWindowHandler::loadLastSeason] Last season not found");
     }
 }
 
-bool CScreenResults::confederationsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
+bool CResultsWindowHandler::confederationsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_confederationsCombobox->getSelectedItem();
     loadCountries(m_lastSeason->getXSeason(), item->getID());
@@ -334,7 +334,7 @@ bool CScreenResults::confederationsComboboxListSelectionChanged(const CEGUI::Eve
     return true;
 }
 
-bool CScreenResults::countriesComboboxListSelectionChanged(const CEGUI::EventArgs& e)
+bool CResultsWindowHandler::countriesComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_countriesCombobox->getSelectedItem();
     loadCompetitions(m_lastSeason->getXSeason(), item->getID());
@@ -351,7 +351,7 @@ bool CScreenResults::countriesComboboxListSelectionChanged(const CEGUI::EventArg
     return true;
 }
 
-bool CScreenResults::competitionsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
+bool CResultsWindowHandler::competitionsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_competitionsCombobox->getSelectedItem();
     CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason());
@@ -366,7 +366,7 @@ bool CScreenResults::competitionsComboboxListSelectionChanged(const CEGUI::Event
     return true;
 }
 
-bool CScreenResults::competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e)
+bool CResultsWindowHandler::competitionPhasesComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_competitionPhasesCombobox->getSelectedItem();
     loadResultsList(item->getID());

@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef CSCREENMATCHRESULT_H_
-#define CSCREENMATCHRESULT_H_
+#ifndef CMATCHRESULTWINDOWHANDLER_H_
+#define CMATCHRESULTWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 #include "../../engine/wm/CWindowHandler.h"
@@ -31,11 +31,11 @@ class CSinglePlayerGame;
 class CPfTeamAverages;
 
 
-class CScreenMatchResult : public CWindowHandler
+class CMatchResultWindowHandler : public CWindowHandler
 {
 public:
-    CScreenMatchResult(CSinglePlayerGame &game);
-    virtual ~CScreenMatchResult();
+    CMatchResultWindowHandler(CSinglePlayerGame &game);
+    virtual ~CMatchResultWindowHandler();
 
     virtual void init();
     virtual void leave();
@@ -63,4 +63,4 @@ private:
 
 };
 
-#endif /*CSCREENMATCHRESULT_H_*/
+#endif /*CMATCHRESULTWINDOWHANDLER_H_*/

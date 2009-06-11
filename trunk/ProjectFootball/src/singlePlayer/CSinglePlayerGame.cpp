@@ -41,14 +41,14 @@
 #include "option/CSinglePlayerOptionManager.h"
 #include "report/CSinglePlayerReportRegister.h"
 
-#include "screen/CScreenMatchResult.h"
-#include "screen/CScreenRanking.h"
-#include "screen/CScreenResults.h"
-#include "screen/CScreenSelectTeam.h"
-#include "screen/CScreenSimulator.h"
-#include "screen/CScreenTeamPlayers.h"
-#include "screen/CGNSWindowHandler.h"
-#include "screen/CMatchInfoWindowHandler.h"
+#include "wh/CGNSWindowHandler.h"
+#include "wh/CMatchInfoWindowHandler.h"
+#include "wh/CMatchResultWindowHandler.h"
+#include "wh/CRankingWindowHandler.h"
+#include "wh/CResultsWindowHandler.h"
+#include "wh/CSelectTeamWindowHandler.h"
+#include "wh/CSimulatorWindowHandler.h"
+#include "wh/CTeamPlayersWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../engine/db/bean/CPfGames.h"
@@ -81,12 +81,12 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	// window handlers
     m_windowHandlers.push_back(new CGNSWindowHandler(*this));
 	m_windowHandlers.push_back((m_matchInfoWindowHandler = new CMatchInfoWindowHandler(*this)));
-	m_windowHandlers.push_back(new CScreenSelectTeam(*this));
-	m_windowHandlers.push_back(new CScreenResults(*this));
-	m_windowHandlers.push_back(new CScreenRanking(*this));
-	m_windowHandlers.push_back(new CScreenTeamPlayers(*this));
-	m_windowHandlers.push_back(new CScreenMatchResult(*this));
-	m_windowHandlers.push_back(new CScreenSimulator(*this));
+	m_windowHandlers.push_back(new CSelectTeamWindowHandler(*this));
+	m_windowHandlers.push_back(new CResultsWindowHandler(*this));
+	m_windowHandlers.push_back(new CRankingWindowHandler(*this));
+	m_windowHandlers.push_back(new CTeamPlayersWindowHandler(*this));
+	m_windowHandlers.push_back(new CMatchResultWindowHandler(*this));
+	m_windowHandlers.push_back(new CSimulatorWindowHandler(*this));
 
     // game progression
     m_currentMatch		= NULL;

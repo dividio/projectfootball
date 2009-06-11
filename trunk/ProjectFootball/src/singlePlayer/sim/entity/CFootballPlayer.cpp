@@ -27,7 +27,7 @@
 #include "../../../bullet/btBulletDynamicsCommon.h"
 #include "../../../engine/option/CSystemOptionManager.h"
 #include "../CSimulationManager.h"
-#include "../../screen/CScreenSimulator.h"
+#include "../../wh/CSimulatorWindowHandler.h"
 #include "../CSteeringBehaviors.h"
 #include "../tactic/CStrategicPosition.h"
 #include "../../db/bean/CPfTeamPlayers.h"

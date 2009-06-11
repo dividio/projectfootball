@@ -18,7 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CScreenMatchResult.h"
+#include "CMatchResultWindowHandler.h"
 
 #include <libintl.h>
 
@@ -36,19 +36,19 @@
 #include "../../utils/CLog.h"
 
 
-CScreenMatchResult::CScreenMatchResult(CSinglePlayerGame &game) :
+CMatchResultWindowHandler::CMatchResultWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("matchResult.layout"),
 	m_game(game)
 {
-    LOG_DEBUG("CScreenMatchResult()");
+    LOG_DEBUG("CMatchResultWindowHandler()");
 }
 
-CScreenMatchResult::~CScreenMatchResult()
+CMatchResultWindowHandler::~CMatchResultWindowHandler()
 {
-    LOG_DEBUG("~CScreenMatchResult()");
+    LOG_DEBUG("~CMatchResultWindowHandler()");
 }
 
-void CScreenMatchResult::init()
+void CMatchResultWindowHandler::init()
 {
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
 
@@ -67,7 +67,7 @@ void CScreenMatchResult::init()
     m_continueButton		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/ContinueButton"));
 
     // Event handle
-    registerEventConnection(m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMatchResult::continueButtonClicked, this)));
+    registerEventConnection(m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMatchResultWindowHandler::continueButtonClicked, this)));
 
     // i18n support
     m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
@@ -87,7 +87,7 @@ void CScreenMatchResult::init()
     m_awayEventsList->getHorzScrollbar()->setVisible(false);
 }
 
-void CScreenMatchResult::leave()
+void CMatchResultWindowHandler::leave()
 {
     m_homeEventsList->resetList();
     m_awayEventsList->resetList();
@@ -99,7 +99,7 @@ void CScreenMatchResult::leave()
     m_game.getEventConsumer()->consumeEvents();
 }
 
-void CScreenMatchResult::update()
+void CMatchResultWindowHandler::update()
 {
 	if( m_loadMatchInfo ){
 		m_game.getEventConsumer()->consumeCurrentDayEvents();
@@ -109,7 +109,7 @@ void CScreenMatchResult::update()
 	}
 }
 
-void CScreenMatchResult::loadMatchInfo()
+void CMatchResultWindowHandler::loadMatchInfo()
 {
     IDAOFactory				*daoFactory				= m_game.getIDAOFactory();
     IPfGoalsDAO				*goalsDAO				= daoFactory->getIPfGoalsDAO();
@@ -200,7 +200,7 @@ void CScreenMatchResult::loadMatchInfo()
     delete homeTeam;
 }
 
-bool CScreenMatchResult::continueButtonClicked(const CEGUI::EventArgs& e)
+bool CMatchResultWindowHandler::continueButtonClicked(const CEGUI::EventArgs& e)
 {
 	CGameEngine::getInstance()->getWindowManager()->nextScreen("Game");
 	CGameEngine::getInstance()->getWindowManager()->clearHistory();

@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef CSCREENSIMULATOR_H_
-#define CSCREENSIMULATOR_H_
+#ifndef CSIMULATORWINDOWHANDLER_H_
+#define CSIMULATORWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
@@ -38,11 +38,11 @@ class CPfMatches;
 
 #define SIMULATION_SCENE_MANAGER_NODE_NAME	"Simulation SceneManager"
 
-class CScreenSimulator : public CWindowHandler
+class CSimulatorWindowHandler : public CWindowHandler
 {
 public:
-    CScreenSimulator(CSinglePlayerGame &game);
-    virtual ~CScreenSimulator();
+    CSimulatorWindowHandler(CSinglePlayerGame &game);
+    virtual ~CSimulatorWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -110,4 +110,4 @@ private:
     void setup2DView();
 };
 
-#endif // CSCREENSIMULATOR_H_
+#endif // CSIMULATORWINDOWHANDLER_H_

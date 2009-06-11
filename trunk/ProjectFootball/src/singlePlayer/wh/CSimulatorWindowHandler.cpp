@@ -18,7 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "CScreenSimulator.h"
+#include "CSimulatorWindowHandler.h"
 
 #include <stdio.h>
 #include <libintl.h>
@@ -34,20 +34,20 @@
 #include "../../utils/CLog.h"
 
 
-CScreenSimulator::CScreenSimulator(CSinglePlayerGame &game) :
+CSimulatorWindowHandler::CSimulatorWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("simulator.layout"),
 	m_game(game),
 	m_sceneMngr(NULL),
 	m_simulator(NULL),
 	m_initiated(false)
 {
-    LOG_DEBUG("CScreenSimulator()");
+    LOG_DEBUG("CSimulatorWindowHandler()");
 }
 
 
-CScreenSimulator::~CScreenSimulator()
+CSimulatorWindowHandler::~CSimulatorWindowHandler()
 {
-    LOG_DEBUG("~CScreenSimulator()");
+    LOG_DEBUG("~CSimulatorWindowHandler()");
 
     if( m_initiated ){
 		CEGUI::ImagesetManager::getSingleton().destroyImageset("RttImageset");
@@ -58,7 +58,7 @@ CScreenSimulator::~CScreenSimulator()
 }
 
 
-bool CScreenSimulator::keyDownHandler(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::keyDownHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
     float move = 15;
@@ -89,7 +89,7 @@ bool CScreenSimulator::keyDownHandler(const CEGUI::EventArgs& e)
 }
 
 
-bool CScreenSimulator::keyUpHandler(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::keyUpHandler(const CEGUI::EventArgs& e)
 {
     const CEGUI::KeyEventArgs& ke = static_cast<const CEGUI::KeyEventArgs&>(e);
     float move = 15;
@@ -122,7 +122,7 @@ bool CScreenSimulator::keyUpHandler(const CEGUI::EventArgs& e)
 }
 
 
-void CScreenSimulator::enter()
+void CSimulatorWindowHandler::enter()
 {
     m_sceneMngr->clearScene();
     m_direction = Ogre::Vector3::ZERO;
@@ -160,7 +160,7 @@ void CScreenSimulator::enter()
 }
 
 
-void CScreenSimulator::init()
+void CSimulatorWindowHandler::init()
 {
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
 
@@ -200,17 +200,17 @@ void CScreenSimulator::init()
     static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Simulator/StatisticsTab"))->setText((CEGUI::utf8*)gettext("Statistics"));
 
     // Event handle
-    registerEventConnection(m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::continueButtonClicked, this)));
-    registerEventConnection(m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this)));
-    registerEventConnection(m_zoomButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::zoomButtonClicked, this)));
-    registerEventConnection(m_formation433Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::formation433ButtonClicked, this)));
-    registerEventConnection(m_formation442Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::formation442ButtonClicked, this)));
-    registerEventConnection(m_frameWindow->subscribeEvent(CEGUI::FrameWindow::EventCloseClicked, CEGUI::Event::Subscriber(&CScreenSimulator::frameWindowCloseClicked, this)));
-    registerEventConnection(m_view2DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::view2DButtonClicked, this)));
-    registerEventConnection(m_view3DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::view3DButtonClicked, this)));
-    registerEventConnection(m_frameStartButtom->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenSimulator::startButtonClicked, this)));
-    registerEventConnection(windowMngr.getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyDown, CEGUI::Event::Subscriber(&CScreenSimulator::keyDownHandler, this)));
-    registerEventConnection(windowMngr.getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyUp, CEGUI::Event::Subscriber(&CScreenSimulator::keyUpHandler, this)));
+    registerEventConnection(m_continueButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::continueButtonClicked, this)));
+    registerEventConnection(m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::startButtonClicked, this)));
+    registerEventConnection(m_zoomButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::zoomButtonClicked, this)));
+    registerEventConnection(m_formation433Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::formation433ButtonClicked, this)));
+    registerEventConnection(m_formation442Button->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::formation442ButtonClicked, this)));
+    registerEventConnection(m_frameWindow->subscribeEvent(CEGUI::FrameWindow::EventCloseClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::frameWindowCloseClicked, this)));
+    registerEventConnection(m_view2DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::view2DButtonClicked, this)));
+    registerEventConnection(m_view3DButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::view3DButtonClicked, this)));
+    registerEventConnection(m_frameStartButtom->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::startButtonClicked, this)));
+    registerEventConnection(windowMngr.getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyDown, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::keyDownHandler, this)));
+    registerEventConnection(windowMngr.getWindow("Simulator")->subscribeEvent(CEGUI::Window::EventKeyUp, CEGUI::Event::Subscriber(&CSimulatorWindowHandler::keyUpHandler, this)));
 
     m_direction = Ogre::Vector3::ZERO;
     m_sceneMngr = Ogre::Root::getSingleton().createSceneManager(Ogre::ST_GENERIC, SIMULATION_SCENE_MANAGER_NODE_NAME);
@@ -260,7 +260,7 @@ void CScreenSimulator::init()
 }
 
 
-void CScreenSimulator::leave()
+void CSimulatorWindowHandler::leave()
 {
     if(m_simulator != NULL) {
         delete m_simulator;
@@ -271,7 +271,7 @@ void CScreenSimulator::leave()
 }
 
 
-void CScreenSimulator::update()
+void CSimulatorWindowHandler::update()
 {
     static btVector3 ballPositionOld = m_simulator->getBallPosition();
 
@@ -298,19 +298,19 @@ void CScreenSimulator::update()
 }
 
 
-CSimulationManager* CScreenSimulator::getSimulationManager()
+CSimulationManager* CSimulatorWindowHandler::getSimulationManager()
 {
     return m_simulator;
 }
 
 
-Ogre::SceneManager* CScreenSimulator::getSimulationSceneManager()
+Ogre::SceneManager* CSimulatorWindowHandler::getSimulationSceneManager()
 {
     return m_sceneMngr;
 }
 
 
-void CScreenSimulator::addToLog(const std::string &text)
+void CSimulatorWindowHandler::addToLog(const std::string &text)
 {
     int historySize = 7;
     int shortHistorySize = 3;
@@ -354,7 +354,7 @@ void CScreenSimulator::addToLog(const std::string &text)
 }
 
 
-void CScreenSimulator::loadTeamPlayers()
+void CSimulatorWindowHandler::loadTeamPlayers()
 {
     m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(1.0,0));
     m_teamPlayersList->resetList();
@@ -379,7 +379,7 @@ void CScreenSimulator::loadTeamPlayers()
 }
 
 
-void CScreenSimulator::toogleZoom()
+void CSimulatorWindowHandler::toogleZoom()
 {
     if(m_frameWindow->isVisible()) {
         m_frameWindow->setVisible(false);
@@ -394,7 +394,7 @@ void CScreenSimulator::toogleZoom()
 }
 
 
-void CScreenSimulator::setup2DView()
+void CSimulatorWindowHandler::setup2DView()
 {
     m_renderTexture->removeAllViewports();
     Ogre::Viewport *viewport = m_renderTexture->addViewport(m_cam2D);
@@ -404,7 +404,7 @@ void CScreenSimulator::setup2DView()
 }
 
 
-void CScreenSimulator::updateScore()
+void CSimulatorWindowHandler::updateScore()
 {
     CReferee *referee = m_simulator->getReferee();
     int homeScore = referee->getHomeScore();
@@ -420,54 +420,54 @@ void CScreenSimulator::updateScore()
     m_frameAwayScore->setText((CEGUI::utf8*)score.str().c_str());
 }
 
-void CScreenSimulator::endMatchEvent()
+void CSimulatorWindowHandler::endMatchEvent()
 {
     m_continueButton->setEnabled(true);
 }
 
-bool CScreenSimulator::continueButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::continueButtonClicked(const CEGUI::EventArgs& e)
 {
 	CGameEngine::getInstance()->getWindowManager()->nextScreen("MatchResult");
     return true;
 }
 
-bool CScreenSimulator::startButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::startButtonClicked(const CEGUI::EventArgs& e)
 {
     m_simulator->startMatch();
     return true;
 }
 
-bool CScreenSimulator::zoomButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::zoomButtonClicked(const CEGUI::EventArgs& e)
 {
     toogleZoom();
     return true;
 }
 
-bool CScreenSimulator::formation433ButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::formation433ButtonClicked(const CEGUI::EventArgs& e)
 {
     m_simulator->changeFormationEvent(0);
     return true;
 }
 
-bool CScreenSimulator::formation442ButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::formation442ButtonClicked(const CEGUI::EventArgs& e)
 {
     m_simulator->changeFormationEvent(1);
     return true;
 }
 
-bool CScreenSimulator::frameWindowCloseClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::frameWindowCloseClicked(const CEGUI::EventArgs& e)
 {
     toogleZoom();
     return true;
 }
 
-bool CScreenSimulator::view2DButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::view2DButtonClicked(const CEGUI::EventArgs& e)
 {
     setup2DView();
     return true;
 }
 
-bool CScreenSimulator::view3DButtonClicked(const CEGUI::EventArgs& e)
+bool CSimulatorWindowHandler::view3DButtonClicked(const CEGUI::EventArgs& e)
 {
     m_renderTexture->removeAllViewports();
     Ogre::Viewport *viewport = m_renderTexture->addViewport(m_cam3D);

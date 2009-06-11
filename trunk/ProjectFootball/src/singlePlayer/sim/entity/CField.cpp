@@ -22,7 +22,7 @@
 
 #include <Ogre.h>
 
-#include "../../screen/CScreenSimulator.h"
+#include "../../wh/CSimulatorWindowHandler.h"
 #include "../../../utils/geometry/CRectangle.h"
 #include "../../../bullet/btBulletDynamicsCommon.h"
 

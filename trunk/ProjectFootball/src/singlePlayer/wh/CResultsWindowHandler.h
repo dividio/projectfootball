@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENRESULTS_H_
-#define CSCREENRESULTS_H_
+#ifndef CRESULTSWINDOWHANDLER_H_
+#define CRESULTSWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 #include "../../engine/wm/CWindowHandler.h"
@@ -29,11 +29,11 @@ class CPfSeasons;
 class CSinglePlayerGame;
 
 
-class CScreenResults : public CWindowHandler
+class CResultsWindowHandler : public CWindowHandler
 {
 public:
-    CScreenResults(CSinglePlayerGame &game);
-	virtual ~CScreenResults();
+    CResultsWindowHandler(CSinglePlayerGame &game);
+	virtual ~CResultsWindowHandler();
 
 	virtual void enter();
 	virtual void init();
@@ -62,4 +62,4 @@ private:
     CSinglePlayerGame		&m_game;
 };
 
-#endif /*CSCREENRESULTS_H_*/
+#endif /*CRESULTSWINDOWHANDLER_H_*/

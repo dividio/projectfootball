@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENRANKING_H_
-#define CSCREENRANKING_H_
+#ifndef CRANKINGWINDOWHANDLER_H_
+#define CRANKINGWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 #include "../../engine/wm/CWindowHandler.h"
@@ -30,11 +30,11 @@ class CPfSeasons;
 class CSinglePlayerGame;
 
 
-class CScreenRanking : public CWindowHandler
+class CRankingWindowHandler : public CWindowHandler
 {
 public:
-    CScreenRanking(CSinglePlayerGame &game);
-	virtual ~CScreenRanking();
+    CRankingWindowHandler(CSinglePlayerGame &game);
+	virtual ~CRankingWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -61,4 +61,4 @@ private:
     CSinglePlayerGame		&m_game;
 };
 
-#endif /*CSCREENRANKING_H_*/
+#endif /*CRANKINGWINDOWHANDLER_H_*/
