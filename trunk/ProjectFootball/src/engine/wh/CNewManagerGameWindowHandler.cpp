@@ -21,30 +21,30 @@
 #include <stdio.h>
 #include <libintl.h>
 
-#include "CScreenNewManagerGame.h"
+#include "CNewManagerGameWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../../exceptions/PFException.h"
 #include "../../singlePlayer/CSinglePlayerGame.h"
 #include "../../utils/CLog.h"
 
-CScreenNewManagerGame::CScreenNewManagerGame()
+CNewManagerGameWindowHandler::CNewManagerGameWindowHandler()
 : CWindowHandler("newManagerGame.layout")
 {
-    LOG_DEBUG("CScreenNewManagerGame()");
+    LOG_DEBUG("CNewManagerGameWindowHandler()");
 }
 
-CScreenNewManagerGame::~CScreenNewManagerGame()
+CNewManagerGameWindowHandler::~CNewManagerGameWindowHandler()
 {
-    LOG_DEBUG("~CScreenNewManagerGame()");
+    LOG_DEBUG("~CNewManagerGameWindowHandler()");
 }
 
-void CScreenNewManagerGame::enter()
+void CNewManagerGameWindowHandler::enter()
 {
     m_newGameButton->setEnabled(false);
     m_newGameEditbox->setText("");
 }
 
-void CScreenNewManagerGame::init()
+void CNewManagerGameWindowHandler::init()
 {
 	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
@@ -57,12 +57,12 @@ void CScreenNewManagerGame::init()
     m_backButton          ->setText((CEGUI::utf8*)gettext("Back"));
 
     // Event handle
-    registerEventConnection(m_backButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewManagerGame::backButtonClicked, this)));
-    registerEventConnection(m_newGameButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewManagerGame::newGameButtonClicked, this)));
-    registerEventConnection(m_newGameEditbox     ->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CScreenNewManagerGame::newGameEditboxTextChanged, this)));
+    registerEventConnection(m_backButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::backButtonClicked, this)));
+    registerEventConnection(m_newGameButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::newGameButtonClicked, this)));
+    registerEventConnection(m_newGameEditbox     ->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::newGameEditboxTextChanged, this)));
 }
 
-bool CScreenNewManagerGame::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
+bool CNewManagerGameWindowHandler::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
 {
     if( m_newGameEditbox->getText().compare("")!=0 ){
         m_newGameButton->setEnabled(true);
@@ -71,19 +71,19 @@ bool CScreenNewManagerGame::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
     }
 }
 
-bool CScreenNewManagerGame::backButtonClicked(const CEGUI::EventArgs& e)
+bool CNewManagerGameWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->previousScreen();
     return true;
 }
 
-bool CScreenNewManagerGame::newGameButtonClicked(const CEGUI::EventArgs& e)
+bool CNewManagerGameWindowHandler::newGameButtonClicked(const CEGUI::EventArgs& e)
 {
     IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 
     if( user==NULL || user->getXUser()==0 ){
-        throw PFEXCEPTION("[CScreenNewManagerGame::newGameButtonClicked] User not defined");
+        throw PFEXCEPTION("[CNewManagerGameWindowHandler::newGameButtonClicked] User not defined");
     }
 
     CGameEngine::getInstance()->loadGame(CSinglePlayerGame::newGame(*user, m_newGameEditbox->getText().c_str()));

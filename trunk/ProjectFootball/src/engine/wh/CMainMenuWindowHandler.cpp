@@ -21,25 +21,25 @@
 #include <stdio.h>
 #include <libintl.h>
 
-#include "CScreenMainMenu.h"
+#include "CMainMenuWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../../utils/CLog.h"
 #include "../../singlePlayer/CSinglePlayerGame.h"
 
 
-CScreenMainMenu::CScreenMainMenu()
+CMainMenuWindowHandler::CMainMenuWindowHandler()
  :CWindowHandler("mainMenu.layout")
 {
-    LOG_DEBUG("CScreenMainMenu()");
+    LOG_DEBUG("CMainMenuWindowHandler()");
 }
 
 
-CScreenMainMenu::~CScreenMainMenu()
+CMainMenuWindowHandler::~CMainMenuWindowHandler()
 {
-	LOG_DEBUG("~CScreenMainMenu()");
+	LOG_DEBUG("~CMainMenuWindowHandler()");
 }
 
-void CScreenMainMenu::enter()
+void CMainMenuWindowHandler::enter()
 {
     CWindowHandler::enter();
     CGameEngine::getInstance()->getWindowManager()->clearHistory();
@@ -69,7 +69,7 @@ void CScreenMainMenu::enter()
 
 }
 
-void CScreenMainMenu::init()
+void CMainMenuWindowHandler::init()
 {
     CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
@@ -89,13 +89,13 @@ void CScreenMainMenu::init()
     m_version           	    = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"MainMenu/Version"));
 
     // Event handle
-    registerEventConnection(m_virtualChampionshipButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::virtualChampionshipButtonClicked, this)));
-    registerEventConnection(m_newManagerGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::newManagerGameButtonClicked, this)));
-    registerEventConnection(m_configButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::configButtonClicked, this)));
-    registerEventConnection(m_creditsButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::creditsButtonClicked, this)));
-    registerEventConnection(m_loadGameButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::loadGameButtonClicked, this)));
-    registerEventConnection(m_quickLoadButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quickLoadButtonClicked, this)));
-    registerEventConnection(m_quitButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenMainMenu::quitButtonClicked, this)));
+    registerEventConnection(m_virtualChampionshipButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::virtualChampionshipButtonClicked, this)));
+    registerEventConnection(m_newManagerGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::newManagerGameButtonClicked, this)));
+    registerEventConnection(m_configButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::configButtonClicked, this)));
+    registerEventConnection(m_creditsButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::creditsButtonClicked, this)));
+    registerEventConnection(m_loadGameButton           ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::loadGameButtonClicked, this)));
+    registerEventConnection(m_quickLoadButton          ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::quickLoadButtonClicked, this)));
+    registerEventConnection(m_quitButton               ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::quitButtonClicked, this)));
 
     // i18n support
     m_OnLineCommunityButton    ->setText((CEGUI::utf8*)gettext("On-line Community"));
@@ -113,37 +113,37 @@ void CScreenMainMenu::init()
     windowMngr->getWindow((CEGUI::utf8*)"MainMenu/VersionDateLabel")->setText((CEGUI::utf8*)gettext("Last update:"));
 }
 
-bool CScreenMainMenu::virtualChampionshipButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::virtualChampionshipButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->nextScreen("NewVirtualGame");
     return true;
 }
 
-bool CScreenMainMenu::newManagerGameButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::newManagerGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->nextScreen("NewManagerGame");
     return true;
 }
 
-bool CScreenMainMenu::configButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::configButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->nextScreen("Configuration");
     return true;
 }
 
-bool CScreenMainMenu::creditsButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::creditsButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->nextScreen("Credits");
     return true;
 }
 
-bool CScreenMainMenu::loadGameButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::loadGameButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->nextScreen("LoadGame");
     return true;
 }
 
-bool CScreenMainMenu::quickLoadButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::quickLoadButtonClicked(const CEGUI::EventArgs& e)
 {
     IPfGamesDAO*            gamesDAO    = CGameEngine::getInstance()->getCMasterDAOFactory()->getIPfGamesDAO();
     std::vector<CPfGames*> *gamesList   = gamesDAO->findByXFkUser(CGameEngine::getInstance()->getCurrentUser()->getXUser_str());
@@ -159,7 +159,7 @@ bool CScreenMainMenu::quickLoadButtonClicked(const CEGUI::EventArgs& e)
     return true;
 }
 
-bool CScreenMainMenu::quitButtonClicked(const CEGUI::EventArgs& e)
+bool CMainMenuWindowHandler::quitButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->exit();
     return true;

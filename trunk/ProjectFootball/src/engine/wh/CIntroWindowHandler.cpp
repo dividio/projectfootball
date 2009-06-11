@@ -1,29 +1,42 @@
-/*
- * CScreenIntro.cpp
- *
- *  Created on: 15-dic-2008
- *      Author: rothgar
- */
+/******************************************************************************
+* Copyright (C) 2008 - Ikaro Games   www.ikarogames.com                       *
+*                                                                             *
+* This program is free software; you can redistribute it and/or               *
+* modify it under the terms of the GNU General Public License                 *
+* as published by the Free Software Foundation; either version 2              *
+* of the License, or (at your option) any later version.                      *
+*                                                                             *
+* This program is distributed in the hope that it will be useful,             *
+* but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+* GNU General Public License for more details.                                *
+*                                                                             *
+* You should have received a copy of the GNU General Public License           *
+* along with this program; if not, write to the Free Software                 *
+* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. *
+*                                                                             *
+*                                                                             *
+******************************************************************************/
 
-#include "CScreenIntro.h"
+#include "CIntroWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../utils/CTimer.h"
 #include "../../utils/CLog.h"
 
 
-CScreenIntro::CScreenIntro()
+CIntroWindowHandler::CIntroWindowHandler()
  :CWindowHandler("intro.layout")
 {
-    LOG_DEBUG("CScreenIntro()");
+    LOG_DEBUG("CIntroWindowHandler()");
 }
 
-CScreenIntro::~CScreenIntro()
+CIntroWindowHandler::~CIntroWindowHandler()
 {
-    LOG_DEBUG("~CScreenIntro()");
+    LOG_DEBUG("~CIntroWindowHandler()");
     delete m_timer;
 }
 
-void CScreenIntro::enter()
+void CIntroWindowHandler::enter()
 {
     CWindowHandler::enter();
 
@@ -31,7 +44,7 @@ void CScreenIntro::enter()
     m_elapsedTime = 0;
 }
 
-void CScreenIntro::init()
+void CIntroWindowHandler::init()
 {
 	CWindowHandler::init();
 
@@ -40,10 +53,10 @@ void CScreenIntro::init()
     m_elapsedTime = 0;
 
     m_mainWindow = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"Intro"));
-    registerEventConnection(m_mainWindow->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&CScreenIntro::buttonClicked, this)));
+    registerEventConnection(m_mainWindow->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&CIntroWindowHandler::buttonClicked, this)));
 }
 
-void CScreenIntro::update()
+void CIntroWindowHandler::update()
 {
     if(m_timer->nextTick()) {
         m_elapsedTime++;
@@ -53,7 +66,7 @@ void CScreenIntro::update()
     }
 }
 
-bool CScreenIntro::buttonClicked(const CEGUI::EventArgs& e)
+bool CIntroWindowHandler::buttonClicked(const CEGUI::EventArgs& e)
 {
 	CGameEngine::getInstance()->getWindowManager()->nextScreen("MainMenu");
 }

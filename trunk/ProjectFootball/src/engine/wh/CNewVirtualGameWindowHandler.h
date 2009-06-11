@@ -18,17 +18,17 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENNEWVIRTUALGAME_H_
-#define CSCREENNEWVIRTUALGAME_H_
+#ifndef CNEWVIRTUALGAMEWINDOWHANDLER_H_
+#define CNEWVIRTUALGAMEWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
 #include "../wm/CWindowHandler.h"
 
-class CScreenNewVirtualGame: public CWindowHandler {
+class CNewVirtualGameWindowHandler: public CWindowHandler {
 public:
-    CScreenNewVirtualGame();
-    virtual ~CScreenNewVirtualGame();
+    CNewVirtualGameWindowHandler();
+    virtual ~CNewVirtualGameWindowHandler();
 
     virtual void init();
 
@@ -41,4 +41,4 @@ private:
     CEGUI::PushButton       *m_startButton;
 };
 
-#endif /* CSCREENNEWVIRTUALGAME_H_ */
+#endif /* CNEWVIRTUALGAMEWINDOWHANDLER_H_ */

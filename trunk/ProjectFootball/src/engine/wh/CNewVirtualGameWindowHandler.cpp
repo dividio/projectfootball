@@ -21,22 +21,22 @@
 #include <stdio.h>
 #include <libintl.h>
 
-#include "CScreenNewVirtualGame.h"
+#include "CNewVirtualGameWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../../exceptions/PFException.h"
 #include "../../friendlyMatch/CFriendlyMatchGame.h"
 #include "../../utils/CLog.h"
 
-CScreenNewVirtualGame::CScreenNewVirtualGame()
+CNewVirtualGameWindowHandler::CNewVirtualGameWindowHandler()
 :CWindowHandler("newVirtualGame.layout")
 {
-    LOG_DEBUG("CScreenNewManagerGame()");
+    LOG_DEBUG("CNewVirtualGameWindowHandler()");
 }
 
-CScreenNewVirtualGame::~CScreenNewVirtualGame()
+CNewVirtualGameWindowHandler::~CNewVirtualGameWindowHandler()
 {}
 
-void CScreenNewVirtualGame::init()
+void CNewVirtualGameWindowHandler::init()
 {
 	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
@@ -48,17 +48,17 @@ void CScreenNewVirtualGame::init()
     m_startButton->setText((CEGUI::utf8*)gettext("Start"));
 
     // Event handle
-    registerEventConnection(m_backButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewVirtualGame::backButtonClicked, this)));
-    registerEventConnection(m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenNewVirtualGame::startButtonClicked, this)));
+    registerEventConnection(m_backButton ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CNewVirtualGameWindowHandler::backButtonClicked, this)));
+    registerEventConnection(m_startButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CNewVirtualGameWindowHandler::startButtonClicked, this)));
 }
 
-bool CScreenNewVirtualGame::backButtonClicked(const CEGUI::EventArgs& e)
+bool CNewVirtualGameWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->previousScreen();
     return true;
 }
 
-bool CScreenNewVirtualGame::startButtonClicked(const CEGUI::EventArgs& e)
+bool CNewVirtualGameWindowHandler::startButtonClicked(const CEGUI::EventArgs& e)
 {
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 

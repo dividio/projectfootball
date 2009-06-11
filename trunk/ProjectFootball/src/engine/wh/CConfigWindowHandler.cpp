@@ -21,24 +21,24 @@
 #include <Ogre.h>
 #include <libintl.h>
 
-#include "CScreenConfig.h"
+#include "CConfigWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../option/CSystemOptionManager.h"
 #include "../../CApplication.h"
 #include "../../utils/CLog.h"
 
-CScreenConfig::CScreenConfig()
+CConfigWindowHandler::CConfigWindowHandler()
 : CWindowHandler("config.layout")
 {
-    LOG_DEBUG("CScreenConfig()");
+    LOG_DEBUG("CConfigWindowHandler()");
 }
 
-CScreenConfig::~CScreenConfig()
+CConfigWindowHandler::~CConfigWindowHandler()
 {
-    LOG_DEBUG("~CScreenConfig()");
+    LOG_DEBUG("~CConfigWindowHandler()");
 }
 
-void CScreenConfig::enter()
+void CConfigWindowHandler::enter()
 {
     m_fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getVideoFullscreen());
     m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getVideoVSync());
@@ -66,16 +66,16 @@ void CScreenConfig::enter()
     }
 }
 
-void CScreenConfig::init()
+void CConfigWindowHandler::init()
 {
 	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
     m_mainWindow        = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/MainWindow"));
     m_backButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/BackButton"));
-    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::backButtonClicked, this)));
+    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigWindowHandler::backButtonClicked, this)));
 
     m_saveButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/SaveButton"));
-    registerEventConnection(m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenConfig::saveButtonClicked, this)));
+    registerEventConnection(m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigWindowHandler::saveButtonClicked, this)));
 
     m_resolutionCombo   = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
     m_rendererCombo     = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
@@ -105,13 +105,13 @@ void CScreenConfig::init()
     }
 }
 
-bool CScreenConfig::backButtonClicked(const CEGUI::EventArgs& e)
+bool CConfigWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
 {
 	CGameEngine::getInstance()->getWindowManager()->previousScreen();
 	return true;
 }
 
-bool CScreenConfig::saveButtonClicked(const CEGUI::EventArgs& e)
+bool CConfigWindowHandler::saveButtonClicked(const CEGUI::EventArgs& e)
 {
     try {
         CSystemOptionManager::getInstance()->setVideoFullscreen(m_fullscreenCheck->isSelected());

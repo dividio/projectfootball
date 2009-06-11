@@ -18,18 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENLOADGAME_H_
-#define CSCREENLOADGAME_H_
+#ifndef CLOADGAMEWINDOWHANDLER_H_
+#define CLOADGAMEWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
 #include "../wm/CWindowHandler.h"
 
-class CScreenLoadGame : public CWindowHandler
+class CLoadGameWindowHandler : public CWindowHandler
 {
 public:
-    CScreenLoadGame();
-	virtual ~CScreenLoadGame();
+    CLoadGameWindowHandler();
+	virtual ~CLoadGameWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -50,4 +50,4 @@ private:
     CEGUI::Window           *m_mainWindow;
 };
 
-#endif /*CSCREENLOADGAME_H_*/
+#endif /*CLOADGAMEWINDOWHANDLER_H_*/

@@ -18,18 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENNEWMANAGERGAME_H_
-#define CSCREENNEWMANAGERGAME_H_
+#ifndef CNEWMANAGERGAMEWINDOWHANDLER_H_
+#define CNEWMANAGERGAMEWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
 #include "../wm/CWindowHandler.h"
 
-class CScreenNewManagerGame : public CWindowHandler
+class CNewManagerGameWindowHandler : public CWindowHandler
 {
 public:
-    CScreenNewManagerGame();
-	virtual ~CScreenNewManagerGame();
+    CNewManagerGameWindowHandler();
+	virtual ~CNewManagerGameWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -44,4 +44,4 @@ private:
     CEGUI::PushButton       *m_newGameButton;
 };
 
-#endif /* CSCREENNEWMANAGERGAME_H_ */
+#endif /* CNEWMANAGERGAMEWINDOWHANDLER_H_ */

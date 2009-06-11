@@ -20,29 +20,29 @@
 
 #include <libintl.h>
 
-#include "CScreenCredits.h"
+#include "CCreditsWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../../utils/CLog.h"
 
 
-CScreenCredits::CScreenCredits()
+CCreditsWindowHandler::CCreditsWindowHandler()
 : CWindowHandler("credits.layout")
 {
-    LOG_DEBUG("CScreenCredits()");
+    LOG_DEBUG("CCreditsWindowHandler()");
 }
 
 
-CScreenCredits::~CScreenCredits()
+CCreditsWindowHandler::~CCreditsWindowHandler()
 {
-    LOG_DEBUG("~CScreenCredits()");
+    LOG_DEBUG("~CCreditsWindowHandler()");
 }
 
-void CScreenCredits::init()
+void CCreditsWindowHandler::init()
 {
 	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
     m_backButton = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Credits/BackButton"));
-    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CScreenCredits::backButtonClicked, this)));
+    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CCreditsWindowHandler::backButtonClicked, this)));
 
     // i18n support
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Credits/ApplicationLabel"))->setText((CEGUI::utf8*)gettext("Application Design :"));
@@ -60,7 +60,7 @@ void CScreenCredits::init()
     m_backButton->setText((CEGUI::utf8*)gettext("Back"));
 }
 
-bool CScreenCredits::backButtonClicked(const CEGUI::EventArgs& e)
+bool CCreditsWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
 {
 	CGameEngine::getInstance()->getWindowManager()->previousScreen();
 	return true;

@@ -19,8 +19,8 @@
 ******************************************************************************/
 
 
-#ifndef CSCREENMAINMENU_H_
-#define CSCREENMAINMENU_H_
+#ifndef CMAINMENUWINDOWHANDLER_H_
+#define CMAINMENUWINDOWHANDLER_H_
 
 #include <Ogre.h>
 #include <CEGUI/CEGUI.h>
@@ -29,12 +29,12 @@
 #include "../wm/CWindowHandler.h"
 
 
-class CScreenMainMenu : public CWindowHandler
+class CMainMenuWindowHandler : public CWindowHandler
 {
 
 public:
-    CScreenMainMenu();
-    virtual ~CScreenMainMenu();
+    CMainMenuWindowHandler();
+    virtual ~CMainMenuWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -63,4 +63,4 @@ private:
 	CEGUI::Window       *m_versionDate;
 	CEGUI::Window       *m_version;
 };
-#endif // CSCREENMAINMENU_H_
+#endif // CMAINMENUWINDOWHANDLER_H_

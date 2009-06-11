@@ -18,18 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENCREDITS_H_
-#define CSCREENCREDITS_H_
+#ifndef CCREDITSWINDOWHANDLER_H_
+#define CCREDITSWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
 #include "../wm/CWindowHandler.h"
 
-class CScreenCredits : public CWindowHandler
+class CCreditsWindowHandler : public CWindowHandler
 {
 public:
-    CScreenCredits();
-    virtual ~CScreenCredits();
+    CCreditsWindowHandler();
+    virtual ~CCreditsWindowHandler();
 
     virtual void init();
 
@@ -40,4 +40,4 @@ private:
 
 };
 
-#endif // CSCREENCREDITS_H_
+#endif // CCREDITSWINDOWHANDLER_H_

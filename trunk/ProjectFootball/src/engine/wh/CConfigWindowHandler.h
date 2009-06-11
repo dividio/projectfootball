@@ -18,18 +18,18 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSCREENCONFIG_H_
-#define CSCREENCONFIG_H_
+#ifndef CCONFIGWINDOWHANDLER_H_
+#define CCONFIGWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
 #include "../wm/CWindowHandler.h"
 
-class CScreenConfig : public CWindowHandler
+class CConfigWindowHandler : public CWindowHandler
 {
 public:
-    CScreenConfig();
-	virtual ~CScreenConfig();
+    CConfigWindowHandler();
+	virtual ~CConfigWindowHandler();
 
     virtual void enter();
     virtual void init();
@@ -48,4 +48,4 @@ private:
 
 };
 
-#endif /*CSCREENCONFIG_H_*/
+#endif /*CCONFIGWINDOWHANDLER_H_*/

@@ -27,13 +27,13 @@
 #include "utils/CClock.h"
 #include "../utils/CLog.h"
 
-#include "screen/CScreenConfig.h"
-#include "screen/CScreenCredits.h"
-#include "screen/CScreenIntro.h"
-#include "screen/CScreenLoadGame.h"
-#include "screen/CScreenMainMenu.h"
-#include "screen/CScreenNewManagerGame.h"
-#include "screen/CScreenNewVirtualGame.h"
+#include "wh/CConfigWindowHandler.h"
+#include "wh/CCreditsWindowHandler.h"
+#include "wh/CIntroWindowHandler.h"
+#include "wh/CLoadGameWindowHandler.h"
+#include "wh/CMainMenuWindowHandler.h"
+#include "wh/CNewManagerGameWindowHandler.h"
+#include "wh/CNewVirtualGameWindowHandler.h"
 
 #include "../singlePlayer/screen/CGNSWindowHandler.h"
 #include "../singlePlayer/screen/CScreenSelectTeam.h"
@@ -96,13 +96,13 @@ CGameEngine* CGameEngine::getInstance()
     if( m_instance==NULL ){
         m_instance = new CGameEngine();
 
-        m_instance->m_windowHandlers.push_back(new CScreenIntro());
-        m_instance->m_windowHandlers.push_back(new CScreenMainMenu());
-        m_instance->m_windowHandlers.push_back(new CScreenLoadGame());
-        m_instance->m_windowHandlers.push_back(new CScreenNewManagerGame());
-        m_instance->m_windowHandlers.push_back(new CScreenNewVirtualGame());
-        m_instance->m_windowHandlers.push_back(new CScreenConfig());
-        m_instance->m_windowHandlers.push_back(new CScreenCredits());
+        m_instance->m_windowHandlers.push_back(new CIntroWindowHandler());
+        m_instance->m_windowHandlers.push_back(new CMainMenuWindowHandler());
+        m_instance->m_windowHandlers.push_back(new CLoadGameWindowHandler());
+        m_instance->m_windowHandlers.push_back(new CNewManagerGameWindowHandler());
+        m_instance->m_windowHandlers.push_back(new CNewVirtualGameWindowHandler());
+        m_instance->m_windowHandlers.push_back(new CConfigWindowHandler());
+        m_instance->m_windowHandlers.push_back(new CCreditsWindowHandler());
     }
 
     return m_instance;
