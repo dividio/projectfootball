@@ -21,7 +21,7 @@
 #ifndef CMATCHEVENT_H_
 #define CMATCHEVENT_H_
 
-#include "../CAbstractGameEvent.h"
+#include "../../../engine/event/CAbstractGameEvent.h"
 
 class CMatchEvent : public CAbstractGameEvent
 {

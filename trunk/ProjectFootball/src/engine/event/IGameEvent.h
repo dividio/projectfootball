@@ -22,7 +22,7 @@
 #define IGAMEEVENT_H_
 
 #include "../../utils/CDate.h"
-#include "IEventVisitor.h"
+#include "../../singlePlayer/event/IEventVisitor.h"
 
 class IGameEvent
 {

@@ -22,7 +22,7 @@
 #define CEVENTSQUEUELOGOBSERVER_H_
 
 #include "IEventsQueueObserver.h"
-#include "CEventLogVisitor.h"
+#include "../../singlePlayer/event/CEventLogVisitor.h"
 
 class CEventsQueueLogObserver: public IEventsQueueObserver {
 public:

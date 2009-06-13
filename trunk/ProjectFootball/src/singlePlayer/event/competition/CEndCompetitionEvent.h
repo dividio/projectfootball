@@ -21,7 +21,7 @@
 #ifndef CENDCOMPETITIONEVENT_H_
 #define CENDCOMPETITIONEVENT_H_
 
-#include "../CAbstractGameEvent.h"
+#include "../../../engine/event/CAbstractGameEvent.h"
 
 class CEndCompetitionEvent: public CAbstractGameEvent {
 public:

@@ -21,7 +21,7 @@
 #ifndef CSTARTCOMPETITIONEVENT_H_
 #define CSTARTCOMPETITIONEVENT_H_
 
-#include "../CAbstractGameEvent.h"
+#include "../../../engine/event/CAbstractGameEvent.h"
 
 class CStartCompetitionEvent: public CAbstractGameEvent {
 public:

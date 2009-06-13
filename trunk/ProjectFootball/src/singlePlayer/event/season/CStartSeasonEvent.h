@@ -21,7 +21,7 @@
 #ifndef CSTARTSEASONEVENT_H_
 #define CSTARTSEASONEVENT_H_
 
-#include "../CAbstractGameEvent.h"
+#include "../../../engine/event/CAbstractGameEvent.h"
 
 class CStartSeasonEvent: public CAbstractGameEvent {
 public:

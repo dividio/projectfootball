@@ -26,7 +26,7 @@
 #include "CSinglePlayerGame.h"
 #include "db/dao/factory/IDAOFactory.h"
 
-#include "event/CEventsQueue.h"
+#include "../engine/event/CEventsQueue.h"
 
 #include "event/competition/CStartCompetitionEvent.h"
 #include "event/competition/CEndCompetitionEvent.h"

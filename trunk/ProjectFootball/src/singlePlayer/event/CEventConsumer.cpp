@@ -20,8 +20,8 @@
 
 #include "CEventConsumer.h"
 
-#include "IGameEvent.h"
-#include "CEventsQueue.h"
+#include "../../engine/event/IGameEvent.h"
+#include "../../engine/event/CEventsQueue.h"
 #include "CEventMustStopVisitor.h"
 #include "CEventProcessorVisitor.h"
 

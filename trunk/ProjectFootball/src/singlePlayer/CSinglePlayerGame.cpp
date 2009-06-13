@@ -29,8 +29,6 @@
 #include "db/dao/factory/IDAOFactory.h"
 #include "db/sqlite/dao/factory/CDAOFactorySQLite.h"
 
-#include "event/IGameEvent.h"
-#include "event/CEventsQueue.h"
 #include "event/CEventConsumer.h"
 #include "event/match/CMatchEvent.h"
 #include "event/competition/CStartCompetitionEvent.h"
@@ -53,6 +51,8 @@
 #include "../engine/CGameEngine.h"
 #include "../engine/db/bean/CPfGames.h"
 #include "../engine/db/bean/CPfUsers.h"
+#include "../engine/event/IGameEvent.h"
+#include "../engine/event/CEventsQueue.h"
 #include "../engine/wm/IWindowHandler.h"
 
 #include "../exceptions/PFException.h"

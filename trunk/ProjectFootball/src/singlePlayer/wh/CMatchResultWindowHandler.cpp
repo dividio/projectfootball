@@ -25,7 +25,7 @@
 #include "../CSinglePlayerGame.h"
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../db/bean/CPfMatches.h"
-#include "../event/CEventsQueue.h"
+#include "../../engine/event/CEventsQueue.h"
 #include "../event/CEventConsumer.h"
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"

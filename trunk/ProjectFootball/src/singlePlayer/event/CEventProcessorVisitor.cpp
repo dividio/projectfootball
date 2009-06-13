@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "CEventsQueue.h"
+#include "../../engine/event/CEventsQueue.h"
 
 #include "season/CStartSeasonEvent.h"
 #include "season/CEndSeasonEvent.h"
