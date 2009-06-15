@@ -999,6 +999,9 @@
 </cconfiguration>
 <cconfiguration id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994.1559212919">
 <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.toolchain.gnu.base.416640397.1828432994.1559212919" moduleId="org.eclipse.cdt.core.settings" name="Win32 MingW">
+<macros>
+<stringMacro name="TOOLS_DIR" type="VALUE_TEXT" value="c:\tools"/>
+</macros>
 <externalSettings/>
 <extensions>
 <extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -1018,14 +1021,13 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.1080046220" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.1438942223" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="../src/bullet"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\boost_1_38_0&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\SDL\include&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\gettext\include&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\sqlite-amalgamation-3_6_6_2&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\lua\include&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${OGRE_HOME}\include&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${OGRE_HOME}\include\CEGUI&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${OGRE_HOME}\samples\include&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include\Gettext&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include\SQLite&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include\Lua&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include\Ogre&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include\CEGUI&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\include\OgreCEGUIRenderer&quot;"/>
 </option>
 <option id="gnu.cpp.compiler.option.other.other.1737799669" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -fexceptions -fident" valueType="string"/>
 <option id="gnu.cpp.compiler.option.warnings.allwarn.2002145408" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn" value="false" valueType="boolean"/>
@@ -1044,24 +1046,19 @@
 <listOptionValue builtIn="false" value="SDL_mixer"/>
 <listOptionValue builtIn="false" value="boost_system-mt"/>
 <listOptionValue builtIn="false" value="boost_filesystem-mt"/>
+<listOptionValue builtIn="false" value="boost_thread-mt"/>
 <listOptionValue builtIn="false" value="SDL"/>
 <listOptionValue builtIn="false" value="sqlite3"/>
 <listOptionValue builtIn="false" value="lua51"/>
 <listOptionValue builtIn="false" value="OIS"/>
-<listOptionValue builtIn="false" value="CEGUIBase"/>
+<listOptionValue builtIn="false" value="CEGUIBase-1"/>
 <listOptionValue builtIn="false" value="OgreMain"/>
 <listOptionValue builtIn="false" value="OgreGUIRenderer"/>
 <listOptionValue builtIn="false" value="intl"/>
 </option>
 <option id="gnu.cpp.link.option.flags.1192705197" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="" valueType="string"/>
 <option id="gnu.cpp.link.option.paths.2037083936" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-<listOptionValue builtIn="false" value="&quot;${OGRE_HOME}\bin\release&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\SDL_mixer-1.2.8-win32&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\SDL\bin&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\sqlitedll-3_6_6_2&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\lua&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\gettext\lib&quot;"/>
-<listOptionValue builtIn="false" value="&quot;C:\tools\boost_1_38_0\stage\lib&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${TOOLS_DIR}\lib&quot;"/>
 </option>
 <option id="gnu.cpp.link.option.userobjs.32831116" name="Other objects" superClass="gnu.cpp.link.option.userobjs" valueType="userObjs">
 <listOptionValue builtIn="false" value="resource.o"/>
