@@ -21,7 +21,7 @@
 #ifndef CIMAGELISTBOXITEM_H_
 #define CIMAGELISTBOXITEM_H_
 
-#include <CEGUI.h>
+#include <CEGUI/CEGUI.h>
 
 namespace CEGUI
 {

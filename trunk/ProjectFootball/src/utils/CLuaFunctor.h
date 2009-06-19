@@ -21,7 +21,7 @@
 #ifndef CLUAFUNCTOR_H_
 #define CLUAFUNCTOR_H_
 
-#include "CEGUI.h"
+#include <CEGUI/CEGUI.h>
 
 extern "C" {
 #include "lua.h"

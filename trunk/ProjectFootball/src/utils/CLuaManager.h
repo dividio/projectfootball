@@ -31,7 +31,7 @@ extern "C"
     int luaopen_CEGUI(lua_State* L);
 }
 
-#include "CEGUIScriptModule.h"
+#include <CEGUI/CEGUIScriptModule.h>
 
 class CLuaManager: public CEGUI::ScriptModule
 {
