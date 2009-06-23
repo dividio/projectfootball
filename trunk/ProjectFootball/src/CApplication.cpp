@@ -347,7 +347,6 @@ int main(int argc, char **argv)
             systemOptionManager->saveOptions();
         }
 
-        CLuaManager* lua = CLuaManager::getInstance();
         CApplication *app = CApplication::getInstance();
         app->go();
 

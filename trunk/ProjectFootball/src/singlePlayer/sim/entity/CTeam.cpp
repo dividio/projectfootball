@@ -380,7 +380,6 @@ bool CTeam::isBallInOpponentPenaltyArea() const
 
 void CTeam::setFormations()
 {
-    int i;
     btVector3 point;
     btVector3 topLeft, bottomRight;
     CFormation *formation = new CFormation("4-3-3");

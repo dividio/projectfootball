@@ -59,7 +59,7 @@ void CEntityManager::removeEntity(CBaseGameEntity *entity)
 CBaseGameEntity* CEntityManager::getEntityFromID(int id) const
 {
     std::map<int, CBaseGameEntity*>::const_iterator it = m_entityMap.find(id);
-    CBaseGameEntity *value;
+    CBaseGameEntity *value = NULL;
     if(it != m_entityMap.end()) {
         value = it->second;
     } else {

@@ -219,7 +219,7 @@ const char * COptionManager::searchOption( std::map<const char *, const char *> 
     bool found = false;
     std::map<const char *, const char *>::iterator it;
 
-    const char *o;
+    const char *o = NULL;
 
     for( it = map->begin(); it != map->end() && !found; it++ ){
 

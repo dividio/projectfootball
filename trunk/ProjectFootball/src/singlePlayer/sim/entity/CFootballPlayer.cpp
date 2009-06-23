@@ -278,12 +278,12 @@ btVector3 CFootballPlayer::getStrategicPosition() const
         minZ = area->getTopLeft().z();
     }
 
+    x = pos.x() + ballPos.x() * strPos->getAttractionX();
+    z = pos.z() + ballPos.z() * strPos->getAttractionZ();
+
     if(strPos->getBehindBall() == true && x > ballPos.x()) {
         maxX = ballPos.x();
     }
-
-    x = pos.x() + ballPos.x() * strPos->getAttractionX();
-    z = pos.z() + ballPos.z() * strPos->getAttractionZ();
 
     if(x > maxX) {
         x = maxX;
