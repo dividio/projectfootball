@@ -21,15 +21,15 @@
 #include "CScreenElement.h"
 
 CScreenElement::CScreenElement()
-: m_id(), m_window()
+: m_window(), m_id()
 {}
 
 CScreenElement::CScreenElement(const std::string &id, const CWindowElement &window)
-: m_id(id), m_window(window)
+: m_window(window), m_id(id)
 {}
 
 CScreenElement::CScreenElement(const CScreenElement &screen)
-: m_id(screen.m_id), m_window(screen.m_window)
+: m_window(screen.m_window), m_id(screen.m_id)
 {}
 
 CScreenElement::~CScreenElement()

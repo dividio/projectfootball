@@ -69,6 +69,7 @@ bool CNewManagerGameWindowHandler::newGameEditboxTextChanged(const CEGUI::EventA
     }else{
         m_newGameButton->setEnabled(false);
     }
+    return true;
 }
 
 bool CNewManagerGameWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
@@ -79,7 +80,6 @@ bool CNewManagerGameWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
 
 bool CNewManagerGameWindowHandler::newGameButtonClicked(const CEGUI::EventArgs& e)
 {
-    IMasterDAOFactory *masterDatabase = CGameEngine::getInstance()->getCMasterDAOFactory();
     const CPfUsers *user = CGameEngine::getInstance()->getCurrentUser();
 
     if( user==NULL || user->getXUser()==0 ){

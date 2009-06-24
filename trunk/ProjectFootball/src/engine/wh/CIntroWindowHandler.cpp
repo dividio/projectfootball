@@ -69,4 +69,5 @@ void CIntroWindowHandler::update()
 bool CIntroWindowHandler::buttonClicked(const CEGUI::EventArgs& e)
 {
 	CGameEngine::getInstance()->getWindowManager()->nextScreen("MainMenu");
+	return true;
 }

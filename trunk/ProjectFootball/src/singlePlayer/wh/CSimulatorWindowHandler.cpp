@@ -36,9 +36,9 @@
 
 CSimulatorWindowHandler::CSimulatorWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("simulator.layout"),
-	m_game(game),
 	m_sceneMngr(NULL),
 	m_simulator(NULL),
+	m_game(game),
 	m_initiated(false)
 {
     LOG_DEBUG("CSimulatorWindowHandler()");
@@ -108,7 +108,7 @@ bool CSimulatorWindowHandler::keyUpHandler(const CEGUI::EventArgs& e)
         m_direction.x -= move;
         break;
     case CEGUI::Key::PageDown:
-        if(m_direction.y = -move) {
+        if(m_direction.y == -move) {
             m_direction.y += move;
         }
         break;
@@ -312,8 +312,8 @@ Ogre::SceneManager* CSimulatorWindowHandler::getSimulationSceneManager()
 
 void CSimulatorWindowHandler::addToLog(const std::string &text)
 {
-    int historySize = 7;
-    int shortHistorySize = 3;
+    unsigned int historySize = 7;
+    unsigned int shortHistorySize = 3;
     std::ostringstream message;
     // If there's text then add it
     if(text.size()) {

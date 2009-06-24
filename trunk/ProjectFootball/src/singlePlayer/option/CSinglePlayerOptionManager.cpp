@@ -22,7 +22,7 @@
 #include "../../utils/CLog.h"
 
 CSinglePlayerOptionManager::CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOptionsDAO)
-: m_gameOptionsDAO(gameOptionsDAO), COptionManager()
+: COptionManager(), m_gameOptionsDAO(gameOptionsDAO)
 {
 	cleanOptions();
 	setDefaultValues();

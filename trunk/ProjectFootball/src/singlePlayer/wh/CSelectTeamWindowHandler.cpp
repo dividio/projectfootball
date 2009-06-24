@@ -228,8 +228,6 @@ int CSelectTeamWindowHandler::loadCompetitionsList(int XCountry)
 
 void CSelectTeamWindowHandler::loadTeamList(int XCompetition)
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("ListboxSelectionBrush");
-
     IPfTeamsDAO* teamsDAO = m_game.getIDAOFactory()->getIPfTeamsDAO();
 
     if(m_teamsList!=NULL) {

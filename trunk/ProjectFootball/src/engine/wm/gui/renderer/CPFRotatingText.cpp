@@ -29,9 +29,9 @@ namespace CEGUI{
 
 	CPFRotatingText::CPFRotatingText(const String &type) :
 		CPFStaticText(type),
+		d_textSpeed(0.1f),
 		m_thread(boost::bind(&CPFRotatingText::runThread, this)),
-		m_stopThread(false),
-		d_textSpeed(0.1f)
+		m_stopThread(false)
 	{
 		registerProperty(&d_textSpeedProperty);
 	}

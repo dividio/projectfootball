@@ -42,7 +42,7 @@
 #include "../../utils/CLog.h"
 
 CWindowManager::CWindowManager()
-: m_windows(), m_previousScreensStack(), m_nextScreensStack(), m_currentScreen(NULL), m_windowsHandlers(),
+: m_windows(), m_windowsHandlers(), m_currentScreen(NULL), m_nextScreensStack(), m_previousScreensStack(),
   m_alertWindow(getCEGUIWindow("alert.layout")), m_confirmWindow(getCEGUIWindow("confirm.layout")), m_confirmAceptSubscriber(), m_confirmCancelSubscriber()
 {
 	CScreensConfig_xmlHandler xmlHandler;

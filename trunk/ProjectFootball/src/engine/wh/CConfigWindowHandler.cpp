@@ -44,8 +44,8 @@ void CConfigWindowHandler::enter()
     m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getVideoVSync());
 
     bool found  = false;
-    int  width  = CSystemOptionManager::getInstance()->getVideoWidth();
-    for( int i=0; i<m_resolutionCombo->getItemCount() && !found; i++ ){
+    unsigned int  width  = CSystemOptionManager::getInstance()->getVideoWidth();
+    for( unsigned int i=0; i<m_resolutionCombo->getItemCount() && !found; i++ ){
         CEGUI::ListboxItem *item = m_resolutionCombo->getListboxItemFromIndex(i);
         if( item->getID()==width ){
             found = true;
@@ -56,7 +56,7 @@ void CConfigWindowHandler::enter()
 
     found  = false;
     const char *renderer  = CSystemOptionManager::getInstance()->getVideoRenderSystem();
-    for( int i=0; i<m_rendererCombo->getItemCount() && !found; i++ ){
+    for( unsigned int i=0; i<m_rendererCombo->getItemCount() && !found; i++ ){
         CEGUI::ListboxItem *item = m_rendererCombo->getListboxItemFromIndex(i);
         if( item->getText()==renderer ){
             found = true;

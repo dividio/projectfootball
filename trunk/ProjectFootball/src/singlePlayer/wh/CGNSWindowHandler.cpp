@@ -28,9 +28,9 @@
 #include "../../utils/CLog.h"
 
 CGNSWindowHandler::CGNSWindowHandler(CSinglePlayerGame &game)
-: CWindowHandler("gns.layout"), m_game(game),
+: CWindowHandler("gns.layout"),
   m_action1Button(NULL), m_action2Button(NULL), m_action3Button(NULL), m_action4Button(NULL), m_action5Button(NULL), m_action6Button(NULL), m_action7Button(NULL), m_action8Button(NULL),
-  m_statisticsRadio(NULL), m_changingRoomRadio(NULL)
+  m_statisticsRadio(NULL), m_changingRoomRadio(NULL), m_game(game)
 {}
 
 CGNSWindowHandler::~CGNSWindowHandler()

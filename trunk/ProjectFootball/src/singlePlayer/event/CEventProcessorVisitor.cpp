@@ -59,7 +59,6 @@ CEventProcessorVisitor::~CEventProcessorVisitor()
 {
 	std::map<int, std::vector<CPfGoals *>*>::iterator itMatches;
 	for( itMatches=m_matchesMap.begin(); itMatches!=m_matchesMap.end(); itMatches++){
-		int							xMatch			= itMatches->first;
 		std::vector<CPfGoals *>		*goalsVector	= itMatches->second;
 
 		std::vector<CPfGoals*>::iterator itGoals;

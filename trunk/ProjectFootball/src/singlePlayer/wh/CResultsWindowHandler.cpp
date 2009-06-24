@@ -33,8 +33,8 @@
 
 CResultsWindowHandler::CResultsWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("results.layout"),
-	m_game(game),
-	m_lastSeason(NULL)
+	m_lastSeason(NULL),
+	m_game(game)
 {
     LOG_DEBUG("CResultsWindowHandler()");
 

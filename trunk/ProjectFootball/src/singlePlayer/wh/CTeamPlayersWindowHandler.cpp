@@ -217,7 +217,7 @@ void CTeamPlayersWindowHandler::saveTeamPlayersList()
     CPfTeams                    *team                   = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
     IPfTeamPlayerContractsDAO   *teamPlayerContractsDAO = m_game.getIDAOFactory()->getIPfTeamPlayerContractsDAO();
 
-    int i;
+    unsigned int i;
     int lineUpOrder = 1;
 
     for( i=0; i<m_lineUpTeamPlayersList->getRowCount(); i++ ){
@@ -366,8 +366,8 @@ bool CTeamPlayersWindowHandler::changePlayersButtonClicked(const CEGUI::EventArg
 
 void CTeamPlayersWindowHandler::changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2)
 {
-    CEGUI::ListboxItem *item1;
-    CEGUI::ListboxItem *item2;
+    CEGUI::ListboxItem *item1 = NULL;
+    CEGUI::ListboxItem *item2 = NULL;
     int columns = list1->getColumnCount();
     for( int i = 0; i < columns; i++) {
         CEGUI::ListboxItem *itemAux;
