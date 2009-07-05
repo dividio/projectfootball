@@ -56,22 +56,9 @@ public:
      * Return if the queue is empty or not
      */
     bool empty();
-//
-//    /**
-//     * Subscribe an observer of the events queue. When a event
-//     * is pushed o popped all the observers will be notified.
-//     */
-//    void addObserver(const IEventsQueueObserver &observer);
-//
-//    /**
-//     * Remove an observer of the events queue.
-//     */
-//    void removeObserver(const IEventsQueueObserver &observer);
 
 private:
     std::priority_queue<IGameEvent*, std::vector<IGameEvent*>, bool (*)(const IGameEvent*, const IGameEvent*)> m_queue;
-//
-//    std::list<const IEventsQueueObserver*> m_observers;
 };
 
 #endif /*CEVENTSQUEUE_H_*/
