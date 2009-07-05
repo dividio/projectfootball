@@ -18,66 +18,37 @@
  *                                                                             *
  ******************************************************************************/
 
-#include "CEventLogVisitor.h"
+#ifndef CTIMEMANAGER_H_
+#define CTIMEMANAGER_H_
 
-#include "season/CStartSeasonEvent.h"
-#include "season/CEndSeasonEvent.h"
+#include <boost/thread.hpp>
+#include "../utils/CDate.h"
 
-#include "competition/CStartCompetitionEvent.h"
-#include "competition/CEndCompetitionEvent.h"
+// forward declaration
+class CSlotConnection;
+class IGameEvent;
 
-#include "match/CMatchEvent.h"
-#include "match/CStartMatchEvent.h"
-#include "match/CGoalMatchEvent.h"
-#include "match/CEndMatchEvent.h"
+class CTimeManager {
+public:
+	CTimeManager();
+	virtual ~CTimeManager();
 
-#include "../../utils/CLog.h"
+	void 			setCurrentTime(const CDate &date);
+	const CDate& 	getCurrentTime() const;
 
-CEventLogVisitor::CEventLogVisitor()
-: IEventVisitor()
-{
-}
+	void 			start();
+	void			stop();
 
-CEventLogVisitor::~CEventLogVisitor()
-{
-}
+private:
+	void			runThread();
+	void			noMoreEventsTodayHandler(const IGameEvent &event);
 
-void CEventLogVisitor::endCompetitionEventVisitor(const CEndCompetitionEvent &event)
-{
-	LOG_DEBUG("--> CEndCompetitionEvent");
-}
+private:
+	boost::thread			m_thread;
+	bool					m_stopRequest;
+	bool					m_stopped;
+	CDate					m_currentTime;
+	const CSlotConnection	&m_slotConnection;
+};
 
-void CEventLogVisitor::endMatchEventVisitor(const CEndMatchEvent &event)
-{
-	LOG_DEBUG("--> CEndMatchEvent");
-}
-
-void CEventLogVisitor::endSeasonEventVisitor(const CEndSeasonEvent &event)
-{
-	LOG_DEBUG("--> CEndSeasonEvent");
-}
-
-void CEventLogVisitor::goalMatchEventVisitor(const CGoalMatchEvent &event)
-{
-	LOG_DEBUG("--> CGoalMatchEvent");
-}
-
-void CEventLogVisitor::matchEventVisitor(const CMatchEvent &event)
-{
-	LOG_DEBUG("--> CMatchEvent");
-}
-
-void CEventLogVisitor::startCompetitionEventVisitor(const CStartCompetitionEvent &event)
-{
-	LOG_DEBUG("--> CStartCompetitionEvent");
-}
-
-void CEventLogVisitor::startMatchEventVisitor(const CStartMatchEvent &event)
-{
-	LOG_DEBUG("--> CStartMatchEvent");
-}
-
-void CEventLogVisitor::startSeasonEventVisitor(const CStartSeasonEvent &event)
-{
-	LOG_DEBUG("--> CStartSeasonEvent");
-}
+#endif /* CTIMEMANAGER_H_ */

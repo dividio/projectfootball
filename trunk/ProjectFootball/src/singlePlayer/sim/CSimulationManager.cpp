@@ -46,7 +46,8 @@
 #include "../../audio/CAudioSystem.h"
 #include "../../bullet/LinearMath/btVector3.h"
 #include "../../bullet/BulletDynamics/Dynamics/btRigidBody.h"
-#include "../../engine/event/CEventsQueue.h"
+#include "../../engine/CGameEngine.h"
+#include "../../engine/event/CEventManager.h"
 #include "../../engine/option/CSystemOptionManager.h"
 #include "../../engine/utils/CTimer.h"
 #include "../../utils/CLog.h"
@@ -211,19 +212,21 @@ void CSimulationManager::goalMatchEvent(CTeam *teamScorer, CFootballPlayer *play
 
 void CSimulationManager::endMatchEvent()
 {
+	CEventManager	*eventMngr	= CGameEngine::getInstance()->getEventManager();
+
     // Start match event
-    m_game.getEventsQueue()->push(new CStartMatchEvent(m_match->getDMatch(), m_match->getXMatch()));
+	eventMngr->addEvent(new CStartMatchEvent(m_match->getDMatch(), m_match->getXMatch()));
 
     // Goals events
     std::vector<CGoalMatchEvent*>::iterator it;
     for(it = m_goalEvents.begin(); it!=m_goalEvents.end(); it++) {
-        m_game.getEventsQueue()->push((*it));
+    	eventMngr->addEvent((*it));
     }
 
     // End match event
     CDate endDate(m_match->getDMatch());
     endDate.setMin(endDate.getMin()+90);
-    m_game.getEventsQueue()->push(new CEndMatchEvent(endDate, m_match->getXMatch()));
+    eventMngr->addEvent(new CEndMatchEvent(endDate, m_match->getXMatch()));
 
     // Send notitify to simulator screen
     m_simulatorWindowHandler.endMatchEvent();

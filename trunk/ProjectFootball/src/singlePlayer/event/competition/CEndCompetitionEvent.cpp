@@ -20,16 +20,16 @@
 
 #include "CEndCompetitionEvent.h"
 
+const char * CEndCompetitionEvent::type = "Event/EndCompetition";
+
 CEndCompetitionEvent::CEndCompetitionEvent(const CDate &eventDate)
 : CAbstractGameEvent(eventDate)
-{
-}
+{}
 
 CEndCompetitionEvent::~CEndCompetitionEvent()
-{
-}
+{}
 
-void CEndCompetitionEvent::visitor(IEventVisitor &visitor) const
+const char * CEndCompetitionEvent::getType() const
 {
-	visitor.endCompetitionEventVisitor(*this);
+	return CEndCompetitionEvent::type;
 }

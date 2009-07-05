@@ -26,10 +26,13 @@
 class CEndMatchEvent : public CMatchEvent
 {
 public:
+	static const char * type;
+
+public:
     CEndMatchEvent(const CDate &eventdate, int xMatch);
     virtual ~CEndMatchEvent();
 
-    virtual void visitor(IEventVisitor &visitor) const;
+    virtual const char * getType()  const;
 };
 
 #endif /*CENDMATCHEVENT_H_*/

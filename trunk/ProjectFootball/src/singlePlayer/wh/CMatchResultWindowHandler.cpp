@@ -26,7 +26,6 @@
 #include "../db/dao/factory/IDAOFactory.h"
 #include "../db/bean/CPfMatches.h"
 #include "../../engine/event/CEventsQueue.h"
-#include "../event/CEventConsumer.h"
 #include "../event/match/CEndMatchEvent.h"
 #include "../event/match/CGoalMatchEvent.h"
 #include "../event/match/CStartMatchEvent.h"
@@ -48,11 +47,14 @@ CMatchResultWindowHandler::~CMatchResultWindowHandler()
     LOG_DEBUG("~CMatchResultWindowHandler()");
 }
 
+void CMatchResultWindowHandler::enter()
+{
+	loadMatchInfo();
+}
+
 void CMatchResultWindowHandler::init()
 {
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
-
-    m_loadMatchInfo = true;
 
     m_competitionName		= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/Competition"));
     m_competitionPhaseName	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/CompetitionPhase"));
@@ -91,22 +93,6 @@ void CMatchResultWindowHandler::leave()
 {
     m_homeEventsList->resetList();
     m_awayEventsList->resetList();
-
-    m_loadMatchInfo = true;
-    m_game.setCurrentMatch(NULL);
-
-    // Consume events until the next stop event
-    m_game.getEventConsumer()->consumeEvents();
-}
-
-void CMatchResultWindowHandler::update()
-{
-	if( m_loadMatchInfo ){
-		m_game.getEventConsumer()->consumeCurrentDayEvents();
-		loadMatchInfo();
-
-		m_loadMatchInfo = false;
-	}
 }
 
 void CMatchResultWindowHandler::loadMatchInfo()
@@ -202,7 +188,9 @@ void CMatchResultWindowHandler::loadMatchInfo()
 
 bool CMatchResultWindowHandler::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->getWindowManager()->nextScreen("Game");
-	CGameEngine::getInstance()->getWindowManager()->clearHistory();
+	m_game.setCurrentMatch(NULL);
+	m_game.setGameState(CSinglePlayerGame::SimulatingUntilTheNextEvent);
+	CGameEngine::getInstance()->getTimeManager()->start();
+
     return true;
 }

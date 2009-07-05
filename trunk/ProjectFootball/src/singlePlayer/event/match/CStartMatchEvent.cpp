@@ -20,16 +20,16 @@
 
 #include "CStartMatchEvent.h"
 
+const char * CStartMatchEvent::type = "Event/StartMatch";
+
 CStartMatchEvent::CStartMatchEvent(const CDate &eventdate, int xMatch)
 : CMatchEvent(eventdate, xMatch)
-{
-}
+{}
 
 CStartMatchEvent::~CStartMatchEvent()
-{
-}
+{}
 
-void CStartMatchEvent::visitor(IEventVisitor &visitor) const
+const char * CStartMatchEvent::getType() const
 {
-	visitor.startMatchEventVisitor(*this);
+	return CStartMatchEvent::type;
 }

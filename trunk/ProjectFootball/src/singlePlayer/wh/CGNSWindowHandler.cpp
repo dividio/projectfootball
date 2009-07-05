@@ -22,7 +22,6 @@
 
 #include <libintl.h>
 #include "../CSinglePlayerGame.h"
-#include "../event/CEventConsumer.h"
 #include "../option/CSinglePlayerOptionManager.h"
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
@@ -233,10 +232,18 @@ bool CGNSWindowHandler::mainMenuConfirmed(const CEGUI::EventArgs &e)
 
 bool CGNSWindowHandler::playButtonClicked(const CEGUI::EventArgs &e)
 {
-	if( m_game.getEventConsumer()->getLastEvent()!=NULL ){
-		m_game.getEventConsumer()->consumeLastEvent();
-	}else{
-		m_game.getEventConsumer()->consumeEvents();
+	if( m_game.getCurrentMatch()==NULL ){
+		m_game.setGameState(CSinglePlayerGame::SimulatingUntilTheNextEvent);
+		CGameEngine::getInstance()->getTimeManager()->start();
+	}
+	else{
+		if( m_game.getOptionManager()->getMatchResultMode() ){
+			m_game.simulateMatch(*m_game.getCurrentMatch());
+			m_game.setGameState(CSinglePlayerGame::PlayingMatch);
+			CGameEngine::getInstance()->getTimeManager()->start();
+		}else{
+			CGameEngine::getInstance()->getWindowManager()->nextScreen("Simulator");
+		}
 	}
 	return true;
 }

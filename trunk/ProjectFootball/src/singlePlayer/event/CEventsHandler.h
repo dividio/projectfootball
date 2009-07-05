@@ -18,35 +18,47 @@
  *                                                                             *
  ******************************************************************************/
 
-#ifndef CEVENTMUSTSTOPVISITOR_H_
-#define CEVENTMUSTSTOPVISITOR_H_
+#ifndef CEVENTSHANDLER_H_
+#define CEVENTSHANDLER_H_
 
-#include "IEventVisitor.h"
+#include <list>
+#include <map>
 
-// Forward declarations
+// forward declarations
+class IGameEvent;
+class CSlotConnection;
 class CSinglePlayerGame;
+class CPfGoals;
 
-class CEventMustStopVisitor: public IEventVisitor {
+class CEventsHandler {
 public:
-	CEventMustStopVisitor(CSinglePlayerGame *game);
-	virtual ~CEventMustStopVisitor();
-
-	virtual void startSeasonEventVisitor(const CStartSeasonEvent &event);
-	virtual void endSeasonEventVisitor(const CEndSeasonEvent &event);
-
-	virtual void startCompetitionEventVisitor(const CStartCompetitionEvent &event);
-	virtual void endCompetitionEventVisitor(const CEndCompetitionEvent &event);
-
-	virtual void matchEventVisitor(const CMatchEvent &event);
-	virtual void startMatchEventVisitor(const CStartMatchEvent &event);
-	virtual void goalMatchEventVisitor(const CGoalMatchEvent &event);
-	virtual void endMatchEventVisitor(const CEndMatchEvent &event);
-
-	bool eventMustStop();
+	CEventsHandler(CSinglePlayerGame &game);
+	virtual ~CEventsHandler();
 
 private:
-	bool				 m_eventMustStop;
-	CSinglePlayerGame	*m_game;
+	// Match events
+	void matchEventHandler(const IGameEvent &event);
+	void startMatchEventHandler(const IGameEvent &event);
+	void goalMatchEventHandler(const IGameEvent &event);
+	void endMatchEventHandler(const IGameEvent &event);
+
+	// Season events
+	void endSeasonEventHandler(const IGameEvent &event);
+
+	// System events
+	void noMoreEventsTodayHandler(const IGameEvent &event);
+	void timeStartEventHandler(const IGameEvent &event);
+	void timeStopEventHandler(const IGameEvent &event);
+
+private:
+	typedef std::list<CSlotConnection>		TSlotConnectionsList;
+	typedef std::list<CPfGoals*>			TGoalsList;
+	typedef std::map<int, TGoalsList*>		TMatchesMap;
+
+	CSinglePlayerGame		&m_game;
+	TMatchesMap				m_matchesMap;
+
+	TSlotConnectionsList	m_slotsList;
 };
 
-#endif /* CEVENTMUSTSTOPVISITOR_H_ */
+#endif /* CEVENTSHANDLER_H_ */

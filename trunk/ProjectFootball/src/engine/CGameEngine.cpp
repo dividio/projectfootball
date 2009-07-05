@@ -44,6 +44,7 @@ CGameEngine::CGameEngine()// : m_screenStack()
     m_game	= NULL;
     m_exit	= false;
 
+    m_eventManager	= new CEventManager();
     m_windowManager = new CWindowManager();
 
     const char *masterDatabasePath = CSystemOptionManager::getInstance()->getGeneralMasterDatebasePath();
@@ -72,6 +73,9 @@ CGameEngine::~CGameEngine()
         delete m_user;
     }
 
+    delete m_timeManager;
+    delete m_eventManager;
+
     if( !m_windowHandlers.empty() ){
     	std::vector<IWindowHandler*>::iterator itWindowHandlers;
     	for( itWindowHandlers=m_windowHandlers.begin(); itWindowHandlers!=m_windowHandlers.end(); itWindowHandlers++ ){
@@ -93,6 +97,8 @@ CGameEngine* CGameEngine::getInstance()
     if( m_instance==NULL ){
         m_instance = new CGameEngine();
 
+        m_instance->m_timeManager = new CTimeManager();
+
         m_instance->m_windowHandlers.push_back(new CIntroWindowHandler());
         m_instance->m_windowHandlers.push_back(new CMainMenuWindowHandler());
         m_instance->m_windowHandlers.push_back(new CLoadGameWindowHandler());
@@ -103,6 +109,16 @@ CGameEngine* CGameEngine::getInstance()
     }
 
     return m_instance;
+}
+
+CEventManager* CGameEngine::getEventManager()
+{
+	return m_eventManager;
+}
+
+CTimeManager* CGameEngine::getTimeManager()
+{
+	return m_timeManager;
 }
 
 CWindowManager* CGameEngine::getWindowManager()
@@ -157,6 +173,7 @@ void CGameEngine::save()
 void CGameEngine::unloadCurrentGame()
 {
     if( m_game!=NULL ){
+    	m_eventManager->clearEvents();
         m_windowManager->nextScreen("MainMenu");
         m_windowManager->clearHistory();
 
@@ -167,14 +184,6 @@ void CGameEngine::unloadCurrentGame()
 
 bool CGameEngine::frameEnded(const Ogre::FrameEvent& evt)
 {
-    return true;
-}
-
-
-bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
-{
-    ((CClock*)m_clock)->addTime(evt.timeSinceLastFrame);
-    CEGUI::System::getSingleton().injectTimePulse( evt.timeSinceLastFrame );
     if( m_exit ){
         LOG_INFO("-== Stopping Main Loop ==-");
         return false;
@@ -182,6 +191,14 @@ bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
     	m_windowManager->update();
         return true;
     }
+}
+
+
+bool CGameEngine::frameStarted(const Ogre::FrameEvent& evt)
+{
+    ((CClock*)m_clock)->addTime(evt.timeSinceLastFrame);
+    CEGUI::System::getSingleton().injectTimePulse( evt.timeSinceLastFrame );
+    return true;
 }
 
 IClock& CGameEngine::getClock()

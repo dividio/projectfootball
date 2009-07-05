@@ -26,10 +26,13 @@
 class CGoalMatchEvent : public CMatchEvent
 {
 public:
+	static const char * type;
+
+public:
     CGoalMatchEvent(const CDate &eventdate, int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal);
     virtual ~CGoalMatchEvent();
 
-    virtual void visitor(IEventVisitor &visitor) const;
+    virtual const char * getType() const;
 
     int    getXTeamScorer() const;
     int    getXTeamPlayerScorer() const;

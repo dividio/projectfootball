@@ -28,6 +28,10 @@
 #include <vector>
 #include <Ogre.h>
 
+#include "event/CEventManager.h"
+
+#include "time/CTimeManager.h"
+
 #include "wm/CWindowManager.h"
 #include "wm/IWindowHandler.h"
 
@@ -42,6 +46,8 @@ public:
     virtual ~CGameEngine();
     static CGameEngine* getInstance();
 
+    CEventManager*		getEventManager();
+    CTimeManager*		getTimeManager();
     CWindowManager*		getWindowManager();
 
     IGame*        		getCurrentGame();
@@ -72,6 +78,8 @@ private:
     IGame              				*m_game;
     CMasterDAOFactorySQLite 		*m_masterDatabase;
 
+    CEventManager					*m_eventManager;
+    CTimeManager					*m_timeManager;
     CWindowManager					*m_windowManager;
     std::vector<IWindowHandler*>	m_windowHandlers;
 };

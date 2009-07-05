@@ -23,23 +23,17 @@
 
 CEventsQueueLogObserver::CEventsQueueLogObserver()
 : IEventsQueueObserver()
-{
-	m_visitor = new CEventLogVisitor();
-}
+{}
 
 CEventsQueueLogObserver::~CEventsQueueLogObserver()
-{
-	delete m_visitor;
-}
+{}
 
 void CEventsQueueLogObserver::eventPopped(const IGameEvent &event) const
 {
-	LOG_DEBUG("Event popped:");
-	event.visitor(*m_visitor);
+	LOG_DEBUG("Event popped: '%s'", event.getType());
 }
 
 void CEventsQueueLogObserver::eventPushed(const IGameEvent &event) const
 {
-	LOG_DEBUG("Event pushed:");
-	event.visitor(*m_visitor);
+	LOG_DEBUG("Event pushed: '%s'", event.getType());
 }

@@ -20,16 +20,16 @@
 
 #include "CEndSeasonEvent.h"
 
+const char * CEndSeasonEvent::type = "Event/EndSeason";
+
 CEndSeasonEvent::CEndSeasonEvent(const CDate &eventDate)
 : CAbstractGameEvent(eventDate)
-{
-}
+{}
 
 CEndSeasonEvent::~CEndSeasonEvent()
-{
-}
+{}
 
-void CEndSeasonEvent::visitor(IEventVisitor &visitor) const
+const char * CEndSeasonEvent::getType() const
 {
-	visitor.endSeasonEventVisitor(*this);
+	return CEndSeasonEvent::type;
 }

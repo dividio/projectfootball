@@ -20,16 +20,16 @@
 
 #include "CStartSeasonEvent.h"
 
+const char * CStartSeasonEvent::type = "Event/StartSeason";
+
 CStartSeasonEvent::CStartSeasonEvent(const CDate &eventDate)
 : CAbstractGameEvent(eventDate)
-{
-}
+{}
 
 CStartSeasonEvent::~CStartSeasonEvent()
-{
-}
+{}
 
-void CStartSeasonEvent::visitor(IEventVisitor &visitor) const
+const char * CStartSeasonEvent::getType() const
 {
-	visitor.startSeasonEventVisitor(*this);
+	return CStartSeasonEvent::type;
 }

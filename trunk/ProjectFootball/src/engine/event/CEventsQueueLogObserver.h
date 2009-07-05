@@ -22,7 +22,6 @@
 #define CEVENTSQUEUELOGOBSERVER_H_
 
 #include "IEventsQueueObserver.h"
-#include "../../singlePlayer/event/CEventLogVisitor.h"
 
 class CEventsQueueLogObserver: public IEventsQueueObserver {
 public:
@@ -31,9 +30,6 @@ public:
 
 	virtual void eventPushed(const IGameEvent &event) const;
 	virtual void eventPopped(const IGameEvent &event) const;
-
-private:
-	CEventLogVisitor *m_visitor;
 };
 
 #endif /* CEVENTSQUEUELOGOBSERVER_H_ */

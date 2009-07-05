@@ -34,13 +34,13 @@ class CSeasonGenerator {
 public:
 	virtual ~CSeasonGenerator();
 
-	static void generateSeason(CSinglePlayerGame *game);
+	static void generateSeason(CSinglePlayerGame &game);
 
 protected:
 	CSeasonGenerator();
 
 private:
-	static void generateLeagueMatches(CSinglePlayerGame *game, const CPfCompetitionsBySeason *competitionBySeason, const std::vector<CPfTeams*> *teamsList);
+	static void generateLeagueMatches(CSinglePlayerGame &game, const CPfCompetitionsBySeason &competitionBySeason, const std::vector<CPfTeams*> *teamsList);
 
 	static CDate getSameWeekDayOneYearLater(const CDate &date);
 };

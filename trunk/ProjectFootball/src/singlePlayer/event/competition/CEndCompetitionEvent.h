@@ -25,10 +25,13 @@
 
 class CEndCompetitionEvent: public CAbstractGameEvent {
 public:
+	static const char * type;
+
+public:
 	CEndCompetitionEvent(const CDate &eventDate);
 	virtual ~CEndCompetitionEvent();
 
-    virtual void visitor(IEventVisitor &visitor) const;
+	virtual const char * getType() const;
 };
 
 #endif /* CENDCOMPETITIONEVENT_H_ */

@@ -26,7 +26,8 @@
 #include "CSinglePlayerGame.h"
 #include "db/dao/factory/IDAOFactory.h"
 
-#include "../engine/event/CEventsQueue.h"
+#include "../engine/CGameEngine.h"
+#include "../engine/event/CEventManager.h"
 
 #include "event/competition/CStartCompetitionEvent.h"
 #include "event/competition/CEndCompetitionEvent.h"
@@ -50,12 +51,14 @@ CSeasonGenerator::~CSeasonGenerator()
 	// Nothing to do
 }
 
-void CSeasonGenerator::generateSeason(CSinglePlayerGame *game)
+void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 {
-	IPfSeasonsDAO				*seasonsDAO					= game->getIDAOFactory()->getIPfSeasonsDAO();
-	IPfCompetitionsBySeasonDAO	*competitionsBySeasonDAO	= game->getIDAOFactory()->getIPfCompetitionsBySeasonDAO();
-	IPfTeamsDAO					*teamsDAO					= game->getIDAOFactory()->getIPfTeamsDAO();
-	IPfTeamsByCompetitionsDAO	*teamsByCompetitionsDAO		= game->getIDAOFactory()->getIPfTeamsByCompetitionsDAO();
+	CEventManager	*eventMngr	= CGameEngine::getInstance()->getEventManager();
+
+	IPfSeasonsDAO				*seasonsDAO					= game.getIDAOFactory()->getIPfSeasonsDAO();
+	IPfCompetitionsBySeasonDAO	*competitionsBySeasonDAO	= game.getIDAOFactory()->getIPfCompetitionsBySeasonDAO();
+	IPfTeamsDAO					*teamsDAO					= game.getIDAOFactory()->getIPfTeamsDAO();
+	IPfTeamsByCompetitionsDAO	*teamsByCompetitionsDAO		= game.getIDAOFactory()->getIPfTeamsByCompetitionsDAO();
 
 	CPfSeasons *season = seasonsDAO->findLastSeason();
 	if( season==NULL || season->getXSeason_str()=="" ){
@@ -74,7 +77,7 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame *game)
 	CPfSeasons newSeason;
 	newSeason.setNYear(year);
 	newSeason.setSSeason(sseason.str());
-	game->getIDAOFactory()->getIPfSeasonsDAO()->insertReg(&newSeason);
+	game.getIDAOFactory()->getIPfSeasonsDAO()->insertReg(&newSeason);
 
 	// retrieve the competitions associated with the last season
 	std::vector<CPfCompetitionsBySeason*>	*competitionsBySeasonList = competitionsBySeasonDAO->findByXFkSeason(season->getXSeason_str());
@@ -107,9 +110,9 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame *game)
 			delete newTeamByCompetition;
 		}
 
-		game->getEventsQueue()->push(new CStartCompetitionEvent(newCompetitionBySeason->getDBeginCompetition()));
-		generateLeagueMatches(game, newCompetitionBySeason, teamsList); // TODO: Maybe not all competitions are leagues
-		game->getEventsQueue()->push(new CEndCompetitionEvent(newCompetitionBySeason->getDEndCompetition()));
+		eventMngr->addEvent(new CStartCompetitionEvent(newCompetitionBySeason->getDBeginCompetition()));
+		generateLeagueMatches(game, *newCompetitionBySeason, teamsList); // TODO: Maybe not all competitions are leagues
+		eventMngr->addEvent(new CEndCompetitionEvent(newCompetitionBySeason->getDEndCompetition()));
 
 		// Retrieve the min & max date for the season events
 		if( newCompetitionBySeason->getDBeginCompetition()<minDate ){
@@ -127,20 +130,22 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame *game)
 	maxDate.setSec(maxDate.getSec()+1);
 
 	// enqueue the start & end season events
-	game->getEventsQueue()->push(new CStartSeasonEvent(minDate));
-	game->getEventsQueue()->push(new CEndSeasonEvent(maxDate));
-	game->getOptionManager()->setGameCurrentSeason(newSeason.getXSeason());
+	eventMngr->addEvent(new CStartSeasonEvent(minDate));
+	eventMngr->addEvent(new CEndSeasonEvent(maxDate));
+	game.getOptionManager()->setGameCurrentSeason(newSeason.getXSeason());
 
 	competitionsBySeasonDAO->freeVector(competitionsBySeasonList);
 	delete season;
 }
 
-void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame *game, const CPfCompetitionsBySeason *competitionBySeason, const std::vector<CPfTeams*> *teamsList)
+void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfCompetitionsBySeason &competitionBySeason, const std::vector<CPfTeams*> *teamsList)
 {
-	IPfCompetitionPhasesDAO	*competitionPhasesDAO 	= game->getIDAOFactory()->getIPfCompetitionPhasesDAO();
-	IPfMatchesDAO			*matchesDAO				= game->getIDAOFactory()->getIPfMatchesDAO();
+	CEventManager	*eventMngr	= CGameEngine::getInstance()->getEventManager();
 
-	std::vector<CPfCompetitionPhases*>	*phasesList	= competitionPhasesDAO->findByXFkCompetition(competitionBySeason->getXFkCompetition());
+	IPfCompetitionPhasesDAO	*competitionPhasesDAO 	= game.getIDAOFactory()->getIPfCompetitionPhasesDAO();
+	IPfMatchesDAO			*matchesDAO				= game.getIDAOFactory()->getIPfMatchesDAO();
+
+	std::vector<CPfCompetitionPhases*>	*phasesList	= competitionPhasesDAO->findByXFkCompetition(competitionBySeason.getXFkCompetition());
 
 	int i;
 	int nTeams 	= teamsList->size();
@@ -166,12 +171,12 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame *game, const CPfC
 		}
 	}
 
-	CDate	goDate(competitionBySeason->getDBeginCompetition());
+	CDate	goDate(competitionBySeason.getDBeginCompetition());
 	goDate.setHour(17);
 	goDate.setMin(0);
 	goDate.setSec(0);
 
-	CDate 	returnDate(competitionBySeason->getDBeginCompetition());
+	CDate 	returnDate(competitionBySeason.getDBeginCompetition());
 	returnDate.setDay(returnDate.getDay()+halfNPhases*7);
 	returnDate.setHour(17);
 	returnDate.setMin(0);
@@ -193,21 +198,21 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame *game, const CPfC
 
 	        match->setDMatch(goDate);
 	        match->setLPlayed(false);
-	        match->setXFkSeason_str(competitionBySeason->getXFkSeason_str());
+	        match->setXFkSeason_str(competitionBySeason.getXFkSeason_str());
 	        match->setXFkCompetitionPhase_str(goPhase->getXCompetitionPhase_str());
 	        match->setXFkTeamHome_str(homeTeam->getXTeam_str());
 	        match->setXFkTeamAway_str(awayTeam->getXTeam_str());
 	        matchesDAO->insertReg(match);
-	        game->getEventsQueue()->push(new CMatchEvent(goDate, match->getXMatch()));
+	        eventMngr->addEvent(new CMatchEvent(goDate, match->getXMatch()));
 
 	        match->setDMatch(returnDate);
 	        match->setLPlayed(false);
-	        match->setXFkSeason_str(competitionBySeason->getXFkSeason_str());
+	        match->setXFkSeason_str(competitionBySeason.getXFkSeason_str());
 	        match->setXFkCompetitionPhase_str(returnPhase->getXCompetitionPhase_str());
 	        match->setXFkTeamHome_str(awayTeam->getXTeam_str());
 	        match->setXFkTeamAway_str(homeTeam->getXTeam_str());
 	        matchesDAO->insertReg(match);
-	        game->getEventsQueue()->push(new CMatchEvent(returnDate, match->getXMatch()));
+	        eventMngr->addEvent(new CMatchEvent(returnDate, match->getXMatch()));
 
 	        delete match;
 	    }

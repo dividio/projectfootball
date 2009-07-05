@@ -26,11 +26,14 @@
 class CMatchEvent : public CAbstractGameEvent
 {
 public:
+	static const char * type;
+
+public:
     CMatchEvent(const CDate &eventdate, int xMatch);
     virtual ~CMatchEvent();
 
-    virtual int getXMatch() const;
-    virtual void visitor(IEventVisitor &visitor) const;
+    virtual const char *	getType() const;
+    virtual int				getXMatch() const;
 
 protected:
 

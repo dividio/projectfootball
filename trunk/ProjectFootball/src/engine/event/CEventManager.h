@@ -18,26 +18,51 @@
  *                                                                             *
  ******************************************************************************/
 
-#ifndef CEVENTLOGVISITOR_H_
-#define CEVENTLOGVISITOR_H_
+#ifndef CEVENTMANAGER_H_
+#define CEVENTMANAGER_H_
 
-#include "IEventVisitor.h"
+#include <map>
+#include <list>
 
-class CEventLogVisitor: public IEventVisitor {
+#include "IGameEvent.h"
+#include "CEventsQueue.h"
+
+#include "slot/ISlotFunctorBase.h"
+#include "slot/CMemberFunctionSlot.h"
+#include "slot/CSlotConnection.h"
+
+#include "../time/CTimeManager.h"
+
+class CEventManager {
+	friend class CTimeManager;
 public:
-	CEventLogVisitor();
-	virtual ~CEventLogVisitor();
+	CEventManager();
+	virtual ~CEventManager();
 
-	virtual void startSeasonEventVisitor(const CStartSeasonEvent &event);
-	virtual void endSeasonEventVisitor(const CEndSeasonEvent &event);
+	void addEvent(IGameEvent *event);
+	void clearEvents();
+	void consumeEvent();
 
-	virtual void startCompetitionEventVisitor(const CStartCompetitionEvent &event);
-	virtual void endCompetitionEventVisitor(const CEndCompetitionEvent &event);
+	template<typename T>
+	CSlotConnection subscribeEvent( const char *eventType, void (T::*function)(const IGameEvent&), T *object )
+	{
+		ISlotFunctorBase *slot = new CMemberFunctionSlot<T>(function, object);
+		m_eventsSubscribers[eventType].push_back(slot);
+		return CSlotConnection(eventType, slot);
+	}
 
-	virtual void matchEventVisitor(const CMatchEvent &event);
-	virtual void startMatchEventVisitor(const CStartMatchEvent &event);
-	virtual void goalMatchEventVisitor(const CGoalMatchEvent &event);
-	virtual void endMatchEventVisitor(const CEndMatchEvent &event);
+	void disconnectSlot( const CSlotConnection &connection );
+
+private:
+	void fireEvent(const IGameEvent &event);
+
+private:
+	typedef std::list<ISlotFunctorBase*>		TSlotList;
+	typedef std::map<const char*, TSlotList>	TSubscribersMap;
+
+	TSubscribersMap		m_eventsSubscribers;
+	CEventsQueue		m_eventsQueue;
+
 };
 
-#endif /* CEVENTLOGVISITOR_H_ */
+#endif /* CEVENTMANAGER_H_ */

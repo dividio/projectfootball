@@ -22,10 +22,9 @@
 #define CEVENTSQUEUE_H_
 
 #include <queue>
-#include <list>
 
 #include "IGameEvent.h"
-#include "IEventsQueueObserver.h"
+#include "../../utils/CDate.h"
 
 class CEventsQueue
 {
@@ -40,33 +39,39 @@ public:
 
     /**
      * Return the event from the queue whose date is the lowest.
+     */
+    IGameEvent* pop();
+
+    /**
+     * Return the event from the queue whose date is the lowest.
      * If a date is specified then, the date of the event is lower
      * than that indicated. If there isn't any event or don't
      * complies with the indicated restrictions, then NULL is
      * returned.
      */
-    IGameEvent* pop(const CDate *date);
+    IGameEvent* pop(const CDate &date);
+
 
     /**
      * Return if the queue is empty or not
      */
     bool empty();
-
-    /**
-     * Subscribe an observer of the events queue. When a event
-     * is pushed o popped all the observers will be notified.
-     */
-    void addObserver(const IEventsQueueObserver &observer);
-
-    /**
-     * Remove an observer of the events queue.
-     */
-    void removeObserver(const IEventsQueueObserver &observer);
+//
+//    /**
+//     * Subscribe an observer of the events queue. When a event
+//     * is pushed o popped all the observers will be notified.
+//     */
+//    void addObserver(const IEventsQueueObserver &observer);
+//
+//    /**
+//     * Remove an observer of the events queue.
+//     */
+//    void removeObserver(const IEventsQueueObserver &observer);
 
 private:
     std::priority_queue<IGameEvent*, std::vector<IGameEvent*>, bool (*)(const IGameEvent*, const IGameEvent*)> m_queue;
-
-    std::list<const IEventsQueueObserver*> m_observers;
+//
+//    std::list<const IEventsQueueObserver*> m_observers;
 };
 
 #endif /*CEVENTSQUEUE_H_*/

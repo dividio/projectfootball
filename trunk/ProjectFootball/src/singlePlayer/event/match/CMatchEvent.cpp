@@ -20,21 +20,22 @@
 
 #include "CMatchEvent.h"
 
-CMatchEvent::CMatchEvent(const CDate &eventdate, int xMatch)
-: CAbstractGameEvent(eventdate)
-{
-    m_xMatch = xMatch;
-}
+const char * CMatchEvent::type = "Event/Match";
+
+CMatchEvent::CMatchEvent(const CDate &eventdate, int xMatch) :
+	CAbstractGameEvent(eventdate),
+	m_xMatch(xMatch)
+{}
 
 CMatchEvent::~CMatchEvent()
+{}
+
+const char * CMatchEvent::getType() const
 {
+	return CMatchEvent::type;
 }
 
 int CMatchEvent::getXMatch() const
 {
     return m_xMatch;
-}
-
-void CMatchEvent::visitor(IEventVisitor &visitor) const{
-	visitor.matchEventVisitor(*this);
 }

@@ -427,7 +427,8 @@ void CSimulatorWindowHandler::endMatchEvent()
 
 bool CSimulatorWindowHandler::continueButtonClicked(const CEGUI::EventArgs& e)
 {
-	CGameEngine::getInstance()->getWindowManager()->nextScreen("MatchResult");
+	m_game.setGameState(CSinglePlayerGame::PlayingMatch);
+	CGameEngine::getInstance()->getTimeManager()->start();
     return true;
 }
 

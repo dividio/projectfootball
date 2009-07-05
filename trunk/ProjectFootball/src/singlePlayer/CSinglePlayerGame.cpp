@@ -29,8 +29,11 @@
 #include "db/dao/factory/IDAOFactory.h"
 #include "db/sqlite/dao/factory/CDAOFactorySQLite.h"
 
-#include "event/CEventConsumer.h"
+#include "event/CEventsHandler.h"
 #include "event/match/CMatchEvent.h"
+#include "event/match/CStartMatchEvent.h"
+#include "event/match/CGoalMatchEvent.h"
+#include "event/match/CEndMatchEvent.h"
 #include "event/competition/CStartCompetitionEvent.h"
 #include "event/competition/CEndCompetitionEvent.h"
 #include "event/season/CStartSeasonEvent.h"
@@ -52,7 +55,7 @@
 #include "../engine/db/bean/CPfGames.h"
 #include "../engine/db/bean/CPfUsers.h"
 #include "../engine/event/IGameEvent.h"
-#include "../engine/event/CEventsQueue.h"
+#include "../engine/event/system/CNoMoreEventsToday.h"
 #include "../engine/wm/IWindowHandler.h"
 
 #include "../exceptions/PFException.h"
@@ -61,10 +64,12 @@
 #include "../utils/CDate.h"
 
 CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
-	m_windowHandlers()
+	m_windowHandlers(),
+	m_gameState(Stopped)
 {
     LOG_DEBUG("CSinglePlayerGame::CSinglePlayerGame");
 	m_game				= new CPfGames(game);
+	m_eventsHandler		= new CEventsHandler(*this);
 
 	// If the database doesn't exists (is a new game or the file was deleted)
 	// then it will be created a new database and will be generated the new data,
@@ -74,8 +79,6 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	if( !existsDataBase ){ CDataBaseGenerator::generateDataBase(m_daoFactory); }
 
 	m_reportRegister	= new CSinglePlayerReportRegister();
-	m_eventsQueue		= new CEventsQueue();
-	m_eventConsumer		= new CEventConsumer(this);
 	m_optionManager		= new CSinglePlayerOptionManager(m_daoFactory->getIPfGameOptionsDAO());
 
 	// window handlers
@@ -106,9 +109,8 @@ CSinglePlayerGame::~CSinglePlayerGame()
 
     delete m_optionManager;
     delete m_reportRegister;
-    delete m_eventConsumer;
-    delete m_eventsQueue;
     delete m_daoFactory;
+    delete m_eventsHandler;
     delete m_game;
 
     delete m_currentMatch;
@@ -127,16 +129,6 @@ CSinglePlayerReportRegister* CSinglePlayerGame::getReportRegister()
 CSinglePlayerOptionManager* CSinglePlayerGame::getOptionManager()
 {
     return m_optionManager;
-}
-
-CEventsQueue* CSinglePlayerGame::getEventsQueue()
-{
-	return m_eventsQueue;
-}
-
-CEventConsumer* CSinglePlayerGame::getEventConsumer()
-{
-	return m_eventConsumer;
 }
 
 IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameName)
@@ -195,6 +187,14 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
 
     singlePlayerGame->loadGameEvents();
 
+	CDate date = singlePlayerGame->m_optionManager->getGameCurrentDate();
+	CGameEngine::getInstance()->getTimeManager()->setCurrentTime(date);
+
+	date.setHour(23);
+	date.setMin(59);
+	date.setSec(59);
+	CGameEngine::getInstance()->getEventManager()->addEvent(new CNoMoreEventsToday(date));
+
     return singlePlayerGame;
 }
 
@@ -205,11 +205,20 @@ IGame* CSinglePlayerGame::load(const CPfGames &game)
 	CSinglePlayerGame *singlePlayerGame = new CSinglePlayerGame(game);
 	singlePlayerGame->loadGameEvents();
 
+	CDate date = singlePlayerGame->m_optionManager->getGameCurrentDate();
+	CGameEngine::getInstance()->getTimeManager()->setCurrentTime(date);
+
+	date.setHour(23);
+	date.setMin(59);
+	date.setSec(59);
+	CGameEngine::getInstance()->getEventManager()->addEvent(new CNoMoreEventsToday(date));
+
 	return singlePlayerGame;
 }
 
 CPfGames* CSinglePlayerGame::save()
 {
+	m_optionManager->setGameCurrentDate(CGameEngine::getInstance()->getTimeManager()->getCurrentTime());
 	m_optionManager->saveOptions();
     m_daoFactory->save();
 
@@ -228,7 +237,12 @@ const char* CSinglePlayerGame::getFirstScreenName()
     }
 }
 
-const CPfMatches* CSinglePlayerGame::getCurrentMatch()
+void CSinglePlayerGame::setGameState(EGameState state)
+{
+	m_gameState = state;
+}
+
+const CPfMatches* CSinglePlayerGame::getCurrentMatch() const
 {
 	return m_currentMatch;
 }
@@ -242,9 +256,92 @@ void CSinglePlayerGame::setCurrentMatch(const CPfMatches *match)
 	m_matchInfoWindowHandler->enter();
 }
 
+void CSinglePlayerGame::simulateMatch(const CPfMatches &match)
+{
+	CEventManager *eventMngr = CGameEngine::getInstance()->getEventManager();
+
+    IPfTeamPlayersDAO  *teamPlayersDAO = m_daoFactory->getIPfTeamPlayersDAO();
+    IPfTeamAveragesDAO *teamsAvgDAO    = m_daoFactory->getIPfTeamAveragesDAO();
+
+    eventMngr->addEvent(new CStartMatchEvent(match.getDMatch(), match.getXMatch()));
+
+    int xHomeTeam  = match.getXFkTeamHome();
+    int xAwayTeam  = match.getXFkTeamAway();
+    CPfTeamAverages *homeTeamAvg = teamsAvgDAO->findByXTeam(xHomeTeam);
+    CPfTeamAverages *awayTeamAvg = teamsAvgDAO->findByXTeam(xAwayTeam);
+    int nHomeGoals = getRandomNGoals(homeTeamAvg, awayTeamAvg);
+    int nAwayGoals = getRandomNGoals(awayTeamAvg, homeTeamAvg);
+
+    delete homeTeamAvg;
+    delete awayTeamAvg;
+
+    if( nHomeGoals>0 ){
+        std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xHomeTeam);
+        while( nHomeGoals>0 ){
+            int numPlayer = rand()%teamPlayesList->size();
+            if(numPlayer == 0) { //Goalie don't score
+                numPlayer = 10;
+            }
+            CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
+
+            int minute = rand()%90;
+            CDate eventDate = match.getDMatch();
+            eventDate.setMin(eventDate.getMin()+minute);
+
+            eventMngr->addEvent(new CGoalMatchEvent(eventDate, match.getXMatch(), xHomeTeam, teamPlayer->getXTeamPlayer(), minute, false));
+
+            nHomeGoals--;
+        }
+        teamPlayersDAO->freeVector(teamPlayesList);
+    }
+    if( nAwayGoals>0 ){
+        std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xAwayTeam);
+        while( nAwayGoals>0 ){
+            int numPlayer = rand()%teamPlayesList->size();
+            if(numPlayer == 0) { //Goalie don't score
+                numPlayer = 10;
+            }
+            CPfTeamPlayers *teamPlayer = teamPlayesList->operator[](numPlayer);
+
+            int minute = rand()%90;
+            CDate eventDate = match.getDMatch();
+            eventDate.setMin(eventDate.getMin()+minute);
+
+            eventMngr->addEvent(new CGoalMatchEvent(eventDate, match.getXMatch(), xAwayTeam, teamPlayer->getXTeamPlayer(), minute, false));
+
+            nAwayGoals--;
+        }
+        teamPlayersDAO->freeVector(teamPlayesList);
+    }
+
+    CDate eventDate = match.getDMatch();
+    eventDate.setMin(eventDate.getMin()+90);
+
+    eventMngr->addEvent(new CEndMatchEvent(eventDate, match.getXMatch()));
+}
+
+int CSinglePlayerGame::getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam)
+{
+    int goals = 0;
+    int teamFactor = attackTeam->getNTotal() - defenseTeam->getNTotal();
+
+    int n = rand()%100 + teamFactor;
+
+         if( n<25  )         { goals = 0; }
+    else if( n>=25 && n<55  ){ goals = 1; }
+    else if( n>=55 && n<80  ){ goals = 2; }
+    else if( n>=80 && n<96  ){ goals = 3; }
+    else if( n>=96 && n<100 ){ goals = 4; }
+    else if( n>=100 )        { goals = 5; }
+    return goals;
+}
+
+
 void CSinglePlayerGame::loadGameEvents()
 {
 	int xSeason = m_optionManager->getGameCurrentSeason();
+
+	CEventManager *eventMngr = CGameEngine::getInstance()->getEventManager();
 
 	IPfCompetitionsBySeasonDAO	*competitionBySeasonDAO = m_daoFactory->getIPfCompetitionsBySeasonDAO();
 	IPfMatchesDAO				*matchesDAO				= m_daoFactory->getIPfMatchesDAO();
@@ -270,13 +367,13 @@ void CSinglePlayerGame::loadGameEvents()
 				someMatchPlayed = true;
 				someCompetitionStarted = true;
 			}else{
-				m_eventsQueue->push(new CMatchEvent(match->getDMatch(), match->getXMatch()));
+				eventMngr->addEvent(new CMatchEvent(match->getDMatch(), match->getXMatch()));
 			}
 		}
 		if( !someMatchPlayed ){
-			m_eventsQueue->push(new CStartCompetitionEvent(competitionBySeason->getDBeginCompetition()));
+			eventMngr->addEvent(new CStartCompetitionEvent(competitionBySeason->getDBeginCompetition()));
 		}
-		m_eventsQueue->push(new CEndCompetitionEvent(competitionBySeason->getDEndCompetition()));
+		eventMngr->addEvent(new CEndCompetitionEvent(competitionBySeason->getDEndCompetition()));
 
 		// Retrieve the min & max date for the season events
 		if( competitionBySeason->getDBeginCompetition()<minDate ){
@@ -294,9 +391,9 @@ void CSinglePlayerGame::loadGameEvents()
 
 	// enqueue the start & end season events
 	if( !someCompetitionStarted ){
-		m_eventsQueue->push(new CStartSeasonEvent(minDate));
+		eventMngr->addEvent(new CStartSeasonEvent(minDate));
 	}
-	m_eventsQueue->push(new CEndSeasonEvent(maxDate));
+	eventMngr->addEvent(new CEndSeasonEvent(maxDate));
 
 	competitionBySeasonDAO->freeVector(competitionsBySeasonList);
 }

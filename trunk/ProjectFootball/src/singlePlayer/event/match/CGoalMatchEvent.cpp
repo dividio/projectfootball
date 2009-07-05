@@ -20,21 +20,22 @@
 
 #include "CGoalMatchEvent.h"
 
-CGoalMatchEvent::CGoalMatchEvent(const CDate &eventdate, int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal)
-: CMatchEvent(eventdate, xMatch)
-{
-    m_xTeamScorer   = xTeamScorer;
-    m_xTeplScorer   = xTeamPlayerScorer;
-    m_nMinute       = nMinute;
-    m_lOwnGoal      = lOwnGoal;
-}
+const char * CGoalMatchEvent::type = "Event/GoalMatch";
+
+CGoalMatchEvent::CGoalMatchEvent(const CDate &eventdate, int xMatch, int xTeamScorer, int xTeamPlayerScorer, int nMinute, bool lOwnGoal) :
+	CMatchEvent(eventdate, xMatch),
+	m_xTeamScorer(xTeamScorer),
+	m_xTeplScorer(xTeamPlayerScorer),
+	m_nMinute(nMinute),
+	m_lOwnGoal(lOwnGoal)
+{}
 
 CGoalMatchEvent::~CGoalMatchEvent()
-{
-}
+{}
 
-void CGoalMatchEvent::visitor(IEventVisitor &visitor) const{
-	visitor.goalMatchEventVisitor(*this);
+const char * CGoalMatchEvent::getType() const
+{
+	return CGoalMatchEvent::type;
 }
 
 int CGoalMatchEvent::getXTeamScorer() const

@@ -30,24 +30,30 @@
 class CPfGames;
 class CPfUsers;
 class CPfMatches;
+class CPfTeamAverages;
 class IDAOFactory;
 class CSinglePlayerOptionManager;
 class CSinglePlayerReportRegister;
 class IGameEvent;
-class CEventsQueue;
-class CEventConsumer;
 class IWindowHandler;
+class CEventsHandler;
 
 class CSinglePlayerGame : public IGame
 {
+public:
+	enum EGameState{
+		SimulatingUntilTheNextDay,
+		SimulatingUntilTheNextEvent,
+		PlayingMatch,
+		Stopped
+	};
+
 public:
     virtual ~CSinglePlayerGame();
 
     IDAOFactory*           			getIDAOFactory();
     CSinglePlayerReportRegister*	getReportRegister();
     CSinglePlayerOptionManager*    	getOptionManager();
-    CEventsQueue*					getEventsQueue();
-    CEventConsumer*					getEventConsumer();
 
     // IGame
     static IGame* newGame(const CPfUsers &user, const std::string &gameName);
@@ -56,20 +62,23 @@ public:
     virtual const char* getFirstScreenName();
 
     // Game progression
-    const CPfMatches* 	getCurrentMatch();
+    const EGameState	getGameState() const { return m_gameState; }
+    void				setGameState(EGameState state);
+    const CPfMatches* 	getCurrentMatch() const;
     void				setCurrentMatch(const CPfMatches* match);
+
+    void simulateMatch(const CPfMatches &match);
 
 protected:
 	CSinglePlayerGame(const CPfGames &game);
 
 private:
     void loadGameEvents();
+	int  getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam);
 
 protected:
     CPfGames						*m_game;
     IDAOFactory						*m_daoFactory;
-    CEventsQueue					*m_eventsQueue;
-    CEventConsumer					*m_eventConsumer;
     CSinglePlayerReportRegister		*m_reportRegister;
     CSinglePlayerOptionManager		*m_optionManager;
 
@@ -77,6 +86,9 @@ protected:
     IWindowHandler					*m_matchInfoWindowHandler;
 
     const CPfMatches				*m_currentMatch;
+    EGameState						m_gameState;
+    CEventsHandler					*m_eventsHandler;
+
 };
 
 #endif /*CSINGLEPLAYERGAME_H_*/

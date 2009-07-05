@@ -37,9 +37,9 @@ public:
     CMatchResultWindowHandler(CSinglePlayerGame &game);
     virtual ~CMatchResultWindowHandler();
 
+    virtual void enter();
     virtual void init();
     virtual void leave();
-    virtual void update();
 
 private:
     bool continueButtonClicked(const CEGUI::EventArgs& e);
@@ -59,7 +59,6 @@ private:
     CEGUI::PushButton		*m_continueButton;
 
     CSinglePlayerGame		&m_game;
-    bool					 m_loadMatchInfo;
 
 };
 
