@@ -41,7 +41,7 @@ public:
 
 private:
 	void			runThread();
-	void			noMoreEventsTodayHandler(const IGameEvent &event);
+	void			endDayEventHandler(const IGameEvent &event);
 
 private:
 	boost::thread			m_thread;

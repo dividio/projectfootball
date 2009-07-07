@@ -24,7 +24,7 @@
 #include "../event/IGameEvent.h"
 #include "../event/CEventManager.h"
 #include "../event/slot/CSlotConnection.h"
-#include "../event/system/CNoMoreEventsToday.h"
+#include "../event/system/CEndDayEvent.h"
 #include "../event/system/CTimeStartEvent.h"
 #include "../event/system/CTimeStopEvent.h"
 #include "../../utils/CLog.h"
@@ -36,7 +36,7 @@ CTimeManager::CTimeManager() :
 	m_stopRequest(true),
 	m_stopped(true),
 	m_currentTime(),
-	m_slotConnection(CGameEngine::getInstance()->getEventManager()->subscribeEvent(CNoMoreEventsToday::type, &CTimeManager::noMoreEventsTodayHandler, this))
+	m_slotConnection(CGameEngine::getInstance()->getEventManager()->subscribeEvent(CEndDayEvent::type, &CTimeManager::endDayEventHandler, this))
 {}
 
 CTimeManager::~CTimeManager()
@@ -97,7 +97,7 @@ void CTimeManager::runThread()
 	LOG_DEBUG("Time stopped [date:%s, nEvents: %u, avgTime: %s]", m_currentTime.getTimestamp().c_str(), nEvents, boost::posix_time::to_simple_string(td/nEvents).c_str());
 }
 
-void CTimeManager::noMoreEventsTodayHandler(const IGameEvent &event)
+void CTimeManager::endDayEventHandler(const IGameEvent &event)
 {
 	// Only one "NoMoreEventsToday" event is on the events queue at time,
 	// so we need to add a new event of this type for tomorrow
@@ -107,5 +107,5 @@ void CTimeManager::noMoreEventsTodayHandler(const IGameEvent &event)
 	date.setHour(23);
 	date.setMin(59);
 	date.setSec(59);
-	CGameEngine::getInstance()->getEventManager()->addEvent(new CNoMoreEventsToday(date));
+	CGameEngine::getInstance()->getEventManager()->addEvent(new CEndDayEvent(date));
 }

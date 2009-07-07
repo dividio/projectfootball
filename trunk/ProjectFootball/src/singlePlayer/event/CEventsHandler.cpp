@@ -35,7 +35,7 @@
 #include "../../engine/event/IGameEvent.h"
 #include "../../engine/event/CEventManager.h"
 #include "../../engine/event/slot/CSlotConnection.h"
-#include "../../engine/event/system/CNoMoreEventsToday.h"
+#include "../../engine/event/system/CEndDayEvent.h"
 #include "../../engine/event/system/CTimeStartEvent.h"
 #include "../../engine/event/system/CTimeStopEvent.h"
 #include "../../engine/time/CTimeManager.h"
@@ -47,7 +47,7 @@ CEventsHandler::CEventsHandler(CSinglePlayerGame &game) :
 {
 	CEventManager *eventMngr = CGameEngine::getInstance()->getEventManager();
 
-	m_slotsList.push_back(eventMngr->subscribeEvent(CNoMoreEventsToday::type, &CEventsHandler::noMoreEventsTodayHandler, this));
+	m_slotsList.push_back(eventMngr->subscribeEvent(CEndDayEvent::type, &CEventsHandler::endDayEventHandler, this));
 	m_slotsList.push_back(eventMngr->subscribeEvent(CTimeStartEvent::type, &CEventsHandler::timeStartEventHandler, this));
 	m_slotsList.push_back(eventMngr->subscribeEvent(CTimeStopEvent::type, &CEventsHandler::timeStopEventHandler, this));
 	m_slotsList.push_back(eventMngr->subscribeEvent(CEndSeasonEvent::type, &CEventsHandler::endSeasonEventHandler, this));
@@ -162,7 +162,7 @@ void CEventsHandler::endSeasonEventHandler(const IGameEvent &event)
 	CSeasonGenerator::generateSeason(m_game);
 }
 
-void CEventsHandler::noMoreEventsTodayHandler(const IGameEvent &event)
+void CEventsHandler::endDayEventHandler(const IGameEvent &event)
 {
 	switch( m_game.getGameState() ){
 	case CSinglePlayerGame::SimulatingUntilTheNextDay:

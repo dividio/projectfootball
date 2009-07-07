@@ -55,7 +55,7 @@
 #include "../engine/db/bean/CPfGames.h"
 #include "../engine/db/bean/CPfUsers.h"
 #include "../engine/event/IGameEvent.h"
-#include "../engine/event/system/CNoMoreEventsToday.h"
+#include "../engine/event/system/CEndDayEvent.h"
 #include "../engine/wm/IWindowHandler.h"
 
 #include "../exceptions/PFException.h"
@@ -193,7 +193,7 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
 	date.setHour(23);
 	date.setMin(59);
 	date.setSec(59);
-	CGameEngine::getInstance()->getEventManager()->addEvent(new CNoMoreEventsToday(date));
+	CGameEngine::getInstance()->getEventManager()->addEvent(new CEndDayEvent(date));
 
     return singlePlayerGame;
 }
@@ -211,7 +211,7 @@ IGame* CSinglePlayerGame::load(const CPfGames &game)
 	date.setHour(23);
 	date.setMin(59);
 	date.setSec(59);
-	CGameEngine::getInstance()->getEventManager()->addEvent(new CNoMoreEventsToday(date));
+	CGameEngine::getInstance()->getEventManager()->addEvent(new CEndDayEvent(date));
 
 	return singlePlayerGame;
 }

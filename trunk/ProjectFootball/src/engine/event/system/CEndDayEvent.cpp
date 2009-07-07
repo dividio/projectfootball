@@ -18,18 +18,18 @@
  *                                                                             *
  ******************************************************************************/
 
-#include "CNoMoreEventsToday.h"
+#include "CEndDayEvent.h"
 
-const char * CNoMoreEventsToday::type = "Event/NoMoreEventsToday";
+const char * CEndDayEvent::type = "Event/EndDay";
 
-CNoMoreEventsToday::CNoMoreEventsToday(const CDate &eventDate) :
+CEndDayEvent::CEndDayEvent(const CDate &eventDate) :
 	CAbstractGameEvent(eventDate)
 {}
 
-CNoMoreEventsToday::~CNoMoreEventsToday()
+CEndDayEvent::~CEndDayEvent()
 {}
 
-const char * CNoMoreEventsToday::getType() const
+const char * CEndDayEvent::getType() const
 {
-	return CNoMoreEventsToday::type;
+	return CEndDayEvent::type;
 }

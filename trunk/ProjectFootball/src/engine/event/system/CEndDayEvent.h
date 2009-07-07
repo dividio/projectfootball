@@ -18,21 +18,21 @@
  *                                                                             *
  ******************************************************************************/
 
-#ifndef CNOMOREEVENTSTODAY_H_
-#define CNOMOREEVENTSTODAY_H_
+#ifndef CENDDAYEVENT_H_
+#define CENDDAYEVENT_H_
 
 #include "../CAbstractGameEvent.h"
 #include "../../../utils/CDate.h"
 
-class CNoMoreEventsToday: public CAbstractGameEvent {
+class CEndDayEvent: public CAbstractGameEvent {
 public:
 	static const char * type;
 
 public:
-	CNoMoreEventsToday(const CDate &eventDate);
-	virtual ~CNoMoreEventsToday();
+	CEndDayEvent(const CDate &eventDate);
+	virtual ~CEndDayEvent();
 
     virtual const char * getType() const;
 };
 
-#endif /* CNOMOREEVENTSTODAY_H_ */
+#endif /* CENDDAYEVENT_H_ */

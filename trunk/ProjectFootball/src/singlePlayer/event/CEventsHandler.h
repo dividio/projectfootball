@@ -46,7 +46,7 @@ private:
 	void endSeasonEventHandler(const IGameEvent &event);
 
 	// System events
-	void noMoreEventsTodayHandler(const IGameEvent &event);
+	void endDayEventHandler(const IGameEvent &event);
 	void timeStartEventHandler(const IGameEvent &event);
 	void timeStopEventHandler(const IGameEvent &event);
 
