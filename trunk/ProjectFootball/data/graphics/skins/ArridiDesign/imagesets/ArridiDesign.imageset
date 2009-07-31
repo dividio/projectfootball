@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <Imageset Name="WidgetsImageset" Imagefile="ArridiDesign.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true">
   
-  <Image Name="MouseArrow" XPos="565" YPos="50" Width="27" Height="25" />
-  <Image Name="MouseHighlight" XPos="566" YPos="78" Width="27" Height="25" /> 
+  <Image Name="MouseArrow" XPos="564" YPos="49" Width="29" Height="27" />
+  <Image Name="MouseHighlight" XPos="565" YPos="77" Width="29" Height="27" /> 
 	<Image Name="mRightButtonNormal" XPos="0" YPos="0" Width="280" Height="57" />
 	<Image Name="mRightButtonHighlight" XPos="0" YPos="114" Width="280" Height="57" />
 	<Image Name="mRightButtonPushed" XPos="0" YPos="57" Width="280" Height="57" />

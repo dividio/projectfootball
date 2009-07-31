@@ -6,7 +6,7 @@
 	<Font Name="DejaVuSans-9"	Filename="DejaVuSans-9.font" />
 	<Font Name="DejaVuSans-10"	Filename="DejaVuSans-10.font" />
 	<Font Name="DejaVuSans-12"	Filename="DejaVuSans-12.font" />
-	<Font Name="DejaVuSans-12"	Filename="DejaVuSans-14.font" />
+	<Font Name="DejaVuSans-14"	Filename="DejaVuSans-14.font" />
 	<Font Name="DejaVuSans-32"	Filename="DejaVuSans-32.font" />
 
 	<!-- IMAGESETS -->
@@ -43,7 +43,7 @@
 	<Imageset Name="Credits"			Filename="Credits.imageset"/>
 	<Imageset Name="SelectTeam"			Filename="SelectTeam.imageset"/>
 	<Imageset Name="Game"				Filename="Game.imageset"/>
-	<Imageset Name="Generic"			Filename="Generic.imageset"/>
+	
 	<Imageset Name="Background"			Filename="Background.imageset"/>
 	
 	<!-- LOOKNFEEL -->
