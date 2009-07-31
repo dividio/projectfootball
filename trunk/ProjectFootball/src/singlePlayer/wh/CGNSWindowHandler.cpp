@@ -47,7 +47,7 @@ void CGNSWindowHandler::init()
 	CEGUI::PushButton		*homeButton			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/HomeButton"));
 	CEGUI::PushButton		*mainMenuButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/MainMenuButton"));
 	CEGUI::PushButton		*playButton			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/PlayButton"));
-	CEGUI::PushButton		*saveButton			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/SaveButton"));
+	CEGUI::PushButton		*quickSaveButton	= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/QuickSaveButton"));
 	m_resultModeCheck		= static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/ResultModeCheckbox"));
 	m_action1Button			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/Action1Button"));
 	m_action2Button			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/Action2Button"));
@@ -73,7 +73,7 @@ void CGNSWindowHandler::init()
 	homeButton				->setTooltipText((CEGUI::utf8*)gettext("Game Menu"));
 	mainMenuButton			->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
 	playButton				->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
-	saveButton				->setTooltipText((CEGUI::utf8*)gettext("Save"));
+	quickSaveButton			->setTooltipText((CEGUI::utf8*)gettext("Quick Save"));
 	m_resultModeCheck		->setTooltipText((CEGUI::utf8*)gettext("Result Mode"));
     m_changingRoomRadio		->setTooltipText((CEGUI::utf8*)gettext("Changing Room"));
     m_statisticsRadio		->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
@@ -83,7 +83,7 @@ void CGNSWindowHandler::init()
 	registerEventConnection(homeButton			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::homeButtonClicked, this)));
 	registerEventConnection(mainMenuButton		->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::mainMenuButtonClicked, this)));
 	registerEventConnection(playButton			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::playButtonClicked, this)));
-	registerEventConnection(saveButton			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::saveButtonClicked, this)));
+	registerEventConnection(quickSaveButton		->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::quickSaveButtonClicked, this)));
 	registerEventConnection(m_resultModeCheck	->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::resultModeCheckStateChanged, this)));
 	registerEventConnection(m_action1Button		->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::actionButtonClicked, this)));
 	registerEventConnection(m_action2Button		->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::actionButtonClicked, this)));
@@ -254,7 +254,7 @@ bool CGNSWindowHandler::resultModeCheckStateChanged(const CEGUI::EventArgs& e)
 	return true;
 }
 
-bool CGNSWindowHandler::saveButtonClicked(const CEGUI::EventArgs &e)
+bool CGNSWindowHandler::quickSaveButtonClicked(const CEGUI::EventArgs &e)
 {
     try {
         CGameEngine::getInstance()->save();

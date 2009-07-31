@@ -47,7 +47,7 @@ protected:
 	bool mainMenuConfirmed				(const CEGUI::EventArgs &e);
 	bool playButtonClicked				(const CEGUI::EventArgs &e);
 	bool resultModeCheckStateChanged	(const CEGUI::EventArgs &e);
-	bool saveButtonClicked				(const CEGUI::EventArgs &e);
+	bool quickSaveButtonClicked				(const CEGUI::EventArgs &e);
 
 private:
 	CEGUI::PushButton	*m_action1Button;

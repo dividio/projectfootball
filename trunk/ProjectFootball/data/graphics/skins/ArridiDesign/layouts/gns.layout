@@ -69,6 +69,7 @@
         </Window>
         <Window Type="ArridiDesign/GameConfigButton" Name="GNS/ConfigButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Disabled" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.555492,0},{0.75899125,0},{0.711742,0},{0.82409541,0}}" />
         </Window>
@@ -79,6 +80,7 @@
         </Window>
         <Window Type="ArridiDesign/GameSaveButton" Name="GNS/SaveButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Disabled" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.37136,0},{0.85123,0},{0.52761,0},{0.91633416,0}}" />
         </Window>
