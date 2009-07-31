@@ -29,15 +29,16 @@ Creative Commons Attribution-ShareAlike 3.0 (ver Data-License.txt).
 2- Dependencias
 -----------------------------
 
-Para ejecutar Project Football es necesario tener las siguientes librerías:
+Para ejecutar Project Football es necesario tener las siguientes librerías y sus dependencias:
 
 - Ogre   1.6.x
-- Cegui  0.6.x
+- Cegui  >= 0.6.2
 - OIS    1.2.x
 - Sqlite 3
 - SDL_mixer 1.2
 - Lua 5.1
-- Boost FileSystem >= 1.35
+- Boost FileSystem >= 1.38
+- Boost Thread >= 1.38
 
 --------------------------------
 3- Instrucciones de compilación
