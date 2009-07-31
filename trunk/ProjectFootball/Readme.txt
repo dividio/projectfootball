@@ -61,7 +61,7 @@ These are the principal options:
   FailSafeMode = [true | false]               // Switches failsafe video mode
 
 [GUI]
-  Skin = [DefaultSkin | CleanSkin]            // Switches application skin
+  Skin = [ArridiDesign]            // Switches application skin
   XMLParser = [XercesParser | TinyXMLParser]  // Parser XML for CEGUI
 
 [Video]

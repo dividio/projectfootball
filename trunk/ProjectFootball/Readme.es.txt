@@ -63,7 +63,7 @@ el fichero "data/ProjectFootball.ini". Pasemos a ver algunas de ellas:
                                               // "modo seguro de video"
 
 [GUI]
-  Skin = [DefaultSkin | CleanSkin]            // Nos indica el Skin a utilizar
+  Skin = [ArridiDesign]            // Nos indica el Skin a utilizar
   XMLParser = [XercesParser | TinyXMLParser]  // Parser de XML a utilizar por CEGUI
 
 [Video]
