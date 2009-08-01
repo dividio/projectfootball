@@ -60,6 +60,7 @@ private:
 
     CPfSeasons              *m_lastSeason;
     CSinglePlayerGame		&m_game;
+    bool					m_initiated;
 };
 
 #endif /*CRESULTSWINDOWHANDLER_H_*/

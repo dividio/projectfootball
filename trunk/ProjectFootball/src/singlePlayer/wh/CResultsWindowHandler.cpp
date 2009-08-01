@@ -34,7 +34,8 @@
 CResultsWindowHandler::CResultsWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("results.layout"),
 	m_lastSeason(NULL),
-	m_game(game)
+	m_game(game),
+	m_initiated(false)
 {
     LOG_DEBUG("CResultsWindowHandler()");
 
@@ -44,6 +45,13 @@ CResultsWindowHandler::CResultsWindowHandler(CSinglePlayerGame &game) :
 CResultsWindowHandler::~CResultsWindowHandler()
 {
     LOG_DEBUG("~CResultsWindowHandler()");
+
+    if( m_initiated ){
+		m_resultsList->removeColumnWithID(0);
+		m_resultsList->removeColumnWithID(1);
+		m_resultsList->removeColumnWithID(2);
+		m_resultsList->removeColumnWithID(3);
+    }
 }
 
 void CResultsWindowHandler::enter()
@@ -103,6 +111,8 @@ void CResultsWindowHandler::init()
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       1, CEGUI::UDim(0.1,0));
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Away Team"),   2, CEGUI::UDim(0.4,0));
     m_resultsList->addColumn((CEGUI::utf8*)gettext("Goals"),       3, CEGUI::UDim(0.1,0));
+
+    m_initiated = true;
 }
 
 void CResultsWindowHandler::leave()

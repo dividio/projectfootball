@@ -37,7 +37,8 @@
 
 CMatchResultWindowHandler::CMatchResultWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("matchResult.layout"),
-	m_game(game)
+	m_game(game),
+	m_initiated(false)
 {
     LOG_DEBUG("CMatchResultWindowHandler()");
 }
@@ -45,6 +46,13 @@ CMatchResultWindowHandler::CMatchResultWindowHandler(CSinglePlayerGame &game) :
 CMatchResultWindowHandler::~CMatchResultWindowHandler()
 {
     LOG_DEBUG("~CMatchResultWindowHandler()");
+
+    if( m_initiated ){
+		m_homeEventsList->removeColumnWithID(0);
+		m_homeEventsList->removeColumnWithID(1);
+		m_awayEventsList->removeColumnWithID(0);
+		m_awayEventsList->removeColumnWithID(1);
+    }
 }
 
 void CMatchResultWindowHandler::enter()
@@ -87,6 +95,8 @@ void CMatchResultWindowHandler::init()
     m_awayEventsList->setUserSortControlEnabled(true);
     m_homeEventsList->getHorzScrollbar()->setVisible(false);
     m_awayEventsList->getHorzScrollbar()->setVisible(false);
+
+    m_initiated = true;
 }
 
 void CMatchResultWindowHandler::leave()

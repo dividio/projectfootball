@@ -59,7 +59,7 @@ private:
     CEGUI::PushButton		*m_continueButton;
 
     CSinglePlayerGame		&m_game;
-
+    bool					m_initiated;
 };
 
 #endif /*CMATCHRESULTWINDOWHANDLER_H_*/

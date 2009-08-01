@@ -59,6 +59,7 @@ private:
 
     CPfSeasons              *m_lastSeason;
     CSinglePlayerGame		&m_game;
+    bool					m_initiated;
 };
 
 #endif /*CRANKINGWINDOWHANDLER_H_*/

@@ -34,7 +34,8 @@
 
 CRankingWindowHandler::CRankingWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("ranking.layout"),
-	m_game(game)
+	m_game(game),
+	m_initiated(false)
 {
     LOG_DEBUG("CRankingWindowHandler()");
 
@@ -44,6 +45,18 @@ CRankingWindowHandler::CRankingWindowHandler(CSinglePlayerGame &game) :
 CRankingWindowHandler::~CRankingWindowHandler()
 {
     LOG_DEBUG("~CRankingWindowHandler()");
+
+    if( m_initiated ){
+		m_rankingList->removeColumnWithID(0);
+		m_rankingList->removeColumnWithID(1);
+		m_rankingList->removeColumnWithID(2);
+		m_rankingList->removeColumnWithID(3);
+		m_rankingList->removeColumnWithID(4);
+		m_rankingList->removeColumnWithID(5);
+		m_rankingList->removeColumnWithID(6);
+		m_rankingList->removeColumnWithID(7);
+		m_rankingList->removeColumnWithID(8);
+    }
 }
 
 void CRankingWindowHandler::enter()
@@ -102,6 +115,8 @@ void CRankingWindowHandler::init()
     m_rankingList->addColumn("LM",   6, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("GF",   7, CEGUI::UDim(0.05,0));
     m_rankingList->addColumn("GA",   8, CEGUI::UDim(0.05,0));
+
+    m_initiated = true;
 }
 
 void CRankingWindowHandler::leave()

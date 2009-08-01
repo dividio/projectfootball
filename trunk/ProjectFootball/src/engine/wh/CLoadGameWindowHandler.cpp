@@ -27,7 +27,7 @@
 #include "../../utils/CLog.h"
 
 CLoadGameWindowHandler::CLoadGameWindowHandler()
-: CWindowHandler("loadGame.layout")
+: CWindowHandler("loadGame.layout"), m_initiated(false)
 {
     LOG_DEBUG("CLoadGameWindowHandler()");
 }
@@ -35,6 +35,11 @@ CLoadGameWindowHandler::CLoadGameWindowHandler()
 CLoadGameWindowHandler::~CLoadGameWindowHandler()
 {
     LOG_DEBUG("~CLoadGameWindowHandler()");
+
+    if( m_initiated ){
+		m_gamesList->removeColumnWithID(0);
+		m_gamesList->removeColumnWithID(1);
+    }
 }
 
 void CLoadGameWindowHandler::enter()
@@ -75,6 +80,8 @@ void CLoadGameWindowHandler::init()
     registerEventConnection(m_deleteGameButton   ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CLoadGameWindowHandler::deleteGameButtonClicked, this)));
     registerEventConnection(m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CLoadGameWindowHandler::gamesListSelectChanged, this)));
     registerEventConnection(m_gamesList          ->subscribeEvent(CEGUI::MultiColumnList::EventMouseDoubleClick, CEGUI::Event::Subscriber(&CLoadGameWindowHandler::gamesListDoubleClick, this)));
+
+    m_initiated = true;
 }
 
 void CLoadGameWindowHandler::loadGameList()

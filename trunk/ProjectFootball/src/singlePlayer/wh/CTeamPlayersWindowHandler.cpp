@@ -33,7 +33,8 @@
 
 CTeamPlayersWindowHandler::CTeamPlayersWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("teamPlayers.layout"),
-	m_game(game)
+	m_game(game),
+	m_initiated(false)
 {
     LOG_DEBUG("CTeamPlayersWindowHandler()");
 }
@@ -41,6 +42,23 @@ CTeamPlayersWindowHandler::CTeamPlayersWindowHandler(CSinglePlayerGame &game) :
 CTeamPlayersWindowHandler::~CTeamPlayersWindowHandler()
 {
     LOG_DEBUG("~CTeamPlayersWindowHandler()");
+
+    if( m_initiated ){
+		m_lineUpTeamPlayersList->removeColumnWithID(0);
+		m_lineUpTeamPlayersList->removeColumnWithID(1);
+		m_lineUpTeamPlayersList->removeColumnWithID(2);
+		m_lineUpTeamPlayersList->removeColumnWithID(3);
+
+		m_alternateTeamPlayersList->removeColumnWithID(0);
+		m_alternateTeamPlayersList->removeColumnWithID(1);
+		m_alternateTeamPlayersList->removeColumnWithID(2);
+		m_alternateTeamPlayersList->removeColumnWithID(3);
+
+		m_notLineUpTeamPlayersList->removeColumnWithID(0);
+		m_notLineUpTeamPlayersList->removeColumnWithID(1);
+		m_notLineUpTeamPlayersList->removeColumnWithID(2);
+		m_notLineUpTeamPlayersList->removeColumnWithID(3);
+    }
 }
 
 void CTeamPlayersWindowHandler::enter()
@@ -100,6 +118,8 @@ void CTeamPlayersWindowHandler::init()
     registerEventConnection(m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::alternateTeamPlayersListboxSelectionChanged, this)));
     registerEventConnection(m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::notLineUpTeamPlayersListboxSelectionChanged, this)));
     registerEventConnection(m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::changePlayersButtonClicked, this)));
+
+    m_initiated = true;
 }
 
 void CTeamPlayersWindowHandler::leave()

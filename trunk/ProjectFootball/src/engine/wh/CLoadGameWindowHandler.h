@@ -48,6 +48,8 @@ private:
     CEGUI::PushButton       *m_loadGameButton;
     CEGUI::PushButton       *m_deleteGameButton;
     CEGUI::Window           *m_mainWindow;
+
+    bool					m_initiated;
 };
 
 #endif /*CLOADGAMEWINDOWHANDLER_H_*/

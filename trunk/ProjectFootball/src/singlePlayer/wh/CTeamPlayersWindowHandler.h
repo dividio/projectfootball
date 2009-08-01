@@ -74,6 +74,7 @@ private:
     SelectedPlayers          m_selectedPlayers;
 
     CSinglePlayerGame		&m_game;
+    bool					m_initiated;
 };
 
 #endif /*CTEAMPLAYERSWINDOWHANDLER_H_*/
