@@ -42,6 +42,7 @@ void CNewManagerGameWindowHandler::enter()
 {
     m_newGameButton->setEnabled(false);
     m_newGameEditbox->setText("");
+    CGameEngine::getInstance()->unloadCurrentGame(); // FIXME: Temporaly fix for SelectTeamWindowHandler bug
 }
 
 void CNewManagerGameWindowHandler::init()
