@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="NewVirtualGame" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="ArridiDesign/StaticImage" Name="NewVirtualGame/MainWindow" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window Type="ArridiDesign/StaticImage" Name="NewVirtualGame/MainWindow/" >
+                <Property Name="Image" Value="set:AuxImages image:Lineground" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.235617,0},{0.743511,0},{0.763503,0},{1,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="NewVirtualGame/BackButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.235479,0},{0.925445,0},{0.405479,0},{0.984529,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="NewVirtualGame/StartButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.595499,0},{0.924173,0},{0.765499,0},{0.988346,0}}" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

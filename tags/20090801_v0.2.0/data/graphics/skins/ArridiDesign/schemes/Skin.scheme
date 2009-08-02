@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<GUIScheme Name="ArridiDesign">
+	<!-- FONTS -->
+	<Font Name="DejaVuSans-6"	Filename="DejaVuSans-6.font" />
+	<Font Name="DejaVuSans-8"	Filename="DejaVuSans-8.font" />
+	<Font Name="DejaVuSans-9"	Filename="DejaVuSans-9.font" />
+	<Font Name="DejaVuSans-10"	Filename="DejaVuSans-10.font" />
+	<Font Name="DejaVuSans-12"	Filename="DejaVuSans-12.font" />
+	<Font Name="DejaVuSans-14"	Filename="DejaVuSans-14.font" />
+	<Font Name="DejaVuSans-32"	Filename="DejaVuSans-32.font" />
+
+	<!-- IMAGESETS -->
+	<Imageset Name="default_team_shield" Filename="default_team_shield.imageset"/>
+	<Imageset Name="ES000001"			Filename="ES000001.imageset"/>
+	<Imageset Name="ES000002"			Filename="ES000002.imageset"/>
+	<Imageset Name="ES000003"			Filename="ES000003.imageset"/>
+	<Imageset Name="ES000004"			Filename="ES000004.imageset"/>
+	<Imageset Name="ES000005"			Filename="ES000005.imageset"/>
+	<Imageset Name="ES000006"			Filename="ES000006.imageset"/>
+	<Imageset Name="ES000007"			Filename="ES000007.imageset"/>
+	<Imageset Name="ES000008"			Filename="ES000008.imageset"/>
+	<Imageset Name="ES000009"			Filename="ES000009.imageset"/>
+	<Imageset Name="ES000010"			Filename="ES000010.imageset"/>
+	<Imageset Name="ES000011"			Filename="ES000011.imageset"/>
+	<Imageset Name="ES000012"			Filename="ES000012.imageset"/>
+	<Imageset Name="ES000013"			Filename="ES000013.imageset"/>
+	<Imageset Name="ES000014"			Filename="ES000014.imageset"/>
+	<Imageset Name="ES000015"			Filename="ES000015.imageset"/>
+	<Imageset Name="ES000016"			Filename="ES000016.imageset"/>
+	<Imageset Name="ES000017"			Filename="ES000017.imageset"/>
+	<Imageset Name="ES000018"			Filename="ES000018.imageset"/>
+	<Imageset Name="ES000019"			Filename="ES000019.imageset"/>
+	<Imageset Name="ES000020"			Filename="ES000020.imageset"/>
+	<Imageset Name="europe"				Filename="europe.imageset"/>
+	<Imageset Name="spain"				Filename="spain.imageset"/>
+	<Imageset Name="england"			Filename="england.imageset"/>
+	
+	<Imageset Name="Intro"				Filename="Intro.imageset"/>  
+	<Imageset Name="WidgetsImageset"	Filename="ArridiDesign.imageset" />
+	<Imageset Name="AuxImages"			Filename="AuxImages.imageset"/>
+	<Imageset Name="LogoPF"				Filename="LogoPF.imageset"/>
+	<Imageset Name="MainMenu"			Filename="MainMenu.imageset"/>
+	<Imageset Name="Credits"			Filename="Credits.imageset"/>
+	<Imageset Name="SelectTeam"			Filename="SelectTeam.imageset"/>
+	<Imageset Name="Game"				Filename="Game.imageset"/>
+	
+	<Imageset Name="Background"			Filename="Background.imageset"/>
+	
+	<!-- LOOKNFEEL -->
+	<LookNFeel Filename="ArridiDesign.looknfeel" />
+	
+	<!-- WINDOWRENDERSET -->
+	<WindowRendererSet Filename="CEGUIFalagardWRBase" />
+	
+	<!-- FALAGARD MAPPINGS -->
+	<FalagardMapping WindowType="ArridiDesign/AlternateProgressBar"			TargetType="CEGUI/ProgressBar"			Renderer="Falagard/ProgressBar"			LookNFeel="ArridiDesign/AltProgressBar" />
+	<FalagardMapping WindowType="ArridiDesign/backBallButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/backBallButton" />
+	<FalagardMapping WindowType="ArridiDesign/bButton"						TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/bButton" />
+	<FalagardMapping WindowType="ArridiDesign/blueBallButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/blueBallButton" />
+	<FalagardMapping WindowType="ArridiDesign/CheckBox"						TargetType="CEGUI/Checkbox"				Renderer="Falagard/ToggleButton"		LookNFeel="ArridiDesign/CheckBox" />
+	<FalagardMapping WindowType="ArridiDesign/Combobox"						TargetType="CEGUI/Combobox"				Renderer="Falagard/Default"				LookNFeel="ArridiDesign/Combobox" />
+	<FalagardMapping WindowType="ArridiDesign/ComboDropList"				TargetType="CEGUI/ComboDropList"		Renderer="Falagard/Listbox"				LookNFeel="ArridiDesign/ComboDropList" />
+	<FalagardMapping WindowType="ArridiDesign/ComboEditbox"					TargetType="CEGUI/Editbox"				Renderer="Falagard/Editbox"				LookNFeel="ArridiDesign/ComboEditbox" />
+	<FalagardMapping WindowType="ArridiDesign/Editbox"						TargetType="CEGUI/Editbox"				Renderer="Falagard/Editbox"				LookNFeel="ArridiDesign/Editbox" />
+	<FalagardMapping WindowType="ArridiDesign/exButton"						TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/exButton" />
+	<FalagardMapping WindowType="ArridiDesign/FrameWindow"					TargetType="CEGUI/FrameWindow"			Renderer="Falagard/FrameWindow"			LookNFeel="ArridiDesign/FrameWindow" />
+	<FalagardMapping WindowType="ArridiDesign/FrameWindowB"					TargetType="CEGUI/FrameWindow"			Renderer="Falagard/FrameWindow"			LookNFeel="ArridiDesign/FrameWindowB" />
+	<FalagardMapping WindowType="ArridiDesign/GameConfigButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameConfigButton" />
+	<FalagardMapping WindowType="ArridiDesign/GameExitButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameExitButton" />
+	<FalagardMapping WindowType="ArridiDesign/GameHelpButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameHelpButton" />
+	<FalagardMapping WindowType="ArridiDesign/gameMenuButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/gameMenuButton" />
+	<FalagardMapping WindowType="ArridiDesign/GameQuickSaveButton"			TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameQuickSaveButton" />
+	<FalagardMapping WindowType="ArridiDesign/GameQuitButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameQuitButton" />
+	<FalagardMapping WindowType="ArridiDesign/GameSaveButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameSaveButton" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button1"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button1" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button2"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button2" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button3"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button3" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button4"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button4" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button5"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button5" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button6"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button6" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button7"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button7" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_Button8"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button8" />
+	<FalagardMapping WindowType="ArridiDesign/HookWindow"					TargetType="DefaultWindow"				Renderer="Falagard/StaticImage"			LookNFeel="ArridiDesign/HookWindow" />
+	<FalagardMapping WindowType="ArridiDesign/HorizontalScrollbar"			TargetType="CEGUI/Scrollbar"			Renderer="Falagard/Scrollbar"			LookNFeel="ArridiDesign/HorizontalScrollbar" />
+	<FalagardMapping WindowType="ArridiDesign/HorizontalScrollbarThumb"		TargetType="CEGUI/Thumb"				Renderer="Falagard/Button"				LookNFeel="ArridiDesign/HorizontalScrollbarThumb" />
+	<FalagardMapping WindowType="ArridiDesign/ImageButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/ImageButton" />
+	<FalagardMapping WindowType="ArridiDesign/ImageListboxItem"				TargetType="CEGUI/ItemEntry"			Renderer="Falagard/ItemEntry"			LookNFeel="ArridiDesign/ImageListboxItem" />
+	<FalagardMapping WindowType="ArridiDesign/ItemListbox"					TargetType="CEGUI/ItemListbox"			Renderer="Falagard/ItemListbox"			LookNFeel="ArridiDesign/ItemListbox" />
+	<FalagardMapping WindowType="ArridiDesign/LargeVerticalScrollbar"		TargetType="CEGUI/Scrollbar"			Renderer="Falagard/Scrollbar"			LookNFeel="ArridiDesign/LargeVerticalScrollbar" />
+	<FalagardMapping WindowType="ArridiDesign/LargeVerticalScrollbarThumb"	TargetType="CEGUI/Thumb"				Renderer="Falagard/Button"				LookNFeel="ArridiDesign/LargeVerticalScrollbarThumb" />
+	<FalagardMapping WindowType="ArridiDesign/Listbox"						TargetType="CEGUI/Listbox"				Renderer="Falagard/Listbox"				LookNFeel="ArridiDesign/Listbox" />
+	<FalagardMapping WindowType="ArridiDesign/ListHeader"					TargetType="CEGUI/ListHeader"			Renderer="Falagard/ListHeader"			LookNFeel="ArridiDesign/ListHeader" />
+	<FalagardMapping WindowType="ArridiDesign/ListHeaderSegment"			TargetType="CEGUI/ListHeaderSegment"	Renderer="Falagard/ListHeaderSegment"	LookNFeel="ArridiDesign/ListHeaderSegment" />
+	<FalagardMapping WindowType="ArridiDesign/Menubar"						TargetType="CEGUI/Menubar"				Renderer="Falagard/Menubar"				LookNFeel="ArridiDesign/Menubar" />
+	<FalagardMapping WindowType="ArridiDesign/MenuItem"						TargetType="CEGUI/MenuItem"				Renderer="Falagard/MenuItem"			LookNFeel="ArridiDesign/MenuItem" />
+	<FalagardMapping WindowType="ArridiDesign/mLeftButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/mLeftButton" />
+	<FalagardMapping WindowType="ArridiDesign/mLoadButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/mLoadButton" />
+	<FalagardMapping WindowType="ArridiDesign/mquickLoadButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/mquickLoadButton" />
+	<FalagardMapping WindowType="ArridiDesign/mRightButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/mRightButton" />
+	<FalagardMapping WindowType="ArridiDesign/MultiColumnList"				TargetType="CEGUI/MultiColumnList"		Renderer="Falagard/MultiColumnList"		LookNFeel="ArridiDesign/MultiColumnList" />
+	<FalagardMapping WindowType="ArridiDesign/MultiLineEditbox"				TargetType="CEGUI/MultiLineEditbox"		Renderer="Falagard/MultiLineEditbox"	LookNFeel="ArridiDesign/MultiLineEditbox" />
+	<FalagardMapping WindowType="ArridiDesign/PopupMenu"					TargetType="CEGUI/PopupMenu"			Renderer="Falagard/PopupMenu"			LookNFeel="ArridiDesign/PopupMenu" />
+	<FalagardMapping WindowType="ArridiDesign/ProgressBar"					TargetType="CEGUI/ProgressBar"			Renderer="Falagard/ProgressBar"			LookNFeel="ArridiDesign/ProgressBar" />
+	<FalagardMapping WindowType="ArridiDesign/RadioButton"					TargetType="CEGUI/RadioButton"			Renderer="Falagard/ToggleButton"		LookNFeel="ArridiDesign/RadioButton" />
+	<FalagardMapping WindowType="ArridiDesign/ScrollablePane"				TargetType="CEGUI/ScrollablePane"		Renderer="Falagard/ScrollablePane"		LookNFeel="ArridiDesign/ScrollablePane" />
+	<FalagardMapping WindowType="ArridiDesign/Slider"						TargetType="CEGUI/Slider"				Renderer="Falagard/Slider"				LookNFeel="ArridiDesign/Slider" />
+	<FalagardMapping WindowType="ArridiDesign/SliderThumb"					TargetType="CEGUI/Thumb"				Renderer="Falagard/Button"				LookNFeel="ArridiDesign/SliderThumb" />
+	<FalagardMapping WindowType="ArridiDesign/Spinner"						TargetType="CEGUI/Spinner"				Renderer="Falagard/Default"				LookNFeel="ArridiDesign/Spinner" />
+	<FalagardMapping WindowType="ArridiDesign/StaticImage"					TargetType="DefaultWindow"				Renderer="Falagard/StaticImage"			LookNFeel="ArridiDesign/StaticImage" />
+	<FalagardMapping WindowType="ArridiDesign/StaticText"					TargetType="DefaultWindow"				Renderer="Falagard/StaticText"			LookNFeel="ArridiDesign/StaticText" />
+	<FalagardMapping WindowType="ArridiDesign/SystemButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/SystemButton"		LookNFeel="ArridiDesign/bButton" />
+	<FalagardMapping WindowType="ArridiDesign/TabButton"					TargetType="CEGUI/TabButton"			Renderer="Falagard/TabButton"			LookNFeel="ArridiDesign/TabButton" />
+	<FalagardMapping WindowType="ArridiDesign/TabButtonPane"				TargetType="DefaultWindow"				Renderer="Falagard/Default"				LookNFeel="ArridiDesign/TabButtonPane" />
+	<FalagardMapping WindowType="ArridiDesign/TabControl"					TargetType="CEGUI/TabControl"			Renderer="Falagard/TabControl"			LookNFeel="ArridiDesign/TabControl" />
+	<FalagardMapping WindowType="ArridiDesign/TabContentPane"				TargetType="DefaultWindow"				Renderer="Falagard/Default"				LookNFeel="ArridiDesign/TabContentPane" />
+	<FalagardMapping WindowType="ArridiDesign/Titlebar"						TargetType="CEGUI/Titlebar"				Renderer="Falagard/Titlebar"			LookNFeel="ArridiDesign/Titlebar" />
+	<FalagardMapping WindowType="ArridiDesign/Tooltip"						TargetType="CEGUI/Tooltip"				Renderer="Falagard/Tooltip"				LookNFeel="ArridiDesign/Tooltip" />
+	<FalagardMapping WindowType="ArridiDesign/VerticalScrollbar"			TargetType="CEGUI/Scrollbar"			Renderer="Falagard/Scrollbar"			LookNFeel="ArridiDesign/VerticalScrollbar" />
+	<FalagardMapping WindowType="ArridiDesign/VerticalScrollbarThumb"		TargetType="CEGUI/Thumb"				Renderer="Falagard/Button"				LookNFeel="ArridiDesign/VerticalScrollbarThumb" />
+	<FalagardMapping WindowType="ArridiDesign/VUMeter"						TargetType="CEGUI/ProgressBar"			Renderer="Falagard/ProgressBar"			LookNFeel="ArridiDesign/VUMeter" />
+	
+	<FalagardMapping WindowType="ArridiDesign/RotatingText"					TargetType="DefaultWindow"				Renderer="PF/RotatingText"				LookNFeel="ArridiDesign/StaticText" />
+</GUIScheme>

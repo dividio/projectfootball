@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<Imageset Name="AuxImages" Imagefile="AuxImages.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" >
+        <Image Name="RedBall" XPos="0" YPos="0" Width="138" Height="374" />
+        <Image Name="Lineground" XPos="170" YPos="0" Width="2" Height="210" />
+        
+</Imageset>
