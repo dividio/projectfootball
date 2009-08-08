@@ -49,6 +49,7 @@
 #include "wh/CResultsWindowHandler.h"
 #include "wh/CSelectTeamWindowHandler.h"
 #include "wh/CSimulatorWindowHandler.h"
+#include "wh/CLineUpWindowHandler.h"
 #include "wh/CTeamPlayersWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
@@ -87,6 +88,7 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	m_windowHandlers.push_back(new CSelectTeamWindowHandler(*this));
 	m_windowHandlers.push_back(new CResultsWindowHandler(*this));
 	m_windowHandlers.push_back(new CRankingWindowHandler(*this));
+	m_windowHandlers.push_back(new CLineUpWindowHandler(*this));
 	m_windowHandlers.push_back(new CTeamPlayersWindowHandler(*this));
 	m_windowHandlers.push_back(new CMatchResultWindowHandler(*this));
 	m_windowHandlers.push_back(new CSimulatorWindowHandler(*this));

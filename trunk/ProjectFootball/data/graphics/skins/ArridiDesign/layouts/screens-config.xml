@@ -52,6 +52,13 @@
 	<screen id="Simulator">
 		<window hook="none" path="simulator.layout" />
 	</screen>
+    <screen id="LineUp">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="lineUp.layout" />
+        </window>
+    </screen>
 	<screen id="TeamPlayers">
 		<window hook="none" path="game.layout">
 			<window hook="Game/MatchInfoHook" path="matchInfo.layout" />

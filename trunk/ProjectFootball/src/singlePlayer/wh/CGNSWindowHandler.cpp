@@ -96,7 +96,7 @@ void CGNSWindowHandler::init()
 	registerEventConnection(m_changingRoomRadio	->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::gnsSelectionChanged, this)));
 	registerEventConnection(m_statisticsRadio	->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::gnsSelectionChanged, this)));
 
-	m_statisticsRadio->setSelected(true);
+	m_changingRoomRadio->setSelected(true);
 }
 
 bool CGNSWindowHandler::actionButtonClicked(const CEGUI::EventArgs &e)
@@ -111,12 +111,12 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 {
 	CEGUI::RadioButton *button = m_changingRoomRadio->getSelectedButtonInGroup();
 	if( button==m_changingRoomRadio ){
-		m_action1Button->setText((CEGUI::utf8*)gettext("Team Players"));
-		m_action1Button->setUserString("screen", "TeamPlayers");
+		m_action1Button->setText((CEGUI::utf8*)gettext("Line Up"));
+		m_action1Button->setUserString("screen", "LineUp");
 		m_action1Button->setEnabled(true);
-		m_action2Button->setText("");
-		m_action2Button->setUserString("screen", "");
-		m_action2Button->setEnabled(false);
+		m_action2Button->setText((CEGUI::utf8*)gettext("Team Players"));
+		m_action2Button->setUserString("screen", "TeamPlayers");
+		m_action2Button->setEnabled(true);
 		m_action3Button->setText("");
 		m_action3Button->setUserString("screen", "");
 		m_action3Button->setEnabled(false);
@@ -143,9 +143,9 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action2Button->setText((CEGUI::utf8*)gettext("Ranking"));
 		m_action2Button->setUserString("screen", "Ranking");
 		m_action2Button->setEnabled(true);
-		m_action3Button->setText("");
-		m_action3Button->setUserString("screen", "");
-		m_action3Button->setEnabled(false);
+		m_action3Button->setText((CEGUI::utf8*)gettext("Scorers"));
+		m_action3Button->setUserString("screen", "Ranking");
+		m_action3Button->setEnabled(true);
 		m_action4Button->setText("");
 		m_action4Button->setUserString("screen", "");
 		m_action4Button->setEnabled(false);

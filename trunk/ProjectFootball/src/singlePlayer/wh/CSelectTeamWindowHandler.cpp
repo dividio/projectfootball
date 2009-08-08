@@ -163,11 +163,11 @@ int CSelectTeamWindowHandler::loadConfederationsList()
     for(it = m_confederationsList->begin(); it != m_confederationsList->end(); it++) {
         CPfConfederations *confederation = (*it);
         m_confederationsCombobox->addItem(new CEGUI::ListboxTextItem
-                ((CEGUI::utf8*)confederation->getSConfederation().c_str(), confederation->getXConfederation()));
+                ((CEGUI::utf8*)gettext(confederation->getSConfederation().c_str()), confederation->getXConfederation()));
     }
 
     CPfConfederations *conf = m_confederationsList->front();
-    m_confederationsCombobox->setText((CEGUI::utf8*)conf->getSConfederation().c_str());
+    m_confederationsCombobox->setText((CEGUI::utf8*)gettext(conf->getSConfederation().c_str()));
     m_guiConfederationImage->setProperty("Image", "set:"+ conf->getSLogo() +" image:"+conf->getSLogo()+"_map");
     return m_confederationsList->front()->getXConfederation();
 }
@@ -187,10 +187,10 @@ int CSelectTeamWindowHandler::loadCountriesList(int XConfederation)
         for(it = m_countriesList->begin(); it != m_countriesList->end(); it++) {
             CPfCountries *country = (*it);
             m_countriesCombobox->addItem(new CEGUI::ListboxTextItem
-                    ((CEGUI::utf8*)country->getSShortName().c_str(), country->getXCountry()));
+                    ((CEGUI::utf8*)gettext(country->getSShortName().c_str()), country->getXCountry()));
         }
         CPfCountries *country = m_countriesList->front();
-        m_countriesCombobox->setText((CEGUI::utf8*)country->getSShortName().c_str());
+        m_countriesCombobox->setText((CEGUI::utf8*)gettext(country->getSShortName().c_str()));
         m_guiCountryImage->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_map");
 
         selectedCountry = m_countriesList->front()->getXCountry();
@@ -215,9 +215,9 @@ int CSelectTeamWindowHandler::loadCompetitionsList(int XCountry)
         for(it = m_competitionsList->begin(); it != m_competitionsList->end(); it++) {
             CPfCompetitions *competition = (*it);
             m_competitionsCombobox->addItem(new CEGUI::ListboxTextItem
-                    ((CEGUI::utf8*)competition->getSCompetition().c_str(), competition->getXCompetition()));
+                    ((CEGUI::utf8*)gettext(competition->getSCompetition().c_str()), competition->getXCompetition()));
         }
-        m_competitionsCombobox->setText((CEGUI::utf8*)m_competitionsList->front()->getSCompetition().c_str());
+        m_competitionsCombobox->setText((CEGUI::utf8*)gettext(m_competitionsList->front()->getSCompetition().c_str()));
         selectedCompetition = m_competitionsList->front()->getXCompetition();
     } else {
         m_competitionsCombobox->setText((CEGUI::utf8*)gettext("No competitions"));
