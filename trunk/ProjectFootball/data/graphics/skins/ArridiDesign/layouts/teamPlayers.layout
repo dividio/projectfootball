@@ -22,11 +22,6 @@
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.65,0},{0.75,0},{0.9,0}}" />
         </Window>
-        <Window Type="ArridiDesign/bButton" Name="TeamPlayers/ChangeButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.76,0},{0.83,0},{1,0},{0.9,0}}" />
-        </Window>
         <Window Type="ArridiDesign/StaticImage" Name="TeamPlayers/Info" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.76,0},{0.06,0},{1,0},{0.38,0}}" />

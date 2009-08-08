@@ -64,9 +64,7 @@ CTeamPlayersWindowHandler::~CTeamPlayersWindowHandler()
 void CTeamPlayersWindowHandler::enter()
 {
     loadTeamPlayersList();
-    m_selectedPlayers = NONE;
-    m_selectedPlayer1 = NULL;
-    m_selectedPlayer2 = NULL;
+    m_selectedPlayer = NULL;
 }
 
 void CTeamPlayersWindowHandler::init()
@@ -103,13 +101,11 @@ void CTeamPlayersWindowHandler::init()
     m_notLineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_notLineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
 
-    m_changePlayersButton	= static_cast<CEGUI::PushButton *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/ChangeButton"));
     m_teamName				= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamName"));
     m_teamAverage			= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverage"));
     m_teamCrest				= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamCrest"));
 
     // i18n support
-    m_changePlayersButton->setText((CEGUI::utf8*)gettext("Change"));
     windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel")->setText((CEGUI::utf8*)gettext("Team Players:"));
     windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverageLabel")->setText((CEGUI::utf8*)gettext("Average:"));
 
@@ -117,43 +113,38 @@ void CTeamPlayersWindowHandler::init()
     registerEventConnection(m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::lineUpTeamPlayersListboxSelectionChanged, this)));
     registerEventConnection(m_alternateTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::alternateTeamPlayersListboxSelectionChanged, this)));
     registerEventConnection(m_notLineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::notLineUpTeamPlayersListboxSelectionChanged, this)));
-    registerEventConnection(m_changePlayersButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CTeamPlayersWindowHandler::changePlayersButtonClicked, this)));
 
     m_initiated = true;
 }
 
 void CTeamPlayersWindowHandler::leave()
 {
-    switch (m_selectedPlayers) {
-        case NONE:
-            break;
-        case PLAYER1:
-            delete m_selectedPlayer1;
-            break;
-        case PLAYER2:
-            delete m_selectedPlayer2;
-            break;
-        case BOTH:
-            delete m_selectedPlayer1;
-            delete m_selectedPlayer2;
-            break;
-        default:
-            break;
+    if (m_selectedPlayer != NULL) {
+        delete m_selectedPlayer;
     }
-    m_selectedPlayers = NONE;
 }
 
-void CTeamPlayersWindowHandler::changePlayers()
+void CTeamPlayersWindowHandler::changePlayers(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2)
 {
-    changeRows(m_selectedPlayer1List, m_selectedPlayer1Row, m_selectedPlayer2List, m_selectedPlayer2Row);
+    changeRows(list1, row1, list2, row2);
 
-    m_selectedPlayer1List->getHorzScrollbar()->setVisible(false);
-    m_selectedPlayer2List->getHorzScrollbar()->setVisible(false);
-    delete m_selectedPlayer1;
-    delete m_selectedPlayer2;
-    m_selectedPlayers = NONE;
-    m_selectedPlayer1List->clearAllSelections();
-    m_selectedPlayer2List->clearAllSelections();
+    list1->getHorzScrollbar()->setVisible(false);
+    list2->getHorzScrollbar()->setVisible(false);
+    delete m_selectedPlayer;
+    m_selectedPlayer = NULL;
+    list1->clearAllSelections();
+    list2->clearAllSelections();
+
+    saveTeamPlayersList();
+
+    IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
+    CPfTeams           *team            = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
+    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    std::ostringstream average;
+    average << teamAverage->getNTotal();
+    m_teamAverage->setText((CEGUI::utf8*)average.str().c_str());
+    delete teamAverage;
+    delete team;
 }
 
 void CTeamPlayersWindowHandler::loadTeamPlayersList()
@@ -294,56 +285,18 @@ void CTeamPlayersWindowHandler::selectChanged(CEGUI::MultiColumnList *list)
         list->clearAllSelections();
         IPfTeamPlayersDAO *teamPlayersDAO = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
         int xTeamPlayer = currentItem->getID();
-        switch (m_selectedPlayers) {
-            case NONE:
-                m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                m_selectedPlayers = PLAYER1;
-                m_selectedPlayer1Row = currentRow;
-                m_selectedPlayer1List = list;
-                changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
-                break;
-            case PLAYER1:
-                if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
-                    delete m_selectedPlayer1;
-                    m_selectedPlayers = NONE;
-                } else {
-                    m_selectedPlayer2 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                    m_selectedPlayers = BOTH;
-                    m_selectedPlayer2Row = currentRow;
-                    m_selectedPlayer2List = list;
-                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
-                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
-                }
-                break;
-            case PLAYER2:
-                if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
-                    delete m_selectedPlayer2;
-                    m_selectedPlayers = NONE;
-                } else {
-                    m_selectedPlayer1 = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                    m_selectedPlayers = BOTH;
-                    m_selectedPlayer1Row = currentRow;
-                    m_selectedPlayer1List = list;
-                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
-                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
-                }
-                break;
-            case BOTH:
-                if(xTeamPlayer == m_selectedPlayer1->getXTeamPlayer()) {
-                    delete m_selectedPlayer1;
-                    m_selectedPlayers = PLAYER2;
-                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
-                } else if(xTeamPlayer == m_selectedPlayer2->getXTeamPlayer()) {
-                    delete m_selectedPlayer2;
-                    m_selectedPlayers = PLAYER1;
-                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
-                } else {
-                    changeRowSelection(m_selectedPlayer1List, m_selectedPlayer1Row, true);
-                    changeRowSelection(m_selectedPlayer2List, m_selectedPlayer2Row, true);
-                }
-                break;
-            default:
-                break;
+        if(m_selectedPlayer == NULL) {
+            m_selectedPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+            m_selectedPlayerRow = currentRow;
+            m_selectedPlayerList = list;
+            changeRowSelection(m_selectedPlayerList, m_selectedPlayerRow, true);
+        } else {
+            if(xTeamPlayer == m_selectedPlayer->getXTeamPlayer()) {
+                delete m_selectedPlayer;
+                m_selectedPlayer = NULL;
+            } else {
+                changePlayers(m_selectedPlayerList, m_selectedPlayerRow, list, currentRow);
+            }
         }
     }
 }
@@ -363,24 +316,6 @@ bool CTeamPlayersWindowHandler::alternateTeamPlayersListboxSelectionChanged(cons
 bool CTeamPlayersWindowHandler::notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e)
 {
     selectChanged(m_notLineUpTeamPlayersList);
-    return true;
-}
-
-bool CTeamPlayersWindowHandler::changePlayersButtonClicked(const CEGUI::EventArgs& e)
-{
-    if(m_selectedPlayers == BOTH) {
-        changePlayers();
-        saveTeamPlayersList();
-
-        IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-        CPfTeams           *team            = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
-        CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
-        std::ostringstream average;
-        average << teamAverage->getNTotal();
-        m_teamAverage->setText((CEGUI::utf8*)average.str().c_str());
-        delete teamAverage;
-        delete team;
-    }
     return true;
 }
 

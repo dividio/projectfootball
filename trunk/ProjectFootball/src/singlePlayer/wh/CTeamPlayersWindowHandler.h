@@ -44,12 +44,11 @@ private:
     bool lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
     bool alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
     bool notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
-    bool changePlayersButtonClicked(const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
     void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
     void saveTeamPlayersList();
-    void changePlayers();
+    void changePlayers(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
     void selectChanged(CEGUI::MultiColumnList *list);
     void changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
     void changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState);
@@ -58,20 +57,13 @@ private:
     CEGUI::MultiColumnList 	*m_alternateTeamPlayersList;
     CEGUI::MultiColumnList 	*m_notLineUpTeamPlayersList;
 
-    CPfTeamPlayers         	*m_selectedPlayer1;
-    CPfTeamPlayers         	*m_selectedPlayer2;
-    int                      m_selectedPlayer1Row;
-    int                      m_selectedPlayer2Row;
+    CPfTeamPlayers         	*m_selectedPlayer;
+    int                      m_selectedPlayerRow;
+    CEGUI::MultiColumnList 	*m_selectedPlayerList;
 
-    CEGUI::MultiColumnList 	*m_selectedPlayer1List;
-    CEGUI::MultiColumnList 	*m_selectedPlayer2List;
-    CEGUI::PushButton		*m_changePlayersButton;
     CEGUI::Window           *m_teamName;
     CEGUI::Window           *m_teamAverage;
     CEGUI::Window           *m_teamCrest;
-
-    enum SelectedPlayers {NONE, PLAYER1, PLAYER2, BOTH};
-    SelectedPlayers          m_selectedPlayers;
 
     CSinglePlayerGame		&m_game;
     bool					m_initiated;
