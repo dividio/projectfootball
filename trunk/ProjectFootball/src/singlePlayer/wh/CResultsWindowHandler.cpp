@@ -136,17 +136,17 @@ void CResultsWindowHandler::loadConfederations(int XSeason, int XConfederation)
     std::vector<CPfConfederations*>::iterator it;
     for(it = confederationsList->begin(); it != confederationsList->end(); it++) {
         CPfConfederations      *confederation = (*it);
-        CEGUI::ListboxTextItem *item          = new CEGUI::ListboxTextItem((CEGUI::utf8*)confederation->getSConfederation().c_str(), confederation->getXConfederation());
+        CEGUI::ListboxTextItem *item          = new CEGUI::ListboxTextItem((CEGUI::utf8*)gettext(confederation->getSConfederation().c_str()), confederation->getXConfederation());
         m_confederationsCombobox->addItem(item);
         if(confederation->getXConfederation() == XConfederation) {
-            m_confederationsCombobox->setText((CEGUI::utf8*)confederation->getSConfederation().c_str());
+            m_confederationsCombobox->setText((CEGUI::utf8*)gettext(confederation->getSConfederation().c_str()));
             item->setSelected(true);
             selectedConfederation = confederation->getXConfederation();
         }
     }
 
     if(selectedConfederation == -1) {
-        m_confederationsCombobox->setText((CEGUI::utf8*)confederationsList->front()->getSConfederation().c_str());
+        m_confederationsCombobox->setText((CEGUI::utf8*)gettext(confederationsList->front()->getSConfederation().c_str()));
         CEGUI::ListboxItem *item = m_confederationsCombobox->getListboxItemFromIndex(0);
         item->setSelected(true);
         selectedConfederation = confederationsList->front()->getXConfederation();
@@ -170,17 +170,17 @@ void CResultsWindowHandler::loadCountries(int XSeason, int XConfederation, int X
         std::vector<CPfCountries*>::iterator it;
         for(it = countriesList->begin(); it != countriesList->end(); it++) {
             CPfCountries           *country = (*it);
-            CEGUI::ListboxTextItem *item    = new CEGUI::ListboxTextItem((CEGUI::utf8*)country->getSShortName().c_str(), country->getXCountry());
+            CEGUI::ListboxTextItem *item    = new CEGUI::ListboxTextItem((CEGUI::utf8*)gettext(country->getSShortName().c_str()), country->getXCountry());
             m_countriesCombobox->addItem(item);
             if(country->getXCountry() == XCountry) {
-                m_countriesCombobox->setText((CEGUI::utf8*)country->getSShortName().c_str());
+                m_countriesCombobox->setText((CEGUI::utf8*)gettext(country->getSShortName().c_str()));
                 item->setSelected(true);
                 selectedCountry = country->getXCountry();
             }
         }
 
         if(selectedCountry == -1) {
-            m_countriesCombobox->setText((CEGUI::utf8*)countriesList->front()->getSShortName().c_str());
+            m_countriesCombobox->setText((CEGUI::utf8*)gettext(countriesList->front()->getSShortName().c_str()));
             CEGUI::ListboxItem *item = m_countriesCombobox->getListboxItemFromIndex(0);
             item->setSelected(true);
             selectedCountry = countriesList->front()->getXCountry();
@@ -207,16 +207,16 @@ void CResultsWindowHandler::loadCompetitions(int XSeason, int XCountry, int XCom
 
     for( it=competitionsList->begin(); it!=competitionsList->end(); it++ ){
         CPfCompetitions *competition = (*it);
-        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)competition->getSCompetition().c_str(), competition->getXCompetition());
+        CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)gettext(competition->getSCompetition().c_str()), competition->getXCompetition());
         m_competitionsCombobox->addItem(item);
         if(competition->getXCompetition() == XCompetition) {
-            m_competitionsCombobox->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
+            m_competitionsCombobox->setText((CEGUI::utf8*)gettext(competition->getSCompetition().c_str()));
             selected = true;
             item->setSelected(true);
         }
     }
     if(!selected) {
-        m_competitionsCombobox->setText((CEGUI::utf8*)competitionsList->front()->getSCompetition().c_str());
+        m_competitionsCombobox->setText((CEGUI::utf8*)gettext(competitionsList->front()->getSCompetition().c_str()));
         CEGUI::ListboxItem *item = m_competitionsCombobox->getListboxItemFromIndex(0);
         item->setSelected(true);
     }
@@ -237,17 +237,17 @@ void CResultsWindowHandler::loadCompetitionPhases(int XCompetition, int XCompeti
 
         for( it=competitionPhasesList->begin(); it!=competitionPhasesList->end(); it++ ){
             CPfCompetitionPhases *competitionPhase = (*it);
-            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str(),
+            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)gettext(competitionPhase->getSCompetitionPhase().c_str()),
                                                                                     competitionPhase->getXCompetitionPhase());
             m_competitionPhasesCombobox->addItem(item);
             if(competitionPhase->getXCompetitionPhase() == XCompetitionPhase) {
-                m_competitionPhasesCombobox->setText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
+                m_competitionPhasesCombobox->setText((CEGUI::utf8*)gettext(competitionPhase->getSCompetitionPhase().c_str()));
                 selected = true;
                 item->setSelected(true);
             }
         }
         if(!selected) {
-            m_competitionPhasesCombobox->setText((CEGUI::utf8*)competitionPhasesList->front()->getSCompetitionPhase().c_str());
+            m_competitionPhasesCombobox->setText((CEGUI::utf8*)gettext(competitionPhasesList->front()->getSCompetitionPhase().c_str()));
             CEGUI::ListboxItem *item = m_competitionPhasesCombobox->getListboxItemFromIndex(0);
             item->setSelected(true);
         }
