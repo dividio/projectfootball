@@ -135,7 +135,7 @@ void CTeamPlayersWindowHandler::loadTeamPlayersList()
     delete team;
 
     m_teamPlayersList->getHorzScrollbar()->setVisible(false);
-    m_teamPlayersList->getVertScrollbar()->setVisible(false);
+    m_teamPlayersList->getVertScrollbar()->setVisible(true);
 }
 
 void CTeamPlayersWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
