@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 21:34+0200\n"
-"PO-Revision-Date: 2009-08-08 21:41+0100\n"
+"PO-Revision-Date: 2009-08-09 17:18+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:379
 msgid "Albania"
-msgstr ""
+msgstr "Albania"
 
 #: data/i18n/projectfootball.cpp:266
 msgid "Algeria"
@@ -151,7 +151,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:104
 #: data/i18n/projectfootball.cpp:320
 msgid "Antigua and Barbuda "
-msgstr ""
+msgstr "Antigua y Barbuda"
 
 #: data/i18n/projectfootball.cpp:591
 msgid "Apia"
@@ -191,11 +191,11 @@ msgstr "¿Estas seguro de querer eliminar esta partida?"
 
 #: data/i18n/projectfootball.cpp:358
 msgid "Argentina"
-msgstr ""
+msgstr "Argentina"
 
 #: data/i18n/projectfootball.cpp:142
 msgid "Argentine Republic"
-msgstr ""
+msgstr "República Argentina"
 
 #: data/i18n/projectfootball.cpp:219
 #: data/i18n/projectfootball.cpp:381
@@ -358,7 +358,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:385
 msgid "Belgium"
-msgstr ""
+msgstr "Bélgica"
 
 #: data/i18n/projectfootball.cpp:640
 msgid "Belgrade"
@@ -379,15 +379,15 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:614
 msgid "Berlin"
-msgstr ""
+msgstr "Berlín"
 
 #: data/i18n/projectfootball.cpp:325
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermudas"
 
 #: data/i18n/projectfootball.cpp:109
 msgid "Bermuda Islands "
-msgstr ""
+msgstr "Islas Bermudas"
 
 #: data/i18n/projectfootball.cpp:645
 msgid "Berne"
@@ -415,7 +415,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:359
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivia"
 
 #: data/i18n/projectfootball.cpp:170
 #: data/i18n/projectfootball.cpp:386
@@ -432,7 +432,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:360
 msgid "Brazil"
-msgstr ""
+msgstr "Brasil"
 
 #: data/i18n/projectfootball.cpp:519
 msgid "Brazzaville"
@@ -461,7 +461,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:616
 msgid "Budapest"
-msgstr ""
+msgstr "Budapest"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:82
 msgid "Budget:"
@@ -469,7 +469,7 @@ msgstr "Presupuesto:"
 
 #: data/i18n/projectfootball.cpp:574
 msgid "Buenos Aires"
-msgstr ""
+msgstr "Buenos Aires"
 
 #: data/i18n/projectfootball.cpp:487
 msgid "Bujumbura"
@@ -477,7 +477,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:387
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 #: data/i18n/projectfootball.cpp:54
 #: data/i18n/projectfootball.cpp:270
@@ -490,7 +490,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:496
 msgid "Cairo"
-msgstr ""
+msgstr "Cairo"
 
 #: data/i18n/projectfootball.cpp:225
 msgid "Cambodia"
@@ -498,12 +498,12 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:272
 msgid "Cameroon"
-msgstr ""
+msgstr "Camerún"
 
 #: data/i18n/projectfootball.cpp:111
 #: data/i18n/projectfootball.cpp:327
 msgid "Canada"
-msgstr ""
+msgstr "Canadá"
 
 #: data/i18n/projectfootball.cpp:481
 msgid "Canberra"
@@ -536,7 +536,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:112
 #: data/i18n/projectfootball.cpp:328
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Islas Caimán"
 
 #: data/i18n/projectfootball.cpp:58
 #: data/i18n/projectfootball.cpp:274
@@ -561,19 +561,19 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:361
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 #: data/i18n/projectfootball.cpp:226
 msgid "China"
-msgstr ""
+msgstr "China"
 
 #: data/i18n/projectfootball.cpp:628
 msgid "Chişinău"
-msgstr ""
+msgstr "Chişinău"
 
 #: data/i18n/projectfootball.cpp:638
 msgid "City of San Marino"
-msgstr ""
+msgstr "Ciudad de San Marino"
 
 #: data/i18n/projectfootball.cpp:140
 msgid "Co-operative Republic of Guyana"
@@ -589,7 +589,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:362
 msgid "Colombia"
-msgstr ""
+msgstr "Colombia"
 
 #: data/i18n/projectfootball.cpp:470
 msgid "Colombo"
@@ -644,7 +644,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:607
 msgid "Copenhagen"
-msgstr ""
+msgstr "Copenhage"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:239
 msgid "Corner Kick"
@@ -652,7 +652,7 @@ msgstr "Saque de esquina"
 
 #: data/i18n/projectfootball.cpp:329
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 #: data/i18n/projectfootball.cpp:277
 msgid "Cote d'Ivoire"
@@ -672,11 +672,11 @@ msgstr "Créditos"
 
 #: data/i18n/projectfootball.cpp:388
 msgid "Croatia"
-msgstr ""
+msgstr "Croacia"
 
 #: data/i18n/projectfootball.cpp:330
 msgid "Cuba"
-msgstr ""
+msgstr "Cuba"
 
 #: data/i18n/projectfootball.cpp:389
 msgid "Cyprus"
@@ -685,11 +685,11 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:174
 #: data/i18n/projectfootball.cpp:390
 msgid "Czech Republic"
-msgstr ""
+msgstr "República Checa"
 
 #: data/i18n/projectfootball.cpp:522
 msgid "Dakar"
-msgstr ""
+msgstr "Dakar"
 
 #: data/i18n/projectfootball.cpp:471
 msgid "Damascus"
@@ -723,7 +723,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:62
 #: data/i18n/projectfootball.cpp:278
 msgid "Democratic Republic of the Congo"
-msgstr ""
+msgstr "República Democrática del Congo"
 
 #: data/i18n/projectfootball.cpp:38
 msgid "Democratic Socialist Republic of Sri Lanka"
@@ -731,7 +731,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:391
 msgid "Denmark "
-msgstr ""
+msgstr "Dinamarca"
 
 #: data/i18n/projectfootball.cpp:438
 msgid "Dhaka"
@@ -761,11 +761,11 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:116
 #: data/i18n/projectfootball.cpp:332
 msgid "Dominican Republic"
-msgstr ""
+msgstr "República Dominicana"
 
 #: data/i18n/projectfootball.cpp:618
 msgid "Dublin"
-msgstr ""
+msgstr "Dublin"
 
 #: data/i18n/projectfootball.cpp:473
 msgid "Dushanbe "
@@ -785,11 +785,11 @@ msgstr "Editor"
 
 #: data/i18n/projectfootball.cpp:280
 msgid "Egypt"
-msgstr ""
+msgstr "Egipto"
 
 #: data/i18n/projectfootball.cpp:333
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:230
 msgid "End"
@@ -802,7 +802,7 @@ msgstr "Inglaterra"
 
 #: data/i18n/projectfootball.cpp:281
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Guinea Ecuatorial"
 
 #: data/i18n/projectfootball.cpp:282
 msgid "Eritrea"
@@ -810,11 +810,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:393
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 #: data/i18n/projectfootball.cpp:283
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiopía"
 
 #: data/i18n/projectfootball.cpp:655
 msgid "Europe"
@@ -844,7 +844,7 @@ msgstr "Salir al SO"
 #: data/i18n/projectfootball.cpp:178
 #: data/i18n/projectfootball.cpp:394
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Islas Feroe"
 
 #: data/i18n/projectfootball.cpp:67
 msgid "Federal Democratic Republic of Ethiopia"
@@ -856,11 +856,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:182
 msgid "Federal Republic of Germany"
-msgstr ""
+msgstr "República Federal de Alemania"
 
 #: data/i18n/projectfootball.cpp:86
 msgid "Federal Republic of Nigeria"
-msgstr ""
+msgstr "República Federal de Nigeria"
 
 #: data/i18n/projectfootball.cpp:131
 msgid "Federation of Saint Christopher and Nevis"
@@ -872,11 +872,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:370
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: data/i18n/projectfootball.cpp:395
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:106
 msgid "Football Library"
@@ -950,7 +950,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:398
 msgid "Germany"
-msgstr ""
+msgstr "Alemania"
 
 #: data/i18n/projectfootball.cpp:286
 msgid "Ghana"
@@ -984,7 +984,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:399
 msgid "Greece"
-msgstr ""
+msgstr "Grecia"
 
 #: data/i18n/projectfootball.cpp:118
 #: data/i18n/projectfootball.cpp:334
@@ -993,7 +993,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:335
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadalupe"
 
 #: data/i18n/projectfootball.cpp:227
 msgid "Guam"
@@ -1001,15 +1001,15 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:336
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: data/i18n/projectfootball.cpp:552
 msgid "Guatemala City"
-msgstr ""
+msgstr "Ciudad de Guatemala"
 
 #: data/i18n/projectfootball.cpp:287
 msgid "Guinea"
-msgstr ""
+msgstr "Guinea"
 
 #: data/i18n/projectfootball.cpp:288
 msgid "Guinea-Bissau"
@@ -1021,7 +1021,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:337
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:224
 msgid "Half Time"
@@ -1049,7 +1049,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:611
 msgid "Helsinki"
-msgstr ""
+msgstr "Helsinki"
 
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:110
 msgid "Home Team"
@@ -1062,7 +1062,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:228
 #: data/i18n/projectfootball.cpp:444
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #: data/i18n/projectfootball.cpp:12
 msgid "Hong Kong Special Administrative Region"
@@ -1074,11 +1074,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:400
 msgid "Hungary"
-msgstr ""
+msgstr "Hungría"
 
 #: data/i18n/projectfootball.cpp:401
 msgid "Iceland"
-msgstr ""
+msgstr "Islandia"
 
 #: data/i18n/projectfootball.cpp:157
 msgid "Independent State of Papua New Guinea"
@@ -1090,7 +1090,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:229
 msgid "India"
-msgstr ""
+msgstr "India"
 
 #: data/i18n/projectfootball.cpp:230
 msgid "Indonesia"
@@ -1098,15 +1098,15 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:231
 msgid "Iran"
-msgstr ""
+msgstr "Irán"
 
 #: data/i18n/projectfootball.cpp:232
 msgid "Iraq"
-msgstr ""
+msgstr "Iraq"
 
 #: data/i18n/projectfootball.cpp:402
 msgid "Ireland"
-msgstr ""
+msgstr "Irlanda"
 
 #: data/i18n/projectfootball.cpp:464
 msgid "Islamabad"
@@ -1130,15 +1130,15 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:403
 msgid "Israel"
-msgstr ""
+msgstr "Israel"
 
 #: data/i18n/projectfootball.cpp:188
 msgid "Italian Republic"
-msgstr ""
+msgstr "República Italiana"
 
 #: data/i18n/projectfootball.cpp:404
 msgid "Italy"
-msgstr ""
+msgstr "Italia"
 
 #: data/i18n/projectfootball.cpp:446
 msgid "Jakarta"
@@ -1147,7 +1147,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:123
 #: data/i18n/projectfootball.cpp:339
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaica"
 
 #: data/i18n/projectfootball.cpp:17
 #: data/i18n/projectfootball.cpp:233
@@ -1184,7 +1184,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:289
 msgid "Kenya"
-msgstr ""
+msgstr "Kenia"
 
 #: data/i18n/projectfootball.cpp:527
 msgid "Khartoum"
@@ -1232,7 +1232,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:82
 msgid "Kingdom of Morocco"
-msgstr ""
+msgstr "Reino de Marruecos"
 
 #: data/i18n/projectfootball.cpp:201
 msgid "Kingdom of Norway"
@@ -1360,7 +1360,7 @@ msgstr "Alineación"
 
 #: data/i18n/projectfootball.cpp:635
 msgid "Lisboa"
-msgstr ""
+msgstr "Lisboa"
 
 #: data/i18n/projectfootball.cpp:408
 msgid "Lithuania"
@@ -1418,15 +1418,15 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:410
 msgid "Macedonia"
-msgstr ""
+msgstr "Macedonia"
 
 #: data/i18n/projectfootball.cpp:293
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagascar"
 
 #: data/i18n/projectfootball.cpp:643
 msgid "Madrid"
-msgstr ""
+msgstr "Madrid"
 
 #: data/i18n/projectfootball.cpp:459
 msgid "Mal"
@@ -1443,7 +1443,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:26
 #: data/i18n/projectfootball.cpp:242
 msgid "Malaysia"
-msgstr ""
+msgstr "Malasia"
 
 #: data/i18n/projectfootball.cpp:243
 msgid "Maldives"
@@ -1455,7 +1455,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:411
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:103
 msgid "Manager League"
@@ -1499,11 +1499,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:341
 msgid "Mexico"
-msgstr ""
+msgstr "México"
 
 #: data/i18n/projectfootball.cpp:557
 msgid "Mexico City"
-msgstr ""
+msgstr "Ciudad de México"
 
 #: data/i18n/projectfootball.cpp:600
 msgid "Minsk"
@@ -1520,12 +1520,12 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:413
 #: data/i18n/projectfootball.cpp:629
 msgid "Monaco"
-msgstr ""
+msgstr "Mónaco"
 
 #: data/i18n/projectfootball.cpp:28
 #: data/i18n/projectfootball.cpp:244
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 #: data/i18n/projectfootball.cpp:507
 msgid "Monrovia"
@@ -1547,7 +1547,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:298
 msgid "Morocco"
-msgstr ""
+msgstr "Marruecos"
 
 #: data/i18n/projectfootball.cpp:492
 msgid "Moroni"
@@ -1555,7 +1555,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:637
 msgid "Moscow"
-msgstr ""
+msgstr "Moscú"
 
 #: data/i18n/projectfootball.cpp:206
 msgid "Most Serene Republic of San Marino"
@@ -1563,7 +1563,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:299
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambique"
 
 #: data/i18n/projectfootball.cpp:463
 msgid "Muscat"
@@ -1617,11 +1617,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:246
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: data/i18n/projectfootball.cpp:415
 msgid "Netherlands"
-msgstr ""
+msgstr "Holanda"
 
 #: data/i18n/projectfootball.cpp:127
 #: data/i18n/projectfootball.cpp:343
@@ -1635,7 +1635,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:445
 msgid "New Delhi"
-msgstr ""
+msgstr "Nueva Delhi"
 
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:57
 msgid "New Game"
@@ -1644,7 +1644,7 @@ msgstr "Nueva Partida"
 #: data/i18n/projectfootball.cpp:156
 #: data/i18n/projectfootball.cpp:372
 msgid "New Zealand"
-msgstr ""
+msgstr "Nueva Zelanda"
 
 #: data/i18n/projectfootball.cpp:517
 msgid "Niamey"
@@ -1652,7 +1652,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:344
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 #: data/i18n/projectfootball.cpp:605
 msgid "Nicosia"
@@ -1743,7 +1743,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:248
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistan"
 
 #: data/i18n/projectfootball.cpp:249
 msgid "Palestine"
@@ -1771,7 +1771,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:364
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 #: data/i18n/projectfootball.cpp:573
 msgid "Paramaribo"
@@ -1779,7 +1779,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:612
 msgid "Paris"
-msgstr ""
+msgstr "París"
 
 #: data/i18n/projectfootball.cpp:50
 msgid "People's Democratic Republic of Algeria"
@@ -1795,11 +1795,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:365
 msgid "Peru"
-msgstr ""
+msgstr "Perú"
 
 #: data/i18n/projectfootball.cpp:250
 msgid "Philippines"
-msgstr ""
+msgstr "Filipinas"
 
 #: data/i18n/projectfootball.cpp:441
 msgid "Phnom Penh"
@@ -1855,11 +1855,11 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:419
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 #: data/i18n/projectfootball.cpp:203
 msgid "Portuguese Republic"
-msgstr ""
+msgstr "República Portuguesa"
 
 #: data/i18n/projectfootball.cpp:606
 msgid "Prague"
@@ -1895,7 +1895,7 @@ msgstr "Programación:"
 
 #: data/i18n/projectfootball.cpp:346
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 #: data/i18n/projectfootball.cpp:451
 msgid "Pyongyang"
@@ -2327,7 +2327,7 @@ msgstr "Rumanía"
 
 #: data/i18n/projectfootball.cpp:620
 msgid "Rome"
-msgstr ""
+msgstr "Roma"
 
 #: data/i18n/projectfootball.cpp:547
 msgid "Roseau"
@@ -2434,7 +2434,7 @@ msgstr "Goleadores"
 #: data/i18n/projectfootball.cpp:207
 #: data/i18n/projectfootball.cpp:423
 msgid "Scotland"
-msgstr ""
+msgstr "Escocia"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:79
 msgid "Select Team"
@@ -2612,7 +2612,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:428
 msgid "Sweden"
-msgstr ""
+msgstr "Suecia"
 
 #: data/i18n/projectfootball.cpp:213
 msgid "Swiss Confederation"
@@ -2620,7 +2620,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:429
 msgid "Switzerland"
-msgstr ""
+msgstr "Suiza"
 
 #: data/i18n/projectfootball.cpp:255
 msgid "Syria"
@@ -2678,7 +2678,7 @@ msgstr ""
 
 #: data/i18n/projectfootball.cpp:447
 msgid "Tehran"
-msgstr "Tehran"
+msgstr "Teherán"
 
 #: data/i18n/projectfootball.cpp:11
 msgid "Territory of Guam"
@@ -2784,12 +2784,12 @@ msgstr "USA"
 
 #: data/i18n/projectfootball.cpp:316
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: data/i18n/projectfootball.cpp:215
 #: data/i18n/projectfootball.cpp:431
 msgid "Ukraine"
-msgstr ""
+msgstr "Ucrania"
 
 #: data/i18n/projectfootball.cpp:460
 msgid "Ulan Bator"
@@ -2848,7 +2848,7 @@ msgstr ""
 #: data/i18n/projectfootball.cpp:432
 #: data/i18n/projectfootball.cpp:648
 msgid "Vatican City"
-msgstr ""
+msgstr "Ciudad del Vaticano"
 
 #: data/i18n/projectfootball.cpp:367
 msgid "Venezuela"
@@ -2868,7 +2868,7 @@ msgstr "Vídeo"
 
 #: data/i18n/projectfootball.cpp:598
 msgid "Vienna"
-msgstr ""
+msgstr "Viena"
 
 #: data/i18n/projectfootball.cpp:455
 msgid "Vientiane"
