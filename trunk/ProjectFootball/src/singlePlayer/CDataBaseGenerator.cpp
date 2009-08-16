@@ -114,5 +114,9 @@ void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player)
 
     player.setXFkCountry_str("1");
     player.setNKickPower((rand()%49)+50);
-    player.setNVelocity((rand()%49)+50);
+    player.setNSpeed((rand()%49)+50);
+    player.setNWeight(78);
+    player.setNHeight(180);
+    player.setDBirthday_str("1985-01-16 10:30:09");
+    player.setSPhoto("p_unknown");
 }

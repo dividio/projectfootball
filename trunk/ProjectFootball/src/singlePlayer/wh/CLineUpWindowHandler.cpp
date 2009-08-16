@@ -207,7 +207,7 @@ void CLineUpWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiC
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 0, row_idx);
 
-    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNVelocity_str().c_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNSpeed_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 1, row_idx);
 

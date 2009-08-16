@@ -154,7 +154,7 @@ void CTeamPlayersWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::M
     list->setItem(item, 1, row_idx);
     delete country;
 
-    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNVelocity_str().c_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNSpeed_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 2, row_idx);
 

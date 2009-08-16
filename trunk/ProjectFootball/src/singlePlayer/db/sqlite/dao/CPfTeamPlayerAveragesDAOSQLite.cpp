@@ -44,9 +44,9 @@ CPfTeamPlayerAverages* CPfTeamPlayerAveragesDAOSQLite::findByXTeamPlayer(int XTe
 CPfTeamPlayerAverages* CPfTeamPlayerAveragesDAOSQLite::findByXTeamPlayer(const std::string &XTeamPlayer)
 {
     std::string sql("SELECT X_TEAM_PLAYER, ");
-    sql = sql +            "N_VELOCITY AS N_DEFENSE, " +
+    sql = sql +            "N_SPEED AS N_DEFENSE, " +
                            "N_KICK_POWER AS N_ATTACK, " +
-                           "(N_VELOCITY+N_KICK_POWER) / 2 AS N_TOTAL " +
+                           "(N_SPEED+N_KICK_POWER) / 2 AS N_TOTAL " +
                     "FROM PF_TEAM_PLAYERS " +
                     "WHERE ";
     sql = sql+"X_TEAM_PLAYER='"+XTeamPlayer+"'";

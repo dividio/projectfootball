@@ -63,7 +63,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     CSystemOptionManager* optionManager = CSystemOptionManager::getInstance();
     int maxPlayerVelocity = optionManager->getSimulationMaxPlayerVelocity();
     int maxKickPower      = optionManager->getSimulationMaxKickPower();
-    m_maxVelocity  = maxPlayerVelocity * (m_teamPlayer->getNVelocity()/100.0);
+    m_maxVelocity  = maxPlayerVelocity * (m_teamPlayer->getNSpeed()/100.0);
     m_maxKickPower = maxKickPower      * (m_teamPlayer->getNKickPower()/100.0);
     m_maxKickDistance = optionManager->getSimulationMaxKickDistance();
 
