@@ -31,6 +31,7 @@ class CPfGames;
 class CPfUsers;
 class CPfMatches;
 class CPfTeamAverages;
+class CPfTeamPlayers;
 class IDAOFactory;
 class CSinglePlayerOptionManager;
 class CSinglePlayerReportRegister;
@@ -62,10 +63,12 @@ public:
     virtual const char* getFirstScreenName();
 
     // Game progression
-    const EGameState	getGameState() const { return m_gameState; }
-    void				setGameState(EGameState state);
-    const CPfMatches* 	getCurrentMatch() const;
-    void				setCurrentMatch(const CPfMatches* match);
+    const EGameState        getGameState() const { return m_gameState; }
+    void				    setGameState(EGameState state);
+    const CPfMatches*       getCurrentMatch() const;
+    void				    setCurrentMatch(const CPfMatches* match);
+    const CPfTeamPlayers*   getSelectedTeamPlayer() const;
+    void                    setSelectedTeamPlayer(const CPfTeamPlayers* teamPlayer);
 
     void simulateMatch(const CPfMatches &match);
 
@@ -86,6 +89,7 @@ protected:
     IWindowHandler					*m_matchInfoWindowHandler;
 
     const CPfMatches				*m_currentMatch;
+    const CPfTeamPlayers            *m_selectedTeamPlayer;
     EGameState						m_gameState;
     CEventsHandler					*m_eventsHandler;
 

@@ -55,7 +55,6 @@ CTeamPlayersWindowHandler::~CTeamPlayersWindowHandler()
 void CTeamPlayersWindowHandler::enter()
 {
     loadTeamPlayersList();
-    m_selectedPlayer = NULL;
 }
 
 void CTeamPlayersWindowHandler::init()
@@ -89,9 +88,7 @@ void CTeamPlayersWindowHandler::init()
 
 void CTeamPlayersWindowHandler::leave()
 {
-    if (m_selectedPlayer != NULL) {
-        delete m_selectedPlayer;
-    }
+
 }
 
 void CTeamPlayersWindowHandler::loadTeamPlayersList()
@@ -181,33 +178,11 @@ void CTeamPlayersWindowHandler::selectChanged(CEGUI::MultiColumnList *list)
 
     if( currentItem != NULL ) {
         int currentRow  = list->getItemRowIndex(currentItem);
-        list->clearAllSelections();
         IPfTeamPlayersDAO *teamPlayersDAO = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
         int xTeamPlayer = currentItem->getID();
-        if(m_selectedPlayer == NULL) {
-            m_selectedPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-            m_selectedPlayerRow = currentRow;
-            m_selectedPlayerList = list;
-            changeRowSelection(m_selectedPlayerList, m_selectedPlayerRow, true);
-        } else {
-            if(xTeamPlayer == m_selectedPlayer->getXTeamPlayer()) {
-                delete m_selectedPlayer;
-                m_selectedPlayer = NULL;
-            } else {
-                m_selectedPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
-                m_selectedPlayerRow = currentRow;
-                m_selectedPlayerList = list;
-                changeRowSelection(m_selectedPlayerList, m_selectedPlayerRow, true);
-            }
-        }
-    }
-}
-
-void CTeamPlayersWindowHandler::changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState)
-{
-    int columns = list->getColumnCount();
-    for( int i = 0; i < columns; i++) {
-        CEGUI::ListboxItem *item = list->getItemAtGridReference(CEGUI::MCLGridRef(row, i));
-        item->setSelected(newSelectionState);
+        CPfTeamPlayers *selectedPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+        m_game.setSelectedTeamPlayer(selectedPlayer);
+        CGameEngine::getInstance()->getWindowManager()->nextScreen("TeamPlayerDetails");
+        delete selectedPlayer;
     }
 }

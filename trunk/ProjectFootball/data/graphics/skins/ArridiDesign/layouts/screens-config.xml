@@ -66,4 +66,11 @@
 			<window hook="Game/InfoHook" path="teamPlayers.layout" />
 		</window>
 	</screen>
+    <screen id="TeamPlayerDetails">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="teamPlayerDetails.layout" />
+        </window>
+    </screen>
 </screens-config>

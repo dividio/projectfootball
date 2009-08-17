@@ -18,8 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CTEAMPLAYERSWINDOWHANDLER_H_
-#define CTEAMPLAYERSWINDOWHANDLER_H_
+#ifndef CTEAMPLAYERDETAILSWINDOWHANDLER_H_
+#define CTEAMPLAYERDETAILSWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 #include "../../engine/wm/CWindowHandler.h"
@@ -30,31 +30,23 @@ class CPfTeamPlayers;
 
 
 
-class CTeamPlayersWindowHandler : public CWindowHandler
+class CTeamPlayerDetailsWindowHandler : public CWindowHandler
 {
 public:
-    CTeamPlayersWindowHandler(CSinglePlayerGame &game);
-    virtual ~CTeamPlayersWindowHandler();
+    CTeamPlayerDetailsWindowHandler(CSinglePlayerGame &game);
+    virtual ~CTeamPlayerDetailsWindowHandler();
 
     virtual void enter();
     virtual void init();
     virtual void leave();
 
 private:
-    bool teamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
+    const CPfTeamPlayers    *m_selectedTeamPlayer;
 
-    void loadTeamPlayersList();
-    void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
-    void selectChanged(CEGUI::MultiColumnList *list);
+    CEGUI::Window           *m_name;
+    CEGUI::Window           *m_photo;
 
-    CEGUI::MultiColumnList 	*m_teamPlayersList;
-
-    CEGUI::Window           *m_teamName;
-    CEGUI::Window           *m_teamAverage;
-    CEGUI::Window           *m_teamCrest;
-
-    CSinglePlayerGame		&m_game;
-    bool					m_initiated;
+    CSinglePlayerGame       &m_game;
 };
 
-#endif /*CTEAMPLAYERSWINDOWHANDLER_H_*/
+#endif /*CTEAMPLAYERDETAILSWINDOWHANDLER_H_*/

@@ -51,6 +51,7 @@
 #include "wh/CSimulatorWindowHandler.h"
 #include "wh/CLineUpWindowHandler.h"
 #include "wh/CTeamPlayersWindowHandler.h"
+#include "wh/CTeamPlayerDetailsWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../engine/db/bean/CPfGames.h"
@@ -90,11 +91,13 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	m_windowHandlers.push_back(new CRankingWindowHandler(*this));
 	m_windowHandlers.push_back(new CLineUpWindowHandler(*this));
 	m_windowHandlers.push_back(new CTeamPlayersWindowHandler(*this));
+	m_windowHandlers.push_back(new CTeamPlayerDetailsWindowHandler(*this));
 	m_windowHandlers.push_back(new CMatchResultWindowHandler(*this));
 	m_windowHandlers.push_back(new CSimulatorWindowHandler(*this));
 
     // game progression
-    m_currentMatch		= NULL;
+    m_currentMatch		 = NULL;
+    m_selectedTeamPlayer = NULL;
 }
 
 CSinglePlayerGame::~CSinglePlayerGame()
@@ -116,6 +119,9 @@ CSinglePlayerGame::~CSinglePlayerGame()
     delete m_game;
 
     delete m_currentMatch;
+    if(m_selectedTeamPlayer != NULL) {
+        delete m_selectedTeamPlayer;
+    }
 }
 
 IDAOFactory* CSinglePlayerGame::getIDAOFactory()
@@ -166,7 +172,7 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
     // retrieve the last season in the database and the end date of the itself
     CDate		maxDate = CDate::MIN_DATE;
     CPfSeasons *season	= singlePlayerGame->m_daoFactory->getIPfSeasonsDAO()->findLastSeason();
-    if( season->getXSeason()==0 ){
+    if( season->getXSeason() == 0 ){
     	throw PFEXCEPTION("The last season is NULL");
     }
 
@@ -256,6 +262,20 @@ void CSinglePlayerGame::setCurrentMatch(const CPfMatches *match)
 
 	// FIXME: do this in another way
 	m_matchInfoWindowHandler->enter();
+}
+
+const CPfTeamPlayers* CSinglePlayerGame::getSelectedTeamPlayer() const
+{
+    return m_selectedTeamPlayer;
+}
+
+void CSinglePlayerGame::setSelectedTeamPlayer(const CPfTeamPlayers *teamPlayer)
+{
+
+    if(m_selectedTeamPlayer != NULL) {
+        delete m_selectedTeamPlayer;
+    }
+    m_selectedTeamPlayer = (teamPlayer!=NULL)?new CPfTeamPlayers(*teamPlayer):NULL;
 }
 
 void CSinglePlayerGame::simulateMatch(const CPfMatches &match)

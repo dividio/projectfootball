@@ -18,43 +18,51 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CTEAMPLAYERSWINDOWHANDLER_H_
-#define CTEAMPLAYERSWINDOWHANDLER_H_
+#include "CTeamPlayerDetailsWindowHandler.h"
 
-#include <CEGUI/CEGUI.h>
-#include "../../engine/wm/CWindowHandler.h"
+#include <libintl.h>
 
-//Forward declarations
-class CSinglePlayerGame;
-class CPfTeamPlayers;
+#include "../CSinglePlayerGame.h"
+#include "../db/bean/CPfTeamPlayers.h"
+#include "../db/dao/factory/IDAOFactory.h"
+#include "../option/CSinglePlayerOptionManager.h"
+
+#include "../../engine/CGameEngine.h"
+#include "../../utils/CLog.h"
 
 
-
-class CTeamPlayersWindowHandler : public CWindowHandler
+CTeamPlayerDetailsWindowHandler::CTeamPlayerDetailsWindowHandler(CSinglePlayerGame &game) :
+	CWindowHandler("teamPlayerDetails.layout"),
+	m_game(game)
 {
-public:
-    CTeamPlayersWindowHandler(CSinglePlayerGame &game);
-    virtual ~CTeamPlayersWindowHandler();
+    LOG_DEBUG("CTeamPlayerDetailsWindowHandler()");
+}
 
-    virtual void enter();
-    virtual void init();
-    virtual void leave();
+CTeamPlayerDetailsWindowHandler::~CTeamPlayerDetailsWindowHandler()
+{
+    LOG_DEBUG("~CTeamPlayerDetailsWindowHandler()");
+}
 
-private:
-    bool teamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
+void CTeamPlayerDetailsWindowHandler::enter()
+{
+    m_selectedTeamPlayer = m_game.getSelectedTeamPlayer();
+    m_name ->setText((CEGUI::utf8*)m_selectedTeamPlayer->getSName().c_str());
+    m_photo->setProperty("Image", "set:"+ m_selectedTeamPlayer->getSPhoto() +" image:"+m_selectedTeamPlayer->getSPhoto()+"_b");
+}
 
-    void loadTeamPlayersList();
-    void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
-    void selectChanged(CEGUI::MultiColumnList *list);
+void CTeamPlayerDetailsWindowHandler::init()
+{
+	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
 
-    CEGUI::MultiColumnList 	*m_teamPlayersList;
+	m_name  = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/Name"));
+	m_photo = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/Photo"));
 
-    CEGUI::Window           *m_teamName;
-    CEGUI::Window           *m_teamAverage;
-    CEGUI::Window           *m_teamCrest;
+    // i18n support
+    windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/NameLabel")->setText((CEGUI::utf8*)gettext("Name:"));
+}
 
-    CSinglePlayerGame		&m_game;
-    bool					m_initiated;
-};
+void CTeamPlayerDetailsWindowHandler::leave()
+{
 
-#endif /*CTEAMPLAYERSWINDOWHANDLER_H_*/
+}
+
