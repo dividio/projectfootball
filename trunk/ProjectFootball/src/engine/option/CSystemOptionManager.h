@@ -80,6 +80,12 @@ public:
     const char *   getGUIFlags();
     void           setGUIFlags(const char * flags);
 
+    const char *   getGUIConfederations();
+    void           setGUIConfederations(const char * confederations);
+
+    const char *   getGUIPhotos();
+    void           setGUIPhotos(const char * photos);
+
     const char *   getGUIXMLParser();
     void           setGUIXMLParser(const char * parser);
 

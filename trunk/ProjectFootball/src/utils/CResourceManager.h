@@ -37,6 +37,7 @@ private:
     void defineShields();
     void defineFlags();
     void defineConfederations();
+    void definePhotos();
 };
 
 #endif /* CRESOURCEMANAGER_H_ */

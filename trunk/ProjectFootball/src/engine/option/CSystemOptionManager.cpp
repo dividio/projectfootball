@@ -218,6 +218,8 @@ void CSystemOptionManager::setDefaultValues()
     setGUISkin("ArridiDesign");
     setGUIShields("default");
     setGUIFlags("default");
+    setGUIConfederations("default");
+    setGUIPhotos("default");
     setGUIXMLParser("TinyXMLParser");
 
     setVideoRenderSystem("OpenGL Rendering Subsystem");
@@ -295,6 +297,26 @@ const char * CSystemOptionManager::getGUIFlags()
 void CSystemOptionManager::setGUIFlags(const char * flags)
 {
     setStringOption("GUI", "Flags", flags);
+}
+
+const char * CSystemOptionManager::getGUIConfederations()
+{
+    return getStringOption("GUI", "Confederations");
+}
+
+void CSystemOptionManager::setGUIConfederations(const char * confederations)
+{
+    setStringOption("GUI", "Confederations", confederations);
+}
+
+const char * CSystemOptionManager::getGUIPhotos()
+{
+    return getStringOption("GUI", "Photos");
+}
+
+void CSystemOptionManager::setGUIPhotos(const char * photos)
+{
+    setStringOption("GUI", "Photos", photos);
 }
 
 const char * CSystemOptionManager::getGUIXMLParser()

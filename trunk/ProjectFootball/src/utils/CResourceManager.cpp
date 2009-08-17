@@ -53,6 +53,7 @@ void CResourceManager::defineResources()
     defineConfederations();
     defineFlags();
     defineSkin();
+    definePhotos();
 }
 
 void CResourceManager::defineGeneral()
@@ -138,7 +139,7 @@ void CResourceManager::defineFlags()
 
 void CResourceManager::defineConfederations()
 {
-    Ogre::String conf = CSystemOptionManager::getInstance()->getGUIFlags(); //TODO add option confederations
+    Ogre::String conf = CSystemOptionManager::getInstance()->getGUIConfederations();
     Ogre::String archName, typeName, secName;
     archName = "data/graphics/confederations/" + conf;
     typeName = "FileSystem";
@@ -150,3 +151,19 @@ void CResourceManager::defineConfederations()
         throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 }
+
+void CResourceManager::definePhotos()
+{
+    Ogre::String photos = CSystemOptionManager::getInstance()->getGUIPhotos();
+    Ogre::String archName, typeName, secName;
+    archName = "data/graphics/photos/" + photos;
+    typeName = "FileSystem";
+    secName  = photos;
+    boost::filesystem::path path(archName.c_str());
+    if(boost::filesystem::is_directory(path)) {
+        Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
+    } else {
+        throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
+    }
+}
+
