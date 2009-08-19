@@ -93,3 +93,18 @@ CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findActiveByXFkTeamAndX
     sql = sql+"  AND D_BEGIN<=CURRENT_TIMESTAMP AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
     return loadRegister(sql);
 }
+
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findActiveByXFkTeamPlayer(int XFkTeamPlayer)
+{
+    std::ostringstream sXFkTeamPlayer;
+    sXFkTeamPlayer << XFkTeamPlayer;
+    return findActiveByXFkTeamPlayer(sXFkTeamPlayer.str());
+
+}
+CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findActiveByXFkTeamPlayer(const std::string &XFkTeamPlayer)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
+    sql = sql+"X_FK_TEAM_PLAYER='"+XFkTeamPlayer+"' ";
+    sql = sql+"  AND D_BEGIN<=CURRENT_TIMESTAMP AND (D_END IS NULL OR D_END>CURRENT_TIMESTAMP)";
+    return loadRegister(sql);
+}

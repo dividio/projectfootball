@@ -45,6 +45,17 @@ private:
 
     CEGUI::Window           *m_name;
     CEGUI::Window           *m_photo;
+    CEGUI::Window           *m_shortName;
+    CEGUI::Window           *m_birthday;
+    CEGUI::Window           *m_weight;
+    CEGUI::Window           *m_height;
+    CEGUI::Window           *m_years;
+    CEGUI::Window           *m_country;
+    CEGUI::Window           *m_teamName;
+    CEGUI::Window           *m_dateBegin;
+    CEGUI::Window           *m_dateEnd;
+    CEGUI::Window           *m_salary;
+    CEGUI::Window           *m_releaseClause;
 
     CSinglePlayerGame       &m_game;
 };

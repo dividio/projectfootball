@@ -48,6 +48,8 @@ public:
     virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(const std::string &XFkTeam) =0;
     virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer) =0;
     virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer) =0;
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(int XFkTeamPlayer) =0;
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(const std::string &XFkTeamPlayer) =0;
 
 };
 #endif /*IPFTEAMPLAYERCONTRACTSDAO_H_*/
