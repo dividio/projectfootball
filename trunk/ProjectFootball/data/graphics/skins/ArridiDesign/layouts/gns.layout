@@ -60,13 +60,41 @@
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.6015625,0},{0.6337890625,0},{1,0},{0.666341145833,0}}" />
         </Window>
-
-		<!-- GAME BUTTONS -->
-        <Window Type="ArridiDesign/gameMenuButton" Name="GNS/HomeButton" >
+        
+        <!-- GNS SCREENS NAVIGATION  -->
+        <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndE" >
+            <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_E" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.539,0},{0.667,0},{1,0},{0.765,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_HomeButton" Name="GNS/HomeButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.851564,0},{0.67852875,0},{1,0},{0.75014375,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.727,0},{0.674,0},{0.871,0},{0.7357,0}}" />
         </Window>
+        <Window Type="ArridiDesign/GNS_NextScreenButton" Name="GNS/NextScreenButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.867,0},{0.687,0},{0.977,0},{0.733,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/GNS_PreviousScreenButton" Name="GNS/PreviousScreenButton" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.621,0},{0.687,0},{0.7305,0},{0.733,0}}" />
+        </Window>
+        <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndF" >
+            <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_F" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.539,0},{0.667,0},{1,0},{0.765,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+
+		<!-- GAME BUTTONS -->
         <Window Type="ArridiDesign/GameConfigButton" Name="GNS/ConfigButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="Disabled" Value="True" />

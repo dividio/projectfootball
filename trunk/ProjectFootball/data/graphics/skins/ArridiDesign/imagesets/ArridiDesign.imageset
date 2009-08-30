@@ -60,6 +60,20 @@
 	<Image Name="GNS_Button7Highlight" XPos="110" YPos="701" Width="100" Height="20" />
 	<Image Name="GNS_Button8Highlight" XPos="110" YPos="722" Width="102" Height="20" />
 	
+	<Image Name="GNS_List_End_E" XPos="212" YPos="449" Width="118" Height="60" />
+	<Image Name="GNS_List_End_F" XPos="212" YPos="508" Width="118" Height="60" />
+	
+	<Image Name="GNS_HomeButtonNormal" XPos="231" YPos="408" Width="37" Height="38" />
+	<Image Name="GNS_HomeButtonHighlight" XPos="269" YPos="408" Width="37" Height="38" />
+	<Image Name="GNS_HomeButtonPushed" XPos="307" YPos="408" Width="37" Height="38" />
+	
+	<Image Name="GNS_NextScreenButtonNormal" XPos="335" YPos="447" Width="28" Height="28" />
+	<Image Name="GNS_NextScreenButtonHighlight" XPos="335" YPos="476" Width="28" Height="28" />
+	<Image Name="GNS_NextScreenButtonPushed" XPos="335" YPos="505" Width="28" Height="28" />
+	<Image Name="GNS_PreviousScreenButtonNormal" XPos="364" YPos="447" Width="28" Height="28" />
+	<Image Name="GNS_PreviousScreenButtonHighlight" XPos="364" YPos="476" Width="28" Height="28" />
+	<Image Name="GNS_PreviousScreenButtonPushed" XPos="364" YPos="505" Width="28" Height="28" />
+	
 	
 	<Image Name="GNSChangingRoomNormal" XPos="250" YPos="570" Width="54" Height="54" />
 	<Image Name="GNSChangingRoomHighlight" XPos="250" YPos="624" Width="54" Height="54" />

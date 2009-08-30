@@ -69,7 +69,6 @@
 	<FalagardMapping WindowType="ArridiDesign/GameConfigButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameConfigButton" />
 	<FalagardMapping WindowType="ArridiDesign/GameExitButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameExitButton" />
 	<FalagardMapping WindowType="ArridiDesign/GameHelpButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameHelpButton" />
-	<FalagardMapping WindowType="ArridiDesign/gameMenuButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/gameMenuButton" />
 	<FalagardMapping WindowType="ArridiDesign/GameQuickSaveButton"			TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameQuickSaveButton" />
 	<FalagardMapping WindowType="ArridiDesign/GameQuitButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameQuitButton" />
 	<FalagardMapping WindowType="ArridiDesign/GameSaveButton"				TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GameSaveButton" />
@@ -81,6 +80,12 @@
 	<FalagardMapping WindowType="ArridiDesign/GNS_Button6"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button6" />
 	<FalagardMapping WindowType="ArridiDesign/GNS_Button7"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button7" />
 	<FalagardMapping WindowType="ArridiDesign/GNS_Button8"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_Button8" />
+	
+	
+	<FalagardMapping WindowType="ArridiDesign/GNS_HomeButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_HomeButton" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_NextScreenButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_NextScreenButton" />
+	<FalagardMapping WindowType="ArridiDesign/GNS_PreviousScreenButton"					TargetType="CEGUI/PushButton"			Renderer="Falagard/Button"				LookNFeel="ArridiDesign/GNS_PreviousScreenButton" />
+	
 	<FalagardMapping WindowType="ArridiDesign/HookWindow"					TargetType="DefaultWindow"				Renderer="Falagard/StaticImage"			LookNFeel="ArridiDesign/HookWindow" />
 	<FalagardMapping WindowType="ArridiDesign/HorizontalScrollbar"			TargetType="CEGUI/Scrollbar"			Renderer="Falagard/Scrollbar"			LookNFeel="ArridiDesign/HorizontalScrollbar" />
 	<FalagardMapping WindowType="ArridiDesign/HorizontalScrollbarThumb"		TargetType="CEGUI/Thumb"				Renderer="Falagard/Button"				LookNFeel="ArridiDesign/HorizontalScrollbarThumb" />
