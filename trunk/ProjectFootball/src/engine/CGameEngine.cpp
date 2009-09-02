@@ -155,6 +155,7 @@ void CGameEngine::loadGame(IGame *game)
     unloadCurrentGame();
     m_game = game;
     getWindowManager()->nextScreen(m_game->getFirstScreenName());
+    getWindowManager()->clearHistory();
 }
 
 void CGameEngine::save()
