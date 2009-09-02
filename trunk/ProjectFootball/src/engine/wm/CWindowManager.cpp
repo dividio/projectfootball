@@ -99,6 +99,16 @@ void CWindowManager::clearHistory()
 	m_commandsList.push_back("cs");
 }
 
+const char * CWindowManager::getCurrentScreen()
+{
+	if( m_currentScreen!=NULL ){
+		return m_currentScreen->getId().c_str();
+	}
+	else{
+		return "";
+	}
+}
+
 void CWindowManager::nextScreen()
 {
 	m_commandsList.push_back("ns");
@@ -205,8 +215,8 @@ void CWindowManager::_nextScreen()
 			leaveEvent(*m_currentScreen);
 			m_previousScreensStack.push_back(m_currentScreen->getId());
 		}
-		enterEvent(*nextScreen);
 		m_currentScreen = nextScreen;
+		enterEvent(*nextScreen);
 		m_nextScreensStack.pop_back();
 	}
 }
@@ -223,8 +233,8 @@ void CWindowManager::_nextScreen(const std::string &screenId)
 		leaveEvent(*m_currentScreen);
 		m_previousScreensStack.push_back(m_currentScreen->getId());
 	}
-	enterEvent(*nextScreen);
 	m_currentScreen = nextScreen;
+	enterEvent(*nextScreen);
 	m_nextScreensStack.clear();
 }
 
@@ -241,8 +251,8 @@ void CWindowManager::_previousScreen()
 			leaveEvent(*m_currentScreen);
 			m_nextScreensStack.push_back(m_currentScreen->getId());
 		}
-		enterEvent(*previousScreen);
 		m_currentScreen = previousScreen;
+		enterEvent(*previousScreen);
 		m_previousScreensStack.pop_back();
 	}
 }

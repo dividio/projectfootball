@@ -39,10 +39,11 @@ public:
 	CWindowManager();
 	virtual ~CWindowManager();
 
-	void clearHistory();
-	void nextScreen();
-	void nextScreen(const std::string &screenId);
-	void previousScreen();
+	void		clearHistory();
+	const char*	getCurrentScreen();
+	void		nextScreen();
+	void		nextScreen(const std::string &screenId);
+	void		previousScreen();
 
 	void registerWindowHandler(const std::string &path, IWindowHandler &windowHandler);
 	void unregisterWindowHandler(const std::string &path, IWindowHandler &windowHandler);
