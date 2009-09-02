@@ -64,7 +64,13 @@
         <!-- GNS SCREENS NAVIGATION  -->
         <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndE" >
             <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_E" />
-            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.539,0},{0.667,0},{1,0},{0.765,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndF" >
+            <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_F" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.539,0},{0.667,0},{1,0},{0.765,0}}" />
@@ -84,14 +90,6 @@
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.621,0},{0.687,0},{0.7305,0},{0.733,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndF" >
-            <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_F" />
-            <Property Name="AlwaysOnTop" Value="True" />
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.539,0},{0.667,0},{1,0},{0.765,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
         </Window>
 
 		<!-- GAME BUTTONS -->
