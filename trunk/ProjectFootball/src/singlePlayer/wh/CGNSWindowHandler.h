@@ -42,14 +42,23 @@ protected:
 
 	bool exitButtonClicked				(const CEGUI::EventArgs &e);
 	bool exitConfirmed					(const CEGUI::EventArgs &e);
-	bool homeButtonClicked				(const CEGUI::EventArgs &e);
 	bool mainMenuButtonClicked			(const CEGUI::EventArgs &e);
 	bool mainMenuConfirmed				(const CEGUI::EventArgs &e);
 	bool playButtonClicked				(const CEGUI::EventArgs &e);
 	bool resultModeCheckStateChanged	(const CEGUI::EventArgs &e);
-	bool quickSaveButtonClicked				(const CEGUI::EventArgs &e);
+	bool quickSaveButtonClicked			(const CEGUI::EventArgs &e);
+
+	bool homeButtonClicked				(const CEGUI::EventArgs &e);
+	bool nextScreenButtonClicked		(const CEGUI::EventArgs &e);
+	bool previousScreenButtonClicked	(const CEGUI::EventArgs &e);
 
 private:
+	CEGUI::Window		*m_noButtonsBackground;
+	CEGUI::Window		*m_buttonsBackground;
+	CEGUI::PushButton	*m_homeButton;
+	CEGUI::PushButton	*m_nextScreenButton;
+	CEGUI::PushButton	*m_previousScreenButton;
+
 	CEGUI::PushButton	*m_action1Button;
 	CEGUI::PushButton	*m_action2Button;
 	CEGUI::PushButton	*m_action3Button;
