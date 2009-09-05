@@ -20,56 +20,36 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFTEAMS_H_
-#define CPFTEAMS_H_
+#ifndef CPFSTADIUMS_H_
+#define CPFSTADIUMS_H_
 
 #include <string>
 
-class CPfTeams
+class CPfStadiums
 {
 public:
-    CPfTeams();
-    CPfTeams(const CPfTeams &obj);
-    virtual ~CPfTeams();
+    CPfStadiums();
+    CPfStadiums(const CPfStadiums &obj);
+    virtual ~CPfStadiums();
 
-    const std::string& getSLogo() const;
-    const std::string& getSLogo_str() const;
-    int getXTeam() const;
-    const std::string& getXTeam_str() const;
-    const std::string& getSTeam() const;
-    const std::string& getSTeam_str() const;
-    int getNBudget() const;
-    const std::string& getNBudget_str() const;
-    const std::string& getSShortName() const;
-    const std::string& getSShortName_str() const;
-    int getXFkStadium() const;
-    const std::string& getXFkStadium_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
+    int getXStadium() const;
+    const std::string& getXStadium_str() const;
+    int getNCapacity() const;
+    const std::string& getNCapacity_str() const;
+    const std::string& getSName() const;
+    const std::string& getSName_str() const;
 
-    void setSLogo(const std::string &SLogo);
-    void setSLogo_str(const std::string &SLogo);
-    void setXTeam(int XTeam);
-    void setXTeam_str(const std::string &XTeam);
-    void setSTeam(const std::string &STeam);
-    void setSTeam_str(const std::string &STeam);
-    void setNBudget(int NBudget);
-    void setNBudget_str(const std::string &NBudget);
-    void setSShortName(const std::string &SShortName);
-    void setSShortName_str(const std::string &SShortName);
-    void setXFkStadium(int XFkStadium);
-    void setXFkStadium_str(const std::string &XFkStadium);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
+    void setXStadium(int XStadium);
+    void setXStadium_str(const std::string &XStadium);
+    void setNCapacity(int NCapacity);
+    void setNCapacity_str(const std::string &NCapacity);
+    void setSName(const std::string &SName);
+    void setSName_str(const std::string &SName);
 
 private:
-    std::string m_SLogo;
-    std::string m_XTeam;
-    std::string m_STeam;
-    std::string m_NBudget;
-    std::string m_SShortName;
-    std::string m_XFkStadium;
-    std::string m_XFkCountry;
+    std::string m_XStadium;
+    std::string m_NCapacity;
+    std::string m_SName;
 
 };
-#endif /*CPFTEAMS_H_*/
+#endif /*CPFSTADIUMS_H_*/

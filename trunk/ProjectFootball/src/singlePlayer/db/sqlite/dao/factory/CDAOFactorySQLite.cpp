@@ -42,6 +42,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     }
 
     m_PfCompetitionPhasesDAOSQLite = new CPfCompetitionPhasesDAOSQLite(m_database);
+    m_PfStadiumsDAOSQLite = new CPfStadiumsDAOSQLite(m_database);
     m_PfRankingDAOSQLite = new CPfRankingDAOSQLite(m_database);
     m_PfTeamAveragesDAOSQLite = new CPfTeamAveragesDAOSQLite(m_database);
     m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
@@ -49,6 +50,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     m_PfCompetitionsBySeasonDAOSQLite = new CPfCompetitionsBySeasonDAOSQLite(m_database);
     m_PfTeamsByCompetitionsDAOSQLite = new CPfTeamsByCompetitionsDAOSQLite(m_database);
     m_PfSeasonsDAOSQLite = new CPfSeasonsDAOSQLite(m_database);
+    m_PfScorersDAOSQLite = new CPfScorersDAOSQLite(m_database);
     m_PfConfederationsDAOSQLite = new CPfConfederationsDAOSQLite(m_database);
     m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
     m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
@@ -64,6 +66,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
 CDAOFactorySQLite::~CDAOFactorySQLite()
 {
     delete m_PfCompetitionPhasesDAOSQLite;
+    delete m_PfStadiumsDAOSQLite;
     delete m_PfRankingDAOSQLite;
     delete m_PfTeamAveragesDAOSQLite;
     delete m_PfMatchesDAOSQLite;
@@ -71,6 +74,7 @@ CDAOFactorySQLite::~CDAOFactorySQLite()
     delete m_PfCompetitionsBySeasonDAOSQLite;
     delete m_PfTeamsByCompetitionsDAOSQLite;
     delete m_PfSeasonsDAOSQLite;
+    delete m_PfScorersDAOSQLite;
     delete m_PfConfederationsDAOSQLite;
     delete m_PfTeamPlayerContractsDAOSQLite;
     delete m_PfGoalsDAOSQLite;
@@ -180,6 +184,7 @@ void CDAOFactorySQLite::save()
 {
     // Closing temp database
     m_PfCompetitionPhasesDAOSQLite->setSQLite(NULL);
+    m_PfStadiumsDAOSQLite->setSQLite(NULL);
     m_PfRankingDAOSQLite->setSQLite(NULL);
     m_PfTeamAveragesDAOSQLite->setSQLite(NULL);
     m_PfMatchesDAOSQLite->setSQLite(NULL);
@@ -187,6 +192,7 @@ void CDAOFactorySQLite::save()
     m_PfCompetitionsBySeasonDAOSQLite->setSQLite(NULL);
     m_PfTeamsByCompetitionsDAOSQLite->setSQLite(NULL);
     m_PfSeasonsDAOSQLite->setSQLite(NULL);
+    m_PfScorersDAOSQLite->setSQLite(NULL);
     m_PfConfederationsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(NULL);
     m_PfGoalsDAOSQLite->setSQLite(NULL);
@@ -211,6 +217,7 @@ void CDAOFactorySQLite::save()
     }
 
     m_PfCompetitionPhasesDAOSQLite->setSQLite(m_database);
+    m_PfStadiumsDAOSQLite->setSQLite(m_database);
     m_PfRankingDAOSQLite->setSQLite(m_database);
     m_PfTeamAveragesDAOSQLite->setSQLite(m_database);
     m_PfMatchesDAOSQLite->setSQLite(m_database);
@@ -218,6 +225,7 @@ void CDAOFactorySQLite::save()
     m_PfCompetitionsBySeasonDAOSQLite->setSQLite(m_database);
     m_PfTeamsByCompetitionsDAOSQLite->setSQLite(m_database);
     m_PfSeasonsDAOSQLite->setSQLite(m_database);
+    m_PfScorersDAOSQLite->setSQLite(m_database);
     m_PfConfederationsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(m_database);
     m_PfGoalsDAOSQLite->setSQLite(m_database);
@@ -231,6 +239,11 @@ void CDAOFactorySQLite::save()
 IPfCompetitionPhasesDAO* CDAOFactorySQLite::getIPfCompetitionPhasesDAO()
 {
     return m_PfCompetitionPhasesDAOSQLite;
+}
+
+IPfStadiumsDAO* CDAOFactorySQLite::getIPfStadiumsDAO()
+{
+    return m_PfStadiumsDAOSQLite;
 }
 
 IPfRankingDAO* CDAOFactorySQLite::getIPfRankingDAO()
@@ -266,6 +279,11 @@ IPfTeamsByCompetitionsDAO* CDAOFactorySQLite::getIPfTeamsByCompetitionsDAO()
 IPfSeasonsDAO* CDAOFactorySQLite::getIPfSeasonsDAO()
 {
     return m_PfSeasonsDAOSQLite;
+}
+
+IPfScorersDAO* CDAOFactorySQLite::getIPfScorersDAO()
+{
+    return m_PfScorersDAOSQLite;
 }
 
 IPfConfederationsDAO* CDAOFactorySQLite::getIPfConfederationsDAO()

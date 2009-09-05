@@ -24,6 +24,7 @@
 #define IDAOFACTORY_H_
 
 #include "../IPfCompetitionPhasesDAO.h"
+#include "../IPfStadiumsDAO.h"
 #include "../IPfRankingDAO.h"
 #include "../IPfTeamAveragesDAO.h"
 #include "../IPfMatchesDAO.h"
@@ -31,6 +32,7 @@
 #include "../IPfCompetitionsBySeasonDAO.h"
 #include "../IPfTeamsByCompetitionsDAO.h"
 #include "../IPfSeasonsDAO.h"
+#include "../IPfScorersDAO.h"
 #include "../IPfConfederationsDAO.h"
 #include "../IPfTeamPlayerContractsDAO.h"
 #include "../IPfGoalsDAO.h"
@@ -56,6 +58,7 @@ public:
     virtual void save() =0;
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
+    virtual IPfStadiumsDAO* getIPfStadiumsDAO() =0;
     virtual IPfRankingDAO* getIPfRankingDAO() =0;
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO() =0;
     virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
@@ -63,6 +66,7 @@ public:
     virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO() =0;
     virtual IPfTeamsByCompetitionsDAO* getIPfTeamsByCompetitionsDAO() =0;
     virtual IPfSeasonsDAO* getIPfSeasonsDAO() =0;
+    virtual IPfScorersDAO* getIPfScorersDAO() =0;
     virtual IPfConfederationsDAO* getIPfConfederationsDAO() =0;
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
     virtual IPfGoalsDAO* getIPfGoalsDAO() =0;

@@ -33,6 +33,7 @@ CPfTeams::CPfTeams()
     m_STeam = "";
     m_NBudget = "0";
     m_SShortName = "";
+    m_XFkStadium = "0";
     m_XFkCountry = "0";
 }
 
@@ -43,6 +44,7 @@ CPfTeams::CPfTeams(const CPfTeams &obj)
     m_STeam = obj.m_STeam;
     m_NBudget = obj.m_NBudget;
     m_SShortName = obj.m_SShortName;
+    m_XFkStadium = obj.m_XFkStadium;
     m_XFkCountry = obj.m_XFkCountry;
 }
 
@@ -106,6 +108,20 @@ const std::string& CPfTeams::getSShortName() const
 const std::string& CPfTeams::getSShortName_str() const
 {
     return m_SShortName;
+}
+
+int CPfTeams::getXFkStadium() const
+{
+    if( m_XFkStadium=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkStadium.c_str());
+    }
+}
+
+const std::string& CPfTeams::getXFkStadium_str() const
+{
+    return m_XFkStadium;
 }
 
 int CPfTeams::getXFkCountry() const
@@ -174,6 +190,18 @@ void CPfTeams::setSShortName(const std::string &SShortName)
 void CPfTeams::setSShortName_str(const std::string &SShortName)
 {
     m_SShortName = SShortName;
+}
+
+void CPfTeams::setXFkStadium(int XFkStadium)
+{
+    std::ostringstream stream;
+    stream << XFkStadium;
+    m_XFkStadium = stream.str();
+}
+
+void CPfTeams::setXFkStadium_str(const std::string &XFkStadium)
+{
+    m_XFkStadium = XFkStadium;
 }
 
 void CPfTeams::setXFkCountry(int XFkCountry)

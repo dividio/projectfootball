@@ -20,56 +20,93 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFTEAMS_H_
-#define CPFTEAMS_H_
+#include <iostream>
+#include <sstream>
+#include <stdlib.h>
 
-#include <string>
+#include "CPfScorers.h"
 
-class CPfTeams
+CPfScorers::CPfScorers()
 {
-public:
-    CPfTeams();
-    CPfTeams(const CPfTeams &obj);
-    virtual ~CPfTeams();
+    m_NGoals = "0";
+    m_STeamPlayer = "";
+    m_STeam = "";
+}
 
-    const std::string& getSLogo() const;
-    const std::string& getSLogo_str() const;
-    int getXTeam() const;
-    const std::string& getXTeam_str() const;
-    const std::string& getSTeam() const;
-    const std::string& getSTeam_str() const;
-    int getNBudget() const;
-    const std::string& getNBudget_str() const;
-    const std::string& getSShortName() const;
-    const std::string& getSShortName_str() const;
-    int getXFkStadium() const;
-    const std::string& getXFkStadium_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
+CPfScorers::CPfScorers(const CPfScorers &obj)
+{
+    m_NGoals = obj.m_NGoals;
+    m_STeamPlayer = obj.m_STeamPlayer;
+    m_STeam = obj.m_STeam;
+}
 
-    void setSLogo(const std::string &SLogo);
-    void setSLogo_str(const std::string &SLogo);
-    void setXTeam(int XTeam);
-    void setXTeam_str(const std::string &XTeam);
-    void setSTeam(const std::string &STeam);
-    void setSTeam_str(const std::string &STeam);
-    void setNBudget(int NBudget);
-    void setNBudget_str(const std::string &NBudget);
-    void setSShortName(const std::string &SShortName);
-    void setSShortName_str(const std::string &SShortName);
-    void setXFkStadium(int XFkStadium);
-    void setXFkStadium_str(const std::string &XFkStadium);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
+CPfScorers::~CPfScorers()
+{
+}
 
-private:
-    std::string m_SLogo;
-    std::string m_XTeam;
-    std::string m_STeam;
-    std::string m_NBudget;
-    std::string m_SShortName;
-    std::string m_XFkStadium;
-    std::string m_XFkCountry;
+int CPfScorers::getNGoals() const
+{
+    if( m_NGoals=="" ){
+        return 0;
+    }else{
+        return atoi(m_NGoals.c_str());
+    }
+}
 
-};
-#endif /*CPFTEAMS_H_*/
+const std::string& CPfScorers::getNGoals_str() const
+{
+    return m_NGoals;
+}
+
+const std::string& CPfScorers::getSTeamPlayer() const
+{
+    return m_STeamPlayer;
+}
+
+const std::string& CPfScorers::getSTeamPlayer_str() const
+{
+    return m_STeamPlayer;
+}
+
+const std::string& CPfScorers::getSTeam() const
+{
+    return m_STeam;
+}
+
+const std::string& CPfScorers::getSTeam_str() const
+{
+    return m_STeam;
+}
+
+void CPfScorers::setNGoals(int NGoals)
+{
+    std::ostringstream stream;
+    stream << NGoals;
+    m_NGoals = stream.str();
+}
+
+void CPfScorers::setNGoals_str(const std::string &NGoals)
+{
+    m_NGoals = NGoals;
+}
+
+void CPfScorers::setSTeamPlayer(const std::string &STeamPlayer)
+{
+    m_STeamPlayer = STeamPlayer;
+}
+
+void CPfScorers::setSTeamPlayer_str(const std::string &STeamPlayer)
+{
+    m_STeamPlayer = STeamPlayer;
+}
+
+void CPfScorers::setSTeam(const std::string &STeam)
+{
+    m_STeam = STeam;
+}
+
+void CPfScorers::setSTeam_str(const std::string &STeam)
+{
+    m_STeam = STeam;
+}
+

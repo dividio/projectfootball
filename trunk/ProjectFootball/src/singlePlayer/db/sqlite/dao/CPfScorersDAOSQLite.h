@@ -20,56 +20,22 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFTEAMS_H_
-#define CPFTEAMS_H_
+#ifndef CPFSCORERSDAOSQLITE_H_
+#define CPFSCORERSDAOSQLITE_H_
 
 #include <string>
+#include <sqlite3.h>
 
-class CPfTeams
+#include "entity/CPfScorersDAOSQLiteEntity.h"
+#include "../../bean/CPfScorers.h"
+
+class CPfScorersDAOSQLite : public CPfScorersDAOSQLiteEntity
 {
 public:
-    CPfTeams();
-    CPfTeams(const CPfTeams &obj);
-    virtual ~CPfTeams();
+    CPfScorersDAOSQLite(sqlite3 *database);
+    virtual ~CPfScorersDAOSQLite();
 
-    const std::string& getSLogo() const;
-    const std::string& getSLogo_str() const;
-    int getXTeam() const;
-    const std::string& getXTeam_str() const;
-    const std::string& getSTeam() const;
-    const std::string& getSTeam_str() const;
-    int getNBudget() const;
-    const std::string& getNBudget_str() const;
-    const std::string& getSShortName() const;
-    const std::string& getSShortName_str() const;
-    int getXFkStadium() const;
-    const std::string& getXFkStadium_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
-
-    void setSLogo(const std::string &SLogo);
-    void setSLogo_str(const std::string &SLogo);
-    void setXTeam(int XTeam);
-    void setXTeam_str(const std::string &XTeam);
-    void setSTeam(const std::string &STeam);
-    void setSTeam_str(const std::string &STeam);
-    void setNBudget(int NBudget);
-    void setNBudget_str(const std::string &NBudget);
-    void setSShortName(const std::string &SShortName);
-    void setSShortName_str(const std::string &SShortName);
-    void setXFkStadium(int XFkStadium);
-    void setXFkStadium_str(const std::string &XFkStadium);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
-
-private:
-    std::string m_SLogo;
-    std::string m_XTeam;
-    std::string m_STeam;
-    std::string m_NBudget;
-    std::string m_SShortName;
-    std::string m_XFkStadium;
-    std::string m_XFkCountry;
+    virtual std::vector<CPfScorers*>* findScorersByXSeasonAndXCompetition(int XSeason, int XCompetition);
 
 };
-#endif /*CPFTEAMS_H_*/
+#endif /*CPFSCORERSDAOSQLITE_H_*/

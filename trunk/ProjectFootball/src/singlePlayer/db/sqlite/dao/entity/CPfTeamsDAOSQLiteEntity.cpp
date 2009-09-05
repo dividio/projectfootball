@@ -50,11 +50,12 @@ bool CPfTeamsDAOSQLiteEntity::deleteReg(CPfTeams *reg)
 
 bool CPfTeamsDAOSQLiteEntity::insertReg(CPfTeams *reg)
 {
-    std::string sql("INSERT INTO PF_TEAMS (S_LOGO,S_TEAM,N_BUDGET,S_SHORT_NAME,X_FK_COUNTRY) VALUES (");
+    std::string sql("INSERT INTO PF_TEAMS (S_LOGO,S_TEAM,N_BUDGET,S_SHORT_NAME,X_FK_STADIUM,X_FK_COUNTRY) VALUES (");
     sql += (reg->getSLogo_str()=="")?"NULL":"'"+reg->getSLogo_str()+"'";
     sql += (reg->getSTeam_str()=="")?",NULL":",'"+reg->getSTeam_str()+"'";
     sql += (reg->getNBudget_str()=="")?",NULL":",'"+reg->getNBudget_str()+"'";
     sql += (reg->getSShortName_str()=="")?",NULL":",'"+reg->getSShortName_str()+"'";
+    sql += (reg->getXFkStadium_str()=="")?",NULL":",'"+reg->getXFkStadium_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",NULL":",'"+reg->getXFkCountry_str()+"'";
     sql += ")";
     if( exec(sql) ){
@@ -73,6 +74,7 @@ bool CPfTeamsDAOSQLiteEntity::updateReg(CPfTeams *reg)
     sql += (reg->getSTeam_str()=="")?",S_TEAM=NULL":",S_TEAM='"+reg->getSTeam_str()+"'";
     sql += (reg->getNBudget_str()=="")?",N_BUDGET=NULL":",N_BUDGET='"+reg->getNBudget_str()+"'";
     sql += (reg->getSShortName_str()=="")?",S_SHORT_NAME=NULL":",S_SHORT_NAME='"+reg->getSShortName_str()+"'";
+    sql += (reg->getXFkStadium_str()=="")?",X_FK_STADIUM=NULL":",X_FK_STADIUM='"+reg->getXFkStadium_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",X_FK_COUNTRY=NULL":",X_FK_COUNTRY='"+reg->getXFkCountry_str()+"'";
     sql += " WHERE X_TEAM='"+reg->getXTeam_str()+"'";
     return exec(sql);
@@ -158,6 +160,8 @@ int CPfTeamsDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char *
                 destiny->setNBudget_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
                 destiny->setSShortName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_STADIUM")==0 ){
+                destiny->setXFkStadium_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
@@ -182,6 +186,8 @@ int CPfTeamsDAOSQLiteEntity::callbackVector(void *object, int nColumns, char **v
                 destiny->setNBudget_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
                 destiny->setSShortName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_STADIUM")==0 ){
+                destiny->setXFkStadium_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }

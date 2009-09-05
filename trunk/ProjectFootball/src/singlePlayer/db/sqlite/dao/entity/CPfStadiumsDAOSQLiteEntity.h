@@ -20,56 +20,40 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFTEAMS_H_
-#define CPFTEAMS_H_
+#ifndef CPFSTADIUMSDAOSQLITEENTITY_H_
+#define CPFSTADIUMSDAOSQLITEENTITY_H_
 
 #include <string>
+#include <vector>
+#include <sqlite3.h>
 
-class CPfTeams
+#include "../../../bean/CPfStadiums.h"
+#include "../../../dao/IPfStadiumsDAO.h"
+
+class CPfStadiumsDAOSQLiteEntity : public IPfStadiumsDAO
 {
 public:
-    CPfTeams();
-    CPfTeams(const CPfTeams &obj);
-    virtual ~CPfTeams();
+    CPfStadiumsDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfStadiumsDAOSQLiteEntity();
 
-    const std::string& getSLogo() const;
-    const std::string& getSLogo_str() const;
-    int getXTeam() const;
-    const std::string& getXTeam_str() const;
-    const std::string& getSTeam() const;
-    const std::string& getSTeam_str() const;
-    int getNBudget() const;
-    const std::string& getNBudget_str() const;
-    const std::string& getSShortName() const;
-    const std::string& getSShortName_str() const;
-    int getXFkStadium() const;
-    const std::string& getXFkStadium_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
+    void setSQLite(sqlite3 *database);
 
-    void setSLogo(const std::string &SLogo);
-    void setSLogo_str(const std::string &SLogo);
-    void setXTeam(int XTeam);
-    void setXTeam_str(const std::string &XTeam);
-    void setSTeam(const std::string &STeam);
-    void setSTeam_str(const std::string &STeam);
-    void setNBudget(int NBudget);
-    void setNBudget_str(const std::string &NBudget);
-    void setSShortName(const std::string &SShortName);
-    void setSShortName_str(const std::string &SShortName);
-    void setXFkStadium(int XFkStadium);
-    void setXFkStadium_str(const std::string &XFkStadium);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
+    virtual bool deleteReg(CPfStadiums *reg);
+    virtual bool insertReg(CPfStadiums *reg);
+    virtual bool updateReg(CPfStadiums *reg);
+
+    virtual void freeVector(std::vector<CPfStadiums*>* vector);
+
+protected:
+    CPfStadiums* loadRegister(const std::string &sql);
+    std::vector<CPfStadiums*>* loadVector(const std::string &sql);
 
 private:
-    std::string m_SLogo;
-    std::string m_XTeam;
-    std::string m_STeam;
-    std::string m_NBudget;
-    std::string m_SShortName;
-    std::string m_XFkStadium;
-    std::string m_XFkCountry;
+    bool exec(const std::string &sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
+    sqlite3 *m_database;
 
 };
-#endif /*CPFTEAMS_H_*/
+#endif /*CPFSTADIUMSDAOSQLITEENTITY_H_*/

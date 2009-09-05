@@ -180,7 +180,7 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action2Button->setUserString("screen", "Ranking");
 		m_action2Button->setEnabled(true);
 		m_action3Button->setText((CEGUI::utf8*)gettext("Scorers"));
-		m_action3Button->setUserString("screen", "Ranking");
+		m_action3Button->setUserString("screen", "Scorers");
 		m_action3Button->setEnabled(true);
 		m_action4Button->setText("");
 		m_action4Button->setUserString("screen", "");

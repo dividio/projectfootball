@@ -20,56 +20,99 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFTEAMS_H_
-#define CPFTEAMS_H_
+#include <iostream>
+#include <sstream>
+#include <stdlib.h>
 
-#include <string>
+#include "CPfStadiums.h"
 
-class CPfTeams
+CPfStadiums::CPfStadiums()
 {
-public:
-    CPfTeams();
-    CPfTeams(const CPfTeams &obj);
-    virtual ~CPfTeams();
+    m_XStadium = "0";
+    m_NCapacity = "0";
+    m_SName = "";
+}
 
-    const std::string& getSLogo() const;
-    const std::string& getSLogo_str() const;
-    int getXTeam() const;
-    const std::string& getXTeam_str() const;
-    const std::string& getSTeam() const;
-    const std::string& getSTeam_str() const;
-    int getNBudget() const;
-    const std::string& getNBudget_str() const;
-    const std::string& getSShortName() const;
-    const std::string& getSShortName_str() const;
-    int getXFkStadium() const;
-    const std::string& getXFkStadium_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
+CPfStadiums::CPfStadiums(const CPfStadiums &obj)
+{
+    m_XStadium = obj.m_XStadium;
+    m_NCapacity = obj.m_NCapacity;
+    m_SName = obj.m_SName;
+}
 
-    void setSLogo(const std::string &SLogo);
-    void setSLogo_str(const std::string &SLogo);
-    void setXTeam(int XTeam);
-    void setXTeam_str(const std::string &XTeam);
-    void setSTeam(const std::string &STeam);
-    void setSTeam_str(const std::string &STeam);
-    void setNBudget(int NBudget);
-    void setNBudget_str(const std::string &NBudget);
-    void setSShortName(const std::string &SShortName);
-    void setSShortName_str(const std::string &SShortName);
-    void setXFkStadium(int XFkStadium);
-    void setXFkStadium_str(const std::string &XFkStadium);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
+CPfStadiums::~CPfStadiums()
+{
+}
 
-private:
-    std::string m_SLogo;
-    std::string m_XTeam;
-    std::string m_STeam;
-    std::string m_NBudget;
-    std::string m_SShortName;
-    std::string m_XFkStadium;
-    std::string m_XFkCountry;
+int CPfStadiums::getXStadium() const
+{
+    if( m_XStadium=="" ){
+        return 0;
+    }else{
+        return atoi(m_XStadium.c_str());
+    }
+}
 
-};
-#endif /*CPFTEAMS_H_*/
+const std::string& CPfStadiums::getXStadium_str() const
+{
+    return m_XStadium;
+}
+
+int CPfStadiums::getNCapacity() const
+{
+    if( m_NCapacity=="" ){
+        return 0;
+    }else{
+        return atoi(m_NCapacity.c_str());
+    }
+}
+
+const std::string& CPfStadiums::getNCapacity_str() const
+{
+    return m_NCapacity;
+}
+
+const std::string& CPfStadiums::getSName() const
+{
+    return m_SName;
+}
+
+const std::string& CPfStadiums::getSName_str() const
+{
+    return m_SName;
+}
+
+void CPfStadiums::setXStadium(int XStadium)
+{
+    std::ostringstream stream;
+    stream << XStadium;
+    m_XStadium = stream.str();
+}
+
+void CPfStadiums::setXStadium_str(const std::string &XStadium)
+{
+    m_XStadium = XStadium;
+}
+
+void CPfStadiums::setNCapacity(int NCapacity)
+{
+    std::ostringstream stream;
+    stream << NCapacity;
+    m_NCapacity = stream.str();
+}
+
+void CPfStadiums::setNCapacity_str(const std::string &NCapacity)
+{
+    m_NCapacity = NCapacity;
+}
+
+void CPfStadiums::setSName(const std::string &SName)
+{
+    m_SName = SName;
+}
+
+void CPfStadiums::setSName_str(const std::string &SName)
+{
+    m_SName = SName;
+}
+

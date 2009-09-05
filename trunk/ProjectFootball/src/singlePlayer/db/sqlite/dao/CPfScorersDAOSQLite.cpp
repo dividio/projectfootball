@@ -20,56 +20,41 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFTEAMS_H_
-#define CPFTEAMS_H_
+#include <iostream>
+#include <sstream>
 
-#include <string>
+#include "CPfScorersDAOSQLite.h"
 
-class CPfTeams
+CPfScorersDAOSQLite::CPfScorersDAOSQLite(sqlite3 *database)
+  : CPfScorersDAOSQLiteEntity(database)
 {
-public:
-    CPfTeams();
-    CPfTeams(const CPfTeams &obj);
-    virtual ~CPfTeams();
+}
 
-    const std::string& getSLogo() const;
-    const std::string& getSLogo_str() const;
-    int getXTeam() const;
-    const std::string& getXTeam_str() const;
-    const std::string& getSTeam() const;
-    const std::string& getSTeam_str() const;
-    int getNBudget() const;
-    const std::string& getNBudget_str() const;
-    const std::string& getSShortName() const;
-    const std::string& getSShortName_str() const;
-    int getXFkStadium() const;
-    const std::string& getXFkStadium_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
+CPfScorersDAOSQLite::~CPfScorersDAOSQLite()
+{
+}
 
-    void setSLogo(const std::string &SLogo);
-    void setSLogo_str(const std::string &SLogo);
-    void setXTeam(int XTeam);
-    void setXTeam_str(const std::string &XTeam);
-    void setSTeam(const std::string &STeam);
-    void setSTeam_str(const std::string &STeam);
-    void setNBudget(int NBudget);
-    void setNBudget_str(const std::string &NBudget);
-    void setSShortName(const std::string &SShortName);
-    void setSShortName_str(const std::string &SShortName);
-    void setXFkStadium(int XFkStadium);
-    void setXFkStadium_str(const std::string &XFkStadium);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
+std::vector<CPfScorers*>* CPfScorersDAOSQLite::findScorersByXSeasonAndXCompetition(int XSeason, int XCompetition)
+{
+    std::ostringstream season;
+    std::ostringstream competition;
+    season << XSeason;
+    competition << XCompetition;
 
-private:
-    std::string m_SLogo;
-    std::string m_XTeam;
-    std::string m_STeam;
-    std::string m_NBudget;
-    std::string m_SShortName;
-    std::string m_XFkStadium;
-    std::string m_XFkCountry;
-
-};
-#endif /*CPFTEAMS_H_*/
+    std::string sql("");
+    sql += "SELECT "
+                 "TP.S_NAME as S_TEAM_PLAYER, "
+                 "T.S_TEAM, "
+                 "COUNT(*) AS N_GOALS "
+           "FROM PF_GOALS G "
+           "JOIN PF_TEAMS T ON T.X_TEAM = G.X_FK_TEAM_SCORER "
+           "JOIN PF_TEAM_PLAYERS TP ON TP.X_TEAM_PLAYER = G.X_FK_TEAM_PLAYER_SCORER "
+           "JOIN PF_MATCHES M ON M.X_MATCH = G.X_FK_MATCH "
+           "JOIN PF_COMPETITION_PHASES CP ON CP.X_COMPETITION_PHASE = M.X_FK_COMPETITION_PHASE "
+           "WHERE G.L_OWN_GOAL = 'N' "
+             "AND M.X_FK_SEASON = " + season.str() + " "
+             "AND CP.X_FK_COMPETITION = " + competition.str() + " "
+           "GROUP BY S_TEAM_PLAYER "
+           "ORDER BY N_GOALS DESC";
+    return loadVector(sql);
+}

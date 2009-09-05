@@ -29,6 +29,7 @@
 #include "../../../dao/factory/IDAOFactory.h"
 
 #include "../../../dao/IPfCompetitionPhasesDAO.h"
+#include "../../../dao/IPfStadiumsDAO.h"
 #include "../../../dao/IPfRankingDAO.h"
 #include "../../../dao/IPfTeamAveragesDAO.h"
 #include "../../../dao/IPfMatchesDAO.h"
@@ -36,6 +37,7 @@
 #include "../../../dao/IPfCompetitionsBySeasonDAO.h"
 #include "../../../dao/IPfTeamsByCompetitionsDAO.h"
 #include "../../../dao/IPfSeasonsDAO.h"
+#include "../../../dao/IPfScorersDAO.h"
 #include "../../../dao/IPfConfederationsDAO.h"
 #include "../../../dao/IPfTeamPlayerContractsDAO.h"
 #include "../../../dao/IPfGoalsDAO.h"
@@ -46,6 +48,7 @@
 #include "../../../dao/IPfTeamPlayerAveragesDAO.h"
 
 #include "../CPfCompetitionPhasesDAOSQLite.h"
+#include "../CPfStadiumsDAOSQLite.h"
 #include "../CPfRankingDAOSQLite.h"
 #include "../CPfTeamAveragesDAOSQLite.h"
 #include "../CPfMatchesDAOSQLite.h"
@@ -53,6 +56,7 @@
 #include "../CPfCompetitionsBySeasonDAOSQLite.h"
 #include "../CPfTeamsByCompetitionsDAOSQLite.h"
 #include "../CPfSeasonsDAOSQLite.h"
+#include "../CPfScorersDAOSQLite.h"
 #include "../CPfConfederationsDAOSQLite.h"
 #include "../CPfTeamPlayerContractsDAOSQLite.h"
 #include "../CPfGoalsDAOSQLite.h"
@@ -78,6 +82,7 @@ public:
     virtual void save();
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO();
+    virtual IPfStadiumsDAO* getIPfStadiumsDAO();
     virtual IPfRankingDAO* getIPfRankingDAO();
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO();
     virtual IPfMatchesDAO* getIPfMatchesDAO();
@@ -85,6 +90,7 @@ public:
     virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO();
     virtual IPfTeamsByCompetitionsDAO* getIPfTeamsByCompetitionsDAO();
     virtual IPfSeasonsDAO* getIPfSeasonsDAO();
+    virtual IPfScorersDAO* getIPfScorersDAO();
     virtual IPfConfederationsDAO* getIPfConfederationsDAO();
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
     virtual IPfGoalsDAO* getIPfGoalsDAO();
@@ -104,6 +110,7 @@ private:
     std::string m_filepath_tmp;
 
     CPfCompetitionPhasesDAOSQLite *m_PfCompetitionPhasesDAOSQLite;
+    CPfStadiumsDAOSQLite *m_PfStadiumsDAOSQLite;
     CPfRankingDAOSQLite *m_PfRankingDAOSQLite;
     CPfTeamAveragesDAOSQLite *m_PfTeamAveragesDAOSQLite;
     CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
@@ -111,6 +118,7 @@ private:
     CPfCompetitionsBySeasonDAOSQLite *m_PfCompetitionsBySeasonDAOSQLite;
     CPfTeamsByCompetitionsDAOSQLite *m_PfTeamsByCompetitionsDAOSQLite;
     CPfSeasonsDAOSQLite *m_PfSeasonsDAOSQLite;
+    CPfScorersDAOSQLite *m_PfScorersDAOSQLite;
     CPfConfederationsDAOSQLite *m_PfConfederationsDAOSQLite;
     CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
     CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;

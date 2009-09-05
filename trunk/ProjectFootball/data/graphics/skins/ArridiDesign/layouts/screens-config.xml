@@ -46,6 +46,13 @@
 			<window hook="Game/InfoHook" path="results.layout" />
 		</window>
 	</screen>
+    <screen id="Scorers">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="scorers.layout" />
+        </window>
+    </screen>
 	<screen id="SelectTeam">
 		<window hook="none" path="selectTeam.layout" />
 	</screen>
