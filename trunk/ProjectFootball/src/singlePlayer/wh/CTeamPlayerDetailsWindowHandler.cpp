@@ -69,7 +69,8 @@ void CTeamPlayerDetailsWindowHandler::enter()
     m_years    ->setText((CEGUI::utf8*)yearsAux.str().c_str());
 
     CPfCountries *country = daoFactory->getIPfCountriesDAO()->findByXCountry(m_selectedTeamPlayer->getXFkCountry());
-    m_country  ->setText((CEGUI::utf8*)gettext(country->getSShortName().c_str()));
+    m_country     ->setText((CEGUI::utf8*)gettext(country->getSShortName().c_str()));
+    m_country_flag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_flag");
     delete country;
 
     CPfTeamPlayerContracts *contract = daoFactory->getIPfTeamPlayerContractsDAO()->findActiveByXFkTeamPlayer(m_selectedTeamPlayer->getXTeamPlayer_str());
@@ -88,6 +89,7 @@ void CTeamPlayerDetailsWindowHandler::init()
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
 
 	m_photo         = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/Photo"));
+	m_country_flag  = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/CountryFlag"));
 	m_name          = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/Name"));
 	m_shortName     = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/ShortName"));
 	m_birthday      = static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayerDetails/Birthday"));

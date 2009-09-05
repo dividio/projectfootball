@@ -45,6 +45,7 @@ private:
 
     CEGUI::Window           *m_name;
     CEGUI::Window           *m_photo;
+    CEGUI::Window           *m_country_flag;
     CEGUI::Window           *m_shortName;
     CEGUI::Window           *m_birthday;
     CEGUI::Window           *m_weight;
