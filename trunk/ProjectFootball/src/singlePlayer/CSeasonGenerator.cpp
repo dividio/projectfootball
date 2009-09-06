@@ -112,6 +112,10 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 		}
 
 		eventMngr->addEvent(new CStartCompetitionEvent(newCompetitionBySeason->getDBeginCompetition()));
+
+		//Shuffle teams to create random calendar
+		std::random_shuffle(teamsList->begin(), teamsList->end());
+
 		generateLeagueMatches(game, *newCompetitionBySeason, teamsList); // TODO: Maybe not all competitions are leagues
 		eventMngr->addEvent(new CEndCompetitionEvent(newCompetitionBySeason->getDEndCompetition()));
 
@@ -165,29 +169,12 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfC
 	std::list<CPfTeams*>				*awayTeamsList	= new std::list<CPfTeams*>();
 	std::vector<CPfTeams*>::iterator	itTeams;
 	for( i=0; i<nTeams; i++ ){
-	    std::list<CPfTeams*> *auxList;
 		if( i<(halfNTeams) ){
-		    auxList = homeTeamsList;
+		    homeTeamsList->push_back(teamsList->at(i));
 		}else{
-		    auxList = awayTeamsList;
+		    awayTeamsList->push_back(teamsList->at(i));
 		}
-
-		//Shuffle teams to create random calendar
-		int randPosition = rand()%3;
-		switch(randPosition) {
-		case 0:
-		    auxList->push_back(teamsList->at(i));
-		    break;
-		case 1:
-		    auxList->insert(--auxList->end(), teamsList->at(i));
-		    break;
-		case 2:
-		    auxList->push_front(teamsList->at(i));
-		    break;
-		default:
-		    auxList->insert(++auxList->begin(), teamsList->at(i));
-		}
-	}
+    }
 
 	CDate	goDate(competitionBySeason.getDBeginCompetition());
 	goDate.setHour(17);
