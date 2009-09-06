@@ -55,10 +55,11 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 {
 	CEventManager	*eventMngr	= CGameEngine::getInstance()->getEventManager();
 
-	IPfSeasonsDAO				*seasonsDAO					= game.getIDAOFactory()->getIPfSeasonsDAO();
-	IPfCompetitionsBySeasonDAO	*competitionsBySeasonDAO	= game.getIDAOFactory()->getIPfCompetitionsBySeasonDAO();
-	IPfTeamsDAO					*teamsDAO					= game.getIDAOFactory()->getIPfTeamsDAO();
-	IPfTeamsByCompetitionsDAO	*teamsByCompetitionsDAO		= game.getIDAOFactory()->getIPfTeamsByCompetitionsDAO();
+	IDAOFactory                 *daoFactory = game.getIDAOFactory();
+	IPfSeasonsDAO				*seasonsDAO					= daoFactory->getIPfSeasonsDAO();
+	IPfCompetitionsBySeasonDAO	*competitionsBySeasonDAO	= daoFactory->getIPfCompetitionsBySeasonDAO();
+	IPfTeamsDAO					*teamsDAO					= daoFactory->getIPfTeamsDAO();
+	IPfTeamsByCompetitionsDAO	*teamsByCompetitionsDAO		= daoFactory->getIPfTeamsByCompetitionsDAO();
 
 	CPfSeasons *season = seasonsDAO->findLastSeason();
 	if( season==NULL || season->getXSeason_str()=="" ){
@@ -77,7 +78,7 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 	CPfSeasons newSeason;
 	newSeason.setNYear(year);
 	newSeason.setSSeason(sseason.str());
-	game.getIDAOFactory()->getIPfSeasonsDAO()->insertReg(&newSeason);
+	daoFactory->getIPfSeasonsDAO()->insertReg(&newSeason);
 
 	// retrieve the competitions associated with the last season
 	std::vector<CPfCompetitionsBySeason*>	*competitionsBySeasonList = competitionsBySeasonDAO->findByXFkSeason(season->getXSeason_str());
@@ -164,10 +165,27 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfC
 	std::list<CPfTeams*>				*awayTeamsList	= new std::list<CPfTeams*>();
 	std::vector<CPfTeams*>::iterator	itTeams;
 	for( i=0; i<nTeams; i++ ){
+	    std::list<CPfTeams*> *auxList;
 		if( i<(halfNTeams) ){
-			homeTeamsList->push_back(teamsList->at(i));
+		    auxList = homeTeamsList;
 		}else{
-			awayTeamsList->push_back(teamsList->at(i));
+		    auxList = awayTeamsList;
+		}
+
+		//Shuffle teams to create random calendar
+		int randPosition = rand()%3;
+		switch(randPosition) {
+		case 0:
+		    auxList->push_back(teamsList->at(i));
+		    break;
+		case 1:
+		    auxList->insert(--auxList->end(), teamsList->at(i));
+		    break;
+		case 2:
+		    auxList->push_front(teamsList->at(i));
+		    break;
+		default:
+		    auxList->insert(++auxList->begin(), teamsList->at(i));
 		}
 	}
 
