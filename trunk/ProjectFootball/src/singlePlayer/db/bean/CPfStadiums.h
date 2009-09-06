@@ -25,6 +25,8 @@
 
 #include <string>
 
+#include "../../../utils/CDate.h"
+
 class CPfStadiums
 {
 public:
@@ -32,24 +34,39 @@ public:
     CPfStadiums(const CPfStadiums &obj);
     virtual ~CPfStadiums();
 
-    int getXStadium() const;
-    const std::string& getXStadium_str() const;
+    CDate getDBuild() const;
+    const std::string& getDBuild_str() const;
     int getNCapacity() const;
     const std::string& getNCapacity_str() const;
     const std::string& getSName() const;
     const std::string& getSName_str() const;
+    const std::string& getSPhoto() const;
+    const std::string& getSPhoto_str() const;
+    int getXStadium() const;
+    const std::string& getXStadium_str() const;
+    int getXFkCountry() const;
+    const std::string& getXFkCountry_str() const;
 
-    void setXStadium(int XStadium);
-    void setXStadium_str(const std::string &XStadium);
+    void setDBuild(const CDate &DBuild);
+    void setDBuild_str(const std::string &DBuild);
     void setNCapacity(int NCapacity);
     void setNCapacity_str(const std::string &NCapacity);
     void setSName(const std::string &SName);
     void setSName_str(const std::string &SName);
+    void setSPhoto(const std::string &SPhoto);
+    void setSPhoto_str(const std::string &SPhoto);
+    void setXStadium(int XStadium);
+    void setXStadium_str(const std::string &XStadium);
+    void setXFkCountry(int XFkCountry);
+    void setXFkCountry_str(const std::string &XFkCountry);
 
 private:
-    std::string m_XStadium;
+    std::string m_DBuild;
     std::string m_NCapacity;
     std::string m_SName;
+    std::string m_SPhoto;
+    std::string m_XStadium;
+    std::string m_XFkCountry;
 
 };
 #endif /*CPFSTADIUMS_H_*/

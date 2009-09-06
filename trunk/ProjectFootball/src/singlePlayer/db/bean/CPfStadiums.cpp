@@ -28,34 +28,36 @@
 
 CPfStadiums::CPfStadiums()
 {
-    m_XStadium = "0";
+    m_DBuild = "";
     m_NCapacity = "0";
     m_SName = "";
+    m_SPhoto = "";
+    m_XStadium = "0";
+    m_XFkCountry = "0";
 }
 
 CPfStadiums::CPfStadiums(const CPfStadiums &obj)
 {
-    m_XStadium = obj.m_XStadium;
+    m_DBuild = obj.m_DBuild;
     m_NCapacity = obj.m_NCapacity;
     m_SName = obj.m_SName;
+    m_SPhoto = obj.m_SPhoto;
+    m_XStadium = obj.m_XStadium;
+    m_XFkCountry = obj.m_XFkCountry;
 }
 
 CPfStadiums::~CPfStadiums()
 {
 }
 
-int CPfStadiums::getXStadium() const
+CDate CPfStadiums::getDBuild() const
 {
-    if( m_XStadium=="" ){
-        return 0;
-    }else{
-        return atoi(m_XStadium.c_str());
-    }
+    return m_DBuild;
 }
 
-const std::string& CPfStadiums::getXStadium_str() const
+const std::string& CPfStadiums::getDBuild_str() const
 {
-    return m_XStadium;
+    return m_DBuild;
 }
 
 int CPfStadiums::getNCapacity() const
@@ -82,16 +84,52 @@ const std::string& CPfStadiums::getSName_str() const
     return m_SName;
 }
 
-void CPfStadiums::setXStadium(int XStadium)
+const std::string& CPfStadiums::getSPhoto() const
 {
-    std::ostringstream stream;
-    stream << XStadium;
-    m_XStadium = stream.str();
+    return m_SPhoto;
 }
 
-void CPfStadiums::setXStadium_str(const std::string &XStadium)
+const std::string& CPfStadiums::getSPhoto_str() const
 {
-    m_XStadium = XStadium;
+    return m_SPhoto;
+}
+
+int CPfStadiums::getXStadium() const
+{
+    if( m_XStadium=="" ){
+        return 0;
+    }else{
+        return atoi(m_XStadium.c_str());
+    }
+}
+
+const std::string& CPfStadiums::getXStadium_str() const
+{
+    return m_XStadium;
+}
+
+int CPfStadiums::getXFkCountry() const
+{
+    if( m_XFkCountry=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkCountry.c_str());
+    }
+}
+
+const std::string& CPfStadiums::getXFkCountry_str() const
+{
+    return m_XFkCountry;
+}
+
+void CPfStadiums::setDBuild(const CDate &DBuild)
+{
+    m_DBuild = DBuild.getTimestamp();
+}
+
+void CPfStadiums::setDBuild_str(const std::string &DBuild)
+{
+    m_DBuild = DBuild;
 }
 
 void CPfStadiums::setNCapacity(int NCapacity)
@@ -114,5 +152,39 @@ void CPfStadiums::setSName(const std::string &SName)
 void CPfStadiums::setSName_str(const std::string &SName)
 {
     m_SName = SName;
+}
+
+void CPfStadiums::setSPhoto(const std::string &SPhoto)
+{
+    m_SPhoto = SPhoto;
+}
+
+void CPfStadiums::setSPhoto_str(const std::string &SPhoto)
+{
+    m_SPhoto = SPhoto;
+}
+
+void CPfStadiums::setXStadium(int XStadium)
+{
+    std::ostringstream stream;
+    stream << XStadium;
+    m_XStadium = stream.str();
+}
+
+void CPfStadiums::setXStadium_str(const std::string &XStadium)
+{
+    m_XStadium = XStadium;
+}
+
+void CPfStadiums::setXFkCountry(int XFkCountry)
+{
+    std::ostringstream stream;
+    stream << XFkCountry;
+    m_XFkCountry = stream.str();
+}
+
+void CPfStadiums::setXFkCountry_str(const std::string &XFkCountry)
+{
+    m_XFkCountry = XFkCountry;
 }
 

@@ -42,6 +42,8 @@ public:
 
     virtual CPfStadiums* findByXStadium(int XStadium) =0;
     virtual CPfStadiums* findByXStadium(const std::string &XStadium) =0;
+    virtual CPfStadiums* findByXFkCountry(int XFkCountry) =0;
+    virtual CPfStadiums* findByXFkCountry(const std::string &XFkCountry) =0;
 
 };
 #endif /*IPFSTADIUMSDAO_H_*/

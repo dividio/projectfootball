@@ -37,6 +37,8 @@ public:
 
     virtual CPfStadiums* findByXStadium(int XStadium);
     virtual CPfStadiums* findByXStadium(const std::string &XStadium);
+    virtual CPfStadiums* findByXFkCountry(int XFkCountry);
+    virtual CPfStadiums* findByXFkCountry(const std::string &XFkCountry);
 
 };
 #endif /*CPFSTADIUMSDAOSQLITE_H_*/

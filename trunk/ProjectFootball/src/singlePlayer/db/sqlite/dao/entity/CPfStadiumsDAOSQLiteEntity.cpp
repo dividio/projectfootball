@@ -50,9 +50,12 @@ bool CPfStadiumsDAOSQLiteEntity::deleteReg(CPfStadiums *reg)
 
 bool CPfStadiumsDAOSQLiteEntity::insertReg(CPfStadiums *reg)
 {
-    std::string sql("INSERT INTO PF_STADIUMS (N_CAPACITY,S_NAME) VALUES (");
-    sql += (reg->getNCapacity_str()=="")?"NULL":"'"+reg->getNCapacity_str()+"'";
+    std::string sql("INSERT INTO PF_STADIUMS (D_BUILD,N_CAPACITY,S_NAME,S_PHOTO,X_FK_COUNTRY) VALUES (");
+    sql += (reg->getDBuild_str()=="")?"NULL":"'"+reg->getDBuild_str()+"'";
+    sql += (reg->getNCapacity_str()=="")?",NULL":",'"+reg->getNCapacity_str()+"'";
     sql += (reg->getSName_str()=="")?",NULL":",'"+reg->getSName_str()+"'";
+    sql += (reg->getSPhoto_str()=="")?",NULL":",'"+reg->getSPhoto_str()+"'";
+    sql += (reg->getXFkCountry_str()=="")?",NULL":",'"+reg->getXFkCountry_str()+"'";
     sql += ")";
     if( exec(sql) ){
         reg->setXStadium(sqlite3_last_insert_rowid(m_database));
@@ -65,9 +68,12 @@ bool CPfStadiumsDAOSQLiteEntity::insertReg(CPfStadiums *reg)
 bool CPfStadiumsDAOSQLiteEntity::updateReg(CPfStadiums *reg)
 {
     std::string sql("UPDATE PF_STADIUMS SET ");
-    sql += (reg->getXStadium_str()=="")?" X_STADIUM=NULL":" X_STADIUM='"+reg->getXStadium_str()+"'";
+    sql += (reg->getDBuild_str()=="")?" D_BUILD=NULL":" D_BUILD='"+reg->getDBuild_str()+"'";
     sql += (reg->getNCapacity_str()=="")?",N_CAPACITY=NULL":",N_CAPACITY='"+reg->getNCapacity_str()+"'";
     sql += (reg->getSName_str()=="")?",S_NAME=NULL":",S_NAME='"+reg->getSName_str()+"'";
+    sql += (reg->getSPhoto_str()=="")?",S_PHOTO=NULL":",S_PHOTO='"+reg->getSPhoto_str()+"'";
+    sql += (reg->getXStadium_str()=="")?",X_STADIUM=NULL":",X_STADIUM='"+reg->getXStadium_str()+"'";
+    sql += (reg->getXFkCountry_str()=="")?",X_FK_COUNTRY=NULL":",X_FK_COUNTRY='"+reg->getXFkCountry_str()+"'";
     sql += " WHERE X_STADIUM='"+reg->getXStadium_str()+"'";
     return exec(sql);
 }
@@ -142,12 +148,18 @@ int CPfStadiumsDAOSQLiteEntity::callbackRegister(void *object, int nColumns, cha
     if( object!=NULL ){
         CPfStadiums *destiny = (CPfStadiums*)object;
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "X_STADIUM")==0 ){
-                destiny->setXStadium_str((vColumn[i]==NULL)?"":vColumn[i]);
+            if( strcmp(sColumn[i], "D_BUILD")==0 ){
+                destiny->setDBuild_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_CAPACITY")==0 ){
                 destiny->setNCapacity_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_NAME")==0 ){
                 destiny->setSName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_PHOTO")==0 ){
+                destiny->setSPhoto_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_STADIUM")==0 ){
+                destiny->setXStadium_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
+                destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
     }
@@ -160,12 +172,18 @@ int CPfStadiumsDAOSQLiteEntity::callbackVector(void *object, int nColumns, char 
         std::vector<CPfStadiums*> *container = (std::vector<CPfStadiums*> *)object;
         CPfStadiums *destiny = new CPfStadiums();
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "X_STADIUM")==0 ){
-                destiny->setXStadium_str((vColumn[i]==NULL)?"":vColumn[i]);
+            if( strcmp(sColumn[i], "D_BUILD")==0 ){
+                destiny->setDBuild_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_CAPACITY")==0 ){
                 destiny->setNCapacity_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_NAME")==0 ){
                 destiny->setSName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_PHOTO")==0 ){
+                destiny->setSPhoto_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_STADIUM")==0 ){
+                destiny->setXStadium_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
+                destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
         container->push_back(destiny);

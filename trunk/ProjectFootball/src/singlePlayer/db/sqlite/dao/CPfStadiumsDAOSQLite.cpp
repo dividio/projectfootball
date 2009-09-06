@@ -48,3 +48,17 @@ CPfStadiums* CPfStadiumsDAOSQLite::findByXStadium(const std::string &XStadium)
     return loadRegister(sql);
 }
 
+CPfStadiums* CPfStadiumsDAOSQLite::findByXFkCountry(int XFkCountry)
+{
+    std::ostringstream stream;
+    stream << XFkCountry;
+    return findByXFkCountry(stream.str());
+}
+
+CPfStadiums* CPfStadiumsDAOSQLite::findByXFkCountry(const std::string &XFkCountry)
+{
+    std::string sql("SELECT * FROM PF_STADIUMS WHERE ");
+    sql = sql+"X_FK_COUNTRY='"+XFkCountry+"'";
+    return loadRegister(sql);
+}
+
