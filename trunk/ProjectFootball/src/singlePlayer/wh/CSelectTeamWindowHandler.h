@@ -66,6 +66,8 @@ private:
     CEGUI::PushButton               *m_selectButton;
     CEGUI::ItemListbox              *m_guiTeamsList;
     CEGUI::Window                   *m_guiTeamName;
+    CEGUI::Window                   *m_guiStadiumName;
+    CEGUI::Window                   *m_guiStadiumCapacity;
     CEGUI::Window                   *m_guiTeamBudget;
     CEGUI::Window                   *m_guiTeamAverage;
     CEGUI::Window                   *m_guiTeamShield;

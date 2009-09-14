@@ -70,6 +70,7 @@ void CMatchResultWindowHandler::init()
     m_awayName				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayName"));
     m_homeScore            	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeScore"));
     m_awayScore            	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayScore"));
+    m_stadiumName           = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/StadiumName"));
     m_homeEventsList       	= static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeTeamEventsList"));
     m_awayEventsList       	= static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/AwayTeamEventsList"));
     m_homeLogo             	= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/HomeTeamLogo"));
@@ -81,6 +82,7 @@ void CMatchResultWindowHandler::init()
 
     // i18n support
     m_continueButton->setText((CEGUI::utf8*)gettext("Continue"));
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchResult/StadiumLabel"))->setText((CEGUI::utf8*)gettext("Stadium:"));
 
     m_homeEventsList->addColumn((CEGUI::utf8*)gettext("min"), 0, CEGUI::UDim(0.2,0));
     m_homeEventsList->addColumn((CEGUI::utf8*)gettext("Event"), 1, CEGUI::UDim(0.8,0));
@@ -113,10 +115,12 @@ void CMatchResultWindowHandler::loadMatchInfo()
     IPfCompetitionsDAO		*competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
     IPfCompetitionPhasesDAO	*competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
     IPfTeamsDAO				*teamsDAO				= daoFactory->getIPfTeamsDAO();
+    IPfStadiumsDAO          *stadiumsDAO            = daoFactory->getIPfStadiumsDAO();
 
     const CPfMatches		*match				= m_game.getCurrentMatch();
     CPfTeams				*homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
     CPfTeams				*awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
+    CPfStadiums             *stadium            = stadiumsDAO->findByXStadium(homeTeam->getXFkStadium_str());
     CPfCompetitionPhases	*competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
     CPfCompetitions			*competition		= competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
     std::vector<CPfGoals*>	*homeGoalsList		= goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), homeTeam->getXTeam());
@@ -135,6 +139,7 @@ void CMatchResultWindowHandler::loadMatchInfo()
     m_awayName            ->setText((CEGUI::utf8*)awayName.c_str());
     m_homeScore           ->setText((CEGUI::utf8*)nHomeGoals.str().c_str());
     m_awayScore           ->setText((CEGUI::utf8*)nAwayGoals.str().c_str());
+    m_stadiumName         ->setText((CEGUI::utf8*)stadium->getSName().c_str());
 
     //Loading Home Shield
     m_homeLogo->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
@@ -192,6 +197,7 @@ void CMatchResultWindowHandler::loadMatchInfo()
 
     delete competition;
     delete competitionPhase;
+    delete stadium;
     delete awayTeam;
     delete homeTeam;
 }

@@ -54,6 +54,7 @@ private:
     CEGUI::Window           *m_awayScore;
     CEGUI::Window           *m_homeLogo;
     CEGUI::Window           *m_awayLogo;
+    CEGUI::Window           *m_stadiumName;
     CEGUI::MultiColumnList  *m_homeEventsList;
     CEGUI::MultiColumnList  *m_awayEventsList;
     CEGUI::PushButton		*m_continueButton;

@@ -48,7 +48,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.00227583,0},{0.0170267,0},{0.1551,0},{0.204236,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.002,0},{0.0170267,0},{0.1551,0},{0.204236,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamName" >
@@ -60,12 +60,44 @@
                     <Property Name="UnifiedAreaRect" Value="{{0.14846,0},{0.00450259,0},{0.442232,0},{0.199369,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/StadiumLabel" >
+                    <Property Name="Font" Value="DejaVuSans-9" />
+                    <Property Name="TextColours" Value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.50,0},{0.12,0},{0.60,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/StadiumName" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="TextColours" Value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.12,0},{0.50,0},{0.50,0},{0.60,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/CapacityLabel" >
+                    <Property Name="Font" Value="DejaVuSans-9" />
+                    <Property Name="TextColours" Value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.50,0},{0.50,0},{0.60,0},{0.60,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="SelectTeam/StadiumCapacity" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="TextColours" Value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.60,0},{0.50,0},{0.99,0},{0.60,0}}" />
+                </Window>
                 <Window Type="ArridiDesign/StaticText" Name="SelectTeam/BudgetLabel" >
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="TextColours" Value="tl:FFFF9900 tr:FFFF9900 bl:FFFF9900 br:FFFF9900" />
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.0318608,0},{0.706873,0},{0.216011,0},{0.894082,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.706873,0},{0.216011,0},{0.894082,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="SelectTeam/TeamBudget" >

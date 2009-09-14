@@ -60,6 +60,8 @@ void CSelectTeamWindowHandler::init()
     m_backButton				= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BackButton"));
     m_guiTeamsList        		= static_cast<CEGUI::ItemListbox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamsList"));
     m_guiTeamName         		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamName"));
+    m_guiStadiumName            = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/StadiumName"));
+    m_guiStadiumCapacity        = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/StadiumCapacity"));
     m_guiTeamBudget       		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
     m_guiTeamShield             = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
     m_guiConfederationImage     = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationImage"));
@@ -79,6 +81,8 @@ void CSelectTeamWindowHandler::init()
     m_selectButton->setText((CEGUI::utf8*)gettext("Select Team"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/SelectTeamLabel"))->setText((CEGUI::utf8*)gettext("Please, select your team:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/NameLabel"))->setText((CEGUI::utf8*)gettext("Name:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/StadiumLabel"))->setText((CEGUI::utf8*)gettext("Stadium:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CapacityLabel"))->setText((CEGUI::utf8*)gettext("Capacity:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/BudgetLabel"))->setText((CEGUI::utf8*)gettext("Budget:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/AverageLabel"))->setText((CEGUI::utf8*)gettext("Average:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationLabel"))->setText((CEGUI::utf8*)gettext("Confederation:"));
@@ -378,6 +382,13 @@ void CSelectTeamWindowHandler::loadTeamInfo(CPfTeams *team)
     m_guiTeamAverage->setText((CEGUI::utf8*)average.str().c_str());
     delete teamAverage;
 
+    //Stadium info
+    IPfStadiumsDAO  *stadiumsDAO        = m_game.getIDAOFactory()->getIPfStadiumsDAO();
+    CPfStadiums     *stadium            = stadiumsDAO->findByXStadium(team->getXFkStadium_str());
+    m_guiStadiumName    ->setText((CEGUI::utf8*)stadium->getSName().c_str());
+    m_guiStadiumCapacity->setText((CEGUI::utf8*)stadium->getNCapacity_str().c_str());
+    delete stadium;
+
     //Loading Shield
     m_guiTeamShield->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
 }
@@ -385,8 +396,10 @@ void CSelectTeamWindowHandler::loadTeamInfo(CPfTeams *team)
 void CSelectTeamWindowHandler::clearTeamInfo()
 {
     // TODO Clear all team information
-    m_guiTeamName   ->setText("");
-    m_guiTeamBudget ->setText("");
-    m_guiTeamAverage->setText("");
-    m_guiTeamShield ->setProperty("Image", "set: image:full_image");
+    m_guiTeamName       ->setText("");
+    m_guiTeamBudget     ->setText("");
+    m_guiTeamAverage    ->setText("");
+    m_guiStadiumName    ->setText("");
+    m_guiStadiumCapacity->setText("");
+    m_guiTeamShield     ->setProperty("Image", "set: image:full_image");
 }
