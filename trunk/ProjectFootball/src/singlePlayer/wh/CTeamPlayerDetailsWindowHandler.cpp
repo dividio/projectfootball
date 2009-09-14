@@ -57,7 +57,7 @@ void CTeamPlayerDetailsWindowHandler::enter()
     m_height   ->setText((CEGUI::utf8*)m_selectedTeamPlayer->getNHeight_str().c_str());
 
     CDate birthday = m_selectedTeamPlayer->getDBirthday();
-    CDate today;
+    CDate today = CGameEngine::getInstance()->getTimeManager()->getCurrentTime();
     int years = today.getYear() - birthday.getYear();
     if((today.getMonth() < birthday.getMonth()) ||
        (today.getMonth() == birthday.getMonth() && today.getDay() < birthday.getDay())) {
