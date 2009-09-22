@@ -82,7 +82,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.50,0},{0.50,0},{0.60,0},{0.60,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.50,0},{0.50,0},{0.65,0},{0.60,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="SelectTeam/StadiumCapacity" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -90,7 +90,7 @@
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.60,0},{0.50,0},{0.99,0},{0.60,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.65,0},{0.50,0},{0.99,0},{0.60,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="SelectTeam/BudgetLabel" >
                     <Property Name="Font" Value="DejaVuSans-10" />
