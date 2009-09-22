@@ -38,8 +38,6 @@ CGNSWindowHandler::~CGNSWindowHandler()
 
 void CGNSWindowHandler::enter()
 {
-	m_resultModeCheck->setSelected(m_game.getOptionManager()->getMatchResultMode());
-
 	if( std::string("Game")==CGameEngine::getInstance()->getWindowManager()->getCurrentScreen() ){
 		m_noButtonsBackground->setVisible(true);
 		m_buttonsBackground->setVisible(false);
@@ -69,7 +67,7 @@ void CGNSWindowHandler::init()
 	CEGUI::PushButton		*mainMenuButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/MainMenuButton"));
 	CEGUI::PushButton		*playButton			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/PlayButton"));
 	CEGUI::PushButton		*quickSaveButton	= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/QuickSaveButton"));
-	m_resultModeCheck		= static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/ResultModeCheckbox"));
+	CEGUI::PushButton       *configGameButton   = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/ConfigButton"));
 	m_action1Button			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/Action1Button"));
 	m_action2Button			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/Action2Button"));
 	m_action3Button			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/Action3Button"));
@@ -99,12 +97,12 @@ void CGNSWindowHandler::init()
 	#endif
 	mainMenuButton			->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
 	playButton				->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
+	configGameButton        ->setTooltipText((CEGUI::utf8*)gettext("Configuration"));
 	quickSaveButton			->setTooltipText((CEGUI::utf8*)gettext("Quick Save"));
 	m_homeButton			->setTooltipText((CEGUI::utf8*)gettext("Home"));
 	m_nextScreenButton		->setTooltipText((CEGUI::utf8*)gettext("Next Screen"));
 	m_previousScreenButton	->setTooltipText((CEGUI::utf8*)gettext("Previous Screen"));
 	m_homeButton			->setTooltipText((CEGUI::utf8*)gettext("Home"));
-	m_resultModeCheck		->setTooltipText((CEGUI::utf8*)gettext("Result Mode"));
     m_changingRoomRadio		->setTooltipText((CEGUI::utf8*)gettext("Changing Room"));
     m_statisticsRadio		->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
 
@@ -116,8 +114,8 @@ void CGNSWindowHandler::init()
 	registerEventConnection(exitButton				->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::exitButtonClicked, this)));
 	registerEventConnection(mainMenuButton			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::mainMenuButtonClicked, this)));
 	registerEventConnection(playButton				->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::playButtonClicked, this)));
+	registerEventConnection(configGameButton        ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::configGameButtonClicked, this)));
 	registerEventConnection(quickSaveButton			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::quickSaveButtonClicked, this)));
-	registerEventConnection(m_resultModeCheck		->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::resultModeCheckStateChanged, this)));
 	registerEventConnection(m_action1Button			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::actionButtonClicked, this)));
 	registerEventConnection(m_action2Button			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::actionButtonClicked, this)));
 	registerEventConnection(m_action3Button			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::actionButtonClicked, this)));
@@ -278,10 +276,10 @@ bool CGNSWindowHandler::playButtonClicked(const CEGUI::EventArgs &e)
 	return true;
 }
 
-bool CGNSWindowHandler::resultModeCheckStateChanged(const CEGUI::EventArgs& e)
+bool CGNSWindowHandler::configGameButtonClicked(const CEGUI::EventArgs &e)
 {
-	m_game.getOptionManager()->setMatchResultMode(m_resultModeCheck->isSelected());
-	return true;
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("ConfigGame");
+    return true;
 }
 
 bool CGNSWindowHandler::quickSaveButtonClicked(const CEGUI::EventArgs &e)

@@ -261,6 +261,11 @@ btVector3 CSimulationManager::getBallPosition() const
     return m_ball->getPosition();
 }
 
+int CSimulationManager::getMatchDuration() const
+{
+    return m_game.getOptionManager()->getMatchDuration();
+}
+
 void CSimulationManager::dash(CFootballPlayer *player, btVector3 power)
 {
     if(player->canDoActions()) {

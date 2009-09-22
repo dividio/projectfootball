@@ -134,3 +134,12 @@ void CSinglePlayerOptionManager::setGameCurrentSeason(int xSeason)
 {
 	setIntOption("Game", "CurrentSeason", xSeason);
 }
+
+int CSinglePlayerOptionManager::getMatchDuration()
+{
+    return getIntOption("Simulation", "MatchDuration");
+}
+void CSinglePlayerOptionManager::setMatchDuration(int duration)
+{
+    setIntOption("Simulation", "MatchDuration", duration);
+}

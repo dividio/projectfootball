@@ -95,7 +95,6 @@
 		<!-- GAME BUTTONS -->
         <Window Type="ArridiDesign/GameConfigButton" Name="GNS/ConfigButton" >
             <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="Disabled" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.555492,0},{0.75899125,0},{0.711742,0},{0.82409541,0}}" />
         </Window>
@@ -125,11 +124,6 @@
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.63672,0},{0.86002625,0},{0.953124,0},{0.98860625,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/CheckBox" Name="GNS/ResultModeCheckbox" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.46511,0},{0.962564583333,0},{0.52761,0},{0.98860625,0}}" />
         </Window>
     </Window>
 </GUILayout>

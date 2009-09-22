@@ -51,7 +51,7 @@ CReferee::CReferee(CSimulationManager *simulationManager)
     m_awayScore = 0;
     m_kickPosition = new btVector3(0,0,0);
     m_homeSideLeft = true;
-    m_matchDuration = CSystemOptionManager::getInstance()->getSimulationMatchDuration();
+    m_matchDuration = m_simulationManager->getMatchDuration();
     m_centerOfMassOffset.setOrigin(btVector3(0,-1,0));
     m_entity = scnMgr->createEntity("Referee", "Human.mesh");
     m_entity->setMaterialName("referee");

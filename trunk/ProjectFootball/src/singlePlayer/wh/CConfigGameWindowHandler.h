@@ -18,66 +18,34 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSINGLEPLAYEROPTIONMANAGER_H_
-#define CSINGLEPLAYEROPTIONMANAGER_H_
+#ifndef CCONFIGGAMEWINDOWHANDLER_H_
+#define CCONFIGGAMEWINDOWHANDLER_H_
 
-#include "../../utils/CDate.h"
-#include "../../utils/COptionManager.h"
-#include "../db/dao/IPfGameOptionsDAO.h"
+#include <CEGUI/CEGUI.h>
 
-class CDate;
+#include "../../engine/wm/CWindowHandler.h"
 
-class CSinglePlayerOptionManager : public COptionManager
+//Forward declarations
+class CSinglePlayerGame;
+
+class CConfigGameWindowHandler : public CWindowHandler
 {
 public:
-	/**
-	 * Constructor/Destructor
-	 */
-	CSinglePlayerOptionManager(IPfGameOptionsDAO *gameOptionsDAO);
-	virtual ~CSinglePlayerOptionManager();
+    CConfigGameWindowHandler(CSinglePlayerGame &game);
+	virtual ~CConfigGameWindowHandler();
 
-
-    /**
-     * Load the options from the config file
-     */
-    virtual void loadOptions();
-
-
-    /**
-     * Save the options in the config file
-     */
-    virtual void saveOptions();
-
-
-    /**
-     * Set the default values of options
-     */
-    virtual void setDefaultValues();
-
-
-    /**
-     * Get/Set the value of the option
-     */
-    // Game options
-    int			getGamePlayerTeam();
-    void		setGamePlayerTeam(int xPlayerTeam);
-    bool		getGameNew();
-    void		setGameNew(bool newGame);
-    CDate		getGameCurrentDate();
-    void		setGameCurrentDate(const CDate &date);
-    int			getGameCurrentSeason();
-    void		setGameCurrentSeason(int xSeason);
-
-    // Match options
-    bool		getMatchResultMode();
-    void		setMatchResultMode(bool mode);
-
-    // Simulation options
-    int         getMatchDuration();
-    void        setMatchDuration(int duration);
+    virtual void enter();
+    virtual void init();
 
 private:
-    IPfGameOptionsDAO	*m_gameOptionsDAO;
+	bool saveButtonClicked(const CEGUI::EventArgs& e);
+
+	CEGUI::PushButton	*m_saveButton;
+    CEGUI::Combobox 	*m_simulationTimeCombo;
+    CEGUI::Checkbox 	*m_resultModeCheck;
+
+    CSinglePlayerGame   &m_game;
+    bool                 m_initiated;
 };
 
-#endif /*CSINGLEPLAYEROPTIONMANAGER_H_*/
+#endif /*CCONFIGGAMEWINDOWHANDLER_H_*/

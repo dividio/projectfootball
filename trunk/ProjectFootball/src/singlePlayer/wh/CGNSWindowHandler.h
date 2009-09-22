@@ -45,7 +45,7 @@ protected:
 	bool mainMenuButtonClicked			(const CEGUI::EventArgs &e);
 	bool mainMenuConfirmed				(const CEGUI::EventArgs &e);
 	bool playButtonClicked				(const CEGUI::EventArgs &e);
-	bool resultModeCheckStateChanged	(const CEGUI::EventArgs &e);
+	bool configGameButtonClicked        (const CEGUI::EventArgs &e);
 	bool quickSaveButtonClicked			(const CEGUI::EventArgs &e);
 
 	bool homeButtonClicked				(const CEGUI::EventArgs &e);
@@ -70,8 +70,6 @@ private:
 
 	CEGUI::RadioButton	*m_statisticsRadio;
 	CEGUI::RadioButton	*m_changingRoomRadio;
-
-	CEGUI::Checkbox		*m_resultModeCheck;
 
     CSinglePlayerGame	&m_game;
 

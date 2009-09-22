@@ -67,6 +67,7 @@ public:
     const std::string& getHomeTeamName();
     const std::string& getAwayTeamName();
     btVector3 getBallPosition() const;
+    int getMatchDuration() const;
 
 
     // Soccer Commands
