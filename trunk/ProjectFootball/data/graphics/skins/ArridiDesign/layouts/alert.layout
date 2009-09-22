@@ -3,7 +3,7 @@
 <GUILayout >
     <Window Type="ArridiDesign/StaticImage" Name="AlertWindowBackground" >
     	<Property Name="Alpha" Value="0.3" />
-        <Property Name="FrameEnabled" Value="True" />
+        <Property Name="FrameEnabled" Value="False" />
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
 	    <Window Type="ArridiDesign/FrameWindow" Name="AlertWindow" >
