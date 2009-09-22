@@ -78,6 +78,8 @@ void CConfigGameWindowHandler::init()
 	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
     m_saveButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/SaveButton"));
+    m_backButton        = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/BackButton"));
+    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigGameWindowHandler::backButtonClicked, this)));
     registerEventConnection(m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigGameWindowHandler::saveButtonClicked, this)));
 
     m_simulationTimeCombo = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/SimulationTimeCombo"));
@@ -87,6 +89,7 @@ void CConfigGameWindowHandler::init()
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/GameOptionsLabel"))->setText((CEGUI::utf8*)gettext("Game Options"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/SimulationTimeText"))->setText((CEGUI::utf8*)gettext("Match Duration:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/ResultModeText"))->setText((CEGUI::utf8*)gettext("Result Mode:"));
+    m_backButton       ->setText((CEGUI::utf8*)gettext("Back"));
     m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
 }
 
@@ -116,4 +119,10 @@ bool CConfigGameWindowHandler::saveButtonClicked(const CEGUI::EventArgs& e)
     }
 
 	return true;
+}
+
+bool CConfigGameWindowHandler::backButtonClicked(const CEGUI::EventArgs& e)
+{
+    CGameEngine::getInstance()->getWindowManager()->previousScreen();
+    return true;
 }

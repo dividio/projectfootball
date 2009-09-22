@@ -81,10 +81,6 @@
         </window>
     </screen>
     <screen id="ConfigGame">
-        <window hook="none" path="game.layout">
-            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
-            <window hook="Game/GNSHook" path="gns.layout" />
-            <window hook="Game/InfoHook" path="configGame.layout" />
-        </window>
+        <window hook="none" path="configGame.layout"/>
     </screen>
 </screens-config>
