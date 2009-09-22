@@ -104,7 +104,7 @@ void CMainMenuWindowHandler::init()
     m_ProfessionalCareerButton ->setText((CEGUI::utf8*)gettext("Professional Career"));
     m_EditorButton             ->setText((CEGUI::utf8*)gettext("Editor"));
     m_FootLibraryButton        ->setText((CEGUI::utf8*)gettext("Football Library"));
-    m_configButton             ->setText((CEGUI::utf8*)gettext("Config"));
+    m_configButton             ->setText((CEGUI::utf8*)gettext("Configuration"));
     m_creditsButton            ->setText((CEGUI::utf8*)gettext("Credits"));
     m_quickLoadButton          ->setTooltipText((CEGUI::utf8*)gettext("Quick Load"));
     m_loadGameButton           ->setTooltipText((CEGUI::utf8*)gettext("Load"));

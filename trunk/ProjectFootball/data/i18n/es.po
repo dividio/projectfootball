@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-19 15:01+0200\n"
-"PO-Revision-Date: 2009-08-19 15:30+0100\n"
+"POT-Creation-Date: 2009-09-22 18:51+0200\n"
+"PO-Revision-Date: 2009-09-22 19:09+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,14 @@ msgstr ""
 "... todos los usuarios que han participado en la web y el foro y \n"
 "     por supuesto a todos aquellos que han testeado el juego"
 
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:61
+msgid "1 minute"
+msgstr "1 minuto"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:62
+msgid "2 minutes"
+msgstr "2 minutos"
+
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:194
 msgid "2D View"
 msgstr "Vista 2D"
@@ -44,11 +52,16 @@ msgstr "Modelado 3D:"
 msgid "3D View"
 msgstr "Vista 3D"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:263
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:63
+msgid "5 minutes"
+msgstr "5 minutos"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:291
 msgid "ATTENTION: Game can not be saved"
 msgstr "ATENCIÓN: El juego no ha podido guardarse"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:142
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:115
 msgid "ATTENTION: Options can not be saved"
 msgstr "ATENCIÓN: Las opciones no han podido guardarse"
 
@@ -75,7 +88,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:218
 msgid "Afghanistan"
-msgstr "Afghanistan"
+msgstr "Afganistán"
 
 #: data/i18n/temp.cpp:651
 msgid "Africa"
@@ -165,23 +178,23 @@ msgstr "Diseño de la Aplicación:"
 msgid "Arab Republic of Egypt"
 msgstr ""
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:200
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:234
 msgid "Are you sure you want to exit this game and return to GNU/Linux?"
 msgstr "¿Estas seguro de querer salir de esta partida y volver a GNU/Linux?"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:198
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:232
 msgid "Are you sure you want to exit this game and return to MS Windows?"
 msgstr "¿Estas seguro de querer salir de esta partida y volver a MS Windows?"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:202
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:236
 msgid "Are you sure you want to exit this game and return to Mac OS?"
 msgstr "¿Estas seguro de querer salir de esta partida y volver a Mac OS?"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:204
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:238
 msgid "Are you sure you want to exit this game and return to the Operating System?"
 msgstr "¿Estas seguro de querer salir de esta partida y volver al Sistema Operativo?"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:223
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:251
 msgid "Are you sure you want to exit this game?"
 msgstr "¿Estas seguro de querer salir de esta partida?"
 
@@ -251,7 +264,7 @@ msgid "Average"
 msgstr "Media"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:81
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:83
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:87
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:110
 msgid "Average:"
 msgstr "Media:"
@@ -270,7 +283,7 @@ msgstr ""
 #: src/engine/wh/CNewVirtualGameWindowHandler.cpp:47
 #: src/engine/wh/CCreditsWindowHandler.cpp:60
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:58
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:78
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:80
 msgid "Back"
 msgstr "Volver"
 
@@ -340,7 +353,7 @@ msgstr ""
 msgid "Before Start"
 msgstr "Antes de empezar"
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:115
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:117
 msgid "Begin Date:"
 msgstr "Fecha de Inicio:"
 
@@ -401,7 +414,7 @@ msgstr ""
 msgid "Bhutan"
 msgstr ""
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:108
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:110
 msgid "Birthday:"
 msgstr "Año de Nacimiento:"
 
@@ -471,7 +484,7 @@ msgstr ""
 msgid "Budapest"
 msgstr "Budapest"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:82
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:86
 msgid "Budget:"
 msgstr "Presupuesto:"
 
@@ -521,13 +534,17 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:85
+msgid "Capacity:"
+msgstr "Capacidad:"
+
 #: data/i18n/temp.cpp:273
 msgid "Cape Verde"
 msgstr ""
 
 #: data/i18n/temp.cpp:583
 msgid "Caracas"
-msgstr ""
+msgstr "Caracas"
 
 #: data/i18n/temp.cpp:649
 msgid "Cardiff"
@@ -559,7 +576,7 @@ msgstr ""
 msgid "Changes will take effect after restart"
 msgstr "Los cambios tendrán efecto tras reiniciar"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:78
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:106
 msgid "Changing Room"
 msgstr "Vestuario"
 
@@ -624,7 +641,7 @@ msgid "Comoros"
 msgstr ""
 
 #: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:94
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:86
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:90
 msgid "Competition:"
 msgstr "Competición:"
 
@@ -632,20 +649,21 @@ msgstr "Competición:"
 msgid "Conakry"
 msgstr ""
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:84
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:88
 msgid "Confederation:"
 msgstr "Confederación:"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:107
-msgid "Config"
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:100
+msgid "Configuration"
 msgstr "Configuración"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:190
-#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:83
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:84
 msgid "Continue"
 msgstr "Continuar"
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:113
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:115
 msgid "Contract Details:"
 msgstr "Detalles del Contrato:"
 
@@ -674,8 +692,8 @@ msgstr ""
 msgid "Country"
 msgstr "País"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:85
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:112
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:89
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:114
 msgid "Country:"
 msgstr "País:"
 
@@ -808,7 +826,7 @@ msgstr "El Salvador"
 msgid "End"
 msgstr "Final"
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:116
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:118
 msgid "End Date:"
 msgstr "Fecha de Finalización:"
 
@@ -837,24 +855,24 @@ msgstr "Etiopía"
 msgid "Europe"
 msgstr "Europa"
 
-#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:86
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:88
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:90
 msgid "Event"
 msgstr "Evento"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:67
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:92
 msgid "Exit to GNU/Linux"
 msgstr "Salir a GNU/Linux"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:65
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:90
 msgid "Exit to MS Windows"
 msgstr "Salir a MS Windows"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:69
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:94
 msgid "Exit to Mac OS"
 msgstr "Salir a Mac OS"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:71
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:96
 msgid "Exit to OS"
 msgstr "Salir al SO"
 
@@ -948,9 +966,13 @@ msgstr ""
 msgid "Gambia"
 msgstr ""
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:73
-msgid "Game Menu"
-msgstr "Menú Game"
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:87
+msgid "Game Options"
+msgstr "Opciones de la Partida"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:113
+msgid "Game options saved"
+msgstr "Opciones de la partida guardadas"
 
 #: data/i18n/temp.cpp:544
 msgid "George Town"
@@ -977,13 +999,14 @@ msgstr ""
 msgid "Goal Kick"
 msgstr "Saque de puerta"
 
-#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:159
-#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:176
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:164
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:181
 msgid "Goal by "
 msgstr "Gol de "
 
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:111
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:113
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:107
 msgid "Goals"
 msgstr "Goles"
 
@@ -1060,7 +1083,7 @@ msgstr ""
 msgid "Havana"
 msgstr ""
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:111
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:113
 msgid "Height:"
 msgstr "Altura:"
 
@@ -1071,6 +1094,11 @@ msgstr ""
 #: data/i18n/temp.cpp:611
 msgid "Helsinki"
 msgstr "Helsinki"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:102
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:105
+msgid "Home"
+msgstr "Inicio"
 
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:110
 msgid "Home Team"
@@ -1345,7 +1373,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:240
 msgid "Lebanon"
-msgstr ""
+msgstr "Líbano"
 
 #: data/i18n/temp.cpp:290
 msgid "Lesotho"
@@ -1375,7 +1403,7 @@ msgstr ""
 msgid "Lima"
 msgstr "Lima"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:114
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:148
 msgid "Line Up"
 msgstr "Alineación"
 
@@ -1426,7 +1454,7 @@ msgstr ""
 #: data/i18n/temp.cpp:409
 #: data/i18n/temp.cpp:625
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxemburgo"
 
 #: data/i18n/temp.cpp:241
 #: data/i18n/temp.cpp:457
@@ -1509,6 +1537,10 @@ msgstr ""
 #: data/i18n/temp.cpp:506
 msgid "Maseru"
 msgstr ""
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:88
+msgid "Match Duration:"
+msgstr "Duración del Partido:"
 
 #: data/i18n/temp.cpp:296
 msgid "Mauritania"
@@ -1605,6 +1637,7 @@ msgstr ""
 #: src/engine/wh/CLoadGameWindowHandler.cpp:70
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:359
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:65
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:105
 msgid "Name"
 msgstr "Nombre"
 
@@ -1620,8 +1653,8 @@ msgstr "Nombre (Alineación inicial)"
 msgid "Name (Not Line Up)"
 msgstr "Nombre (No convocados)"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:81
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:106
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:83
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:108
 msgid "Name:"
 msgstr "Nombre:"
 
@@ -1668,6 +1701,10 @@ msgstr "Nueva Partida"
 msgid "New Zealand"
 msgstr "Nueva Zelanda"
 
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:103
+msgid "Next Screen"
+msgstr "Pantalla Siguiente"
+
 #: data/i18n/temp.cpp:517
 msgid "Niamey"
 msgstr ""
@@ -1686,15 +1723,16 @@ msgstr ""
 
 #: data/i18n/temp.cpp:302
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigeria"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:223
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:227
 msgid "No competitions"
 msgstr "No hay competiciones"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:198
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:202
 #: src/singlePlayer/wh/CRankingWindowHandler.cpp:194
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:190
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:185
 msgid "No countries"
 msgstr "No hay países"
 
@@ -1717,7 +1755,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:417
 msgid "Norway"
-msgstr ""
+msgstr "Noruega"
 
 #: data/i18n/temp.cpp:512
 msgid "Nouakchott"
@@ -1749,7 +1787,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:633
 msgid "Oslo"
-msgstr ""
+msgstr "Oslo"
 
 #: data/i18n/temp.cpp:543
 msgid "Ottawa"
@@ -1769,7 +1807,7 @@ msgstr "Pakistan"
 
 #: data/i18n/temp.cpp:249
 msgid "Palestine"
-msgstr ""
+msgstr "Palestina"
 
 #: data/i18n/temp.cpp:33
 msgid "Palestinian National Authority"
@@ -1777,11 +1815,11 @@ msgstr ""
 
 #: data/i18n/temp.cpp:345
 msgid "Panama"
-msgstr ""
+msgstr "Panamá"
 
 #: data/i18n/temp.cpp:561
 msgid "Panama City"
-msgstr ""
+msgstr "Ciudad de Panamá"
 
 #: data/i18n/temp.cpp:592
 msgid "Papeete"
@@ -1789,7 +1827,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:373
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua Nueva Guinea"
 
 #: data/i18n/temp.cpp:364
 msgid "Paraguay"
@@ -1827,7 +1865,7 @@ msgstr "Filipinas"
 msgid "Phnom Penh"
 msgstr ""
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:75
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:99
 msgid "Play Match"
 msgstr "Jugar Partido"
 
@@ -1835,11 +1873,11 @@ msgstr "Jugar Partido"
 msgid "Play On"
 msgstr "En juego"
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:105
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:107
 msgid "Player Details:"
 msgstr "Detalles del Jugador:"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:80
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:82
 msgid "Please, select your team:"
 msgstr "Por favor, selecciona tu equipo:"
 
@@ -1853,7 +1891,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:418
 msgid "Poland"
-msgstr ""
+msgstr "Polonia"
 
 #: data/i18n/temp.cpp:513
 msgid "Port Louis"
@@ -1899,6 +1937,10 @@ msgstr ""
 msgid "Pretoria-Bloemfontein-Cape Town"
 msgstr ""
 
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:104
+msgid "Previous Screen"
+msgstr "Pantalla Anterior"
+
 #: data/i18n/temp.cpp:164
 msgid "Principality of Andorra"
 msgstr "Principado de Andorra"
@@ -1935,7 +1977,7 @@ msgstr "Qatar"
 msgid "Quick Load"
 msgstr "Carga Rápida"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:76
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:101
 msgid "Quick Save"
 msgstr "Guardado Rápido"
 
@@ -1949,9 +1991,9 @@ msgstr "Quito"
 
 #: data/i18n/temp.cpp:514
 msgid "Rabat"
-msgstr ""
+msgstr "Rabat"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:143
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:177
 msgid "Ranking"
 msgstr "Clasificación"
 
@@ -1959,7 +2001,7 @@ msgstr "Clasificación"
 msgid "Ranking:"
 msgstr "Clasificación:"
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:118
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:120
 msgid "Release Clause:"
 msgstr "Cláusula de Rescisión:"
 
@@ -2318,11 +2360,11 @@ msgstr ""
 msgid "Resolution:"
 msgstr "Resolución:"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:77
-msgid "Result Mode"
-msgstr "Modo Resultado"
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:89
+msgid "Result Mode:"
+msgstr "Modo Resultado:"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:140
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:174
 msgid "Results"
 msgstr "Resultados"
 
@@ -2330,7 +2372,7 @@ msgstr "Resultados"
 msgid "Results:"
 msgstr "Resultados:"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:74
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:98
 msgid "Return to Main Menu"
 msgstr "Volver al Menú Principal"
 
@@ -2409,7 +2451,7 @@ msgstr ""
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:117
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:119
 msgid "Salary:"
 msgstr "Salario:"
 
@@ -2455,22 +2497,27 @@ msgstr "Sarajevo"
 
 #: data/i18n/temp.cpp:252
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Arabia Saudi"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:97
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:90
 msgid "Save"
 msgstr "Guardar"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:146
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:180
 msgid "Scorers"
 msgstr "Goleadores"
+
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:97
+msgid "Scorers:"
+msgstr "Goleadores:"
 
 #: data/i18n/temp.cpp:207
 #: data/i18n/temp.cpp:423
 msgid "Scotland"
 msgstr "Escocia"
 
-#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:79
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:81
 msgid "Select Team"
 msgstr "Seleccionar Equipo"
 
@@ -2490,7 +2537,7 @@ msgstr "Serbia"
 msgid "Seychelles"
 msgstr ""
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:107
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:109
 msgid "Short Name:"
 msgstr "Nombre Corto:"
 
@@ -2589,6 +2636,11 @@ msgstr ""
 msgid "St. George's"
 msgstr ""
 
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:84
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:85
+msgid "Stadium:"
+msgstr "Estadio:"
+
 #: src/engine/wh/CNewVirtualGameWindowHandler.cpp:48
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:191
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:196
@@ -2620,7 +2672,7 @@ msgid "State of the Vatican City"
 msgstr ""
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:200
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:79
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:107
 msgid "Statistics"
 msgstr "Estadísticas"
 
@@ -2686,7 +2738,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:313
 msgid "Tanzania"
-msgstr ""
+msgstr "Tanzania"
 
 #: data/i18n/temp.cpp:478
 msgid "Tashkent"
@@ -2698,10 +2750,11 @@ msgstr ""
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:197
 #: src/singlePlayer/wh/CRankingWindowHandler.cpp:110
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:106
 msgid "Team"
 msgstr "Equipo"
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:117
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:151
 msgid "Team Players"
 msgstr "Plantilla"
 
@@ -2710,7 +2763,7 @@ msgstr "Plantilla"
 msgid "Team Players:"
 msgstr "Plantilla:"
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:114
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:116
 msgid "Team:"
 msgstr "Equipo:"
 
@@ -2746,7 +2799,7 @@ msgstr ""
 msgid "The Valley"
 msgstr ""
 
-#: src/singlePlayer/wh/CGNSWindowHandler.cpp:261
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:289
 msgid "The game has been saved"
 msgstr "La partida ha sido guardada"
 
@@ -2776,7 +2829,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:449
 msgid "Tokyo"
-msgstr ""
+msgstr "Tokio"
 
 #: data/i18n/temp.cpp:377
 msgid "Tonga"
@@ -2784,7 +2837,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:351
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad y Tobago"
 
 #: data/i18n/temp.cpp:508
 msgid "Tripoli"
@@ -2939,9 +2992,9 @@ msgstr ""
 
 #: data/i18n/temp.cpp:569
 msgid "Washington D.C."
-msgstr ""
+msgstr "Washington D.C."
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:110
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:112
 msgid "Weight:"
 msgstr "Peso:"
 
@@ -2965,13 +3018,13 @@ msgstr ""
 msgid "Yaoundé"
 msgstr ""
 
-#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:109
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:111
 msgid "Years:"
 msgstr "Años:"
 
 #: data/i18n/temp.cpp:264
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 #: data/i18n/temp.cpp:435
 msgid "Yerevan"
@@ -2983,7 +3036,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:604
 msgid "Zagreb"
-msgstr ""
+msgstr "Zagreb"
 
 #: data/i18n/temp.cpp:317
 msgid "Zambia"
@@ -2997,13 +3050,18 @@ msgstr ""
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:85
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:87
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:89
 msgid "min"
 msgstr "min"
 
-#~ msgid "Next event:"
-#~ msgstr "Siguiente Evento:"
+#, fuzzy
+#~ msgid "Simulation Time:"
+#~ msgstr "Vista de Simulación"
+#~ msgid "Config"
+#~ msgstr "Configuración"
+#~ msgid "Game Menu"
+#~ msgstr "Menú Game"
 #~ msgid "No"
 #~ msgstr "No"
 #~ msgid "Ok"
