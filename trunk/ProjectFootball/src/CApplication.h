@@ -22,10 +22,11 @@
 #define CAPPLICATION_H_
 
 #include <Ogre.h>
-#include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
+// Forward declarations
+class CInputManager;
 
 class CApplication
 {
@@ -34,8 +35,6 @@ public:
     static CApplication* getInstance();
 
     void go();
-    OIS::Mouse* getMouse();
-    OIS::Keyboard* getKeyboard();
     Ogre::RenderSystemList* getRenderSystemList();
     void addFrameListener(Ogre::FrameListener* frameListener);
     void removeFrameListener(Ogre::FrameListener* frameListener);
@@ -48,11 +47,9 @@ private:
 
     Ogre::Root 					*m_root;
     Ogre::RenderWindow          *m_window;
-    OIS::Keyboard 				*m_keyboard;
-    OIS::Mouse 					*m_mouse;
-    OIS::InputManager 			*m_inputManager;
     CEGUI::OgreCEGUIRenderer 	*m_renderer;
     CEGUI::System 				*m_system;
+    CInputManager               *m_inputManager;
 
     void createRoot();
     void defineResources();
@@ -64,6 +61,11 @@ private:
     void setupCEGUI();
     void createFrameListeners();
     void startRenderLoop();
+
+    bool keyDownEvent(const CEGUI::EventArgs &e);
+    bool mouseOverAudioEvent(const CEGUI::EventArgs &e);
+    bool clickAudioEvent(const CEGUI::EventArgs &e);
+
 };
 
 

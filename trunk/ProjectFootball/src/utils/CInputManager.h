@@ -24,14 +24,15 @@
 #include <OIS/OIS.h>
 #include <CEGUI/CEGUI.h>
 
+
 class CInputManager :
     public OIS::MouseListener, public OIS::KeyListener
 {
 public:
-  virtual ~CInputManager();
-  static CInputManager *getInstance();
+    CInputManager(std::string windowHnd, unsigned int width, unsigned int height);
+    ~CInputManager();
 
-  void capture();
+    void capture();
 
     bool keyPressed(const OIS::KeyEvent& e);
     bool keyReleased(const OIS::KeyEvent& e);
@@ -40,11 +41,20 @@ public:
     bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 
 protected:
-  CInputManager();
-  CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
+    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 
 private:
-    CEGUI::System *m_system;
+    CEGUI::System     *m_system;
+    OIS::InputManager *m_inputManager;
+    OIS::Mouse        *m_mouse;
+    OIS::Keyboard     *m_keyboard;
+
+    /**
+     * This attribute ensures there is only one instance of this class but
+     * it isn't accesible from anywhere. This check is at runtime instead
+     * of compile time like classic singleton.
+     */
+    static bool        m_instantiated;
 };
 
 #endif /*CINPUTMANAGER_H_*/

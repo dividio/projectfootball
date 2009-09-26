@@ -57,9 +57,8 @@ CApplication::~CApplication()
 
     delete CGameEngine::getInstance();
 
-    m_inputManager->destroyInputObject(m_keyboard);
-    m_inputManager->destroyInputObject(m_mouse);
-    OIS::InputManager::destroyInputSystem(m_inputManager);
+    if(m_inputManager != NULL)
+        delete m_inputManager;
 
     if(m_system != NULL)
         delete m_system;
@@ -79,16 +78,6 @@ CApplication* CApplication::getInstance()
 void CApplication::go()
 {
     startRenderLoop();
-}
-
-OIS::Mouse* CApplication::getMouse()
-{
-    return m_mouse;
-}
-
-OIS::Keyboard* CApplication::getKeyboard()
-{
-    return m_keyboard;
 }
 
 Ogre::RenderSystemList* CApplication::getRenderSystemList()
@@ -190,51 +179,39 @@ void CApplication::setupScene()
 
 void CApplication::setupInputSystem()
 {
+    // Get window handler
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
-    OIS::ParamList pl;
-
     m_window->getCustomAttribute("WINDOW", &windowHnd);
     windowHndStr << (unsigned int) windowHnd;
-    pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
-    //Disable mouse and keyboard grab for debug
-//    pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
-//    pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
-    m_inputManager = OIS::InputManager::createInputSystem(pl);
 
-    try
-    {
-        m_keyboard = static_cast<OIS::Keyboard*>(m_inputManager->createInputObject(OIS::OISKeyboard, true));
-        m_mouse = static_cast<OIS::Mouse*>(m_inputManager->createInputObject(OIS::OISMouse, true));
-        //mJoy = static_cast<OIS::JoyStick*>(mInputManager->createInputObject(OIS::OISJoyStick, false));
+    // Get window size
+    unsigned int width, height, depth;
+    int left, top;
+    m_window->getMetrics( width, height, depth, left, top );
 
-        m_keyboard->setEventCallback(CInputManager::getInstance());
-        m_mouse->setEventCallback(CInputManager::getInstance());
+    m_inputManager = new CInputManager(windowHndStr.str(), width, height);
 
-        // Get window size
-        unsigned int width, height, depth;
-        int left, top;
-        m_window->getMetrics( width, height, depth, left, top );
-
-        // Set mouse region
-        const OIS::MouseState &mouseState = m_mouse->getMouseState();
-        mouseState.width  = width;
-        mouseState.height = height;
-
-    }
-    catch (const OIS::Exception &e)
-    {
-        throw new Ogre::Exception(42, e.eText, "Application::setupInputSystem");
-    }
 }
 
-bool clickAudioEvent(const CEGUI::EventArgs &e)
+bool CApplication::clickAudioEvent(const CEGUI::EventArgs &e)
 {
     CAudioSystem::CLICK->play();
     return true;
 }
 
-bool mouseOverAudioEvent(const CEGUI::EventArgs &e)
+bool CApplication::keyDownEvent(const CEGUI::EventArgs &e)
+{
+    const CEGUI::KeyEventArgs& keyEvent = static_cast<const CEGUI::KeyEventArgs&>(e);
+
+    if (CEGUI::Key::F12 == keyEvent.scancode) {
+        takeScreenshot();
+    }
+
+    return true;
+}
+
+bool CApplication::mouseOverAudioEvent(const CEGUI::EventArgs &e)
 {
     const CEGUI::WindowEventArgs& we = static_cast<const CEGUI::WindowEventArgs&>(e);
     if( (we.window->testClassName( CEGUI::PushButton::EventNamespace  ) ||
@@ -273,13 +250,18 @@ void CApplication::setupCEGUI()
     m_system->setMouseMoveScaling(mouseScale);
 
     CEGUI::GlobalEventSet::getSingleton().subscribeEvent(
+       CEGUI::Window::EventNamespace+"/"+CEGUI::Window::EventKeyDown,
+       CEGUI::Event::Subscriber(&CApplication::keyDownEvent, this)
+    );
+
+    CEGUI::GlobalEventSet::getSingleton().subscribeEvent(
        CEGUI::PushButton::EventNamespace+"/"+CEGUI::PushButton::EventClicked,
-       CEGUI::Event::Subscriber(&clickAudioEvent)
+       CEGUI::Event::Subscriber(&CApplication::clickAudioEvent, this)
     );
 
     CEGUI::GlobalEventSet::getSingleton().subscribeEvent(
        CEGUI::Window::EventNamespace+"/"+CEGUI::Window::EventMouseEnters,
-       CEGUI::Event::Subscriber(&mouseOverAudioEvent)
+       CEGUI::Event::Subscriber(&CApplication::mouseOverAudioEvent, this)
     );
 }
 
@@ -310,9 +292,8 @@ void CApplication::startRenderLoop()
 {
     bool run = true;
     CGameEngine::getInstance()->getWindowManager()->nextScreen("Intro");
-    CInputManager* input = CInputManager::getInstance();
     while(run) {
-        input->capture();
+        m_inputManager->capture();
 
         Ogre::WindowEventUtilities::messagePump();
         run = m_root->renderOneFrame();

@@ -26,7 +26,6 @@
 #include "../option/CSinglePlayerOptionManager.h"
 #include "../../engine/CGameEngine.h"
 #include "../../engine/option/CSystemOptionManager.h"
-#include "../../CApplication.h"
 #include "../../utils/CLog.h"
 
 CConfigGameWindowHandler::CConfigGameWindowHandler(CSinglePlayerGame &game)

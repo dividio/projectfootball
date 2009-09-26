@@ -19,44 +19,68 @@
 ******************************************************************************/
 
 #include "CInputManager.h"
-#include "../CApplication.h"
-#include "../engine/CGameEngine.h"
 
-CInputManager::CInputManager()
+#include "../exceptions/PFException.h"
+
+bool CInputManager::m_instantiated = false;
+
+CInputManager::CInputManager(std::string windowHnd, unsigned int width, unsigned int height)
 {
+    // Check if this class has been already instantiated
+    if(m_instantiated == true) {
+        throw PFEXCEPTION("[CInputManager::CInputManager] CInputManager already instantiated");
+    }
+
     m_system = CEGUI::System::getSingletonPtr();
+
+    OIS::ParamList pl;
+
+    pl.insert(std::make_pair(std::string("WINDOW"), windowHnd));
+    //Disable mouse and keyboard grab for debug
+//    pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
+//    pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
+
+
+    m_inputManager = OIS::InputManager::createInputSystem(pl);
+
+    m_keyboard = static_cast<OIS::Keyboard*>(m_inputManager->createInputObject(OIS::OISKeyboard, true));
+    m_mouse    = static_cast<OIS::Mouse*>   (m_inputManager->createInputObject(OIS::OISMouse, true));
+    //mJoy = static_cast<OIS::JoyStick*>(mInputManager->createInputObject(OIS::OISJoyStick, false));
+
+    m_keyboard->setEventCallback(this);
+    m_mouse   ->setEventCallback(this);
+
+
+    // Set mouse region
+    const OIS::MouseState &mouseState = m_mouse->getMouseState();
+    mouseState.width  = width;
+    mouseState.height = height;
+
+    m_instantiated = true;
 }
 
 
 CInputManager::~CInputManager()
 {
-}
+    m_inputManager->destroyInputObject(m_keyboard);
+    m_inputManager->destroyInputObject(m_mouse);
+    OIS::InputManager::destroyInputSystem(m_inputManager);
 
-
-CInputManager* CInputManager::getInstance()
-{
-    static CInputManager instance;
-    return &instance;
+    m_instantiated = false;
 }
 
 
 void CInputManager::capture()
 {
-    CApplication::getInstance()->getMouse()->capture();
-    CApplication::getInstance()->getKeyboard()->capture();
+    m_mouse->capture();
+    m_keyboard->capture();
 }
 
 
 bool CInputManager::keyPressed(const OIS::KeyEvent& e)
 {
-    if(e.key==OIS::KC_ESCAPE) {
-//    	CGameEngine::getInstance()->previousScreen();
-    } else if(e.key==OIS::KC_F12) {
-        CApplication::getInstance()->takeScreenshot();
-    } else {
-        m_system->injectKeyDown(e.key);
-        m_system->injectChar(e.text);
-    }
+    m_system->injectKeyDown(e.key);
+    m_system->injectChar(e.text);
     return true;
 }
 

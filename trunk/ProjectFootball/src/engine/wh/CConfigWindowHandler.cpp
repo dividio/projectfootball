@@ -24,7 +24,6 @@
 #include "CConfigWindowHandler.h"
 #include "../CGameEngine.h"
 #include "../option/CSystemOptionManager.h"
-#include "../../CApplication.h"
 #include "../../utils/CLog.h"
 
 CConfigWindowHandler::CConfigWindowHandler()
@@ -97,7 +96,7 @@ void CConfigWindowHandler::init()
     m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
 
     m_rendererCombo->getEditbox()->setEnabled(false);
-    Ogre::RenderSystemList *renderSystemList = CApplication::getInstance()->getRenderSystemList();
+    Ogre::RenderSystemList *renderSystemList = Ogre::Root::getSingleton().getAvailableRenderers();
     Ogre::RenderSystemList::iterator it;
     for( it=renderSystemList->begin(); it!=renderSystemList->end(); it++ ){
         Ogre::RenderSystem *renderSystem = (*it);
