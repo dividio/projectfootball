@@ -40,23 +40,29 @@ CInputManager::CInputManager(std::string windowHnd, unsigned int width, unsigned
 //    pl.insert(std::make_pair(std::string("x11_mouse_grab"), std::string("false")));
 //    pl.insert(std::make_pair(std::string("x11_keyboard_grab"), std::string("false")));
 
+    try {
 
-    m_inputManager = OIS::InputManager::createInputSystem(pl);
+        m_inputManager = OIS::InputManager::createInputSystem(pl);
 
-    m_keyboard = static_cast<OIS::Keyboard*>(m_inputManager->createInputObject(OIS::OISKeyboard, true));
-    m_mouse    = static_cast<OIS::Mouse*>   (m_inputManager->createInputObject(OIS::OISMouse, true));
-    //mJoy = static_cast<OIS::JoyStick*>(mInputManager->createInputObject(OIS::OISJoyStick, false));
+        m_keyboard = static_cast<OIS::Keyboard*>(m_inputManager->createInputObject(OIS::OISKeyboard, true));
+        m_mouse    = static_cast<OIS::Mouse*>   (m_inputManager->createInputObject(OIS::OISMouse, true));
+        //m_joy      = static_cast<OIS::JoyStick*>(m_inputManager->createInputObject(OIS::OISJoyStick, false));
 
-    m_keyboard->setEventCallback(this);
-    m_mouse   ->setEventCallback(this);
+        m_keyboard->setEventCallback(this);
+        m_mouse   ->setEventCallback(this);
 
 
-    // Set mouse region
-    const OIS::MouseState &mouseState = m_mouse->getMouseState();
-    mouseState.width  = width;
-    mouseState.height = height;
+        // Set mouse region
+        const OIS::MouseState &mouseState = m_mouse->getMouseState();
+        mouseState.width  = width;
+        mouseState.height = height;
 
-    m_instantiated = true;
+        m_instantiated = true;
+
+    } catch (const OIS::Exception &e) {
+        throw PFEXCEPTION("OIS Exception: %s", e.eText);
+    }
+
 }
 
 
