@@ -47,8 +47,7 @@ void CGNSWindowHandler::enter()
 		m_nextScreenButton->setEnabled(false);
 		m_previousScreenButton->setVisible(false);
 		m_previousScreenButton->setEnabled(false);
-	}
-	else{
+	} else {
 		m_noButtonsBackground->setVisible(false);
 		m_buttonsBackground->setVisible(true);
 		m_homeButton->setVisible(true);
@@ -57,6 +56,15 @@ void CGNSWindowHandler::enter()
 		m_nextScreenButton->setEnabled(true);
 		m_previousScreenButton->setVisible(true);
 		m_previousScreenButton->setEnabled(true);
+	}
+
+	CEGUI::RadioButton *button = m_changingRoomRadio->getSelectedButtonInGroup();
+	if( button==m_changingRoomRadio ){
+        if(m_game.getCurrentMatch() != NULL) {
+            m_action3Button->setEnabled(true);
+        } else {
+            m_action3Button->setEnabled(false);
+        }
 	}
 }
 
@@ -153,7 +161,13 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action2Button->setEnabled(true);
 		m_action3Button->setText((CEGUI::utf8*)gettext("View Opponent"));
 		m_action3Button->setUserString("screen", "ViewOpponent");
-		m_action3Button->setEnabled(true);
+
+		if(m_game.getCurrentMatch() != NULL) {
+		    m_action3Button->setEnabled(true);
+		} else {
+		    m_action3Button->setEnabled(false);
+		}
+
 		m_action4Button->setText("");
 		m_action4Button->setUserString("screen", "");
 		m_action4Button->setEnabled(false);
