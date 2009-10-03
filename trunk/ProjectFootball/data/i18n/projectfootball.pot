@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 18:51+0200\n"
+"POT-Creation-Date: 2009-10-03 13:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,11 @@ msgid ""
 "    of course, to all the users who tested the game"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:61
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:60
 msgid "1 minute"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:62
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:61
 msgid "2 minutes"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "3D View"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:63
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:62
 msgid "5 minutes"
 msgstr ""
 
@@ -62,8 +62,8 @@ msgstr ""
 msgid "ATTENTION: Game can not be saved"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:142
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:115
+#: src/engine/wh/CConfigWindowHandler.cpp:141
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:117
 msgid "ATTENTION: Options can not be saved"
 msgstr ""
 
@@ -252,12 +252,16 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:78
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:88
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:98
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:94
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:104
 msgid "Average"
 msgstr ""
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:81
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:87
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:110
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:120
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:123
 msgid "Average:"
 msgstr ""
 
@@ -269,12 +273,13 @@ msgstr ""
 msgid "Azerbaijan"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:96
+#: src/engine/wh/CConfigWindowHandler.cpp:95
 #: src/engine/wh/CLoadGameWindowHandler.cpp:75
 #: src/engine/wh/CNewVirtualGameWindowHandler.cpp:47
 #: src/engine/wh/CCreditsWindowHandler.cpp:60
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:58
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:80
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
 msgid "Back"
 msgstr ""
 
@@ -554,7 +559,7 @@ msgstr ""
 msgid "Chad"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:140
+#: src/engine/wh/CConfigWindowHandler.cpp:139
 msgid "Changes will take effect after restart"
 msgstr ""
 
@@ -919,7 +924,7 @@ msgstr ""
 msgid "French Republic"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:94
+#: src/engine/wh/CConfigWindowHandler.cpp:93
 msgid "Fullscreen"
 msgstr ""
 
@@ -939,11 +944,11 @@ msgstr ""
 msgid "Gambia"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:87
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:88
 msgid "Game Options"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:113
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:115
 msgid "Game options saved"
 msgstr ""
 
@@ -1503,7 +1508,7 @@ msgstr ""
 msgid "Maseru"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:88
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:89
 msgid "Match Duration:"
 msgstr ""
 
@@ -1599,6 +1604,8 @@ msgstr ""
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:359
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:65
 #: src/singlePlayer/wh/CScorersWindowHandler.cpp:105
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:91
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:101
 msgid "Name"
 msgstr ""
 
@@ -1736,6 +1743,10 @@ msgstr ""
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:101
 msgid "On-line Community"
+msgstr ""
+
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:122
+msgid "Opponent Team:"
 msgstr ""
 
 #: data/i18n/temp.cpp:537
@@ -1962,7 +1973,7 @@ msgstr ""
 msgid "Release Clause:"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:92
+#: src/engine/wh/CConfigWindowHandler.cpp:91
 msgid "Renderer:"
 msgstr ""
 
@@ -2310,11 +2321,11 @@ msgstr ""
 msgid "Republic of the Philippines"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:93
+#: src/engine/wh/CConfigWindowHandler.cpp:92
 msgid "Resolution:"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:89
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:90
 msgid "Result Mode:"
 msgstr ""
 
@@ -2450,8 +2461,8 @@ msgstr ""
 msgid "Saudi Arabia"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:97
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:90
+#: src/engine/wh/CConfigWindowHandler.cpp:96
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 msgid "Save"
 msgstr ""
 
@@ -2495,6 +2506,8 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:77
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:87
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:97
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:93
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:103
 msgid "Shot power"
 msgstr ""
 
@@ -2574,6 +2587,8 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:76
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:86
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:96
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:92
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:102
 msgid "Speed"
 msgstr ""
 
@@ -2892,7 +2907,7 @@ msgstr ""
 msgid "Venezuela"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:95
+#: src/engine/wh/CConfigWindowHandler.cpp:94
 msgid "Vertical Sync"
 msgstr ""
 
@@ -2900,7 +2915,7 @@ msgstr ""
 msgid "Victoria"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:91
+#: src/engine/wh/CConfigWindowHandler.cpp:90
 msgid "Video"
 msgstr ""
 
@@ -2914,6 +2929,10 @@ msgstr ""
 
 #: data/i18n/temp.cpp:263
 msgid "Vietnam"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:154
+msgid "View Opponent"
 msgstr ""
 
 #: data/i18n/temp.cpp:624
@@ -2974,6 +2993,10 @@ msgstr ""
 
 #: data/i18n/temp.cpp:597
 msgid "Yeveran"
+msgstr ""
+
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:119
+msgid "Your Team:"
 msgstr ""
 
 #: data/i18n/temp.cpp:604

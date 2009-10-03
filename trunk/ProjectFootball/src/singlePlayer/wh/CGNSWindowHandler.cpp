@@ -151,9 +151,9 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action2Button->setText((CEGUI::utf8*)gettext("Team Players"));
 		m_action2Button->setUserString("screen", "TeamPlayers");
 		m_action2Button->setEnabled(true);
-		m_action3Button->setText("");
-		m_action3Button->setUserString("screen", "");
-		m_action3Button->setEnabled(false);
+		m_action3Button->setText((CEGUI::utf8*)gettext("View Opponent"));
+		m_action3Button->setUserString("screen", "ViewOpponent");
+		m_action3Button->setEnabled(true);
 		m_action4Button->setText("");
 		m_action4Button->setUserString("screen", "");
 		m_action4Button->setEnabled(false);
