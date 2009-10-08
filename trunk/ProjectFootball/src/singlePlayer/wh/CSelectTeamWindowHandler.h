@@ -32,6 +32,7 @@ class CPfCountries;
 class CPfCompetitions;
 class CPfSeasons;
 class CPfTeams;
+class CPfTeamPlayers;
 
 
 class CSelectTeamWindowHandler : public CWindowHandler
@@ -59,8 +60,10 @@ private:
     int  loadCompetitionsList  (int XCountry);
     void loadTeamList          (int XCompetition);
 
-    void loadTeamInfo(CPfTeams *team);
-    void clearTeamInfo();
+    void loadTeamInfo          (CPfTeams *team);
+    void loadTeamPlayersList   (CPfTeams *team);
+    void addPlayerToList       (CPfTeamPlayers *player);
+    void clearTeamInfo         ();
 
     CEGUI::PushButton				*m_backButton;
     CEGUI::PushButton               *m_selectButton;
@@ -76,6 +79,7 @@ private:
     CEGUI::Combobox                 *m_confederationsCombobox;
     CEGUI::Combobox                 *m_countriesCombobox;
     CEGUI::Combobox                 *m_competitionsCombobox;
+    CEGUI::MultiColumnList          *m_teamPlayersList;
 
     std::vector<CPfConfederations*> *m_confederationsList;
     std::vector<CPfCountries*>      *m_countriesList;
@@ -84,6 +88,7 @@ private:
     CPfSeasons						*m_lastSeason;
 
     CSinglePlayerGame				&m_game;
+    bool                            m_initiated;
 };
 
 #endif /*CSELECTTEAMWINDOWHANDLER_H_*/

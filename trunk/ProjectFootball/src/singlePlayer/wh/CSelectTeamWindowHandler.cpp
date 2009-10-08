@@ -23,6 +23,7 @@
 #include "CSelectTeamWindowHandler.h"
 
 #include "../db/bean/CPfTeams.h"
+#include "../db/bean/CPfTeamPlayers.h"
 #include "../db/bean/CPfConfederations.h"
 #include "../db/bean/CPfCountries.h"
 #include "../db/bean/CPfCompetitions.h"
@@ -35,8 +36,10 @@
 #include "../../utils/CLog.h"
 #include "../../utils/gui/CImageListboxItem.h"
 
-CSelectTeamWindowHandler::CSelectTeamWindowHandler(CSinglePlayerGame &game)
-: CWindowHandler("selectTeam.layout"), m_game(game)
+CSelectTeamWindowHandler::CSelectTeamWindowHandler(CSinglePlayerGame &game):
+    CWindowHandler("selectTeam.layout"),
+    m_game(game),
+    m_initiated(false)
 {
     LOG_DEBUG("CSelectTeamWindowHandler()");
 
@@ -44,12 +47,20 @@ CSelectTeamWindowHandler::CSelectTeamWindowHandler(CSinglePlayerGame &game)
     m_countriesList			= NULL;
     m_competitionsList		= NULL;
     m_teamsList				= NULL;
+    m_teamPlayersList       = NULL;
     m_lastSeason			= NULL;
 }
 
 CSelectTeamWindowHandler::~CSelectTeamWindowHandler()
 {
     LOG_DEBUG("~CSelectTeamWindowHandler()");
+
+    if( m_initiated ){
+        m_teamPlayersList->removeColumnWithID(0);
+        m_teamPlayersList->removeColumnWithID(1);
+        m_teamPlayersList->removeColumnWithID(2);
+        m_teamPlayersList->removeColumnWithID(3);
+    }
 }
 
 void CSelectTeamWindowHandler::init()
@@ -70,6 +81,16 @@ void CSelectTeamWindowHandler::init()
     m_confederationsCombobox	= static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Confederation"));
     m_countriesCombobox      	= static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Country"));
     m_competitionsCombobox   	= static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/Competition"));
+    m_teamPlayersList           = static_cast<CEGUI::MultiColumnList*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamPlayersList"));
+
+    m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(0.40,0));
+    m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"), 1, CEGUI::UDim(0.20,0));
+    m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"), 2, CEGUI::UDim(0.20,0));
+    m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"), 3, CEGUI::UDim(0.20,0));
+    m_teamPlayersList->setUserColumnDraggingEnabled(false);
+    m_teamPlayersList->setUserColumnSizingEnabled(false);
+    m_teamPlayersList->setUserSortControlEnabled(true);
+    m_teamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
     m_confederationsCombobox->getEditbox()->setEnabled(false);
     m_countriesCombobox     ->getEditbox()->setEnabled(false);
@@ -107,7 +128,8 @@ void CSelectTeamWindowHandler::enter()
     int competition   = loadCompetitionsList(country);
     loadTeamList(competition);
 
-    m_selectButton->setEnabled(false);
+    m_selectButton   ->setEnabled(false);
+    m_teamPlayersList->getHorzScrollbar()->setVisible(false);
 }
 
 void CSelectTeamWindowHandler::leave()
@@ -391,6 +413,53 @@ void CSelectTeamWindowHandler::loadTeamInfo(CPfTeams *team)
 
     //Loading Shield
     m_guiTeamShield->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
+
+    loadTeamPlayersList(team);
+}
+
+void CSelectTeamWindowHandler::loadTeamPlayersList(CPfTeams *team)
+{
+    m_teamPlayersList->resetList();
+
+    IPfTeamPlayersDAO               *teamPlayersDAO   = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
+    IPfTeamAveragesDAO              *teamAveragesDAO  = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
+    std::vector<CPfTeamPlayers*>    *playersList      = teamPlayersDAO->findActiveByXFkTeam(team->getXTeam());
+
+    std::vector<CPfTeamPlayers*>::iterator it;
+    for( it=playersList->begin(); it!=playersList->end(); it++ ){
+        CPfTeamPlayers *teamPlayer = (*it);
+        addPlayerToList(teamPlayer);
+    }
+
+    teamPlayersDAO->freeVector(playersList);
+
+    m_teamPlayersList->getHorzScrollbar()->setVisible(false);
+    m_teamPlayersList->getVertScrollbar()->setVisible(true);
+}
+
+void CSelectTeamWindowHandler::addPlayerToList(CPfTeamPlayers *player)
+{
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+
+    int row_idx = m_teamPlayersList->addRow();
+    int XTeamPlayer = player->getXTeamPlayer();
+    CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSShortName().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    m_teamPlayersList->setItem(item, 0, row_idx);
+
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNSpeed_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    m_teamPlayersList->setItem(item, 1, row_idx);
+
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNKickPower_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    m_teamPlayersList->setItem(item, 2, row_idx);
+
+    CPfTeamPlayerAverages *playerAverage = m_game.getIDAOFactory()->getIPfTeamPlayerAveragesDAO()->findByXTeamPlayer(player->getXTeamPlayer_str());
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)playerAverage->getNTotal_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    m_teamPlayersList->setItem(item, 3, row_idx);
+    delete playerAverage;
 }
 
 void CSelectTeamWindowHandler::clearTeamInfo()
@@ -402,4 +471,6 @@ void CSelectTeamWindowHandler::clearTeamInfo()
     m_guiStadiumName    ->setText("");
     m_guiStadiumCapacity->setText("");
     m_guiTeamShield     ->setProperty("Image", "set: image:full_image");
+    m_teamPlayersList   ->resetList();
+    m_teamPlayersList   ->getHorzScrollbar()->setVisible(false);
 }

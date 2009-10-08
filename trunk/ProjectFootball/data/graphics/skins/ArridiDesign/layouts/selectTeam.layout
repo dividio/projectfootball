@@ -124,6 +124,10 @@
                 <Property Name="UnifiedAreaRect" Value="{{0.887185,0},{0.640024,0},{0.920649,0},{0.677205,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
+            <Window Type="ArridiDesign/MultiColumnList" Name="SelectTeam/TeamPlayersList" >
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.375,0},{0.625,0},{0.8,0},{0.895,0}}" />
+            </Window>
             <Window Type="ArridiDesign/Combobox" Name="SelectTeam/Confederation" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
