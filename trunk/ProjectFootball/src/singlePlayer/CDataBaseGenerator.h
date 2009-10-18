@@ -44,10 +44,13 @@ protected:
 
 private:
     static int	m_numPlayers;
+    static int  m_numCoaches;
 
     static void generateTeamPlayers(IDAOFactory *daoFactory);
     static void generatePlayer(IDAOFactory *daoFactory, CPfTeams *team, int lineUpOrder);
     static void generateRandomPlayer(CPfTeamPlayers &player);
+    static void generateCoaches(IDAOFactory *daoFactory);
+    static void generateCoach(IDAOFactory *daoFactory, CPfTeams *team);
 };
 
 #endif /*CDATABASEGENERATOR_H_*/

@@ -33,6 +33,7 @@
 #include "../utils/CDate.h"
 
 int CDataBaseGenerator::m_numPlayers = 1;
+int CDataBaseGenerator::m_numCoaches = 1;
 
 CDataBaseGenerator::CDataBaseGenerator()
 {
@@ -44,8 +45,12 @@ CDataBaseGenerator::~CDataBaseGenerator()
 
 void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
 {
+    m_numPlayers = 1;
+    m_numCoaches = 1;
+
 	daoFactory->beginTransaction();
 
+	// Database scripts parsing
 	daoFactory->executeScriptFile("data/database/scripts/singleplayer/tables.sql");
 	daoFactory->executeScriptFile("data/database/scripts/singleplayer/indexes.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_gameoptions.sql");
@@ -58,8 +63,10 @@ void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_seasons.sql");
 
 
-    //Players Generation
+    // Random coaches and players generation
+    generateCoaches(daoFactory);
     generateTeamPlayers(daoFactory);
+
     daoFactory->commit();
 }
 
@@ -122,4 +129,50 @@ void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player)
     player.setNHeight(180);
     player.setDBirthday_str("1985-01-16 10:30:09");
     player.setSPhoto("p_unknown");
+}
+
+void CDataBaseGenerator::generateCoaches(IDAOFactory *daoFactory)
+{
+    std::vector<CPfTeams*>  *teams = daoFactory->getIPfTeamsDAO()->findAll();
+
+    std::vector<CPfTeams*>::iterator it;
+    CDate currentDate;
+    for(it = teams->begin(); it != teams->end(); it++) {
+        CPfCoachContracts *contract = daoFactory->getIPfCoachContractsDAO()->findActiveByXFkTeam((*it)->getXTeam_str(), currentDate.getTimestamp());
+        if(contract->getXFkCoach() == 0) {
+            generateCoach(daoFactory, (*it));
+        }
+
+        delete contract;
+    }
+
+    daoFactory->getIPfTeamsDAO()->freeVector(teams);
+}
+
+void CDataBaseGenerator::generateCoach(IDAOFactory *daoFactory, CPfTeams *team)
+{
+    //Generate coach
+    CPfCoaches coach;
+    IPfCoachesDAO *coachesDAO= daoFactory->getIPfCoachesDAO();
+    std::ostringstream stream;
+    stream << "Coach " << m_numCoaches; // TODO Generate real names
+    coach.setSName(stream.str());
+    stream.str("");
+    stream << "CH" << m_numCoaches++;
+    coach.setSShortName(stream.str());
+    coach.setDBirthday_str("1985-01-16 10:30:09");
+    coach.setSPhoto("p_unknown");
+    coach.setXFkCountry_str(team->getXFkCountry_str());
+    coachesDAO->insertReg(&coach);
+
+
+    //Generate coach contract
+    CPfCoachContracts contract;
+    CDate date(15, 8, 2007, 17, 0, 0); // TODO: Remove magical numbers
+    IPfCoachContractsDAO *contractsDAO= daoFactory->getIPfCoachContractsDAO();
+
+    contract.setXFkTeam_str(team->getXTeam_str());
+    contract.setXFkCoach_str(coach.getXCoach_str());
+    contract.setDBegin(date);
+    contractsDAO->insertReg(&contract);
 }
