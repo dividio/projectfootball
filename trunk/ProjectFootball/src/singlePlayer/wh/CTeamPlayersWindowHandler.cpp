@@ -117,7 +117,7 @@ void CTeamPlayersWindowHandler::loadTeamPlayersList()
         addPlayerToList(teamPlayer, m_teamPlayersList);
     }
 
-    CPfTeamAverages *teamAverage = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    CPfTeamAverages *teamAverage = teamAveragesDAO->findByXTeam(team->getXTeam_str(), currentTimestamp);
     m_teamName   ->setText((CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream average;
     average << teamAverage->getNTotal();

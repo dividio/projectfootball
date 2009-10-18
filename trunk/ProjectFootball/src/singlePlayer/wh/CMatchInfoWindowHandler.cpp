@@ -69,7 +69,7 @@ void CMatchInfoWindowHandler::updateMatchInfo()
 
         // Home team info
         CPfTeams			*homeTeam		   = teamsDAO->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
-        CPfTeamAverages		*homeTeamAverage   = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
+        CPfTeamAverages		*homeTeamAverage   = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str(), currentTimestamp);
         CPfCoachContracts   *homeCoachContract = coachContractsDAO->findActiveByXFkTeam(homeTeam->getXTeam_str(), currentTimestamp);
         CPfCoaches          *homeCoach         = coachesDAO->findByXCoach(homeCoachContract->getXFkCoach_str());
         std::ostringstream	homeAverage;
@@ -119,7 +119,7 @@ void CMatchInfoWindowHandler::updateMatchInfo()
 
     	// Home team info
         CPfTeams            *homeTeam		   = teamsDAO->findByXTeam(match->getXFkTeamHome());
-        CPfTeamAverages    	*homeTeamAverage   = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
+        CPfTeamAverages    	*homeTeamAverage   = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str(), currentTimestamp);
         CPfCoachContracts   *homeCoachContract = coachContractsDAO->findActiveByXFkTeam(homeTeam->getXTeam_str(), currentTimestamp);
         CPfCoaches          *homeCoach         = coachesDAO->findByXCoach(homeCoachContract->getXFkCoach_str());
         std::ostringstream 	homeAverage;
@@ -135,7 +135,7 @@ void CMatchInfoWindowHandler::updateMatchInfo()
 
         // Away team info
         CPfTeams            *awayTeam		   = teamsDAO->findByXTeam(match->getXFkTeamAway());
-        CPfTeamAverages		*awayTeamAverage   = teamAveragesDAO->findByXTeam(awayTeam->getXTeam_str());
+        CPfTeamAverages		*awayTeamAverage   = teamAveragesDAO->findByXTeam(awayTeam->getXTeam_str(), currentTimestamp);
         CPfCoachContracts   *awayCoachContract = coachContractsDAO->findActiveByXFkTeam(awayTeam->getXTeam_str(), currentTimestamp);
         CPfCoaches          *awayCoach         = coachesDAO->findByXCoach(awayCoachContract->getXFkCoach_str());
         std::ostringstream  awayAverage;

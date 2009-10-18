@@ -132,8 +132,9 @@ void CViewOpponentWindowHandler::leave()
 
 void CViewOpponentWindowHandler::loadTeamInfo(CPfTeams *team)
 {
+    std::string        currentTimestamp = m_game.getCurrentTime().getTimestamp();
     IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str(), currentTimestamp);
 
     m_teamName   ->setText((CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream average;
@@ -149,8 +150,9 @@ void CViewOpponentWindowHandler::loadTeamInfo(CPfTeams *team)
 
 void CViewOpponentWindowHandler::loadOpponentTeamInfo(CPfTeams *team)
 {
+    std::string        currentTimestamp = m_game.getCurrentTime().getTimestamp();
     IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str(), currentTimestamp);
 
     m_opponentTeamName   ->setText((CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream average;

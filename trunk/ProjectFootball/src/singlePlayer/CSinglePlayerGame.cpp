@@ -293,22 +293,22 @@ void CSinglePlayerGame::simulateMatch(const CPfMatches &match)
 {
 	CEventManager *eventMngr = CGameEngine::getInstance()->getEventManager();
 
-    IPfTeamPlayersDAO  *teamPlayersDAO = m_daoFactory->getIPfTeamPlayersDAO();
-    IPfTeamAveragesDAO *teamsAvgDAO    = m_daoFactory->getIPfTeamAveragesDAO();
+    std::string        currentTimestamp = match.getDMatch().getTimestamp();
+	IPfTeamPlayersDAO  *teamPlayersDAO  = m_daoFactory->getIPfTeamPlayersDAO();
+    IPfTeamAveragesDAO *teamsAvgDAO     = m_daoFactory->getIPfTeamAveragesDAO();
 
     eventMngr->addEvent(new CStartMatchEvent(match.getDMatch(), match.getXMatch()));
 
     int xHomeTeam  = match.getXFkTeamHome();
     int xAwayTeam  = match.getXFkTeamAway();
-    CPfTeamAverages *homeTeamAvg = teamsAvgDAO->findByXTeam(xHomeTeam);
-    CPfTeamAverages *awayTeamAvg = teamsAvgDAO->findByXTeam(xAwayTeam);
+    CPfTeamAverages *homeTeamAvg = teamsAvgDAO->findByXTeam(xHomeTeam, currentTimestamp);
+    CPfTeamAverages *awayTeamAvg = teamsAvgDAO->findByXTeam(xAwayTeam, currentTimestamp);
     int nHomeGoals = getRandomNGoals(homeTeamAvg, awayTeamAvg);
     int nAwayGoals = getRandomNGoals(awayTeamAvg, homeTeamAvg);
 
     delete homeTeamAvg;
     delete awayTeamAvg;
 
-    std::string currentTimestamp = getCurrentTime().getTimestamp();
     if( nHomeGoals>0 ){
         std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xHomeTeam, currentTimestamp);
         while( nHomeGoals>0 ){

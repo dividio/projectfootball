@@ -137,9 +137,10 @@ void CLineUpWindowHandler::changePlayers(CEGUI::MultiColumnList *list1, int row1
 
     saveTeamPlayersList();
 
+    std::string        currentTimestamp = m_game.getCurrentTime().getTimestamp();
     IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
     CPfTeams           *team            = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
-    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str(), currentTimestamp);
     std::ostringstream average;
     average << teamAverage->getNTotal();
     m_teamAverage->setText((CEGUI::utf8*)average.str().c_str());
@@ -175,7 +176,7 @@ void CLineUpWindowHandler::loadTeamPlayersList()
         addPlayerToList(teamPlayer, m_notLineUpTeamPlayersList);
     }
 
-    CPfTeamAverages *teamAverage = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    CPfTeamAverages *teamAverage = teamAveragesDAO->findByXTeam(team->getXTeam_str(), currentTimestamp);
     m_teamName   ->setText((CEGUI::utf8*)team->getSTeam().c_str());
     std::ostringstream average;
     average << teamAverage->getNTotal();

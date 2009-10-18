@@ -34,14 +34,14 @@ CPfTeamAveragesDAOSQLite::~CPfTeamAveragesDAOSQLite()
 {
 }
 
-CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(int XTeam)
+CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(int XTeam, const std::string &timestamp)
 {
     std::ostringstream stream;
     stream << XTeam;
-    return findByXTeam(stream.str());
+    return findByXTeam(stream.str(), timestamp);
 }
 
-CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(const std::string &XTeam)
+CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(const std::string &XTeam, const std::string &timestamp)
 {
     std::string sql("SELECT X_TEAM, AVG(DEFENSE) AS N_DEFENSE, AVG(ATTACK) AS N_ATTACK, AVG(TOTAL) AS N_TOTAL ");
     sql = sql +     "FROM ( SELECT TPC.X_FK_TEAM AS X_TEAM," +
@@ -53,8 +53,8 @@ CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(const std::string &XTeam)
                                 "PF_TEAMS T "
                            "WHERE  TPC.X_FK_TEAM_PLAYER = TP.X_TEAM_PLAYER " +
                             "AND   TPC.X_FK_TEAM = T.X_TEAM " +
-                            "AND   TPC.D_BEGIN <= CURRENT_TIMESTAMP " +
-                            "AND  (TPC.D_END IS NULL OR TPC.D_END > CURRENT_TIMESTAMP) " +
+                            "AND   TPC.D_BEGIN <= '" + timestamp + "' " +
+                            "AND  (TPC.D_END IS NULL OR TPC.D_END > '" + timestamp + "') " +
                             "AND   TPC.N_LINEUP_ORDER >= 1 " +
                             "AND   TPC.N_LINEUP_ORDER <= 11 " +
                             "AND   T.X_TEAM='"+XTeam+"') " +

@@ -397,8 +397,9 @@ void CSelectTeamWindowHandler::loadTeamInfo(CPfTeams *team)
     budget << team->getNBudget();
     m_guiTeamBudget->setText((CEGUI::utf8*)budget.str().c_str());
 
+    std::string        currentTimestamp = m_game.getCurrentTime().getTimestamp();
     IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str());
+    CPfTeamAverages    *teamAverage     = teamAveragesDAO->findByXTeam(team->getXTeam_str(), currentTimestamp);
     std::ostringstream average;
     average << teamAverage->getNTotal();
     m_guiTeamAverage->setText((CEGUI::utf8*)average.str().c_str());

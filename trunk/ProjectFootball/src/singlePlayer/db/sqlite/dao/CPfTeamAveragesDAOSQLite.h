@@ -35,8 +35,8 @@ public:
     CPfTeamAveragesDAOSQLite(sqlite3 *database);
     virtual ~CPfTeamAveragesDAOSQLite();
 
-    virtual CPfTeamAverages* findByXTeam(int XTeam);
-    virtual CPfTeamAverages* findByXTeam(const std::string &XTeam);
+    virtual CPfTeamAverages* findByXTeam(int XTeam, const std::string &timestamp);
+    virtual CPfTeamAverages* findByXTeam(const std::string &XTeam, const std::string &timestamp);
 
 };
 #endif /*CPFTEAMAVERAGESDAOSQLITE_H_*/

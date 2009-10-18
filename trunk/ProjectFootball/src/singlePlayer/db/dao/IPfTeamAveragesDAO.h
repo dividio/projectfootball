@@ -36,8 +36,8 @@ public:
 
     virtual void freeVector(std::vector<CPfTeamAverages*>* vector) =0;
 
-    virtual CPfTeamAverages* findByXTeam(int XTeam) =0;
-    virtual CPfTeamAverages* findByXTeam(const std::string &XTeam) =0;
+    virtual CPfTeamAverages* findByXTeam(int XTeam, const std::string &timestamp) =0;
+    virtual CPfTeamAverages* findByXTeam(const std::string &XTeam, const std::string &timestamp) =0;
 
 };
 #endif /*IPFTEAMAVERAGESDAO_H_*/
