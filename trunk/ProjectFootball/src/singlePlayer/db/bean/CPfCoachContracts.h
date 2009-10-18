@@ -20,38 +20,53 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef IPFTEAMPLAYERSDAO_H_
-#define IPFTEAMPLAYERSDAO_H_
+#ifndef CPFCOACHCONTRACTS_H_
+#define CPFCOACHCONTRACTS_H_
 
 #include <string>
-#include <vector>
 
-#include "../bean/CPfTeamPlayers.h"
+#include "../../../utils/CDate.h"
 
-class IPfTeamPlayersDAO
+class CPfCoachContracts
 {
 public:
-    IPfTeamPlayersDAO(){}
-    virtual ~IPfTeamPlayersDAO(){}
+    CPfCoachContracts();
+    CPfCoachContracts(const CPfCoachContracts &obj);
+    virtual ~CPfCoachContracts();
 
-    virtual bool deleteReg(CPfTeamPlayers *reg) =0;
-    virtual bool insertReg(CPfTeamPlayers *reg) =0;
-    virtual bool updateReg(CPfTeamPlayers *reg) =0;
+    CDate getDBegin() const;
+    const std::string& getDBegin_str() const;
+    int getXCoachContract() const;
+    const std::string& getXCoachContract_str() const;
+    CDate getDEnd() const;
+    const std::string& getDEnd_str() const;
+    int getXFkCoach() const;
+    const std::string& getXFkCoach_str() const;
+    int getNSalary() const;
+    const std::string& getNSalary_str() const;
+    int getXFkTeam() const;
+    const std::string& getXFkTeam_str() const;
 
-    virtual void freeVector(std::vector<CPfTeamPlayers*>* vector) =0;
+    void setDBegin(const CDate &DBegin);
+    void setDBegin_str(const std::string &DBegin);
+    void setXCoachContract(int XCoachContract);
+    void setXCoachContract_str(const std::string &XCoachContract);
+    void setDEnd(const CDate &DEnd);
+    void setDEnd_str(const std::string &DEnd);
+    void setXFkCoach(int XFkCoach);
+    void setXFkCoach_str(const std::string &XFkCoach);
+    void setNSalary(int NSalary);
+    void setNSalary_str(const std::string &NSalary);
+    void setXFkTeam(int XFkTeam);
+    void setXFkTeam_str(const std::string &XFkTeam);
 
-    virtual CPfTeamPlayers* findByXTeamPlayer(int XTeamPlayer) =0;
-    virtual CPfTeamPlayers* findByXTeamPlayer(const std::string &XTeamPlayer) =0;
-    virtual CPfTeamPlayers* findByXFkCountry(int XFkCountry) =0;
-    virtual CPfTeamPlayers* findByXFkCountry(const std::string &XFkCountry) =0;
-    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
+private:
+    std::string m_DBegin;
+    std::string m_XCoachContract;
+    std::string m_DEnd;
+    std::string m_XFkCoach;
+    std::string m_NSalary;
+    std::string m_XFkTeam;
 
 };
-#endif /*IPFTEAMPLAYERSDAO_H_*/
+#endif /*CPFCOACHCONTRACTS_H_*/

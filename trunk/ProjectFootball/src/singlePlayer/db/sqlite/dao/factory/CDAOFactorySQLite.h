@@ -42,8 +42,10 @@
 #include "../../../dao/IPfTeamPlayerContractsDAO.h"
 #include "../../../dao/IPfGoalsDAO.h"
 #include "../../../dao/IPfTeamPlayersDAO.h"
+#include "../../../dao/IPfCoachesDAO.h"
 #include "../../../dao/IPfCountriesDAO.h"
 #include "../../../dao/IPfCompetitionsDAO.h"
+#include "../../../dao/IPfCoachContractsDAO.h"
 #include "../../../dao/IPfTeamsDAO.h"
 #include "../../../dao/IPfTeamPlayerAveragesDAO.h"
 
@@ -61,8 +63,10 @@
 #include "../CPfTeamPlayerContractsDAOSQLite.h"
 #include "../CPfGoalsDAOSQLite.h"
 #include "../CPfTeamPlayersDAOSQLite.h"
+#include "../CPfCoachesDAOSQLite.h"
 #include "../CPfCountriesDAOSQLite.h"
 #include "../CPfCompetitionsDAOSQLite.h"
+#include "../CPfCoachContractsDAOSQLite.h"
 #include "../CPfTeamsDAOSQLite.h"
 #include "../CPfTeamPlayerAveragesDAOSQLite.h"
 
@@ -95,8 +99,10 @@ public:
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
     virtual IPfGoalsDAO* getIPfGoalsDAO();
     virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO();
+    virtual IPfCoachesDAO* getIPfCoachesDAO();
     virtual IPfCountriesDAO* getIPfCountriesDAO();
     virtual IPfCompetitionsDAO* getIPfCompetitionsDAO();
+    virtual IPfCoachContractsDAO* getIPfCoachContractsDAO();
     virtual IPfTeamsDAO* getIPfTeamsDAO();
     virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO();
 
@@ -123,8 +129,10 @@ private:
     CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
     CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
     CPfTeamPlayersDAOSQLite *m_PfTeamPlayersDAOSQLite;
+    CPfCoachesDAOSQLite *m_PfCoachesDAOSQLite;
     CPfCountriesDAOSQLite *m_PfCountriesDAOSQLite;
     CPfCompetitionsDAOSQLite *m_PfCompetitionsDAOSQLite;
+    CPfCoachContractsDAOSQLite *m_PfCoachContractsDAOSQLite;
     CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
     CPfTeamPlayerAveragesDAOSQLite *m_PfTeamPlayerAveragesDAOSQLite;
 

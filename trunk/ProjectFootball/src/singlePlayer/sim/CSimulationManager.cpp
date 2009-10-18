@@ -86,16 +86,17 @@ CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame &game, CSim
     IPfMatchesDAO *matchesDAO = m_game.getIDAOFactory()->getIPfMatchesDAO();
     m_match = matchesDAO->findByXMatch(xMatch);
 
+    std::string currentTimestamp = m_game.getCurrentTime().getTimestamp();
     // Home team
     CPfTeams *homeTeam = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_match->getXFkTeamHome());
-    std::vector<CPfTeamPlayers*> *homePlayersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(homeTeam->getXTeam());
+    std::vector<CPfTeamPlayers*> *homePlayersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(homeTeam->getXTeam(), currentTimestamp);
     m_homeTeam = new CTeam(this, homeTeam, homePlayersVector, true);
     m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(homePlayersVector);
     delete homeTeam;
 
     // Away team
     CPfTeams *awayTeam = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_match->getXFkTeamAway());
-    std::vector<CPfTeamPlayers*> *awayPlayersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(awayTeam->getXTeam());
+    std::vector<CPfTeamPlayers*> *awayPlayersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(awayTeam->getXTeam(), currentTimestamp);
     m_awayTeam = new CTeam(this, awayTeam, awayPlayersVector, false);
     m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(awayPlayersVector);
     delete awayTeam;

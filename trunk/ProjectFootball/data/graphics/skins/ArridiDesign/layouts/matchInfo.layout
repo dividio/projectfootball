@@ -30,18 +30,26 @@
             <Property Name="UnifiedAreaRect" Value="{{0.58,0},{0.3,0},{0.75,0},{0.5,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="MatchInfo/HomeTeamCrest" >
+        <Window Type="ArridiDesign/StaticImage" Name="MatchInfo/HomeTeamBadge" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.36,0},{0.2,0},{0.4575,0},{0.85,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="MatchInfo/AwayTeamCrest" >
+        <Window Type="ArridiDesign/StaticImage" Name="MatchInfo/AwayTeamBadge" >
             <Property Name="Font" Value="DejaVuSans-10" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.48,0},{0.2,0},{0.5775,0},{0.85,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/StaticText" Name="MatchInfo/HomeTeamCoach" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="RightAligned" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.19,0},{0.4,0},{0.3,0},{0.6,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
         <Window Type="ArridiDesign/StaticText" Name="MatchInfo/HomeTeamAverage" >
@@ -57,6 +65,13 @@
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.4,0},{0.65,0},{0.6,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/StaticText" Name="MatchInfo/AwayTeamCoach" >
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.65,0},{0.4,0},{0.75,0},{0.6,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
         <Window Type="ArridiDesign/StaticImage" Name="MatchInfo/CompetitionCountryFlag" >

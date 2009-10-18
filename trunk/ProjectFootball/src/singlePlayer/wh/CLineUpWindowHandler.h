@@ -63,7 +63,7 @@ private:
 
     CEGUI::Window           *m_teamName;
     CEGUI::Window           *m_teamAverage;
-    CEGUI::Window           *m_teamCrest;
+    CEGUI::Window           *m_teamBadge;
 
     CSinglePlayerGame		&m_game;
     bool					m_initiated;

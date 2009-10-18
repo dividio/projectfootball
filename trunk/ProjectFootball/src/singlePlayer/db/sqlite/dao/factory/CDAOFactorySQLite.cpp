@@ -55,8 +55,10 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
     m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
     m_PfTeamPlayersDAOSQLite = new CPfTeamPlayersDAOSQLite(m_database);
+    m_PfCoachesDAOSQLite = new CPfCoachesDAOSQLite(m_database);
     m_PfCountriesDAOSQLite = new CPfCountriesDAOSQLite(m_database);
     m_PfCompetitionsDAOSQLite = new CPfCompetitionsDAOSQLite(m_database);
+    m_PfCoachContractsDAOSQLite = new CPfCoachContractsDAOSQLite(m_database);
     m_PfTeamsDAOSQLite = new CPfTeamsDAOSQLite(m_database);
     m_PfTeamPlayerAveragesDAOSQLite = new CPfTeamPlayerAveragesDAOSQLite(m_database);
 
@@ -79,8 +81,10 @@ CDAOFactorySQLite::~CDAOFactorySQLite()
     delete m_PfTeamPlayerContractsDAOSQLite;
     delete m_PfGoalsDAOSQLite;
     delete m_PfTeamPlayersDAOSQLite;
+    delete m_PfCoachesDAOSQLite;
     delete m_PfCountriesDAOSQLite;
     delete m_PfCompetitionsDAOSQLite;
+    delete m_PfCoachContractsDAOSQLite;
     delete m_PfTeamsDAOSQLite;
     delete m_PfTeamPlayerAveragesDAOSQLite;
 
@@ -197,8 +201,10 @@ void CDAOFactorySQLite::save()
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(NULL);
     m_PfGoalsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayersDAOSQLite->setSQLite(NULL);
+    m_PfCoachesDAOSQLite->setSQLite(NULL);
     m_PfCountriesDAOSQLite->setSQLite(NULL);
     m_PfCompetitionsDAOSQLite->setSQLite(NULL);
+    m_PfCoachContractsDAOSQLite->setSQLite(NULL);
     m_PfTeamsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayerAveragesDAOSQLite->setSQLite(NULL);
 
@@ -230,8 +236,10 @@ void CDAOFactorySQLite::save()
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(m_database);
     m_PfGoalsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayersDAOSQLite->setSQLite(m_database);
+    m_PfCoachesDAOSQLite->setSQLite(m_database);
     m_PfCountriesDAOSQLite->setSQLite(m_database);
     m_PfCompetitionsDAOSQLite->setSQLite(m_database);
+    m_PfCoachContractsDAOSQLite->setSQLite(m_database);
     m_PfTeamsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayerAveragesDAOSQLite->setSQLite(m_database);
 }
@@ -306,6 +314,11 @@ IPfTeamPlayersDAO* CDAOFactorySQLite::getIPfTeamPlayersDAO()
     return m_PfTeamPlayersDAOSQLite;
 }
 
+IPfCoachesDAO* CDAOFactorySQLite::getIPfCoachesDAO()
+{
+    return m_PfCoachesDAOSQLite;
+}
+
 IPfCountriesDAO* CDAOFactorySQLite::getIPfCountriesDAO()
 {
     return m_PfCountriesDAOSQLite;
@@ -314,6 +327,11 @@ IPfCountriesDAO* CDAOFactorySQLite::getIPfCountriesDAO()
 IPfCompetitionsDAO* CDAOFactorySQLite::getIPfCompetitionsDAO()
 {
     return m_PfCompetitionsDAOSQLite;
+}
+
+IPfCoachContractsDAO* CDAOFactorySQLite::getIPfCoachContractsDAO()
+{
+    return m_PfCoachContractsDAOSQLite;
 }
 
 IPfTeamsDAO* CDAOFactorySQLite::getIPfTeamsDAO()

@@ -37,14 +37,14 @@ public:
 
     virtual CPfTeamPlayers* findByXTeamPlayer(int XTeamPlayer);
     virtual CPfTeamPlayers* findByXTeamPlayer(const std::string &XTeamPlayer);
-    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(int XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(const std::string &XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(int XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(const std::string &XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(int XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(const std::string &XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(int XFkTeam);
-    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam);
+    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(int XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(int XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(int XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(int XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
     virtual CPfTeamPlayers* findByXFkCountry(int XFkCountry);
     virtual CPfTeamPlayers* findByXFkCountry(const std::string &XFkCountry);
 

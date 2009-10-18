@@ -61,6 +61,8 @@ public:
     // Game options
     int			getGamePlayerTeam();
     void		setGamePlayerTeam(int xPlayerTeam);
+    int         getGamePlayerCoach();
+    void        setGamePlayerCoach(int xPlayerCoach);
     bool		getGameNew();
     void		setGameNew(bool newGame);
     CDate		getGameCurrentDate();

@@ -359,9 +359,10 @@ void CSimulatorWindowHandler::loadTeamPlayers()
     m_teamPlayersList->addColumn((CEGUI::utf8*)gettext("Name"), 0, CEGUI::UDim(1.0,0));
     m_teamPlayersList->resetList();
 
+    std::string                             currentTimestamp    = m_game.getCurrentTime().getTimestamp();
     CPfTeams                                *team               = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
     IPfTeamPlayersDAO                       *teamPlayersDAO     = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
-    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>            *teamPlayersList    = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
     std::vector<CPfTeamPlayers*>::iterator  it;
 
     int cont = 0;

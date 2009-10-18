@@ -46,36 +46,48 @@ void CMatchInfoWindowHandler::init()
     m_awayTeamName				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/AwayTeamName"));
     m_homeTeamAverage			= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/HomeTeamAverage"));
     m_awayTeamAverage			= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/AwayTeamAverage"));
-    m_homeTeamCrest				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/HomeTeamCrest"));
-    m_awayTeamCrest				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/AwayTeamCrest"));
+    m_homeTeamBadge				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/HomeTeamBadge"));
+    m_awayTeamBadge				= static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/AwayTeamBadge"));
+    m_homeTeamCoach             = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/HomeTeamCoach"));
+    m_awayTeamCoach             = static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"MatchInfo/AwayTeamCoach"));
 }
 
 void CMatchInfoWindowHandler::updateMatchInfo()
 {
     const CPfMatches  *match = m_game.getCurrentMatch();
+    std::string currentTimestamp = m_game.getCurrentTime().getTimestamp();
     if( match==NULL ) {
-        IPfTeamAveragesDAO	*teamAveragesDAO	= m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-        IPfTeamsDAO			*teamsDAO			= m_game.getIDAOFactory()->getIPfTeamsDAO();
+        IPfTeamAveragesDAO	 *teamAveragesDAO	= m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
+        IPfTeamsDAO			 *teamsDAO			= m_game.getIDAOFactory()->getIPfTeamsDAO();
+        IPfCoachesDAO        *coachesDAO        = m_game.getIDAOFactory()->getIPfCoachesDAO();
+        IPfCoachContractsDAO *coachContractsDAO = m_game.getIDAOFactory()->getIPfCoachContractsDAO();
+
 
     	// General information
         m_informationBanner->setText((CEGUI::utf8*)gettext("No info about the match!"));
         m_competitionCountryFlag->setProperty("Image", "set: image:full_image");
 
         // Home team info
-        CPfTeams			*homeTeam			= teamsDAO->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
-        CPfTeamAverages		*homeTeamAverage    = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
+        CPfTeams			*homeTeam		   = teamsDAO->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
+        CPfTeamAverages		*homeTeamAverage   = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
+        CPfCoachContracts   *homeCoachContract = coachContractsDAO->findActiveByXFkTeam(homeTeam->getXTeam_str(), currentTimestamp);
+        CPfCoaches          *homeCoach         = coachesDAO->findByXCoach(homeCoachContract->getXFkCoach_str());
         std::ostringstream	homeAverage;
         homeAverage << homeTeamAverage->getNTotal();
         m_homeTeamName		->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
         m_homeTeamAverage	->setText((CEGUI::utf8*)homeAverage.str().c_str());
-        m_homeTeamCrest		->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+        m_homeTeamBadge		->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+        m_homeTeamCoach     ->setText((CEGUI::utf8*)homeCoach->getSShortName().c_str());
+        delete homeCoach;
+        delete homeCoachContract;
         delete homeTeamAverage;
         delete homeTeam;
 
         // Away team info
         m_awayTeamName		->setText("");
         m_awayTeamAverage	->setText("");
-        m_awayTeamCrest		->setProperty("Image", "set: image:full_image");
+        m_awayTeamBadge		->setProperty("Image", "set: image:full_image");
+        m_awayTeamCoach     ->setText("");
 
     } else {
         IDAOFactory             *daoFactory				= m_game.getIDAOFactory();
@@ -85,6 +97,8 @@ void CMatchInfoWindowHandler::updateMatchInfo()
         IPfCompetitionPhasesDAO *competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
         IPfTeamsDAO             *teamsDAO				= daoFactory->getIPfTeamsDAO();
         IPfTeamAveragesDAO		*teamAveragesDAO		= daoFactory->getIPfTeamAveragesDAO();
+        IPfCoachesDAO           *coachesDAO             = daoFactory->getIPfCoachesDAO();
+        IPfCoachContractsDAO    *coachContractsDAO      = daoFactory->getIPfCoachContractsDAO();
 
         // General information
         CPfSeasons				*season				= seasonsDAO->findByXSeason(match->getXFkSeason());
@@ -104,24 +118,34 @@ void CMatchInfoWindowHandler::updateMatchInfo()
         delete season;
 
     	// Home team info
-        CPfTeams                *homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
-        CPfTeamAverages    		*homeTeamAverage	= teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
-        std::ostringstream 		homeAverage;
+        CPfTeams            *homeTeam		   = teamsDAO->findByXTeam(match->getXFkTeamHome());
+        CPfTeamAverages    	*homeTeamAverage   = teamAveragesDAO->findByXTeam(homeTeam->getXTeam_str());
+        CPfCoachContracts   *homeCoachContract = coachContractsDAO->findActiveByXFkTeam(homeTeam->getXTeam_str(), currentTimestamp);
+        CPfCoaches          *homeCoach         = coachesDAO->findByXCoach(homeCoachContract->getXFkCoach_str());
+        std::ostringstream 	homeAverage;
         homeAverage << homeTeamAverage->getNTotal();
         m_homeTeamName		->setText((CEGUI::utf8*)homeTeam->getSTeam().c_str());
         m_homeTeamAverage	->setText((CEGUI::utf8*)homeAverage.str().c_str());
-        m_homeTeamCrest		->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+        m_homeTeamBadge		->setProperty("Image", "set:"+ homeTeam->getSLogo() +" image:"+homeTeam->getSLogo()+"_b");
+        m_homeTeamCoach     ->setText((CEGUI::utf8*)homeCoach->getSShortName().c_str());
+        delete homeCoach;
+        delete homeCoachContract;
         delete homeTeamAverage;
         delete homeTeam;
 
-        // Team Averages
-        CPfTeams                *awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
-        CPfTeamAverages			*awayTeamAverage	= teamAveragesDAO->findByXTeam(awayTeam->getXTeam_str());
-        std::ostringstream 		awayAverage;
+        // Away team info
+        CPfTeams            *awayTeam		   = teamsDAO->findByXTeam(match->getXFkTeamAway());
+        CPfTeamAverages		*awayTeamAverage   = teamAveragesDAO->findByXTeam(awayTeam->getXTeam_str());
+        CPfCoachContracts   *awayCoachContract = coachContractsDAO->findActiveByXFkTeam(awayTeam->getXTeam_str(), currentTimestamp);
+        CPfCoaches          *awayCoach         = coachesDAO->findByXCoach(awayCoachContract->getXFkCoach_str());
+        std::ostringstream  awayAverage;
         awayAverage << awayTeamAverage->getNTotal();
         m_awayTeamName		->setText((CEGUI::utf8*)awayTeam->getSTeam().c_str());
         m_awayTeamAverage	->setText((CEGUI::utf8*)awayAverage.str().c_str());
-        m_awayTeamCrest		->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
+        m_awayTeamBadge		->setProperty("Image", "set:"+ awayTeam->getSLogo() +" image:"+awayTeam->getSLogo()+"_b");
+        m_awayTeamCoach     ->setText((CEGUI::utf8*)awayCoach->getSShortName().c_str());
+        delete awayCoach;
+        delete awayCoachContract;
         delete awayTeamAverage;
         delete awayTeam;
     }

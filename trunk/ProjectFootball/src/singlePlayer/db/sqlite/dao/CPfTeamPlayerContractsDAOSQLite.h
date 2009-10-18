@@ -41,10 +41,10 @@ public:
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(const std::string &XTeamPlayerContract);
     virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(int XFkTeam);
     virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(const std::string &XFkTeam);
-    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer);
-    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer);
-    virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(int XFkTeamPlayer);
-    virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(const std::string &XFkTeamPlayer);
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer, const std::string &timestamp);
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer, const std::string &timestamp);
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(int XFkTeamPlayer, const std::string &timestamp);
+    virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(const std::string &XFkTeamPlayer, const std::string &timestamp);
 
 };
 #endif /*CPFTEAMPLAYERCONTRACTSDAOSQLITE_H_*/

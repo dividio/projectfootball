@@ -20,38 +20,53 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef IPFTEAMPLAYERSDAO_H_
-#define IPFTEAMPLAYERSDAO_H_
+#ifndef CPFCOACHES_H_
+#define CPFCOACHES_H_
 
 #include <string>
-#include <vector>
 
-#include "../bean/CPfTeamPlayers.h"
+#include "../../../utils/CDate.h"
 
-class IPfTeamPlayersDAO
+class CPfCoaches
 {
 public:
-    IPfTeamPlayersDAO(){}
-    virtual ~IPfTeamPlayersDAO(){}
+    CPfCoaches();
+    CPfCoaches(const CPfCoaches &obj);
+    virtual ~CPfCoaches();
 
-    virtual bool deleteReg(CPfTeamPlayers *reg) =0;
-    virtual bool insertReg(CPfTeamPlayers *reg) =0;
-    virtual bool updateReg(CPfTeamPlayers *reg) =0;
+    int getXCoach() const;
+    const std::string& getXCoach_str() const;
+    const std::string& getSShortName() const;
+    const std::string& getSShortName_str() const;
+    const std::string& getSName() const;
+    const std::string& getSName_str() const;
+    const std::string& getSPhoto() const;
+    const std::string& getSPhoto_str() const;
+    CDate getDBirthday() const;
+    const std::string& getDBirthday_str() const;
+    int getXFkCountry() const;
+    const std::string& getXFkCountry_str() const;
 
-    virtual void freeVector(std::vector<CPfTeamPlayers*>* vector) =0;
+    void setXCoach(int XCoach);
+    void setXCoach_str(const std::string &XCoach);
+    void setSShortName(const std::string &SShortName);
+    void setSShortName_str(const std::string &SShortName);
+    void setSName(const std::string &SName);
+    void setSName_str(const std::string &SName);
+    void setSPhoto(const std::string &SPhoto);
+    void setSPhoto_str(const std::string &SPhoto);
+    void setDBirthday(const CDate &DBirthday);
+    void setDBirthday_str(const std::string &DBirthday);
+    void setXFkCountry(int XFkCountry);
+    void setXFkCountry_str(const std::string &XFkCountry);
 
-    virtual CPfTeamPlayers* findByXTeamPlayer(int XTeamPlayer) =0;
-    virtual CPfTeamPlayers* findByXTeamPlayer(const std::string &XTeamPlayer) =0;
-    virtual CPfTeamPlayers* findByXFkCountry(int XFkCountry) =0;
-    virtual CPfTeamPlayers* findByXFkCountry(const std::string &XFkCountry) =0;
-    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
-    virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
+private:
+    std::string m_XCoach;
+    std::string m_SShortName;
+    std::string m_SName;
+    std::string m_SPhoto;
+    std::string m_DBirthday;
+    std::string m_XFkCountry;
 
 };
-#endif /*IPFTEAMPLAYERSDAO_H_*/
+#endif /*CPFCOACHES_H_*/

@@ -37,8 +37,10 @@
 #include "../IPfTeamPlayerContractsDAO.h"
 #include "../IPfGoalsDAO.h"
 #include "../IPfTeamPlayersDAO.h"
+#include "../IPfCoachesDAO.h"
 #include "../IPfCountriesDAO.h"
 #include "../IPfCompetitionsDAO.h"
+#include "../IPfCoachContractsDAO.h"
 #include "../IPfTeamsDAO.h"
 #include "../IPfTeamPlayerAveragesDAO.h"
 
@@ -71,8 +73,10 @@ public:
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
     virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
     virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
+    virtual IPfCoachesDAO* getIPfCoachesDAO() =0;
     virtual IPfCountriesDAO* getIPfCountriesDAO() =0;
     virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
+    virtual IPfCoachContractsDAO* getIPfCoachContractsDAO() =0;
     virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
     virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO() =0;
 

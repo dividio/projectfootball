@@ -74,7 +74,7 @@ void CTeamPlayersWindowHandler::init()
 
     m_teamName				= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamName"));
     m_teamAverage			= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamAverage"));
-    m_teamCrest				= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamCrest"));
+    m_teamBadge				= static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamBadge"));
 
     // i18n support
     windowMngr.getWindow((CEGUI::utf8*)"TeamPlayers/TeamPlayersLabel")->setText((CEGUI::utf8*)gettext("Team Players:"));
@@ -95,12 +95,13 @@ void CTeamPlayersWindowHandler::loadTeamPlayersList()
 {
     m_teamPlayersList   ->resetList();
 
+    std::string                     currentTimestamp            = m_game.getCurrentTime().getTimestamp();
     CPfTeams                        *team                       = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
     IPfTeamPlayersDAO               *teamPlayersDAO             = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
     IPfTeamAveragesDAO              *teamAveragesDAO            = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-    std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
-    std::vector<CPfTeamPlayers*>    *alternateTeamPlayersList   = teamPlayersDAO->findAlternateByXFkTeam(team->getXTeam());
-    std::vector<CPfTeamPlayers*>    *notLineUpTeamPlayersList   = teamPlayersDAO->findNotLineUpByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
+    std::vector<CPfTeamPlayers*>    *alternateTeamPlayersList   = teamPlayersDAO->findAlternateByXFkTeam(team->getXTeam(), currentTimestamp);
+    std::vector<CPfTeamPlayers*>    *notLineUpTeamPlayersList   = teamPlayersDAO->findNotLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
 
     std::vector<CPfTeamPlayers*>::iterator it;
     for( it=lineUpTeamPlayersList->begin(); it!=lineUpTeamPlayersList->end(); it++ ){
@@ -124,7 +125,7 @@ void CTeamPlayersWindowHandler::loadTeamPlayersList()
     delete teamAverage;
 
     //Loading Shield
-    m_teamCrest->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
+    m_teamBadge->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
 
     teamPlayersDAO->freeVector(lineUpTeamPlayersList);
     teamPlayersDAO->freeVector(alternateTeamPlayersList);

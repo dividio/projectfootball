@@ -73,7 +73,8 @@ void CTeamPlayerDetailsWindowHandler::enter()
     m_country_flag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag()+"_flag");
     delete country;
 
-    CPfTeamPlayerContracts *contract = daoFactory->getIPfTeamPlayerContractsDAO()->findActiveByXFkTeamPlayer(m_selectedTeamPlayer->getXTeamPlayer_str());
+    std::string            currentTimestamp  = m_game.getCurrentTime().getTimestamp();
+    CPfTeamPlayerContracts *contract = daoFactory->getIPfTeamPlayerContractsDAO()->findActiveByXFkTeamPlayer(m_selectedTeamPlayer->getXTeamPlayer_str(), currentTimestamp);
     CPfTeams               *team     = daoFactory->getIPfTeamsDAO()->findByXTeam(contract->getXFkTeam_str());
     m_teamName     ->setText((CEGUI::utf8*)team->getSTeam().c_str());
     m_dateBegin    ->setText(contract->getDBegin().format("%d/%m/%Y"));

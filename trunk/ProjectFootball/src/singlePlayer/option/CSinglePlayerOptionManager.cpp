@@ -99,6 +99,15 @@ void CSinglePlayerOptionManager::setGamePlayerTeam(int xPlayerTeam)
 	setIntOption("Game", "PlayerTeam", xPlayerTeam);
 }
 
+int CSinglePlayerOptionManager::getGamePlayerCoach()
+{
+    return getIntOption("Game", "PlayerTeam");
+}
+void CSinglePlayerOptionManager::setGamePlayerCoach(int xPlayerCoach)
+{
+    setIntOption("Game", "PlayerCoach", xPlayerCoach);
+}
+
 bool CSinglePlayerOptionManager::getGameNew()
 {
 	return getBooleanOption("Game", "New");;

@@ -256,6 +256,11 @@ void CSinglePlayerGame::setGameState(EGameState state)
 	m_gameState = state;
 }
 
+const CDate& CSinglePlayerGame::getCurrentTime() const
+{
+    return CGameEngine::getInstance()->getTimeManager()->getCurrentTime();
+}
+
 const CPfMatches* CSinglePlayerGame::getCurrentMatch() const
 {
 	return m_currentMatch;
@@ -303,8 +308,9 @@ void CSinglePlayerGame::simulateMatch(const CPfMatches &match)
     delete homeTeamAvg;
     delete awayTeamAvg;
 
+    std::string currentTimestamp = getCurrentTime().getTimestamp();
     if( nHomeGoals>0 ){
-        std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xHomeTeam);
+        std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xHomeTeam, currentTimestamp);
         while( nHomeGoals>0 ){
             int numPlayer = rand()%teamPlayesList->size();
             if(numPlayer == 0) { //Goalie don't score
@@ -323,7 +329,7 @@ void CSinglePlayerGame::simulateMatch(const CPfMatches &match)
         teamPlayersDAO->freeVector(teamPlayesList);
     }
     if( nAwayGoals>0 ){
-        std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xAwayTeam);
+        std::vector<CPfTeamPlayers*>* teamPlayesList = teamPlayersDAO->findLineUpByXFkTeam(xAwayTeam, currentTimestamp);
         while( nAwayGoals>0 ){
             int numPlayer = rand()%teamPlayesList->size();
             if(numPlayer == 0) { //Goalie don't score

@@ -38,6 +38,7 @@ class CSinglePlayerReportRegister;
 class IGameEvent;
 class IWindowHandler;
 class CEventsHandler;
+class CDate;
 
 class CSinglePlayerGame : public IGame
 {
@@ -65,6 +66,7 @@ public:
     // Game progression
     const EGameState        getGameState() const { return m_gameState; }
     void				    setGameState(EGameState state);
+    const CDate&            getCurrentTime() const;
     const CPfMatches*       getCurrentMatch() const;
     void				    setCurrentMatch(const CPfMatches* match);
     const CPfTeamPlayers*   getSelectedTeamPlayer() const;

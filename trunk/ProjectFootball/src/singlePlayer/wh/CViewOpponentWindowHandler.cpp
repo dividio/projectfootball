@@ -168,8 +168,9 @@ void CViewOpponentWindowHandler::loadTeamPlayersList(CPfTeams *team, CEGUI::Mult
 {
     list->resetList();
 
+    std::string                     currentTimestamp            = m_game.getCurrentTime().getTimestamp();
     IPfTeamPlayersDAO               *teamPlayersDAO             = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
-    std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
 
     std::vector<CPfTeamPlayers*>::iterator it;
     for( it=lineUpTeamPlayersList->begin(); it!=lineUpTeamPlayersList->end(); it++ ){

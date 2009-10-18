@@ -44,8 +44,10 @@ private:
     CEGUI::Window     	*m_awayTeamName;
     CEGUI::Window       *m_homeTeamAverage;
     CEGUI::Window       *m_awayTeamAverage;
-    CEGUI::Window       *m_homeTeamCrest;
-    CEGUI::Window       *m_awayTeamCrest;
+    CEGUI::Window       *m_homeTeamBadge;
+    CEGUI::Window       *m_awayTeamBadge;
+    CEGUI::Window       *m_homeTeamCoach;
+    CEGUI::Window       *m_awayTeamCoach;
 
 	CSinglePlayerGame	&m_game;
 };

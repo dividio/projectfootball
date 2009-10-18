@@ -52,6 +52,7 @@ void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_countries.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_stadiums.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teams.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_coaches.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_competitions.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_seasons.sql");
@@ -67,8 +68,9 @@ void CDataBaseGenerator::generateTeamPlayers(IDAOFactory *daoFactory)
     std::vector<CPfTeams*>  *teams = daoFactory->getIPfTeamsDAO()->findAll();
 
     std::vector<CPfTeams*>::iterator it;
+    CDate currentDate;
     for(it = teams->begin(); it != teams->end(); it++) {
-        std::vector<CPfTeamPlayers*> *teamPlayers = daoFactory->getIPfTeamPlayersDAO()->findActiveByXFkTeam((*it)->getXTeam_str());
+        std::vector<CPfTeamPlayers*> *teamPlayers = daoFactory->getIPfTeamPlayersDAO()->findActiveByXFkTeam((*it)->getXTeam_str(), currentDate.getTimestamp());
         int contractedPlayers = teamPlayers->size();
         int neededPlayers = 17 - contractedPlayers; //TODO define MAXPLAYERS
         for( int i = 0; i < neededPlayers; i++) {
@@ -94,7 +96,7 @@ void CDataBaseGenerator::generatePlayer(IDAOFactory *daoFactory, CPfTeams *team,
 
     //Generate player contract
     CPfTeamPlayerContracts contract;
-    CDate date(15, 8, 2008, 17, 0, 0); // TODO: Remove magical numbers
+    CDate date(15, 8, 2007, 17, 0, 0); // TODO: Remove magical numbers
     IPfTeamPlayerContractsDAO *contractsDAO= daoFactory->getIPfTeamPlayerContractsDAO();
 
     contract.setXFkTeam_str(team->getXTeam_str());

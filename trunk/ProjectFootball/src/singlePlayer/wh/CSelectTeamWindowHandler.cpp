@@ -421,9 +421,10 @@ void CSelectTeamWindowHandler::loadTeamPlayersList(CPfTeams *team)
 {
     m_teamPlayersList->resetList();
 
+    std::string                     currentTimestamp  = m_game.getCurrentTime().getTimestamp();
     IPfTeamPlayersDAO               *teamPlayersDAO   = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
     IPfTeamAveragesDAO              *teamAveragesDAO  = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-    std::vector<CPfTeamPlayers*>    *playersList      = teamPlayersDAO->findActiveByXFkTeam(team->getXTeam());
+    std::vector<CPfTeamPlayers*>    *playersList      = teamPlayersDAO->findActiveByXFkTeam(team->getXTeam(), currentTimestamp);
 
     std::vector<CPfTeamPlayers*>::iterator it;
     for( it=playersList->begin(); it!=playersList->end(); it++ ){
