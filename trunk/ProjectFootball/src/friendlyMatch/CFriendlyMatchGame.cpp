@@ -31,7 +31,7 @@
 CFriendlyMatchGame::CFriendlyMatchGame(const CPfUsers &user)
 {
     LOG_DEBUG("CFriendlyMatchGame::CFriendlyMatchGame");
-    m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= FRIENDLY MATCH GAME =-]"));
+    m_game = static_cast<CSinglePlayerGame*>(CSinglePlayerGame::newGame(user, "[-= FRIENDLY MATCH GAME =-]", "foo"));
 
     IPfTeamsDAO *teamsDAO   = m_game->getIDAOFactory()->getIPfTeamsDAO();
 

@@ -101,7 +101,7 @@ void CSinglePlayerOptionManager::setGamePlayerTeam(int xPlayerTeam)
 
 int CSinglePlayerOptionManager::getGamePlayerCoach()
 {
-    return getIntOption("Game", "PlayerTeam");
+    return getIntOption("Game", "PlayerCoach");
 }
 void CSinglePlayerOptionManager::setGamePlayerCoach(int xPlayerCoach)
 {

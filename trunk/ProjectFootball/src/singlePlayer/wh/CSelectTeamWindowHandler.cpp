@@ -378,6 +378,24 @@ bool CSelectTeamWindowHandler::selectButtonClicked(const CEGUI::EventArgs& e)
     m_game.getOptionManager()->setGamePlayerTeam(item->getID());
     m_game.getOptionManager()->setGameNew(false);
 
+    IPfCoachContractsDAO *coachContractsDAO = m_game.getIDAOFactory()->getIPfCoachContractsDAO();
+    CPfCoachContracts    *contract          = coachContractsDAO->findActiveByXFkTeam(item->getID(), m_game.getCurrentTime().getTimestamp());
+    contract->setDEnd(m_game.getCurrentTime());
+    coachContractsDAO->updateReg(contract);
+    delete contract;
+
+    CDate endDate;
+    endDate.setYear(3009);
+    int XCoach = m_game.getOptionManager()->getGamePlayerCoach();
+    contract = new CPfCoachContracts();
+    contract->setXFkCoach(XCoach);
+    contract->setXFkTeam(item->getID());
+    contract->setDBegin(m_game.getCurrentTime());
+    contract->setDEnd(endDate);
+    contract->setNSalary(300000);
+    coachContractsDAO->insertReg(contract);
+    delete contract;
+
     CGameEngine::getInstance()->getWindowManager()->nextScreen("Game");
     CGameEngine::getInstance()->getWindowManager()->clearHistory();
     return true;

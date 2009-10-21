@@ -40,8 +40,9 @@ CNewManagerGameWindowHandler::~CNewManagerGameWindowHandler()
 
 void CNewManagerGameWindowHandler::enter()
 {
-    m_newGameButton->setEnabled(false);
-    m_newGameEditbox->setText("");
+    m_newGameButton   ->setEnabled(false);
+    m_newGameEditbox  ->setText("");
+    m_coachNameEditbox->setText("");
     CGameEngine::getInstance()->unloadCurrentGame(); // FIXME: Temporaly fix for SelectTeamWindowHandler bug
 }
 
@@ -52,20 +53,24 @@ void CNewManagerGameWindowHandler::init()
     m_backButton		   = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/BackButton"));
     m_newGameButton        = static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/NewGameButton"));
     m_newGameEditbox       = static_cast<CEGUI::Editbox*>(windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/NewGameEdit"));
+    m_coachNameEditbox     = static_cast<CEGUI::Editbox*>(windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/CoachNameEdit"));
 
     // i18n support
     m_newGameButton       ->setText((CEGUI::utf8*)gettext("New Game"));
     m_backButton          ->setText((CEGUI::utf8*)gettext("Back"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/NewGameLabel"))->setText((CEGUI::utf8*)gettext("Game name:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"NewManagerGame/CoachNameLabel"))->setText((CEGUI::utf8*)gettext("Coach name:"));
 
     // Event handle
     registerEventConnection(m_backButton         ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::backButtonClicked, this)));
     registerEventConnection(m_newGameButton      ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::newGameButtonClicked, this)));
     registerEventConnection(m_newGameEditbox     ->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::newGameEditboxTextChanged, this)));
+    registerEventConnection(m_coachNameEditbox   ->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&CNewManagerGameWindowHandler::newGameEditboxTextChanged, this)));
 }
 
 bool CNewManagerGameWindowHandler::newGameEditboxTextChanged(const CEGUI::EventArgs& e)
 {
-    if( m_newGameEditbox->getText().compare("")!=0 ){
+    if( m_newGameEditbox->getText().compare("")!=0 && m_coachNameEditbox->getText().compare("")!=0){
         m_newGameButton->setEnabled(true);
     }else{
         m_newGameButton->setEnabled(false);
@@ -87,9 +92,10 @@ bool CNewManagerGameWindowHandler::newGameButtonClicked(const CEGUI::EventArgs& 
         throw PFEXCEPTION("[CNewManagerGameWindowHandler::newGameButtonClicked] User not defined");
     }
 
-    CGameEngine::getInstance()->loadGame(CSinglePlayerGame::newGame(*user, m_newGameEditbox->getText().c_str()));
+    CGameEngine::getInstance()->loadGame(CSinglePlayerGame::newGame(*user, m_newGameEditbox->getText().c_str(), m_coachNameEditbox->getText().c_str()));
 
-    m_newGameEditbox->setText("");
+    m_newGameEditbox  ->setText("");
+    m_coachNameEditbox->setText("");
 
     return true;
 }

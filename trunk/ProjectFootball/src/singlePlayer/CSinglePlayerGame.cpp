@@ -145,7 +145,7 @@ CSinglePlayerOptionManager* CSinglePlayerGame::getOptionManager()
     return m_optionManager;
 }
 
-IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameName)
+IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameName, const std::string &coachName)
 {
     LOG_DEBUG("CSinglePlayerGame::newGame");
 
@@ -195,6 +195,17 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
 	singlePlayerGame->m_optionManager->setGameNew(true);
 	singlePlayerGame->m_optionManager->setGameCurrentDate(maxDate);
 	singlePlayerGame->m_optionManager->setGameCurrentSeason(season->getXSeason());
+
+	// Create player's coach
+	// TODO: create coach in another way. Maybe player settings?
+	CPfCoaches *playerCoach = new CPfCoaches();
+	playerCoach->setSName(coachName);
+	playerCoach->setSShortName(coachName);
+	playerCoach->setSPhoto("p_unknown");
+	singlePlayerGame->m_daoFactory->getIPfCoachesDAO()->insertReg(playerCoach);
+	singlePlayerGame->m_optionManager->setGamePlayerCoach(playerCoach->getXCoach());
+	delete playerCoach;
+
 
 	competitionBySeasonDAO->freeVector(competitionsBySeasonList);
     delete season;

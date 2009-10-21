@@ -16,11 +16,33 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0,0},{0.661578,0},{1,0},{1,0}}" />
             </Window>
+            <Window Type="ArridiDesign/StaticText" Name="NewManagerGame/NewGameLabel" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="BackgroundEnabled" Value="False" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.66,0},{0.2,0},{0.70,0}}" />
+            </Window>
             <Window Type="ArridiDesign/Editbox" Name="NewManagerGame/NewGameEdit" >
                 <Property Name="AlwaysOnTop" Value="True" />
                 <Property Name="MaxTextLength" Value="50" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.73,0},{0.5,0},{0.77,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.66,0},{0.5,0},{0.70,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="NewManagerGame/CoachNameLabel" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="BackgroundEnabled" Value="False" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.73,0},{0.2,0},{0.77,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/Editbox" Name="NewManagerGame/CoachNameEdit" >
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.73,0},{0.5,0},{0.77,0}}" />
             </Window>
             <Window Type="ArridiDesign/bButton" Name="NewManagerGame/NewGameButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />

@@ -41,6 +41,7 @@ private:
 
 	CEGUI::PushButton		*m_backButton;
     CEGUI::Editbox          *m_newGameEditbox;
+    CEGUI::Editbox          *m_coachNameEditbox;
     CEGUI::PushButton       *m_newGameButton;
 };
 

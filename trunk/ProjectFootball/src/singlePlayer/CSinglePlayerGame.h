@@ -58,7 +58,7 @@ public:
     CSinglePlayerOptionManager*    	getOptionManager();
 
     // IGame
-    static IGame* newGame(const CPfUsers &user, const std::string &gameName);
+    static IGame* newGame(const CPfUsers &user, const std::string &gameName, const std::string &coachName);
     static IGame* load(const CPfGames &game);
     virtual CPfGames* save();
     virtual const char* getFirstScreenName();
