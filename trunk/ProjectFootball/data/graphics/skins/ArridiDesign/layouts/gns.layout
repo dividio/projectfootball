@@ -18,6 +18,12 @@
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.61,0},{0,0},{0.82,0},{0.085,0}}" />
         </Window>
+        <Window Type="ArridiDesign/RadioButton" Name="GNS/HistoryButton" >
+            <Property Name="Font" Value="DejaVuSans-9" />
+            <Property Name="LookNFeel" Value="ArridiDesign/GNSChangingRoom" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.61,0},{0.1,0},{0.82,0},{0.185,0}}" />
+        </Window>
         
         <!-- GNS ACTIONS BUTTONS -->
         <Window Type="ArridiDesign/GNS_Button1" Name="GNS/Action1Button" >

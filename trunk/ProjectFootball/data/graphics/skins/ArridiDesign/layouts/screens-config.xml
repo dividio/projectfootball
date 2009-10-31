@@ -90,4 +90,11 @@
     <screen id="ConfigGame">
         <window hook="none" path="configGame.layout"/>
     </screen>
+    <screen id="SeasonsHistory">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="seasonsHistory.layout" />
+        </window>
+    </screen>
 </screens-config>

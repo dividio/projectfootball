@@ -38,6 +38,7 @@ public:
     virtual CPfSeasons* findByXSeason(int XSeason);
     virtual CPfSeasons* findByXSeason(const std::string &XSeason);
     virtual CPfSeasons* findLastSeason();
+    virtual std::vector<CPfSeasons*>* findAll();
 
 };
 #endif /*CPFSEASONSDAOSQLITE_H_*/

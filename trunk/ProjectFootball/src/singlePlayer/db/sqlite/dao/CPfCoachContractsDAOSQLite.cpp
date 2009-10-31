@@ -77,3 +77,27 @@ CPfCoachContracts* CPfCoachContractsDAOSQLite::findActiveByXFkTeam(const std::st
     return loadRegister(sql);
 }
 
+std::vector<CPfCoachContracts*>* CPfCoachContractsDAOSQLite::findByXFkCoachAndXSeason(int XFkCoach, int XSeason)
+{
+    std::ostringstream streamCoach;
+    streamCoach << XFkCoach;
+    std::ostringstream streamSeason;
+    streamSeason << XSeason;
+    return findByXFkCoachAndXSeason(streamCoach.str(), streamSeason.str());
+}
+
+std::vector<CPfCoachContracts*>* CPfCoachContractsDAOSQLite::findByXFkCoachAndXSeason(const std::string &XFkCoach, const std::string &XSeason)
+{
+    std::string sql("SELECT * FROM PF_COACH_CONTRACTS WHERE ");
+    sql = sql+" X_FK_COACH='"+XFkCoach+"'";
+    sql = sql+" AND D_BEGIN <= (SELECT MAX(D_END_COMPETITION) ";
+    sql = sql+            "FROM PF_COMPETITIONS_BY_SEASON CS ";
+    sql = sql+            "JOIN PF_SEASONS S ON S.X_SEASON = CS.X_FK_SEASON ";
+    sql = sql+            "WHERE S.X_SEASON = "+XSeason+")";
+    sql = sql+" AND (D_END >= (SELECT MIN(D_BEGIN_COMPETITION) ";
+    sql = sql+            "FROM PF_COMPETITIONS_BY_SEASON CS ";
+    sql = sql+            "JOIN PF_SEASONS S ON S.X_SEASON = CS.X_FK_SEASON ";
+    sql = sql+            "WHERE S.X_SEASON = "+XSeason+")";
+    sql = sql+" OR D_END IS NULL) ";
+    return loadVector(sql);
+}

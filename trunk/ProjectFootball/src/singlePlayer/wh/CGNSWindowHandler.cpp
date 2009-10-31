@@ -30,7 +30,7 @@ CGNSWindowHandler::CGNSWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("gns.layout"),
 	m_noButtonsBackground(NULL), m_buttonsBackground(NULL), m_homeButton(NULL), m_nextScreenButton(NULL), m_previousScreenButton(NULL),
 	m_action1Button(NULL), m_action2Button(NULL), m_action3Button(NULL), m_action4Button(NULL), m_action5Button(NULL), m_action6Button(NULL), m_action7Button(NULL), m_action8Button(NULL),
-	m_statisticsRadio(NULL), m_changingRoomRadio(NULL), m_game(game)
+	m_statisticsRadio(NULL), m_changingRoomRadio(NULL), m_historyRadio(NULL), m_game(game)
 {}
 
 CGNSWindowHandler::~CGNSWindowHandler()
@@ -86,6 +86,7 @@ void CGNSWindowHandler::init()
 	m_action8Button			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/Action8Button"));
 	m_changingRoomRadio		= static_cast<CEGUI::RadioButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/ChangingRoomButton"));
 	m_statisticsRadio		= static_cast<CEGUI::RadioButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/StatisticsButton"));
+	m_historyRadio          = static_cast<CEGUI::RadioButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/HistoryButton"));
 
 	m_noButtonsBackground	= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Game/GNSListEndE"));
 	m_buttonsBackground		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Game/GNSListEndF"));
@@ -113,6 +114,7 @@ void CGNSWindowHandler::init()
 	m_homeButton			->setTooltipText((CEGUI::utf8*)gettext("Home"));
     m_changingRoomRadio		->setTooltipText((CEGUI::utf8*)gettext("Changing Room"));
     m_statisticsRadio		->setTooltipText((CEGUI::utf8*)gettext("Statistics"));
+    m_historyRadio          ->setTooltipText((CEGUI::utf8*)gettext("Info Manager"));
 
 	m_noButtonsBackground->setRiseOnClickEnabled(false);
 	m_buttonsBackground->setRiseOnClickEnabled(false);
@@ -134,6 +136,7 @@ void CGNSWindowHandler::init()
 	registerEventConnection(m_action8Button			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::actionButtonClicked, this)));
 	registerEventConnection(m_changingRoomRadio		->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::gnsSelectionChanged, this)));
 	registerEventConnection(m_statisticsRadio		->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::gnsSelectionChanged, this)));
+	registerEventConnection(m_historyRadio          ->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged, CEGUI::Event::Subscriber(&CGNSWindowHandler::gnsSelectionChanged, this)));
 	registerEventConnection(m_homeButton			->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::homeButtonClicked, this)));
 	registerEventConnection(m_nextScreenButton		->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::nextScreenButtonClicked, this)));
 	registerEventConnection(m_previousScreenButton	->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CGNSWindowHandler::previousScreenButtonClicked, this)));
@@ -183,8 +186,8 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action8Button->setText("");
 		m_action8Button->setUserString("screen", "");
 		m_action8Button->setEnabled(false);
-	}
-	else if( button==m_statisticsRadio ){
+
+	} else if( button==m_statisticsRadio ) {
 		m_action1Button->setText((CEGUI::utf8*)gettext("Results"));
 		m_action1Button->setUserString("screen", "Results");
 		m_action1Button->setEnabled(true);
@@ -209,8 +212,34 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action8Button->setText("");
 		m_action8Button->setUserString("screen", "");
 		m_action8Button->setEnabled(false);
-	}
-	else{
+
+	}  else if( button==m_historyRadio ) {
+        m_action1Button->setText((CEGUI::utf8*)gettext("Career"));
+        m_action1Button->setUserString("screen", "SeasonsHistory");
+        m_action1Button->setEnabled(true);
+        m_action2Button->setText("");
+        m_action2Button->setUserString("screen", "");
+        m_action2Button->setEnabled(false);
+        m_action3Button->setText("");
+        m_action3Button->setUserString("screen", "");
+        m_action3Button->setEnabled(false);
+        m_action4Button->setText("");
+        m_action4Button->setUserString("screen", "");
+        m_action4Button->setEnabled(false);
+        m_action5Button->setText("");
+        m_action5Button->setUserString("screen", "");
+        m_action5Button->setEnabled(false);
+        m_action6Button->setText("");
+        m_action6Button->setUserString("screen", "");
+        m_action6Button->setEnabled(false);
+        m_action7Button->setText("");
+        m_action7Button->setUserString("screen", "");
+        m_action7Button->setEnabled(false);
+        m_action8Button->setText("");
+        m_action8Button->setUserString("screen", "");
+        m_action8Button->setEnabled(false);
+
+    } else {
 		m_action1Button->setText("");
 		m_action1Button->setUserString("screen", "");
 		m_action1Button->setEnabled(false);

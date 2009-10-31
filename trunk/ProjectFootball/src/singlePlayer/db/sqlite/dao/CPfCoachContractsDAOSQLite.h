@@ -41,6 +41,8 @@ public:
     virtual CPfCoachContracts* findByXFkCoach(const std::string &XFkCoach);
     virtual CPfCoachContracts* findActiveByXFkTeam(int XFkTeam, const std::string &timestamp);
     virtual CPfCoachContracts* findActiveByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfCoachContracts*>* findByXFkCoachAndXSeason(int XFkCoach, int XSeason);
+    virtual std::vector<CPfCoachContracts*>* findByXFkCoachAndXSeason(const std::string &XFkCoach, const std::string &XSeason);
 
 };
 #endif /*CPFCOACHCONTRACTSDAOSQLITE_H_*/

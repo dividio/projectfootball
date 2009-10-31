@@ -55,6 +55,7 @@
 #include "wh/CTeamPlayerDetailsWindowHandler.h"
 #include "wh/CConfigGameWindowHandler.h"
 #include "wh/CViewOpponentWindowHandler.h"
+#include "wh/CSeasonsHistoryWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../engine/db/bean/CPfGames.h"
@@ -100,6 +101,7 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	m_windowHandlers.push_back(new CSimulatorWindowHandler(*this));
 	m_windowHandlers.push_back(new CConfigGameWindowHandler(*this));
 	m_windowHandlers.push_back(new CViewOpponentWindowHandler(*this));
+	m_windowHandlers.push_back(new CSeasonsHistoryWindowHandler(*this));
 
     // game progression
     m_currentMatch		 = NULL;

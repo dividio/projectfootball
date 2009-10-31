@@ -55,3 +55,8 @@ CPfSeasons* CPfSeasonsDAOSQLite::findLastSeason()
 	return loadRegister("SELECT * FROM PF_SEASONS ORDER BY N_YEAR DESC");
 }
 
+std::vector<CPfSeasons*>* CPfSeasonsDAOSQLite::findAll()
+{
+    std::string sql("SELECT * FROM PF_SEASONS ORDER BY N_YEAR ASC");
+    return loadVector(sql);
+}

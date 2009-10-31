@@ -68,8 +68,9 @@ private:
 	CEGUI::PushButton	*m_action7Button;
 	CEGUI::PushButton	*m_action8Button;
 
-	CEGUI::RadioButton	*m_statisticsRadio;
-	CEGUI::RadioButton	*m_changingRoomRadio;
+	CEGUI::RadioButton  *m_statisticsRadio;
+	CEGUI::RadioButton  *m_changingRoomRadio;
+	CEGUI::RadioButton  *m_historyRadio;
 
     CSinglePlayerGame	&m_game;
 
