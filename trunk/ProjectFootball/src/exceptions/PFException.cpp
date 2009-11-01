@@ -20,7 +20,8 @@
 
 #include "PFException.h"
 
-#include <stdarg.h>
+#include <cstdarg>
+#include <cstdio>
 
 #define BUFFER_SIZE	512
 
