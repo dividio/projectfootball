@@ -75,6 +75,8 @@ void CRankingWindowHandler::enter()
         loadCompetitions(m_lastSeason->getXSeason(), lastCountry->getXCountry(), lastCompetition->getXCompetition());
         loadRanking(m_lastSeason->getXSeason(), lastCompetition->getXCompetition());
 
+        delete lastCountry;
+        delete lastCompetition;
         delete lastCompetitionPhase;
     }
     delete lastMatch;
