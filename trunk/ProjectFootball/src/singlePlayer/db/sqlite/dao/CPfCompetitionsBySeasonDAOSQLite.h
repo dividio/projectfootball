@@ -41,6 +41,7 @@ public:
     virtual CPfCompetitionsBySeason* findByXCompetitionBySeason(const std::string &XCompetitionBySeason);
     virtual std::vector<CPfCompetitionsBySeason*>* findByXFkCompetition(int XFkCompetition);
     virtual std::vector<CPfCompetitionsBySeason*>* findByXFkCompetition(const std::string &XFkCompetition);
-
+    virtual CPfCompetitionsBySeason* findByXFkSeasonAndXTeam(int XFkSeason, int XTeam);
+    virtual CPfCompetitionsBySeason* findByXFkSeasonAndXTeam(const std::string &XFkSeason, const std::string &XTeam);
 };
 #endif /*CPFCOMPETITIONSBYSEASONDAOSQLITE_H_*/

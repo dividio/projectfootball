@@ -97,4 +97,11 @@
             <window hook="Game/InfoHook" path="seasonsHistory.layout" />
         </window>
     </screen>
+    <screen id="SeasonSummary">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="seasonSummary.layout" />
+        </window>
+    </screen>
 </screens-config>

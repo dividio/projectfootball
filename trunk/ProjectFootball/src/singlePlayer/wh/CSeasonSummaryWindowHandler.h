@@ -18,35 +18,48 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CSEASONSHISTORYWINDOWHANDLER_H_
-#define CSEASONSHISTORYWINDOWHANDLER_H_
+#ifndef CSEASONSUMMARYWINDOWHANDLER_H_
+#define CSEASONSUMMARYWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 #include "../../engine/wm/CWindowHandler.h"
 
 //Forward declarations
+class CPfTeams;
+class CPfSeasons;
 class CSinglePlayerGame;
 
 
-class CSeasonsHistoryWindowHandler : public CWindowHandler
+class CSeasonSummaryWindowHandler : public CWindowHandler
 {
 public:
-    CSeasonsHistoryWindowHandler(CSinglePlayerGame &game);
-    virtual ~CSeasonsHistoryWindowHandler();
+    CSeasonSummaryWindowHandler(CSinglePlayerGame &game);
+	virtual ~CSeasonSummaryWindowHandler();
 
     virtual void enter();
     virtual void init();
     virtual void leave();
 
 private:
-    bool seasonsListboxSelectionChanged(const CEGUI::EventArgs& e);
 
-    void loadSeasonsHistory();
+    bool confederationsComboboxListSelectionChanged (const CEGUI::EventArgs& e);
+    bool countriesComboboxListSelectionChanged      (const CEGUI::EventArgs& e);
+    bool competitionsComboboxListSelectionChanged   (const CEGUI::EventArgs& e);
 
-    CEGUI::MultiColumnList  *m_seasonsList;
+	void loadRanking        (int XSeason, int XCompetition);
+    void loadConfederations (int XSeason, int XConfederation = -1);
+    void loadCountries      (int XSeason, int XConfederation, int XCountry = -1);
+    void loadCompetitions   (int XSeason, int XCountry, int XCompetition = -1);
+    void loadLastSeason     ();
 
-    CSinglePlayerGame       &m_game;
-    bool                    m_initiated;
+    CEGUI::Combobox         *m_confederationsCombobox;
+    CEGUI::Combobox         *m_countriesCombobox;
+    CEGUI::Combobox         *m_competitionsCombobox;
+    CEGUI::MultiColumnList  *m_rankingList;
+
+    int                     m_xLastSeason;
+    CSinglePlayerGame		&m_game;
+    bool					m_initiated;
 };
 
-#endif /*CSEASONSHISTORYWINDOWHANDLER_H_*/
+#endif /*CSEASONSUMMARYWINDOWHANDLER_H_*/

@@ -32,6 +32,7 @@ class CPfUsers;
 class CPfMatches;
 class CPfTeamAverages;
 class CPfTeamPlayers;
+class CPfCompetitionsBySeason;
 class IDAOFactory;
 class CSinglePlayerOptionManager;
 class CSinglePlayerReportRegister;
@@ -64,13 +65,15 @@ public:
     virtual const char* getFirstScreenName();
 
     // Game progression
-    const EGameState        getGameState() const { return m_gameState; }
-    void				    setGameState(EGameState state);
-    const CDate&            getCurrentTime() const;
-    const CPfMatches*       getCurrentMatch() const;
-    void				    setCurrentMatch(const CPfMatches* match);
-    const CPfTeamPlayers*   getSelectedTeamPlayer() const;
-    void                    setSelectedTeamPlayer(const CPfTeamPlayers* teamPlayer);
+    const EGameState               getGameState() const { return m_gameState; }
+    void				           setGameState(EGameState state);
+    const CDate&                   getCurrentTime() const;
+    const CPfMatches*              getCurrentMatch() const;
+    void				           setCurrentMatch(const CPfMatches* match);
+    const CPfTeamPlayers*          getSelectedTeamPlayer() const;
+    void                           setSelectedTeamPlayer(const CPfTeamPlayers* teamPlayer);
+    const CPfCompetitionsBySeason* getSelectedCompetitionBySeason() const;
+    void                           setSelectedCompetitionBySeason(const CPfCompetitionsBySeason* season);
 
     void simulateMatch(const CPfMatches &match);
 
@@ -92,6 +95,7 @@ protected:
 
     const CPfMatches				*m_currentMatch;
     const CPfTeamPlayers            *m_selectedTeamPlayer;
+    const CPfCompetitionsBySeason   *m_selectedCompetitionBySeason;
     EGameState						m_gameState;
     CEventsHandler					*m_eventsHandler;
 

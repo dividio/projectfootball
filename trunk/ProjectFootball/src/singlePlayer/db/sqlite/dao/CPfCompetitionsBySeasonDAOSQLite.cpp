@@ -81,3 +81,22 @@ std::vector<CPfCompetitionsBySeason*>* CPfCompetitionsBySeasonDAOSQLite::findByX
     return loadVector(sql);
 }
 
+CPfCompetitionsBySeason* CPfCompetitionsBySeasonDAOSQLite::findByXFkSeasonAndXTeam(int XFkSeason, int XTeam)
+{
+    std::ostringstream stream;
+    stream << XFkSeason;
+    std::ostringstream stream2;
+    stream2 << XTeam;
+    return findByXFkSeasonAndXTeam(stream.str(), stream2.str());
+}
+
+CPfCompetitionsBySeason* CPfCompetitionsBySeasonDAOSQLite::findByXFkSeasonAndXTeam(const std::string &XFkSeason, const std::string &XTeam)
+{
+    std::string sql(
+            "SELECT CS.* "
+            "FROM PF_COMPETITIONS_BY_SEASON CS "
+            "JOIN PF_TEAMS_BY_COMPETITIONS TC ON TC.X_FK_COMPETITION_BY_SEASON = CS.X_COMPETITION_BY_SEASON ");
+    sql +=  "WHERE X_FK_SEASON='"+ XFkSeason +"' "
+            "AND TC.X_FK_TEAM='" + XTeam + "'";
+    return loadRegister(sql);
+}

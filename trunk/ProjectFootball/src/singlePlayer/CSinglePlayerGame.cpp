@@ -56,6 +56,7 @@
 #include "wh/CConfigGameWindowHandler.h"
 #include "wh/CViewOpponentWindowHandler.h"
 #include "wh/CSeasonsHistoryWindowHandler.h"
+#include "wh/CSeasonSummaryWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../engine/db/bean/CPfGames.h"
@@ -102,10 +103,12 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	m_windowHandlers.push_back(new CConfigGameWindowHandler(*this));
 	m_windowHandlers.push_back(new CViewOpponentWindowHandler(*this));
 	m_windowHandlers.push_back(new CSeasonsHistoryWindowHandler(*this));
+	m_windowHandlers.push_back(new CSeasonSummaryWindowHandler(*this));
 
     // game progression
     m_currentMatch		 = NULL;
     m_selectedTeamPlayer = NULL;
+    m_selectedCompetitionBySeason     = NULL;
 }
 
 CSinglePlayerGame::~CSinglePlayerGame()
@@ -129,6 +132,9 @@ CSinglePlayerGame::~CSinglePlayerGame()
     delete m_currentMatch;
     if(m_selectedTeamPlayer != NULL) {
         delete m_selectedTeamPlayer;
+    }
+    if(m_selectedCompetitionBySeason != NULL) {
+        delete m_selectedCompetitionBySeason;
     }
 }
 
@@ -300,6 +306,20 @@ void CSinglePlayerGame::setSelectedTeamPlayer(const CPfTeamPlayers *teamPlayer)
         delete m_selectedTeamPlayer;
     }
     m_selectedTeamPlayer = (teamPlayer!=NULL)?new CPfTeamPlayers(*teamPlayer):NULL;
+}
+
+const CPfCompetitionsBySeason* CSinglePlayerGame::getSelectedCompetitionBySeason() const
+{
+    return m_selectedCompetitionBySeason;
+}
+
+void CSinglePlayerGame::setSelectedCompetitionBySeason(const CPfCompetitionsBySeason *season)
+{
+
+    if(m_selectedCompetitionBySeason != NULL) {
+        delete m_selectedCompetitionBySeason;
+    }
+    m_selectedCompetitionBySeason = (season!=NULL)?new CPfCompetitionsBySeason(*season):NULL;
 }
 
 void CSinglePlayerGame::simulateMatch(const CPfMatches &match)
