@@ -56,15 +56,23 @@ CSeasonSummaryWindowHandler::~CSeasonSummaryWindowHandler()
 		m_rankingList->removeColumnWithID(6);
 		m_rankingList->removeColumnWithID(7);
 		m_rankingList->removeColumnWithID(8);
+
+        m_scorersList->removeColumnWithID(0);
+        m_scorersList->removeColumnWithID(1);
+        m_scorersList->removeColumnWithID(2);
+        m_scorersList->removeColumnWithID(3);
     }
 }
 
 void CSeasonSummaryWindowHandler::enter()
 {
-    int XCoach = m_game.getOptionManager()->getGamePlayerCoach();
-    int XSeason = m_game.getSelectedCompetitionBySeason()->getXFkSeason();
+    CEGUI::WindowManager &windowMngr = CEGUI::WindowManager::getSingleton();
+
+    int XCoach       = m_game.getOptionManager()->getGamePlayerCoach();
+    int XSeason      = m_game.getSelectedCompetitionBySeason()->getXFkSeason();
     int XCompetition = m_game.getSelectedCompetitionBySeason()->getXFkCompetition();
     loadRanking(XSeason, XCompetition);
+    loadScorers(XSeason, XCompetition);
 
     CPfCompetitions *competition = m_game.getIDAOFactory()->getIPfCompetitionsDAO()->findByXCompetition(XCompetition);
     CPfCountries    *country     = m_game.getIDAOFactory()->getIPfCountriesDAO()->findByXCountry(competition->getXFkCountry());
@@ -74,6 +82,12 @@ void CSeasonSummaryWindowHandler::enter()
     loadCompetitions(XSeason, country->getXCountry(), competition->getXCompetition());
     delete country;
     delete competition;
+
+    CEGUI::String seasonLabel = gettext("Season");
+    CPfSeasons   *season      = m_game.getIDAOFactory()->getIPfSeasonsDAO()->findByXSeason(XSeason);
+    seasonLabel = seasonLabel + " " + season->getSSeason();
+    delete season;
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/SeasonLabel"))->setText((CEGUI::utf8*)seasonLabel.c_str());
 
     loadLastSeason();
 }
@@ -86,6 +100,7 @@ void CSeasonSummaryWindowHandler::init()
     m_countriesCombobox      = static_cast<CEGUI::Combobox*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/CountryCombo"));
     m_competitionsCombobox   = static_cast<CEGUI::Combobox*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/CompetitionCombo"));
     m_rankingList            = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/RankingList"));
+    m_scorersList            = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/ScorersList"));
 
     m_confederationsCombobox->getEditbox()->setEnabled(false);
     m_countriesCombobox     ->getEditbox()->setEnabled(false);
@@ -94,9 +109,13 @@ void CSeasonSummaryWindowHandler::init()
     m_rankingList->setUserColumnDraggingEnabled(false);
     m_rankingList->setUserColumnSizingEnabled(false);
     m_rankingList->setUserSortControlEnabled(false);
+    m_scorersList->setUserColumnDraggingEnabled(false);
+    m_scorersList->setUserColumnSizingEnabled(false);
+    m_scorersList->setUserSortControlEnabled(false);
 
     // i18n support
     static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/RankingLabel"))->setText((CEGUI::utf8*)gettext("Ranking:"));
+    static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"SeasonSummary/ScorersLabel"))->setText((CEGUI::utf8*)gettext("Scorers:"));
 
     // Event handle
     registerEventConnection(m_confederationsCombobox   ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CSeasonSummaryWindowHandler::confederationsComboboxListSelectionChanged, this)));
@@ -104,14 +123,19 @@ void CSeasonSummaryWindowHandler::init()
     registerEventConnection(m_competitionsCombobox     ->subscribeEvent(CEGUI::Combobox::EventListSelectionAccepted, CEGUI::Event::Subscriber(&CSeasonSummaryWindowHandler::competitionsComboboxListSelectionChanged, this)));
 
     m_rankingList->addColumn("",     0, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.60,0));
-    m_rankingList->addColumn("PT",   2, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn("PM",   3, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn("WM",   4, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn("DM",   5, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn("LM",   6, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn("GF",   7, CEGUI::UDim(0.05,0));
-    m_rankingList->addColumn("GA",   8, CEGUI::UDim(0.05,0));
+    m_rankingList->addColumn((CEGUI::utf8*)gettext("Team"), 1, CEGUI::UDim(0.46,0));
+    m_rankingList->addColumn("PT",   2, CEGUI::UDim(0.07,0));
+    m_rankingList->addColumn("PM",   3, CEGUI::UDim(0.07,0));
+    m_rankingList->addColumn("WM",   4, CEGUI::UDim(0.07,0));
+    m_rankingList->addColumn("DM",   5, CEGUI::UDim(0.07,0));
+    m_rankingList->addColumn("LM",   6, CEGUI::UDim(0.07,0));
+    m_rankingList->addColumn("GF",   7, CEGUI::UDim(0.07,0));
+    m_rankingList->addColumn("GA",   8, CEGUI::UDim(0.07,0));
+
+    m_scorersList->addColumn("", 0, CEGUI::UDim(0.10,0));
+    m_scorersList->addColumn((CEGUI::utf8*)gettext("Name"), 1, CEGUI::UDim(0.40,0));
+    m_scorersList->addColumn((CEGUI::utf8*)gettext("Team"), 2, CEGUI::UDim(0.35,0));
+    m_scorersList->addColumn((CEGUI::utf8*)gettext("Goals"), 3, CEGUI::UDim(0.15,0));
 
     m_initiated = true;
 }
@@ -284,6 +308,48 @@ void CSeasonSummaryWindowHandler::loadRanking(int XSeason, int XCompetition)
     m_rankingList->getHorzScrollbar()->setVisible(false);
 }
 
+void CSeasonSummaryWindowHandler::loadScorers(int XSeason, int XCompetition)
+{
+    m_scorersList->resetList();
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+
+    IDAOFactory                         *daoFactory     = m_game.getIDAOFactory();
+    IPfScorersDAO                       *scorersDAO     = daoFactory->getIPfScorersDAO();
+    std::vector<CPfScorers*>            *scorersList    = scorersDAO->findScorersByXSeasonAndXCompetition(XSeason, XCompetition);
+    std::vector<CPfScorers*>::iterator  it;
+    CEGUI::ListboxTextItem *item;
+    char position[4];
+    int cont = 1;
+
+    for( it=scorersList->begin(); it!=scorersList->end(), cont <= 5; it++ ){
+        CPfScorers *scorer = (*it);
+        sprintf(position, "%d", cont);
+
+        int row_idx = m_scorersList->addRow();
+
+        item = new CEGUI::ListboxTextItem(position);
+        item->setSelectionBrushImage(sel_img);
+        m_scorersList->setItem(item, 0, row_idx);
+
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)scorer->getSShortTeamPlayerName().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_scorersList->setItem(item, 1, row_idx);
+
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)scorer->getSShortTeamName().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_scorersList->setItem(item, 2, row_idx);
+
+        item = new CEGUI::ListboxTextItem((CEGUI::utf8*)scorer->getNGoals_str().c_str());
+        item->setSelectionBrushImage(sel_img);
+        m_scorersList->setItem(item, 3, row_idx);
+
+        cont++;
+    }
+    scorersDAO->freeVector(scorersList);
+
+    m_scorersList->getHorzScrollbar()->setVisible(false);
+}
+
 void CSeasonSummaryWindowHandler::loadLastSeason()
 {
     m_xLastSeason = m_game.getSelectedCompetitionBySeason()->getXFkSeason();
@@ -298,6 +364,7 @@ bool CSeasonSummaryWindowHandler::confederationsComboboxListSelectionChanged(con
     item = m_competitionsCombobox->getSelectedItem();
     int XCompetition = item->getID();
     loadRanking(m_xLastSeason, XCompetition);
+    loadScorers(m_xLastSeason, XCompetition);
     return true;
 }
 
@@ -308,6 +375,7 @@ bool CSeasonSummaryWindowHandler::countriesComboboxListSelectionChanged(const CE
     item = m_competitionsCombobox->getSelectedItem();
     int XCompetition = item->getID();
     loadRanking(m_xLastSeason, XCompetition);
+    loadScorers(m_xLastSeason, XCompetition);
     return true;
 }
 
@@ -316,5 +384,6 @@ bool CSeasonSummaryWindowHandler::competitionsComboboxListSelectionChanged(const
     CEGUI::ListboxItem *item = m_competitionsCombobox->getSelectedItem();
     int XCompetition = item->getID();
     loadRanking(m_xLastSeason, XCompetition);
+    loadScorers(m_xLastSeason, XCompetition);
     return true;
 }

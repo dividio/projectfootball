@@ -32,6 +32,10 @@ public:
     CPfScorers(const CPfScorers &obj);
     virtual ~CPfScorers();
 
+    const std::string& getSShortTeamPlayerName() const;
+    const std::string& getSShortTeamPlayerName_str() const;
+    const std::string& getSShortTeamName() const;
+    const std::string& getSShortTeamName_str() const;
     int getNGoals() const;
     const std::string& getNGoals_str() const;
     const std::string& getSTeamPlayer() const;
@@ -39,6 +43,10 @@ public:
     const std::string& getSTeam() const;
     const std::string& getSTeam_str() const;
 
+    void setSShortTeamPlayerName(const std::string &SShortTeamPlayerName);
+    void setSShortTeamPlayerName_str(const std::string &SShortTeamPlayerName);
+    void setSShortTeamName(const std::string &SShortTeamName);
+    void setSShortTeamName_str(const std::string &SShortTeamName);
     void setNGoals(int NGoals);
     void setNGoals_str(const std::string &NGoals);
     void setSTeamPlayer(const std::string &STeamPlayer);
@@ -47,6 +55,8 @@ public:
     void setSTeam_str(const std::string &STeam);
 
 private:
+    std::string m_SShortTeamPlayerName;
+    std::string m_SShortTeamName;
     std::string m_NGoals;
     std::string m_STeamPlayer;
     std::string m_STeam;

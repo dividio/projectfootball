@@ -111,7 +111,11 @@ int CPfScorersDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char
     if( object!=NULL ){
         CPfScorers *destiny = (CPfScorers*)object;
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "N_GOALS")==0 ){
+            if( strcmp(sColumn[i], "S_SHORT_TEAM_PLAYER_NAME")==0 ){
+                destiny->setSShortTeamPlayerName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_SHORT_TEAM_NAME")==0 ){
+                destiny->setSShortTeamName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_GOALS")==0 ){
                 destiny->setNGoals_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_TEAM_PLAYER")==0 ){
                 destiny->setSTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
@@ -129,7 +133,11 @@ int CPfScorersDAOSQLiteEntity::callbackVector(void *object, int nColumns, char *
         std::vector<CPfScorers*> *container = (std::vector<CPfScorers*> *)object;
         CPfScorers *destiny = new CPfScorers();
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "N_GOALS")==0 ){
+            if( strcmp(sColumn[i], "S_SHORT_TEAM_PLAYER_NAME")==0 ){
+                destiny->setSShortTeamPlayerName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "S_SHORT_TEAM_NAME")==0 ){
+                destiny->setSShortTeamName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_GOALS")==0 ){
                 destiny->setNGoals_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_TEAM_PLAYER")==0 ){
                 destiny->setSTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);

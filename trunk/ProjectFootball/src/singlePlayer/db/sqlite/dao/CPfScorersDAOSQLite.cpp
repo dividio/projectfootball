@@ -44,7 +44,9 @@ std::vector<CPfScorers*>* CPfScorersDAOSQLite::findScorersByXSeasonAndXCompetiti
     std::string sql("");
     sql += "SELECT "
                  "TP.S_NAME as S_TEAM_PLAYER, "
+                 "TP.S_SHORT_NAME as S_SHORT_TEAM_PLAYER_NAME, "
                  "T.S_TEAM, "
+                 "T.S_SHORT_NAME as S_SHORT_TEAM_NAME, "
                  "COUNT(*) AS N_GOALS "
            "FROM PF_GOALS G "
            "JOIN PF_TEAMS T ON T.X_TEAM = G.X_FK_TEAM_SCORER "

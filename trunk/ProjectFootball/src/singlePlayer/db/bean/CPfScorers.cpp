@@ -28,6 +28,8 @@
 
 CPfScorers::CPfScorers()
 {
+    m_SShortTeamPlayerName = "";
+    m_SShortTeamName = "";
     m_NGoals = "0";
     m_STeamPlayer = "";
     m_STeam = "";
@@ -35,6 +37,8 @@ CPfScorers::CPfScorers()
 
 CPfScorers::CPfScorers(const CPfScorers &obj)
 {
+    m_SShortTeamPlayerName = obj.m_SShortTeamPlayerName;
+    m_SShortTeamName = obj.m_SShortTeamName;
     m_NGoals = obj.m_NGoals;
     m_STeamPlayer = obj.m_STeamPlayer;
     m_STeam = obj.m_STeam;
@@ -42,6 +46,26 @@ CPfScorers::CPfScorers(const CPfScorers &obj)
 
 CPfScorers::~CPfScorers()
 {
+}
+
+const std::string& CPfScorers::getSShortTeamPlayerName() const
+{
+    return m_SShortTeamPlayerName;
+}
+
+const std::string& CPfScorers::getSShortTeamPlayerName_str() const
+{
+    return m_SShortTeamPlayerName;
+}
+
+const std::string& CPfScorers::getSShortTeamName() const
+{
+    return m_SShortTeamName;
+}
+
+const std::string& CPfScorers::getSShortTeamName_str() const
+{
+    return m_SShortTeamName;
 }
 
 int CPfScorers::getNGoals() const
@@ -76,6 +100,26 @@ const std::string& CPfScorers::getSTeam() const
 const std::string& CPfScorers::getSTeam_str() const
 {
     return m_STeam;
+}
+
+void CPfScorers::setSShortTeamPlayerName(const std::string &SShortTeamPlayerName)
+{
+    m_SShortTeamPlayerName = SShortTeamPlayerName;
+}
+
+void CPfScorers::setSShortTeamPlayerName_str(const std::string &SShortTeamPlayerName)
+{
+    m_SShortTeamPlayerName = SShortTeamPlayerName;
+}
+
+void CPfScorers::setSShortTeamName(const std::string &SShortTeamName)
+{
+    m_SShortTeamName = SShortTeamName;
+}
+
+void CPfScorers::setSShortTeamName_str(const std::string &SShortTeamName)
+{
+    m_SShortTeamName = SShortTeamName;
 }
 
 void CPfScorers::setNGoals(int NGoals)

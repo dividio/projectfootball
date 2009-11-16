@@ -47,6 +47,7 @@ private:
     bool competitionsComboboxListSelectionChanged   (const CEGUI::EventArgs& e);
 
 	void loadRanking        (int XSeason, int XCompetition);
+	void loadScorers        (int XSeason, int XCompetition);
     void loadConfederations (int XSeason, int XConfederation = -1);
     void loadCountries      (int XSeason, int XConfederation, int XCountry = -1);
     void loadCompetitions   (int XSeason, int XCountry, int XCompetition = -1);
@@ -56,6 +57,7 @@ private:
     CEGUI::Combobox         *m_countriesCombobox;
     CEGUI::Combobox         *m_competitionsCombobox;
     CEGUI::MultiColumnList  *m_rankingList;
+    CEGUI::MultiColumnList  *m_scorersList;
 
     int                     m_xLastSeason;
     CSinglePlayerGame		&m_game;
