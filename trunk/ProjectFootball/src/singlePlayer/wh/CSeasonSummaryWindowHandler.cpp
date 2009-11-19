@@ -321,7 +321,7 @@ void CSeasonSummaryWindowHandler::loadScorers(int XSeason, int XCompetition)
     char position[4];
     int cont = 1;
 
-    for( it=scorersList->begin(); it!=scorersList->end(), cont <= 5; it++ ){
+    for( it=scorersList->begin(); it!=scorersList->end() && cont <= 5; it++ ){
         CPfScorers *scorer = (*it);
         sprintf(position, "%d", cont);
 
