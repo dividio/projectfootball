@@ -134,20 +134,20 @@ void CEventsHandler::endMatchEventHandler(const IGameEvent &event)
 	int xMatch = endMatchEvent.getXMatch();
 	if( m_matchesMap.find(xMatch)!=m_matchesMap.end() ){
 		// if the match is registered
-        IPfGoalsDAO 	  *goalsDAO	  = m_game.getIDAOFactory()->getIPfGoalsDAO();
-        IPfMatchesDAO	  *matchesDAO = m_game.getIDAOFactory()->getIPfMatchesDAO();
-        IPfTeamPlayersDAO *playersDAO = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
+        IPfGoalsDAO 	          *goalsDAO	    = m_game.getIDAOFactory()->getIPfGoalsDAO();
+        IPfMatchesDAO	          *matchesDAO   = m_game.getIDAOFactory()->getIPfMatchesDAO();
+        IPfTeamPlayersDAO         *playersDAO   = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
+        //IPfTeamPlayerContractsDAO *contractsDAO = m_game.getIDAOFactory()->getIPfTeamPlayerContractsDAO();
 
         CPfMatches *match = matchesDAO->findByXMatch(xMatch);
-        match->setLPlayed(true);
-        matchesDAO->updateReg(match);
-
         int homeTeam = match->getXFkTeamHome();
         int awayTeam = match->getXFkTeamAway();
-
         std::string timestamp = match->getDMatch().getTimestamp();
         std::vector<CPfTeamPlayers*> *homeTeamPlayers = playersDAO->findActiveByXFkTeam(homeTeam, timestamp);
         std::vector<CPfTeamPlayers*> *awayTeamPlayers = playersDAO->findActiveByXFkTeam(awayTeam, timestamp);
+
+        match->setLPlayed(true);
+        matchesDAO->updateReg(match);
 
         delete match;
 
@@ -167,34 +167,47 @@ void CEventsHandler::endMatchEventHandler(const IGameEvent &event)
         }
         delete goalsList;
 
-        std::vector<CPfTeamPlayers*>::iterator itPlayers;
 
+        std::vector<CPfTeamPlayers*>::iterator itPlayers;
         // Update home team players attributes
         for( itPlayers=homeTeamPlayers->begin(); itPlayers!=homeTeamPlayers->end(); itPlayers++ ){
             CPfTeamPlayers *player = *itPlayers;
-            bool update = false;
+            int fortitude = player->getNFortitude();
+            int moral = player->getNMoral();
+            int currentMoral = moral;
 
-            if(homeGoals > awayGoals) {
-                if(player->getNFortitude() > 30) {
-                    int moral = player->getNMoral();
-                    if(moral < 99) {
+            if(homeGoals > awayGoals && fortitude > 30) {
                         moral++;
-                        player->setNMoral(moral);
-                        update = true;
-                    }
-                }
-            } else if(homeGoals < awayGoals) {
-                if(player->getNFortitude() < 70) {
-                    int moral = player->getNMoral();
-                    if(moral > 30) {
+            } else if(homeGoals < awayGoals && fortitude < 70) {
                         moral--;
-                        player->setNMoral(moral);
-                        update = true;
-                    }
-                }
             }
 
-            if(update) {
+            // TODO: Remove line up order from contract because this is to slow. Maybe as TeamPlayer attribute?
+//            CPfTeamPlayerContracts *contract = contractsDAO->findActiveByXFkTeamPlayer(player->getXTeamPlayer(), timestamp);
+//            int lineUpOrder = contract->getNLineupOrder();
+//            delete contract;
+//            if(lineUpOrder == 1) {
+//                // if goalie
+//                if(awayGoals == 0) {
+//                    moral++;
+//                } else if(awayGoals >= 5 && fortitude < 80) {
+//                    moral--;
+//                }
+//            } else if(lineUpOrder > 17 && fortitude < 50) {
+//                // not line up and not alternate
+//                moral--;
+//            }
+
+            // Apply max and min values for moral
+            if(moral > 99) {
+                moral = 99;
+            } else if(moral < 30) {
+                moral = 30;
+            }
+
+            // update if moral changes
+            if(moral != currentMoral) {
+                player->setNMoral(moral);
                 playersDAO->updateReg(player);
             }
         }
@@ -202,36 +215,46 @@ void CEventsHandler::endMatchEventHandler(const IGameEvent &event)
         // Update away team players attributes
         for( itPlayers=awayTeamPlayers->begin(); itPlayers!=awayTeamPlayers->end(); itPlayers++ ){
             CPfTeamPlayers *player = *itPlayers;
-            bool update = false;
+            int fortitude = player->getNFortitude();
+            int moral = player->getNMoral();
+            int currentMoral = moral;
 
-            if(awayGoals > homeGoals) {
-                if(player->getNFortitude() > 30) {
-                    int moral = player->getNMoral();
-                    if(moral < 99) {
+            if(awayGoals > homeGoals && fortitude > 30) {
                         moral++;
-                        player->setNMoral(moral);
-                        update = true;
-                    }
-                }
-            } else if(awayGoals < homeGoals) {
-                if(player->getNFortitude() < 70) {
-                    int moral = player->getNMoral();
-                    if(moral > 30) {
+            } else if(awayGoals < homeGoals && fortitude < 70) {
                         moral--;
-                        player->setNMoral(moral);
-                        update = true;
-                    }
-                }
             }
 
-            if(update) {
+//            CPfTeamPlayerContracts *contract = contractsDAO->findActiveByXFkTeamPlayer(player->getXTeamPlayer(), timestamp);
+//            int lineUpOrder = contract->getNLineupOrder();
+//            delete contract;
+//            if(lineUpOrder == 1) {
+//                // if goalie
+//                if(homeGoals == 0) {
+//                    moral++;
+//                } else if(homeGoals >= 5 && fortitude < 80) {
+//                    moral--;
+//                }
+//            } else if(lineUpOrder > 17 && fortitude < 50) {
+//                // not line up and not alternate
+//                moral--;
+//            }
+
+            // Apply max and min values for moral
+            if(moral > 99) {
+                moral = 99;
+            } else if(moral < 30) {
+                moral = 30;
+            }
+
+            // update if moral changes
+            if(moral != currentMoral) {
+                player->setNMoral(moral);
                 playersDAO->updateReg(player);
             }
         }
         playersDAO->freeVector(homeTeamPlayers);
         playersDAO->freeVector(awayTeamPlayers);
-
-
 
         // Remove data of the match from the map
         m_matchesMap.erase(xMatch);
