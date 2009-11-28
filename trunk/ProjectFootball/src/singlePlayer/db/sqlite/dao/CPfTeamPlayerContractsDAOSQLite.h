@@ -39,8 +39,8 @@ public:
     virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeamPlayer(const std::string &XFkTeamPlayer);
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(int XTeamPlayerContract);
     virtual CPfTeamPlayerContracts* findByXTeamPlayerContract(const std::string &XTeamPlayerContract);
-    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(int XFkTeam);
-    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(const std::string &XFkTeam);
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(int XFkTeam, const std::string &timestamp);
+    virtual std::vector<CPfTeamPlayerContracts*>* findByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
     virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(int XFkTeam, int XFkTeamPlayer, const std::string &timestamp);
     virtual CPfTeamPlayerContracts* findActiveByXFkTeamAndXFkTeamPlayer(const std::string &XFkTeam, const std::string &XFkTeamPlayer, const std::string &timestamp);
     virtual CPfTeamPlayerContracts* findActiveByXFkTeamPlayer(int XFkTeamPlayer, const std::string &timestamp);

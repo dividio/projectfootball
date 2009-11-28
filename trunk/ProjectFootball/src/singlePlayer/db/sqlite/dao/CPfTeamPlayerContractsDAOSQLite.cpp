@@ -62,17 +62,18 @@ CPfTeamPlayerContracts* CPfTeamPlayerContractsDAOSQLite::findByXTeamPlayerContra
     return loadRegister(sql);
 }
 
-std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(int XFkTeam)
+std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(int XFkTeam, const std::string &timestamp)
 {
     std::ostringstream stream;
     stream << XFkTeam;
-    return findByXFkTeam(stream.str());
+    return findByXFkTeam(stream.str(), timestamp);
 }
 
-std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(const std::string &XFkTeam)
+std::vector<CPfTeamPlayerContracts*>* CPfTeamPlayerContractsDAOSQLite::findByXFkTeam(const std::string &XFkTeam, const std::string &timestamp)
 {
     std::string sql("SELECT * FROM PF_TEAM_PLAYER_CONTRACTS WHERE ");
     sql = sql+"X_FK_TEAM='"+XFkTeam+"'";
+    sql = sql+" AND D_BEGIN<='" + timestamp + "' AND (D_END IS NULL OR D_END>'" + timestamp + "')";
     return loadVector(sql);
 }
 
