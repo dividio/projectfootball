@@ -47,7 +47,7 @@ CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(const std::string &XTeam,
     sql = sql +     "FROM ( SELECT TPC.X_FK_TEAM AS X_TEAM," +
                                  " TP.N_SPEED AS DEFENSE," +
                                  " TP.N_KICK_POWER AS ATTACK," +
-                                 " (TP.N_SPEED+TP.N_KICK_POWER) / 2 AS TOTAL " +
+                                 " (TP.N_SPEED+TP.N_KICK_POWER+TP.N_MORAL) / 3 AS TOTAL " +
                            "FROM PF_TEAM_PLAYERS TP, " +
                                 "PF_TEAM_PLAYER_CONTRACTS TPC, " +
                                 "PF_TEAMS T "

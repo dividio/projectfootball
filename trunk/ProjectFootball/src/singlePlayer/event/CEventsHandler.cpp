@@ -134,25 +134,106 @@ void CEventsHandler::endMatchEventHandler(const IGameEvent &event)
 	int xMatch = endMatchEvent.getXMatch();
 	if( m_matchesMap.find(xMatch)!=m_matchesMap.end() ){
 		// if the match is registered
-        IPfGoalsDAO 	*goalsDAO	= m_game.getIDAOFactory()->getIPfGoalsDAO();
-        IPfMatchesDAO	*matchesDAO	= m_game.getIDAOFactory()->getIPfMatchesDAO();
-
-		TGoalsList	*goalsList = m_matchesMap[xMatch];
-        TGoalsList::iterator itGoals;
-        for( itGoals=goalsList->begin(); itGoals!=goalsList->end(); itGoals++ ){
-            goalsDAO->insertReg(*itGoals);
-        }
+        IPfGoalsDAO 	  *goalsDAO	  = m_game.getIDAOFactory()->getIPfGoalsDAO();
+        IPfMatchesDAO	  *matchesDAO = m_game.getIDAOFactory()->getIPfMatchesDAO();
+        IPfTeamPlayersDAO *playersDAO = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
 
         CPfMatches *match = matchesDAO->findByXMatch(xMatch);
         match->setLPlayed(true);
         matchesDAO->updateReg(match);
+
+        int homeTeam = match->getXFkTeamHome();
+        int awayTeam = match->getXFkTeamAway();
+
+        std::string timestamp = match->getDMatch().getTimestamp();
+        std::vector<CPfTeamPlayers*> *homeTeamPlayers = playersDAO->findActiveByXFkTeam(homeTeam, timestamp);
+        std::vector<CPfTeamPlayers*> *awayTeamPlayers = playersDAO->findActiveByXFkTeam(awayTeam, timestamp);
+
         delete match;
 
-        // Remove data of the match from the map
+        TGoalsList	*goalsList = m_matchesMap[xMatch];
+        TGoalsList::iterator itGoals;
+        int homeGoals = 0;
+        int awayGoals = 0;
         for( itGoals=goalsList->begin(); itGoals!=goalsList->end(); itGoals++ ){
-            delete (*itGoals);
+            CPfGoals *goal = *itGoals;
+            if(goal->getXFkTeamScorer() == homeTeam) {
+                homeGoals++;
+            } else {
+                awayGoals++;
+            }
+            goalsDAO->insertReg(goal);
+            delete (goal);
         }
         delete goalsList;
+
+        std::vector<CPfTeamPlayers*>::iterator itPlayers;
+
+        // Update home team players attributes
+        for( itPlayers=homeTeamPlayers->begin(); itPlayers!=homeTeamPlayers->end(); itPlayers++ ){
+            CPfTeamPlayers *player = *itPlayers;
+            bool update = false;
+
+            if(homeGoals > awayGoals) {
+                if(player->getNFortitude() > 30) {
+                    int moral = player->getNMoral();
+                    if(moral < 99) {
+                        moral++;
+                        player->setNMoral(moral);
+                        update = true;
+                    }
+                }
+            } else if(homeGoals < awayGoals) {
+                if(player->getNFortitude() < 70) {
+                    int moral = player->getNMoral();
+                    if(moral > 30) {
+                        moral--;
+                        player->setNMoral(moral);
+                        update = true;
+                    }
+                }
+            }
+
+            if(update) {
+                playersDAO->updateReg(player);
+            }
+        }
+
+        // Update away team players attributes
+        for( itPlayers=awayTeamPlayers->begin(); itPlayers!=awayTeamPlayers->end(); itPlayers++ ){
+            CPfTeamPlayers *player = *itPlayers;
+            bool update = false;
+
+            if(awayGoals > homeGoals) {
+                if(player->getNFortitude() > 30) {
+                    int moral = player->getNMoral();
+                    if(moral < 99) {
+                        moral++;
+                        player->setNMoral(moral);
+                        update = true;
+                    }
+                }
+            } else if(awayGoals < homeGoals) {
+                if(player->getNFortitude() < 70) {
+                    int moral = player->getNMoral();
+                    if(moral > 30) {
+                        moral--;
+                        player->setNMoral(moral);
+                        update = true;
+                    }
+                }
+            }
+
+            if(update) {
+                playersDAO->updateReg(player);
+            }
+        }
+        playersDAO->freeVector(homeTeamPlayers);
+        playersDAO->freeVector(awayTeamPlayers);
+
+
+
+        // Remove data of the match from the map
         m_matchesMap.erase(xMatch);
 	}
 }

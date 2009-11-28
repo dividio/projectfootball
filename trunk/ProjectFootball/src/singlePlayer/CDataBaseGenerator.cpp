@@ -129,6 +129,8 @@ void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player)
     player.setNHeight(180);
     player.setDBirthday_str("1985-01-16 10:30:09");
     player.setSPhoto("p_unknown");
+    player.setNFortitude(50);
+    player.setNMoral(90);
 }
 
 void CDataBaseGenerator::generateCoaches(IDAOFactory *daoFactory)

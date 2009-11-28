@@ -28,48 +28,38 @@
 
 CPfTeamPlayers::CPfTeamPlayers()
 {
-    m_NKickPower = "0";
     m_NWeight = "0";
+    m_NKickPower = "0";
     m_NHeight = "0";
     m_NSpeed = "0";
     m_XTeamPlayer = "0";
     m_SShortName = "";
+    m_NFortitude = "0";
     m_SName = "";
     m_SPhoto = "";
     m_DBirthday = "";
     m_XFkCountry = "0";
+    m_NMoral = "0";
 }
 
 CPfTeamPlayers::CPfTeamPlayers(const CPfTeamPlayers &obj)
 {
-    m_NKickPower = obj.m_NKickPower;
     m_NWeight = obj.m_NWeight;
+    m_NKickPower = obj.m_NKickPower;
     m_NHeight = obj.m_NHeight;
     m_NSpeed = obj.m_NSpeed;
     m_XTeamPlayer = obj.m_XTeamPlayer;
     m_SShortName = obj.m_SShortName;
+    m_NFortitude = obj.m_NFortitude;
     m_SName = obj.m_SName;
     m_SPhoto = obj.m_SPhoto;
     m_DBirthday = obj.m_DBirthday;
     m_XFkCountry = obj.m_XFkCountry;
+    m_NMoral = obj.m_NMoral;
 }
 
 CPfTeamPlayers::~CPfTeamPlayers()
 {
-}
-
-int CPfTeamPlayers::getNKickPower() const
-{
-    if( m_NKickPower=="" ){
-        return 0;
-    }else{
-        return atoi(m_NKickPower.c_str());
-    }
-}
-
-const std::string& CPfTeamPlayers::getNKickPower_str() const
-{
-    return m_NKickPower;
 }
 
 int CPfTeamPlayers::getNWeight() const
@@ -84,6 +74,20 @@ int CPfTeamPlayers::getNWeight() const
 const std::string& CPfTeamPlayers::getNWeight_str() const
 {
     return m_NWeight;
+}
+
+int CPfTeamPlayers::getNKickPower() const
+{
+    if( m_NKickPower=="" ){
+        return 0;
+    }else{
+        return atoi(m_NKickPower.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayers::getNKickPower_str() const
+{
+    return m_NKickPower;
 }
 
 int CPfTeamPlayers::getNHeight() const
@@ -138,6 +142,20 @@ const std::string& CPfTeamPlayers::getSShortName_str() const
     return m_SShortName;
 }
 
+int CPfTeamPlayers::getNFortitude() const
+{
+    if( m_NFortitude=="" ){
+        return 0;
+    }else{
+        return atoi(m_NFortitude.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayers::getNFortitude_str() const
+{
+    return m_NFortitude;
+}
+
 const std::string& CPfTeamPlayers::getSName() const
 {
     return m_SName;
@@ -182,16 +200,18 @@ const std::string& CPfTeamPlayers::getXFkCountry_str() const
     return m_XFkCountry;
 }
 
-void CPfTeamPlayers::setNKickPower(int NKickPower)
+int CPfTeamPlayers::getNMoral() const
 {
-    std::ostringstream stream;
-    stream << NKickPower;
-    m_NKickPower = stream.str();
+    if( m_NMoral=="" ){
+        return 0;
+    }else{
+        return atoi(m_NMoral.c_str());
+    }
 }
 
-void CPfTeamPlayers::setNKickPower_str(const std::string &NKickPower)
+const std::string& CPfTeamPlayers::getNMoral_str() const
 {
-    m_NKickPower = NKickPower;
+    return m_NMoral;
 }
 
 void CPfTeamPlayers::setNWeight(int NWeight)
@@ -204,6 +224,18 @@ void CPfTeamPlayers::setNWeight(int NWeight)
 void CPfTeamPlayers::setNWeight_str(const std::string &NWeight)
 {
     m_NWeight = NWeight;
+}
+
+void CPfTeamPlayers::setNKickPower(int NKickPower)
+{
+    std::ostringstream stream;
+    stream << NKickPower;
+    m_NKickPower = stream.str();
+}
+
+void CPfTeamPlayers::setNKickPower_str(const std::string &NKickPower)
+{
+    m_NKickPower = NKickPower;
 }
 
 void CPfTeamPlayers::setNHeight(int NHeight)
@@ -252,6 +284,18 @@ void CPfTeamPlayers::setSShortName_str(const std::string &SShortName)
     m_SShortName = SShortName;
 }
 
+void CPfTeamPlayers::setNFortitude(int NFortitude)
+{
+    std::ostringstream stream;
+    stream << NFortitude;
+    m_NFortitude = stream.str();
+}
+
+void CPfTeamPlayers::setNFortitude_str(const std::string &NFortitude)
+{
+    m_NFortitude = NFortitude;
+}
+
 void CPfTeamPlayers::setSName(const std::string &SName)
 {
     m_SName = SName;
@@ -292,5 +336,17 @@ void CPfTeamPlayers::setXFkCountry(int XFkCountry)
 void CPfTeamPlayers::setXFkCountry_str(const std::string &XFkCountry)
 {
     m_XFkCountry = XFkCountry;
+}
+
+void CPfTeamPlayers::setNMoral(int NMoral)
+{
+    std::ostringstream stream;
+    stream << NMoral;
+    m_NMoral = stream.str();
+}
+
+void CPfTeamPlayers::setNMoral_str(const std::string &NMoral)
+{
+    m_NMoral = NMoral;
 }
 

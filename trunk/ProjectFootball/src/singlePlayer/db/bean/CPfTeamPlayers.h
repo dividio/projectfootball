@@ -34,10 +34,10 @@ public:
     CPfTeamPlayers(const CPfTeamPlayers &obj);
     virtual ~CPfTeamPlayers();
 
-    int getNKickPower() const;
-    const std::string& getNKickPower_str() const;
     int getNWeight() const;
     const std::string& getNWeight_str() const;
+    int getNKickPower() const;
+    const std::string& getNKickPower_str() const;
     int getNHeight() const;
     const std::string& getNHeight_str() const;
     int getNSpeed() const;
@@ -46,6 +46,8 @@ public:
     const std::string& getXTeamPlayer_str() const;
     const std::string& getSShortName() const;
     const std::string& getSShortName_str() const;
+    int getNFortitude() const;
+    const std::string& getNFortitude_str() const;
     const std::string& getSName() const;
     const std::string& getSName_str() const;
     const std::string& getSPhoto() const;
@@ -54,11 +56,13 @@ public:
     const std::string& getDBirthday_str() const;
     int getXFkCountry() const;
     const std::string& getXFkCountry_str() const;
+    int getNMoral() const;
+    const std::string& getNMoral_str() const;
 
-    void setNKickPower(int NKickPower);
-    void setNKickPower_str(const std::string &NKickPower);
     void setNWeight(int NWeight);
     void setNWeight_str(const std::string &NWeight);
+    void setNKickPower(int NKickPower);
+    void setNKickPower_str(const std::string &NKickPower);
     void setNHeight(int NHeight);
     void setNHeight_str(const std::string &NHeight);
     void setNSpeed(int NSpeed);
@@ -67,6 +71,8 @@ public:
     void setXTeamPlayer_str(const std::string &XTeamPlayer);
     void setSShortName(const std::string &SShortName);
     void setSShortName_str(const std::string &SShortName);
+    void setNFortitude(int NFortitude);
+    void setNFortitude_str(const std::string &NFortitude);
     void setSName(const std::string &SName);
     void setSName_str(const std::string &SName);
     void setSPhoto(const std::string &SPhoto);
@@ -75,18 +81,22 @@ public:
     void setDBirthday_str(const std::string &DBirthday);
     void setXFkCountry(int XFkCountry);
     void setXFkCountry_str(const std::string &XFkCountry);
+    void setNMoral(int NMoral);
+    void setNMoral_str(const std::string &NMoral);
 
 private:
-    std::string m_NKickPower;
     std::string m_NWeight;
+    std::string m_NKickPower;
     std::string m_NHeight;
     std::string m_NSpeed;
     std::string m_XTeamPlayer;
     std::string m_SShortName;
+    std::string m_NFortitude;
     std::string m_SName;
     std::string m_SPhoto;
     std::string m_DBirthday;
     std::string m_XFkCountry;
+    std::string m_NMoral;
 
 };
 #endif /*CPFTEAMPLAYERS_H_*/

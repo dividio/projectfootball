@@ -50,16 +50,18 @@ bool CPfTeamPlayersDAOSQLiteEntity::deleteReg(CPfTeamPlayers *reg)
 
 bool CPfTeamPlayersDAOSQLiteEntity::insertReg(CPfTeamPlayers *reg)
 {
-    std::string sql("INSERT INTO PF_TEAM_PLAYERS (N_KICK_POWER,N_WEIGHT,N_HEIGHT,N_SPEED,S_SHORT_NAME,S_NAME,S_PHOTO,D_BIRTHDAY,X_FK_COUNTRY) VALUES (");
-    sql += (reg->getNKickPower_str()=="")?"NULL":"'"+reg->getNKickPower_str()+"'";
-    sql += (reg->getNWeight_str()=="")?",NULL":",'"+reg->getNWeight_str()+"'";
+    std::string sql("INSERT INTO PF_TEAM_PLAYERS (N_WEIGHT,N_KICK_POWER,N_HEIGHT,N_SPEED,S_SHORT_NAME,N_FORTITUDE,S_NAME,S_PHOTO,D_BIRTHDAY,X_FK_COUNTRY,N_MORAL) VALUES (");
+    sql += (reg->getNWeight_str()=="")?"NULL":"'"+reg->getNWeight_str()+"'";
+    sql += (reg->getNKickPower_str()=="")?",NULL":",'"+reg->getNKickPower_str()+"'";
     sql += (reg->getNHeight_str()=="")?",NULL":",'"+reg->getNHeight_str()+"'";
     sql += (reg->getNSpeed_str()=="")?",NULL":",'"+reg->getNSpeed_str()+"'";
     sql += (reg->getSShortName_str()=="")?",NULL":",'"+reg->getSShortName_str()+"'";
+    sql += (reg->getNFortitude_str()=="")?",NULL":",'"+reg->getNFortitude_str()+"'";
     sql += (reg->getSName_str()=="")?",NULL":",'"+reg->getSName_str()+"'";
     sql += (reg->getSPhoto_str()=="")?",NULL":",'"+reg->getSPhoto_str()+"'";
     sql += (reg->getDBirthday_str()=="")?",NULL":",'"+reg->getDBirthday_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",NULL":",'"+reg->getXFkCountry_str()+"'";
+    sql += (reg->getNMoral_str()=="")?",NULL":",'"+reg->getNMoral_str()+"'";
     sql += ")";
     if( exec(sql) ){
         reg->setXTeamPlayer(sqlite3_last_insert_rowid(m_database));
@@ -72,16 +74,18 @@ bool CPfTeamPlayersDAOSQLiteEntity::insertReg(CPfTeamPlayers *reg)
 bool CPfTeamPlayersDAOSQLiteEntity::updateReg(CPfTeamPlayers *reg)
 {
     std::string sql("UPDATE PF_TEAM_PLAYERS SET ");
-    sql += (reg->getNKickPower_str()=="")?" N_KICK_POWER=NULL":" N_KICK_POWER='"+reg->getNKickPower_str()+"'";
-    sql += (reg->getNWeight_str()=="")?",N_WEIGHT=NULL":",N_WEIGHT='"+reg->getNWeight_str()+"'";
+    sql += (reg->getNWeight_str()=="")?" N_WEIGHT=NULL":" N_WEIGHT='"+reg->getNWeight_str()+"'";
+    sql += (reg->getNKickPower_str()=="")?",N_KICK_POWER=NULL":",N_KICK_POWER='"+reg->getNKickPower_str()+"'";
     sql += (reg->getNHeight_str()=="")?",N_HEIGHT=NULL":",N_HEIGHT='"+reg->getNHeight_str()+"'";
     sql += (reg->getNSpeed_str()=="")?",N_SPEED=NULL":",N_SPEED='"+reg->getNSpeed_str()+"'";
     sql += (reg->getXTeamPlayer_str()=="")?",X_TEAM_PLAYER=NULL":",X_TEAM_PLAYER='"+reg->getXTeamPlayer_str()+"'";
     sql += (reg->getSShortName_str()=="")?",S_SHORT_NAME=NULL":",S_SHORT_NAME='"+reg->getSShortName_str()+"'";
+    sql += (reg->getNFortitude_str()=="")?",N_FORTITUDE=NULL":",N_FORTITUDE='"+reg->getNFortitude_str()+"'";
     sql += (reg->getSName_str()=="")?",S_NAME=NULL":",S_NAME='"+reg->getSName_str()+"'";
     sql += (reg->getSPhoto_str()=="")?",S_PHOTO=NULL":",S_PHOTO='"+reg->getSPhoto_str()+"'";
     sql += (reg->getDBirthday_str()=="")?",D_BIRTHDAY=NULL":",D_BIRTHDAY='"+reg->getDBirthday_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",X_FK_COUNTRY=NULL":",X_FK_COUNTRY='"+reg->getXFkCountry_str()+"'";
+    sql += (reg->getNMoral_str()=="")?",N_MORAL=NULL":",N_MORAL='"+reg->getNMoral_str()+"'";
     sql += " WHERE X_TEAM_PLAYER='"+reg->getXTeamPlayer_str()+"'";
     return exec(sql);
 }
@@ -156,10 +160,10 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackRegister(void *object, int nColumns, 
     if( object!=NULL ){
         CPfTeamPlayers *destiny = (CPfTeamPlayers*)object;
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
-                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
+            if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
                 destiny->setNWeight_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
+                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_HEIGHT")==0 ){
                 destiny->setNHeight_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_SPEED")==0 ){
@@ -168,6 +172,8 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackRegister(void *object, int nColumns, 
                 destiny->setXTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
                 destiny->setSShortName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_FORTITUDE")==0 ){
+                destiny->setNFortitude_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_NAME")==0 ){
                 destiny->setSName_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_PHOTO")==0 ){
@@ -176,6 +182,8 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackRegister(void *object, int nColumns, 
                 destiny->setDBirthday_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_MORAL")==0 ){
+                destiny->setNMoral_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
     }
@@ -188,10 +196,10 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackVector(void *object, int nColumns, ch
         std::vector<CPfTeamPlayers*> *container = (std::vector<CPfTeamPlayers*> *)object;
         CPfTeamPlayers *destiny = new CPfTeamPlayers();
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
-                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
+            if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
                 destiny->setNWeight_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
+                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_HEIGHT")==0 ){
                 destiny->setNHeight_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_SPEED")==0 ){
@@ -200,6 +208,8 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackVector(void *object, int nColumns, ch
                 destiny->setXTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
                 destiny->setSShortName_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_FORTITUDE")==0 ){
+                destiny->setNFortitude_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_NAME")==0 ){
                 destiny->setSName_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_PHOTO")==0 ){
@@ -208,6 +218,8 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackVector(void *object, int nColumns, ch
                 destiny->setDBirthday_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_MORAL")==0 ){
+                destiny->setNMoral_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
         container->push_back(destiny);
