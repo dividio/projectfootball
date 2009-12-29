@@ -23,12 +23,14 @@
 
 #include <list>
 #include <map>
+#include <vector>
 
 // forward declarations
 class IGameEvent;
 class CSlotConnection;
 class CSinglePlayerGame;
 class CPfGoals;
+class CPfTeamPlayers;
 
 class CEventsHandler {
 public:
@@ -50,6 +52,9 @@ private:
 	void timeStartEventHandler(const IGameEvent &event);
 	void timeStopEventHandler(const IGameEvent &event);
 
+	// Update players stats
+	void updateLineUpPlayersStats   (std::vector<CPfTeamPlayers*> *players, int teamGoals, int opponentGoals);
+	void updateNotLineUpPlayersStats(std::vector<CPfTeamPlayers*> *players, int teamGoals, int opponentGoals);
 private:
 	typedef std::list<CSlotConnection>		TSlotConnectionsList;
 	typedef std::list<CPfGoals*>			TGoalsList;
