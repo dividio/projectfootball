@@ -54,6 +54,7 @@ private:
 
 	// Update players stats
 	void updateLineUpPlayersStats   (std::vector<CPfTeamPlayers*> *players, int teamGoals, int opponentGoals);
+	void updateAlternatePlayersStats(std::vector<CPfTeamPlayers*> *players, int teamGoals, int opponentGoals);
 	void updateNotLineUpPlayersStats(std::vector<CPfTeamPlayers*> *players, int teamGoals, int opponentGoals);
 private:
 	typedef std::list<CSlotConnection>		TSlotConnectionsList;

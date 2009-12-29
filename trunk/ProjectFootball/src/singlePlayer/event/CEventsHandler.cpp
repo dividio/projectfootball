@@ -177,11 +177,11 @@ void CEventsHandler::endMatchEventHandler(const IGameEvent &event)
         delete match;
 
         updateLineUpPlayersStats(homeTeamPlayers, homeGoals, awayGoals);
-        updateLineUpPlayersStats(homeAlternatePlayers, homeGoals, awayGoals);
+        updateAlternatePlayersStats(homeAlternatePlayers, homeGoals, awayGoals);
         updateNotLineUpPlayersStats(homeNotLineUpPlayers, homeGoals, awayGoals);
 
         updateLineUpPlayersStats(awayTeamPlayers, awayGoals, homeGoals);
-        updateLineUpPlayersStats(awayAlternatePlayers, awayGoals, homeGoals);
+        updateAlternatePlayersStats(awayAlternatePlayers, awayGoals, homeGoals);
         updateNotLineUpPlayersStats(awayNotLineUpPlayers, awayGoals, homeGoals);
 
         playersDAO->freeVector(homeTeamPlayers);
@@ -249,6 +249,38 @@ void CEventsHandler::updateLineUpPlayersStats(std::vector<CPfTeamPlayers*> *play
 			} else if(opponentGoals >= 5 && fortitude < 80) {
 				moral--;
 			}
+        }
+
+        // Apply max and min values for moral
+        if(moral > 99) {
+            moral = 99;
+        } else if(moral < 30) {
+            moral = 30;
+        }
+
+        // update if moral changes
+        if(moral != currentMoral) {
+            player->setNMoral(moral);
+            playersDAO->updateReg(player);
+        }
+    }
+}
+
+void CEventsHandler::updateAlternatePlayersStats(std::vector<CPfTeamPlayers*> *players, int teamGoals, int opponentGoals) {
+    IPfTeamPlayersDAO *playersDAO   = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
+
+    std::vector<CPfTeamPlayers*>::iterator itPlayers;
+    // Update team players attributes
+    for( itPlayers=players->begin(); itPlayers!=players->end(); itPlayers++ ){
+        CPfTeamPlayers *player = *itPlayers;
+        int fortitude = player->getNFortitude();
+        int moral = player->getNMoral();
+        int currentMoral = moral;
+
+        if(teamGoals > opponentGoals && fortitude > 30) {
+                    moral++;
+        } else if(teamGoals < opponentGoals && fortitude < 70) {
+                    moral--;
         }
 
         // Apply max and min values for moral
