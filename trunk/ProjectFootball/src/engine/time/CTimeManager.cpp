@@ -69,7 +69,7 @@ void CTimeManager::start()
 
 void CTimeManager::stop()
 {
-	CGameEngine::getInstance()->getWindowManager()->loadingUpdate("", true);
+	CGameEngine::getInstance()->getWindowManager()->loadingUpdate(gettext("Please wait..."), true);
 	m_stopRequest = true;
 }
 
