@@ -20,6 +20,8 @@
 
 #include "CEventsHandler.h"
 
+#include <libintl.h>
+
 #include "../CSinglePlayerGame.h"
 #include "../CSeasonGenerator.h"
 #include "../db/dao/factory/IDAOFactory.h"
@@ -164,6 +166,11 @@ void CEventsHandler::endMatchEventHandler(const IGameEvent &event)
             delete (goal);
         }
         delete goalsList;
+
+        std::ostringstream message;
+        message << gettext("Simulating match: ") << homeGoals << " - " << awayGoals;
+
+        CGameEngine::getInstance()->getWindowManager()->loadingUpdate(message.str(), false);
 
         match->setLPlayed(true);
         matchesDAO->updateReg(match);

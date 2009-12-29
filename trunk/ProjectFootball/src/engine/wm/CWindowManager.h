@@ -51,6 +51,8 @@ public:
 	void alert(const std::string &text);
 	void confirm(const std::string &text, CEGUI::Event::Subscriber aceptSubscriber);
 	void confirm(const std::string &text, CEGUI::Event::Subscriber aceptSubscriber, CEGUI::Event::Subscriber cancelSubscriber);
+	void loading(const std::string &text);
+	void loadingUpdate(const std::string &text, bool stop);
 
 protected:
 	void update();
@@ -92,6 +94,7 @@ private:
 	// confirm & alert
 	CEGUI::Window											*m_alertWindow;
 	CEGUI::Window											*m_confirmWindow;
+	CEGUI::Window											*m_loadingWindow;
 	CEGUI::Event::Subscriber								m_confirmAceptSubscriber;
 	CEGUI::Event::Subscriber								m_confirmCancelSubscriber;
 };

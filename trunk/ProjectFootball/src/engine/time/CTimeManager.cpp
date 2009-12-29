@@ -63,11 +63,13 @@ void CTimeManager::start()
 		m_stopRequest	= false;
 		m_stopped		= false;
 		m_thread		= boost::thread(boost::bind(&CTimeManager::runThread, this));
+		CGameEngine::getInstance()->getWindowManager()->loading(gettext("Please wait..."));
 	}
 }
 
 void CTimeManager::stop()
 {
+	CGameEngine::getInstance()->getWindowManager()->loadingUpdate("", true);
 	m_stopRequest = true;
 }
 

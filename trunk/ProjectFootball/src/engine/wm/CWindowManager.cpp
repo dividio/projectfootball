@@ -43,7 +43,8 @@
 
 CWindowManager::CWindowManager()
 : m_windows(), m_windowsHandlers(), m_currentScreen(NULL), m_nextScreensStack(), m_previousScreensStack(),
-  m_alertWindow(getCEGUIWindow("alert.layout")), m_confirmWindow(getCEGUIWindow("confirm.layout")), m_confirmAceptSubscriber(), m_confirmCancelSubscriber()
+  m_alertWindow(getCEGUIWindow("alert.layout")), m_confirmWindow(getCEGUIWindow("confirm.layout")),
+  m_loadingWindow(getCEGUIWindow("loading.layout")), m_confirmAceptSubscriber(), m_confirmCancelSubscriber()
 {
 	CScreensConfig_xmlHandler xmlHandler;
 
@@ -142,7 +143,7 @@ void CWindowManager::unregisterWindowHandler(const std::string &path, IWindowHan
 
 void CWindowManager::alert(const std::string &text)
 {
-	CEGUI::Window			*alertText	= static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"AlertWindow/Text"));
+	CEGUI::Window *alertText = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"AlertWindow/Text"));
 	alertText->setText((CEGUI::utf8*)text.c_str());
 
 	CEGUI::Window	*currentWindow = getCEGUIWindow(m_currentScreen->getWindow().getPath().c_str());
@@ -167,6 +168,28 @@ void CWindowManager::confirm(const std::string &text, CEGUI::Event::Subscriber a
 	currentWindow->addChildWindow(m_confirmWindow);
 	m_confirmWindow->setModalState(true);
 
+}
+
+void CWindowManager::loading(const std::string &text)
+{
+	CEGUI::Window *loadingText = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadingWindow/Text"));
+	loadingText->setText((CEGUI::utf8*)text.c_str());
+
+	CEGUI::Window	*currentWindow = getCEGUIWindow(m_currentScreen->getWindow().getPath().c_str());
+	currentWindow->addChildWindow(m_loadingWindow);
+	m_loadingWindow->setModalState(true);
+}
+
+void CWindowManager::loadingUpdate(const std::string &text, bool stop)
+{
+	CEGUI::Window *loadingText = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"LoadingWindow/Text"));
+	loadingText->setText((CEGUI::utf8*)text.c_str());
+
+	if(stop) {
+		CEGUI::Window	*currentWindow = getCEGUIWindow(m_currentScreen->getWindow().getPath().c_str());
+		currentWindow->removeChildWindow(m_loadingWindow);
+		m_loadingWindow->setModalState(false);
+	}
 }
 
 void CWindowManager::update()
