@@ -20,6 +20,8 @@
 
 #include "CTimeManager.h"
 
+#include <libintl.h>
+
 #include "../CGameEngine.h"
 #include "../event/IGameEvent.h"
 #include "../event/CEventManager.h"
