@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-15 -*-
 #
 # PyDia C++ DAO Code Generation from UML Diagram
-# Copyright (c) 2008 Ikaro Games <www.ikarogames.com>
+# Copyright (c) 2008-2010 Ikaro Games <www.ikarogames.com>
 #
 # Version: 1.23
 #
@@ -32,7 +32,7 @@ from string import Template
 class UtilRenderer :
   def license(self) :
     string = "/******************************************************************************\n"+\
-             "* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *\n"+\
+             "* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *\n"+\
              "*                                                                             *\n"+\
              "* This program is free software; you can redistribute it and/or               *\n"+\
              "* modify it under the terms of the GNU General Public License                 *\n"+\
