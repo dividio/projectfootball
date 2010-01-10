@@ -28,10 +28,13 @@
 
 CPfTeamPlayers::CPfTeamPlayers()
 {
+    m_XFkRoleSelected = "0";
+    m_NLineupOrder = "0";
     m_NWeight = "0";
-    m_NKickPower = "0";
+    m_NSquadNumber = "0";
     m_NHeight = "0";
     m_NSpeed = "0";
+    m_NKickPower = "0";
     m_XTeamPlayer = "0";
     m_SShortName = "";
     m_NFortitude = "0";
@@ -44,10 +47,13 @@ CPfTeamPlayers::CPfTeamPlayers()
 
 CPfTeamPlayers::CPfTeamPlayers(const CPfTeamPlayers &obj)
 {
+    m_XFkRoleSelected = obj.m_XFkRoleSelected;
+    m_NLineupOrder = obj.m_NLineupOrder;
     m_NWeight = obj.m_NWeight;
-    m_NKickPower = obj.m_NKickPower;
+    m_NSquadNumber = obj.m_NSquadNumber;
     m_NHeight = obj.m_NHeight;
     m_NSpeed = obj.m_NSpeed;
+    m_NKickPower = obj.m_NKickPower;
     m_XTeamPlayer = obj.m_XTeamPlayer;
     m_SShortName = obj.m_SShortName;
     m_NFortitude = obj.m_NFortitude;
@@ -60,6 +66,34 @@ CPfTeamPlayers::CPfTeamPlayers(const CPfTeamPlayers &obj)
 
 CPfTeamPlayers::~CPfTeamPlayers()
 {
+}
+
+int CPfTeamPlayers::getXFkRoleSelected() const
+{
+    if( m_XFkRoleSelected=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkRoleSelected.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayers::getXFkRoleSelected_str() const
+{
+    return m_XFkRoleSelected;
+}
+
+int CPfTeamPlayers::getNLineupOrder() const
+{
+    if( m_NLineupOrder=="" ){
+        return 0;
+    }else{
+        return atoi(m_NLineupOrder.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayers::getNLineupOrder_str() const
+{
+    return m_NLineupOrder;
 }
 
 int CPfTeamPlayers::getNWeight() const
@@ -76,18 +110,18 @@ const std::string& CPfTeamPlayers::getNWeight_str() const
     return m_NWeight;
 }
 
-int CPfTeamPlayers::getNKickPower() const
+int CPfTeamPlayers::getNSquadNumber() const
 {
-    if( m_NKickPower=="" ){
+    if( m_NSquadNumber=="" ){
         return 0;
     }else{
-        return atoi(m_NKickPower.c_str());
+        return atoi(m_NSquadNumber.c_str());
     }
 }
 
-const std::string& CPfTeamPlayers::getNKickPower_str() const
+const std::string& CPfTeamPlayers::getNSquadNumber_str() const
 {
-    return m_NKickPower;
+    return m_NSquadNumber;
 }
 
 int CPfTeamPlayers::getNHeight() const
@@ -116,6 +150,20 @@ int CPfTeamPlayers::getNSpeed() const
 const std::string& CPfTeamPlayers::getNSpeed_str() const
 {
     return m_NSpeed;
+}
+
+int CPfTeamPlayers::getNKickPower() const
+{
+    if( m_NKickPower=="" ){
+        return 0;
+    }else{
+        return atoi(m_NKickPower.c_str());
+    }
+}
+
+const std::string& CPfTeamPlayers::getNKickPower_str() const
+{
+    return m_NKickPower;
 }
 
 int CPfTeamPlayers::getXTeamPlayer() const
@@ -214,6 +262,30 @@ const std::string& CPfTeamPlayers::getNMoral_str() const
     return m_NMoral;
 }
 
+void CPfTeamPlayers::setXFkRoleSelected(int XFkRoleSelected)
+{
+    std::ostringstream stream;
+    stream << XFkRoleSelected;
+    m_XFkRoleSelected = stream.str();
+}
+
+void CPfTeamPlayers::setXFkRoleSelected_str(const std::string &XFkRoleSelected)
+{
+    m_XFkRoleSelected = XFkRoleSelected;
+}
+
+void CPfTeamPlayers::setNLineupOrder(int NLineupOrder)
+{
+    std::ostringstream stream;
+    stream << NLineupOrder;
+    m_NLineupOrder = stream.str();
+}
+
+void CPfTeamPlayers::setNLineupOrder_str(const std::string &NLineupOrder)
+{
+    m_NLineupOrder = NLineupOrder;
+}
+
 void CPfTeamPlayers::setNWeight(int NWeight)
 {
     std::ostringstream stream;
@@ -226,16 +298,16 @@ void CPfTeamPlayers::setNWeight_str(const std::string &NWeight)
     m_NWeight = NWeight;
 }
 
-void CPfTeamPlayers::setNKickPower(int NKickPower)
+void CPfTeamPlayers::setNSquadNumber(int NSquadNumber)
 {
     std::ostringstream stream;
-    stream << NKickPower;
-    m_NKickPower = stream.str();
+    stream << NSquadNumber;
+    m_NSquadNumber = stream.str();
 }
 
-void CPfTeamPlayers::setNKickPower_str(const std::string &NKickPower)
+void CPfTeamPlayers::setNSquadNumber_str(const std::string &NSquadNumber)
 {
-    m_NKickPower = NKickPower;
+    m_NSquadNumber = NSquadNumber;
 }
 
 void CPfTeamPlayers::setNHeight(int NHeight)
@@ -260,6 +332,18 @@ void CPfTeamPlayers::setNSpeed(int NSpeed)
 void CPfTeamPlayers::setNSpeed_str(const std::string &NSpeed)
 {
     m_NSpeed = NSpeed;
+}
+
+void CPfTeamPlayers::setNKickPower(int NKickPower)
+{
+    std::ostringstream stream;
+    stream << NKickPower;
+    m_NKickPower = stream.str();
+}
+
+void CPfTeamPlayers::setNKickPower_str(const std::string &NKickPower)
+{
+    m_NKickPower = NKickPower;
 }
 
 void CPfTeamPlayers::setXTeamPlayer(int XTeamPlayer)

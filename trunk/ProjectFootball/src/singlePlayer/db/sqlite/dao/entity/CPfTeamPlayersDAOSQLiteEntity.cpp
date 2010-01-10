@@ -50,11 +50,14 @@ bool CPfTeamPlayersDAOSQLiteEntity::deleteReg(CPfTeamPlayers *reg)
 
 bool CPfTeamPlayersDAOSQLiteEntity::insertReg(CPfTeamPlayers *reg)
 {
-    std::string sql("INSERT INTO PF_TEAM_PLAYERS (N_WEIGHT,N_KICK_POWER,N_HEIGHT,N_SPEED,S_SHORT_NAME,N_FORTITUDE,S_NAME,S_PHOTO,D_BIRTHDAY,X_FK_COUNTRY,N_MORAL) VALUES (");
-    sql += (reg->getNWeight_str()=="")?"NULL":"'"+reg->getNWeight_str()+"'";
-    sql += (reg->getNKickPower_str()=="")?",NULL":",'"+reg->getNKickPower_str()+"'";
+    std::string sql("INSERT INTO PF_TEAM_PLAYERS (X_FK_ROLE_SELECTED,N_LINEUP_ORDER,N_WEIGHT,N_SQUAD_NUMBER,N_HEIGHT,N_SPEED,N_KICK_POWER,S_SHORT_NAME,N_FORTITUDE,S_NAME,S_PHOTO,D_BIRTHDAY,X_FK_COUNTRY,N_MORAL) VALUES (");
+    sql += (reg->getXFkRoleSelected_str()=="")?"NULL":"'"+reg->getXFkRoleSelected_str()+"'";
+    sql += (reg->getNLineupOrder_str()=="")?",NULL":",'"+reg->getNLineupOrder_str()+"'";
+    sql += (reg->getNWeight_str()=="")?",NULL":",'"+reg->getNWeight_str()+"'";
+    sql += (reg->getNSquadNumber_str()=="")?",NULL":",'"+reg->getNSquadNumber_str()+"'";
     sql += (reg->getNHeight_str()=="")?",NULL":",'"+reg->getNHeight_str()+"'";
     sql += (reg->getNSpeed_str()=="")?",NULL":",'"+reg->getNSpeed_str()+"'";
+    sql += (reg->getNKickPower_str()=="")?",NULL":",'"+reg->getNKickPower_str()+"'";
     sql += (reg->getSShortName_str()=="")?",NULL":",'"+reg->getSShortName_str()+"'";
     sql += (reg->getNFortitude_str()=="")?",NULL":",'"+reg->getNFortitude_str()+"'";
     sql += (reg->getSName_str()=="")?",NULL":",'"+reg->getSName_str()+"'";
@@ -74,10 +77,13 @@ bool CPfTeamPlayersDAOSQLiteEntity::insertReg(CPfTeamPlayers *reg)
 bool CPfTeamPlayersDAOSQLiteEntity::updateReg(CPfTeamPlayers *reg)
 {
     std::string sql("UPDATE PF_TEAM_PLAYERS SET ");
-    sql += (reg->getNWeight_str()=="")?" N_WEIGHT=NULL":" N_WEIGHT='"+reg->getNWeight_str()+"'";
-    sql += (reg->getNKickPower_str()=="")?",N_KICK_POWER=NULL":",N_KICK_POWER='"+reg->getNKickPower_str()+"'";
+    sql += (reg->getXFkRoleSelected_str()=="")?" X_FK_ROLE_SELECTED=NULL":" X_FK_ROLE_SELECTED='"+reg->getXFkRoleSelected_str()+"'";
+    sql += (reg->getNLineupOrder_str()=="")?",N_LINEUP_ORDER=NULL":",N_LINEUP_ORDER='"+reg->getNLineupOrder_str()+"'";
+    sql += (reg->getNWeight_str()=="")?",N_WEIGHT=NULL":",N_WEIGHT='"+reg->getNWeight_str()+"'";
+    sql += (reg->getNSquadNumber_str()=="")?",N_SQUAD_NUMBER=NULL":",N_SQUAD_NUMBER='"+reg->getNSquadNumber_str()+"'";
     sql += (reg->getNHeight_str()=="")?",N_HEIGHT=NULL":",N_HEIGHT='"+reg->getNHeight_str()+"'";
     sql += (reg->getNSpeed_str()=="")?",N_SPEED=NULL":",N_SPEED='"+reg->getNSpeed_str()+"'";
+    sql += (reg->getNKickPower_str()=="")?",N_KICK_POWER=NULL":",N_KICK_POWER='"+reg->getNKickPower_str()+"'";
     sql += (reg->getXTeamPlayer_str()=="")?",X_TEAM_PLAYER=NULL":",X_TEAM_PLAYER='"+reg->getXTeamPlayer_str()+"'";
     sql += (reg->getSShortName_str()=="")?",S_SHORT_NAME=NULL":",S_SHORT_NAME='"+reg->getSShortName_str()+"'";
     sql += (reg->getNFortitude_str()=="")?",N_FORTITUDE=NULL":",N_FORTITUDE='"+reg->getNFortitude_str()+"'";
@@ -160,14 +166,20 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackRegister(void *object, int nColumns, 
     if( object!=NULL ){
         CPfTeamPlayers *destiny = (CPfTeamPlayers*)object;
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
+            if( strcmp(sColumn[i], "X_FK_ROLE_SELECTED")==0 ){
+                destiny->setXFkRoleSelected_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
+                destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
                 destiny->setNWeight_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
-                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_SQUAD_NUMBER")==0 ){
+                destiny->setNSquadNumber_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_HEIGHT")==0 ){
                 destiny->setNHeight_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_SPEED")==0 ){
                 destiny->setNSpeed_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
+                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_TEAM_PLAYER")==0 ){
                 destiny->setXTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){
@@ -196,14 +208,20 @@ int CPfTeamPlayersDAOSQLiteEntity::callbackVector(void *object, int nColumns, ch
         std::vector<CPfTeamPlayers*> *container = (std::vector<CPfTeamPlayers*> *)object;
         CPfTeamPlayers *destiny = new CPfTeamPlayers();
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
+            if( strcmp(sColumn[i], "X_FK_ROLE_SELECTED")==0 ){
+                destiny->setXFkRoleSelected_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
+                destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_WEIGHT")==0 ){
                 destiny->setNWeight_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
-                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_SQUAD_NUMBER")==0 ){
+                destiny->setNSquadNumber_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_HEIGHT")==0 ){
                 destiny->setNHeight_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_SPEED")==0 ){
                 destiny->setNSpeed_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "N_KICK_POWER")==0 ){
+                destiny->setNKickPower_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_TEAM_PLAYER")==0 ){
                 destiny->setXTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "S_SHORT_NAME")==0 ){

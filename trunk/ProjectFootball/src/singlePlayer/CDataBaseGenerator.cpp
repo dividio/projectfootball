@@ -57,8 +57,10 @@ void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_countries.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_stadiums.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teams.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_roles.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_coaches.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_roles_by_team_players.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_competitions.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_seasons.sql");
 
@@ -96,7 +98,7 @@ void CDataBaseGenerator::generatePlayer(IDAOFactory *daoFactory, CPfTeams *team,
     //Generate player
     CPfTeamPlayers player;
     IPfTeamPlayersDAO *playersDAO= daoFactory->getIPfTeamPlayersDAO();
-    generateRandomPlayer(player);
+    generateRandomPlayer(player, lineUpOrder);
     player.setXFkCountry_str(team->getXFkCountry_str());
     playersDAO->insertReg(&player);
 
@@ -108,12 +110,11 @@ void CDataBaseGenerator::generatePlayer(IDAOFactory *daoFactory, CPfTeams *team,
 
     contract.setXFkTeam_str(team->getXTeam_str());
     contract.setXFkTeamPlayer_str(player.getXTeamPlayer_str());
-    contract.setNLineupOrder(lineUpOrder);
     contract.setDBegin(date);
     contractsDAO->insertReg(&contract);
 }
 
-void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player)
+void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player, int lineUpOrder)
 {
     std::ostringstream stream;
     stream << "Team Player " << m_numPlayers; // TODO Generate real names
@@ -121,6 +122,7 @@ void CDataBaseGenerator::generateRandomPlayer(CPfTeamPlayers &player)
     stream.str("");
     stream << "TP" << m_numPlayers++;
     player.setSShortName(stream.str());
+    player.setNLineupOrder(lineUpOrder);
 
     player.setXFkCountry_str("1");
     player.setNKickPower((rand()%49)+50);

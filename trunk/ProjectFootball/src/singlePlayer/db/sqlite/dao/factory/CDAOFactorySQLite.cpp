@@ -42,25 +42,31 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     }
 
     m_PfCompetitionPhasesDAOSQLite = new CPfCompetitionPhasesDAOSQLite(m_database);
-    m_PfStadiumsDAOSQLite = new CPfStadiumsDAOSQLite(m_database);
+    m_PfStrategicPositionDAOSQLite = new CPfStrategicPositionDAOSQLite(m_database);
     m_PfRankingDAOSQLite = new CPfRankingDAOSQLite(m_database);
     m_PfTeamAveragesDAOSQLite = new CPfTeamAveragesDAOSQLite(m_database);
-    m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
-    m_PfGameOptionsDAOSQLite = new CPfGameOptionsDAOSQLite(m_database);
-    m_PfCompetitionsBySeasonDAOSQLite = new CPfCompetitionsBySeasonDAOSQLite(m_database);
+    m_PfFormationsDAOSQLite = new CPfFormationsDAOSQLite(m_database);
     m_PfTeamsByCompetitionsDAOSQLite = new CPfTeamsByCompetitionsDAOSQLite(m_database);
-    m_PfSeasonsDAOSQLite = new CPfSeasonsDAOSQLite(m_database);
-    m_PfScorersDAOSQLite = new CPfScorersDAOSQLite(m_database);
     m_PfConfederationsDAOSQLite = new CPfConfederationsDAOSQLite(m_database);
-    m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
-    m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
     m_PfTeamPlayersDAOSQLite = new CPfTeamPlayersDAOSQLite(m_database);
-    m_PfCoachesDAOSQLite = new CPfCoachesDAOSQLite(m_database);
-    m_PfCountriesDAOSQLite = new CPfCountriesDAOSQLite(m_database);
-    m_PfCompetitionsDAOSQLite = new CPfCompetitionsDAOSQLite(m_database);
-    m_PfCoachContractsDAOSQLite = new CPfCoachContractsDAOSQLite(m_database);
+    m_PfStadiumsDAOSQLite = new CPfStadiumsDAOSQLite(m_database);
     m_PfTeamsDAOSQLite = new CPfTeamsDAOSQLite(m_database);
     m_PfTeamPlayerAveragesDAOSQLite = new CPfTeamPlayerAveragesDAOSQLite(m_database);
+    m_PfCompetitionsBySeasonDAOSQLite = new CPfCompetitionsBySeasonDAOSQLite(m_database);
+    m_PfSeasonsDAOSQLite = new CPfSeasonsDAOSQLite(m_database);
+    m_PfDemarcationsDAOSQLite = new CPfDemarcationsDAOSQLite(m_database);
+    m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
+    m_PfCoachesDAOSQLite = new CPfCoachesDAOSQLite(m_database);
+    m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
+    m_PfGameOptionsDAOSQLite = new CPfGameOptionsDAOSQLite(m_database);
+    m_PfGoalsDAOSQLite = new CPfGoalsDAOSQLite(m_database);
+    m_PfRolesDAOSQLite = new CPfRolesDAOSQLite(m_database);
+    m_PfCountriesDAOSQLite = new CPfCountriesDAOSQLite(m_database);
+    m_PfCoachContractsDAOSQLite = new CPfCoachContractsDAOSQLite(m_database);
+    m_PfRolesByTeamPlayersDAOSQLite = new CPfRolesByTeamPlayersDAOSQLite(m_database);
+    m_PfFormationsByCoachesDAOSQLite = new CPfFormationsByCoachesDAOSQLite(m_database);
+    m_PfScorersDAOSQLite = new CPfScorersDAOSQLite(m_database);
+    m_PfCompetitionsDAOSQLite = new CPfCompetitionsDAOSQLite(m_database);
 
     LOG_DEBUG("[CDAOFactorySQLite::CDAOFactorySQLite] SQLite Database open: '%s'", m_filepath_tmp.c_str());
 }
@@ -68,25 +74,31 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
 CDAOFactorySQLite::~CDAOFactorySQLite()
 {
     delete m_PfCompetitionPhasesDAOSQLite;
-    delete m_PfStadiumsDAOSQLite;
+    delete m_PfStrategicPositionDAOSQLite;
     delete m_PfRankingDAOSQLite;
     delete m_PfTeamAveragesDAOSQLite;
-    delete m_PfMatchesDAOSQLite;
-    delete m_PfGameOptionsDAOSQLite;
-    delete m_PfCompetitionsBySeasonDAOSQLite;
+    delete m_PfFormationsDAOSQLite;
     delete m_PfTeamsByCompetitionsDAOSQLite;
-    delete m_PfSeasonsDAOSQLite;
-    delete m_PfScorersDAOSQLite;
     delete m_PfConfederationsDAOSQLite;
-    delete m_PfTeamPlayerContractsDAOSQLite;
-    delete m_PfGoalsDAOSQLite;
     delete m_PfTeamPlayersDAOSQLite;
-    delete m_PfCoachesDAOSQLite;
-    delete m_PfCountriesDAOSQLite;
-    delete m_PfCompetitionsDAOSQLite;
-    delete m_PfCoachContractsDAOSQLite;
+    delete m_PfStadiumsDAOSQLite;
     delete m_PfTeamsDAOSQLite;
     delete m_PfTeamPlayerAveragesDAOSQLite;
+    delete m_PfCompetitionsBySeasonDAOSQLite;
+    delete m_PfSeasonsDAOSQLite;
+    delete m_PfDemarcationsDAOSQLite;
+    delete m_PfTeamPlayerContractsDAOSQLite;
+    delete m_PfCoachesDAOSQLite;
+    delete m_PfMatchesDAOSQLite;
+    delete m_PfGameOptionsDAOSQLite;
+    delete m_PfGoalsDAOSQLite;
+    delete m_PfRolesDAOSQLite;
+    delete m_PfCountriesDAOSQLite;
+    delete m_PfCoachContractsDAOSQLite;
+    delete m_PfRolesByTeamPlayersDAOSQLite;
+    delete m_PfFormationsByCoachesDAOSQLite;
+    delete m_PfScorersDAOSQLite;
+    delete m_PfCompetitionsDAOSQLite;
 
     sqlite3_close(m_database);
     remove(m_filepath_tmp.c_str());
@@ -188,25 +200,31 @@ void CDAOFactorySQLite::save()
 {
     // Closing temp database
     m_PfCompetitionPhasesDAOSQLite->setSQLite(NULL);
-    m_PfStadiumsDAOSQLite->setSQLite(NULL);
+    m_PfStrategicPositionDAOSQLite->setSQLite(NULL);
     m_PfRankingDAOSQLite->setSQLite(NULL);
     m_PfTeamAveragesDAOSQLite->setSQLite(NULL);
-    m_PfMatchesDAOSQLite->setSQLite(NULL);
-    m_PfGameOptionsDAOSQLite->setSQLite(NULL);
-    m_PfCompetitionsBySeasonDAOSQLite->setSQLite(NULL);
+    m_PfFormationsDAOSQLite->setSQLite(NULL);
     m_PfTeamsByCompetitionsDAOSQLite->setSQLite(NULL);
-    m_PfSeasonsDAOSQLite->setSQLite(NULL);
-    m_PfScorersDAOSQLite->setSQLite(NULL);
     m_PfConfederationsDAOSQLite->setSQLite(NULL);
-    m_PfTeamPlayerContractsDAOSQLite->setSQLite(NULL);
-    m_PfGoalsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayersDAOSQLite->setSQLite(NULL);
-    m_PfCoachesDAOSQLite->setSQLite(NULL);
-    m_PfCountriesDAOSQLite->setSQLite(NULL);
-    m_PfCompetitionsDAOSQLite->setSQLite(NULL);
-    m_PfCoachContractsDAOSQLite->setSQLite(NULL);
+    m_PfStadiumsDAOSQLite->setSQLite(NULL);
     m_PfTeamsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayerAveragesDAOSQLite->setSQLite(NULL);
+    m_PfCompetitionsBySeasonDAOSQLite->setSQLite(NULL);
+    m_PfSeasonsDAOSQLite->setSQLite(NULL);
+    m_PfDemarcationsDAOSQLite->setSQLite(NULL);
+    m_PfTeamPlayerContractsDAOSQLite->setSQLite(NULL);
+    m_PfCoachesDAOSQLite->setSQLite(NULL);
+    m_PfMatchesDAOSQLite->setSQLite(NULL);
+    m_PfGameOptionsDAOSQLite->setSQLite(NULL);
+    m_PfGoalsDAOSQLite->setSQLite(NULL);
+    m_PfRolesDAOSQLite->setSQLite(NULL);
+    m_PfCountriesDAOSQLite->setSQLite(NULL);
+    m_PfCoachContractsDAOSQLite->setSQLite(NULL);
+    m_PfRolesByTeamPlayersDAOSQLite->setSQLite(NULL);
+    m_PfFormationsByCoachesDAOSQLite->setSQLite(NULL);
+    m_PfScorersDAOSQLite->setSQLite(NULL);
+    m_PfCompetitionsDAOSQLite->setSQLite(NULL);
 
     sqlite3_close(m_database);
     m_database = NULL;
@@ -223,25 +241,31 @@ void CDAOFactorySQLite::save()
     }
 
     m_PfCompetitionPhasesDAOSQLite->setSQLite(m_database);
-    m_PfStadiumsDAOSQLite->setSQLite(m_database);
+    m_PfStrategicPositionDAOSQLite->setSQLite(m_database);
     m_PfRankingDAOSQLite->setSQLite(m_database);
     m_PfTeamAveragesDAOSQLite->setSQLite(m_database);
-    m_PfMatchesDAOSQLite->setSQLite(m_database);
-    m_PfGameOptionsDAOSQLite->setSQLite(m_database);
-    m_PfCompetitionsBySeasonDAOSQLite->setSQLite(m_database);
+    m_PfFormationsDAOSQLite->setSQLite(m_database);
     m_PfTeamsByCompetitionsDAOSQLite->setSQLite(m_database);
-    m_PfSeasonsDAOSQLite->setSQLite(m_database);
-    m_PfScorersDAOSQLite->setSQLite(m_database);
     m_PfConfederationsDAOSQLite->setSQLite(m_database);
-    m_PfTeamPlayerContractsDAOSQLite->setSQLite(m_database);
-    m_PfGoalsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayersDAOSQLite->setSQLite(m_database);
-    m_PfCoachesDAOSQLite->setSQLite(m_database);
-    m_PfCountriesDAOSQLite->setSQLite(m_database);
-    m_PfCompetitionsDAOSQLite->setSQLite(m_database);
-    m_PfCoachContractsDAOSQLite->setSQLite(m_database);
+    m_PfStadiumsDAOSQLite->setSQLite(m_database);
     m_PfTeamsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayerAveragesDAOSQLite->setSQLite(m_database);
+    m_PfCompetitionsBySeasonDAOSQLite->setSQLite(m_database);
+    m_PfSeasonsDAOSQLite->setSQLite(m_database);
+    m_PfDemarcationsDAOSQLite->setSQLite(m_database);
+    m_PfTeamPlayerContractsDAOSQLite->setSQLite(m_database);
+    m_PfCoachesDAOSQLite->setSQLite(m_database);
+    m_PfMatchesDAOSQLite->setSQLite(m_database);
+    m_PfGameOptionsDAOSQLite->setSQLite(m_database);
+    m_PfGoalsDAOSQLite->setSQLite(m_database);
+    m_PfRolesDAOSQLite->setSQLite(m_database);
+    m_PfCountriesDAOSQLite->setSQLite(m_database);
+    m_PfCoachContractsDAOSQLite->setSQLite(m_database);
+    m_PfRolesByTeamPlayersDAOSQLite->setSQLite(m_database);
+    m_PfFormationsByCoachesDAOSQLite->setSQLite(m_database);
+    m_PfScorersDAOSQLite->setSQLite(m_database);
+    m_PfCompetitionsDAOSQLite->setSQLite(m_database);
 }
 
 IPfCompetitionPhasesDAO* CDAOFactorySQLite::getIPfCompetitionPhasesDAO()
@@ -249,9 +273,9 @@ IPfCompetitionPhasesDAO* CDAOFactorySQLite::getIPfCompetitionPhasesDAO()
     return m_PfCompetitionPhasesDAOSQLite;
 }
 
-IPfStadiumsDAO* CDAOFactorySQLite::getIPfStadiumsDAO()
+IPfStrategicPositionDAO* CDAOFactorySQLite::getIPfStrategicPositionDAO()
 {
-    return m_PfStadiumsDAOSQLite;
+    return m_PfStrategicPositionDAOSQLite;
 }
 
 IPfRankingDAO* CDAOFactorySQLite::getIPfRankingDAO()
@@ -264,19 +288,9 @@ IPfTeamAveragesDAO* CDAOFactorySQLite::getIPfTeamAveragesDAO()
     return m_PfTeamAveragesDAOSQLite;
 }
 
-IPfMatchesDAO* CDAOFactorySQLite::getIPfMatchesDAO()
+IPfFormationsDAO* CDAOFactorySQLite::getIPfFormationsDAO()
 {
-    return m_PfMatchesDAOSQLite;
-}
-
-IPfGameOptionsDAO* CDAOFactorySQLite::getIPfGameOptionsDAO()
-{
-    return m_PfGameOptionsDAOSQLite;
-}
-
-IPfCompetitionsBySeasonDAO* CDAOFactorySQLite::getIPfCompetitionsBySeasonDAO()
-{
-    return m_PfCompetitionsBySeasonDAOSQLite;
+    return m_PfFormationsDAOSQLite;
 }
 
 IPfTeamsByCompetitionsDAO* CDAOFactorySQLite::getIPfTeamsByCompetitionsDAO()
@@ -284,29 +298,9 @@ IPfTeamsByCompetitionsDAO* CDAOFactorySQLite::getIPfTeamsByCompetitionsDAO()
     return m_PfTeamsByCompetitionsDAOSQLite;
 }
 
-IPfSeasonsDAO* CDAOFactorySQLite::getIPfSeasonsDAO()
-{
-    return m_PfSeasonsDAOSQLite;
-}
-
-IPfScorersDAO* CDAOFactorySQLite::getIPfScorersDAO()
-{
-    return m_PfScorersDAOSQLite;
-}
-
 IPfConfederationsDAO* CDAOFactorySQLite::getIPfConfederationsDAO()
 {
     return m_PfConfederationsDAOSQLite;
-}
-
-IPfTeamPlayerContractsDAO* CDAOFactorySQLite::getIPfTeamPlayerContractsDAO()
-{
-    return m_PfTeamPlayerContractsDAOSQLite;
-}
-
-IPfGoalsDAO* CDAOFactorySQLite::getIPfGoalsDAO()
-{
-    return m_PfGoalsDAOSQLite;
 }
 
 IPfTeamPlayersDAO* CDAOFactorySQLite::getIPfTeamPlayersDAO()
@@ -314,24 +308,9 @@ IPfTeamPlayersDAO* CDAOFactorySQLite::getIPfTeamPlayersDAO()
     return m_PfTeamPlayersDAOSQLite;
 }
 
-IPfCoachesDAO* CDAOFactorySQLite::getIPfCoachesDAO()
+IPfStadiumsDAO* CDAOFactorySQLite::getIPfStadiumsDAO()
 {
-    return m_PfCoachesDAOSQLite;
-}
-
-IPfCountriesDAO* CDAOFactorySQLite::getIPfCountriesDAO()
-{
-    return m_PfCountriesDAOSQLite;
-}
-
-IPfCompetitionsDAO* CDAOFactorySQLite::getIPfCompetitionsDAO()
-{
-    return m_PfCompetitionsDAOSQLite;
-}
-
-IPfCoachContractsDAO* CDAOFactorySQLite::getIPfCoachContractsDAO()
-{
-    return m_PfCoachContractsDAOSQLite;
+    return m_PfStadiumsDAOSQLite;
 }
 
 IPfTeamsDAO* CDAOFactorySQLite::getIPfTeamsDAO()
@@ -342,6 +321,81 @@ IPfTeamsDAO* CDAOFactorySQLite::getIPfTeamsDAO()
 IPfTeamPlayerAveragesDAO* CDAOFactorySQLite::getIPfTeamPlayerAveragesDAO()
 {
     return m_PfTeamPlayerAveragesDAOSQLite;
+}
+
+IPfCompetitionsBySeasonDAO* CDAOFactorySQLite::getIPfCompetitionsBySeasonDAO()
+{
+    return m_PfCompetitionsBySeasonDAOSQLite;
+}
+
+IPfSeasonsDAO* CDAOFactorySQLite::getIPfSeasonsDAO()
+{
+    return m_PfSeasonsDAOSQLite;
+}
+
+IPfDemarcationsDAO* CDAOFactorySQLite::getIPfDemarcationsDAO()
+{
+    return m_PfDemarcationsDAOSQLite;
+}
+
+IPfTeamPlayerContractsDAO* CDAOFactorySQLite::getIPfTeamPlayerContractsDAO()
+{
+    return m_PfTeamPlayerContractsDAOSQLite;
+}
+
+IPfCoachesDAO* CDAOFactorySQLite::getIPfCoachesDAO()
+{
+    return m_PfCoachesDAOSQLite;
+}
+
+IPfMatchesDAO* CDAOFactorySQLite::getIPfMatchesDAO()
+{
+    return m_PfMatchesDAOSQLite;
+}
+
+IPfGameOptionsDAO* CDAOFactorySQLite::getIPfGameOptionsDAO()
+{
+    return m_PfGameOptionsDAOSQLite;
+}
+
+IPfGoalsDAO* CDAOFactorySQLite::getIPfGoalsDAO()
+{
+    return m_PfGoalsDAOSQLite;
+}
+
+IPfRolesDAO* CDAOFactorySQLite::getIPfRolesDAO()
+{
+    return m_PfRolesDAOSQLite;
+}
+
+IPfCountriesDAO* CDAOFactorySQLite::getIPfCountriesDAO()
+{
+    return m_PfCountriesDAOSQLite;
+}
+
+IPfCoachContractsDAO* CDAOFactorySQLite::getIPfCoachContractsDAO()
+{
+    return m_PfCoachContractsDAOSQLite;
+}
+
+IPfRolesByTeamPlayersDAO* CDAOFactorySQLite::getIPfRolesByTeamPlayersDAO()
+{
+    return m_PfRolesByTeamPlayersDAOSQLite;
+}
+
+IPfFormationsByCoachesDAO* CDAOFactorySQLite::getIPfFormationsByCoachesDAO()
+{
+    return m_PfFormationsByCoachesDAOSQLite;
+}
+
+IPfScorersDAO* CDAOFactorySQLite::getIPfScorersDAO()
+{
+    return m_PfScorersDAOSQLite;
+}
+
+IPfCompetitionsDAO* CDAOFactorySQLite::getIPfCompetitionsDAO()
+{
+    return m_PfCompetitionsDAOSQLite;
 }
 
 void CDAOFactorySQLite::copyFile(const std::string &origin, const std::string &destination)

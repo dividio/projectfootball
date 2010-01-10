@@ -55,8 +55,8 @@ CPfTeamAverages* CPfTeamAveragesDAOSQLite::findByXTeam(const std::string &XTeam,
                             "AND   TPC.X_FK_TEAM = T.X_TEAM " +
                             "AND   TPC.D_BEGIN <= '" + timestamp + "' " +
                             "AND  (TPC.D_END IS NULL OR TPC.D_END > '" + timestamp + "') " +
-                            "AND   TPC.N_LINEUP_ORDER >= 1 " +
-                            "AND   TPC.N_LINEUP_ORDER <= 11 " +
+                            "AND   TP.N_LINEUP_ORDER >= 1 " +
+                            "AND   TP.N_LINEUP_ORDER <= 11 " +
                             "AND   T.X_TEAM='"+XTeam+"') " +
                    "GROUP BY X_TEAM";
     return loadRegister(sql);

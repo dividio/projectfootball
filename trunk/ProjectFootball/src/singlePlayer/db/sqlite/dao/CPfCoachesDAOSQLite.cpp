@@ -62,3 +62,17 @@ CPfCoaches* CPfCoachesDAOSQLite::findByXFkCountry(const std::string &XFkCountry)
     return loadRegister(sql);
 }
 
+CPfCoaches* CPfCoachesDAOSQLite::findByXFkFormationSelected(int XFkFormationSelected)
+{
+    std::ostringstream stream;
+    stream << XFkFormationSelected;
+    return findByXFkFormationSelected(stream.str());
+}
+
+CPfCoaches* CPfCoachesDAOSQLite::findByXFkFormationSelected(const std::string &XFkFormationSelected)
+{
+    std::string sql("SELECT * FROM PF_COACHES WHERE ");
+    sql = sql+"X_FK_FORMATION_SELECTED='"+XFkFormationSelected+"'";
+    return loadRegister(sql);
+}
+

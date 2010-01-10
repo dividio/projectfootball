@@ -50,12 +50,13 @@ bool CPfCoachesDAOSQLiteEntity::deleteReg(CPfCoaches *reg)
 
 bool CPfCoachesDAOSQLiteEntity::insertReg(CPfCoaches *reg)
 {
-    std::string sql("INSERT INTO PF_COACHES (S_SHORT_NAME,S_NAME,S_PHOTO,D_BIRTHDAY,X_FK_COUNTRY) VALUES (");
+    std::string sql("INSERT INTO PF_COACHES (S_SHORT_NAME,S_NAME,S_PHOTO,D_BIRTHDAY,X_FK_COUNTRY,X_FK_FORMATION_SELECTED) VALUES (");
     sql += (reg->getSShortName_str()=="")?"NULL":"'"+reg->getSShortName_str()+"'";
     sql += (reg->getSName_str()=="")?",NULL":",'"+reg->getSName_str()+"'";
     sql += (reg->getSPhoto_str()=="")?",NULL":",'"+reg->getSPhoto_str()+"'";
     sql += (reg->getDBirthday_str()=="")?",NULL":",'"+reg->getDBirthday_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",NULL":",'"+reg->getXFkCountry_str()+"'";
+    sql += (reg->getXFkFormationSelected_str()=="")?",NULL":",'"+reg->getXFkFormationSelected_str()+"'";
     sql += ")";
     if( exec(sql) ){
         reg->setXCoach(sqlite3_last_insert_rowid(m_database));
@@ -74,6 +75,7 @@ bool CPfCoachesDAOSQLiteEntity::updateReg(CPfCoaches *reg)
     sql += (reg->getSPhoto_str()=="")?",S_PHOTO=NULL":",S_PHOTO='"+reg->getSPhoto_str()+"'";
     sql += (reg->getDBirthday_str()=="")?",D_BIRTHDAY=NULL":",D_BIRTHDAY='"+reg->getDBirthday_str()+"'";
     sql += (reg->getXFkCountry_str()=="")?",X_FK_COUNTRY=NULL":",X_FK_COUNTRY='"+reg->getXFkCountry_str()+"'";
+    sql += (reg->getXFkFormationSelected_str()=="")?",X_FK_FORMATION_SELECTED=NULL":",X_FK_FORMATION_SELECTED='"+reg->getXFkFormationSelected_str()+"'";
     sql += " WHERE X_COACH='"+reg->getXCoach_str()+"'";
     return exec(sql);
 }
@@ -160,6 +162,8 @@ int CPfCoachesDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char
                 destiny->setDBirthday_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_FORMATION_SELECTED")==0 ){
+                destiny->setXFkFormationSelected_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
     }
@@ -184,6 +188,8 @@ int CPfCoachesDAOSQLiteEntity::callbackVector(void *object, int nColumns, char *
                 destiny->setDBirthday_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_COUNTRY")==0 ){
                 destiny->setXFkCountry_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_FORMATION_SELECTED")==0 ){
+                destiny->setXFkFormationSelected_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
         }
         container->push_back(destiny);

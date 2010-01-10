@@ -50,13 +50,12 @@ bool CPfTeamPlayerContractsDAOSQLiteEntity::deleteReg(CPfTeamPlayerContracts *re
 
 bool CPfTeamPlayerContractsDAOSQLiteEntity::insertReg(CPfTeamPlayerContracts *reg)
 {
-    std::string sql("INSERT INTO PF_TEAM_PLAYER_CONTRACTS (D_BEGIN,N_RELEASE_CLAUSE,D_END,X_FK_TEAM_PLAYER,N_LINEUP_ORDER,N_SALARY,X_FK_TEAM) VALUES (");
+    std::string sql("INSERT INTO PF_TEAM_PLAYER_CONTRACTS (D_BEGIN,N_RELEASE_CLAUSE,N_SALARY,X_FK_TEAM_PLAYER,D_END,X_FK_TEAM) VALUES (");
     sql += (reg->getDBegin_str()=="")?"NULL":"'"+reg->getDBegin_str()+"'";
     sql += (reg->getNReleaseClause_str()=="")?",NULL":",'"+reg->getNReleaseClause_str()+"'";
-    sql += (reg->getDEnd_str()=="")?",NULL":",'"+reg->getDEnd_str()+"'";
-    sql += (reg->getXFkTeamPlayer_str()=="")?",NULL":",'"+reg->getXFkTeamPlayer_str()+"'";
-    sql += (reg->getNLineupOrder_str()=="")?",NULL":",'"+reg->getNLineupOrder_str()+"'";
     sql += (reg->getNSalary_str()=="")?",NULL":",'"+reg->getNSalary_str()+"'";
+    sql += (reg->getXFkTeamPlayer_str()=="")?",NULL":",'"+reg->getXFkTeamPlayer_str()+"'";
+    sql += (reg->getDEnd_str()=="")?",NULL":",'"+reg->getDEnd_str()+"'";
     sql += (reg->getXFkTeam_str()=="")?",NULL":",'"+reg->getXFkTeam_str()+"'";
     sql += ")";
     if( exec(sql) ){
@@ -73,10 +72,9 @@ bool CPfTeamPlayerContractsDAOSQLiteEntity::updateReg(CPfTeamPlayerContracts *re
     sql += (reg->getDBegin_str()=="")?" D_BEGIN=NULL":" D_BEGIN='"+reg->getDBegin_str()+"'";
     sql += (reg->getXTeamPlayerContract_str()=="")?",X_TEAM_PLAYER_CONTRACT=NULL":",X_TEAM_PLAYER_CONTRACT='"+reg->getXTeamPlayerContract_str()+"'";
     sql += (reg->getNReleaseClause_str()=="")?",N_RELEASE_CLAUSE=NULL":",N_RELEASE_CLAUSE='"+reg->getNReleaseClause_str()+"'";
-    sql += (reg->getDEnd_str()=="")?",D_END=NULL":",D_END='"+reg->getDEnd_str()+"'";
-    sql += (reg->getXFkTeamPlayer_str()=="")?",X_FK_TEAM_PLAYER=NULL":",X_FK_TEAM_PLAYER='"+reg->getXFkTeamPlayer_str()+"'";
-    sql += (reg->getNLineupOrder_str()=="")?",N_LINEUP_ORDER=NULL":",N_LINEUP_ORDER='"+reg->getNLineupOrder_str()+"'";
     sql += (reg->getNSalary_str()=="")?",N_SALARY=NULL":",N_SALARY='"+reg->getNSalary_str()+"'";
+    sql += (reg->getXFkTeamPlayer_str()=="")?",X_FK_TEAM_PLAYER=NULL":",X_FK_TEAM_PLAYER='"+reg->getXFkTeamPlayer_str()+"'";
+    sql += (reg->getDEnd_str()=="")?",D_END=NULL":",D_END='"+reg->getDEnd_str()+"'";
     sql += (reg->getXFkTeam_str()=="")?",X_FK_TEAM=NULL":",X_FK_TEAM='"+reg->getXFkTeam_str()+"'";
     sql += " WHERE X_TEAM_PLAYER_CONTRACT='"+reg->getXTeamPlayerContract_str()+"'";
     return exec(sql);
@@ -158,14 +156,12 @@ int CPfTeamPlayerContractsDAOSQLiteEntity::callbackRegister(void *object, int nC
                 destiny->setXTeamPlayerContract_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_RELEASE_CLAUSE")==0 ){
                 destiny->setNReleaseClause_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "D_END")==0 ){
-                destiny->setDEnd_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
-                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
-                destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_SALARY")==0 ){
                 destiny->setNSalary_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
+                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "D_END")==0 ){
+                destiny->setDEnd_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM")==0 ){
                 destiny->setXFkTeam_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
@@ -186,14 +182,12 @@ int CPfTeamPlayerContractsDAOSQLiteEntity::callbackVector(void *object, int nCol
                 destiny->setXTeamPlayerContract_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_RELEASE_CLAUSE")==0 ){
                 destiny->setNReleaseClause_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "D_END")==0 ){
-                destiny->setDEnd_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
-                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
-                destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "N_SALARY")==0 ){
                 destiny->setNSalary_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_TEAM_PLAYER")==0 ){
+                destiny->setXFkTeamPlayer_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "D_END")==0 ){
+                destiny->setDEnd_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM")==0 ){
                 destiny->setXFkTeam_str((vColumn[i]==NULL)?"":vColumn[i]);
             }

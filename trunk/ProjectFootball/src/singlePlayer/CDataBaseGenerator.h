@@ -48,7 +48,7 @@ private:
 
     static void generateTeamPlayers(IDAOFactory *daoFactory);
     static void generatePlayer(IDAOFactory *daoFactory, CPfTeams *team, int lineUpOrder);
-    static void generateRandomPlayer(CPfTeamPlayers &player);
+    static void generateRandomPlayer(CPfTeamPlayers &player, int lineUpOrder);
     static void generateCoaches(IDAOFactory *daoFactory);
     static void generateCoach(IDAOFactory *daoFactory, CPfTeams *team);
 };

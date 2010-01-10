@@ -31,10 +31,9 @@ CPfTeamPlayerContracts::CPfTeamPlayerContracts()
     m_DBegin = "";
     m_XTeamPlayerContract = "0";
     m_NReleaseClause = "0";
-    m_DEnd = "";
-    m_XFkTeamPlayer = "0";
-    m_NLineupOrder = "0";
     m_NSalary = "0";
+    m_XFkTeamPlayer = "0";
+    m_DEnd = "";
     m_XFkTeam = "0";
 }
 
@@ -43,10 +42,9 @@ CPfTeamPlayerContracts::CPfTeamPlayerContracts(const CPfTeamPlayerContracts &obj
     m_DBegin = obj.m_DBegin;
     m_XTeamPlayerContract = obj.m_XTeamPlayerContract;
     m_NReleaseClause = obj.m_NReleaseClause;
-    m_DEnd = obj.m_DEnd;
-    m_XFkTeamPlayer = obj.m_XFkTeamPlayer;
-    m_NLineupOrder = obj.m_NLineupOrder;
     m_NSalary = obj.m_NSalary;
+    m_XFkTeamPlayer = obj.m_XFkTeamPlayer;
+    m_DEnd = obj.m_DEnd;
     m_XFkTeam = obj.m_XFkTeam;
 }
 
@@ -92,14 +90,18 @@ const std::string& CPfTeamPlayerContracts::getNReleaseClause_str() const
     return m_NReleaseClause;
 }
 
-CDate CPfTeamPlayerContracts::getDEnd() const
+int CPfTeamPlayerContracts::getNSalary() const
 {
-    return m_DEnd;
+    if( m_NSalary=="" ){
+        return 0;
+    }else{
+        return atoi(m_NSalary.c_str());
+    }
 }
 
-const std::string& CPfTeamPlayerContracts::getDEnd_str() const
+const std::string& CPfTeamPlayerContracts::getNSalary_str() const
 {
-    return m_DEnd;
+    return m_NSalary;
 }
 
 int CPfTeamPlayerContracts::getXFkTeamPlayer() const
@@ -116,32 +118,14 @@ const std::string& CPfTeamPlayerContracts::getXFkTeamPlayer_str() const
     return m_XFkTeamPlayer;
 }
 
-int CPfTeamPlayerContracts::getNLineupOrder() const
+CDate CPfTeamPlayerContracts::getDEnd() const
 {
-    if( m_NLineupOrder=="" ){
-        return 0;
-    }else{
-        return atoi(m_NLineupOrder.c_str());
-    }
+    return m_DEnd;
 }
 
-const std::string& CPfTeamPlayerContracts::getNLineupOrder_str() const
+const std::string& CPfTeamPlayerContracts::getDEnd_str() const
 {
-    return m_NLineupOrder;
-}
-
-int CPfTeamPlayerContracts::getNSalary() const
-{
-    if( m_NSalary=="" ){
-        return 0;
-    }else{
-        return atoi(m_NSalary.c_str());
-    }
-}
-
-const std::string& CPfTeamPlayerContracts::getNSalary_str() const
-{
-    return m_NSalary;
+    return m_DEnd;
 }
 
 int CPfTeamPlayerContracts::getXFkTeam() const
@@ -192,14 +176,16 @@ void CPfTeamPlayerContracts::setNReleaseClause_str(const std::string &NReleaseCl
     m_NReleaseClause = NReleaseClause;
 }
 
-void CPfTeamPlayerContracts::setDEnd(const CDate &DEnd)
+void CPfTeamPlayerContracts::setNSalary(int NSalary)
 {
-    m_DEnd = DEnd.getTimestamp();
+    std::ostringstream stream;
+    stream << NSalary;
+    m_NSalary = stream.str();
 }
 
-void CPfTeamPlayerContracts::setDEnd_str(const std::string &DEnd)
+void CPfTeamPlayerContracts::setNSalary_str(const std::string &NSalary)
 {
-    m_DEnd = DEnd;
+    m_NSalary = NSalary;
 }
 
 void CPfTeamPlayerContracts::setXFkTeamPlayer(int XFkTeamPlayer)
@@ -214,28 +200,14 @@ void CPfTeamPlayerContracts::setXFkTeamPlayer_str(const std::string &XFkTeamPlay
     m_XFkTeamPlayer = XFkTeamPlayer;
 }
 
-void CPfTeamPlayerContracts::setNLineupOrder(int NLineupOrder)
+void CPfTeamPlayerContracts::setDEnd(const CDate &DEnd)
 {
-    std::ostringstream stream;
-    stream << NLineupOrder;
-    m_NLineupOrder = stream.str();
+    m_DEnd = DEnd.getTimestamp();
 }
 
-void CPfTeamPlayerContracts::setNLineupOrder_str(const std::string &NLineupOrder)
+void CPfTeamPlayerContracts::setDEnd_str(const std::string &DEnd)
 {
-    m_NLineupOrder = NLineupOrder;
-}
-
-void CPfTeamPlayerContracts::setNSalary(int NSalary)
-{
-    std::ostringstream stream;
-    stream << NSalary;
-    m_NSalary = stream.str();
-}
-
-void CPfTeamPlayerContracts::setNSalary_str(const std::string &NSalary)
-{
-    m_NSalary = NSalary;
+    m_DEnd = DEnd;
 }
 
 void CPfTeamPlayerContracts::setXFkTeam(int XFkTeam)

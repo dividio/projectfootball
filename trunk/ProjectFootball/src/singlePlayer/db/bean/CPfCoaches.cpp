@@ -34,6 +34,7 @@ CPfCoaches::CPfCoaches()
     m_SPhoto = "";
     m_DBirthday = "";
     m_XFkCountry = "0";
+    m_XFkFormationSelected = "0";
 }
 
 CPfCoaches::CPfCoaches(const CPfCoaches &obj)
@@ -44,6 +45,7 @@ CPfCoaches::CPfCoaches(const CPfCoaches &obj)
     m_SPhoto = obj.m_SPhoto;
     m_DBirthday = obj.m_DBirthday;
     m_XFkCountry = obj.m_XFkCountry;
+    m_XFkFormationSelected = obj.m_XFkFormationSelected;
 }
 
 CPfCoaches::~CPfCoaches()
@@ -118,6 +120,20 @@ const std::string& CPfCoaches::getXFkCountry_str() const
     return m_XFkCountry;
 }
 
+int CPfCoaches::getXFkFormationSelected() const
+{
+    if( m_XFkFormationSelected=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkFormationSelected.c_str());
+    }
+}
+
+const std::string& CPfCoaches::getXFkFormationSelected_str() const
+{
+    return m_XFkFormationSelected;
+}
+
 void CPfCoaches::setXCoach(int XCoach)
 {
     std::ostringstream stream;
@@ -180,5 +196,17 @@ void CPfCoaches::setXFkCountry(int XFkCountry)
 void CPfCoaches::setXFkCountry_str(const std::string &XFkCountry)
 {
     m_XFkCountry = XFkCountry;
+}
+
+void CPfCoaches::setXFkFormationSelected(int XFkFormationSelected)
+{
+    std::ostringstream stream;
+    stream << XFkFormationSelected;
+    m_XFkFormationSelected = stream.str();
+}
+
+void CPfCoaches::setXFkFormationSelected_str(const std::string &XFkFormationSelected)
+{
+    m_XFkFormationSelected = XFkFormationSelected;
 }
 

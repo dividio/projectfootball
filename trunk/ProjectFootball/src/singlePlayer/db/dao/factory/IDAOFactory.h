@@ -24,25 +24,31 @@
 #define IDAOFACTORY_H_
 
 #include "../IPfCompetitionPhasesDAO.h"
-#include "../IPfStadiumsDAO.h"
+#include "../IPfStrategicPositionDAO.h"
 #include "../IPfRankingDAO.h"
 #include "../IPfTeamAveragesDAO.h"
-#include "../IPfMatchesDAO.h"
-#include "../IPfGameOptionsDAO.h"
-#include "../IPfCompetitionsBySeasonDAO.h"
+#include "../IPfFormationsDAO.h"
 #include "../IPfTeamsByCompetitionsDAO.h"
-#include "../IPfSeasonsDAO.h"
-#include "../IPfScorersDAO.h"
 #include "../IPfConfederationsDAO.h"
-#include "../IPfTeamPlayerContractsDAO.h"
-#include "../IPfGoalsDAO.h"
 #include "../IPfTeamPlayersDAO.h"
-#include "../IPfCoachesDAO.h"
-#include "../IPfCountriesDAO.h"
-#include "../IPfCompetitionsDAO.h"
-#include "../IPfCoachContractsDAO.h"
+#include "../IPfStadiumsDAO.h"
 #include "../IPfTeamsDAO.h"
 #include "../IPfTeamPlayerAveragesDAO.h"
+#include "../IPfCompetitionsBySeasonDAO.h"
+#include "../IPfSeasonsDAO.h"
+#include "../IPfDemarcationsDAO.h"
+#include "../IPfTeamPlayerContractsDAO.h"
+#include "../IPfCoachesDAO.h"
+#include "../IPfMatchesDAO.h"
+#include "../IPfGameOptionsDAO.h"
+#include "../IPfGoalsDAO.h"
+#include "../IPfRolesDAO.h"
+#include "../IPfCountriesDAO.h"
+#include "../IPfCoachContractsDAO.h"
+#include "../IPfRolesByTeamPlayersDAO.h"
+#include "../IPfFormationsByCoachesDAO.h"
+#include "../IPfScorersDAO.h"
+#include "../IPfCompetitionsDAO.h"
 
 class IDAOFactory
 {
@@ -60,25 +66,31 @@ public:
     virtual void save() =0;
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
-    virtual IPfStadiumsDAO* getIPfStadiumsDAO() =0;
+    virtual IPfStrategicPositionDAO* getIPfStrategicPositionDAO() =0;
     virtual IPfRankingDAO* getIPfRankingDAO() =0;
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO() =0;
-    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
-    virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO() =0;
+    virtual IPfFormationsDAO* getIPfFormationsDAO() =0;
     virtual IPfTeamsByCompetitionsDAO* getIPfTeamsByCompetitionsDAO() =0;
-    virtual IPfSeasonsDAO* getIPfSeasonsDAO() =0;
-    virtual IPfScorersDAO* getIPfScorersDAO() =0;
     virtual IPfConfederationsDAO* getIPfConfederationsDAO() =0;
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
-    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
     virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
-    virtual IPfCoachesDAO* getIPfCoachesDAO() =0;
-    virtual IPfCountriesDAO* getIPfCountriesDAO() =0;
-    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
-    virtual IPfCoachContractsDAO* getIPfCoachContractsDAO() =0;
+    virtual IPfStadiumsDAO* getIPfStadiumsDAO() =0;
     virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
     virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO() =0;
+    virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO() =0;
+    virtual IPfSeasonsDAO* getIPfSeasonsDAO() =0;
+    virtual IPfDemarcationsDAO* getIPfDemarcationsDAO() =0;
+    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
+    virtual IPfCoachesDAO* getIPfCoachesDAO() =0;
+    virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
+    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
+    virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
+    virtual IPfRolesDAO* getIPfRolesDAO() =0;
+    virtual IPfCountriesDAO* getIPfCountriesDAO() =0;
+    virtual IPfCoachContractsDAO* getIPfCoachContractsDAO() =0;
+    virtual IPfRolesByTeamPlayersDAO* getIPfRolesByTeamPlayersDAO() =0;
+    virtual IPfFormationsByCoachesDAO* getIPfFormationsByCoachesDAO() =0;
+    virtual IPfScorersDAO* getIPfScorersDAO() =0;
+    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO() =0;
 
 };
 #endif /*IDAOFACTORY_H_*/

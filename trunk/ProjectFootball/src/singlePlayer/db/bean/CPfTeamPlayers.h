@@ -34,14 +34,20 @@ public:
     CPfTeamPlayers(const CPfTeamPlayers &obj);
     virtual ~CPfTeamPlayers();
 
+    int getXFkRoleSelected() const;
+    const std::string& getXFkRoleSelected_str() const;
+    int getNLineupOrder() const;
+    const std::string& getNLineupOrder_str() const;
     int getNWeight() const;
     const std::string& getNWeight_str() const;
-    int getNKickPower() const;
-    const std::string& getNKickPower_str() const;
+    int getNSquadNumber() const;
+    const std::string& getNSquadNumber_str() const;
     int getNHeight() const;
     const std::string& getNHeight_str() const;
     int getNSpeed() const;
     const std::string& getNSpeed_str() const;
+    int getNKickPower() const;
+    const std::string& getNKickPower_str() const;
     int getXTeamPlayer() const;
     const std::string& getXTeamPlayer_str() const;
     const std::string& getSShortName() const;
@@ -59,14 +65,20 @@ public:
     int getNMoral() const;
     const std::string& getNMoral_str() const;
 
+    void setXFkRoleSelected(int XFkRoleSelected);
+    void setXFkRoleSelected_str(const std::string &XFkRoleSelected);
+    void setNLineupOrder(int NLineupOrder);
+    void setNLineupOrder_str(const std::string &NLineupOrder);
     void setNWeight(int NWeight);
     void setNWeight_str(const std::string &NWeight);
-    void setNKickPower(int NKickPower);
-    void setNKickPower_str(const std::string &NKickPower);
+    void setNSquadNumber(int NSquadNumber);
+    void setNSquadNumber_str(const std::string &NSquadNumber);
     void setNHeight(int NHeight);
     void setNHeight_str(const std::string &NHeight);
     void setNSpeed(int NSpeed);
     void setNSpeed_str(const std::string &NSpeed);
+    void setNKickPower(int NKickPower);
+    void setNKickPower_str(const std::string &NKickPower);
     void setXTeamPlayer(int XTeamPlayer);
     void setXTeamPlayer_str(const std::string &XTeamPlayer);
     void setSShortName(const std::string &SShortName);
@@ -85,10 +97,13 @@ public:
     void setNMoral_str(const std::string &NMoral);
 
 private:
+    std::string m_XFkRoleSelected;
+    std::string m_NLineupOrder;
     std::string m_NWeight;
-    std::string m_NKickPower;
+    std::string m_NSquadNumber;
     std::string m_NHeight;
     std::string m_NSpeed;
+    std::string m_NKickPower;
     std::string m_XTeamPlayer;
     std::string m_SShortName;
     std::string m_NFortitude;

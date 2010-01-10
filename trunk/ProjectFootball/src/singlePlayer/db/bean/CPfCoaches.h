@@ -46,6 +46,8 @@ public:
     const std::string& getDBirthday_str() const;
     int getXFkCountry() const;
     const std::string& getXFkCountry_str() const;
+    int getXFkFormationSelected() const;
+    const std::string& getXFkFormationSelected_str() const;
 
     void setXCoach(int XCoach);
     void setXCoach_str(const std::string &XCoach);
@@ -59,6 +61,8 @@ public:
     void setDBirthday_str(const std::string &DBirthday);
     void setXFkCountry(int XFkCountry);
     void setXFkCountry_str(const std::string &XFkCountry);
+    void setXFkFormationSelected(int XFkFormationSelected);
+    void setXFkFormationSelected_str(const std::string &XFkFormationSelected);
 
 private:
     std::string m_XCoach;
@@ -67,6 +71,7 @@ private:
     std::string m_SPhoto;
     std::string m_DBirthday;
     std::string m_XFkCountry;
+    std::string m_XFkFormationSelected;
 
 };
 #endif /*CPFCOACHES_H_*/

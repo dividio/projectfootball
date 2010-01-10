@@ -29,46 +29,58 @@
 #include "../../../dao/factory/IDAOFactory.h"
 
 #include "../../../dao/IPfCompetitionPhasesDAO.h"
-#include "../../../dao/IPfStadiumsDAO.h"
+#include "../../../dao/IPfStrategicPositionDAO.h"
 #include "../../../dao/IPfRankingDAO.h"
 #include "../../../dao/IPfTeamAveragesDAO.h"
-#include "../../../dao/IPfMatchesDAO.h"
-#include "../../../dao/IPfGameOptionsDAO.h"
-#include "../../../dao/IPfCompetitionsBySeasonDAO.h"
+#include "../../../dao/IPfFormationsDAO.h"
 #include "../../../dao/IPfTeamsByCompetitionsDAO.h"
-#include "../../../dao/IPfSeasonsDAO.h"
-#include "../../../dao/IPfScorersDAO.h"
 #include "../../../dao/IPfConfederationsDAO.h"
-#include "../../../dao/IPfTeamPlayerContractsDAO.h"
-#include "../../../dao/IPfGoalsDAO.h"
 #include "../../../dao/IPfTeamPlayersDAO.h"
-#include "../../../dao/IPfCoachesDAO.h"
-#include "../../../dao/IPfCountriesDAO.h"
-#include "../../../dao/IPfCompetitionsDAO.h"
-#include "../../../dao/IPfCoachContractsDAO.h"
+#include "../../../dao/IPfStadiumsDAO.h"
 #include "../../../dao/IPfTeamsDAO.h"
 #include "../../../dao/IPfTeamPlayerAveragesDAO.h"
+#include "../../../dao/IPfCompetitionsBySeasonDAO.h"
+#include "../../../dao/IPfSeasonsDAO.h"
+#include "../../../dao/IPfDemarcationsDAO.h"
+#include "../../../dao/IPfTeamPlayerContractsDAO.h"
+#include "../../../dao/IPfCoachesDAO.h"
+#include "../../../dao/IPfMatchesDAO.h"
+#include "../../../dao/IPfGameOptionsDAO.h"
+#include "../../../dao/IPfGoalsDAO.h"
+#include "../../../dao/IPfRolesDAO.h"
+#include "../../../dao/IPfCountriesDAO.h"
+#include "../../../dao/IPfCoachContractsDAO.h"
+#include "../../../dao/IPfRolesByTeamPlayersDAO.h"
+#include "../../../dao/IPfFormationsByCoachesDAO.h"
+#include "../../../dao/IPfScorersDAO.h"
+#include "../../../dao/IPfCompetitionsDAO.h"
 
 #include "../CPfCompetitionPhasesDAOSQLite.h"
-#include "../CPfStadiumsDAOSQLite.h"
+#include "../CPfStrategicPositionDAOSQLite.h"
 #include "../CPfRankingDAOSQLite.h"
 #include "../CPfTeamAveragesDAOSQLite.h"
-#include "../CPfMatchesDAOSQLite.h"
-#include "../CPfGameOptionsDAOSQLite.h"
-#include "../CPfCompetitionsBySeasonDAOSQLite.h"
+#include "../CPfFormationsDAOSQLite.h"
 #include "../CPfTeamsByCompetitionsDAOSQLite.h"
-#include "../CPfSeasonsDAOSQLite.h"
-#include "../CPfScorersDAOSQLite.h"
 #include "../CPfConfederationsDAOSQLite.h"
-#include "../CPfTeamPlayerContractsDAOSQLite.h"
-#include "../CPfGoalsDAOSQLite.h"
 #include "../CPfTeamPlayersDAOSQLite.h"
-#include "../CPfCoachesDAOSQLite.h"
-#include "../CPfCountriesDAOSQLite.h"
-#include "../CPfCompetitionsDAOSQLite.h"
-#include "../CPfCoachContractsDAOSQLite.h"
+#include "../CPfStadiumsDAOSQLite.h"
 #include "../CPfTeamsDAOSQLite.h"
 #include "../CPfTeamPlayerAveragesDAOSQLite.h"
+#include "../CPfCompetitionsBySeasonDAOSQLite.h"
+#include "../CPfSeasonsDAOSQLite.h"
+#include "../CPfDemarcationsDAOSQLite.h"
+#include "../CPfTeamPlayerContractsDAOSQLite.h"
+#include "../CPfCoachesDAOSQLite.h"
+#include "../CPfMatchesDAOSQLite.h"
+#include "../CPfGameOptionsDAOSQLite.h"
+#include "../CPfGoalsDAOSQLite.h"
+#include "../CPfRolesDAOSQLite.h"
+#include "../CPfCountriesDAOSQLite.h"
+#include "../CPfCoachContractsDAOSQLite.h"
+#include "../CPfRolesByTeamPlayersDAOSQLite.h"
+#include "../CPfFormationsByCoachesDAOSQLite.h"
+#include "../CPfScorersDAOSQLite.h"
+#include "../CPfCompetitionsDAOSQLite.h"
 
 class CDAOFactorySQLite : public IDAOFactory
 {
@@ -86,25 +98,31 @@ public:
     virtual void save();
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO();
-    virtual IPfStadiumsDAO* getIPfStadiumsDAO();
+    virtual IPfStrategicPositionDAO* getIPfStrategicPositionDAO();
     virtual IPfRankingDAO* getIPfRankingDAO();
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO();
-    virtual IPfMatchesDAO* getIPfMatchesDAO();
-    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
-    virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO();
+    virtual IPfFormationsDAO* getIPfFormationsDAO();
     virtual IPfTeamsByCompetitionsDAO* getIPfTeamsByCompetitionsDAO();
-    virtual IPfSeasonsDAO* getIPfSeasonsDAO();
-    virtual IPfScorersDAO* getIPfScorersDAO();
     virtual IPfConfederationsDAO* getIPfConfederationsDAO();
-    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
-    virtual IPfGoalsDAO* getIPfGoalsDAO();
     virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO();
-    virtual IPfCoachesDAO* getIPfCoachesDAO();
-    virtual IPfCountriesDAO* getIPfCountriesDAO();
-    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO();
-    virtual IPfCoachContractsDAO* getIPfCoachContractsDAO();
+    virtual IPfStadiumsDAO* getIPfStadiumsDAO();
     virtual IPfTeamsDAO* getIPfTeamsDAO();
     virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO();
+    virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO();
+    virtual IPfSeasonsDAO* getIPfSeasonsDAO();
+    virtual IPfDemarcationsDAO* getIPfDemarcationsDAO();
+    virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
+    virtual IPfCoachesDAO* getIPfCoachesDAO();
+    virtual IPfMatchesDAO* getIPfMatchesDAO();
+    virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
+    virtual IPfGoalsDAO* getIPfGoalsDAO();
+    virtual IPfRolesDAO* getIPfRolesDAO();
+    virtual IPfCountriesDAO* getIPfCountriesDAO();
+    virtual IPfCoachContractsDAO* getIPfCoachContractsDAO();
+    virtual IPfRolesByTeamPlayersDAO* getIPfRolesByTeamPlayersDAO();
+    virtual IPfFormationsByCoachesDAO* getIPfFormationsByCoachesDAO();
+    virtual IPfScorersDAO* getIPfScorersDAO();
+    virtual IPfCompetitionsDAO* getIPfCompetitionsDAO();
 
 
 private:
@@ -116,25 +134,31 @@ private:
     std::string m_filepath_tmp;
 
     CPfCompetitionPhasesDAOSQLite *m_PfCompetitionPhasesDAOSQLite;
-    CPfStadiumsDAOSQLite *m_PfStadiumsDAOSQLite;
+    CPfStrategicPositionDAOSQLite *m_PfStrategicPositionDAOSQLite;
     CPfRankingDAOSQLite *m_PfRankingDAOSQLite;
     CPfTeamAveragesDAOSQLite *m_PfTeamAveragesDAOSQLite;
-    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
-    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
-    CPfCompetitionsBySeasonDAOSQLite *m_PfCompetitionsBySeasonDAOSQLite;
+    CPfFormationsDAOSQLite *m_PfFormationsDAOSQLite;
     CPfTeamsByCompetitionsDAOSQLite *m_PfTeamsByCompetitionsDAOSQLite;
-    CPfSeasonsDAOSQLite *m_PfSeasonsDAOSQLite;
-    CPfScorersDAOSQLite *m_PfScorersDAOSQLite;
     CPfConfederationsDAOSQLite *m_PfConfederationsDAOSQLite;
-    CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
-    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
     CPfTeamPlayersDAOSQLite *m_PfTeamPlayersDAOSQLite;
-    CPfCoachesDAOSQLite *m_PfCoachesDAOSQLite;
-    CPfCountriesDAOSQLite *m_PfCountriesDAOSQLite;
-    CPfCompetitionsDAOSQLite *m_PfCompetitionsDAOSQLite;
-    CPfCoachContractsDAOSQLite *m_PfCoachContractsDAOSQLite;
+    CPfStadiumsDAOSQLite *m_PfStadiumsDAOSQLite;
     CPfTeamsDAOSQLite *m_PfTeamsDAOSQLite;
     CPfTeamPlayerAveragesDAOSQLite *m_PfTeamPlayerAveragesDAOSQLite;
+    CPfCompetitionsBySeasonDAOSQLite *m_PfCompetitionsBySeasonDAOSQLite;
+    CPfSeasonsDAOSQLite *m_PfSeasonsDAOSQLite;
+    CPfDemarcationsDAOSQLite *m_PfDemarcationsDAOSQLite;
+    CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
+    CPfCoachesDAOSQLite *m_PfCoachesDAOSQLite;
+    CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
+    CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;
+    CPfGoalsDAOSQLite *m_PfGoalsDAOSQLite;
+    CPfRolesDAOSQLite *m_PfRolesDAOSQLite;
+    CPfCountriesDAOSQLite *m_PfCountriesDAOSQLite;
+    CPfCoachContractsDAOSQLite *m_PfCoachContractsDAOSQLite;
+    CPfRolesByTeamPlayersDAOSQLite *m_PfRolesByTeamPlayersDAOSQLite;
+    CPfFormationsByCoachesDAOSQLite *m_PfFormationsByCoachesDAOSQLite;
+    CPfScorersDAOSQLite *m_PfScorersDAOSQLite;
+    CPfCompetitionsDAOSQLite *m_PfCompetitionsDAOSQLite;
 
 };
 #endif /*CDAOFACTORYSQLITE_H_*/

@@ -238,7 +238,7 @@ void CLineUpWindowHandler::saveTeamPlayersList()
 {
     m_game.getIDAOFactory()->beginTransaction();
     CPfTeams                    *team                   = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
-    IPfTeamPlayerContractsDAO   *teamPlayerContractsDAO = m_game.getIDAOFactory()->getIPfTeamPlayerContractsDAO();
+    IPfTeamPlayersDAO           *teamPlayersDAO         = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
 
     unsigned int i;
     int lineUpOrder = 1;
@@ -247,12 +247,12 @@ void CLineUpWindowHandler::saveTeamPlayersList()
     for( i=0; i<m_lineUpTeamPlayersList->getRowCount(); i++ ){
 
         CEGUI::ListboxItem  *item           = m_lineUpTeamPlayersList->getItemAtGridReference(CEGUI::MCLGridRef(i, 0));
-        int                 xFkTeamPlayer   = item->getID();
+        int                 xTeamPlayer   = item->getID();
 
-        CPfTeamPlayerContracts *teamPlayerContract = teamPlayerContractsDAO->findActiveByXFkTeamAndXFkTeamPlayer(team->getXTeam(), xFkTeamPlayer, currentTimestamp);
-        teamPlayerContract->setNLineupOrder(lineUpOrder);
-        teamPlayerContractsDAO->updateReg(teamPlayerContract);
-        delete teamPlayerContract;
+        CPfTeamPlayers *teamPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+        teamPlayer->setNLineupOrder(lineUpOrder);
+		teamPlayersDAO->updateReg(teamPlayer);
+		delete teamPlayer;
 
         lineUpOrder++;
     }
@@ -261,12 +261,12 @@ void CLineUpWindowHandler::saveTeamPlayersList()
     for( i=0; i<m_alternateTeamPlayersList->getRowCount(); i++ ){
 
         CEGUI::ListboxItem  *item           = m_alternateTeamPlayersList->getItemAtGridReference(CEGUI::MCLGridRef(i, 0));
-        int                 xFkTeamPlayer   = item->getID();
+        int                 xTeamPlayer   = item->getID();
 
-        CPfTeamPlayerContracts *teamPlayerContract = teamPlayerContractsDAO->findActiveByXFkTeamAndXFkTeamPlayer(team->getXTeam(), xFkTeamPlayer, currentTimestamp);
-        teamPlayerContract->setNLineupOrder(lineUpOrder);
-        teamPlayerContractsDAO->updateReg(teamPlayerContract);
-        delete teamPlayerContract;
+        CPfTeamPlayers *teamPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+        teamPlayer->setNLineupOrder(lineUpOrder);
+		teamPlayersDAO->updateReg(teamPlayer);
+		delete teamPlayer;
 
         lineUpOrder++;
     }
@@ -275,12 +275,12 @@ void CLineUpWindowHandler::saveTeamPlayersList()
     for( i=0; i<m_notLineUpTeamPlayersList->getRowCount(); i++ ){
 
         CEGUI::ListboxItem  *item           = m_notLineUpTeamPlayersList->getItemAtGridReference(CEGUI::MCLGridRef(i, 0));
-        int                 xFkTeamPlayer   = item->getID();
+        int                 xTeamPlayer   = item->getID();
 
-        CPfTeamPlayerContracts *teamPlayerContract = teamPlayerContractsDAO->findActiveByXFkTeamAndXFkTeamPlayer(team->getXTeam(), xFkTeamPlayer, currentTimestamp);
-        teamPlayerContract->setNLineupOrder(lineUpOrder);
-        teamPlayerContractsDAO->updateReg(teamPlayerContract);
-        delete teamPlayerContract;
+        CPfTeamPlayers *teamPlayer = teamPlayersDAO->findByXTeamPlayer(xTeamPlayer);
+        teamPlayer->setNLineupOrder(lineUpOrder);
+		teamPlayersDAO->updateReg(teamPlayer);
+		delete teamPlayer;
 
         lineUpOrder++;
     }

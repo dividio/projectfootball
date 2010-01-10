@@ -40,14 +40,12 @@ public:
     const std::string& getXTeamPlayerContract_str() const;
     int getNReleaseClause() const;
     const std::string& getNReleaseClause_str() const;
-    CDate getDEnd() const;
-    const std::string& getDEnd_str() const;
-    int getXFkTeamPlayer() const;
-    const std::string& getXFkTeamPlayer_str() const;
-    int getNLineupOrder() const;
-    const std::string& getNLineupOrder_str() const;
     int getNSalary() const;
     const std::string& getNSalary_str() const;
+    int getXFkTeamPlayer() const;
+    const std::string& getXFkTeamPlayer_str() const;
+    CDate getDEnd() const;
+    const std::string& getDEnd_str() const;
     int getXFkTeam() const;
     const std::string& getXFkTeam_str() const;
 
@@ -57,14 +55,12 @@ public:
     void setXTeamPlayerContract_str(const std::string &XTeamPlayerContract);
     void setNReleaseClause(int NReleaseClause);
     void setNReleaseClause_str(const std::string &NReleaseClause);
-    void setDEnd(const CDate &DEnd);
-    void setDEnd_str(const std::string &DEnd);
-    void setXFkTeamPlayer(int XFkTeamPlayer);
-    void setXFkTeamPlayer_str(const std::string &XFkTeamPlayer);
-    void setNLineupOrder(int NLineupOrder);
-    void setNLineupOrder_str(const std::string &NLineupOrder);
     void setNSalary(int NSalary);
     void setNSalary_str(const std::string &NSalary);
+    void setXFkTeamPlayer(int XFkTeamPlayer);
+    void setXFkTeamPlayer_str(const std::string &XFkTeamPlayer);
+    void setDEnd(const CDate &DEnd);
+    void setDEnd_str(const std::string &DEnd);
     void setXFkTeam(int XFkTeam);
     void setXFkTeam_str(const std::string &XFkTeam);
 
@@ -72,10 +68,9 @@ private:
     std::string m_DBegin;
     std::string m_XTeamPlayerContract;
     std::string m_NReleaseClause;
-    std::string m_DEnd;
-    std::string m_XFkTeamPlayer;
-    std::string m_NLineupOrder;
     std::string m_NSalary;
+    std::string m_XFkTeamPlayer;
+    std::string m_DEnd;
     std::string m_XFkTeam;
 
 };
