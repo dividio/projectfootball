@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -42,7 +42,6 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     }
 
     m_PfCompetitionPhasesDAOSQLite = new CPfCompetitionPhasesDAOSQLite(m_database);
-    m_PfStrategicPositionDAOSQLite = new CPfStrategicPositionDAOSQLite(m_database);
     m_PfRankingDAOSQLite = new CPfRankingDAOSQLite(m_database);
     m_PfTeamAveragesDAOSQLite = new CPfTeamAveragesDAOSQLite(m_database);
     m_PfFormationsDAOSQLite = new CPfFormationsDAOSQLite(m_database);
@@ -56,6 +55,7 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
     m_PfSeasonsDAOSQLite = new CPfSeasonsDAOSQLite(m_database);
     m_PfDemarcationsDAOSQLite = new CPfDemarcationsDAOSQLite(m_database);
     m_PfTeamPlayerContractsDAOSQLite = new CPfTeamPlayerContractsDAOSQLite(m_database);
+    m_PfStrategicPositionsDAOSQLite = new CPfStrategicPositionsDAOSQLite(m_database);
     m_PfCoachesDAOSQLite = new CPfCoachesDAOSQLite(m_database);
     m_PfMatchesDAOSQLite = new CPfMatchesDAOSQLite(m_database);
     m_PfGameOptionsDAOSQLite = new CPfGameOptionsDAOSQLite(m_database);
@@ -74,7 +74,6 @@ CDAOFactorySQLite::CDAOFactorySQLite(const std::string &filepath)
 CDAOFactorySQLite::~CDAOFactorySQLite()
 {
     delete m_PfCompetitionPhasesDAOSQLite;
-    delete m_PfStrategicPositionDAOSQLite;
     delete m_PfRankingDAOSQLite;
     delete m_PfTeamAveragesDAOSQLite;
     delete m_PfFormationsDAOSQLite;
@@ -88,6 +87,7 @@ CDAOFactorySQLite::~CDAOFactorySQLite()
     delete m_PfSeasonsDAOSQLite;
     delete m_PfDemarcationsDAOSQLite;
     delete m_PfTeamPlayerContractsDAOSQLite;
+    delete m_PfStrategicPositionsDAOSQLite;
     delete m_PfCoachesDAOSQLite;
     delete m_PfMatchesDAOSQLite;
     delete m_PfGameOptionsDAOSQLite;
@@ -200,7 +200,6 @@ void CDAOFactorySQLite::save()
 {
     // Closing temp database
     m_PfCompetitionPhasesDAOSQLite->setSQLite(NULL);
-    m_PfStrategicPositionDAOSQLite->setSQLite(NULL);
     m_PfRankingDAOSQLite->setSQLite(NULL);
     m_PfTeamAveragesDAOSQLite->setSQLite(NULL);
     m_PfFormationsDAOSQLite->setSQLite(NULL);
@@ -214,6 +213,7 @@ void CDAOFactorySQLite::save()
     m_PfSeasonsDAOSQLite->setSQLite(NULL);
     m_PfDemarcationsDAOSQLite->setSQLite(NULL);
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(NULL);
+    m_PfStrategicPositionsDAOSQLite->setSQLite(NULL);
     m_PfCoachesDAOSQLite->setSQLite(NULL);
     m_PfMatchesDAOSQLite->setSQLite(NULL);
     m_PfGameOptionsDAOSQLite->setSQLite(NULL);
@@ -241,7 +241,6 @@ void CDAOFactorySQLite::save()
     }
 
     m_PfCompetitionPhasesDAOSQLite->setSQLite(m_database);
-    m_PfStrategicPositionDAOSQLite->setSQLite(m_database);
     m_PfRankingDAOSQLite->setSQLite(m_database);
     m_PfTeamAveragesDAOSQLite->setSQLite(m_database);
     m_PfFormationsDAOSQLite->setSQLite(m_database);
@@ -255,6 +254,7 @@ void CDAOFactorySQLite::save()
     m_PfSeasonsDAOSQLite->setSQLite(m_database);
     m_PfDemarcationsDAOSQLite->setSQLite(m_database);
     m_PfTeamPlayerContractsDAOSQLite->setSQLite(m_database);
+    m_PfStrategicPositionsDAOSQLite->setSQLite(m_database);
     m_PfCoachesDAOSQLite->setSQLite(m_database);
     m_PfMatchesDAOSQLite->setSQLite(m_database);
     m_PfGameOptionsDAOSQLite->setSQLite(m_database);
@@ -271,11 +271,6 @@ void CDAOFactorySQLite::save()
 IPfCompetitionPhasesDAO* CDAOFactorySQLite::getIPfCompetitionPhasesDAO()
 {
     return m_PfCompetitionPhasesDAOSQLite;
-}
-
-IPfStrategicPositionDAO* CDAOFactorySQLite::getIPfStrategicPositionDAO()
-{
-    return m_PfStrategicPositionDAOSQLite;
 }
 
 IPfRankingDAO* CDAOFactorySQLite::getIPfRankingDAO()
@@ -341,6 +336,11 @@ IPfDemarcationsDAO* CDAOFactorySQLite::getIPfDemarcationsDAO()
 IPfTeamPlayerContractsDAO* CDAOFactorySQLite::getIPfTeamPlayerContractsDAO()
 {
     return m_PfTeamPlayerContractsDAOSQLite;
+}
+
+IPfStrategicPositionsDAO* CDAOFactorySQLite::getIPfStrategicPositionsDAO()
+{
+    return m_PfStrategicPositionsDAOSQLite;
 }
 
 IPfCoachesDAO* CDAOFactorySQLite::getIPfCoachesDAO()

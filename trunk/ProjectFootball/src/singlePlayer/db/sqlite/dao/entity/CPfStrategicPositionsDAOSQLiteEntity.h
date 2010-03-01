@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -20,32 +20,40 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef IPFSTRATEGICPOSITIONDAO_H_
-#define IPFSTRATEGICPOSITIONDAO_H_
+#ifndef CPFSTRATEGICPOSITIONSDAOSQLITEENTITY_H_
+#define CPFSTRATEGICPOSITIONSDAOSQLITEENTITY_H_
 
 #include <string>
 #include <vector>
+#include <sqlite3.h>
 
-#include "../bean/CPfStrategicPosition.h"
+#include "../../../bean/CPfStrategicPositions.h"
+#include "../../../dao/IPfStrategicPositionsDAO.h"
 
-class IPfStrategicPositionDAO
+class CPfStrategicPositionsDAOSQLiteEntity : public IPfStrategicPositionsDAO
 {
 public:
-    IPfStrategicPositionDAO(){}
-    virtual ~IPfStrategicPositionDAO(){}
+    CPfStrategicPositionsDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfStrategicPositionsDAOSQLiteEntity();
 
-    virtual bool deleteReg(CPfStrategicPosition *reg) =0;
-    virtual bool insertReg(CPfStrategicPosition *reg) =0;
-    virtual bool updateReg(CPfStrategicPosition *reg) =0;
+    void setSQLite(sqlite3 *database);
 
-    virtual void freeVector(std::vector<CPfStrategicPosition*>* vector) =0;
+    virtual bool deleteReg(CPfStrategicPositions *reg);
+    virtual bool insertReg(CPfStrategicPositions *reg);
+    virtual bool updateReg(CPfStrategicPositions *reg);
 
-    virtual CPfStrategicPosition* findByXFkFormation(int XFkFormation) =0;
-    virtual CPfStrategicPosition* findByXFkFormation(const std::string &XFkFormation) =0;
-    virtual CPfStrategicPosition* findByXFkRole(int XFkRole) =0;
-    virtual CPfStrategicPosition* findByXFkRole(const std::string &XFkRole) =0;
-    virtual CPfStrategicPosition* findByXStrategicPosition(int XStrategicPosition) =0;
-    virtual CPfStrategicPosition* findByXStrategicPosition(const std::string &XStrategicPosition) =0;
+    virtual void freeVector(std::vector<CPfStrategicPositions*>* vector);
+
+protected:
+    CPfStrategicPositions* loadRegister(const std::string &sql);
+    std::vector<CPfStrategicPositions*>* loadVector(const std::string &sql);
+
+private:
+    bool exec(const std::string &sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
+    sqlite3 *m_database;
 
 };
-#endif /*IPFSTRATEGICPOSITIONDAO_H_*/
+#endif /*CPFSTRATEGICPOSITIONSDAOSQLITEENTITY_H_*/

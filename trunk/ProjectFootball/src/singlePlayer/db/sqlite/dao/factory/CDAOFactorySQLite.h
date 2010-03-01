@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -29,7 +29,6 @@
 #include "../../../dao/factory/IDAOFactory.h"
 
 #include "../../../dao/IPfCompetitionPhasesDAO.h"
-#include "../../../dao/IPfStrategicPositionDAO.h"
 #include "../../../dao/IPfRankingDAO.h"
 #include "../../../dao/IPfTeamAveragesDAO.h"
 #include "../../../dao/IPfFormationsDAO.h"
@@ -43,6 +42,7 @@
 #include "../../../dao/IPfSeasonsDAO.h"
 #include "../../../dao/IPfDemarcationsDAO.h"
 #include "../../../dao/IPfTeamPlayerContractsDAO.h"
+#include "../../../dao/IPfStrategicPositionsDAO.h"
 #include "../../../dao/IPfCoachesDAO.h"
 #include "../../../dao/IPfMatchesDAO.h"
 #include "../../../dao/IPfGameOptionsDAO.h"
@@ -56,7 +56,6 @@
 #include "../../../dao/IPfCompetitionsDAO.h"
 
 #include "../CPfCompetitionPhasesDAOSQLite.h"
-#include "../CPfStrategicPositionDAOSQLite.h"
 #include "../CPfRankingDAOSQLite.h"
 #include "../CPfTeamAveragesDAOSQLite.h"
 #include "../CPfFormationsDAOSQLite.h"
@@ -70,6 +69,7 @@
 #include "../CPfSeasonsDAOSQLite.h"
 #include "../CPfDemarcationsDAOSQLite.h"
 #include "../CPfTeamPlayerContractsDAOSQLite.h"
+#include "../CPfStrategicPositionsDAOSQLite.h"
 #include "../CPfCoachesDAOSQLite.h"
 #include "../CPfMatchesDAOSQLite.h"
 #include "../CPfGameOptionsDAOSQLite.h"
@@ -98,7 +98,6 @@ public:
     virtual void save();
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO();
-    virtual IPfStrategicPositionDAO* getIPfStrategicPositionDAO();
     virtual IPfRankingDAO* getIPfRankingDAO();
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO();
     virtual IPfFormationsDAO* getIPfFormationsDAO();
@@ -112,6 +111,7 @@ public:
     virtual IPfSeasonsDAO* getIPfSeasonsDAO();
     virtual IPfDemarcationsDAO* getIPfDemarcationsDAO();
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO();
+    virtual IPfStrategicPositionsDAO* getIPfStrategicPositionsDAO();
     virtual IPfCoachesDAO* getIPfCoachesDAO();
     virtual IPfMatchesDAO* getIPfMatchesDAO();
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO();
@@ -134,7 +134,6 @@ private:
     std::string m_filepath_tmp;
 
     CPfCompetitionPhasesDAOSQLite *m_PfCompetitionPhasesDAOSQLite;
-    CPfStrategicPositionDAOSQLite *m_PfStrategicPositionDAOSQLite;
     CPfRankingDAOSQLite *m_PfRankingDAOSQLite;
     CPfTeamAveragesDAOSQLite *m_PfTeamAveragesDAOSQLite;
     CPfFormationsDAOSQLite *m_PfFormationsDAOSQLite;
@@ -148,6 +147,7 @@ private:
     CPfSeasonsDAOSQLite *m_PfSeasonsDAOSQLite;
     CPfDemarcationsDAOSQLite *m_PfDemarcationsDAOSQLite;
     CPfTeamPlayerContractsDAOSQLite *m_PfTeamPlayerContractsDAOSQLite;
+    CPfStrategicPositionsDAOSQLite *m_PfStrategicPositionsDAOSQLite;
     CPfCoachesDAOSQLite *m_PfCoachesDAOSQLite;
     CPfMatchesDAOSQLite *m_PfMatchesDAOSQLite;
     CPfGameOptionsDAOSQLite *m_PfGameOptionsDAOSQLite;

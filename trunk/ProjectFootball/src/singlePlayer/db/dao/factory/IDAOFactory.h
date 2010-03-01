@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -24,7 +24,6 @@
 #define IDAOFACTORY_H_
 
 #include "../IPfCompetitionPhasesDAO.h"
-#include "../IPfStrategicPositionDAO.h"
 #include "../IPfRankingDAO.h"
 #include "../IPfTeamAveragesDAO.h"
 #include "../IPfFormationsDAO.h"
@@ -38,6 +37,7 @@
 #include "../IPfSeasonsDAO.h"
 #include "../IPfDemarcationsDAO.h"
 #include "../IPfTeamPlayerContractsDAO.h"
+#include "../IPfStrategicPositionsDAO.h"
 #include "../IPfCoachesDAO.h"
 #include "../IPfMatchesDAO.h"
 #include "../IPfGameOptionsDAO.h"
@@ -66,7 +66,6 @@ public:
     virtual void save() =0;
 
     virtual IPfCompetitionPhasesDAO* getIPfCompetitionPhasesDAO() =0;
-    virtual IPfStrategicPositionDAO* getIPfStrategicPositionDAO() =0;
     virtual IPfRankingDAO* getIPfRankingDAO() =0;
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO() =0;
     virtual IPfFormationsDAO* getIPfFormationsDAO() =0;
@@ -80,6 +79,7 @@ public:
     virtual IPfSeasonsDAO* getIPfSeasonsDAO() =0;
     virtual IPfDemarcationsDAO* getIPfDemarcationsDAO() =0;
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
+    virtual IPfStrategicPositionsDAO* getIPfStrategicPositionsDAO() =0;
     virtual IPfCoachesDAO* getIPfCoachesDAO() =0;
     virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;

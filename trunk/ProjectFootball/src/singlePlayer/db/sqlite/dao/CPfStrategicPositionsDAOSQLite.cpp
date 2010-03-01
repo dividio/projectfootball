@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -23,55 +23,55 @@
 #include <iostream>
 #include <sstream>
 
-#include "CPfStrategicPositionDAOSQLite.h"
+#include "CPfStrategicPositionsDAOSQLite.h"
 
-CPfStrategicPositionDAOSQLite::CPfStrategicPositionDAOSQLite(sqlite3 *database)
-  : CPfStrategicPositionDAOSQLiteEntity(database)
+CPfStrategicPositionsDAOSQLite::CPfStrategicPositionsDAOSQLite(sqlite3 *database)
+  : CPfStrategicPositionsDAOSQLiteEntity(database)
 {
 }
 
-CPfStrategicPositionDAOSQLite::~CPfStrategicPositionDAOSQLite()
+CPfStrategicPositionsDAOSQLite::~CPfStrategicPositionsDAOSQLite()
 {
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLite::findByXFkFormation(int XFkFormation)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkFormation(int XFkFormation)
 {
     std::ostringstream stream;
     stream << XFkFormation;
     return findByXFkFormation(stream.str());
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLite::findByXFkFormation(const std::string &XFkFormation)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkFormation(const std::string &XFkFormation)
 {
-    std::string sql("SELECT * FROM PF_STRATEGIC_POSITION WHERE ");
+    std::string sql("SELECT * FROM PF_STRATEGIC_POSITIONS WHERE ");
     sql = sql+"X_FK_FORMATION='"+XFkFormation+"'";
     return loadRegister(sql);
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLite::findByXFkRole(int XFkRole)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkRole(int XFkRole)
 {
     std::ostringstream stream;
     stream << XFkRole;
     return findByXFkRole(stream.str());
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLite::findByXFkRole(const std::string &XFkRole)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkRole(const std::string &XFkRole)
 {
-    std::string sql("SELECT * FROM PF_STRATEGIC_POSITION WHERE ");
+    std::string sql("SELECT * FROM PF_STRATEGIC_POSITIONS WHERE ");
     sql = sql+"X_FK_ROLE='"+XFkRole+"'";
     return loadRegister(sql);
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLite::findByXStrategicPosition(int XStrategicPosition)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXStrategicPosition(int XStrategicPosition)
 {
     std::ostringstream stream;
     stream << XStrategicPosition;
     return findByXStrategicPosition(stream.str());
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLite::findByXStrategicPosition(const std::string &XStrategicPosition)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXStrategicPosition(const std::string &XStrategicPosition)
 {
-    std::string sql("SELECT * FROM PF_STRATEGIC_POSITION WHERE ");
+    std::string sql("SELECT * FROM PF_STRATEGIC_POSITIONS WHERE ");
     sql = sql+"X_STRATEGIC_POSITION='"+XStrategicPosition+"'";
     return loadRegister(sql);
 }

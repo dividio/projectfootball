@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -23,34 +23,34 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "CPfStrategicPositionDAOSQLiteEntity.h"
+#include "CPfStrategicPositionsDAOSQLiteEntity.h"
 #include "../../../../../exceptions/PFException.h"
 #include "../../../../../utils/CLog.h"
 
-CPfStrategicPositionDAOSQLiteEntity::CPfStrategicPositionDAOSQLiteEntity(sqlite3 *database)
+CPfStrategicPositionsDAOSQLiteEntity::CPfStrategicPositionsDAOSQLiteEntity(sqlite3 *database)
 {
     m_database = database;
 }
 
-CPfStrategicPositionDAOSQLiteEntity::~CPfStrategicPositionDAOSQLiteEntity()
+CPfStrategicPositionsDAOSQLiteEntity::~CPfStrategicPositionsDAOSQLiteEntity()
 {
 }
 
-void CPfStrategicPositionDAOSQLiteEntity::setSQLite(sqlite3 *database)
+void CPfStrategicPositionsDAOSQLiteEntity::setSQLite(sqlite3 *database)
 {
     m_database = database;
 }
 
-bool CPfStrategicPositionDAOSQLiteEntity::deleteReg(CPfStrategicPosition *reg)
+bool CPfStrategicPositionsDAOSQLiteEntity::deleteReg(CPfStrategicPositions *reg)
 {
-    std::string sql("DELETE FROM PF_STRATEGIC_POSITION WHERE X_STRATEGIC_POSITION=");
+    std::string sql("DELETE FROM PF_STRATEGIC_POSITIONS WHERE X_STRATEGIC_POSITION=");
     sql += "'"+reg->getXStrategicPosition_str()+"'";
     return exec(sql);
 }
 
-bool CPfStrategicPositionDAOSQLiteEntity::insertReg(CPfStrategicPosition *reg)
+bool CPfStrategicPositionsDAOSQLiteEntity::insertReg(CPfStrategicPositions *reg)
 {
-    std::string sql("INSERT INTO PF_STRATEGIC_POSITION (N_LINEUP_ORDER,X_FK_FORMATION,N_TOP_LEFT_AREA,X_FK_ROLE,N_OFFENSIVE_POS_X,N_BOTTOM_RIGHT_AREA,N_OFFENSIVE_POS_Z,N_DEFENSIVE_POS_Z,N_DEFENSIVE_POS_X,N_INITIAL_POS_Z,N_INITIAL_POS_X) VALUES (");
+    std::string sql("INSERT INTO PF_STRATEGIC_POSITIONS (N_LINEUP_ORDER,X_FK_FORMATION,N_TOP_LEFT_AREA,X_FK_ROLE,N_OFFENSIVE_POS_X,N_BOTTOM_RIGHT_AREA,N_OFFENSIVE_POS_Z,N_DEFENSIVE_POS_Z,N_DEFENSIVE_POS_X,N_INITIAL_POS_Z,N_INITIAL_POS_X) VALUES (");
     sql += (reg->getNLineupOrder_str()=="")?"NULL":"'"+reg->getNLineupOrder_str()+"'";
     sql += (reg->getXFkFormation_str()=="")?",NULL":",'"+reg->getXFkFormation_str()+"'";
     sql += (reg->getNTopLeftArea_str()=="")?",NULL":",'"+reg->getNTopLeftArea_str()+"'";
@@ -71,9 +71,9 @@ bool CPfStrategicPositionDAOSQLiteEntity::insertReg(CPfStrategicPosition *reg)
     }
 }
 
-bool CPfStrategicPositionDAOSQLiteEntity::updateReg(CPfStrategicPosition *reg)
+bool CPfStrategicPositionsDAOSQLiteEntity::updateReg(CPfStrategicPositions *reg)
 {
-    std::string sql("UPDATE PF_STRATEGIC_POSITION SET ");
+    std::string sql("UPDATE PF_STRATEGIC_POSITIONS SET ");
     sql += (reg->getNLineupOrder_str()=="")?" N_LINEUP_ORDER=NULL":" N_LINEUP_ORDER='"+reg->getNLineupOrder_str()+"'";
     sql += (reg->getXFkFormation_str()=="")?",X_FK_FORMATION=NULL":",X_FK_FORMATION='"+reg->getXFkFormation_str()+"'";
     sql += (reg->getNTopLeftArea_str()=="")?",N_TOP_LEFT_AREA=NULL":",N_TOP_LEFT_AREA='"+reg->getNTopLeftArea_str()+"'";
@@ -90,9 +90,9 @@ bool CPfStrategicPositionDAOSQLiteEntity::updateReg(CPfStrategicPosition *reg)
     return exec(sql);
 }
 
-void CPfStrategicPositionDAOSQLiteEntity::freeVector(std::vector<CPfStrategicPosition*>* vector )
+void CPfStrategicPositionsDAOSQLiteEntity::freeVector(std::vector<CPfStrategicPositions*>* vector )
 {
-    std::vector<CPfStrategicPosition*>::iterator it;
+    std::vector<CPfStrategicPositions*>::iterator it;
     for( it=vector->begin(); it!=vector->end(); it++ ){
         delete (*it);
         (*it) = NULL;
@@ -100,14 +100,14 @@ void CPfStrategicPositionDAOSQLiteEntity::freeVector(std::vector<CPfStrategicPos
     delete vector;
 }
 
-CPfStrategicPosition* CPfStrategicPositionDAOSQLiteEntity::loadRegister(const std::string &sql)
+CPfStrategicPositions* CPfStrategicPositionsDAOSQLiteEntity::loadRegister(const std::string &sql)
 {
     if( m_database==NULL ){
         throw PFEXCEPTION("No database connection.");
     }
 
     char *msgError = NULL;
-    CPfStrategicPosition *destiny = new CPfStrategicPosition();
+    CPfStrategicPositions *destiny = new CPfStrategicPositions();
     int result = sqlite3_exec(m_database, sql.c_str(), callbackRegister, destiny, &msgError);
     if( result!=SQLITE_OK && result!=SQLITE_ABORT ){
         LOG_ERROR("Error in SQL: \"%s\" --> \"%s\"", sql.c_str(), msgError);
@@ -118,14 +118,14 @@ CPfStrategicPosition* CPfStrategicPositionDAOSQLiteEntity::loadRegister(const st
     return destiny;
 }
 
-std::vector<CPfStrategicPosition*> * CPfStrategicPositionDAOSQLiteEntity::loadVector(const std::string &sql)
+std::vector<CPfStrategicPositions*> * CPfStrategicPositionsDAOSQLiteEntity::loadVector(const std::string &sql)
 {
     if( m_database==NULL ){
         throw PFEXCEPTION("No database connection.");
     }
 
     char *msgError = NULL;
-    std::vector<CPfStrategicPosition*> *container = new std::vector<CPfStrategicPosition*>;
+    std::vector<CPfStrategicPositions*> *container = new std::vector<CPfStrategicPositions*>;
     int result = sqlite3_exec(m_database, sql.c_str(), callbackVector, container, &msgError);
     if( result!=SQLITE_OK ){
         LOG_ERROR("Error in SQL: \"%s\" --> \"%s\"", sql.c_str(), msgError);
@@ -136,7 +136,7 @@ std::vector<CPfStrategicPosition*> * CPfStrategicPositionDAOSQLiteEntity::loadVe
     return container;
 }
 
-bool CPfStrategicPositionDAOSQLiteEntity::exec(const std::string &sql)
+bool CPfStrategicPositionsDAOSQLiteEntity::exec(const std::string &sql)
 {
     if( m_database==NULL ){
         throw PFEXCEPTION("No database connection.");
@@ -155,10 +155,10 @@ bool CPfStrategicPositionDAOSQLiteEntity::exec(const std::string &sql)
     return correct;
 }
 
-int CPfStrategicPositionDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn)
+int CPfStrategicPositionsDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn)
 {
     if( object!=NULL ){
-        CPfStrategicPosition *destiny = (CPfStrategicPosition*)object;
+        CPfStrategicPositions *destiny = (CPfStrategicPositions*)object;
         for( int i=0; i<nColumns; i++ ){
             if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
                 destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);
@@ -190,11 +190,11 @@ int CPfStrategicPositionDAOSQLiteEntity::callbackRegister(void *object, int nCol
     return -1; // Abort, don't load more rows
 }
 
-int CPfStrategicPositionDAOSQLiteEntity::callbackVector(void *object, int nColumns, char **vColumn, char **sColumn)
+int CPfStrategicPositionsDAOSQLiteEntity::callbackVector(void *object, int nColumns, char **vColumn, char **sColumn)
 {
     if( object!=NULL ){
-        std::vector<CPfStrategicPosition*> *container = (std::vector<CPfStrategicPosition*> *)object;
-        CPfStrategicPosition *destiny = new CPfStrategicPosition();
+        std::vector<CPfStrategicPositions*> *container = (std::vector<CPfStrategicPositions*> *)object;
+        CPfStrategicPositions *destiny = new CPfStrategicPositions();
         for( int i=0; i<nColumns; i++ ){
             if( strcmp(sColumn[i], "N_LINEUP_ORDER")==0 ){
                 destiny->setNLineupOrder_str((vColumn[i]==NULL)?"":vColumn[i]);

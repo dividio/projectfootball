@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -20,17 +20,17 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFSTRATEGICPOSITION_H_
-#define CPFSTRATEGICPOSITION_H_
+#ifndef CPFSTRATEGICPOSITIONS_H_
+#define CPFSTRATEGICPOSITIONS_H_
 
 #include <string>
 
-class CPfStrategicPosition
+class CPfStrategicPositions
 {
 public:
-    CPfStrategicPosition();
-    CPfStrategicPosition(const CPfStrategicPosition &obj);
-    virtual ~CPfStrategicPosition();
+    CPfStrategicPositions();
+    CPfStrategicPositions(const CPfStrategicPositions &obj);
+    virtual ~CPfStrategicPositions();
 
     int getNLineupOrder() const;
     const std::string& getNLineupOrder_str() const;
@@ -97,4 +97,4 @@ private:
     std::string m_NInitialPosX;
 
 };
-#endif /*CPFSTRATEGICPOSITION_H_*/
+#endif /*CPFSTRATEGICPOSITIONS_H_*/
