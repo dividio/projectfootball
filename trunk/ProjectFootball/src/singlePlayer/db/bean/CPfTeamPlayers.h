@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -34,12 +34,10 @@ public:
     CPfTeamPlayers(const CPfTeamPlayers &obj);
     virtual ~CPfTeamPlayers();
 
-    int getXFkRoleSelected() const;
-    const std::string& getXFkRoleSelected_str() const;
-    int getNLineupOrder() const;
-    const std::string& getNLineupOrder_str() const;
     int getNWeight() const;
     const std::string& getNWeight_str() const;
+    int getNLineupOrder() const;
+    const std::string& getNLineupOrder_str() const;
     int getNSquadNumber() const;
     const std::string& getNSquadNumber_str() const;
     int getNHeight() const;
@@ -65,12 +63,10 @@ public:
     int getNMoral() const;
     const std::string& getNMoral_str() const;
 
-    void setXFkRoleSelected(int XFkRoleSelected);
-    void setXFkRoleSelected_str(const std::string &XFkRoleSelected);
-    void setNLineupOrder(int NLineupOrder);
-    void setNLineupOrder_str(const std::string &NLineupOrder);
     void setNWeight(int NWeight);
     void setNWeight_str(const std::string &NWeight);
+    void setNLineupOrder(int NLineupOrder);
+    void setNLineupOrder_str(const std::string &NLineupOrder);
     void setNSquadNumber(int NSquadNumber);
     void setNSquadNumber_str(const std::string &NSquadNumber);
     void setNHeight(int NHeight);
@@ -97,9 +93,8 @@ public:
     void setNMoral_str(const std::string &NMoral);
 
 private:
-    std::string m_XFkRoleSelected;
-    std::string m_NLineupOrder;
     std::string m_NWeight;
+    std::string m_NLineupOrder;
     std::string m_NSquadNumber;
     std::string m_NHeight;
     std::string m_NSpeed;

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -28,9 +28,8 @@
 
 CPfTeamPlayers::CPfTeamPlayers()
 {
-    m_XFkRoleSelected = "0";
-    m_NLineupOrder = "0";
     m_NWeight = "0";
+    m_NLineupOrder = "0";
     m_NSquadNumber = "0";
     m_NHeight = "0";
     m_NSpeed = "0";
@@ -47,9 +46,8 @@ CPfTeamPlayers::CPfTeamPlayers()
 
 CPfTeamPlayers::CPfTeamPlayers(const CPfTeamPlayers &obj)
 {
-    m_XFkRoleSelected = obj.m_XFkRoleSelected;
-    m_NLineupOrder = obj.m_NLineupOrder;
     m_NWeight = obj.m_NWeight;
+    m_NLineupOrder = obj.m_NLineupOrder;
     m_NSquadNumber = obj.m_NSquadNumber;
     m_NHeight = obj.m_NHeight;
     m_NSpeed = obj.m_NSpeed;
@@ -68,18 +66,18 @@ CPfTeamPlayers::~CPfTeamPlayers()
 {
 }
 
-int CPfTeamPlayers::getXFkRoleSelected() const
+int CPfTeamPlayers::getNWeight() const
 {
-    if( m_XFkRoleSelected=="" ){
+    if( m_NWeight=="" ){
         return 0;
     }else{
-        return atoi(m_XFkRoleSelected.c_str());
+        return atoi(m_NWeight.c_str());
     }
 }
 
-const std::string& CPfTeamPlayers::getXFkRoleSelected_str() const
+const std::string& CPfTeamPlayers::getNWeight_str() const
 {
-    return m_XFkRoleSelected;
+    return m_NWeight;
 }
 
 int CPfTeamPlayers::getNLineupOrder() const
@@ -94,20 +92,6 @@ int CPfTeamPlayers::getNLineupOrder() const
 const std::string& CPfTeamPlayers::getNLineupOrder_str() const
 {
     return m_NLineupOrder;
-}
-
-int CPfTeamPlayers::getNWeight() const
-{
-    if( m_NWeight=="" ){
-        return 0;
-    }else{
-        return atoi(m_NWeight.c_str());
-    }
-}
-
-const std::string& CPfTeamPlayers::getNWeight_str() const
-{
-    return m_NWeight;
 }
 
 int CPfTeamPlayers::getNSquadNumber() const
@@ -262,16 +246,16 @@ const std::string& CPfTeamPlayers::getNMoral_str() const
     return m_NMoral;
 }
 
-void CPfTeamPlayers::setXFkRoleSelected(int XFkRoleSelected)
+void CPfTeamPlayers::setNWeight(int NWeight)
 {
     std::ostringstream stream;
-    stream << XFkRoleSelected;
-    m_XFkRoleSelected = stream.str();
+    stream << NWeight;
+    m_NWeight = stream.str();
 }
 
-void CPfTeamPlayers::setXFkRoleSelected_str(const std::string &XFkRoleSelected)
+void CPfTeamPlayers::setNWeight_str(const std::string &NWeight)
 {
-    m_XFkRoleSelected = XFkRoleSelected;
+    m_NWeight = NWeight;
 }
 
 void CPfTeamPlayers::setNLineupOrder(int NLineupOrder)
@@ -284,18 +268,6 @@ void CPfTeamPlayers::setNLineupOrder(int NLineupOrder)
 void CPfTeamPlayers::setNLineupOrder_str(const std::string &NLineupOrder)
 {
     m_NLineupOrder = NLineupOrder;
-}
-
-void CPfTeamPlayers::setNWeight(int NWeight)
-{
-    std::ostringstream stream;
-    stream << NWeight;
-    m_NWeight = stream.str();
-}
-
-void CPfTeamPlayers::setNWeight_str(const std::string &NWeight)
-{
-    m_NWeight = NWeight;
 }
 
 void CPfTeamPlayers::setNSquadNumber(int NSquadNumber)

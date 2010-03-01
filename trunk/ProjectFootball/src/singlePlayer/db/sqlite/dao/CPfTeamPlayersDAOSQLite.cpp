@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -32,20 +32,6 @@ CPfTeamPlayersDAOSQLite::CPfTeamPlayersDAOSQLite(sqlite3 *database)
 
 CPfTeamPlayersDAOSQLite::~CPfTeamPlayersDAOSQLite()
 {
-}
-
-CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXFkRoleSelected(int XFkRoleSelected)
-{
-    std::ostringstream stream;
-    stream << XFkRoleSelected;
-    return findByXFkRoleSelected(stream.str());
-}
-
-CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXFkRoleSelected(const std::string &XFkRoleSelected)
-{
-    std::string sql("SELECT * FROM PF_TEAM_PLAYERS WHERE ");
-    sql = sql+"X_FK_ROLE_SELECTED='"+XFkRoleSelected+"'";
-    return loadRegister(sql);
 }
 
 CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXTeamPlayer(int XTeamPlayer)

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -35,8 +35,6 @@ public:
     CPfTeamPlayersDAOSQLite(sqlite3 *database);
     virtual ~CPfTeamPlayersDAOSQLite();
 
-    virtual CPfTeamPlayers* findByXFkRoleSelected(int XFkRoleSelected);
-    virtual CPfTeamPlayers* findByXFkRoleSelected(const std::string &XFkRoleSelected);
     virtual CPfTeamPlayers* findByXTeamPlayer(int XTeamPlayer);
     virtual CPfTeamPlayers* findByXTeamPlayer(const std::string &XTeamPlayer);
     virtual std::vector<CPfTeamPlayers*>* findActiveByXFkTeam(int XFkTeam, const std::string &timestamp);
