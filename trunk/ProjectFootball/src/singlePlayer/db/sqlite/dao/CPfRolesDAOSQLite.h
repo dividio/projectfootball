@@ -39,6 +39,10 @@ public:
     virtual CPfRoles* findByXRole(const std::string &XRole);
     virtual CPfRoles* findByXFkDemarcation(int XFkDemarcation);
     virtual CPfRoles* findByXFkDemarcation(const std::string &XFkDemarcation);
+    virtual CPfRoles* findByXTeamPlayer(int XTeamPlayer);
+    virtual CPfRoles* findByXTeamPlayer(const std::string &XTeamPlayer);
+    virtual CPfRoles* findInStrategicPositionByXFormationAndLineUpOrder(int XFormation, int LineUpOrder);
+	virtual CPfRoles* findInStrategicPositionByXFormationAndLineUpOrder(const std::string &XFormation, const std::string &LineUpOrder);
 
 };
 #endif /*CPFROLESDAOSQLITE_H_*/

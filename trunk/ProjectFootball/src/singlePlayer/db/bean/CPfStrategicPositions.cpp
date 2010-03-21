@@ -28,38 +28,60 @@
 
 CPfStrategicPositions::CPfStrategicPositions()
 {
+    m_NAttractionX = "0.0";
     m_NLineupOrder = "0";
+    m_NBottomRightAreaX = "0";
     m_XFkFormation = "0";
-    m_NTopLeftArea = "0";
+    m_NTopLeftAreaZ = "0";
     m_XFkRole = "0";
+    m_NTopLeftAreaX = "0";
     m_NOffensivePosX = "0";
-    m_NBottomRightArea = "0";
     m_NOffensivePosZ = "0";
+    m_NAttractionZ = "0.0";
     m_XStrategicPosition = "0";
     m_NDefensivePosZ = "0";
     m_NDefensivePosX = "0";
     m_NInitialPosZ = "0";
     m_NInitialPosX = "0";
+    m_NBottomRightAreaZ = "0";
 }
 
 CPfStrategicPositions::CPfStrategicPositions(const CPfStrategicPositions &obj)
 {
+    m_NAttractionX = obj.m_NAttractionX;
     m_NLineupOrder = obj.m_NLineupOrder;
+    m_NBottomRightAreaX = obj.m_NBottomRightAreaX;
     m_XFkFormation = obj.m_XFkFormation;
-    m_NTopLeftArea = obj.m_NTopLeftArea;
+    m_NTopLeftAreaZ = obj.m_NTopLeftAreaZ;
     m_XFkRole = obj.m_XFkRole;
+    m_NTopLeftAreaX = obj.m_NTopLeftAreaX;
     m_NOffensivePosX = obj.m_NOffensivePosX;
-    m_NBottomRightArea = obj.m_NBottomRightArea;
     m_NOffensivePosZ = obj.m_NOffensivePosZ;
+    m_NAttractionZ = obj.m_NAttractionZ;
     m_XStrategicPosition = obj.m_XStrategicPosition;
     m_NDefensivePosZ = obj.m_NDefensivePosZ;
     m_NDefensivePosX = obj.m_NDefensivePosX;
     m_NInitialPosZ = obj.m_NInitialPosZ;
     m_NInitialPosX = obj.m_NInitialPosX;
+    m_NBottomRightAreaZ = obj.m_NBottomRightAreaZ;
 }
 
 CPfStrategicPositions::~CPfStrategicPositions()
 {
+}
+
+double CPfStrategicPositions::getNAttractionX() const
+{
+    if( m_NAttractionX=="" ){
+        return 0.0;
+    }else{
+        return atof(m_NAttractionX.c_str());
+    }
+}
+
+const std::string& CPfStrategicPositions::getNAttractionX_str() const
+{
+    return m_NAttractionX;
 }
 
 int CPfStrategicPositions::getNLineupOrder() const
@@ -76,6 +98,20 @@ const std::string& CPfStrategicPositions::getNLineupOrder_str() const
     return m_NLineupOrder;
 }
 
+int CPfStrategicPositions::getNBottomRightAreaX() const
+{
+    if( m_NBottomRightAreaX=="" ){
+        return 0;
+    }else{
+        return atoi(m_NBottomRightAreaX.c_str());
+    }
+}
+
+const std::string& CPfStrategicPositions::getNBottomRightAreaX_str() const
+{
+    return m_NBottomRightAreaX;
+}
+
 int CPfStrategicPositions::getXFkFormation() const
 {
     if( m_XFkFormation=="" ){
@@ -90,18 +126,18 @@ const std::string& CPfStrategicPositions::getXFkFormation_str() const
     return m_XFkFormation;
 }
 
-int CPfStrategicPositions::getNTopLeftArea() const
+int CPfStrategicPositions::getNTopLeftAreaZ() const
 {
-    if( m_NTopLeftArea=="" ){
+    if( m_NTopLeftAreaZ=="" ){
         return 0;
     }else{
-        return atoi(m_NTopLeftArea.c_str());
+        return atoi(m_NTopLeftAreaZ.c_str());
     }
 }
 
-const std::string& CPfStrategicPositions::getNTopLeftArea_str() const
+const std::string& CPfStrategicPositions::getNTopLeftAreaZ_str() const
 {
-    return m_NTopLeftArea;
+    return m_NTopLeftAreaZ;
 }
 
 int CPfStrategicPositions::getXFkRole() const
@@ -118,6 +154,20 @@ const std::string& CPfStrategicPositions::getXFkRole_str() const
     return m_XFkRole;
 }
 
+int CPfStrategicPositions::getNTopLeftAreaX() const
+{
+    if( m_NTopLeftAreaX=="" ){
+        return 0;
+    }else{
+        return atoi(m_NTopLeftAreaX.c_str());
+    }
+}
+
+const std::string& CPfStrategicPositions::getNTopLeftAreaX_str() const
+{
+    return m_NTopLeftAreaX;
+}
+
 int CPfStrategicPositions::getNOffensivePosX() const
 {
     if( m_NOffensivePosX=="" ){
@@ -132,20 +182,6 @@ const std::string& CPfStrategicPositions::getNOffensivePosX_str() const
     return m_NOffensivePosX;
 }
 
-int CPfStrategicPositions::getNBottomRightArea() const
-{
-    if( m_NBottomRightArea=="" ){
-        return 0;
-    }else{
-        return atoi(m_NBottomRightArea.c_str());
-    }
-}
-
-const std::string& CPfStrategicPositions::getNBottomRightArea_str() const
-{
-    return m_NBottomRightArea;
-}
-
 int CPfStrategicPositions::getNOffensivePosZ() const
 {
     if( m_NOffensivePosZ=="" ){
@@ -158,6 +194,20 @@ int CPfStrategicPositions::getNOffensivePosZ() const
 const std::string& CPfStrategicPositions::getNOffensivePosZ_str() const
 {
     return m_NOffensivePosZ;
+}
+
+double CPfStrategicPositions::getNAttractionZ() const
+{
+    if( m_NAttractionZ=="" ){
+        return 0.0;
+    }else{
+        return atof(m_NAttractionZ.c_str());
+    }
+}
+
+const std::string& CPfStrategicPositions::getNAttractionZ_str() const
+{
+    return m_NAttractionZ;
 }
 
 int CPfStrategicPositions::getXStrategicPosition() const
@@ -230,6 +280,32 @@ const std::string& CPfStrategicPositions::getNInitialPosX_str() const
     return m_NInitialPosX;
 }
 
+int CPfStrategicPositions::getNBottomRightAreaZ() const
+{
+    if( m_NBottomRightAreaZ=="" ){
+        return 0;
+    }else{
+        return atoi(m_NBottomRightAreaZ.c_str());
+    }
+}
+
+const std::string& CPfStrategicPositions::getNBottomRightAreaZ_str() const
+{
+    return m_NBottomRightAreaZ;
+}
+
+void CPfStrategicPositions::setNAttractionX(double NAttractionX)
+{
+    std::ostringstream stream;
+    stream << NAttractionX;
+    m_NAttractionX = stream.str();
+}
+
+void CPfStrategicPositions::setNAttractionX_str(const std::string &NAttractionX)
+{
+    m_NAttractionX = NAttractionX;
+}
+
 void CPfStrategicPositions::setNLineupOrder(int NLineupOrder)
 {
     std::ostringstream stream;
@@ -240,6 +316,18 @@ void CPfStrategicPositions::setNLineupOrder(int NLineupOrder)
 void CPfStrategicPositions::setNLineupOrder_str(const std::string &NLineupOrder)
 {
     m_NLineupOrder = NLineupOrder;
+}
+
+void CPfStrategicPositions::setNBottomRightAreaX(int NBottomRightAreaX)
+{
+    std::ostringstream stream;
+    stream << NBottomRightAreaX;
+    m_NBottomRightAreaX = stream.str();
+}
+
+void CPfStrategicPositions::setNBottomRightAreaX_str(const std::string &NBottomRightAreaX)
+{
+    m_NBottomRightAreaX = NBottomRightAreaX;
 }
 
 void CPfStrategicPositions::setXFkFormation(int XFkFormation)
@@ -254,16 +342,16 @@ void CPfStrategicPositions::setXFkFormation_str(const std::string &XFkFormation)
     m_XFkFormation = XFkFormation;
 }
 
-void CPfStrategicPositions::setNTopLeftArea(int NTopLeftArea)
+void CPfStrategicPositions::setNTopLeftAreaZ(int NTopLeftAreaZ)
 {
     std::ostringstream stream;
-    stream << NTopLeftArea;
-    m_NTopLeftArea = stream.str();
+    stream << NTopLeftAreaZ;
+    m_NTopLeftAreaZ = stream.str();
 }
 
-void CPfStrategicPositions::setNTopLeftArea_str(const std::string &NTopLeftArea)
+void CPfStrategicPositions::setNTopLeftAreaZ_str(const std::string &NTopLeftAreaZ)
 {
-    m_NTopLeftArea = NTopLeftArea;
+    m_NTopLeftAreaZ = NTopLeftAreaZ;
 }
 
 void CPfStrategicPositions::setXFkRole(int XFkRole)
@@ -278,6 +366,18 @@ void CPfStrategicPositions::setXFkRole_str(const std::string &XFkRole)
     m_XFkRole = XFkRole;
 }
 
+void CPfStrategicPositions::setNTopLeftAreaX(int NTopLeftAreaX)
+{
+    std::ostringstream stream;
+    stream << NTopLeftAreaX;
+    m_NTopLeftAreaX = stream.str();
+}
+
+void CPfStrategicPositions::setNTopLeftAreaX_str(const std::string &NTopLeftAreaX)
+{
+    m_NTopLeftAreaX = NTopLeftAreaX;
+}
+
 void CPfStrategicPositions::setNOffensivePosX(int NOffensivePosX)
 {
     std::ostringstream stream;
@@ -290,18 +390,6 @@ void CPfStrategicPositions::setNOffensivePosX_str(const std::string &NOffensiveP
     m_NOffensivePosX = NOffensivePosX;
 }
 
-void CPfStrategicPositions::setNBottomRightArea(int NBottomRightArea)
-{
-    std::ostringstream stream;
-    stream << NBottomRightArea;
-    m_NBottomRightArea = stream.str();
-}
-
-void CPfStrategicPositions::setNBottomRightArea_str(const std::string &NBottomRightArea)
-{
-    m_NBottomRightArea = NBottomRightArea;
-}
-
 void CPfStrategicPositions::setNOffensivePosZ(int NOffensivePosZ)
 {
     std::ostringstream stream;
@@ -312,6 +400,18 @@ void CPfStrategicPositions::setNOffensivePosZ(int NOffensivePosZ)
 void CPfStrategicPositions::setNOffensivePosZ_str(const std::string &NOffensivePosZ)
 {
     m_NOffensivePosZ = NOffensivePosZ;
+}
+
+void CPfStrategicPositions::setNAttractionZ(double NAttractionZ)
+{
+    std::ostringstream stream;
+    stream << NAttractionZ;
+    m_NAttractionZ = stream.str();
+}
+
+void CPfStrategicPositions::setNAttractionZ_str(const std::string &NAttractionZ)
+{
+    m_NAttractionZ = NAttractionZ;
 }
 
 void CPfStrategicPositions::setXStrategicPosition(int XStrategicPosition)
@@ -372,5 +472,17 @@ void CPfStrategicPositions::setNInitialPosX(int NInitialPosX)
 void CPfStrategicPositions::setNInitialPosX_str(const std::string &NInitialPosX)
 {
     m_NInitialPosX = NInitialPosX;
+}
+
+void CPfStrategicPositions::setNBottomRightAreaZ(int NBottomRightAreaZ)
+{
+    std::ostringstream stream;
+    stream << NBottomRightAreaZ;
+    m_NBottomRightAreaZ = stream.str();
+}
+
+void CPfStrategicPositions::setNBottomRightAreaZ_str(const std::string &NBottomRightAreaZ)
+{
+    m_NBottomRightAreaZ = NBottomRightAreaZ;
 }
 

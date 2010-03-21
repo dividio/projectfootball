@@ -62,3 +62,37 @@ CPfRoles* CPfRolesDAOSQLite::findByXFkDemarcation(const std::string &XFkDemarcat
     return loadRegister(sql);
 }
 
+CPfRoles* CPfRolesDAOSQLite::findByXTeamPlayer(int XTeamPlayer)
+{
+    std::ostringstream stream;
+    stream << XTeamPlayer;
+    return findByXTeamPlayer(stream.str());
+}
+
+CPfRoles* CPfRolesDAOSQLite::findByXTeamPlayer(const std::string &XTeamPlayer)
+{
+    std::string sql("SELECT R.* FROM PF_ROLES R ");
+    sql = sql+"JOIN PF_ROLES_BY_TEAM_PLAYERS RTP ON RTP.X_FK_ROLE = R.X_ROLE ";
+    sql = sql+"WHERE X_FK_TEAM_PLAYER='"+XTeamPlayer+"' ";
+    sql = sql+"ORDER BY RTP.N_SKILL DESC";
+    return loadRegister(sql);
+}
+
+CPfRoles* CPfRolesDAOSQLite::findInStrategicPositionByXFormationAndLineUpOrder(int XFormation, int LineUpOrder)
+{
+	std::ostringstream stream1;
+	std::ostringstream stream2;
+	stream1 << XFormation;
+	stream2 << LineUpOrder;
+	return findInStrategicPositionByXFormationAndLineUpOrder(stream1.str(), stream2.str());
+}
+
+CPfRoles* CPfRolesDAOSQLite::findInStrategicPositionByXFormationAndLineUpOrder(const std::string &XFormation, const std::string &LineUpOrder)
+{
+	std::string sql("SELECT R.* FROM PF_ROLES R ");
+	sql = sql+"JOIN PF_STRATEGIC_POSITIONS SP ON SP.X_FK_ROLE = R.X_ROLE ";
+	sql = sql+"WHERE SP.X_FK_FORMATION='"+XFormation+"' ";
+	sql = sql+"AND SP.N_LINEUP_ORDER='"+LineUpOrder+"' ";
+	return loadRegister(sql);
+}
+

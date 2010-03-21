@@ -58,6 +58,7 @@ void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_stadiums.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teams.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_roles.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_formations.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_coaches.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_roles_by_team_players.sql");
@@ -167,6 +168,7 @@ void CDataBaseGenerator::generateCoach(IDAOFactory *daoFactory, CPfTeams *team)
     coach.setDBirthday_str("1985-01-16 10:30:09");
     coach.setSPhoto("p_unknown");
     coach.setXFkCountry_str(team->getXFkCountry_str());
+    coach.setXFkFormationSelected(1);
     coachesDAO->insertReg(&coach);
 
 

@@ -40,8 +40,8 @@ public:
 
     virtual void freeVector(std::vector<CPfStrategicPositions*>* vector) =0;
 
-    virtual CPfStrategicPositions* findByXFkFormation(int XFkFormation) =0;
-    virtual CPfStrategicPositions* findByXFkFormation(const std::string &XFkFormation) =0;
+    virtual std::vector<CPfStrategicPositions*>* findByXFkFormation(int XFkFormation) =0;
+    virtual std::vector<CPfStrategicPositions*>* findByXFkFormation(const std::string &XFkFormation) =0;
     virtual CPfStrategicPositions* findByXFkRole(int XFkRole) =0;
     virtual CPfStrategicPositions* findByXFkRole(const std::string &XFkRole) =0;
     virtual CPfStrategicPositions* findByXStrategicPosition(int XStrategicPosition) =0;

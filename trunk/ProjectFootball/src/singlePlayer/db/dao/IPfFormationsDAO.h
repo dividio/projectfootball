@@ -44,6 +44,8 @@ public:
     virtual CPfFormations* findByXFkCoachOwner(const std::string &XFkCoachOwner) =0;
     virtual CPfFormations* findByXFormation(int XFormation) =0;
     virtual CPfFormations* findByXFormation(const std::string &XFormation) =0;
+    virtual CPfFormations* findActiveByXTeam(int XTeam, const std::string &timestamp) =0;
+    virtual CPfFormations* findActiveByXTeam(const std::string &XTeam, const std::string &timestamp) =0;
 
 };
 #endif /*IPFFORMATIONSDAO_H_*/

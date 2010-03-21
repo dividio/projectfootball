@@ -210,6 +210,8 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
 	playerCoach->setSName(coachName);
 	playerCoach->setSShortName(coachName);
 	playerCoach->setSPhoto("p_unknown");
+	playerCoach->setXFkFormationSelected(1);
+	playerCoach->setXFkCountry(1);
 	singlePlayerGame->m_daoFactory->getIPfCoachesDAO()->insertReg(playerCoach);
 	singlePlayerGame->m_optionManager->setGamePlayerCoach(playerCoach->getXCoach());
 	delete playerCoach;

@@ -49,18 +49,22 @@ CLineUpWindowHandler::~CLineUpWindowHandler()
 		m_lineUpTeamPlayersList->removeColumnWithID(2);
 		m_lineUpTeamPlayersList->removeColumnWithID(3);
 		m_lineUpTeamPlayersList->removeColumnWithID(4);
+		m_lineUpTeamPlayersList->removeColumnWithID(5);
 
 		m_alternateTeamPlayersList->removeColumnWithID(0);
 		m_alternateTeamPlayersList->removeColumnWithID(1);
 		m_alternateTeamPlayersList->removeColumnWithID(2);
 		m_alternateTeamPlayersList->removeColumnWithID(3);
 		m_alternateTeamPlayersList->removeColumnWithID(4);
+		m_alternateTeamPlayersList->removeColumnWithID(5);
 
 		m_notLineUpTeamPlayersList->removeColumnWithID(0);
 		m_notLineUpTeamPlayersList->removeColumnWithID(1);
 		m_notLineUpTeamPlayersList->removeColumnWithID(2);
 		m_notLineUpTeamPlayersList->removeColumnWithID(3);
 		m_notLineUpTeamPlayersList->removeColumnWithID(4);
+		m_notLineUpTeamPlayersList->removeColumnWithID(5);
+
     }
 }
 
@@ -75,33 +79,36 @@ void CLineUpWindowHandler::init()
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
 
     m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"LineUp/LineUpTeamPlayersList"));
-    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(0.60,0));
-    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"),          1, CEGUI::UDim(0.10,0));
-    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"),     2, CEGUI::UDim(0.10,0));
-    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Moral"),          3, CEGUI::UDim(0.10,0));
-    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"),        4, CEGUI::UDim(0.10,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(0.50,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Role"),           1, CEGUI::UDim(0.10,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"),          2, CEGUI::UDim(0.10,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"),     3, CEGUI::UDim(0.10,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Moral"),          4, CEGUI::UDim(0.10,0));
+    m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"),        5, CEGUI::UDim(0.10,0));
     m_lineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_lineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_lineUpTeamPlayersList->setUserSortControlEnabled(false);
     m_lineUpTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
 
     m_alternateTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"LineUp/AlternateTeamPlayersList"));
-    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Alternate)"), 0, CEGUI::UDim(0.60,0));
-    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"),            1, CEGUI::UDim(0.10,0));
-    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"),       2, CEGUI::UDim(0.10,0));
-    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Moral"),            3, CEGUI::UDim(0.10,0));
-    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"),          4, CEGUI::UDim(0.10,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(0.50,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Role"),           1, CEGUI::UDim(0.10,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"),          2, CEGUI::UDim(0.10,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"),     3, CEGUI::UDim(0.10,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Moral"),          4, CEGUI::UDim(0.10,0));
+    m_alternateTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"),        5, CEGUI::UDim(0.10,0));
     m_alternateTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_alternateTeamPlayersList->setUserColumnSizingEnabled(false);
     m_alternateTeamPlayersList->setUserSortControlEnabled(false);
     m_alternateTeamPlayersList->setSelectionMode(CEGUI::MultiColumnList::RowMultiple);
 
     m_notLineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"LineUp/NotLineUpTeamPlayersList"));
-    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Not Line Up)"), 0, CEGUI::UDim(0.60,0));
-    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"),              1, CEGUI::UDim(0.10,0));
-    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"),         2, CEGUI::UDim(0.10,0));
-    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Moral"),              3, CEGUI::UDim(0.10,0));
-    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"),            4, CEGUI::UDim(0.10,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Name (Line Up)"), 0, CEGUI::UDim(0.50,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Role"),           1, CEGUI::UDim(0.10,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Speed"),          2, CEGUI::UDim(0.10,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Shot power"),     3, CEGUI::UDim(0.10,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Moral"),          4, CEGUI::UDim(0.10,0));
+    m_notLineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Average"),        5, CEGUI::UDim(0.10,0));
     m_notLineUpTeamPlayersList->setUserColumnDraggingEnabled(false);
     m_notLineUpTeamPlayersList->setUserColumnSizingEnabled(false);
     m_notLineUpTeamPlayersList->setUserSortControlEnabled(false);
@@ -143,6 +150,10 @@ void CLineUpWindowHandler::changePlayers(CEGUI::MultiColumnList *list1, int row1
 
     saveTeamPlayersList();
 
+    refreshRow(list1, row1);
+
+    refreshRow(list2, row2);
+
     std::string        currentTimestamp = m_game.getCurrentTime().getTimestamp();
     IPfTeamAveragesDAO *teamAveragesDAO = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
     CPfTeams           *team            = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
@@ -160,18 +171,21 @@ void CLineUpWindowHandler::loadTeamPlayersList()
     m_alternateTeamPlayersList->resetList();
     m_notLineUpTeamPlayersList->resetList();
 
-    std::string                     currentTimestamp            = m_game.getCurrentTime().getTimestamp();
-    CPfTeams                        *team                       = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
-    IPfTeamPlayersDAO               *teamPlayersDAO             = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
-    IPfTeamAveragesDAO              *teamAveragesDAO            = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
-    std::vector<CPfTeamPlayers*>    *lineUpTeamPlayersList      = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
-    std::vector<CPfTeamPlayers*>    *alternateTeamPlayersList   = teamPlayersDAO->findAlternateByXFkTeam(team->getXTeam(), currentTimestamp);
-    std::vector<CPfTeamPlayers*>    *notLineUpTeamPlayersList   = teamPlayersDAO->findNotLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
+    std::string                  currentTimestamp          = m_game.getCurrentTime().getTimestamp();
+    CPfTeams                     *team                     = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
+    IPfTeamPlayersDAO            *teamPlayersDAO           = m_game.getIDAOFactory()->getIPfTeamPlayersDAO();
+    IPfTeamAveragesDAO           *teamAveragesDAO          = m_game.getIDAOFactory()->getIPfTeamAveragesDAO();
+    IPfFormationsDAO             *formationsDAO            = m_game.getIDAOFactory()->getIPfFormationsDAO();
+    CPfFormations                *formation                = formationsDAO->findActiveByXTeam(team->getXTeam(), currentTimestamp);
+    std::vector<CPfTeamPlayers*> *lineUpTeamPlayersList    = teamPlayersDAO->findLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
+    std::vector<CPfTeamPlayers*> *alternateTeamPlayersList = teamPlayersDAO->findAlternateByXFkTeam(team->getXTeam(), currentTimestamp);
+    std::vector<CPfTeamPlayers*> *notLineUpTeamPlayersList = teamPlayersDAO->findNotLineUpByXFkTeam(team->getXTeam(), currentTimestamp);
+
 
     std::vector<CPfTeamPlayers*>::iterator it;
     for( it=lineUpTeamPlayersList->begin(); it!=lineUpTeamPlayersList->end(); it++ ){
         CPfTeamPlayers *teamPlayer = (*it);
-        addPlayerToList(teamPlayer, m_lineUpTeamPlayersList);
+        addPlayerToLineUpList(teamPlayer, m_lineUpTeamPlayersList, formation->getXFormation());
     }
     for( it=alternateTeamPlayersList->begin(); it!=alternateTeamPlayersList->end(); it++ ){
         CPfTeamPlayers *teamPlayer = (*it);
@@ -205,9 +219,10 @@ void CLineUpWindowHandler::loadTeamPlayersList()
     m_alternateTeamPlayersList->getVertScrollbar()->setVisible(false);
 }
 
-void CLineUpWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
+void CLineUpWindowHandler::addPlayerToLineUpList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list, int xFormation)
 {
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    IPfRolesDAO *rolesDAO =  m_game.getIDAOFactory()->getIPfRolesDAO();
 
     int row_idx = list->addRow();
     int XTeamPlayer = player->getXTeamPlayer();
@@ -215,22 +230,64 @@ void CLineUpWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiC
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 0, row_idx);
 
-    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNSpeed_str().c_str(), XTeamPlayer);
-    item->setSelectionBrushImage(sel_img);
-    list->setItem(item, 1, row_idx);
+    CPfRoles *role = rolesDAO->findInStrategicPositionByXFormationAndLineUpOrder(xFormation, player->getNLineupOrder());
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)role->getSShortName_str().c_str(), XTeamPlayer);
+	item->setSelectionBrushImage(sel_img);
+	list->setItem(item, 1, row_idx);
+	delete role;
 
-    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNKickPower_str().c_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNSpeed_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 2, row_idx);
 
-    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNMoral_str().c_str(), XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNKickPower_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
     list->setItem(item, 3, row_idx);
+
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNMoral_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    list->setItem(item, 4, row_idx);
 
     CPfTeamPlayerAverages *playerAverage = m_game.getIDAOFactory()->getIPfTeamPlayerAveragesDAO()->findByXTeamPlayer(player->getXTeamPlayer_str());
     item = new CEGUI::ListboxTextItem((CEGUI::utf8*)playerAverage->getNTotal_str().c_str(), XTeamPlayer);
     item->setSelectionBrushImage(sel_img);
+    list->setItem(item, 5, row_idx);
+    delete playerAverage;
+}
+
+void CLineUpWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
+{
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    IPfRolesDAO *rolesDAO =  m_game.getIDAOFactory()->getIPfRolesDAO();
+
+    int row_idx = list->addRow();
+    int XTeamPlayer = player->getXTeamPlayer();
+	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getSShortName().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    list->setItem(item, 0, row_idx);
+
+    CPfRoles *role = rolesDAO->findByXTeamPlayer(XTeamPlayer);
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)role->getSShortName_str().c_str(), XTeamPlayer);
+	item->setSelectionBrushImage(sel_img);
+	list->setItem(item, 1, row_idx);
+	delete role;
+
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNSpeed_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    list->setItem(item, 2, row_idx);
+
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNKickPower_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    list->setItem(item, 3, row_idx);
+
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)player->getNMoral_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
     list->setItem(item, 4, row_idx);
+
+    CPfTeamPlayerAverages *playerAverage = m_game.getIDAOFactory()->getIPfTeamPlayerAveragesDAO()->findByXTeamPlayer(player->getXTeamPlayer_str());
+    item = new CEGUI::ListboxTextItem((CEGUI::utf8*)playerAverage->getNTotal_str().c_str(), XTeamPlayer);
+    item->setSelectionBrushImage(sel_img);
+    list->setItem(item, 5, row_idx);
     delete playerAverage;
 }
 
@@ -353,15 +410,33 @@ void CLineUpWindowHandler::changeRows(CEGUI::MultiColumnList *list1, int row1, C
         item1->setAutoDeleted(true);
         item2->setAutoDeleted(true);
     }
+}
 
+void CLineUpWindowHandler::refreshRow(CEGUI::MultiColumnList *list, int row)
+{
     IPfTeamPlayerAveragesDAO *teamPlayerAveragesDAO = m_game.getIDAOFactory()->getIPfTeamPlayerAveragesDAO();
-    CPfTeamPlayerAverages *playerAverage = teamPlayerAveragesDAO->findByXTeamPlayer(item1->getID());
-    item1->setText((CEGUI::utf8*)playerAverage->getNTotal_str().c_str());
+    IPfRolesDAO              *rolesDAO              = m_game.getIDAOFactory()->getIPfRolesDAO();
+    IPfFormationsDAO         *formationsDAO         = m_game.getIDAOFactory()->getIPfFormationsDAO();
+
+    CEGUI::ListboxItem *item;
+	CEGUI::MCLGridRef reference = CEGUI::MCLGridRef(row, 1);
+	item = list->getItemAtGridReference(reference);
+
+    CPfTeamPlayerAverages *playerAverage = teamPlayerAveragesDAO->findByXTeamPlayer(item->getID());
+    item->setText((CEGUI::utf8*)playerAverage->getNTotal_str().c_str());
     delete playerAverage;
 
-    playerAverage = teamPlayerAveragesDAO->findByXTeamPlayer(item2->getID());
-    item2->setText((CEGUI::utf8*)playerAverage->getNTotal_str().c_str());
-    delete playerAverage;
+    if(list == m_lineUpTeamPlayersList) {
+        std::string   currentTimestamp = m_game.getCurrentTime().getTimestamp();
+    	CPfFormations *formation       = formationsDAO->findActiveByXTeam(m_game.getOptionManager()->getGamePlayerTeam(), currentTimestamp);
+    	CPfRoles      *role            = rolesDAO->findInStrategicPositionByXFormationAndLineUpOrder(formation->getXFormation(), row + 1);
+		item->setText((CEGUI::utf8*)role->getSShortName_str().c_str());
+		delete role;
+    } else {
+        CPfRoles *role = rolesDAO->findByXTeamPlayer(item->getID());
+        item->setText((CEGUI::utf8*)role->getSShortName_str().c_str());
+    	delete role;
+    }
 }
 
 void CLineUpWindowHandler::changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState)

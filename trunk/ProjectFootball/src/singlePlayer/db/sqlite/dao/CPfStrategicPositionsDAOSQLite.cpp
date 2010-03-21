@@ -34,18 +34,19 @@ CPfStrategicPositionsDAOSQLite::~CPfStrategicPositionsDAOSQLite()
 {
 }
 
-CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkFormation(int XFkFormation)
+std::vector<CPfStrategicPositions*>* CPfStrategicPositionsDAOSQLite::findByXFkFormation(int XFkFormation)
 {
     std::ostringstream stream;
     stream << XFkFormation;
     return findByXFkFormation(stream.str());
 }
 
-CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkFormation(const std::string &XFkFormation)
+std::vector<CPfStrategicPositions*>* CPfStrategicPositionsDAOSQLite::findByXFkFormation(const std::string &XFkFormation)
 {
     std::string sql("SELECT * FROM PF_STRATEGIC_POSITIONS WHERE ");
-    sql = sql+"X_FK_FORMATION='"+XFkFormation+"'";
-    return loadRegister(sql);
+    sql = sql+"X_FK_FORMATION='"+XFkFormation+"' ";
+    sql = sql+"ORDER BY N_LINEUP_ORDER ASC";
+    return loadVector(sql);
 }
 
 CPfStrategicPositions* CPfStrategicPositionsDAOSQLite::findByXFkRole(int XFkRole)

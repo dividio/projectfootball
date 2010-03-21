@@ -44,6 +44,10 @@ public:
     virtual CPfRoles* findByXRole(const std::string &XRole) =0;
     virtual CPfRoles* findByXFkDemarcation(int XFkDemarcation) =0;
     virtual CPfRoles* findByXFkDemarcation(const std::string &XFkDemarcation) =0;
+    virtual CPfRoles* findByXTeamPlayer(int XTeamPlayer) =0;
+	virtual CPfRoles* findByXTeamPlayer(const std::string &XTeamPlayer) =0;
+	virtual CPfRoles* findInStrategicPositionByXFormationAndLineUpOrder(int XFormation, int LineUpOrder) =0;
+	virtual CPfRoles* findInStrategicPositionByXFormationAndLineUpOrder(const std::string &XFormation, const std::string &LineUpOrder) =0;
 
 };
 #endif /*IPFROLESDAO_H_*/

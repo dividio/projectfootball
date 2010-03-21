@@ -46,11 +46,13 @@ private:
     bool notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
+    void addPlayerToLineUpList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list, int xFormation);
     void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
     void saveTeamPlayersList();
     void changePlayers(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
     void selectChanged(CEGUI::MultiColumnList *list);
     void changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
+    void refreshRow(CEGUI::MultiColumnList *list, int row);
     void changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState);
 
     CEGUI::MultiColumnList 	*m_lineUpTeamPlayersList;

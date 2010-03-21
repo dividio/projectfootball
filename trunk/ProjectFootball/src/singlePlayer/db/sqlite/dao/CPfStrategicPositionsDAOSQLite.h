@@ -35,8 +35,8 @@ public:
     CPfStrategicPositionsDAOSQLite(sqlite3 *database);
     virtual ~CPfStrategicPositionsDAOSQLite();
 
-    virtual CPfStrategicPositions* findByXFkFormation(int XFkFormation);
-    virtual CPfStrategicPositions* findByXFkFormation(const std::string &XFkFormation);
+    virtual std::vector<CPfStrategicPositions*>* findByXFkFormation(int XFkFormation);
+    virtual std::vector<CPfStrategicPositions*>* findByXFkFormation(const std::string &XFkFormation);
     virtual CPfStrategicPositions* findByXFkRole(int XFkRole);
     virtual CPfStrategicPositions* findByXFkRole(const std::string &XFkRole);
     virtual CPfStrategicPositions* findByXStrategicPosition(int XStrategicPosition);
