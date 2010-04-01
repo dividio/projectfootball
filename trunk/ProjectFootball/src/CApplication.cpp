@@ -282,9 +282,9 @@ void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
 
 void CApplication::takeScreenshot()
 {
-  // TODO: don't overwrite previous screenshots
     std::ostringstream ss;
-    ss << "screenshot" << ".png";
+    CDate date;
+    ss << "screenshot" << "-" << date.getTimestamp() << ".png";
     m_window->writeContentsToFile(ss.str());
 }
 
