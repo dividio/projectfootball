@@ -43,7 +43,7 @@ CFootballPlayer* CFootballPlayer::getPlayer(CBaseGameEntity *player)
 }
 
 
-CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team, bool sideLeft)
+CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team)
 :CMovingEntity()
 {
 	m_simulationManager = simulationManager;
@@ -55,7 +55,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     Ogre::String id;
     std::ostringstream charId;
     m_centerOfMassOffset.setOrigin(btVector3(0,-0.9,0));
-    m_sideLeft = sideLeft;
+    m_sideLeft = team->isSideLeft();
     m_team = team;
     m_number = number; //TODO
     m_lastKickBallCycle = -1;
@@ -71,7 +71,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     charId << team->getName().c_str() << m_number;
     id = charId.str();
     m_entity = scnMgr->createEntity("Player"+id, "Human.mesh");
-    if(sideLeft) {
+    if(m_sideLeft) {
         if(m_number == 1) {
             m_entity->setMaterialName("goalie_red");
         } else {
@@ -120,7 +120,7 @@ CFootballPlayer::CFootballPlayer(CSimulationManager *simulationManager, const CP
     Ogre::MaterialPtr matptr;
     Ogre::Pass* pass;
 
-    if(sideLeft) {
+    if(m_sideLeft) {
         matptr = Ogre::MaterialManager::getSingleton().createOrRetrieve("Red"+id, "General").first;
         matptr->setReceiveShadows(true);
         pass = matptr->getTechnique(0)->getPass(0);

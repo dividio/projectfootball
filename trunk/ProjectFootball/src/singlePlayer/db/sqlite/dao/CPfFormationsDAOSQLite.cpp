@@ -78,3 +78,20 @@ CPfFormations* CPfFormationsDAOSQLite::findActiveByXTeam(const std::string &XTea
 	sql = sql+"AND CC.D_BEGIN<='" + timestamp + "' AND (CC.D_END IS NULL OR CC.D_END>'" + timestamp + "')";
 	return loadRegister(sql);
 }
+
+std::vector<CPfFormations*>* CPfFormationsDAOSQLite::findByXTeam(int XTeam, const std::string &timestamp)
+{
+	std::ostringstream stream;
+	stream << XTeam;
+	return findByXTeam(stream.str(), timestamp);
+}
+
+std::vector<CPfFormations*>* CPfFormationsDAOSQLite::findByXTeam(const std::string &XTeam, const std::string &timestamp)
+{
+	std::string sql("SELECT F.* FROM PF_FORMATIONS F ");
+	sql = sql+"LEFT OUTER JOIN PF_COACH_CONTRACTS CC ON (CC.X_FK_COACH = F.X_FK_COACH_OWNER ";
+	sql = sql+"AND CC.X_FK_TEAM='"+XTeam+"' ";
+	sql = sql+"AND CC.D_BEGIN<='" + timestamp + "' AND (CC.D_END IS NULL OR CC.D_END>'" + timestamp + "')) ";
+	sql = sql+"ORDER BY F.S_NAME DESC ";
+	return loadVector(sql);
+}

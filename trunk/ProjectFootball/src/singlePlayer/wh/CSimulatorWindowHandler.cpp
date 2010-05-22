@@ -447,7 +447,7 @@ bool CSimulatorWindowHandler::zoomButtonClicked(const CEGUI::EventArgs& e)
 
 bool CSimulatorWindowHandler::formation433ButtonClicked(const CEGUI::EventArgs& e)
 {
-    m_simulator->changeFormationEvent(0);
+    m_simulator->changeFormationEvent(2);
     return true;
 }
 

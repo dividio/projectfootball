@@ -43,7 +43,7 @@ public:
     static std::string m_pCtorName;
     static CFootballPlayer* getPlayer(CBaseGameEntity *player);
 
-    CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team, bool sideLeft);
+    CFootballPlayer(CSimulationManager *simulationManager, const CPfTeamPlayers *teamPlayer, int number, CTeam *team);
     ~CFootballPlayer();
 
     double                          getMaxKickPower() const;

@@ -32,6 +32,7 @@
 #include "entity/CTeam.h"
 #include "entity/CField.h"
 #include "entity/CBall.h"
+#include "tactic/CFormation.h"
 
 #include "../CSinglePlayerGame.h"
 #include "../db/bean/CPfMatches.h"
@@ -86,33 +87,36 @@ CSimulationManager::CSimulationManager(int xMatch, CSinglePlayerGame &game, CSim
     IPfMatchesDAO *matchesDAO = m_game.getIDAOFactory()->getIPfMatchesDAO();
     m_match = matchesDAO->findByXMatch(xMatch);
 
+    int sideLeft = true;
     std::string currentTimestamp = m_game.getCurrentTime().getTimestamp();
+
     // Home team
     CPfTeams *homeTeam = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_match->getXFkTeamHome());
-    std::vector<CPfTeamPlayers*> *homePlayersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(homeTeam->getXTeam(), currentTimestamp);
-    m_homeTeam = new CTeam(this, homeTeam, homePlayersVector, true);
-    m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(homePlayersVector);
+    m_homeTeam = new CTeam(this, homeTeam, sideLeft);
+    CPfFormations *formation = m_game.getIDAOFactory()->getIPfFormationsDAO()->findActiveByXTeam(m_homeTeam->getXTeam(), currentTimestamp);
+    m_homeFormation = loadFormation(formation);
+    m_homeTeam->setFormation(m_homeFormation);
+    m_homeTeamPlayers = loadTeamPlayers(m_homeTeam);
+    m_homeTeam->setPlayers(m_homeTeamPlayers);
+    m_homeTeam->assignSide(sideLeft);
     delete homeTeam;
+    delete formation;
 
     // Away team
     CPfTeams *awayTeam = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_match->getXFkTeamAway());
-    std::vector<CPfTeamPlayers*> *awayPlayersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(awayTeam->getXTeam(), currentTimestamp);
-    m_awayTeam = new CTeam(this, awayTeam, awayPlayersVector, false);
-    m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(awayPlayersVector);
+    m_awayTeam = new CTeam(this, awayTeam, !sideLeft);
+    formation = m_game.getIDAOFactory()->getIPfFormationsDAO()->findActiveByXTeam(m_awayTeam->getXTeam(), currentTimestamp);
+    m_awayFormation = loadFormation(formation);
+    m_awayTeam->setFormation(m_awayFormation);
+    m_awayTeamPlayers = loadTeamPlayers(m_awayTeam);
+    m_awayTeam->setPlayers(m_awayTeamPlayers);
+    m_awayTeam->assignSide(!sideLeft);
     delete awayTeam;
+    delete formation;
 
     m_homeTeam->setOpponentTeam(m_awayTeam);
     m_awayTeam->setOpponentTeam(m_homeTeam);
 
-    std::vector<CFootballPlayer*>::iterator it;
-    std::vector<CFootballPlayer*>* players = m_homeTeam->getPlayers();
-    for(it = players->begin(); it!=players->end(); it++) {
-        m_simWorld->addObject((*it));
-    }
-    players = m_awayTeam->getPlayers();
-    for(it = players->begin(); it!=players->end(); it++) {
-        m_simWorld->addObject((*it));
-    }
     srand(time(NULL));
 }
 
@@ -133,9 +137,12 @@ CSimulationManager::~CSimulationManager()
     }
     if(m_homeTeam != NULL) {
         delete m_homeTeam;
+        delete m_homeFormation;
+
     }
     if(m_awayTeam != NULL) {
         delete m_awayTeam;
+        delete m_awayFormation;
     }
 
     delete m_match;
@@ -238,9 +245,19 @@ void CSimulationManager::changeFormationEvent(int pos)
     CPfTeams *team = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
     int xTeam = team->getXTeam();
     if(xTeam == m_homeTeam->getXTeam()) {
-        m_homeTeam->changeFormation(pos);
+    	CPfFormations *formation = m_game.getIDAOFactory()->getIPfFormationsDAO()->findByXFormation(pos);
+    	CFormation *aux = m_homeFormation;
+    	m_homeFormation = loadFormation(formation);
+        m_homeTeam->setFormation(m_homeFormation);
+        delete formation;
+        delete aux;
     } else if(xTeam == m_awayTeam->getXTeam()) {
-        m_awayTeam->changeFormation(pos);
+    	CPfFormations *formation = m_game.getIDAOFactory()->getIPfFormationsDAO()->findByXFormation(pos);
+    	CFormation *aux = m_awayFormation;
+    	m_awayFormation = loadFormation(formation);
+        m_awayTeam->setFormation(m_awayFormation);
+        delete formation;
+        delete aux;
     } else {
         LOG_ERROR("Can't switch formation, team %d is not playing the match.", xTeam);
     }
@@ -382,4 +399,139 @@ void CSimulationManager::calculateNearestPlayersToBall()
     }
     getHomeTeam()->setNearestPlayerToBall(nearestHomePlayer);
     getAwayTeam()->setNearestPlayerToBall(nearestAwayPlayer);
+}
+
+std::vector<CFootballPlayer*>* CSimulationManager::loadTeamPlayers(CTeam *team)
+{
+	int xTeam = team->getXTeam();
+	std::string currentTimestamp = m_game.getCurrentTime().getTimestamp();
+	std::vector<CPfTeamPlayers*> *playersVector = m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->findLineUpByXFkTeam(xTeam, currentTimestamp);
+
+	std::vector<CFootballPlayer*>* teamPlayers = new std::vector<CFootballPlayer*>();
+
+    // TODO: Initialize football players on a loop
+    CFootballPlayer *player = new CFootballPlayer(this, playersVector->at(0), 1, team);
+    CLuaManager::getInstance()->runScript("data/scripts/goalie.lua");
+    player->getFSM()->setGlobalState("SGoalie_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(1), 2, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(2), 3, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(3), 4, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(4), 5, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(5), 6, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(6), 7, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(7), 8, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(8), 9, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(9), 10, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+    player = new CFootballPlayer(this, playersVector->at(10), 11, team);
+    CLuaManager::getInstance()->runScript("data/scripts/player.lua");
+    player->getFSM()->setGlobalState("SPl_Global");
+    teamPlayers->push_back(player);
+    m_simWorld->addObject(player);
+
+
+	m_game.getIDAOFactory()->getIPfTeamPlayersDAO()->freeVector(playersVector);
+
+	return teamPlayers;
+}
+
+
+CFormation* CSimulationManager::loadFormation(CPfFormations *formation)
+{
+
+	CFormation *teamFormation = new CFormation(formation->getSName().c_str());
+
+	btVector3 point;
+	btVector3 topLeft, bottomRight;
+	CStrategicPosition *pos;
+	std::vector<CPfStrategicPositions*> *positions = m_game.getIDAOFactory()->getIPfStrategicPositionsDAO()->findByXFkFormation(formation->getXFormation());
+
+	std::vector<CPfStrategicPositions*>::iterator it;
+	for(it = positions->begin(); it != positions->end(); it++) {
+		pos = teamFormation->getPlayerStrategicPosition((*it)->getNLineupOrder() - 1);
+
+		point.setValue((*it)->getNInitialPosX(),0,(*it)->getNInitialPosZ());
+		pos->setInitialPosition(&point);
+		point.setValue((*it)->getNDefensivePosX(),0,(*it)->getNDefensivePosZ());
+		pos->setDefensivePosition(&point);
+		point.setValue((*it)->getNOffensivePosX(),0,(*it)->getNOffensivePosZ());
+		pos->setOffensivePosition(&point);
+
+		topLeft.setValue((*it)->getNTopLeftAreaX(),0,(*it)->getNTopLeftAreaZ());
+		bottomRight.setValue((*it)->getNBottomRightAreaX(),0,(*it)->getNBottomRightAreaZ());
+		pos->setPlayingArea(&topLeft, &bottomRight);
+
+		pos->setAttractionX((*it)->getNAttractionX());
+		pos->setAttractionZ((*it)->getNAttractionZ());
+
+	}
+	//TODO make this in tactics?
+	if(formation->getXFormation() == 1) {
+		teamFormation->setKickOffPlayerId(10);
+		teamFormation->setKickInPlayerId(5);
+		teamFormation->setRightCornerKickPlayerId(6);
+		teamFormation->setLeftCornerKickPlayerId(7);
+		teamFormation->setRightTrowInPlayerId(6);
+		teamFormation->setLeftTrowInPlayerId(7);
+		teamFormation->setGoalKickPlayerId(0);
+	} else {
+		teamFormation->setKickOffPlayerId(8);
+		teamFormation->setKickInPlayerId(5);
+		teamFormation->setRightCornerKickPlayerId(6);
+		teamFormation->setLeftCornerKickPlayerId(7);
+		teamFormation->setRightTrowInPlayerId(6);
+		teamFormation->setLeftTrowInPlayerId(7);
+		teamFormation->setGoalKickPlayerId(0);
+	}
+
+	m_game.getIDAOFactory()->getIPfStrategicPositionsDAO()->freeVector(positions);
+
+	return teamFormation;
 }

@@ -28,12 +28,14 @@
 class CSinglePlayerGame;
 class CSimulationWorld;
 class CFootballPlayer;
+class CFormation;
 class CTeam;
 class CReferee;
 class CBall;
 class CField;
 class CTimer;
 class CPfMatches;
+class CPfFormations;
 class CGoalMatchEvent;
 class btVector3;
 class CSimulatorWindowHandler;
@@ -86,6 +88,10 @@ private:
     CBall 							*m_ball;
     CField 							*m_field;
     CSimulationWorld 				*m_simWorld;
+    std::vector<CFootballPlayer*>   *m_homeTeamPlayers;
+    std::vector<CFootballPlayer*>   *m_awayTeamPlayers;
+    CFormation                      *m_homeFormation;
+    CFormation                      *m_awayFormation;
 
     CSinglePlayerGame				&m_game;
     CSimulatorWindowHandler			&m_simulatorWindowHandler;
@@ -100,6 +106,10 @@ private:
 
     void truncateVector(btVector3 *v, double max);
     void calculateNearestPlayersToBall();
+
+    std::vector<CFootballPlayer*>* loadTeamPlayers(CTeam *team);
+    CFormation*                    loadFormation(CPfFormations *formation);
+
 };
 
 #endif // CSIMULATIONMANAGER_H_

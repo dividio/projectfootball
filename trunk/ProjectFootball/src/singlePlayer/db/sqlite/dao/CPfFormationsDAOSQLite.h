@@ -41,6 +41,8 @@ public:
     virtual CPfFormations* findByXFormation(const std::string &XFormation);
     virtual CPfFormations* findActiveByXTeam(int XTeam, const std::string &timestamp);
 	virtual CPfFormations* findActiveByXTeam(const std::string &XTeam, const std::string &timestamp);
+	virtual std::vector<CPfFormations*>* findByXTeam(int XTeam, const std::string &timestamp);
+	virtual std::vector<CPfFormations*>* findByXTeam(const std::string &XTeam, const std::string &timestamp);
 
 };
 #endif /*CPFFORMATIONSDAOSQLITE_H_*/

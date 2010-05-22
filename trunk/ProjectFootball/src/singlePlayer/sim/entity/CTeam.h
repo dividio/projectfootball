@@ -43,19 +43,21 @@ public:
     static std::string m_pCtorName;
     static CTeam* getTeam(CBaseGameEntity *team);
 
-    CTeam(CSimulationManager *simulationManager, const CPfTeams *team, std::vector<CPfTeamPlayers*> *playersVector, bool sideLeft);
+    CTeam(CSimulationManager *simulationManager, const CPfTeams *team, bool sideLeft);
     ~CTeam();
 
-    void  setOpponentTeam(CTeam *team);
-    void  setControllingPlayer(CFootballPlayer *player);
-    void  setNearestPlayerToBall(CFootballPlayer *player);
+    void assignSide(bool side);
+    void setOpponentTeam(CTeam *team);
+    void setControllingPlayer(CFootballPlayer *player);
+    void setNearestPlayerToBall(CFootballPlayer *player);
+    void setPlayers(std::vector<CFootballPlayer*>* playersVector);
+    void setFormation(CFormation *formation);
 
     CSimulationManager* getSimulationManager();
 
     CTeam*                          getOpponentTeam();
     const std::string&              getName();
     std::vector<CFootballPlayer*>*  getPlayers();
-    std::vector<CFormation*>*       getFormations();
     CFootballPlayer*                getNearestPlayerToBall() const;
     CFootballPlayer*                getControllingPlayer() const;
     int                             getKickPlayerID() const;
@@ -70,25 +72,23 @@ public:
     bool isNearestTeamMatePlayerToBall(CFootballPlayer* player) const;
     bool isBallInOwnPenaltyArea() const;
     bool isBallInOpponentPenaltyArea() const;
+    bool isSideLeft() const;
 
     bool handleMessage(const CMessage &msg);
     void update();
     void changeSide();
-    void changeFormation(int formationPos);
 
 private:
 	CSimulationManager				*m_simulationManager;
     CPfTeams                        *m_team;
-    std::vector<CFootballPlayer*>    m_players;
+    std::vector<CFootballPlayer*>   *m_players;
     CFootballPlayer                 *m_nearestPlayerToBall;
     CFootballPlayer                 *m_controllingPlayer;
     CTeam                           *m_opponentTeam;
     CStateMachine<CTeam>            *m_stateMachine;
     CFormation                      *m_currentFormation;
-    std::vector<CFormation*>         m_formations;
     bool                             m_sideLeft;
 
-    void setFormations();
 };
 
 #endif // CTEAM_H_

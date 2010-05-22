@@ -31,6 +31,7 @@ CFormation::CFormation()
         m_positions[i] = new CStrategicPosition();
     }
     m_name = "";
+    m_currentFormationType = FT_Initial;
 }
 
 
@@ -41,6 +42,7 @@ CFormation::CFormation(const char* name)
         m_positions[i] = new CStrategicPosition();
     }
     m_name = name;
+    m_currentFormationType = FT_Initial;
 }
 
 
