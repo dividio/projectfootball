@@ -4,173 +4,178 @@
     <Window Type="DefaultWindow" Name="TeamPlayerDetails" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="ArridiDesign/StaticImage" Name="TeamPlayerDetails/Photo" >
+        <Window Type="ArridiDesign/StaticImage" Name="TeamPlayerDetails/BackGround" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.76,0},{0.06,0},{1,0},{0.38,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/PlayerDetailsLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0,0},{0.3,0},{0.05,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/NameLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.05,0},{0.3,0},{0.1,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Name" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.05,0},{0.7,0},{0.1,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ShortNameLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.1,0},{0.3,0},{0.15,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ShortName" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.1,0},{0.7,0},{0.15,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/BirthdayLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.15,0},{0.3,0},{0.2,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Birthday" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.15,0},{0.4,0},{0.2,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/YearsLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.15,0},{0.6,0},{0.2,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Years" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.15,0},{0.7,0},{0.2,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/WeightLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.2,0},{0.3,0},{0.25,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Weight" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.2,0},{0.7,0},{0.25,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/HeightLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.3,0},{0.3,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Height" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.25,0},{0.7,0},{0.3,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/CountryLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.3,0},{0.3,0},{0.35,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="TeamPlayerDetails/CountryFlag" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.3,0},{0.35,0},{0.35,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Country" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.3,0},{0.7,0},{0.35,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ContractDetailsLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.5,0},{0.3,0},{0.55,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/TeamNameLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.55,0},{0.3,0},{0.6,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/TeamName" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.55,0},{0.7,0},{0.6,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateBeginLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.6,0},{0.3,0},{0.65,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateBegin" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.6,0},{0.4,0},{0.65,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateEndLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.6,0},{0.6,0},{0.65,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateEnd" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.6,0},{0.7,0},{0.65,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/SalaryLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.65,0},{0.3,0},{0.7,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Salary" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.65,0},{0.7,0},{0.7,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ReleaseClauseLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.7,0},{0.3,0},{0.75,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ReleaseClause" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.7,0},{0.7,0},{0.75,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
+            <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0,0},{1,0},{0.85,0}}" />
+            <Property Name="BackgroundEnabled" Value="True" />
+	        <Window Type="ArridiDesign/StaticImage" Name="TeamPlayerDetails/Photo" >
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.76,0},{0.06,0},{0.99,0},{0.38,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/PlayerDetailsLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0,0},{0.3,0},{0.05,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/NameLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.05,0},{0.3,0},{0.1,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Name" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.05,0},{0.7,0},{0.1,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ShortNameLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.1,0},{0.3,0},{0.15,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ShortName" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.1,0},{0.7,0},{0.15,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/BirthdayLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.15,0},{0.3,0},{0.2,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Birthday" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.15,0},{0.4,0},{0.2,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/YearsLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.15,0},{0.6,0},{0.2,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Years" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.15,0},{0.7,0},{0.2,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/WeightLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.2,0},{0.3,0},{0.25,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Weight" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.2,0},{0.7,0},{0.25,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/HeightLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.25,0},{0.3,0},{0.3,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Height" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.25,0},{0.7,0},{0.3,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/CountryLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.3,0},{0.3,0},{0.35,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticImage" Name="TeamPlayerDetails/CountryFlag" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.3,0},{0.35,0},{0.35,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Country" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.3,0},{0.7,0},{0.35,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ContractDetailsLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.5,0},{0.3,0},{0.55,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/TeamNameLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.55,0},{0.3,0},{0.6,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/TeamName" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.55,0},{0.7,0},{0.6,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateBeginLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.6,0},{0.3,0},{0.65,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateBegin" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.6,0},{0.4,0},{0.65,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateEndLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.6,0},{0.7,0},{0.65,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/DateEnd" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.6,0},{0.8,0},{0.65,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/SalaryLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.65,0},{0.3,0},{0.7,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/Salary" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.65,0},{0.7,0},{0.7,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ReleaseClauseLabel" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.7,0},{0.3,0},{0.75,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+	        <Window Type="ArridiDesign/StaticText" Name="TeamPlayerDetails/ReleaseClause" >
+	            <Property Name="FrameEnabled" Value="False" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.7,0},{0.7,0},{0.75,0}}" />
+	            <Property Name="BackgroundEnabled" Value="False" />
+	        </Window>
+    	</Window>
     </Window>
 </GUILayout>
