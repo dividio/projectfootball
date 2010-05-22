@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-22 16:19+0200\n"
+"POT-Creation-Date: 2010-05-22 23:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2357,7 +2357,7 @@ msgid "Resolution:"
 msgstr ""
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:90
-msgid "Result Mode:"
+msgid "Result Mode"
 msgstr ""
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:191
