@@ -4,51 +4,61 @@
     <Window Type="DefaultWindow" Name="ConfigGame" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="ArridiDesign/StaticText" Name="ConfigGame/GameOptionsLabel" >
-            <Property Name="Font" Value="DejaVuSans-10" />
+        <Window Type="ArridiDesign/StaticImage" Name="ConfigGame/MainWindow" >
             <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.1,0},{0.25,0},{0.2,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="ConfigGame/SimulationTimeText" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="HorzFormatting" Value="RightAligned" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.2,0},{0.25,0},{0.3,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/Combobox" Name="ConfigGame/SimulationTimeCombo" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.2,0},{0.5,0},{0.4,0}}" />
-            <Property Name="ReadOnly" Value="True" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="ConfigGame/ResultModeText" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="HorzFormatting" Value="RightAligned" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.4,0},{0.25,0},{0.5,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/CheckBox" Name="ConfigGame/ResultModeCheckbox" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.4,0},{0.34,0},{0.5,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="ConfigGame/SaveButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="AlwaysOnTop" Value="True" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.6,0},{0.65,0},{0.8,0},{0.75,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/bButton" Name="ConfigGame/BackButton" >
-            <Property Name="Font" Value="DejaVuSans-10" />
-            <Property Name="AlwaysOnTop" Value="True" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.66,0},{0.4,0},{0.75,0}}" />
+            <Window Type="ArridiDesign/FrameWindow" Name="ConfigGame/Video" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+                <Property Name="SizingEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TitlebarEnabled" Value="False" />
+                <Property Name="UnifiedAreaRect" Value="{{0.218477,0},{0.190305,0},{0.757813,0},{0.713447,0}}" />
+                <Property Name="DragMovingEnabled" Value="False" />
+                <Property Name="CloseButtonEnabled" Value="False" />
+		        <Window Type="ArridiDesign/StaticText" Name="ConfigGame/GameOptionsLabel" >
+		            <Property Name="Font" Value="DejaVuSans-10" />
+		            <Property Name="FrameEnabled" Value="False" />
+		            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+		            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.05,0},{0.4,0},{0.1,0}}" />
+		            <Property Name="BackgroundEnabled" Value="False" />
+		        </Window>
+		        <Window Type="ArridiDesign/StaticText" Name="ConfigGame/SimulationTimeText" >
+		            <Property Name="Font" Value="DejaVuSans-10" />
+		            <Property Name="FrameEnabled" Value="False" />
+		            <Property Name="HorzFormatting" Value="RightAligned" />
+		            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+		            <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.2,0},{0.3,0},{0.3,0}}" />
+		            <Property Name="BackgroundEnabled" Value="False" />
+		        </Window>
+		        <Window Type="ArridiDesign/Combobox" Name="ConfigGame/SimulationTimeCombo" >
+		            <Property Name="Font" Value="DejaVuSans-10" />
+		            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+		            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.2,0},{0.8,0},{0.5,0}}" />
+		            <Property Name="ReadOnly" Value="True" />
+		        </Window>
+		        <Window Type="ArridiDesign/CheckBox" Name="ConfigGame/ResultModeCheckbox" >
+		            <Property Name="Font" Value="DejaVuSans-10" />
+		            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+		            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
+		        </Window>
+	        </Window>
+	        <Window Type="ArridiDesign/bButton" Name="ConfigGame/SaveButton" >
+	            <Property Name="Font" Value="DejaVuSans-10" />
+	            <Property Name="AlwaysOnTop" Value="True" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.589063,0},{0.64173,0},{0.759063,0},{0.700636,0}}" />
+	        </Window>
+	        <Window Type="ArridiDesign/bButton" Name="ConfigGame/BackButton" >
+	            <Property Name="Font" Value="DejaVuSans-10" />
+	            <Property Name="AlwaysOnTop" Value="True" />
+	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	            <Property Name="UnifiedAreaRect" Value="{{0.219453,0},{0.646819,0},{0.389453,0},{0.705725,0}}" />
+	        </Window>
         </Window>
     </Window>
 </GUILayout>

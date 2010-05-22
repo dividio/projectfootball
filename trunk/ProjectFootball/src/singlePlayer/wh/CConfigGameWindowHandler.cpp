@@ -87,7 +87,7 @@ void CConfigGameWindowHandler::init()
     // i18n support
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/GameOptionsLabel"))->setText((CEGUI::utf8*)gettext("Game Options"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/SimulationTimeText"))->setText((CEGUI::utf8*)gettext("Match Duration:"));
-    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/ResultModeText"))->setText((CEGUI::utf8*)gettext("Result Mode:"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"ConfigGame/ResultModeCheckbox"))->setText((CEGUI::utf8*)gettext("Result Mode"));
     m_backButton       ->setText((CEGUI::utf8*)gettext("Back"));
     m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
 }
