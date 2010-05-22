@@ -181,4 +181,18 @@ void CDataBaseGenerator::generateCoach(IDAOFactory *daoFactory, CPfTeams *team)
     contract.setXFkCoach_str(coach.getXCoach_str());
     contract.setDBegin(date);
     contractsDAO->insertReg(&contract);
+
+    //Generate formations by coach
+    CPfFormationsByCoaches formation;
+    formation.setXFkCoach(coach.getXCoach());
+    formation.setXFkFormation(1);
+    formation.setNSkill(100);
+    IPfFormationsByCoachesDAO *formationsDAO= daoFactory->getIPfFormationsByCoachesDAO();
+    formationsDAO->insertReg(&formation);
+
+    CPfFormationsByCoaches formation2;
+    formation2.setXFkCoach(coach.getXCoach());
+    formation2.setXFkFormation(2);
+    formation2.setNSkill(100);
+    formationsDAO->insertReg(&formation2);
 }
