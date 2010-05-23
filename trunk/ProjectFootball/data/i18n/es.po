@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-22 23:04+0200\n"
-"PO-Revision-Date: 2010-05-22 23:05+0100\n"
+"PO-Revision-Date: 2010-05-23 13:23+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -2439,7 +2439,7 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:95
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:107
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: data/i18n/temp.cpp:204
 #: data/i18n/temp.cpp:420
