@@ -32,13 +32,17 @@ Creative Commons Attribution-ShareAlike 3.0 (ver Data-License.txt).
 Para ejecutar Project Football es necesario tener las siguientes librerías y sus dependencias:
 
 - Ogre   1.6.x
-- Cegui  >= 0.6.2
+- Cegui  = 0.6.2
 - OIS    1.2.x
 - Sqlite 3
 - SDL_mixer 1.2
 - Lua 5.1
 - Boost FileSystem >= 1.38
 - Boost Thread >= 1.38
+
+En Debian/Ubuntu puedes instalar todas las dependencias para compilar y ejecutar con el siguiente comando:
+sudo aptitude install build-essential libogre-dev libceguiogre-dev libcegui-mk2-dev libois-dev libboost-filesystem-dev libboost-thread-dev libsqlite3-dev liblua5.1-0-dev libsdl-mixer1.2-dev swig
+
 
 --------------------------------
 3- Instrucciones de compilación

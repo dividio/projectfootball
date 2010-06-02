@@ -31,13 +31,16 @@ Creative Commons Attribution-ShareAlike 3.0 license (see Data-License.txt).
 To play Project Football you need de following libraries and dependencies:
 
 - Ogre   1.6.x
-- Cegui  >= 0.6.2
+- Cegui  0.6.2
 - OIS    1.2.x
 - Sqlite 3
 - SDL_mixer 1.2
 - Lua 5.1
 - Boost FileSystem >= 1.38
 - Boost Thread >= 1.38
+
+In Debian/Ubuntu you can install all the dependencies to compile and run with the following command:
+sudo aptitude install build-essential libogre-dev libceguiogre-dev libcegui-mk2-dev libois-dev libboost-filesystem-dev libboost-thread-dev libsqlite3-dev liblua5.1-0-dev libsdl-mixer1.2-dev swig
 
 --------------------------------
 3- Compiling
@@ -46,7 +49,7 @@ To play Project Football you need de following libraries and dependencies:
 - To compile, run this script:
 sh build.sh
 
-- To play Project Football, run the followig command:
+- To play Project Football, run the following command:
 ./ProjectFootball
 
 
@@ -67,7 +70,7 @@ These are the principal options:
 
 [Video]
   RenderSystem = OpenGL Rendering Subsystem   // Render system for Ogre
-  VSync = [true | false]                      // Vertical syncronization
+  VSync = [true | false]                      // Vertical synchronization
   RTTPreferredMode = [FBO | PBuffer | Copy]   // Render to texture mode
 
 
