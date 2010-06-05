@@ -41,8 +41,8 @@ private:
     bool backButtonClicked(const CEGUI::EventArgs& e);
 	bool saveButtonClicked(const CEGUI::EventArgs& e);
 
-	CEGUI::PushButton   *m_backButton;
-	CEGUI::PushButton	*m_saveButton;
+	CEGUI::PushButton   *m_acceptButton;
+	CEGUI::PushButton	*m_cancelButton;
     CEGUI::Combobox 	*m_simulationTimeCombo;
     CEGUI::Checkbox 	*m_resultModeCheck;
 

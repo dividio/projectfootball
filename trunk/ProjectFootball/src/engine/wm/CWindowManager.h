@@ -49,8 +49,8 @@ public:
 	void unregisterWindowHandler(const std::string &path, IWindowHandler &windowHandler);
 
 	void alert(const std::string &text);
-	void confirm(const std::string &text, CEGUI::Event::Subscriber aceptSubscriber);
-	void confirm(const std::string &text, CEGUI::Event::Subscriber aceptSubscriber, CEGUI::Event::Subscriber cancelSubscriber);
+	void confirm(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber);
+	void confirm(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber, CEGUI::Event::Subscriber cancelSubscriber);
 	void loading(const std::string &text);
 	void loadingUpdate(const std::string &text, bool stop);
 
@@ -77,8 +77,8 @@ protected:
 	CEGUI::Window*			getCEGUIWindow(const std::string &path);
 
 	// Confirm & acept events handlers
-	bool alertAceptClicked(const CEGUI::EventArgs& e);
-	bool confirmAceptClicked(const CEGUI::EventArgs& e);
+	bool alertAcceptClicked(const CEGUI::EventArgs& e);
+	bool confirmAcceptClicked(const CEGUI::EventArgs& e);
 	bool confirmCancelClicked(const CEGUI::EventArgs& e);
 
 private:
@@ -95,7 +95,7 @@ private:
 	CEGUI::Window											*m_alertWindow;
 	CEGUI::Window											*m_confirmWindow;
 	CEGUI::Window											*m_loadingWindow;
-	CEGUI::Event::Subscriber								m_confirmAceptSubscriber;
+	CEGUI::Event::Subscriber								m_confirmAcceptSubscriber;
 	CEGUI::Event::Subscriber								m_confirmCancelSubscriber;
 };
 

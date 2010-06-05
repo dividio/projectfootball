@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-22 23:04+0200\n"
-"PO-Revision-Date: 2010-05-23 13:23+0100\n"
+"POT-Creation-Date: 2010-06-05 10:57+0200\n"
+"PO-Revision-Date: 2010-06-05 10:59+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -61,7 +61,7 @@ msgstr "5 minutos"
 msgid "ATTENTION: Game can not be saved"
 msgstr "ATENCIÓN: El juego no ha podido guardarse"
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:117
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:118
 #: src/engine/wh/CConfigWindowHandler.cpp:141
 msgid "ATTENTION: Options can not be saved"
 msgstr "ATENCIÓN: Las opciones no han podido guardarse"
@@ -74,14 +74,15 @@ msgstr "Abu Dhabi"
 msgid "Abuja"
 msgstr ""
 
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
+#: src/engine/wm/CWindowManager.cpp:67
+#: src/engine/wm/CWindowManager.cpp:68
+msgid "Accept"
+msgstr "Aceptar"
+
 #: data/i18n/temp.cpp:502
 msgid "Accra"
 msgstr ""
-
-#: src/engine/wm/CWindowManager.cpp:67
-#: src/engine/wm/CWindowManager.cpp:68
-msgid "Acept"
-msgstr "Aceptar"
 
 #: data/i18n/temp.cpp:499
 msgid "Addis Ababa"
@@ -284,7 +285,6 @@ msgstr "Equipo Visitante"
 msgid "Azerbaijan"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:101
 #: src/engine/wh/CConfigWindowHandler.cpp:95
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:60
@@ -537,6 +537,7 @@ msgstr "Canadá"
 msgid "Canberra"
 msgstr ""
 
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wm/CWindowManager.cpp:69
 msgid "Cancel"
 msgstr "Cancelar"
@@ -992,10 +993,6 @@ msgstr "Opciones de la Partida"
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:61
 msgid "Game name:"
 msgstr "Nombre de la partida:"
-
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:115
-msgid "Game options saved"
-msgstr "Opciones de la partida guardadas"
 
 #: data/i18n/temp.cpp:544
 msgid "George Town"
@@ -2548,7 +2545,6 @@ msgstr "Sarajevo"
 msgid "Saudi Arabia"
 msgstr "Arabia Saudi"
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wh/CConfigWindowHandler.cpp:96
 msgid "Save"
 msgstr "Guardar"
@@ -3139,6 +3135,8 @@ msgstr "Zoom"
 msgid "min"
 msgstr "min"
 
+#~ msgid "Game options saved"
+#~ msgstr "Opciones de la partida guardadas"
 #~ msgid "Name (Alternate)"
 #~ msgstr "Nombre (Suplentes)"
 #~ msgid "Name (Not Line Up)"

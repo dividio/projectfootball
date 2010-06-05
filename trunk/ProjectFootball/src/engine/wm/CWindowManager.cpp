@@ -44,7 +44,7 @@
 CWindowManager::CWindowManager()
 : m_windows(), m_windowsHandlers(), m_currentScreen(NULL), m_nextScreensStack(), m_previousScreensStack(),
   m_alertWindow(getCEGUIWindow("alert.layout")), m_confirmWindow(getCEGUIWindow("confirm.layout")),
-  m_loadingWindow(getCEGUIWindow("loading.layout")), m_confirmAceptSubscriber(), m_confirmCancelSubscriber()
+  m_loadingWindow(getCEGUIWindow("loading.layout")), m_confirmAcceptSubscriber(), m_confirmCancelSubscriber()
 {
 	CScreensConfig_xmlHandler xmlHandler;
 
@@ -60,16 +60,16 @@ CWindowManager::CWindowManager()
 	// Bind events of confirm & alert windows
 	CEGUI::WindowManager &windowMngr	= CEGUI::WindowManager::getSingleton();
 
-	CEGUI::PushButton	*alertAceptButton		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"AlertWindow/AceptButton"));
-	CEGUI::PushButton	*confirmAceptButton		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"ConfirmWindow/AceptButton"));
+	CEGUI::PushButton	*alertAcceptButton		= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"AlertWindow/AcceptButton"));
+	CEGUI::PushButton	*confirmAcceptButton	= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"ConfirmWindow/AcceptButton"));
 	CEGUI::PushButton	*confirmCancelButton	= static_cast<CEGUI::PushButton*>(windowMngr.getWindow((CEGUI::utf8*)"ConfirmWindow/CancelButton"));
 
-	alertAceptButton	->setText((CEGUI::utf8*)gettext("Acept"));
-	confirmAceptButton	->setText((CEGUI::utf8*)gettext("Acept"));
+	alertAcceptButton	->setText((CEGUI::utf8*)gettext("Accept"));
+	confirmAcceptButton	->setText((CEGUI::utf8*)gettext("Accept"));
 	confirmCancelButton	->setText((CEGUI::utf8*)gettext("Cancel"));
 
-	alertAceptButton	->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CWindowManager::alertAceptClicked, this));
-	confirmAceptButton	->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CWindowManager::confirmAceptClicked, this));
+	alertAcceptButton	->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CWindowManager::alertAcceptClicked, this));
+	confirmAcceptButton	->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CWindowManager::confirmAcceptClicked, this));
 	confirmCancelButton	->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CWindowManager::confirmCancelClicked, this));
 
 	// Add new WindowFactory to CEGUI::WindowFactoryManager
@@ -151,14 +151,14 @@ void CWindowManager::alert(const std::string &text)
 	m_alertWindow->setModalState(true);
 }
 
-void CWindowManager::confirm(const std::string &text, CEGUI::Event::Subscriber aceptSubscriber)
+void CWindowManager::confirm(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber)
 {
-	confirm(text, aceptSubscriber, CEGUI::Event::Subscriber());
+	confirm(text, acceptSubscriber, CEGUI::Event::Subscriber());
 }
 
-void CWindowManager::confirm(const std::string &text, CEGUI::Event::Subscriber aceptSubscriber, CEGUI::Event::Subscriber cancelSubscriber)
+void CWindowManager::confirm(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber, CEGUI::Event::Subscriber cancelSubscriber)
 {
-	m_confirmAceptSubscriber	= aceptSubscriber;
+	m_confirmAcceptSubscriber	= acceptSubscriber;
 	m_confirmCancelSubscriber	= cancelSubscriber;
 
 	CEGUI::Window			*confirmText	= static_cast<CEGUI::PushButton*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"ConfirmWindow/Text"));
@@ -450,7 +450,7 @@ CEGUI::Window* CWindowManager::getCEGUIWindow(const std::string &path)
 	return window;
 }
 
-bool CWindowManager::alertAceptClicked(const CEGUI::EventArgs& e)
+bool CWindowManager::alertAcceptClicked(const CEGUI::EventArgs& e)
 {
 	CEGUI::Window	*currentWindow = getCEGUIWindow(m_currentScreen->getWindow().getPath().c_str());
 	currentWindow->removeChildWindow(m_alertWindow);
@@ -459,14 +459,14 @@ bool CWindowManager::alertAceptClicked(const CEGUI::EventArgs& e)
 	return true;
 }
 
-bool CWindowManager::confirmAceptClicked(const CEGUI::EventArgs& e)
+bool CWindowManager::confirmAcceptClicked(const CEGUI::EventArgs& e)
 {
 	CEGUI::Window	*currentWindow = getCEGUIWindow(m_currentScreen->getWindow().getPath().c_str());
 	currentWindow->removeChildWindow(m_confirmWindow);
 	m_confirmWindow->setModalState(false);
 
-	if( m_confirmAceptSubscriber.connected() ){
-		m_confirmAceptSubscriber(e);
+	if( m_confirmAcceptSubscriber.connected() ){
+		m_confirmAcceptSubscriber(e);
 	}
 
 	return true;

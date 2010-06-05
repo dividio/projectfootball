@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-22 23:04+0200\n"
+"POT-Creation-Date: 2010-06-05 10:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "ATTENTION: Game can not be saved"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:117
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:118
 #: src/engine/wh/CConfigWindowHandler.cpp:141
 msgid "ATTENTION: Options can not be saved"
 msgstr ""
@@ -76,12 +76,13 @@ msgstr ""
 msgid "Abuja"
 msgstr ""
 
-#: data/i18n/temp.cpp:502
-msgid "Accra"
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
+#: src/engine/wm/CWindowManager.cpp:67 src/engine/wm/CWindowManager.cpp:68
+msgid "Accept"
 msgstr ""
 
-#: src/engine/wm/CWindowManager.cpp:67 src/engine/wm/CWindowManager.cpp:68
-msgid "Acept"
+#: data/i18n/temp.cpp:502
+msgid "Accra"
 msgstr ""
 
 #: data/i18n/temp.cpp:499
@@ -275,7 +276,6 @@ msgstr ""
 msgid "Azerbaijan"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:101
 #: src/engine/wh/CConfigWindowHandler.cpp:95
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:60
@@ -521,6 +521,7 @@ msgstr ""
 msgid "Canberra"
 msgstr ""
 
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wm/CWindowManager.cpp:69
 msgid "Cancel"
 msgstr ""
@@ -964,10 +965,6 @@ msgstr ""
 
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:61
 msgid "Game name:"
-msgstr ""
-
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:115
-msgid "Game options saved"
 msgstr ""
 
 #: data/i18n/temp.cpp:544
@@ -2498,7 +2495,6 @@ msgstr ""
 msgid "Saudi Arabia"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wh/CConfigWindowHandler.cpp:96
 msgid "Save"
 msgstr ""

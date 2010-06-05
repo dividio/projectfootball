@@ -47,13 +47,13 @@
 		            <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
 		        </Window>
 	        </Window>
-	        <Window Type="ArridiDesign/bButton" Name="ConfigGame/SaveButton" >
+	        <Window Type="ArridiDesign/bButton" Name="ConfigGame/CancelButton" >
 	            <Property Name="Font" Value="DejaVuSans-10" />
 	            <Property Name="AlwaysOnTop" Value="True" />
 	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
 	            <Property Name="UnifiedAreaRect" Value="{{0.589063,0},{0.64173,0},{0.759063,0},{0.700636,0}}" />
 	        </Window>
-	        <Window Type="ArridiDesign/bButton" Name="ConfigGame/BackButton" >
+	        <Window Type="ArridiDesign/bButton" Name="ConfigGame/AcceptButton" >
 	            <Property Name="Font" Value="DejaVuSans-10" />
 	            <Property Name="AlwaysOnTop" Value="True" />
 	            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
