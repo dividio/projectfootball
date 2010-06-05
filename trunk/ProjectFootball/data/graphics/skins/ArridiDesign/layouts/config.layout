@@ -67,13 +67,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                 </Window>
             </Window>
-            <Window Type="ArridiDesign/bButton" Name="Config/BackButton" >
+            <Window Type="ArridiDesign/bButton" Name="Config/AcceptButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="AlwaysOnTop" Value="True" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.219453,0},{0.646819,0},{0.389453,0},{0.705725,0}}" />
             </Window>
-            <Window Type="ArridiDesign/bButton" Name="Config/SaveButton" >
+            <Window Type="ArridiDesign/bButton" Name="Config/CancelButton" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="AlwaysOnTop" Value="True" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

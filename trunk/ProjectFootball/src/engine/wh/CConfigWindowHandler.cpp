@@ -70,11 +70,11 @@ void CConfigWindowHandler::init()
 	CEGUI::WindowManager *windowMngr = CEGUI::WindowManager::getSingletonPtr();
 
     m_mainWindow        = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/MainWindow"));
-    m_backButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/BackButton"));
-    registerEventConnection(m_backButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigWindowHandler::backButtonClicked, this)));
+    m_acceptButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/AcceptButton"));
+    registerEventConnection(m_acceptButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigWindowHandler::saveButtonClicked, this)));
 
-    m_saveButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/SaveButton"));
-    registerEventConnection(m_saveButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigWindowHandler::saveButtonClicked, this)));
+    m_cancelButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"Config/CancelButton"));
+    registerEventConnection(m_cancelButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CConfigWindowHandler::backButtonClicked, this)));
 
     m_resolutionCombo   = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionCombo"));
     m_rendererCombo     = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
@@ -92,8 +92,8 @@ void CConfigWindowHandler::init()
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionText"))->setText((CEGUI::utf8*)gettext("Resolution:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"))->setText((CEGUI::utf8*)gettext("Fullscreen"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"))->setText((CEGUI::utf8*)gettext("Vertical Sync"));
-    m_backButton       ->setText((CEGUI::utf8*)gettext("Back"));
-    m_saveButton       ->setText((CEGUI::utf8*)gettext("Save"));
+    m_acceptButton       ->setText((CEGUI::utf8*)gettext("Accept"));
+    m_cancelButton       ->setText((CEGUI::utf8*)gettext("Cancel"));
 
     m_rendererCombo->getEditbox()->setEnabled(false);
     Ogre::RenderSystemList *renderSystemList = Ogre::Root::getSingleton().getAvailableRenderers();
@@ -136,10 +136,17 @@ bool CConfigWindowHandler::saveButtonClicked(const CEGUI::EventArgs& e)
 
         CSystemOptionManager::getInstance()->setVideoRenderSystem(m_rendererCombo->getText().c_str());
         CSystemOptionManager::getInstance()->saveOptions();
-        CGameEngine::getInstance()->getWindowManager()->alert(gettext("Changes will take effect after restart"));
+        CGameEngine::getInstance()->getWindowManager()->alert(gettext("Changes will take effect after restart"), CEGUI::Event::Subscriber(&CConfigWindowHandler::acceptConfirmed, this));
     } catch(...) {
         CGameEngine::getInstance()->getWindowManager()->alert(gettext("ATTENTION: Options can not be saved"));
     }
 
 	return true;
 }
+
+bool CConfigWindowHandler::acceptConfirmed(const CEGUI::EventArgs &e)
+{
+	CGameEngine::getInstance()->getWindowManager()->previousScreen();
+	return true;
+}
+

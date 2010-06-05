@@ -49,6 +49,7 @@ public:
 	void unregisterWindowHandler(const std::string &path, IWindowHandler &windowHandler);
 
 	void alert(const std::string &text);
+	void alert(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber);
 	void confirm(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber);
 	void confirm(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber, CEGUI::Event::Subscriber cancelSubscriber);
 	void loading(const std::string &text);
@@ -95,6 +96,7 @@ private:
 	CEGUI::Window											*m_alertWindow;
 	CEGUI::Window											*m_confirmWindow;
 	CEGUI::Window											*m_loadingWindow;
+	CEGUI::Event::Subscriber								m_alertAcceptSubscriber;
 	CEGUI::Event::Subscriber								m_confirmAcceptSubscriber;
 	CEGUI::Event::Subscriber								m_confirmCancelSubscriber;
 };

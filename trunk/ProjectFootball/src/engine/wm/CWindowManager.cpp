@@ -44,7 +44,7 @@
 CWindowManager::CWindowManager()
 : m_windows(), m_windowsHandlers(), m_currentScreen(NULL), m_nextScreensStack(), m_previousScreensStack(),
   m_alertWindow(getCEGUIWindow("alert.layout")), m_confirmWindow(getCEGUIWindow("confirm.layout")),
-  m_loadingWindow(getCEGUIWindow("loading.layout")), m_confirmAcceptSubscriber(), m_confirmCancelSubscriber()
+  m_loadingWindow(getCEGUIWindow("loading.layout")), m_alertAcceptSubscriber(), m_confirmAcceptSubscriber(), m_confirmCancelSubscriber()
 {
 	CScreensConfig_xmlHandler xmlHandler;
 
@@ -143,6 +143,13 @@ void CWindowManager::unregisterWindowHandler(const std::string &path, IWindowHan
 
 void CWindowManager::alert(const std::string &text)
 {
+	alert(text, CEGUI::Event::Subscriber());
+}
+
+void CWindowManager::alert(const std::string &text, CEGUI::Event::Subscriber acceptSubscriber)
+{
+	m_alertAcceptSubscriber	= acceptSubscriber;
+
 	CEGUI::Window *alertText = static_cast<CEGUI::Window*>(CEGUI::WindowManager::getSingleton().getWindow((CEGUI::utf8*)"AlertWindow/Text"));
 	alertText->setText((CEGUI::utf8*)text.c_str());
 
@@ -455,6 +462,10 @@ bool CWindowManager::alertAcceptClicked(const CEGUI::EventArgs& e)
 	CEGUI::Window	*currentWindow = getCEGUIWindow(m_currentScreen->getWindow().getPath().c_str());
 	currentWindow->removeChildWindow(m_alertWindow);
 	m_alertWindow->setModalState(false);
+
+	if( m_alertAcceptSubscriber.connected() ){
+		m_alertAcceptSubscriber(e);
+	}
 
 	return true;
 }

@@ -37,9 +37,10 @@ public:
 private:
 	bool backButtonClicked(const CEGUI::EventArgs& e);
 	bool saveButtonClicked(const CEGUI::EventArgs& e);
+	bool acceptConfirmed(const CEGUI::EventArgs &e);
 
-	CEGUI::PushButton	*m_backButton;
-	CEGUI::PushButton	*m_saveButton;
+	CEGUI::PushButton	*m_acceptButton;
+	CEGUI::PushButton	*m_cancelButton;
     CEGUI::Combobox 	*m_resolutionCombo;
     CEGUI::Combobox 	*m_rendererCombo;
     CEGUI::Checkbox 	*m_fullscreenCheck;
