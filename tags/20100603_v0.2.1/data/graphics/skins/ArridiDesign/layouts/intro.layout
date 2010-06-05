@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="Intro" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="ArridiDesign/StaticImage" Name="Intro/MainWindow" >
+            <Property Name="Image" Value="set:Intro image:Intro" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window Type="ArridiDesign/StaticText" Name="Intro/IkarogamesURL" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="www.ikarogames.com/projectfootball/" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="HorzCentred" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.912723,0},{0.7,0},{0.952723,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="Intro/PFcopyright" >
+                <Property Name="Font" Value="DejaVuSans-8" />
+                <Property Name="Text" Value="Copyright 2007-2009 - Project Football 2007-2009" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.014258,0},{0.070483,0},{0.291602,0},{0.092749,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

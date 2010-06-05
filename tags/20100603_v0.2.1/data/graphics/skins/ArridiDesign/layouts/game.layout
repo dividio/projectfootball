@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="ArridiDesign/StaticImage" Name="Game" >
+        <Property Name="Image" Value="set:Game image:Game" />
+        <Property Name="FrameEnabled" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+	    <Window Type="ArridiDesign/HookWindow" Name="Game/MatchInfoHook">
+			<Property Name="FrameEnabled" Value="False" />
+	        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{0.2,0}}" />
+	    </Window>
+	    <Window Type="ArridiDesign/HookWindow" Name="Game/GNSHook">
+			<Property Name="FrameEnabled" Value="False" />
+	        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	        <Property Name="UnifiedAreaRect" Value="{{0.75,0},{0.2,0},{1,0},{1,0}}" />
+	    </Window>
+	    <Window Type="ArridiDesign/HookWindow" Name="Game/InfoHook">
+			<Property Name="FrameEnabled" Value="False" />
+	        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+	        <Property Name="UnifiedAreaRect" Value="{{0,0},{0.2,0},{0.75,0},{1,0}}" />
+	    </Window>
+	</Window>
+</GUILayout>

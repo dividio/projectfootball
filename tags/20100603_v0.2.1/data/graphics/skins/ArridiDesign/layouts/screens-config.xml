@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screens-config>
+	<screen id="Intro">
+		<window hook="none" path="intro.layout" />
+	</screen>
+	<screen id="MainMenu">
+		<window hook="none" path="mainMenu.layout" />
+	</screen>
+	<screen id="Credits">
+		<window hook="none" path="credits.layout" />
+	</screen>
+	<screen id="Configuration">
+		<window hook="none" path="config.layout" />
+	</screen>
+	<screen id="LoadGame">
+		<window hook="none" path="loadGame.layout" />
+	</screen>
+	<screen id="NewManagerGame">
+		<window hook="none" path="newManagerGame.layout" />
+	</screen>
+	<screen id="NewVirtualGame">
+		<window hook="none" path="newVirtualGame.layout" />
+	</screen>
+	
+	<!-- Single Player Screens -->
+	<screen id="Game">
+		<window hook="none" path="game.layout">
+			<window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+			<window hook="Game/GNSHook" path="gns.layout" />
+		</window>
+	</screen>
+	<screen id="MatchResult">
+		<window hook="none" path="matchResult.layout" />
+	</screen>
+	<screen id="Ranking">
+		<window hook="none" path="game.layout">
+			<window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+			<window hook="Game/GNSHook" path="gns.layout" />
+			<window hook="Game/InfoHook" path="ranking.layout" />
+		</window>
+	</screen>
+	<screen id="Results">
+		<window hook="none" path="game.layout">
+			<window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+			<window hook="Game/GNSHook" path="gns.layout" />
+			<window hook="Game/InfoHook" path="results.layout" />
+		</window>
+	</screen>
+    <screen id="Scorers">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="scorers.layout" />
+        </window>
+    </screen>
+	<screen id="SelectTeam">
+		<window hook="none" path="selectTeam.layout" />
+	</screen>
+	<screen id="Simulator">
+		<window hook="none" path="simulator.layout" />
+	</screen>
+    <screen id="LineUp">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="lineUp.layout" />
+        </window>
+    </screen>
+	<screen id="TeamPlayers">
+		<window hook="none" path="game.layout">
+			<window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+			<window hook="Game/GNSHook" path="gns.layout" />
+			<window hook="Game/InfoHook" path="teamPlayers.layout" />
+		</window>
+	</screen>
+    <screen id="TeamPlayerDetails">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="teamPlayerDetails.layout" />
+        </window>
+    </screen>
+    <screen id="ViewOpponent">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="viewOpponent.layout" />
+        </window>
+    </screen>
+    <screen id="ConfigGame">
+        <window hook="none" path="configGame.layout"/>
+    </screen>
+    <screen id="SeasonsHistory">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="seasonsHistory.layout" />
+        </window>
+    </screen>
+    <screen id="SeasonSummary">
+        <window hook="none" path="game.layout">
+            <window hook="Game/MatchInfoHook" path="matchInfo.layout" />
+            <window hook="Game/GNSHook" path="gns.layout" />
+            <window hook="Game/InfoHook" path="seasonSummary.layout" />
+        </window>
+    </screen>
+</screens-config>

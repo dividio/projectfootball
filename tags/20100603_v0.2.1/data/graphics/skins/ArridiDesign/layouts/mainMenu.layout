@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="MainMenu" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="ArridiDesign/StaticImage" Name="MainMenu/MainWindow" >
+            <Property Name="Image" Value="set:MainMenu image:MainMenu" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window Type="ArridiDesign/mRightButton" Name="MainMenu/OnLineCommunityButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.691406,0},{0.582031,0},{0.964844,0},{0.65625,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mRightButton" Name="MainMenu/VirtualChampionshipButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.65625,0},{0.673177,0},{0.929688,0},{0.747396,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mRightButton" Name="MainMenu/NewManagerGameButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.604492,0},{0.764323,0},{0.87793,0},{0.838542,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mRightButton" Name="MainMenu/ProfessionalCareerButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.532227,0},{0.855469,0},{0.805664,0},{0.929688,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mLeftButton" Name="MainMenu/EditorButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0296875,0},{0.36007,0},{0.303126,0},{0.434288,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mLeftButton" Name="MainMenu/FootLibraryButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="Disabled" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.452563,0},{0.323438,0},{0.526781,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mLeftButton" Name="MainMenu/ConfigButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0273438,0},{0.542969,0},{0.300781,0},{0.617188,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mLeftButton" Name="MainMenu/CreditsButton" >
+                <Property Name="Font" Value="DejaVuSans-12" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{-0.0380859,0},{0.634115,0},{0.235352,0},{0.708333,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticImage" Name="MainMenu/RedBall" >
+                <Property Name="Image" Value="set:AuxImages image:RedBall" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0,0},{0.229167,0},{0.134766,0},{0.716146,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/mquickLoadButton" Name="MainMenu/QuickLoadButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0517578125,0},{0.919271,0},{0.0830078125,0},{0.960938,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/mLoadButton" Name="MainMenu/LoadGameButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0078125,0},{0.919271,0},{0.0390625,0},{0.960938,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/exButton" Name="MainMenu/QuitButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.908203,0},{0.878906,0},{1,0},{1,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="MainMenu/CurrentDateLabel" >
+                <Property Name="Font" Value="DejaVuSans-8" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.010703,0},{0.965,0},{0.080703,0},{1.01272,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="MainMenu/CurrentDate" >
+                <Property Name="Font" Value="DejaVuSans-8" />
+                <Property Name="TextColours" Value="tl:FFFFFF00 tr:FFFFFF00 bl:FFFFFF00 br:FFFFFF00" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0611719,0},{0.965,0},{0.161172,0},{1.01272,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="MainMenu/VersionDateLabel" >
+                <Property Name="Font" Value="DejaVuSans-8" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.151641,0},{0.965,0},{0.311641,0},{1.01272,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="MainMenu/VersionDate" >
+                <Property Name="Font" Value="DejaVuSans-8" />
+                <Property Name="TextColours" Value="tl:FFFFFF00 tr:FFFFFF00 bl:FFFFFF00 br:FFFFFF00" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.282344,0},{0.965,0},{0.382344,0},{1.01272,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="MainMenu/Version" >
+                <Property Name="Font" Value="DejaVuSans-8" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.94832,0},{0.0699745,0},{1.02832,0},{0.119974,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

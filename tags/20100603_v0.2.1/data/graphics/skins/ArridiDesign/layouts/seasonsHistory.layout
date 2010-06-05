@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="SeasonsHistory" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="ArridiDesign/StaticText" Name="SeasonsHistory/CoachNameLabel" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0,0},{0.7,0},{0.05,0}}" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/StaticText" Name="SeasonsHistory/SeasonsLabel" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.14,0},{0.2,0},{0.2,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="ArridiDesign/MultiColumnList" Name="SeasonsHistory/SeasonsList" >
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.2,0},{0.75,0},{0.9,0}}" />
+        </Window>
+    </Window>
+</GUILayout>

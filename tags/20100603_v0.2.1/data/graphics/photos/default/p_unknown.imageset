@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<Imageset Name="p_unknown" Imagefile="p_unknown.png" NativeHorzRes="512" NativeVertRes="256" AutoScaled="true">
+	<Image Name="p_unknown_b" XPos="0" YPos="0" Width="200" Height="256" />
+	<Image Name="p_unknown_n" XPos="253" YPos="66" Width="100" Height="128" />
+	<Image Name="p_unknown_s" XPos="413" YPos="101" Width="50" Height="64" />
+	
+</Imageset>

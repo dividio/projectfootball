@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="Config" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="ArridiDesign/StaticImage" Name="Config/MainWindow" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Window Type="ArridiDesign/FrameWindow" Name="Config/Video" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+                <Property Name="SizingEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="TitlebarEnabled" Value="False" />
+                <Property Name="UnifiedAreaRect" Value="{{0.218477,0},{0.190305,0},{0.757813,0},{0.713447,0}}" />
+                <Property Name="DragMovingEnabled" Value="False" />
+                <Property Name="CloseButtonEnabled" Value="False" />
+                <Window Type="ArridiDesign/StaticText" Name="Config/RendererText" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="RightAligned" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.1,0},{0.25,0},{0.2,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Config/ResolutionText" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="HorzFormatting" Value="RightAligned" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.2,0},{0.25,0},{0.3,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/Combobox" Name="Config/RendererCombo" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.1,0},{0.888437,0},{0.5,0}}" />
+                    <Property Name="ReadOnly" Value="True" />
+                </Window>
+                <Window Type="ArridiDesign/Combobox" Name="Config/ResolutionCombo" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.248189,0},{0.2,0},{0.886627,0},{0.6,0}}" />
+                    <Property Name="ReadOnly" Value="True" />
+                </Window>
+                <Window Type="ArridiDesign/CheckBox" Name="Config/FullScreenCheck" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.3,0},{0.95,0},{0.4,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/CheckBox" Name="Config/VSyncCheck" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Config/Video/" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="Text" Value="Video (BETA)" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.0149497,0},{0.0124999,0},{0.186938,0},{0.0798699,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Config/BackButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.219453,0},{0.646819,0},{0.389453,0},{0.705725,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="Config/SaveButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.589063,0},{0.64173,0},{0.759063,0},{0.700636,0}}" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<Imageset Name="Game" Imagefile="Game.png" NativeHorzRes="1204" NativeVertRes="768" AutoScaled="true" >
+        <Image Name="Game" XPos="0" YPos="128" Width="1024" Height="768" />
+        <Image Name="Flag_Window" XPos="768" YPos="128" Width="256" Height="154" />
+</Imageset>

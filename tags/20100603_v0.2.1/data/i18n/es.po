@@ -1,0 +1,3170 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-22 23:04+0200\n"
+"PO-Revision-Date: 2010-05-23 13:23+0100\n"
+"Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: SPAIN\n"
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:59
+msgid " MAKING FOOTBALL FANS TO ENJOY "
+msgstr "HACER DISFRUTAR A LOS FUTBOLEROS"
+
+#: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:112
+msgid ", Phase:"
+msgstr ", Fase:"
+
+#: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:110
+msgid ", Season:"
+msgstr ", Temporada:"
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:57
+msgid ""
+"... all the users who participated on website and game forums and,\n"
+"    of course, to all the users who tested the game"
+msgstr ""
+"... todos los usuarios que han participado en la web y el foro y \n"
+"     por supuesto a todos aquellos que han testeado el juego"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:60
+msgid "1 minute"
+msgstr "1 minuto"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:61
+msgid "2 minutes"
+msgstr "2 minutos"
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:194
+msgid "2D View"
+msgstr "Vista 2D"
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:51
+msgid "3D Modeling:"
+msgstr "Modelado 3D:"
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:195
+msgid "3D View"
+msgstr "Vista 3D"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:62
+msgid "5 minutes"
+msgstr "5 minutos"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:334
+msgid "ATTENTION: Game can not be saved"
+msgstr "ATENCIÓN: El juego no ha podido guardarse"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:117
+#: src/engine/wh/CConfigWindowHandler.cpp:141
+msgid "ATTENTION: Options can not be saved"
+msgstr "ATENCIÓN: Las opciones no han podido guardarse"
+
+#: data/i18n/temp.cpp:477
+msgid "Abu Dhabi"
+msgstr "Abu Dhabi"
+
+#: data/i18n/temp.cpp:518
+msgid "Abuja"
+msgstr ""
+
+#: data/i18n/temp.cpp:502
+msgid "Accra"
+msgstr ""
+
+#: src/engine/wm/CWindowManager.cpp:67
+#: src/engine/wm/CWindowManager.cpp:68
+msgid "Acept"
+msgstr "Aceptar"
+
+#: data/i18n/temp.cpp:499
+msgid "Addis Ababa"
+msgstr ""
+
+#: data/i18n/temp.cpp:218
+msgid "Afghanistan"
+msgstr "Afganistán"
+
+#: data/i18n/temp.cpp:651
+msgid "Africa"
+msgstr "Africa"
+
+#: data/i18n/temp.cpp:443
+msgid "Agana"
+msgstr ""
+
+#: data/i18n/temp.cpp:379
+msgid "Albania"
+msgstr "Albania"
+
+#: data/i18n/temp.cpp:266
+msgid "Algeria"
+msgstr ""
+
+#: data/i18n/temp.cpp:482
+msgid "Algiers"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:58
+msgid ""
+"All the people who have spent our time and efforts\n"
+" with this humble football manager, we are looking\n"
+"    forward to you enjoying our work, because\n"
+" from the beginning we have always chased a goal :"
+msgstr ""
+"Todos los que hemos aportado nuestro granito\n"
+"de arena a este humilde mánager de fútbol\n"
+"esperamos, de todo corazón, que disfrutes\n"
+"de nuestro trabajo, porque desde el principio\n"
+"sólo hemos perseguido una meta:"
+
+#: data/i18n/temp.cpp:152
+#: data/i18n/temp.cpp:368
+msgid "American Samoa"
+msgstr ""
+
+#: data/i18n/temp.cpp:450
+msgid "Amman"
+msgstr ""
+
+#: data/i18n/temp.cpp:631
+msgid "Amsterdam"
+msgstr "Amsterdam"
+
+#: data/i18n/temp.cpp:380
+msgid "Andorra"
+msgstr "Andorra"
+
+#: data/i18n/temp.cpp:596
+msgid "Andorra la Vella"
+msgstr "Andorra la Vieja"
+
+#: data/i18n/temp.cpp:267
+msgid "Angola"
+msgstr "Angola"
+
+#: data/i18n/temp.cpp:103
+#: data/i18n/temp.cpp:319
+msgid "Anguilla"
+msgstr ""
+
+#: data/i18n/temp.cpp:646
+msgid "Ankara"
+msgstr ""
+
+#: data/i18n/temp.cpp:509
+msgid "Antananarivo"
+msgstr ""
+
+#: data/i18n/temp.cpp:104
+#: data/i18n/temp.cpp:320
+msgid "Antigua and Barbuda "
+msgstr "Antigua y Barbuda"
+
+#: data/i18n/temp.cpp:591
+msgid "Apia"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:48
+msgid "Application Design :"
+msgstr "Diseño de la Aplicación:"
+
+#: data/i18n/temp.cpp:64
+msgid "Arab Republic of Egypt"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:277
+msgid "Are you sure you want to exit this game and return to GNU/Linux?"
+msgstr "¿Estas seguro de querer salir de esta partida y volver a GNU/Linux?"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:275
+msgid "Are you sure you want to exit this game and return to MS Windows?"
+msgstr "¿Estas seguro de querer salir de esta partida y volver a MS Windows?"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:279
+msgid "Are you sure you want to exit this game and return to Mac OS?"
+msgstr "¿Estas seguro de querer salir de esta partida y volver a Mac OS?"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:281
+msgid "Are you sure you want to exit this game and return to the Operating System?"
+msgstr "¿Estas seguro de querer salir de esta partida y volver al Sistema Operativo?"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:294
+msgid "Are you sure you want to exit this game?"
+msgstr "¿Estas seguro de querer salir de esta partida?"
+
+#: src/engine/wh/CLoadGameWindowHandler.cpp:156
+msgid "Are you sure you want to remove this game?"
+msgstr "¿Estas seguro de querer eliminar esta partida?"
+
+#: data/i18n/temp.cpp:358
+msgid "Argentina"
+msgstr "Argentina"
+
+#: data/i18n/temp.cpp:142
+msgid "Argentine Republic"
+msgstr "República Argentina"
+
+#: data/i18n/temp.cpp:219
+#: data/i18n/temp.cpp:381
+msgid "Armenia"
+msgstr "Armenia"
+
+#: data/i18n/temp.cpp:105
+#: data/i18n/temp.cpp:321
+msgid "Aruba "
+msgstr ""
+
+#: data/i18n/temp.cpp:476
+msgid "Ashgabat"
+msgstr ""
+
+#: data/i18n/temp.cpp:650
+msgid "Asian"
+msgstr "Asia"
+
+#: data/i18n/temp.cpp:498
+msgid "Asmara"
+msgstr ""
+
+#: data/i18n/temp.cpp:621
+msgid "Astana"
+msgstr ""
+
+#: data/i18n/temp.cpp:580
+msgid "Asunción"
+msgstr ""
+
+#: data/i18n/temp.cpp:615
+msgid "Athens"
+msgstr "Atenas"
+
+#: data/i18n/temp.cpp:265
+msgid "Australia"
+msgstr "Australia"
+
+#: data/i18n/temp.cpp:382
+msgid "Austria"
+msgstr "Austria"
+
+#: data/i18n/temp.cpp:585
+msgid "Avarua"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:69
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:94
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:104
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:87
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:99
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:111
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:89
+msgid "Average"
+msgstr "Media"
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:81
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:120
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:123
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:123
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:108
+msgid "Average:"
+msgstr "Media:"
+
+#: src/singlePlayer/wh/CResultsWindowHandler.cpp:112
+msgid "Away Team"
+msgstr "Equipo Visitante"
+
+#: data/i18n/temp.cpp:220
+#: data/i18n/temp.cpp:383
+msgid "Azerbaijan"
+msgstr ""
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:101
+#: src/engine/wh/CConfigWindowHandler.cpp:95
+#: src/engine/wh/CNewManagerGameWindowHandler.cpp:60
+#: src/engine/wh/CCreditsWindowHandler.cpp:60
+#: src/engine/wh/CLoadGameWindowHandler.cpp:75
+#: src/engine/wh/CNewVirtualGameWindowHandler.cpp:47
+msgid "Back"
+msgstr "Volver"
+
+#: data/i18n/temp.cpp:448
+msgid "Baghdad"
+msgstr ""
+
+#: data/i18n/temp.cpp:322
+msgid "Bahamas"
+msgstr ""
+
+#: data/i18n/temp.cpp:221
+msgid "Bahrain"
+msgstr ""
+
+#: data/i18n/temp.cpp:436
+#: data/i18n/temp.cpp:599
+msgid "Baku"
+msgstr ""
+
+#: data/i18n/temp.cpp:511
+msgid "Bamako"
+msgstr ""
+
+#: data/i18n/temp.cpp:440
+msgid "Bandar Seri Begawan"
+msgstr ""
+
+#: data/i18n/temp.cpp:474
+msgid "Bangkok"
+msgstr ""
+
+#: data/i18n/temp.cpp:222
+msgid "Bangladesh"
+msgstr ""
+
+#: data/i18n/temp.cpp:490
+msgid "Bangui"
+msgstr ""
+
+#: data/i18n/temp.cpp:501
+msgid "Banjul"
+msgstr ""
+
+#: data/i18n/temp.cpp:107
+#: data/i18n/temp.cpp:323
+msgid "Barbados"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:55
+msgid "Based on:"
+msgstr "Basado en:"
+
+#: data/i18n/temp.cpp:551
+msgid "Basse-Terre"
+msgstr ""
+
+#: data/i18n/temp.cpp:563
+msgid "Basseterre"
+msgstr ""
+
+#: data/i18n/temp.cpp:641
+msgid "Batrislava"
+msgstr ""
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:221
+msgid "Before Start"
+msgstr "Antes de empezar"
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:118
+msgid "Begin Date:"
+msgstr "Fecha de Inicio:"
+
+#: data/i18n/temp.cpp:442
+msgid "Beijing"
+msgstr "Beijing"
+
+#: data/i18n/temp.cpp:456
+msgid "Beirut"
+msgstr ""
+
+#: data/i18n/temp.cpp:384
+msgid "Belarus"
+msgstr ""
+
+#: data/i18n/temp.cpp:632
+msgid "Belfast"
+msgstr ""
+
+#: data/i18n/temp.cpp:385
+msgid "Belgium"
+msgstr "Bélgica"
+
+#: data/i18n/temp.cpp:640
+msgid "Belgrade"
+msgstr ""
+
+#: data/i18n/temp.cpp:108
+#: data/i18n/temp.cpp:324
+msgid "Belize"
+msgstr ""
+
+#: data/i18n/temp.cpp:540
+msgid "Belmopan"
+msgstr ""
+
+#: data/i18n/temp.cpp:268
+msgid "Benin"
+msgstr ""
+
+#: data/i18n/temp.cpp:614
+msgid "Berlin"
+msgstr "Berlín"
+
+#: data/i18n/temp.cpp:325
+msgid "Bermuda"
+msgstr "Bermudas"
+
+#: data/i18n/temp.cpp:109
+msgid "Bermuda Islands "
+msgstr "Islas Bermudas"
+
+#: data/i18n/temp.cpp:645
+msgid "Berne"
+msgstr ""
+
+#: data/i18n/temp.cpp:223
+msgid "Bhutan"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:111
+msgid "Birthday:"
+msgstr "Año de Nacimiento:"
+
+#: data/i18n/temp.cpp:454
+msgid "Bishkek"
+msgstr ""
+
+#: data/i18n/temp.cpp:504
+msgid "Bissau"
+msgstr ""
+
+#: data/i18n/temp.cpp:578
+msgid "Bogot "
+msgstr ""
+
+#: data/i18n/temp.cpp:151
+msgid "Bolivarian Republic of Venezuela"
+msgstr ""
+
+#: data/i18n/temp.cpp:359
+msgid "Bolivia"
+msgstr "Bolivia"
+
+#: data/i18n/temp.cpp:170
+#: data/i18n/temp.cpp:386
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: data/i18n/temp.cpp:269
+msgid "Botswana"
+msgstr ""
+
+#: data/i18n/temp.cpp:576
+msgid "Brasilia"
+msgstr ""
+
+#: data/i18n/temp.cpp:360
+msgid "Brazil"
+msgstr "Brasil"
+
+#: data/i18n/temp.cpp:519
+msgid "Brazzaville"
+msgstr ""
+
+#: data/i18n/temp.cpp:539
+msgid "Bridgetown"
+msgstr ""
+
+#: data/i18n/temp.cpp:110
+#: data/i18n/temp.cpp:326
+msgid "British Virgin Islands"
+msgstr ""
+
+#: data/i18n/temp.cpp:224
+msgid "Brunei"
+msgstr ""
+
+#: data/i18n/temp.cpp:601
+msgid "Brussels"
+msgstr ""
+
+#: data/i18n/temp.cpp:636
+msgid "Bucharest"
+msgstr ""
+
+#: data/i18n/temp.cpp:616
+msgid "Budapest"
+msgstr "Budapest"
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:107
+msgid "Budget:"
+msgstr "Presupuesto:"
+
+#: data/i18n/temp.cpp:574
+msgid "Buenos Aires"
+msgstr "Buenos Aires"
+
+#: data/i18n/temp.cpp:487
+msgid "Bujumbura"
+msgstr ""
+
+#: data/i18n/temp.cpp:387
+msgid "Bulgaria"
+msgstr "Bulgaria"
+
+#: data/i18n/temp.cpp:54
+#: data/i18n/temp.cpp:270
+msgid "Burkina Faso"
+msgstr ""
+
+#: data/i18n/temp.cpp:271
+msgid "Burundi"
+msgstr ""
+
+#: data/i18n/temp.cpp:496
+msgid "Cairo"
+msgstr "Cairo"
+
+#: data/i18n/temp.cpp:225
+msgid "Cambodia"
+msgstr ""
+
+#: data/i18n/temp.cpp:272
+msgid "Cameroon"
+msgstr "Camerún"
+
+#: data/i18n/temp.cpp:111
+#: data/i18n/temp.cpp:327
+msgid "Canada"
+msgstr "Canadá"
+
+#: data/i18n/temp.cpp:481
+msgid "Canberra"
+msgstr ""
+
+#: src/engine/wm/CWindowManager.cpp:69
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:106
+msgid "Capacity:"
+msgstr "Capacidad:"
+
+#: data/i18n/temp.cpp:273
+msgid "Cape Verde"
+msgstr ""
+
+#: data/i18n/temp.cpp:583
+msgid "Caracas"
+msgstr "Caracas"
+
+#: data/i18n/temp.cpp:649
+msgid "Cardiff"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:217
+msgid "Career"
+msgstr "Carrera"
+
+#: data/i18n/temp.cpp:564
+msgid "Castries"
+msgstr ""
+
+#: data/i18n/temp.cpp:571
+msgid "Cayenne(Paris) "
+msgstr ""
+
+#: data/i18n/temp.cpp:112
+#: data/i18n/temp.cpp:328
+msgid "Cayman Islands"
+msgstr "Islas Caimán"
+
+#: data/i18n/temp.cpp:58
+#: data/i18n/temp.cpp:274
+msgid "Central African Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:275
+msgid "Chad"
+msgstr ""
+
+#: src/engine/wh/CConfigWindowHandler.cpp:139
+msgid "Changes will take effect after restart"
+msgstr "Los cambios tendrán efecto tras reiniciar"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:115
+msgid "Changing Room"
+msgstr "Vestuario"
+
+#: data/i18n/temp.cpp:570
+msgid "Charlotte Amalie"
+msgstr ""
+
+#: data/i18n/temp.cpp:361
+msgid "Chile"
+msgstr "Chile"
+
+#: data/i18n/temp.cpp:226
+msgid "China"
+msgstr "China"
+
+#: data/i18n/temp.cpp:628
+msgid "Chişinău"
+msgstr "Chişinău"
+
+#: data/i18n/temp.cpp:638
+msgid "City of San Marino"
+msgstr "Ciudad de San Marino"
+
+#: data/i18n/temp.cpp:140
+msgid "Co-operative Republic of Guyana"
+msgstr ""
+
+#: src/engine/wh/CNewManagerGameWindowHandler.cpp:62
+msgid "Coach name:"
+msgstr "Nombre del entrenador:"
+
+#: data/i18n/temp.cpp:568
+msgid "Cockburn Town"
+msgstr ""
+
+#: data/i18n/temp.cpp:133
+msgid "Collectivity of Saint Martin "
+msgstr ""
+
+#: data/i18n/temp.cpp:362
+msgid "Colombia"
+msgstr "Colombia"
+
+#: data/i18n/temp.cpp:470
+msgid "Colombo"
+msgstr ""
+
+#: data/i18n/temp.cpp:49
+msgid "Commonwealth of Australia"
+msgstr ""
+
+#: data/i18n/temp.cpp:115
+msgid "Commonwealth of Dominica"
+msgstr ""
+
+#: data/i18n/temp.cpp:130
+msgid "Commonwealth of Puerto Rico"
+msgstr ""
+
+#: data/i18n/temp.cpp:106
+msgid "Commonwealth of The Bahamas"
+msgstr ""
+
+#: data/i18n/temp.cpp:276
+msgid "Comoros"
+msgstr ""
+
+#: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:63
+msgid "Competition"
+msgstr "Competición"
+
+#: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:108
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:111
+msgid "Competition:"
+msgstr "Competición:"
+
+#: data/i18n/temp.cpp:503
+msgid "Conakry"
+msgstr ""
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:109
+msgid "Confederation:"
+msgstr "Confederación:"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:109
+#: src/engine/wh/CMainMenuWindowHandler.cpp:107
+msgid "Configuration"
+msgstr "Configuración"
+
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:84
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:190
+msgid "Continue"
+msgstr "Continuar"
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:116
+msgid "Contract Details:"
+msgstr "Detalles del Contrato:"
+
+#: data/i18n/temp.cpp:153
+#: data/i18n/temp.cpp:369
+msgid "Cook Islands"
+msgstr ""
+
+#: data/i18n/temp.cpp:607
+msgid "Copenhagen"
+msgstr "Copenhage"
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:239
+msgid "Corner Kick"
+msgstr "Saque de esquina"
+
+#: data/i18n/temp.cpp:329
+msgid "Costa Rica"
+msgstr "Costa Rica"
+
+#: data/i18n/temp.cpp:277
+msgid "Cote d'Ivoire"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:66
+msgid "Country"
+msgstr "País"
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:110
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:115
+msgid "Country:"
+msgstr "País:"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:108
+msgid "Credits"
+msgstr "Créditos"
+
+#: data/i18n/temp.cpp:388
+msgid "Croatia"
+msgstr "Croacia"
+
+#: data/i18n/temp.cpp:330
+msgid "Cuba"
+msgstr "Cuba"
+
+#: data/i18n/temp.cpp:389
+msgid "Cyprus"
+msgstr "Chipre"
+
+#: data/i18n/temp.cpp:174
+#: data/i18n/temp.cpp:390
+msgid "Czech Republic"
+msgstr "República Checa"
+
+#: data/i18n/temp.cpp:522
+msgid "Dakar"
+msgstr "Dakar"
+
+#: data/i18n/temp.cpp:471
+msgid "Damascus"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:52
+msgid "Database Information :"
+msgstr "Información de la base de datos:"
+
+#: src/engine/wh/CLoadGameWindowHandler.cpp:71
+msgid "Date"
+msgstr "Fecha"
+
+#: src/engine/wh/CLoadGameWindowHandler.cpp:73
+msgid "Delete Game"
+msgstr "Eliminar partida"
+
+#: data/i18n/temp.cpp:19
+msgid "Democratic People's Republic of Korea"
+msgstr ""
+
+#: data/i18n/temp.cpp:89
+#: data/i18n/temp.cpp:305
+msgid "Democratic Republic of Sao Tomé and Príncipe"
+msgstr ""
+
+#: data/i18n/temp.cpp:43
+msgid "Democratic Republic of Timor-Leste"
+msgstr ""
+
+#: data/i18n/temp.cpp:62
+#: data/i18n/temp.cpp:278
+msgid "Democratic Republic of the Congo"
+msgstr "República Democrática del Congo"
+
+#: data/i18n/temp.cpp:38
+msgid "Democratic Socialist Republic of Sri Lanka"
+msgstr ""
+
+#: data/i18n/temp.cpp:391
+msgid "Denmark "
+msgstr "Dinamarca"
+
+#: data/i18n/temp.cpp:438
+msgid "Dhaka"
+msgstr ""
+
+#: data/i18n/temp.cpp:475
+msgid "Dili"
+msgstr ""
+
+#: data/i18n/temp.cpp:279
+#: data/i18n/temp.cpp:495
+msgid "Djibouti"
+msgstr ""
+
+#: data/i18n/temp.cpp:529
+msgid "Dodoma"
+msgstr ""
+
+#: data/i18n/temp.cpp:467
+msgid "Doha"
+msgstr ""
+
+#: data/i18n/temp.cpp:331
+msgid "Dominica"
+msgstr ""
+
+#: data/i18n/temp.cpp:116
+#: data/i18n/temp.cpp:332
+msgid "Dominican Republic"
+msgstr "República Dominicana"
+
+#: data/i18n/temp.cpp:618
+msgid "Dublin"
+msgstr "Dublin"
+
+#: data/i18n/temp.cpp:473
+msgid "Dushanbe "
+msgstr ""
+
+#: data/i18n/temp.cpp:363
+msgid "Ecuador"
+msgstr "Ecuador"
+
+#: data/i18n/temp.cpp:639
+msgid "Edinburgh"
+msgstr ""
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:105
+msgid "Editor"
+msgstr "Editor"
+
+#: data/i18n/temp.cpp:280
+msgid "Egypt"
+msgstr "Egipto"
+
+#: data/i18n/temp.cpp:333
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:230
+msgid "End"
+msgstr "Final"
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:119
+msgid "End Date:"
+msgstr "Fecha de Finalización:"
+
+#: data/i18n/temp.cpp:176
+#: data/i18n/temp.cpp:392
+msgid "England"
+msgstr "Inglaterra"
+
+#: data/i18n/temp.cpp:281
+msgid "Equatorial Guinea"
+msgstr "Guinea Ecuatorial"
+
+#: data/i18n/temp.cpp:282
+msgid "Eritrea"
+msgstr ""
+
+#: data/i18n/temp.cpp:393
+msgid "Estonia"
+msgstr "Estonia"
+
+#: data/i18n/temp.cpp:283
+msgid "Ethiopia"
+msgstr "Etiopía"
+
+#: data/i18n/temp.cpp:655
+msgid "Europe"
+msgstr "Europa"
+
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:88
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:90
+msgid "Event"
+msgstr "Evento"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:101
+msgid "Exit to GNU/Linux"
+msgstr "Salir a GNU/Linux"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:99
+msgid "Exit to MS Windows"
+msgstr "Salir a MS Windows"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:103
+msgid "Exit to Mac OS"
+msgstr "Salir a Mac OS"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:105
+msgid "Exit to OS"
+msgstr "Salir al SO"
+
+#: data/i18n/temp.cpp:178
+#: data/i18n/temp.cpp:394
+msgid "Faroe Islands"
+msgstr "Islas Feroe"
+
+#: data/i18n/temp.cpp:67
+msgid "Federal Democratic Republic of Ethiopia"
+msgstr ""
+
+#: data/i18n/temp.cpp:30
+msgid "Federal Democratic Republic of Nepal"
+msgstr ""
+
+#: data/i18n/temp.cpp:182
+msgid "Federal Republic of Germany"
+msgstr "República Federal de Alemania"
+
+#: data/i18n/temp.cpp:86
+msgid "Federal Republic of Nigeria"
+msgstr "República Federal de Nigeria"
+
+#: data/i18n/temp.cpp:131
+msgid "Federation of Saint Christopher and Nevis"
+msgstr ""
+
+#: data/i18n/temp.cpp:144
+msgid "Federative Republic of Brazil"
+msgstr ""
+
+#: data/i18n/temp.cpp:370
+msgid "Fiji"
+msgstr "Fiji"
+
+#: data/i18n/temp.cpp:395
+msgid "Finland"
+msgstr "Finlandia"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:106
+msgid "Football Library"
+msgstr "Futboteca"
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:198
+msgid "Formation"
+msgstr "Formación"
+
+#: data/i18n/temp.cpp:556
+msgid "Fort-de-France"
+msgstr ""
+
+#: data/i18n/temp.cpp:396
+msgid "France"
+msgstr "Francia"
+
+#: data/i18n/temp.cpp:524
+msgid "Freetown"
+msgstr ""
+
+#: data/i18n/temp.cpp:355
+msgid "French Guyane"
+msgstr ""
+
+#: data/i18n/temp.cpp:160
+#: data/i18n/temp.cpp:376
+msgid "French Polynesia"
+msgstr ""
+
+#: data/i18n/temp.cpp:180
+msgid "French Republic"
+msgstr ""
+
+#: src/engine/wh/CConfigWindowHandler.cpp:93
+msgid "Fullscreen"
+msgstr "Pantalla Completa"
+
+#: data/i18n/temp.cpp:284
+msgid "Gabon"
+msgstr ""
+
+#: data/i18n/temp.cpp:68
+msgid "Gabonese Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:485
+msgid "Gaborone"
+msgstr ""
+
+#: data/i18n/temp.cpp:285
+msgid "Gambia"
+msgstr ""
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:88
+msgid "Game Options"
+msgstr "Opciones de la Partida"
+
+#: src/engine/wh/CNewManagerGameWindowHandler.cpp:61
+msgid "Game name:"
+msgstr "Nombre de la partida:"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:115
+msgid "Game options saved"
+msgstr "Opciones de la partida guardadas"
+
+#: data/i18n/temp.cpp:544
+msgid "George Town"
+msgstr ""
+
+#: data/i18n/temp.cpp:572
+msgid "Georgetown"
+msgstr ""
+
+#: data/i18n/temp.cpp:181
+#: data/i18n/temp.cpp:397
+msgid "Georgia"
+msgstr ""
+
+#: data/i18n/temp.cpp:398
+msgid "Germany"
+msgstr "Alemania"
+
+#: data/i18n/temp.cpp:286
+msgid "Ghana"
+msgstr ""
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:242
+msgid "Goal Kick"
+msgstr "Saque de puerta"
+
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:164
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:181
+msgid "Goal by "
+msgstr "Gol de "
+
+#: src/singlePlayer/wh/CResultsWindowHandler.cpp:111
+#: src/singlePlayer/wh/CResultsWindowHandler.cpp:113
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:107
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:138
+msgid "Goals"
+msgstr "Goles"
+
+#: data/i18n/temp.cpp:193
+msgid "Grand Duchy of Luxembourg"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:50
+msgid "Graphic Design:"
+msgstr "Diseño Gráfico:"
+
+#: data/i18n/temp.cpp:76
+msgid "Great Socialist People's Libyan Arab Jamahiriya"
+msgstr ""
+
+#: data/i18n/temp.cpp:399
+msgid "Greece"
+msgstr "Grecia"
+
+#: data/i18n/temp.cpp:118
+#: data/i18n/temp.cpp:334
+msgid "Grenada"
+msgstr ""
+
+#: data/i18n/temp.cpp:335
+msgid "Guadeloupe"
+msgstr "Guadalupe"
+
+#: data/i18n/temp.cpp:227
+msgid "Guam"
+msgstr ""
+
+#: data/i18n/temp.cpp:336
+msgid "Guatemala"
+msgstr "Guatemala"
+
+#: data/i18n/temp.cpp:552
+msgid "Guatemala City"
+msgstr "Ciudad de Guatemala"
+
+#: data/i18n/temp.cpp:287
+msgid "Guinea"
+msgstr "Guinea"
+
+#: data/i18n/temp.cpp:288
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: data/i18n/temp.cpp:356
+msgid "Guyana"
+msgstr ""
+
+#: data/i18n/temp.cpp:337
+msgid "Haiti"
+msgstr "Haiti"
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:224
+msgid "Half Time"
+msgstr "Medio tiempo"
+
+#: data/i18n/temp.cpp:541
+msgid "Hamilton"
+msgstr ""
+
+#: data/i18n/temp.cpp:479
+msgid "Hanoi"
+msgstr ""
+
+#: data/i18n/temp.cpp:534
+msgid "Harare"
+msgstr "Harare"
+
+#: data/i18n/temp.cpp:546
+msgid "Havana"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:114
+msgid "Height:"
+msgstr "Altura:"
+
+#: data/i18n/temp.cpp:183
+msgid "Hellenic Republic "
+msgstr ""
+
+#: data/i18n/temp.cpp:611
+msgid "Helsinki"
+msgstr "Helsinki"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:111
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:114
+msgid "Home"
+msgstr "Inicio"
+
+#: src/singlePlayer/wh/CResultsWindowHandler.cpp:110
+msgid "Home Team"
+msgstr "Equipo Local"
+
+#: data/i18n/temp.cpp:338
+msgid "Honduras"
+msgstr ""
+
+#: data/i18n/temp.cpp:228
+#: data/i18n/temp.cpp:444
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+#: data/i18n/temp.cpp:12
+msgid "Hong Kong Special Administrative Region"
+msgstr ""
+
+#: data/i18n/temp.cpp:590
+msgid "Honiara"
+msgstr ""
+
+#: data/i18n/temp.cpp:400
+msgid "Hungary"
+msgstr "Hungría"
+
+#: data/i18n/temp.cpp:401
+msgid "Iceland"
+msgstr "Islandia"
+
+#: data/i18n/temp.cpp:157
+msgid "Independent State of Papua New Guinea"
+msgstr ""
+
+#: data/i18n/temp.cpp:159
+msgid "Independent State of Samoa"
+msgstr ""
+
+#: data/i18n/temp.cpp:229
+msgid "India"
+msgstr "India"
+
+#: data/i18n/temp.cpp:230
+msgid "Indonesia"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:117
+msgid "Info Manager"
+msgstr "Info Manager"
+
+#: data/i18n/temp.cpp:231
+msgid "Iran"
+msgstr "Irán"
+
+#: data/i18n/temp.cpp:232
+msgid "Iraq"
+msgstr "Iraq"
+
+#: data/i18n/temp.cpp:402
+msgid "Ireland"
+msgstr "Irlanda"
+
+#: data/i18n/temp.cpp:464
+msgid "Islamabad"
+msgstr ""
+
+#: data/i18n/temp.cpp:2
+msgid "Islamic Republic of Afghanistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:15
+msgid "Islamic Republic of Iran"
+msgstr ""
+
+#: data/i18n/temp.cpp:80
+msgid "Islamic Republic of Mauritania"
+msgstr ""
+
+#: data/i18n/temp.cpp:32
+msgid "Islamic Republic of Pakistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:403
+msgid "Israel"
+msgstr "Israel"
+
+#: data/i18n/temp.cpp:188
+msgid "Italian Republic"
+msgstr "República Italiana"
+
+#: data/i18n/temp.cpp:404
+msgid "Italy"
+msgstr "Italia"
+
+#: data/i18n/temp.cpp:446
+msgid "Jakarta"
+msgstr ""
+
+#: data/i18n/temp.cpp:123
+#: data/i18n/temp.cpp:339
+msgid "Jamaica"
+msgstr "Jamaica"
+
+#: data/i18n/temp.cpp:17
+#: data/i18n/temp.cpp:233
+msgid "Japan"
+msgstr "Japón"
+
+#: data/i18n/temp.cpp:619
+msgid "Jerusalem"
+msgstr ""
+
+#: data/i18n/temp.cpp:465
+msgid "Jerusalem/Ramallah"
+msgstr ""
+
+#: data/i18n/temp.cpp:234
+msgid "Jordan"
+msgstr ""
+
+#: data/i18n/temp.cpp:434
+msgid "Kabul"
+msgstr ""
+
+#: data/i18n/temp.cpp:532
+msgid "Kampala"
+msgstr ""
+
+#: data/i18n/temp.cpp:462
+msgid "Kathmandu"
+msgstr ""
+
+#: data/i18n/temp.cpp:405
+msgid "Kazakhstan"
+msgstr ""
+
+#: data/i18n/temp.cpp:289
+msgid "Kenya"
+msgstr "Kenia"
+
+#: data/i18n/temp.cpp:527
+msgid "Khartoum"
+msgstr ""
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:236
+msgid "Kick In"
+msgstr "Saque"
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:233
+msgid "Kick Off"
+msgstr "Saque de centro"
+
+#: data/i18n/temp.cpp:647
+msgid "Kiev"
+msgstr ""
+
+#: data/i18n/temp.cpp:520
+msgid "Kigali"
+msgstr ""
+
+#: data/i18n/temp.cpp:5
+msgid "Kingdom of Bahrain"
+msgstr ""
+
+#: data/i18n/temp.cpp:169
+msgid "Kingdom of Belgium"
+msgstr ""
+
+#: data/i18n/temp.cpp:7
+msgid "Kingdom of Bhutan"
+msgstr ""
+
+#: data/i18n/temp.cpp:9
+msgid "Kingdom of Cambodia"
+msgstr ""
+
+#: data/i18n/temp.cpp:175
+msgid "Kingdom of Denmark"
+msgstr "Reino de Dinamarca"
+
+#: data/i18n/temp.cpp:74
+msgid "Kingdom of Lesotho"
+msgstr ""
+
+#: data/i18n/temp.cpp:82
+msgid "Kingdom of Morocco"
+msgstr "Reino de Marruecos"
+
+#: data/i18n/temp.cpp:201
+msgid "Kingdom of Norway"
+msgstr ""
+
+#: data/i18n/temp.cpp:36
+msgid "Kingdom of Saudi Arabia"
+msgstr ""
+
+#: data/i18n/temp.cpp:211
+msgid "Kingdom of Spain"
+msgstr "Reino de España"
+
+#: data/i18n/temp.cpp:96
+msgid "Kingdom of Swaziland"
+msgstr ""
+
+#: data/i18n/temp.cpp:212
+msgid "Kingdom of Sweden"
+msgstr ""
+
+#: data/i18n/temp.cpp:42
+msgid "Kingdom of Thailand"
+msgstr ""
+
+#: data/i18n/temp.cpp:161
+msgid "Kingdom of Tonga"
+msgstr ""
+
+#: data/i18n/temp.cpp:199
+msgid "Kingdom of the Netherlands"
+msgstr ""
+
+#: data/i18n/temp.cpp:555
+msgid "Kingston"
+msgstr ""
+
+#: data/i18n/temp.cpp:566
+msgid "Kingstown"
+msgstr ""
+
+#: data/i18n/temp.cpp:494
+msgid "Kinshasa"
+msgstr ""
+
+#: data/i18n/temp.cpp:458
+msgid "Kuala Lumpur"
+msgstr ""
+
+#: data/i18n/temp.cpp:237
+msgid "Kuwait"
+msgstr "Kuwait"
+
+#: data/i18n/temp.cpp:453
+msgid "Kuwait City"
+msgstr ""
+
+#: data/i18n/temp.cpp:22
+msgid "Kyrgyz Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:238
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: data/i18n/temp.cpp:575
+msgid "La Paz-Sucre"
+msgstr ""
+
+#: data/i18n/temp.cpp:23
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:239
+msgid "Laos"
+msgstr "Laos"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:113
+msgid "Last update:"
+msgstr "Última actualización:"
+
+#: data/i18n/temp.cpp:406
+msgid "Latvia"
+msgstr ""
+
+#: data/i18n/temp.cpp:24
+msgid "Lebanese Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:240
+msgid "Lebanon"
+msgstr "Líbano"
+
+#: data/i18n/temp.cpp:290
+msgid "Lesotho"
+msgstr ""
+
+#: data/i18n/temp.cpp:291
+msgid "Liberia"
+msgstr ""
+
+#: data/i18n/temp.cpp:500
+msgid "Libreville"
+msgstr ""
+
+#: data/i18n/temp.cpp:292
+msgid "Libya"
+msgstr ""
+
+#: data/i18n/temp.cpp:407
+msgid "Liechtenstein"
+msgstr ""
+
+#: data/i18n/temp.cpp:510
+msgid "Lilongwe"
+msgstr ""
+
+#: data/i18n/temp.cpp:581
+msgid "Lima"
+msgstr "Lima"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:159
+msgid "Line Up"
+msgstr "Alineación"
+
+#: data/i18n/temp.cpp:635
+msgid "Lisboa"
+msgstr "Lisboa"
+
+#: data/i18n/temp.cpp:408
+msgid "Lithuania"
+msgstr "Lituania"
+
+#: data/i18n/temp.cpp:642
+msgid "Ljubljana"
+msgstr ""
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:110
+msgid "Load"
+msgstr "Cargar"
+
+#: src/engine/wh/CLoadGameWindowHandler.cpp:74
+msgid "Load Game"
+msgstr "Cargar Partida"
+
+#: data/i18n/temp.cpp:528
+msgid "Lobamba-Mbabane"
+msgstr ""
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:199
+msgid "Log"
+msgstr "Log"
+
+#: data/i18n/temp.cpp:530
+msgid "Lom"
+msgstr ""
+
+#: data/i18n/temp.cpp:608
+msgid "London"
+msgstr "Londres"
+
+#: data/i18n/temp.cpp:483
+msgid "Luanda"
+msgstr ""
+
+#: data/i18n/temp.cpp:533
+msgid "Lusaka"
+msgstr ""
+
+#: data/i18n/temp.cpp:409
+#: data/i18n/temp.cpp:625
+msgid "Luxembourg"
+msgstr "Luxemburgo"
+
+#: data/i18n/temp.cpp:241
+#: data/i18n/temp.cpp:457
+msgid "Macau"
+msgstr ""
+
+#: data/i18n/temp.cpp:25
+msgid "Macau Special Administrative Region"
+msgstr ""
+
+#: data/i18n/temp.cpp:410
+msgid "Macedonia"
+msgstr "Macedonia"
+
+#: data/i18n/temp.cpp:293
+msgid "Madagascar"
+msgstr "Madagascar"
+
+#: data/i18n/temp.cpp:643
+msgid "Madrid"
+msgstr "Madrid"
+
+#: data/i18n/temp.cpp:459
+msgid "Mal"
+msgstr ""
+
+#: data/i18n/temp.cpp:497
+msgid "Malabo"
+msgstr ""
+
+#: data/i18n/temp.cpp:294
+msgid "Malawi"
+msgstr ""
+
+#: data/i18n/temp.cpp:26
+#: data/i18n/temp.cpp:242
+msgid "Malaysia"
+msgstr "Malasia"
+
+#: data/i18n/temp.cpp:243
+msgid "Maldives"
+msgstr ""
+
+#: data/i18n/temp.cpp:295
+msgid "Mali"
+msgstr "Mali"
+
+#: data/i18n/temp.cpp:411
+msgid "Malta"
+msgstr "Malta"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:103
+msgid "Manager League"
+msgstr "Liga Mánager"
+
+#: data/i18n/temp.cpp:560
+msgid "Managua"
+msgstr ""
+
+#: data/i18n/temp.cpp:437
+msgid "Manama"
+msgstr ""
+
+#: data/i18n/temp.cpp:466
+msgid "Manila "
+msgstr ""
+
+#: data/i18n/temp.cpp:515
+msgid "Maputo"
+msgstr ""
+
+#: data/i18n/temp.cpp:565
+msgid "Marigot"
+msgstr ""
+
+#: data/i18n/temp.cpp:340
+msgid "Martinique"
+msgstr ""
+
+#: data/i18n/temp.cpp:506
+msgid "Maseru"
+msgstr ""
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:89
+msgid "Match Duration:"
+msgstr "Duración del Partido:"
+
+#: data/i18n/temp.cpp:296
+msgid "Mauritania"
+msgstr "Mauritania"
+
+#: data/i18n/temp.cpp:297
+msgid "Mauritius"
+msgstr ""
+
+#: data/i18n/temp.cpp:341
+msgid "Mexico"
+msgstr "México"
+
+#: data/i18n/temp.cpp:557
+msgid "Mexico City"
+msgstr "Ciudad de México"
+
+#: data/i18n/temp.cpp:600
+msgid "Minsk"
+msgstr ""
+
+#: data/i18n/temp.cpp:525
+msgid "Mogadishu"
+msgstr ""
+
+#: data/i18n/temp.cpp:412
+msgid "Moldova"
+msgstr ""
+
+#: data/i18n/temp.cpp:413
+#: data/i18n/temp.cpp:629
+msgid "Monaco"
+msgstr "Mónaco"
+
+#: data/i18n/temp.cpp:28
+#: data/i18n/temp.cpp:244
+msgid "Mongolia"
+msgstr "Mongolia"
+
+#: data/i18n/temp.cpp:507
+msgid "Monrovia"
+msgstr ""
+
+#: data/i18n/temp.cpp:198
+#: data/i18n/temp.cpp:414
+msgid "Montenegro"
+msgstr "Montenegro"
+
+#: data/i18n/temp.cpp:582
+msgid "Montevideo"
+msgstr ""
+
+#: data/i18n/temp.cpp:126
+#: data/i18n/temp.cpp:342
+msgid "Montserrat"
+msgstr ""
+
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:86
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:98
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:110
+msgid "Moral"
+msgstr "Moral"
+
+#: data/i18n/temp.cpp:298
+msgid "Morocco"
+msgstr "Marruecos"
+
+#: data/i18n/temp.cpp:492
+msgid "Moroni"
+msgstr ""
+
+#: data/i18n/temp.cpp:637
+msgid "Moscow"
+msgstr "Moscú"
+
+#: data/i18n/temp.cpp:206
+msgid "Most Serene Republic of San Marino"
+msgstr ""
+
+#: data/i18n/temp.cpp:299
+msgid "Mozambique"
+msgstr "Mozambique"
+
+#: data/i18n/temp.cpp:463
+msgid "Muscat"
+msgstr ""
+
+#: data/i18n/temp.cpp:245
+msgid "Myanmar"
+msgstr ""
+
+#: data/i18n/temp.cpp:491
+msgid "N'Djamena"
+msgstr ""
+
+#: data/i18n/temp.cpp:505
+msgid "Nairobi"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:65
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:91
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:101
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:86
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:359
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:105
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:136
+#: src/engine/wh/CLoadGameWindowHandler.cpp:70
+msgid "Name"
+msgstr "Nombre"
+
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:82
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:94
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:106
+msgid "Name (Line Up)"
+msgstr "Nombre (Alineación inicial)"
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:104
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:109
+msgid "Name:"
+msgstr "Nombre:"
+
+#: data/i18n/temp.cpp:300
+msgid "Namibia"
+msgstr ""
+
+#: data/i18n/temp.cpp:538
+msgid "Nassau"
+msgstr ""
+
+#: data/i18n/temp.cpp:461
+msgid "Naypyidaw"
+msgstr ""
+
+#: data/i18n/temp.cpp:246
+msgid "Nepal"
+msgstr "Nepal"
+
+#: data/i18n/temp.cpp:415
+msgid "Netherlands"
+msgstr "Holanda"
+
+#: data/i18n/temp.cpp:127
+#: data/i18n/temp.cpp:343
+msgid "Netherlands Antilles"
+msgstr ""
+
+#: data/i18n/temp.cpp:155
+#: data/i18n/temp.cpp:371
+msgid "New Caledonia"
+msgstr ""
+
+#: data/i18n/temp.cpp:445
+msgid "New Delhi"
+msgstr "Nueva Delhi"
+
+#: src/engine/wh/CNewManagerGameWindowHandler.cpp:59
+msgid "New Game"
+msgstr "Nueva Partida"
+
+#: data/i18n/temp.cpp:156
+#: data/i18n/temp.cpp:372
+msgid "New Zealand"
+msgstr "Nueva Zelanda"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:112
+msgid "Next Screen"
+msgstr "Pantalla Siguiente"
+
+#: data/i18n/temp.cpp:517
+msgid "Niamey"
+msgstr ""
+
+#: data/i18n/temp.cpp:344
+msgid "Nicaragua"
+msgstr "Nicaragua"
+
+#: data/i18n/temp.cpp:605
+msgid "Nicosia"
+msgstr "Nicosia"
+
+#: data/i18n/temp.cpp:301
+msgid "Niger"
+msgstr ""
+
+#: data/i18n/temp.cpp:302
+msgid "Nigeria"
+msgstr "Nigeria"
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:249
+msgid "No competitions"
+msgstr "No hay competiciones"
+
+#: src/singlePlayer/wh/CRankingWindowHandler.cpp:196
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:224
+#: src/singlePlayer/wh/CResultsWindowHandler.cpp:190
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:185
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:212
+msgid "No countries"
+msgstr "No hay países"
+
+#: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:67
+msgid "No info about the match!"
+msgstr "¡No hay información del partido!"
+
+#: data/i18n/temp.cpp:652
+msgid "North America"
+msgstr "Norteamérica"
+
+#: data/i18n/temp.cpp:235
+msgid "North Korea"
+msgstr ""
+
+#: data/i18n/temp.cpp:200
+#: data/i18n/temp.cpp:416
+msgid "Northern Ireland"
+msgstr ""
+
+#: data/i18n/temp.cpp:417
+msgid "Norway"
+msgstr "Noruega"
+
+#: data/i18n/temp.cpp:512
+msgid "Nouakchott"
+msgstr ""
+
+#: data/i18n/temp.cpp:587
+msgid "Nouméa"
+msgstr ""
+
+#: data/i18n/temp.cpp:593
+msgid "Nuku'alofa"
+msgstr ""
+
+#: data/i18n/temp.cpp:654
+msgid "Oceania"
+msgstr "Oceanía"
+
+#: data/i18n/temp.cpp:247
+msgid "Oman"
+msgstr ""
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:101
+msgid "On-line Community"
+msgstr "Comunidad On-line"
+
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:122
+msgid "Opponent Team:"
+msgstr "Equipo Rival:"
+
+#: data/i18n/temp.cpp:537
+msgid "Oranjestad"
+msgstr ""
+
+#: data/i18n/temp.cpp:633
+msgid "Oslo"
+msgstr "Oslo"
+
+#: data/i18n/temp.cpp:543
+msgid "Ottawa"
+msgstr ""
+
+#: data/i18n/temp.cpp:486
+msgid "Ouagadougou"
+msgstr ""
+
+#: data/i18n/temp.cpp:584
+msgid "Pago Pago"
+msgstr ""
+
+#: data/i18n/temp.cpp:248
+msgid "Pakistan"
+msgstr "Pakistan"
+
+#: data/i18n/temp.cpp:249
+msgid "Palestine"
+msgstr "Palestina"
+
+#: data/i18n/temp.cpp:33
+msgid "Palestinian National Authority"
+msgstr ""
+
+#: data/i18n/temp.cpp:345
+msgid "Panama"
+msgstr "Panamá"
+
+#: data/i18n/temp.cpp:561
+msgid "Panama City"
+msgstr "Ciudad de Panamá"
+
+#: data/i18n/temp.cpp:592
+msgid "Papeete"
+msgstr ""
+
+#: data/i18n/temp.cpp:373
+msgid "Papua New Guinea"
+msgstr "Papua Nueva Guinea"
+
+#: data/i18n/temp.cpp:364
+msgid "Paraguay"
+msgstr "Paraguay"
+
+#: data/i18n/temp.cpp:573
+msgid "Paramaribo"
+msgstr ""
+
+#: data/i18n/temp.cpp:612
+msgid "Paris"
+msgstr "París"
+
+#: data/i18n/temp.cpp:50
+msgid "People's Democratic Republic of Algeria"
+msgstr ""
+
+#: data/i18n/temp.cpp:6
+msgid "People's Republic of Bangladesh"
+msgstr ""
+
+#: data/i18n/temp.cpp:10
+msgid "People's Republic of China"
+msgstr ""
+
+#: data/i18n/temp.cpp:365
+msgid "Peru"
+msgstr "Perú"
+
+#: data/i18n/temp.cpp:250
+msgid "Philippines"
+msgstr "Filipinas"
+
+#: data/i18n/temp.cpp:441
+msgid "Phnom Penh"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:108
+msgid "Play Match"
+msgstr "Jugar Partido"
+
+#: src/singlePlayer/sim/entity/CReferee.cpp:227
+msgid "Play On"
+msgstr "En juego"
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:108
+msgid "Player Details:"
+msgstr "Detalles del Jugador:"
+
+#: src/engine/time/CTimeManager.cpp:68
+#: src/engine/time/CTimeManager.cpp:74
+msgid "Please wait..."
+msgstr "Por favor espere..."
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:103
+msgid "Please, select your team:"
+msgstr "Por favor, selecciona tu equipo:"
+
+#: data/i18n/temp.cpp:558
+msgid "Plymouth"
+msgstr ""
+
+#: data/i18n/temp.cpp:630
+msgid "Podgorica"
+msgstr ""
+
+#: data/i18n/temp.cpp:418
+msgid "Poland"
+msgstr "Polonia"
+
+#: data/i18n/temp.cpp:513
+msgid "Port Louis"
+msgstr ""
+
+#: data/i18n/temp.cpp:589
+msgid "Port Moresby"
+msgstr ""
+
+#: data/i18n/temp.cpp:594
+msgid "Port Vila"
+msgstr ""
+
+#: data/i18n/temp.cpp:567
+msgid "Port of Spain"
+msgstr ""
+
+#: data/i18n/temp.cpp:553
+msgid "Port-au-Prince"
+msgstr ""
+
+#: data/i18n/temp.cpp:484
+msgid "Porto Novo"
+msgstr ""
+
+#: data/i18n/temp.cpp:419
+msgid "Portugal"
+msgstr "Portugal"
+
+#: data/i18n/temp.cpp:203
+msgid "Portuguese Republic"
+msgstr "República Portuguesa"
+
+#: data/i18n/temp.cpp:606
+msgid "Prague"
+msgstr "Praga"
+
+#: data/i18n/temp.cpp:489
+msgid "Praia"
+msgstr ""
+
+#: data/i18n/temp.cpp:526
+msgid "Pretoria-Bloemfontein-Cape Town"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:113
+msgid "Previous Screen"
+msgstr "Pantalla Anterior"
+
+#: data/i18n/temp.cpp:164
+msgid "Principality of Andorra"
+msgstr "Principado de Andorra"
+
+#: data/i18n/temp.cpp:191
+msgid "Principality of Liechtenstein"
+msgstr ""
+
+#: data/i18n/temp.cpp:197
+msgid "Principality of Monaco"
+msgstr "Principado de Mónaco"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:104
+msgid "Professional Career"
+msgstr "Carrera Profesional"
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:49
+msgid "Programming:"
+msgstr "Programación:"
+
+#: data/i18n/temp.cpp:346
+msgid "Puerto Rico"
+msgstr "Puerto Rico"
+
+#: data/i18n/temp.cpp:451
+msgid "Pyongyang"
+msgstr ""
+
+#: data/i18n/temp.cpp:251
+msgid "Qatar"
+msgstr "Qatar"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:109
+msgid "Quick Load"
+msgstr "Carga Rápida"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:110
+msgid "Quick Save"
+msgstr "Guardado Rápido"
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:111
+msgid "Quit"
+msgstr "Salir"
+
+#: data/i18n/temp.cpp:579
+msgid "Quito"
+msgstr "Quito"
+
+#: data/i18n/temp.cpp:514
+msgid "Rabat"
+msgstr "Rabat"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:194
+msgid "Ranking"
+msgstr "Clasificación"
+
+#: src/singlePlayer/wh/CRankingWindowHandler.cpp:104
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:117
+msgid "Ranking:"
+msgstr "Clasificación:"
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:121
+msgid "Release Clause:"
+msgstr "Cláusula de Rescisión:"
+
+#: src/engine/wh/CConfigWindowHandler.cpp:91
+msgid "Renderer:"
+msgstr "Render:"
+
+#: data/i18n/temp.cpp:163
+msgid "Republic of Albania "
+msgstr ""
+
+#: data/i18n/temp.cpp:51
+msgid "Republic of Angola"
+msgstr ""
+
+#: data/i18n/temp.cpp:3
+#: data/i18n/temp.cpp:165
+msgid "Republic of Armenia"
+msgstr ""
+
+#: data/i18n/temp.cpp:166
+msgid "Republic of Austria"
+msgstr ""
+
+#: data/i18n/temp.cpp:4
+#: data/i18n/temp.cpp:167
+msgid "Republic of Azerbaijan"
+msgstr ""
+
+#: data/i18n/temp.cpp:168
+msgid "Republic of Belarus"
+msgstr ""
+
+#: data/i18n/temp.cpp:52
+msgid "Republic of Benin"
+msgstr ""
+
+#: data/i18n/temp.cpp:143
+msgid "Republic of Bolivia"
+msgstr ""
+
+#: data/i18n/temp.cpp:53
+msgid "Republic of Botswana"
+msgstr ""
+
+#: data/i18n/temp.cpp:171
+msgid "Republic of Bulgaria "
+msgstr "República de Bulgaria"
+
+#: data/i18n/temp.cpp:55
+msgid "Republic of Burundi"
+msgstr ""
+
+#: data/i18n/temp.cpp:56
+msgid "Republic of Cameroon"
+msgstr ""
+
+#: data/i18n/temp.cpp:57
+msgid "Republic of Cape Verde"
+msgstr ""
+
+#: data/i18n/temp.cpp:59
+msgid "Republic of Chad"
+msgstr ""
+
+#: data/i18n/temp.cpp:145
+msgid "Republic of Chile"
+msgstr ""
+
+#: data/i18n/temp.cpp:40
+msgid "Republic of China"
+msgstr "República China"
+
+#: data/i18n/temp.cpp:146
+msgid "Republic of Colombia"
+msgstr ""
+
+#: data/i18n/temp.cpp:113
+msgid "Republic of Costa Rica "
+msgstr ""
+
+#: data/i18n/temp.cpp:61
+msgid "Republic of Cote d'Ivoire"
+msgstr ""
+
+#: data/i18n/temp.cpp:172
+msgid "Republic of Croatia"
+msgstr ""
+
+#: data/i18n/temp.cpp:114
+msgid "Republic of Cuba "
+msgstr ""
+
+#: data/i18n/temp.cpp:173
+msgid "Republic of Cyprus"
+msgstr ""
+
+#: data/i18n/temp.cpp:63
+msgid "Republic of Djibouti"
+msgstr ""
+
+#: data/i18n/temp.cpp:147
+msgid "Republic of Ecuador"
+msgstr ""
+
+#: data/i18n/temp.cpp:117
+msgid "Republic of El Salvador"
+msgstr ""
+
+#: data/i18n/temp.cpp:65
+msgid "Republic of Equatorial Guinea"
+msgstr ""
+
+#: data/i18n/temp.cpp:177
+msgid "Republic of Estonia"
+msgstr ""
+
+#: data/i18n/temp.cpp:179
+msgid "Republic of Finland"
+msgstr ""
+
+#: data/i18n/temp.cpp:70
+msgid "Republic of Ghana"
+msgstr ""
+
+#: data/i18n/temp.cpp:120
+msgid "Republic of Guatemala"
+msgstr ""
+
+#: data/i18n/temp.cpp:71
+msgid "Republic of Guinea"
+msgstr ""
+
+#: data/i18n/temp.cpp:72
+msgid "Republic of Guinea-Bissau"
+msgstr ""
+
+#: data/i18n/temp.cpp:121
+msgid "Republic of Haiti "
+msgstr ""
+
+#: data/i18n/temp.cpp:122
+msgid "Republic of Honduras"
+msgstr ""
+
+#: data/i18n/temp.cpp:184
+msgid "Republic of Hungary"
+msgstr ""
+
+#: data/i18n/temp.cpp:185
+msgid "Republic of Iceland"
+msgstr ""
+
+#: data/i18n/temp.cpp:13
+msgid "Republic of India"
+msgstr ""
+
+#: data/i18n/temp.cpp:14
+msgid "Republic of Indonesia"
+msgstr ""
+
+#: data/i18n/temp.cpp:16
+msgid "Republic of Iraq"
+msgstr ""
+
+#: data/i18n/temp.cpp:186
+msgid "Republic of Ireland"
+msgstr ""
+
+#: data/i18n/temp.cpp:189
+msgid "Republic of Kazakhstan"
+msgstr ""
+
+#: data/i18n/temp.cpp:73
+msgid "Republic of Kenya"
+msgstr ""
+
+#: data/i18n/temp.cpp:20
+msgid "Republic of Korea"
+msgstr ""
+
+#: data/i18n/temp.cpp:190
+msgid "Republic of Latvia"
+msgstr ""
+
+#: data/i18n/temp.cpp:75
+msgid "Republic of Liberia"
+msgstr ""
+
+#: data/i18n/temp.cpp:192
+msgid "Republic of Lithuania"
+msgstr ""
+
+#: data/i18n/temp.cpp:194
+msgid "Republic of Macedonia"
+msgstr ""
+
+#: data/i18n/temp.cpp:77
+msgid "Republic of Madagascar"
+msgstr ""
+
+#: data/i18n/temp.cpp:78
+msgid "Republic of Malawi"
+msgstr ""
+
+#: data/i18n/temp.cpp:27
+msgid "Republic of Maldives"
+msgstr ""
+
+#: data/i18n/temp.cpp:79
+msgid "Republic of Mali"
+msgstr ""
+
+#: data/i18n/temp.cpp:195
+msgid "Republic of Malta"
+msgstr ""
+
+#: data/i18n/temp.cpp:81
+msgid "Republic of Mauritius"
+msgstr ""
+
+#: data/i18n/temp.cpp:196
+msgid "Republic of Moldova"
+msgstr ""
+
+#: data/i18n/temp.cpp:83
+msgid "Republic of Mozambique"
+msgstr ""
+
+#: data/i18n/temp.cpp:84
+msgid "Republic of Namibia"
+msgstr ""
+
+#: data/i18n/temp.cpp:128
+msgid "Republic of Nicaragua"
+msgstr ""
+
+#: data/i18n/temp.cpp:85
+msgid "Republic of Niger"
+msgstr ""
+
+#: data/i18n/temp.cpp:129
+msgid "Republic of Panama"
+msgstr ""
+
+#: data/i18n/temp.cpp:148
+msgid "Republic of Paraguay"
+msgstr ""
+
+#: data/i18n/temp.cpp:149
+msgid "Republic of Peru"
+msgstr "República de Perú"
+
+#: data/i18n/temp.cpp:202
+msgid "Republic of Poland"
+msgstr ""
+
+#: data/i18n/temp.cpp:88
+msgid "Republic of Rwanda"
+msgstr "República de Rwanda"
+
+#: data/i18n/temp.cpp:90
+msgid "Republic of Senegal"
+msgstr "República de Senegal"
+
+#: data/i18n/temp.cpp:208
+msgid "Republic of Serbia"
+msgstr "República de Serbia"
+
+#: data/i18n/temp.cpp:91
+msgid "Republic of Seychelles"
+msgstr ""
+
+#: data/i18n/temp.cpp:92
+msgid "Republic of Sierra Leone"
+msgstr ""
+
+#: data/i18n/temp.cpp:37
+msgid "Republic of Singapore"
+msgstr ""
+
+#: data/i18n/temp.cpp:210
+msgid "Republic of Slovenia"
+msgstr ""
+
+#: data/i18n/temp.cpp:94
+msgid "Republic of South Africa"
+msgstr ""
+
+#: data/i18n/temp.cpp:95
+msgid "Republic of Sudan"
+msgstr ""
+
+#: data/i18n/temp.cpp:141
+msgid "Republic of Suriname"
+msgstr ""
+
+#: data/i18n/temp.cpp:41
+msgid "Republic of Tajikistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:69
+msgid "Republic of The Gambia"
+msgstr ""
+
+#: data/i18n/temp.cpp:135
+msgid "Republic of Trinidad and Tobago"
+msgstr ""
+
+#: data/i18n/temp.cpp:214
+msgid "Republic of Turkey"
+msgstr ""
+
+#: data/i18n/temp.cpp:100
+msgid "Republic of Uganda"
+msgstr ""
+
+#: data/i18n/temp.cpp:150
+msgid "Republic of Uruguay"
+msgstr ""
+
+#: data/i18n/temp.cpp:46
+msgid "Republic of Uzbekistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:162
+msgid "Republic of Vanuatu"
+msgstr ""
+
+#: data/i18n/temp.cpp:48
+msgid "Republic of Yemen"
+msgstr ""
+
+#: data/i18n/temp.cpp:101
+msgid "Republic of Zambia"
+msgstr ""
+
+#: data/i18n/temp.cpp:102
+msgid "Republic of Zimbabwe"
+msgstr "República de Zimbabue"
+
+#: data/i18n/temp.cpp:87
+#: data/i18n/temp.cpp:303
+msgid "Republic of the Congo"
+msgstr "República del Congo"
+
+#: data/i18n/temp.cpp:154
+msgid "Republic of the Fiji Islands"
+msgstr "República de las Islas Fiyi"
+
+#: data/i18n/temp.cpp:34
+msgid "Republic of the Philippines"
+msgstr "República de Filipinas"
+
+#: src/engine/wh/CConfigWindowHandler.cpp:92
+msgid "Resolution:"
+msgstr "Resolución:"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:90
+msgid "Result Mode"
+msgstr "Modo Resultado"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:191
+msgid "Results"
+msgstr "Resultados"
+
+#: src/singlePlayer/wh/CResultsWindowHandler.cpp:102
+msgid "Results:"
+msgstr "Resultados:"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:107
+msgid "Return to Main Menu"
+msgstr "Volver al Menú Principal"
+
+#: data/i18n/temp.cpp:617
+msgid "Reykjav¡k"
+msgstr ""
+
+#: data/i18n/temp.cpp:622
+msgid "Riga"
+msgstr ""
+
+#: data/i18n/temp.cpp:468
+msgid "Riyadh"
+msgstr ""
+
+#: data/i18n/temp.cpp:542
+msgid "Road Town"
+msgstr ""
+
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:83
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:95
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:107
+msgid "Role"
+msgstr "Rol"
+
+#: data/i18n/temp.cpp:204
+#: data/i18n/temp.cpp:420
+msgid "Romania"
+msgstr "Rumanía"
+
+#: data/i18n/temp.cpp:620
+msgid "Rome"
+msgstr "Roma"
+
+#: data/i18n/temp.cpp:547
+msgid "Roseau"
+msgstr ""
+
+#: data/i18n/temp.cpp:421
+msgid "Russia"
+msgstr "Rusia"
+
+#: data/i18n/temp.cpp:205
+msgid "Russian Federation"
+msgstr "Federación Rusa"
+
+#: data/i18n/temp.cpp:304
+msgid "Rwanda"
+msgstr "Rwanda"
+
+#: data/i18n/temp.cpp:139
+msgid "Région French Guyane"
+msgstr ""
+
+#: data/i18n/temp.cpp:119
+msgid "Région Guadeloupe"
+msgstr ""
+
+#: data/i18n/temp.cpp:124
+msgid "Région Martinique"
+msgstr ""
+
+#: data/i18n/temp.cpp:347
+msgid "Saint Christopher and Nevis"
+msgstr ""
+
+#: data/i18n/temp.cpp:536
+msgid "Saint John's"
+msgstr ""
+
+#: data/i18n/temp.cpp:132
+#: data/i18n/temp.cpp:348
+msgid "Saint Lucia"
+msgstr ""
+
+#: data/i18n/temp.cpp:349
+msgid "Saint Martin "
+msgstr ""
+
+#: data/i18n/temp.cpp:134
+#: data/i18n/temp.cpp:350
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:120
+msgid "Salary:"
+msgstr "Salario:"
+
+#: data/i18n/temp.cpp:375
+msgid "Samoa"
+msgstr ""
+
+#: data/i18n/temp.cpp:545
+msgid "San José"
+msgstr "San José"
+
+#: data/i18n/temp.cpp:562
+msgid "San Juan"
+msgstr "San Juan"
+
+#: data/i18n/temp.cpp:422
+msgid "San Marino"
+msgstr "San Marino"
+
+#: data/i18n/temp.cpp:549
+msgid "San Salvador"
+msgstr "San Salvador"
+
+#: data/i18n/temp.cpp:480
+msgid "Sana"
+msgstr ""
+
+#: data/i18n/temp.cpp:577
+msgid "Santiago-Valpara¡so"
+msgstr ""
+
+#: data/i18n/temp.cpp:548
+msgid "Santo Domingo de Guzmán"
+msgstr ""
+
+#: data/i18n/temp.cpp:521
+msgid "Sao Tomé"
+msgstr ""
+
+#: data/i18n/temp.cpp:602
+msgid "Sarajevo"
+msgstr "Sarajevo"
+
+#: data/i18n/temp.cpp:252
+msgid "Saudi Arabia"
+msgstr "Arabia Saudi"
+
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
+#: src/engine/wh/CConfigWindowHandler.cpp:96
+msgid "Save"
+msgstr "Guardar"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:197
+msgid "Scorers"
+msgstr "Goleadores"
+
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:97
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:118
+msgid "Scorers:"
+msgstr "Goleadores:"
+
+#: data/i18n/temp.cpp:207
+#: data/i18n/temp.cpp:423
+msgid "Scotland"
+msgstr "Escocia"
+
+#: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:64
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:86
+msgid "Season"
+msgstr "Temporada"
+
+#: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:70
+msgid "Seasons:"
+msgstr "Temporadas:"
+
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:102
+msgid "Select Team"
+msgstr "Seleccionar Equipo"
+
+#: data/i18n/temp.cpp:306
+msgid "Senegal"
+msgstr "Senegal"
+
+#: data/i18n/temp.cpp:452
+msgid "Seoul"
+msgstr "Seul"
+
+#: data/i18n/temp.cpp:424
+msgid "Serbia"
+msgstr "Serbia"
+
+#: data/i18n/temp.cpp:307
+msgid "Seychelles"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:110
+msgid "Short Name:"
+msgstr "Nombre Corto:"
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:68
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:93
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:103
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:85
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:97
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:109
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:88
+msgid "Shot power"
+msgstr "Tiro"
+
+#: data/i18n/temp.cpp:308
+msgid "Sierra Leone"
+msgstr "Sierra Leona"
+
+#: src/singlePlayer/event/CEventsHandler.cpp:171
+msgid "Simulating match: "
+msgstr "Simulando partido:"
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:193
+msgid "Simulation View"
+msgstr "Vista de Simulación"
+
+#: data/i18n/temp.cpp:253
+msgid "Singapore"
+msgstr ""
+
+#: data/i18n/temp.cpp:469
+msgid "Singapore City"
+msgstr ""
+
+#: data/i18n/temp.cpp:626
+msgid "Skopje"
+msgstr ""
+
+#: data/i18n/temp.cpp:209
+msgid "Slovak Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:425
+msgid "Slovakia"
+msgstr ""
+
+#: data/i18n/temp.cpp:426
+msgid "Slovenia"
+msgstr ""
+
+#: data/i18n/temp.cpp:47
+msgid "Socialist Republic of Vietnam"
+msgstr ""
+
+#: data/i18n/temp.cpp:603
+msgid "Sofia"
+msgstr "Sofía"
+
+#: data/i18n/temp.cpp:158
+#: data/i18n/temp.cpp:374
+msgid "Solomon Islands"
+msgstr ""
+
+#: data/i18n/temp.cpp:93
+msgid "Somali Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:309
+msgid "Somalia"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:54
+msgid "Sound Effects:"
+msgstr "Efectos de Sonido:"
+
+#: data/i18n/temp.cpp:310
+msgid "South Africa"
+msgstr ""
+
+#: data/i18n/temp.cpp:653
+msgid "South America"
+msgstr "Sudamérica"
+
+#: data/i18n/temp.cpp:236
+msgid "South Korea"
+msgstr ""
+
+#: data/i18n/temp.cpp:427
+msgid "Spain"
+msgstr "España"
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:67
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:92
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:102
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:84
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:96
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:108
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:87
+msgid "Speed"
+msgstr "Velocidad"
+
+#: data/i18n/temp.cpp:254
+msgid "Sri Lanka"
+msgstr ""
+
+#: data/i18n/temp.cpp:550
+msgid "St. George's"
+msgstr ""
+
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:85
+#: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:105
+msgid "Stadium:"
+msgstr "Estadio:"
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:191
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:196
+#: src/engine/wh/CNewVirtualGameWindowHandler.cpp:48
+msgid "Start"
+msgstr "Comenzar"
+
+#: data/i18n/temp.cpp:8
+msgid "State of Brunei, Abode of Peace"
+msgstr ""
+
+#: data/i18n/temp.cpp:66
+msgid "State of Eritrea"
+msgstr ""
+
+#: data/i18n/temp.cpp:187
+msgid "State of Israel"
+msgstr ""
+
+#: data/i18n/temp.cpp:21
+msgid "State of Kuwait"
+msgstr ""
+
+#: data/i18n/temp.cpp:35
+msgid "State of Qatar"
+msgstr ""
+
+#: data/i18n/temp.cpp:216
+msgid "State of the Vatican City"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:116
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:200
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#: data/i18n/temp.cpp:644
+msgid "Stockholm"
+msgstr ""
+
+#: data/i18n/temp.cpp:311
+msgid "Sudan"
+msgstr "Sudan"
+
+#: data/i18n/temp.cpp:31
+msgid "Sultanate of Oman"
+msgstr ""
+
+#: data/i18n/temp.cpp:357
+msgid "Suriname"
+msgstr ""
+
+#: data/i18n/temp.cpp:586
+msgid "Suva"
+msgstr ""
+
+#: data/i18n/temp.cpp:312
+msgid "Swaziland"
+msgstr ""
+
+#: data/i18n/temp.cpp:428
+msgid "Sweden"
+msgstr "Suecia"
+
+#: data/i18n/temp.cpp:213
+msgid "Swiss Confederation"
+msgstr ""
+
+#: data/i18n/temp.cpp:429
+msgid "Switzerland"
+msgstr "Suiza"
+
+#: data/i18n/temp.cpp:255
+msgid "Syria"
+msgstr ""
+
+#: data/i18n/temp.cpp:39
+msgid "Syrian Arab Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:472
+msgid "Taipei"
+msgstr ""
+
+#: data/i18n/temp.cpp:256
+msgid "Taiwan"
+msgstr "Taiwan"
+
+#: data/i18n/temp.cpp:257
+msgid "Tajikistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:609
+msgid "Tallinn"
+msgstr ""
+
+#: data/i18n/temp.cpp:313
+msgid "Tanzania"
+msgstr "Tanzania"
+
+#: data/i18n/temp.cpp:478
+msgid "Tashkent"
+msgstr ""
+
+#: data/i18n/temp.cpp:613
+msgid "Tbilisi"
+msgstr ""
+
+#: src/singlePlayer/wh/CRankingWindowHandler.cpp:112
+#: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:62
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:197
+#: src/singlePlayer/wh/CScorersWindowHandler.cpp:106
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:126
+#: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:137
+msgid "Team"
+msgstr "Equipo"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:162
+msgid "Team Players"
+msgstr "Plantilla"
+
+#: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:80
+#: src/singlePlayer/wh/CLineUpWindowHandler.cpp:122
+msgid "Team Players:"
+msgstr "Plantilla:"
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:117
+msgid "Team:"
+msgstr "Equipo:"
+
+#: data/i18n/temp.cpp:554
+msgid "Tegucigalpa"
+msgstr ""
+
+#: data/i18n/temp.cpp:447
+msgid "Tehran"
+msgstr "Teherán"
+
+#: data/i18n/temp.cpp:11
+msgid "Territory of Guam"
+msgstr ""
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:53
+msgid "Textures:"
+msgstr "Texturas:"
+
+#: data/i18n/temp.cpp:258
+msgid "Thailand"
+msgstr "Tailandia"
+
+#: src/engine/wh/CCreditsWindowHandler.cpp:56
+msgid "Thanks to:"
+msgstr "Gracias a:"
+
+#: data/i18n/temp.cpp:18
+msgid "The Hashemite Kingdom of Jordan"
+msgstr ""
+
+#: data/i18n/temp.cpp:535
+msgid "The Valley"
+msgstr ""
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:332
+msgid "The game has been saved"
+msgstr "La partida ha sido guardada"
+
+#: data/i18n/temp.cpp:439
+msgid "Thimphu"
+msgstr ""
+
+#: data/i18n/temp.cpp:259
+msgid "Timor-Leste"
+msgstr ""
+
+#: data/i18n/temp.cpp:595
+msgid "Tirana"
+msgstr ""
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:112
+msgid "Today is:"
+msgstr "Hoy es:"
+
+#: data/i18n/temp.cpp:314
+msgid "Togo"
+msgstr "Togo"
+
+#: data/i18n/temp.cpp:98
+msgid "Togolese Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:449
+msgid "Tokyo"
+msgstr "Tokio"
+
+#: data/i18n/temp.cpp:377
+msgid "Tonga"
+msgstr ""
+
+#: data/i18n/temp.cpp:351
+msgid "Trinidad and Tobago"
+msgstr "Trinidad y Tobago"
+
+#: data/i18n/temp.cpp:508
+msgid "Tripoli"
+msgstr ""
+
+#: data/i18n/temp.cpp:531
+msgid "Tunis"
+msgstr ""
+
+#: data/i18n/temp.cpp:315
+msgid "Tunisia"
+msgstr ""
+
+#: data/i18n/temp.cpp:99
+msgid "Tunisian Republic"
+msgstr ""
+
+#: data/i18n/temp.cpp:430
+msgid "Turkey"
+msgstr "Turquía"
+
+#: data/i18n/temp.cpp:44
+#: data/i18n/temp.cpp:260
+msgid "Turkmenistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:136
+#: data/i18n/temp.cpp:352
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: data/i18n/temp.cpp:610
+msgid "T¢rshavn"
+msgstr ""
+
+#: data/i18n/temp.cpp:353
+msgid "USA"
+msgstr "USA"
+
+#: data/i18n/temp.cpp:316
+msgid "Uganda"
+msgstr "Uganda"
+
+#: data/i18n/temp.cpp:215
+#: data/i18n/temp.cpp:431
+msgid "Ukraine"
+msgstr "Ucrania"
+
+#: data/i18n/temp.cpp:460
+msgid "Ulan Bator"
+msgstr ""
+
+#: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:131
+msgid "Unemployed"
+msgstr "Desempleado"
+
+#: data/i18n/temp.cpp:29
+msgid "Union of Myanmar"
+msgstr ""
+
+#: data/i18n/temp.cpp:60
+msgid "Union of the Comoros"
+msgstr ""
+
+#: data/i18n/temp.cpp:45
+#: data/i18n/temp.cpp:261
+msgid "United Arab Emirates"
+msgstr ""
+
+#: data/i18n/temp.cpp:125
+msgid "United Mexican States"
+msgstr ""
+
+#: data/i18n/temp.cpp:97
+msgid "United Republic of Tanzania"
+msgstr ""
+
+#: data/i18n/temp.cpp:138
+#: data/i18n/temp.cpp:354
+msgid "United States Virgin Islands"
+msgstr ""
+
+#: data/i18n/temp.cpp:137
+msgid "United States of America"
+msgstr "Estados Unidos de América"
+
+#: data/i18n/temp.cpp:366
+msgid "Uruguay"
+msgstr "Uruguay"
+
+#: data/i18n/temp.cpp:262
+msgid "Uzbekistan"
+msgstr ""
+
+#: data/i18n/temp.cpp:623
+msgid "Vaduz"
+msgstr ""
+
+#: data/i18n/temp.cpp:627
+msgid "Valletta"
+msgstr ""
+
+#: data/i18n/temp.cpp:378
+msgid "Vanuatu"
+msgstr ""
+
+#: data/i18n/temp.cpp:432
+#: data/i18n/temp.cpp:648
+msgid "Vatican City"
+msgstr "Ciudad del Vaticano"
+
+#: data/i18n/temp.cpp:367
+msgid "Venezuela"
+msgstr "Venezuela"
+
+#: src/engine/wh/CConfigWindowHandler.cpp:94
+msgid "Vertical Sync"
+msgstr "Sincronización Vertical"
+
+#: data/i18n/temp.cpp:523
+msgid "Victoria"
+msgstr "Victoria"
+
+#: src/engine/wh/CConfigWindowHandler.cpp:90
+msgid "Video"
+msgstr "Vídeo"
+
+#: data/i18n/temp.cpp:598
+msgid "Vienna"
+msgstr "Viena"
+
+#: data/i18n/temp.cpp:455
+msgid "Vientiane"
+msgstr ""
+
+#: data/i18n/temp.cpp:263
+msgid "Vietnam"
+msgstr "Vietnam"
+
+#: src/singlePlayer/wh/CGNSWindowHandler.cpp:165
+msgid "View Opponent"
+msgstr "Ver Rival"
+
+#: data/i18n/temp.cpp:624
+msgid "Vilnius"
+msgstr ""
+
+#: src/engine/wh/CMainMenuWindowHandler.cpp:102
+msgid "Virtual Championship"
+msgstr "Campeonato Virtual"
+
+#: data/i18n/temp.cpp:217
+#: data/i18n/temp.cpp:433
+msgid "Wales"
+msgstr "Gales"
+
+#: data/i18n/temp.cpp:634
+msgid "Warsaw"
+msgstr ""
+
+#: data/i18n/temp.cpp:569
+msgid "Washington D.C."
+msgstr "Washington D.C."
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:113
+msgid "Weight:"
+msgstr "Peso:"
+
+#: data/i18n/temp.cpp:588
+msgid "Wellington"
+msgstr ""
+
+#: data/i18n/temp.cpp:559
+msgid "Willemstad"
+msgstr ""
+
+#: data/i18n/temp.cpp:516
+msgid "Windhoek"
+msgstr ""
+
+#: data/i18n/temp.cpp:493
+msgid "Yamoussoukro"
+msgstr ""
+
+#: data/i18n/temp.cpp:488
+msgid "Yaoundé"
+msgstr ""
+
+#: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:112
+msgid "Years:"
+msgstr "Años:"
+
+#: data/i18n/temp.cpp:264
+msgid "Yemen"
+msgstr "Yemen"
+
+#: data/i18n/temp.cpp:435
+msgid "Yerevan"
+msgstr ""
+
+#: data/i18n/temp.cpp:597
+msgid "Yeveran"
+msgstr ""
+
+#: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:119
+msgid "Your Team:"
+msgstr "Tu Equipo:"
+
+#: data/i18n/temp.cpp:604
+msgid "Zagreb"
+msgstr "Zagreb"
+
+#: data/i18n/temp.cpp:317
+msgid "Zambia"
+msgstr ""
+
+#: data/i18n/temp.cpp:318
+msgid "Zimbabwe"
+msgstr "Zimbabue"
+
+#: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:192
+msgid "Zoom"
+msgstr "Zoom"
+
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:87
+#: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:89
+msgid "min"
+msgstr "min"
+
+#~ msgid "Name (Alternate)"
+#~ msgstr "Nombre (Suplentes)"
+#~ msgid "Name (Not Line Up)"
+#~ msgstr "Nombre (No convocados)"
+#~ msgid "Config"
+#~ msgstr "Configuración"
+#~ msgid "No"
+#~ msgstr "No"
+#~ msgid "Ok"
+#~ msgstr "Ok"
+#~ msgid "... and to all users who tested the game ;-)"
+#~ msgstr "... y a todos los usuarios que han testeado el juego ;-)"
+#~ msgid "Designed and coded by:"
+#~ msgstr "Diseñado y codificado por:"
+#~ msgid "Last actualization:"
+#~ msgstr "Última actualización:"
+#~ msgid "Single Player"
+#~ msgstr "Un Jugador"
+#~ msgid "Level:"
+#~ msgstr "Nivel:"
+#~ msgid "New/Load Game"
+#~ msgstr "Nueva/Cargar Partida"
+#~ msgid "Region/Country/Division"
+#~ msgstr "Región/País/División"
+#~ msgid "Down"
+#~ msgstr "Abajo"
+#~ msgid "Up"
+#~ msgstr "Arriba"
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="NewManagerGame" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="ArridiDesign/StaticImage" Name="NewManagerGame/MainWindow" >
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="InheritsAlpha" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+            <Window Type="ArridiDesign/StaticText" Name="NewManagerGame/NewGameLabel" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="BackgroundEnabled" Value="False" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.4,0},{0.4,0},{0.44,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/Editbox" Name="NewManagerGame/NewGameEdit" >
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.4,0},{0.7,0},{0.44,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/StaticText" Name="NewManagerGame/CoachNameLabel" >
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="BackgroundEnabled" Value="False" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.5,0},{0.4,0},{0.54,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/Editbox" Name="NewManagerGame/CoachNameEdit" >
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="MaxTextLength" Value="50" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.4,0},{0.5,0},{0.7,0},{0.54,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="NewManagerGame/NewGameButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.45,0},{0.6,0},{0.65,0},{0.653,0}}" />
+            </Window>
+            <Window Type="ArridiDesign/bButton" Name="NewManagerGame/BackButton" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="AlwaysOnTop" Value="True" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.9,0},{0.2,0},{0.953,0}}" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

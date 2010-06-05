@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="screens-config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="screen"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="screen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="window"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="window">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="window"/>
+      </xs:sequence>
+      <xs:attribute name="hook" use="required" type="xs:string"/>
+      <xs:attribute name="path" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

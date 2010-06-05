@@ -1,0 +1,13 @@
+material ball_auv
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ball_auv.png
+      }
+    }
+  }
+}
