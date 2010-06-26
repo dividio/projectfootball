@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-05 10:57+0200\n"
-"PO-Revision-Date: 2010-06-05 10:59+0100\n"
+"PO-Revision-Date: 2010-06-26 11:38+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -706,7 +706,7 @@ msgstr "Costa Rica"
 
 #: data/i18n/temp.cpp:277
 msgid "Cote d'Ivoire"
-msgstr ""
+msgstr "Costa de Marfil"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:66
 msgid "Country"
@@ -964,7 +964,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:180
 msgid "French Republic"
-msgstr ""
+msgstr "República Francesa"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:93
 msgid "Fullscreen"
@@ -1127,7 +1127,7 @@ msgstr "Equipo Local"
 
 #: data/i18n/temp.cpp:338
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: data/i18n/temp.cpp:228
 #: data/i18n/temp.cpp:444
@@ -1338,7 +1338,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:199
 msgid "Kingdom of the Netherlands"
-msgstr ""
+msgstr "Reino de los Países Bajos"
 
 #: data/i18n/temp.cpp:555
 msgid "Kingston"
@@ -1418,7 +1418,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:407
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: data/i18n/temp.cpp:510
 msgid "Lilongwe"
@@ -1616,7 +1616,7 @@ msgstr "Montenegro"
 
 #: data/i18n/temp.cpp:582
 msgid "Montevideo"
-msgstr ""
+msgstr "Montevideo"
 
 #: data/i18n/temp.cpp:126
 #: data/i18n/temp.cpp:342
@@ -1643,7 +1643,7 @@ msgstr "Moscú"
 
 #: data/i18n/temp.cpp:206
 msgid "Most Serene Republic of San Marino"
-msgstr ""
+msgstr "Serenísima República de San Marino"
 
 #: data/i18n/temp.cpp:299
 msgid "Mozambique"
@@ -2097,7 +2097,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:56
 msgid "Republic of Cameroon"
-msgstr ""
+msgstr "República de Camerún"
 
 #: data/i18n/temp.cpp:57
 msgid "Republic of Cape Verde"
@@ -2109,7 +2109,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:145
 msgid "Republic of Chile"
-msgstr ""
+msgstr "República de Chile"
 
 #: data/i18n/temp.cpp:40
 msgid "Republic of China"
@@ -2117,15 +2117,15 @@ msgstr "República China"
 
 #: data/i18n/temp.cpp:146
 msgid "Republic of Colombia"
-msgstr ""
+msgstr "República de Colombia"
 
 #: data/i18n/temp.cpp:113
 msgid "Republic of Costa Rica "
-msgstr ""
+msgstr "República de Costa Rica"
 
 #: data/i18n/temp.cpp:61
 msgid "Republic of Cote d'Ivoire"
-msgstr ""
+msgstr "República de Costa de Marfil"
 
 #: data/i18n/temp.cpp:172
 msgid "Republic of Croatia"
@@ -2145,7 +2145,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:147
 msgid "Republic of Ecuador"
-msgstr ""
+msgstr "República de Ecuador"
 
 #: data/i18n/temp.cpp:117
 msgid "Republic of El Salvador"
@@ -2165,7 +2165,7 @@ msgstr ""
 
 #: data/i18n/temp.cpp:70
 msgid "Republic of Ghana"
-msgstr ""
+msgstr "República de Ghana"
 
 #: data/i18n/temp.cpp:120
 msgid "Republic of Guatemala"
