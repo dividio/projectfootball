@@ -36,8 +36,6 @@ char * trim( char *s )
 	char *end = s;
 	char c;
 
-	LOG_DEBUG("trim('%s')", s);
-
     // From the beggining of the string iterate forward to
     // the first character that not validate isspace(). The
     // rest of the string is copied to the beginning except
@@ -55,7 +53,6 @@ char * trim( char *s )
     }
     *end = '\0';
 
-	LOG_DEBUG("trim('%s')", s);
     return s;
 }
 
