@@ -32,28 +32,30 @@
 
 char * trim( char *s )
 {
-    int  i;
+    int i = 0, j = 0;
+	char *end = s;
+	char c;
 
-    // First, from the beggining of the string iterate forward
-    // to the first character that not validate isspace(). Copying
-    // the rest of the string to the beggining.
-    i = 0;
-    while( isspace(s[i]) ){
-      i++;
-    }
-    if( i!=0 ){
-        strcpy(&(s[0]), &(s[i]) );
-    }
+	LOG_DEBUG("trim('%s')", s);
 
-    // Later, from the end of the string iterate backward to the first
-    // character that not validate isspace(). Invalidating the rest of
-    // the string
-    i = strlen(s)-1;
-    while( i>=0 && isspace(s[i]) ){
-      i--;
+    // From the beggining of the string iterate forward to
+    // the first character that not validate isspace(). The
+    // rest of the string is copied to the beginning except
+	// the last whitespaces.
+    while( s[i]!='\0' && isspace(s[i]) ){
+    	i++;
     }
-    s[i+1] = '\0';
+    while( s[i]!='\0' ){
+    	c = s[j++] = s[i++];
 
+    	// if it's not a whitespace, this could be the last character
+    	if( !isspace(c) ){
+    		end = &(s[j]);
+    	}
+    }
+    *end = '\0';
+
+	LOG_DEBUG("trim('%s')", s);
     return s;
 }
 
@@ -154,9 +156,9 @@ void CSystemOptionManager::loadOptions()
                   LOG_WARNING("Malformed category label '%s' into config file '%s'", sentence, CONFIG_FILE);
                 }
             }else{
-              // else, then it's a assignment
-              getAssignment(option, value, sentence);
-              setStringOption(category, option, value);
+				// else, then it's a assignment
+				getAssignment(option, value, sentence);
+				setStringOption(category, option, value);
            }
         }
     }
