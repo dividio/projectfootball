@@ -18,6 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <ctype.h>
 #include <Ogre.h>
 #include <libintl.h>
 
@@ -25,6 +26,23 @@
 #include "../CGameEngine.h"
 #include "../option/CSystemOptionManager.h"
 #include "../../utils/CLog.h"
+
+typedef struct _VideoMode {
+	unsigned int width;
+	unsigned int height;
+} VideoMode;
+
+VideoMode parseVideoMode(const char *str){
+	VideoMode videoMode = {0};
+
+	int i=0;
+	for( ;str[i]!='\0' && !isdigit(str[i]); i++ );
+	for( ;str[i]!='\0' && isdigit(str[i]); videoMode.width=videoMode.width*10+(str[i]-'0'), i++ );
+	for( ;str[i]!='\0' && !isdigit(str[i]); i++ );
+	for( ;str[i]!='\0' && isdigit(str[i]); videoMode.height=videoMode.height*10+(str[i]-'0'), i++ );
+
+	return videoMode;
+}
 
 CConfigWindowHandler::CConfigWindowHandler()
 : CWindowHandler("config.layout")
@@ -44,9 +62,11 @@ void CConfigWindowHandler::enter()
 
     bool found  = false;
     unsigned int  width  = CSystemOptionManager::getInstance()->getVideoWidth();
+    unsigned int  height = CSystemOptionManager::getInstance()->getVideoHeight();
     for( unsigned int i=0; i<m_resolutionCombo->getItemCount() && !found; i++ ){
         CEGUI::ListboxItem *item = m_resolutionCombo->getListboxItemFromIndex(i);
-        if( item->getID()==width ){
+        VideoMode videoMode = parseVideoMode(item->getText().c_str());
+        if( videoMode.width==width && videoMode.height==height ){
             found = true;
             m_resolutionCombo->setItemSelectState(item, true);
             m_resolutionCombo->setText(item->getText());
@@ -81,11 +101,6 @@ void CConfigWindowHandler::init()
     m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
     m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
 
-    m_resolutionCombo->getEditbox()->setEnabled(false);
-    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1280x1024", 1280));
-    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("1024x768",  1024));
-    m_resolutionCombo->addItem(new CEGUI::ListboxTextItem("800x600",   800));
-
     // i18n support
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/Video"))->setText((CEGUI::utf8*)gettext("Video"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/RendererText"))->setText((CEGUI::utf8*)gettext("Renderer:"));
@@ -101,6 +116,19 @@ void CConfigWindowHandler::init()
     for( it=renderSystemList->begin(); it!=renderSystemList->end(); it++ ){
         Ogre::RenderSystem *renderSystem = (*it);
         m_rendererCombo->addItem(new CEGUI::ListboxTextItem(renderSystem->getName()));
+    }
+
+    m_resolutionCombo->getEditbox()->setEnabled(false);
+    Ogre::ConfigOptionMap &options = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
+    Ogre::ConfigOptionMap::const_iterator itOptions;
+    for( itOptions=options.begin(); itOptions!=options.end(); itOptions++ ){
+    	Ogre::ConfigOption option = itOptions->second;
+    	if( option.name=="Video Mode" ){
+			Ogre::StringVector::const_iterator itValues;
+			for( itValues=option.possibleValues.begin(); itValues!=option.possibleValues.end(); itValues++ ){
+				m_resolutionCombo->addItem(new CEGUI::ListboxTextItem(itValues->c_str()));
+			}
+    	}
     }
 }
 
@@ -118,20 +146,9 @@ bool CConfigWindowHandler::saveButtonClicked(const CEGUI::EventArgs& e)
 
         CEGUI::ListboxItem *item = m_resolutionCombo->getSelectedItem();
         if( item!=NULL ){
-            switch( item->getID() ){
-            case 1280:
-                CSystemOptionManager::getInstance()->setVideoWidth( 1280);
-                CSystemOptionManager::getInstance()->setVideoHeight(1024);
-                break;
-            case 1024:
-                CSystemOptionManager::getInstance()->setVideoWidth( 1024);
-                CSystemOptionManager::getInstance()->setVideoHeight( 768);
-                break;
-            case 800:
-                CSystemOptionManager::getInstance()->setVideoWidth(  800);
-                CSystemOptionManager::getInstance()->setVideoHeight( 600);
-                break;
-            }
+        	VideoMode videoMode = parseVideoMode(item->getText().c_str());
+            CSystemOptionManager::getInstance()->setVideoWidth(videoMode.width);
+            CSystemOptionManager::getInstance()->setVideoHeight(videoMode.height);
         }
 
         CSystemOptionManager::getInstance()->setVideoRenderSystem(m_rendererCombo->getText().c_str());
