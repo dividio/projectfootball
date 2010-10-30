@@ -26,7 +26,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_mixer.h"
 
-#include "../CDummyAudioFile.h"
+#include "../dummy/CDummyAudioFile.h"
 #include "../IAudioFactory.h"
 
 #define AUDIO_FREQUENCY 44100
@@ -46,8 +46,6 @@ public:
 private:
     CSDLAudioFactory();
     IAudioFile* createDummyAudioFile();
-
-    static CSDLAudioFactory* getInstance();
 
     bool                    m_sdlInitialized;
     int                     m_frequency;

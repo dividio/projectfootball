@@ -20,33 +20,51 @@
 
 #include "CAudioAbstractFactory.h"
 #include "IAudioFactory.h"
+#include "dummy/CDummyAudioFactory.h"
 #include "sdl/CSDLAudioFactory.h"
+#include "../utils/CLog.h"
 
-IAudioFactory* CAudioAbstractFactory::m_instance = NULL;
 
 CAudioAbstractFactory::CAudioAbstractFactory()
+:m_audioFactory(NULL), type(SDL)
 {
 
 }
-
 
 CAudioAbstractFactory::~CAudioAbstractFactory()
 {
-
+	LOG_DEBUG("~CAudioAbstractFactory()");
+	if (m_audioFactory!=NULL) {
+			delete m_audioFactory;
+	}
 }
 
+void CAudioAbstractFactory::setAudioSystem(AudioSystemType audioSystemType)
+{
+	type = audioSystemType;
+
+	if (m_audioFactory!=NULL) {
+			delete m_audioFactory;
+			m_audioFactory = NULL;
+	}
+	if (m_audioFactory==NULL) {
+		switch (type) {
+			case DUMMY:
+				m_audioFactory = new CDummyAudioFactory();
+				break;
+			case SDL:
+				m_audioFactory = new CSDLAudioFactory();
+				break;
+			default:
+				m_audioFactory = new CSDLAudioFactory();
+		}
+	}
+}
 
 IAudioFactory* CAudioAbstractFactory::getIAudioFactory()
 {
-    int type = 1;
-    if (m_instance==NULL) {
-        switch (type) {
-            case 1:
-                m_instance = CSDLAudioFactory::getInstance();
-                break;
-            default:
-                m_instance = CSDLAudioFactory::getInstance();
-        }
-    }
-    return m_instance;
+	if (m_audioFactory==NULL) {
+		setAudioSystem(type);
+	}
+    return m_audioFactory;
 }

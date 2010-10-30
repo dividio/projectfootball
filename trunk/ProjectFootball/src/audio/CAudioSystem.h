@@ -22,18 +22,24 @@
 #define CAUDIOSYSTEM_H_
 
 #include "IAudioFile.h"
+#include "AudioSystemTypes.h"
+
+class CAudioAbstractFactory;
 
 class CAudioSystem
 {
 public:
     static CAudioSystem* getInstance();
     virtual ~CAudioSystem();
-    static IAudioFile* CLICK;
-    static IAudioFile* MOUSE_OVER;
-    static IAudioFile* LOW_KICK;
+
+    IAudioFile* click();
+	IAudioFile* mouseOver();
+	IAudioFile* lowKick();
+    void setAudioSystem(AudioSystemType audioSystem);
 
 private:
     CAudioSystem();
+    CAudioAbstractFactory *m_audioAbstractFactory;
 
 };
 #endif // CAUDIOSYSTEM_H_

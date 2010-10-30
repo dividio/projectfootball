@@ -21,7 +21,7 @@
 #ifndef CDUMMYAUDIOFILE_H_
 #define CDUMMYAUDIOFILE_H_
 
-#include "IAudioFile.h"
+#include "../IAudioFile.h"
 
 class CDummyAudioFile : public IAudioFile
 {

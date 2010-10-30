@@ -108,6 +108,10 @@ public:
     const char *   getVideoRTTPreferredMode();
     void           setVideoRTTPreferredMode(const char * rttPreferredMode);
 
+    //Sound options
+    bool           getSoundEnabled();
+    void           setSoundEnabled(bool soundEnabled);
+
     // Simulation options
     int            getSimulationMatchDuration();
     void           setSimulationMatchDuration(int matchDuration);

@@ -24,6 +24,7 @@
 #include "CApplication.h"
 
 #include "audio/CAudioSystem.h"
+#include "audio/AudioSystemTypes.h"
 
 #include "engine/CGameEngine.h"
 #include "engine/option/CSystemOptionManager.h"
@@ -40,6 +41,7 @@ CApplication::CApplication()
 {
 	LOG_DEBUG("CApplication()");
 
+	setupAudioSystem();
     createRoot();
     defineResources();
     setupRenderSystem();
@@ -83,6 +85,18 @@ void CApplication::go()
 Ogre::RenderSystemList* CApplication::getRenderSystemList()
 {
     return m_root->getAvailableRenderers();
+}
+
+void CApplication::setupAudioSystem()
+{
+	CSystemOptionManager *systemOptionManager = CSystemOptionManager::getInstance();
+	bool soundEnabled = systemOptionManager->getSoundEnabled();
+	if(soundEnabled) {
+		CAudioSystem::getInstance()->setAudioSystem(SDL);
+	} else {
+		CAudioSystem::getInstance()->setAudioSystem(DUMMY);
+	}
+
 }
 
 void CApplication::createRoot()
@@ -196,7 +210,7 @@ void CApplication::setupInputSystem()
 
 bool CApplication::clickAudioEvent(const CEGUI::EventArgs &e)
 {
-    CAudioSystem::CLICK->play();
+    CAudioSystem::getInstance()->click()->play();
     return true;
 }
 
@@ -219,7 +233,7 @@ bool CApplication::mouseOverAudioEvent(const CEGUI::EventArgs &e)
          we.window->testClassName( CEGUI::Checkbox::EventNamespace    ))&&
        !we.window->isAutoWindow() ) {
        // It's a push button (and not an auto window, from scrollbars)
-        CAudioSystem::MOUSE_OVER->play();
+        CAudioSystem::getInstance()->mouseOver()->play();
     }
     return true;
 }

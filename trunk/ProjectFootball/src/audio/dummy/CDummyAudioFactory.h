@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2007 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -18,56 +18,26 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CAPPLICATION_H_
-#define CAPPLICATION_H_
+#ifndef CDUMMYAUDIOFACTORY_H_
+#define CDUMMYAUDIOFACTORY_H_
 
-#include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
-// Forward declarations
-class CInputManager;
+#include "CDummyAudioFile.h"
+#include "../IAudioFactory.h"
 
-class CApplication
+
+class CDummyAudioFactory : public IAudioFactory
 {
+friend class CAudioAbstractFactory;
 public:
-    ~CApplication();
-    static CApplication* getInstance();
-
-    void go();
-    Ogre::RenderSystemList* getRenderSystemList();
-    void addFrameListener(Ogre::FrameListener* frameListener);
-    void removeFrameListener(Ogre::FrameListener* frameListener);
-    void takeScreenshot();
-
-protected:
-  CApplication();
+	virtual ~CDummyAudioFactory();
+    virtual IAudioFile* createSampleAudioFile(std::string filepath);
+    virtual IAudioFile* createMusicAudioFile(std::string filepath);
 
 private:
-
-    Ogre::Root 					*m_root;
-    Ogre::RenderWindow          *m_window;
-    CEGUI::OgreCEGUIRenderer 	*m_renderer;
-    CEGUI::System 				*m_system;
-    CInputManager               *m_inputManager;
-
-    void setupAudioSystem();
-    void createRoot();
-    void defineResources();
-    void setupRenderSystem();
-    void createRenderWindow();
-    void initializeResourceGroups();
-    void setupScene();
-    void setupInputSystem();
-    void setupCEGUI();
-    void createFrameListeners();
-    void startRenderLoop();
-
-    bool keyDownEvent(const CEGUI::EventArgs &e);
-    bool mouseOverAudioEvent(const CEGUI::EventArgs &e);
-    bool clickAudioEvent(const CEGUI::EventArgs &e);
+    CDummyAudioFactory();
+    IAudioFile* createDummyAudioFile();
 
 };
 
-
-#endif // CAPPLICATION_H_
+#endif /*CDUMMYAUDIOFACTORY_H_*/

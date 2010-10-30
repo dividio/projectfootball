@@ -21,7 +21,7 @@
 #include "CSDLAudioFactory.h"
 #include "CMusicSDLAudioFile.h"
 #include "CSampleSDLAudioFile.h"
-#include "../CDummyAudioFile.h"
+#include "../dummy/CDummyAudioFile.h"
 #include "../../utils/CLog.h"
 
 CSDLAudioFactory::CSDLAudioFactory()
@@ -64,6 +64,7 @@ CSDLAudioFactory::CSDLAudioFactory()
 
 CSDLAudioFactory::~CSDLAudioFactory()
 {
+	LOG_DEBUG("~CSDLAudioFactory()");
     Mix_HaltChannel(-1);
     Mix_HaltMusic();
 
@@ -76,13 +77,6 @@ CSDLAudioFactory::~CSDLAudioFactory()
     }
     m_audioFileList.clear();
 }
-
-CSDLAudioFactory* CSDLAudioFactory::getInstance()
-{
-    static CSDLAudioFactory instance;
-    return &instance;
-}
-
 
 IAudioFile * CSDLAudioFactory::createMusicAudioFile(std::string filepath )
 {

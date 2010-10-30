@@ -22,21 +22,38 @@
 #include "CAudioAbstractFactory.h"
 
 
-IAudioFile* CAudioSystem::CLICK      = CAudioAbstractFactory::getIAudioFactory()->createSampleAudioFile("data/audio/click.ogg");
-IAudioFile* CAudioSystem::MOUSE_OVER = CAudioAbstractFactory::getIAudioFactory()->createSampleAudioFile("data/audio/mouseover.ogg");
-IAudioFile* CAudioSystem::LOW_KICK   = CAudioAbstractFactory::getIAudioFactory()->createSampleAudioFile("data/audio/low_kick.ogg");
-
 CAudioSystem::CAudioSystem()
 {
+	m_audioAbstractFactory = new CAudioAbstractFactory();
 }
 
 CAudioSystem::~CAudioSystem()
 {
-
+	delete m_audioAbstractFactory;
 }
 
 CAudioSystem* CAudioSystem::getInstance()
 {
     static CAudioSystem instance;
     return &instance;
+}
+
+IAudioFile* CAudioSystem::click()
+{
+	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile("data/audio/click.ogg");
+}
+
+IAudioFile* CAudioSystem::mouseOver()
+{
+	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile("data/audio/mouseover.ogg");
+}
+
+IAudioFile* CAudioSystem::lowKick()
+{
+	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile("data/audio/low_kick.ogg");
+}
+
+void CAudioSystem::setAudioSystem(AudioSystemType audioSystemType)
+{
+	m_audioAbstractFactory->setAudioSystem(audioSystemType);
 }

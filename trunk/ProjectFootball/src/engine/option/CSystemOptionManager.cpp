@@ -228,6 +228,8 @@ void CSystemOptionManager::setDefaultValues()
     setVideoVSync(true);
     setVideoRTTPreferredMode("Copy");
 
+    setSoundEnabled(true);
+
     setSimulationMatchDuration(2000);
     setSimulationLogicFrequency(30);
     setSimulationPhysicsFrequency(60);
@@ -380,6 +382,16 @@ const char * CSystemOptionManager::getVideoRTTPreferredMode()
 void CSystemOptionManager::setVideoRTTPreferredMode(const char* rttPreferredMode)
 {
     setStringOption("Video", "RTTPreferredMode", rttPreferredMode);
+}
+
+// Sound options
+bool CSystemOptionManager::getSoundEnabled()
+{
+    return getBooleanOption("Sound", "SoundEnabled");
+}
+void CSystemOptionManager::setSoundEnabled(bool soundEnabled)
+{
+    setBooleanOption("Sound", "SoundEnabled", soundEnabled);
 }
 
 // Simulation options

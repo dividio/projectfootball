@@ -22,18 +22,20 @@
 #define CAUDIOABSTRACTFACTORY_H_
 
 #include "IAudioFactory.h"
+#include "AudioSystemTypes.h"
 
 class CAudioAbstractFactory
 {
+friend class CAudioSystem;
 public:
     virtual ~CAudioAbstractFactory();
-    static IAudioFactory* getIAudioFactory();
-
-protected:
-    CAudioAbstractFactory();
+    IAudioFactory* getIAudioFactory();
+    void setAudioSystem(AudioSystemType audioSystemType);
 
 private:
-    static IAudioFactory* m_instance;
+    CAudioAbstractFactory();
 
+    IAudioFactory* m_audioFactory;
+    AudioSystemType type;
 };
 #endif // CAUDIOABSTRACTFACTORY_H_

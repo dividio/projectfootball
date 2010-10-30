@@ -332,7 +332,7 @@ void CSimulationManager::kick(CFootballPlayer *player, btVector3 power)
         truncateVector(&velocity, m_maxBallVelocity);
         ballBody->setLinearVelocity(velocity);
         CMessageDispatcher::getInstance()->dispatchMsg(0, player->getID(), m_referee->getID(), Msg_TouchBall, 0);
-        CAudioSystem::LOW_KICK->play();
+        CAudioSystem::getInstance()->lowKick()->play();
     }
 }
 
