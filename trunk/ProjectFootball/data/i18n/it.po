@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-05 10:57+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
+"Last-Translator: Gianni <imjin15@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -13,100 +13,102 @@ msgstr ""
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:59
 msgid " MAKING FOOTBALL FANS TO ENJOY "
-msgstr ""
+msgstr "FAI DIVERTIRE I FANS DEL CALCIO"
 
 #: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:112
 msgid ", Phase:"
-msgstr ""
+msgstr ", Fase:"
 
 #: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:110
 msgid ", Season:"
-msgstr ""
+msgstr ", Stagione:"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:57
 msgid ""
 "... all the users who participated on website and game forums and,\n"
 "    of course, to all the users who tested the game"
 msgstr ""
+"... tutti gli utenti che partecipano al sito e al forum del gioco e,\n"
+"     certamente, a tutti gli utenti che hanno testato il gioco"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:60
 msgid "1 minute"
-msgstr ""
+msgstr "1 minuto"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:61
 msgid "2 minutes"
-msgstr ""
+msgstr "2 minuti"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:194
 msgid "2D View"
-msgstr ""
+msgstr "Modalità 2D"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:51
 msgid "3D Modeling:"
-msgstr ""
+msgstr "Modelli 3D:"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:195
 msgid "3D View"
-msgstr ""
+msgstr "Modalità 3D:"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:62
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minuti:"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:334
 msgid "ATTENTION: Game can not be saved"
-msgstr ""
+msgstr "ATTENZIONE: Il gioco non si può salvare"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:118
 #: src/engine/wh/CConfigWindowHandler.cpp:141
 msgid "ATTENTION: Options can not be saved"
-msgstr ""
+msgstr "ATTENZIONE: Le opzioni non si possono salvare"
 
 #: data/i18n/temp.cpp:477
 msgid "Abu Dhabi"
-msgstr ""
+msgstr "Abu Dhabi"
 
 #: data/i18n/temp.cpp:518
 msgid "Abuja"
-msgstr ""
+msgstr "Abuja"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
 #: src/engine/wm/CWindowManager.cpp:67
 #: src/engine/wm/CWindowManager.cpp:68
 msgid "Accept"
-msgstr ""
+msgstr "Accetta"
 
 #: data/i18n/temp.cpp:502
 msgid "Accra"
-msgstr ""
+msgstr "Accra"
 
 #: data/i18n/temp.cpp:499
 msgid "Addis Ababa"
-msgstr ""
+msgstr "Addis Ababa"
 
 #: data/i18n/temp.cpp:218
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afghanistan"
 
 #: data/i18n/temp.cpp:651
 msgid "Africa"
-msgstr ""
+msgstr "Africa"
 
 #: data/i18n/temp.cpp:443
 msgid "Agana"
-msgstr ""
+msgstr "Agana"
 
 #: data/i18n/temp.cpp:379
 msgid "Albania"
-msgstr ""
+msgstr "Albania"
 
 #: data/i18n/temp.cpp:266
 msgid "Algeria"
-msgstr ""
+msgstr "Algeria"
 
 #: data/i18n/temp.cpp:482
 msgid "Algiers"
-msgstr ""
+msgstr "Algeria"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:58
 msgid ""
@@ -115,139 +117,143 @@ msgid ""
 "    forward to you enjoying our work, because\n"
 " from the beginning we have always chased a goal :"
 msgstr ""
+"Tutte le persone che hanno speso il loro tempo e sforzi\n"
+"con questo umile football manager, stiamo aspettando\n"
+" che voi gradiate il nostro lavoro, perché\n"
+"dall'inizio abbiamo sempre seguito un obiettivo:"
 
 #: data/i18n/temp.cpp:152
 #: data/i18n/temp.cpp:368
 msgid "American Samoa"
-msgstr ""
+msgstr "American Samoa"
 
 #: data/i18n/temp.cpp:450
 msgid "Amman"
-msgstr ""
+msgstr "Amman"
 
 #: data/i18n/temp.cpp:631
 msgid "Amsterdam"
-msgstr ""
+msgstr "Amsterdam"
 
 #: data/i18n/temp.cpp:380
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: data/i18n/temp.cpp:596
 msgid "Andorra la Vella"
-msgstr ""
+msgstr "Andorra la Vella"
 
 #: data/i18n/temp.cpp:267
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: data/i18n/temp.cpp:103
 #: data/i18n/temp.cpp:319
 msgid "Anguilla"
-msgstr ""
+msgstr "Anguilla"
 
 #: data/i18n/temp.cpp:646
 msgid "Ankara"
-msgstr ""
+msgstr "Ankara"
 
 #: data/i18n/temp.cpp:509
 msgid "Antananarivo"
-msgstr ""
+msgstr "Antananarivo"
 
 #: data/i18n/temp.cpp:104
 #: data/i18n/temp.cpp:320
 msgid "Antigua and Barbuda "
-msgstr ""
+msgstr "Antigua e Barbuda "
 
 #: data/i18n/temp.cpp:591
 msgid "Apia"
-msgstr ""
+msgstr "Apia"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:48
 msgid "Application Design :"
-msgstr ""
+msgstr "Design Applicazione:"
 
 #: data/i18n/temp.cpp:64
 msgid "Arab Republic of Egypt"
-msgstr ""
+msgstr "Repubblica d'Egitto Araba"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:277
 msgid "Are you sure you want to exit this game and return to GNU/Linux?"
-msgstr ""
+msgstr "Sei sicuto di voler uscire da questo gioco e tornare a Linux?"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:275
 msgid "Are you sure you want to exit this game and return to MS Windows?"
-msgstr ""
+msgstr "Sei sicuto di voler uscire da questo gioco e tornare a Windows?"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:279
 msgid "Are you sure you want to exit this game and return to Mac OS?"
-msgstr ""
+msgstr "Sei sicuto di voler uscire da questo gioco e tornare a Mac OS?"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:281
 msgid "Are you sure you want to exit this game and return to the Operating System?"
-msgstr ""
+msgstr "Sei sicuto di voler uscire da questo gioco e tornare al Sistema Operativo?"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:294
 msgid "Are you sure you want to exit this game?"
-msgstr ""
+msgstr "Sei sicuro che vuoi uscire dal gioco?"
 
 #: src/engine/wh/CLoadGameWindowHandler.cpp:156
 msgid "Are you sure you want to remove this game?"
-msgstr ""
+msgstr "Sei sicuro di voler rimuovere questo gioco?"
 
 #: data/i18n/temp.cpp:358
 msgid "Argentina"
-msgstr ""
+msgstr "Argentina"
 
 #: data/i18n/temp.cpp:142
 msgid "Argentine Republic"
-msgstr ""
+msgstr "Repubblica Argentina"
 
 #: data/i18n/temp.cpp:219
 #: data/i18n/temp.cpp:381
 msgid "Armenia"
-msgstr ""
+msgstr "Armenia"
 
 #: data/i18n/temp.cpp:105
 #: data/i18n/temp.cpp:321
 msgid "Aruba "
-msgstr ""
+msgstr "Aruba "
 
 #: data/i18n/temp.cpp:476
 msgid "Ashgabat"
-msgstr ""
+msgstr "Ashgabat"
 
 #: data/i18n/temp.cpp:650
 msgid "Asian"
-msgstr ""
+msgstr "Asia"
 
 #: data/i18n/temp.cpp:498
 msgid "Asmara"
-msgstr ""
+msgstr "Asmara"
 
 #: data/i18n/temp.cpp:621
 msgid "Astana"
-msgstr ""
+msgstr "Astana"
 
 #: data/i18n/temp.cpp:580
 msgid "Asunción"
-msgstr ""
+msgstr "Asunción"
 
 #: data/i18n/temp.cpp:615
 msgid "Athens"
-msgstr ""
+msgstr "Atene"
 
 #: data/i18n/temp.cpp:265
 msgid "Australia"
-msgstr ""
+msgstr "Australia"
 
 #: data/i18n/temp.cpp:382
 msgid "Austria"
-msgstr ""
+msgstr "Austria"
 
 #: data/i18n/temp.cpp:585
 msgid "Avarua"
-msgstr ""
+msgstr "Avarua"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:69
 #: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:94
@@ -257,7 +263,7 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:111
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:89
 msgid "Average"
-msgstr ""
+msgstr "Media"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:81
 #: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:120
@@ -265,16 +271,16 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:123
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:108
 msgid "Average:"
-msgstr ""
+msgstr "Media:"
 
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:112
 msgid "Away Team"
-msgstr ""
+msgstr "Away Team"
 
 #: data/i18n/temp.cpp:220
 #: data/i18n/temp.cpp:383
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbaijan"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:101
 #: src/engine/wh/CConfigWindowHandler.cpp:95
@@ -283,250 +289,250 @@ msgstr ""
 #: src/engine/wh/CLoadGameWindowHandler.cpp:75
 #: src/engine/wh/CNewVirtualGameWindowHandler.cpp:47
 msgid "Back"
-msgstr ""
+msgstr "Indietro"
 
 #: data/i18n/temp.cpp:448
 msgid "Baghdad"
-msgstr ""
+msgstr "Baghdad"
 
 #: data/i18n/temp.cpp:322
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamas"
 
 #: data/i18n/temp.cpp:221
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahrain"
 
 #: data/i18n/temp.cpp:436
 #: data/i18n/temp.cpp:599
 msgid "Baku"
-msgstr ""
+msgstr "Baku"
 
 #: data/i18n/temp.cpp:511
 msgid "Bamako"
-msgstr ""
+msgstr "Bamako"
 
 #: data/i18n/temp.cpp:440
 msgid "Bandar Seri Begawan"
-msgstr ""
+msgstr "Bandar Seri Begawan"
 
 #: data/i18n/temp.cpp:474
 msgid "Bangkok"
-msgstr ""
+msgstr "Bangkok"
 
 #: data/i18n/temp.cpp:222
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladesh"
 
 #: data/i18n/temp.cpp:490
 msgid "Bangui"
-msgstr ""
+msgstr "Bangui"
 
 #: data/i18n/temp.cpp:501
 msgid "Banjul"
-msgstr ""
+msgstr "Banjul"
 
 #: data/i18n/temp.cpp:107
 #: data/i18n/temp.cpp:323
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:55
 msgid "Based on:"
-msgstr ""
+msgstr "Basato su:"
 
 #: data/i18n/temp.cpp:551
 msgid "Basse-Terre"
-msgstr ""
+msgstr "Basse-Terre"
 
 #: data/i18n/temp.cpp:563
 msgid "Basseterre"
-msgstr ""
+msgstr "Basseterre"
 
 #: data/i18n/temp.cpp:641
 msgid "Batrislava"
-msgstr ""
+msgstr "Batrislava"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:221
 msgid "Before Start"
-msgstr ""
+msgstr "Prima d'iniziare"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:118
 msgid "Begin Date:"
-msgstr ""
+msgstr "Data Inizio:"
 
 #: data/i18n/temp.cpp:442
 msgid "Beijing"
-msgstr ""
+msgstr "Beijing"
 
 #: data/i18n/temp.cpp:456
 msgid "Beirut"
-msgstr ""
+msgstr "Beirut"
 
 #: data/i18n/temp.cpp:384
 msgid "Belarus"
-msgstr ""
+msgstr "Belarus"
 
 #: data/i18n/temp.cpp:632
 msgid "Belfast"
-msgstr ""
+msgstr "Belfast"
 
 #: data/i18n/temp.cpp:385
 msgid "Belgium"
-msgstr ""
+msgstr "Belgio"
 
 #: data/i18n/temp.cpp:640
 msgid "Belgrade"
-msgstr ""
+msgstr "Belgrado"
 
 #: data/i18n/temp.cpp:108
 #: data/i18n/temp.cpp:324
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: data/i18n/temp.cpp:540
 msgid "Belmopan"
-msgstr ""
+msgstr "Belmopan"
 
 #: data/i18n/temp.cpp:268
 msgid "Benin"
-msgstr ""
+msgstr "Benin"
 
 #: data/i18n/temp.cpp:614
 msgid "Berlin"
-msgstr ""
+msgstr "Berlino"
 
 #: data/i18n/temp.cpp:325
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: data/i18n/temp.cpp:109
 msgid "Bermuda Islands "
-msgstr ""
+msgstr "Isole Bermuda"
 
 #: data/i18n/temp.cpp:645
 msgid "Berne"
-msgstr ""
+msgstr "Berna"
 
 #: data/i18n/temp.cpp:223
 msgid "Bhutan"
-msgstr ""
+msgstr "Bhutan"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:111
 msgid "Birthday:"
-msgstr ""
+msgstr "Compleanno:"
 
 #: data/i18n/temp.cpp:454
 msgid "Bishkek"
-msgstr ""
+msgstr "Bishkek"
 
 #: data/i18n/temp.cpp:504
 msgid "Bissau"
-msgstr ""
+msgstr "Bissau"
 
 #: data/i18n/temp.cpp:578
 msgid "Bogot "
-msgstr ""
+msgstr "Bogot "
 
 #: data/i18n/temp.cpp:151
 msgid "Bolivarian Republic of Venezuela"
-msgstr ""
+msgstr "Repubblica Boliviana del Venezuela"
 
 #: data/i18n/temp.cpp:359
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivia"
 
 #: data/i18n/temp.cpp:170
 #: data/i18n/temp.cpp:386
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosnia e Erzegovina"
 
 #: data/i18n/temp.cpp:269
 msgid "Botswana"
-msgstr ""
+msgstr "Bogot "
 
 #: data/i18n/temp.cpp:576
 msgid "Brasilia"
-msgstr ""
+msgstr "Brasilia"
 
 #: data/i18n/temp.cpp:360
 msgid "Brazil"
-msgstr ""
+msgstr "Brasile"
 
 #: data/i18n/temp.cpp:519
 msgid "Brazzaville"
-msgstr ""
+msgstr "Brazzaville"
 
 #: data/i18n/temp.cpp:539
 msgid "Bridgetown"
-msgstr ""
+msgstr "Bridgetown"
 
 #: data/i18n/temp.cpp:110
 #: data/i18n/temp.cpp:326
 msgid "British Virgin Islands"
-msgstr ""
+msgstr "Isole Vergini Britanniche"
 
 #: data/i18n/temp.cpp:224
 msgid "Brunei"
-msgstr ""
+msgstr "Brunei"
 
 #: data/i18n/temp.cpp:601
 msgid "Brussels"
-msgstr ""
+msgstr "Bruxelles"
 
 #: data/i18n/temp.cpp:636
 msgid "Bucharest"
-msgstr ""
+msgstr "Bucharest"
 
 #: data/i18n/temp.cpp:616
 msgid "Budapest"
-msgstr ""
+msgstr "Budapest"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:107
 msgid "Budget:"
-msgstr ""
+msgstr "Budget:"
 
 #: data/i18n/temp.cpp:574
 msgid "Buenos Aires"
-msgstr ""
+msgstr "Buenos Aires"
 
 #: data/i18n/temp.cpp:487
 msgid "Bujumbura"
-msgstr ""
+msgstr "Bujumbura"
 
 #: data/i18n/temp.cpp:387
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 #: data/i18n/temp.cpp:54
 #: data/i18n/temp.cpp:270
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: data/i18n/temp.cpp:271
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: data/i18n/temp.cpp:496
 msgid "Cairo"
-msgstr ""
+msgstr "Cairo"
 
 #: data/i18n/temp.cpp:225
 msgid "Cambodia"
-msgstr ""
+msgstr "Cambogia"
 
 #: data/i18n/temp.cpp:272
 msgid "Cameroon"
-msgstr ""
+msgstr "Cameroon"
 
 #: data/i18n/temp.cpp:111
 #: data/i18n/temp.cpp:327
 msgid "Canada"
-msgstr ""
+msgstr "Canada"
 
 #: data/i18n/temp.cpp:481
 msgid "Canberra"
-msgstr ""
+msgstr "Canberra"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wm/CWindowManager.cpp:69
@@ -535,117 +541,117 @@ msgstr "Annulla:"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:106
 msgid "Capacity:"
-msgstr ""
+msgstr "Capacità"
 
 #: data/i18n/temp.cpp:273
 msgid "Cape Verde"
-msgstr ""
+msgstr "Capo Verde"
 
 #: data/i18n/temp.cpp:583
 msgid "Caracas"
-msgstr ""
+msgstr "Caracas"
 
 #: data/i18n/temp.cpp:649
 msgid "Cardiff"
-msgstr ""
+msgstr "Cardiff"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:217
 msgid "Career"
-msgstr ""
+msgstr "Carriera "
 
 #: data/i18n/temp.cpp:564
 msgid "Castries"
-msgstr ""
+msgstr "Castries"
 
 #: data/i18n/temp.cpp:571
 msgid "Cayenne(Paris) "
-msgstr ""
+msgstr "Cayenne(Parigi) "
 
 #: data/i18n/temp.cpp:112
 #: data/i18n/temp.cpp:328
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Isole Cayman"
 
 #: data/i18n/temp.cpp:58
 #: data/i18n/temp.cpp:274
 msgid "Central African Republic"
-msgstr ""
+msgstr "Repubblica CentrAfricana"
 
 #: data/i18n/temp.cpp:275
 msgid "Chad"
-msgstr ""
+msgstr "Chad"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:139
 msgid "Changes will take effect after restart"
-msgstr ""
+msgstr "I cambiamenti saranno resi effettivi dopo il riavvio"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:115
 msgid "Changing Room"
-msgstr ""
+msgstr "Spogliatoio"
 
 #: data/i18n/temp.cpp:570
 msgid "Charlotte Amalie"
-msgstr ""
+msgstr "Charlotte Amalie"
 
 #: data/i18n/temp.cpp:361
 msgid "Chile"
-msgstr ""
+msgstr "Cile"
 
 #: data/i18n/temp.cpp:226
 msgid "China"
-msgstr ""
+msgstr "Cina"
 
 #: data/i18n/temp.cpp:628
 msgid "Chişinău"
-msgstr ""
+msgstr "Chişinău"
 
 #: data/i18n/temp.cpp:638
 msgid "City of San Marino"
-msgstr ""
+msgstr "Città di San Marino"
 
 #: data/i18n/temp.cpp:140
 msgid "Co-operative Republic of Guyana"
-msgstr ""
+msgstr "Repubblica di Guyana cooperativa"
 
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:62
 msgid "Coach name:"
-msgstr ""
+msgstr "Nome allenatore:"
 
 #: data/i18n/temp.cpp:568
 msgid "Cockburn Town"
-msgstr ""
+msgstr "Cockburn Town"
 
 #: data/i18n/temp.cpp:133
 msgid "Collectivity of Saint Martin "
-msgstr ""
+msgstr "Colletività di San Martino"
 
 #: data/i18n/temp.cpp:362
 msgid "Colombia"
-msgstr ""
+msgstr "Colombia"
 
 #: data/i18n/temp.cpp:470
 msgid "Colombo"
-msgstr ""
+msgstr "Colombo"
 
 #: data/i18n/temp.cpp:49
 msgid "Commonwealth of Australia"
-msgstr ""
+msgstr "Commonwealth d'Australia"
 
 #: data/i18n/temp.cpp:115
 msgid "Commonwealth of Dominica"
-msgstr ""
+msgstr "Commonwealth di Dominica"
 
 #: data/i18n/temp.cpp:130
 msgid "Commonwealth of Puerto Rico"
-msgstr ""
+msgstr "Commonwealth di Puerto Rico"
 
 #: data/i18n/temp.cpp:106
 msgid "Commonwealth of The Bahamas"
-msgstr ""
+msgstr "Commonwealth delle Bahamas"
 
 #: data/i18n/temp.cpp:276
 msgid "Comoros"
-msgstr ""
+msgstr "Comoros"
 
 #: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:63
 msgid "Competition"
@@ -658,7 +664,7 @@ msgstr "Competizione:"
 
 #: data/i18n/temp.cpp:503
 msgid "Conakry"
-msgstr ""
+msgstr "Conakry"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:109
 msgid "Confederation:"
@@ -676,28 +682,28 @@ msgstr "Continuare"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:116
 msgid "Contract Details:"
-msgstr ""
+msgstr "Dettagli Contratto:"
 
 #: data/i18n/temp.cpp:153
 #: data/i18n/temp.cpp:369
 msgid "Cook Islands"
-msgstr ""
+msgstr "Isole Cook"
 
 #: data/i18n/temp.cpp:607
 msgid "Copenhagen"
-msgstr ""
+msgstr "Copenhagen"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:239
 msgid "Corner Kick"
-msgstr ""
+msgstr "Calcio d'angolo"
 
 #: data/i18n/temp.cpp:329
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 #: data/i18n/temp.cpp:277
 msgid "Cote d'Ivoire"
-msgstr ""
+msgstr "Costa d'Avorio"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:66
 msgid "Country"
@@ -710,136 +716,136 @@ msgstr "Paese:"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:108
 msgid "Credits"
-msgstr ""
+msgstr "Riconoscimenti"
 
 #: data/i18n/temp.cpp:388
 msgid "Croatia"
-msgstr ""
+msgstr "Croatia"
 
 #: data/i18n/temp.cpp:330
 msgid "Cuba"
-msgstr ""
+msgstr "Cuba"
 
 #: data/i18n/temp.cpp:389
 msgid "Cyprus"
-msgstr ""
+msgstr "Cipro"
 
 #: data/i18n/temp.cpp:174
 #: data/i18n/temp.cpp:390
 msgid "Czech Republic"
-msgstr ""
+msgstr "Repubblica Ceca"
 
 #: data/i18n/temp.cpp:522
 msgid "Dakar"
-msgstr ""
+msgstr "Dakar"
 
 #: data/i18n/temp.cpp:471
 msgid "Damascus"
-msgstr ""
+msgstr "Damasco"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:52
 msgid "Database Information :"
-msgstr ""
+msgstr "Informazioni Database:"
 
 #: src/engine/wh/CLoadGameWindowHandler.cpp:71
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: src/engine/wh/CLoadGameWindowHandler.cpp:73
 msgid "Delete Game"
-msgstr ""
+msgstr "Elimina Gioco"
 
 #: data/i18n/temp.cpp:19
 msgid "Democratic People's Republic of Korea"
-msgstr ""
+msgstr "Persone democratiche della repubblica della Korea"
 
 #: data/i18n/temp.cpp:89
 #: data/i18n/temp.cpp:305
 msgid "Democratic Republic of Sao Tomé and Príncipe"
-msgstr ""
+msgstr "Persone democratiche di Sao Tomé e Principe"
 
 #: data/i18n/temp.cpp:43
 msgid "Democratic Republic of Timor-Leste"
-msgstr ""
+msgstr "Repubblica Democratica di Timor-Leste"
 
 #: data/i18n/temp.cpp:62
 #: data/i18n/temp.cpp:278
 msgid "Democratic Republic of the Congo"
-msgstr ""
+msgstr "Repubblica Democratica del Congo"
 
 #: data/i18n/temp.cpp:38
 msgid "Democratic Socialist Republic of Sri Lanka"
-msgstr ""
+msgstr "Repubblica social-democratica dello Sri Lanka"
 
 #: data/i18n/temp.cpp:391
 msgid "Denmark "
-msgstr ""
+msgstr "Danimarca"
 
 #: data/i18n/temp.cpp:438
 msgid "Dhaka"
-msgstr ""
+msgstr "Dhaka"
 
 #: data/i18n/temp.cpp:475
 msgid "Dili"
-msgstr ""
+msgstr "Dili"
 
 #: data/i18n/temp.cpp:279
 #: data/i18n/temp.cpp:495
 msgid "Djibouti"
-msgstr ""
+msgstr "Djibouti"
 
 #: data/i18n/temp.cpp:529
 msgid "Dodoma"
-msgstr ""
+msgstr "Dodoma"
 
 #: data/i18n/temp.cpp:467
 msgid "Doha"
-msgstr ""
+msgstr "Doha"
 
 #: data/i18n/temp.cpp:331
 msgid "Dominica"
-msgstr ""
+msgstr "Dominica"
 
 #: data/i18n/temp.cpp:116
 #: data/i18n/temp.cpp:332
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Repubblica Domenicana"
 
 #: data/i18n/temp.cpp:618
 msgid "Dublin"
-msgstr ""
+msgstr "Dublino"
 
 #: data/i18n/temp.cpp:473
 msgid "Dushanbe "
-msgstr ""
+msgstr "Dushanbe "
 
 #: data/i18n/temp.cpp:363
 msgid "Ecuador"
-msgstr ""
+msgstr "Equador"
 
 #: data/i18n/temp.cpp:639
 msgid "Edinburgh"
-msgstr ""
+msgstr "Edinburgh"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:105
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: data/i18n/temp.cpp:280
 msgid "Egypt"
-msgstr ""
+msgstr "Egitto"
 
 #: data/i18n/temp.cpp:333
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:230
 msgid "End"
-msgstr ""
+msgstr "Fine"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:119
 msgid "End Date:"
-msgstr ""
+msgstr "Data Fine:"
 
 #: data/i18n/temp.cpp:176
 #: data/i18n/temp.cpp:392
@@ -848,813 +854,813 @@ msgstr "Inghilterra"
 
 #: data/i18n/temp.cpp:281
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Guinea Equatoriale"
 
 #: data/i18n/temp.cpp:282
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 #: data/i18n/temp.cpp:393
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 #: data/i18n/temp.cpp:283
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiopia"
 
 #: data/i18n/temp.cpp:655
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:88
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:90
 msgid "Event"
-msgstr ""
+msgstr "Evento"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:101
 msgid "Exit to GNU/Linux"
-msgstr ""
+msgstr "Torna a Linux"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:99
 msgid "Exit to MS Windows"
-msgstr ""
+msgstr "Torna a Windows"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:103
 msgid "Exit to Mac OS"
-msgstr ""
+msgstr "Torna Mac OS"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:105
 msgid "Exit to OS"
-msgstr ""
+msgstr "Torni al tuo OS"
 
 #: data/i18n/temp.cpp:178
 #: data/i18n/temp.cpp:394
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Isola Faroe"
 
 #: data/i18n/temp.cpp:67
 msgid "Federal Democratic Republic of Ethiopia"
-msgstr ""
+msgstr "Repubblica Federale Democratica dell'Etopia"
 
 #: data/i18n/temp.cpp:30
 msgid "Federal Democratic Republic of Nepal"
-msgstr ""
+msgstr "Repubblica Federale Democratica del Nepal"
 
 #: data/i18n/temp.cpp:182
 msgid "Federal Republic of Germany"
-msgstr ""
+msgstr "Repubblica Federale della Germania"
 
 #: data/i18n/temp.cpp:86
 msgid "Federal Republic of Nigeria"
-msgstr ""
+msgstr "Repubblica Federale della Nigeria"
 
 #: data/i18n/temp.cpp:131
 msgid "Federation of Saint Christopher and Nevis"
-msgstr ""
+msgstr "Federazione di San Cristiano e Nevis"
 
 #: data/i18n/temp.cpp:144
 msgid "Federative Republic of Brazil"
-msgstr ""
+msgstr "Repubblica Federale del Brasile"
 
 #: data/i18n/temp.cpp:370
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: data/i18n/temp.cpp:395
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:106
 msgid "Football Library"
-msgstr ""
+msgstr "Libreria Del Calcio"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:198
 msgid "Formation"
-msgstr ""
+msgstr "Formazione"
 
 #: data/i18n/temp.cpp:556
 msgid "Fort-de-France"
-msgstr ""
+msgstr "Fort-de-France"
 
 #: data/i18n/temp.cpp:396
 msgid "France"
-msgstr ""
+msgstr "Francia"
 
 #: data/i18n/temp.cpp:524
 msgid "Freetown"
-msgstr ""
+msgstr "Freetown"
 
 #: data/i18n/temp.cpp:355
 msgid "French Guyane"
-msgstr ""
+msgstr "Guyana Francese"
 
 #: data/i18n/temp.cpp:160
 #: data/i18n/temp.cpp:376
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polinesia Francese"
 
 #: data/i18n/temp.cpp:180
 msgid "French Republic"
-msgstr ""
+msgstr "Repubblica Francese"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:93
 msgid "Fullscreen"
-msgstr ""
+msgstr "Schermo Intero"
 
 #: data/i18n/temp.cpp:284
 msgid "Gabon"
-msgstr ""
+msgstr "Gabon"
 
 #: data/i18n/temp.cpp:68
 msgid "Gabonese Republic"
-msgstr ""
+msgstr "Repubblica Gabonese"
 
 #: data/i18n/temp.cpp:485
 msgid "Gaborone"
-msgstr ""
+msgstr "Gaborone"
 
 #: data/i18n/temp.cpp:285
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:88
 msgid "Game Options"
-msgstr ""
+msgstr "Opzioni Gioco:"
 
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:61
 msgid "Game name:"
-msgstr ""
+msgstr "Nome gioco:"
 
 #: data/i18n/temp.cpp:544
 msgid "George Town"
-msgstr ""
+msgstr "George Town"
 
 #: data/i18n/temp.cpp:572
 msgid "Georgetown"
-msgstr ""
+msgstr "Georgetown"
 
 #: data/i18n/temp.cpp:181
 #: data/i18n/temp.cpp:397
 msgid "Georgia"
-msgstr ""
+msgstr "Georgia"
 
 #: data/i18n/temp.cpp:398
 msgid "Germany"
-msgstr ""
+msgstr "Germania"
 
 #: data/i18n/temp.cpp:286
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:242
 msgid "Goal Kick"
-msgstr ""
+msgstr "Tiro Goal"
 
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:164
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:181
 msgid "Goal by "
-msgstr ""
+msgstr "Goal fatto"
 
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:111
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:113
 #: src/singlePlayer/wh/CScorersWindowHandler.cpp:107
 #: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:138
 msgid "Goals"
-msgstr ""
+msgstr "Goals"
 
 #: data/i18n/temp.cpp:193
 msgid "Grand Duchy of Luxembourg"
-msgstr ""
+msgstr "GranDucato di Lussemburgo"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:50
 msgid "Graphic Design:"
-msgstr ""
+msgstr "Design Grafica:"
 
 #: data/i18n/temp.cpp:76
 msgid "Great Socialist People's Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Grandi Persone Socialiste di Jamahiriya "
 
 #: data/i18n/temp.cpp:399
 msgid "Greece"
-msgstr ""
+msgstr "Grecia"
 
 #: data/i18n/temp.cpp:118
 #: data/i18n/temp.cpp:334
 msgid "Grenada"
-msgstr ""
+msgstr "Granada"
 
 #: data/i18n/temp.cpp:335
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadeloupa"
 
 #: data/i18n/temp.cpp:227
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: data/i18n/temp.cpp:336
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: data/i18n/temp.cpp:552
 msgid "Guatemala City"
-msgstr ""
+msgstr "Guatemala"
 
 #: data/i18n/temp.cpp:287
 msgid "Guinea"
-msgstr ""
+msgstr "Guinea"
 
 #: data/i18n/temp.cpp:288
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guinea-Bissau"
 
 #: data/i18n/temp.cpp:356
 msgid "Guyana"
-msgstr ""
+msgstr "Guyana"
 
 #: data/i18n/temp.cpp:337
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:224
 msgid "Half Time"
-msgstr ""
+msgstr "Primo Tempo"
 
 #: data/i18n/temp.cpp:541
 msgid "Hamilton"
-msgstr ""
+msgstr "Hamilton"
 
 #: data/i18n/temp.cpp:479
 msgid "Hanoi"
-msgstr ""
+msgstr "Hanoi"
 
 #: data/i18n/temp.cpp:534
 msgid "Harare"
-msgstr ""
+msgstr "Harare"
 
 #: data/i18n/temp.cpp:546
 msgid "Havana"
-msgstr ""
+msgstr "Havana"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:114
 msgid "Height:"
-msgstr ""
+msgstr "Altezza:"
 
 #: data/i18n/temp.cpp:183
 msgid "Hellenic Republic "
-msgstr ""
+msgstr "Repubblica Ellenica"
 
 #: data/i18n/temp.cpp:611
 msgid "Helsinki"
-msgstr ""
+msgstr "Helsinki"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:111
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:114
 msgid "Home"
-msgstr ""
+msgstr "Casa"
 
 #: src/singlePlayer/wh/CResultsWindowHandler.cpp:110
 msgid "Home Team"
-msgstr ""
+msgstr "Squadra di Casa"
 
 #: data/i18n/temp.cpp:338
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: data/i18n/temp.cpp:228
 #: data/i18n/temp.cpp:444
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #: data/i18n/temp.cpp:12
 msgid "Hong Kong Special Administrative Region"
-msgstr ""
+msgstr "Speciale Regione Amministrativa di Hong Kong"
 
 #: data/i18n/temp.cpp:590
 msgid "Honiara"
-msgstr ""
+msgstr "Honiara"
 
 #: data/i18n/temp.cpp:400
 msgid "Hungary"
-msgstr ""
+msgstr "Ungaria"
 
 #: data/i18n/temp.cpp:401
 msgid "Iceland"
-msgstr ""
+msgstr "Islanda"
 
 #: data/i18n/temp.cpp:157
 msgid "Independent State of Papua New Guinea"
-msgstr ""
+msgstr "Indipendente Stato di Papua Nuova Guinea"
 
 #: data/i18n/temp.cpp:159
 msgid "Independent State of Samoa"
-msgstr ""
+msgstr "Stato Indipendente di Samoa"
 
 #: data/i18n/temp.cpp:229
 msgid "India"
-msgstr ""
+msgstr "India"
 
 #: data/i18n/temp.cpp:230
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonesia"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:117
 msgid "Info Manager"
-msgstr ""
+msgstr "Informazioni Allenatore"
 
 #: data/i18n/temp.cpp:231
 msgid "Iran"
-msgstr ""
+msgstr "Iran"
 
 #: data/i18n/temp.cpp:232
 msgid "Iraq"
-msgstr ""
+msgstr "Iraq"
 
 #: data/i18n/temp.cpp:402
 msgid "Ireland"
-msgstr ""
+msgstr "Irlanda"
 
 #: data/i18n/temp.cpp:464
 msgid "Islamabad"
-msgstr ""
+msgstr "Islamabad"
 
 #: data/i18n/temp.cpp:2
 msgid "Islamic Republic of Afghanistan"
-msgstr ""
+msgstr "Repubblica Islamica dell'Afghanistan"
 
 #: data/i18n/temp.cpp:15
 msgid "Islamic Republic of Iran"
-msgstr ""
+msgstr "Repubblica Islamica dell'Iran"
 
 #: data/i18n/temp.cpp:80
 msgid "Islamic Republic of Mauritania"
-msgstr ""
+msgstr "Repubblica Islamica della Mauritania"
 
 #: data/i18n/temp.cpp:32
 msgid "Islamic Republic of Pakistan"
-msgstr ""
+msgstr "Repubblica Islamica del Pakistan"
 
 #: data/i18n/temp.cpp:403
 msgid "Israel"
-msgstr ""
+msgstr "Israele"
 
 #: data/i18n/temp.cpp:188
 msgid "Italian Republic"
-msgstr ""
+msgstr "Repubblica Italiana"
 
 #: data/i18n/temp.cpp:404
 msgid "Italy"
-msgstr ""
+msgstr "Italia"
 
 #: data/i18n/temp.cpp:446
 msgid "Jakarta"
-msgstr ""
+msgstr "Jakarta"
 
 #: data/i18n/temp.cpp:123
 #: data/i18n/temp.cpp:339
 msgid "Jamaica"
-msgstr ""
+msgstr "jamaica"
 
 #: data/i18n/temp.cpp:17
 #: data/i18n/temp.cpp:233
 msgid "Japan"
-msgstr ""
+msgstr "Giappone"
 
 #: data/i18n/temp.cpp:619
 msgid "Jerusalem"
-msgstr ""
+msgstr "Gerusalemme"
 
 #: data/i18n/temp.cpp:465
 msgid "Jerusalem/Ramallah"
-msgstr ""
+msgstr "Gerusalemme/Ramallah"
 
 #: data/i18n/temp.cpp:234
 msgid "Jordan"
-msgstr ""
+msgstr "Giordania"
 
 #: data/i18n/temp.cpp:434
 msgid "Kabul"
-msgstr ""
+msgstr "Kabul"
 
 #: data/i18n/temp.cpp:532
 msgid "Kampala"
-msgstr ""
+msgstr "Kampala"
 
 #: data/i18n/temp.cpp:462
 msgid "Kathmandu"
-msgstr ""
+msgstr "Kathmandu"
 
 #: data/i18n/temp.cpp:405
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazakhstan"
 
 #: data/i18n/temp.cpp:289
 msgid "Kenya"
-msgstr ""
+msgstr "Kenya"
 
 #: data/i18n/temp.cpp:527
 msgid "Khartoum"
-msgstr ""
+msgstr "Khartoum"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:236
 msgid "Kick In"
-msgstr ""
+msgstr "Calcio in"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:233
 msgid "Kick Off"
-msgstr ""
+msgstr "Calcio d'inizio"
 
 #: data/i18n/temp.cpp:647
 msgid "Kiev"
-msgstr ""
+msgstr "Kiev"
 
 #: data/i18n/temp.cpp:520
 msgid "Kigali"
-msgstr ""
+msgstr "Kigali"
 
 #: data/i18n/temp.cpp:5
 msgid "Kingdom of Bahrain"
-msgstr ""
+msgstr "Regno di Bahrain"
 
 #: data/i18n/temp.cpp:169
 msgid "Kingdom of Belgium"
-msgstr ""
+msgstr "Regno del Belgio"
 
 #: data/i18n/temp.cpp:7
 msgid "Kingdom of Bhutan"
-msgstr ""
+msgstr "Regno del Bhutan"
 
 #: data/i18n/temp.cpp:9
 msgid "Kingdom of Cambodia"
-msgstr ""
+msgstr "Regno della Cambodia"
 
 #: data/i18n/temp.cpp:175
 msgid "Kingdom of Denmark"
-msgstr ""
+msgstr "Regno di Danimarca"
 
 #: data/i18n/temp.cpp:74
 msgid "Kingdom of Lesotho"
-msgstr ""
+msgstr "Regno del Lesotho"
 
 #: data/i18n/temp.cpp:82
 msgid "Kingdom of Morocco"
-msgstr ""
+msgstr "Regno del Marocco"
 
 #: data/i18n/temp.cpp:201
 msgid "Kingdom of Norway"
-msgstr ""
+msgstr "Regno della Norvegia"
 
 #: data/i18n/temp.cpp:36
 msgid "Kingdom of Saudi Arabia"
-msgstr ""
+msgstr "Regno dell'Arabia Saudita"
 
 #: data/i18n/temp.cpp:211
 msgid "Kingdom of Spain"
-msgstr ""
+msgstr "Regno di Spagna"
 
 #: data/i18n/temp.cpp:96
 msgid "Kingdom of Swaziland"
-msgstr ""
+msgstr "Regno della Svizzera"
 
 #: data/i18n/temp.cpp:212
 msgid "Kingdom of Sweden"
-msgstr ""
+msgstr "Regno della Svezia"
 
 #: data/i18n/temp.cpp:42
 msgid "Kingdom of Thailand"
-msgstr ""
+msgstr "Regno della Tailandia"
 
 #: data/i18n/temp.cpp:161
 msgid "Kingdom of Tonga"
-msgstr ""
+msgstr "Regno del Tonga"
 
 #: data/i18n/temp.cpp:199
 msgid "Kingdom of the Netherlands"
-msgstr ""
+msgstr "Regno d'Olanda"
 
 #: data/i18n/temp.cpp:555
 msgid "Kingston"
-msgstr ""
+msgstr "Kingston"
 
 #: data/i18n/temp.cpp:566
 msgid "Kingstown"
-msgstr ""
+msgstr "Kingstown"
 
 #: data/i18n/temp.cpp:494
 msgid "Kinshasa"
-msgstr ""
+msgstr "Kinshasa"
 
 #: data/i18n/temp.cpp:458
 msgid "Kuala Lumpur"
-msgstr ""
+msgstr "Kuala Lumpur"
 
 #: data/i18n/temp.cpp:237
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: data/i18n/temp.cpp:453
 msgid "Kuwait City"
-msgstr ""
+msgstr "Kuwait City"
 
 #: data/i18n/temp.cpp:22
 msgid "Kyrgyz Republic"
-msgstr ""
+msgstr "Repubblica del Kirghizistan"
 
 #: data/i18n/temp.cpp:238
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kirghizistan"
 
 #: data/i18n/temp.cpp:575
 msgid "La Paz-Sucre"
-msgstr ""
+msgstr "La Paz"
 
 #: data/i18n/temp.cpp:23
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Repubblica Democratica di Lao People"
 
 #: data/i18n/temp.cpp:239
 msgid "Laos"
-msgstr ""
+msgstr "Laos"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:113
 msgid "Last update:"
-msgstr ""
+msgstr "Ultimo Aggiornamento:"
 
 #: data/i18n/temp.cpp:406
 msgid "Latvia"
-msgstr ""
+msgstr "Latvia"
 
 #: data/i18n/temp.cpp:24
 msgid "Lebanese Republic"
-msgstr ""
+msgstr "Repubblica Libanese"
 
 #: data/i18n/temp.cpp:240
 msgid "Lebanon"
-msgstr ""
+msgstr "Libano"
 
 #: data/i18n/temp.cpp:290
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesotho"
 
 #: data/i18n/temp.cpp:291
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 #: data/i18n/temp.cpp:500
 msgid "Libreville"
-msgstr ""
+msgstr "Libreville"
 
 #: data/i18n/temp.cpp:292
 msgid "Libya"
-msgstr ""
+msgstr "Libia"
 
 #: data/i18n/temp.cpp:407
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: data/i18n/temp.cpp:510
 msgid "Lilongwe"
-msgstr ""
+msgstr "Lilongwe"
 
 #: data/i18n/temp.cpp:581
 msgid "Lima"
-msgstr ""
+msgstr "Lima"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:159
 msgid "Line Up"
-msgstr ""
+msgstr "Allineati"
 
 #: data/i18n/temp.cpp:635
 msgid "Lisboa"
-msgstr ""
+msgstr "Lisbona"
 
 #: data/i18n/temp.cpp:408
 msgid "Lithuania"
-msgstr ""
+msgstr "Lituania"
 
 #: data/i18n/temp.cpp:642
 msgid "Ljubljana"
-msgstr ""
+msgstr "Ljubljana"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:110
 msgid "Load"
-msgstr ""
+msgstr "Carica"
 
 #: src/engine/wh/CLoadGameWindowHandler.cpp:74
 msgid "Load Game"
-msgstr ""
+msgstr "Carica Gioco"
 
 #: data/i18n/temp.cpp:528
 msgid "Lobamba-Mbabane"
-msgstr ""
+msgstr "Lobamba-Mbabane"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:199
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: data/i18n/temp.cpp:530
 msgid "Lom"
-msgstr ""
+msgstr "Lom"
 
 #: data/i18n/temp.cpp:608
 msgid "London"
-msgstr ""
+msgstr "Londra"
 
 #: data/i18n/temp.cpp:483
 msgid "Luanda"
-msgstr ""
+msgstr "Luanda"
 
 #: data/i18n/temp.cpp:533
 msgid "Lusaka"
-msgstr ""
+msgstr "Lusaka"
 
 #: data/i18n/temp.cpp:409
 #: data/i18n/temp.cpp:625
 msgid "Luxembourg"
-msgstr ""
+msgstr "Lussemburgo"
 
 #: data/i18n/temp.cpp:241
 #: data/i18n/temp.cpp:457
 msgid "Macau"
-msgstr ""
+msgstr "Macau"
 
 #: data/i18n/temp.cpp:25
 msgid "Macau Special Administrative Region"
-msgstr ""
+msgstr "Speciale Regione  Amministrativa del Macau"
 
 #: data/i18n/temp.cpp:410
 msgid "Macedonia"
-msgstr ""
+msgstr "Macedonia"
 
 #: data/i18n/temp.cpp:293
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagascar"
 
 #: data/i18n/temp.cpp:643
 msgid "Madrid"
-msgstr ""
+msgstr "Madrid"
 
 #: data/i18n/temp.cpp:459
 msgid "Mal"
-msgstr ""
+msgstr "Mal"
 
 #: data/i18n/temp.cpp:497
 msgid "Malabo"
-msgstr ""
+msgstr "Malabo"
 
 #: data/i18n/temp.cpp:294
 msgid "Malawi"
-msgstr ""
+msgstr "Malawi"
 
 #: data/i18n/temp.cpp:26
 #: data/i18n/temp.cpp:242
 msgid "Malaysia"
-msgstr ""
+msgstr "Malesia"
 
 #: data/i18n/temp.cpp:243
 msgid "Maldives"
-msgstr ""
+msgstr "Maldive"
 
 #: data/i18n/temp.cpp:295
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 #: data/i18n/temp.cpp:411
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:103
 msgid "Manager League"
-msgstr ""
+msgstr "Lega Allenatore"
 
 #: data/i18n/temp.cpp:560
 msgid "Managua"
-msgstr ""
+msgstr "Managua"
 
 #: data/i18n/temp.cpp:437
 msgid "Manama"
-msgstr ""
+msgstr "Manama"
 
 #: data/i18n/temp.cpp:466
 msgid "Manila "
-msgstr ""
+msgstr "Manila "
 
 #: data/i18n/temp.cpp:515
 msgid "Maputo"
-msgstr ""
+msgstr "Maputo"
 
 #: data/i18n/temp.cpp:565
 msgid "Marigot"
-msgstr ""
+msgstr "Marigot"
 
 #: data/i18n/temp.cpp:340
 msgid "Martinique"
-msgstr ""
+msgstr "Martinique"
 
 #: data/i18n/temp.cpp:506
 msgid "Maseru"
-msgstr ""
+msgstr "Maseru"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:89
 msgid "Match Duration:"
-msgstr ""
+msgstr "Durata Match:"
 
 #: data/i18n/temp.cpp:296
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritania"
 
 #: data/i18n/temp.cpp:297
 msgid "Mauritius"
-msgstr ""
+msgstr "Mauritius"
 
 #: data/i18n/temp.cpp:341
 msgid "Mexico"
-msgstr ""
+msgstr "Messico"
 
 #: data/i18n/temp.cpp:557
 msgid "Mexico City"
-msgstr ""
+msgstr "Città del Messimo"
 
 #: data/i18n/temp.cpp:600
 msgid "Minsk"
-msgstr ""
+msgstr "Minsk"
 
 #: data/i18n/temp.cpp:525
 msgid "Mogadishu"
-msgstr ""
+msgstr "Mogadishu"
 
 #: data/i18n/temp.cpp:412
 msgid "Moldova"
-msgstr ""
+msgstr "Moldova"
 
 #: data/i18n/temp.cpp:413
 #: data/i18n/temp.cpp:629
 msgid "Monaco"
-msgstr ""
+msgstr "Monaco"
 
 #: data/i18n/temp.cpp:28
 #: data/i18n/temp.cpp:244
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 #: data/i18n/temp.cpp:507
 msgid "Monrovia"
-msgstr ""
+msgstr "Monrovia"
 
 #: data/i18n/temp.cpp:198
 #: data/i18n/temp.cpp:414
 msgid "Montenegro"
-msgstr ""
+msgstr "Montenegro"
 
 #: data/i18n/temp.cpp:582
 msgid "Montevideo"
-msgstr ""
+msgstr "Montevideo"
 
 #: data/i18n/temp.cpp:126
 #: data/i18n/temp.cpp:342
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:86
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:98
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:110
 msgid "Moral"
-msgstr ""
+msgstr "Moral"
 
 #: data/i18n/temp.cpp:298
 msgid "Morocco"
-msgstr ""
+msgstr "Morocco"
 
 #: data/i18n/temp.cpp:492
 msgid "Moroni"
-msgstr ""
+msgstr "Moroni"
 
 #: data/i18n/temp.cpp:637
 msgid "Moscow"
-msgstr ""
+msgstr "Moscow"
 
 #: data/i18n/temp.cpp:206
 msgid "Most Serene Republic of San Marino"
-msgstr ""
+msgstr "La più calma Repubblica di San Marino"
 
 #: data/i18n/temp.cpp:299
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambico"
 
 #: data/i18n/temp.cpp:463
 msgid "Muscat"
-msgstr ""
+msgstr "Muscat"
 
 #: data/i18n/temp.cpp:245
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: data/i18n/temp.cpp:491
 msgid "N'Djamena"
-msgstr ""
+msgstr "N'Djamena"
 
 #: data/i18n/temp.cpp:505
 msgid "Nairobi"
-msgstr ""
+msgstr "Nairobi"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:65
 #: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:91
@@ -1665,89 +1671,89 @@ msgstr ""
 #: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:136
 #: src/engine/wh/CLoadGameWindowHandler.cpp:70
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:82
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:94
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:106
 msgid "Name (Line Up)"
-msgstr ""
+msgstr "Nome (Sistema) "
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:104
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:109
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #: data/i18n/temp.cpp:300
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 #: data/i18n/temp.cpp:538
 msgid "Nassau"
-msgstr ""
+msgstr "Nassau"
 
 #: data/i18n/temp.cpp:461
 msgid "Naypyidaw"
-msgstr ""
+msgstr "Naypyidaw"
 
 #: data/i18n/temp.cpp:246
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: data/i18n/temp.cpp:415
 msgid "Netherlands"
-msgstr ""
+msgstr "Olanda"
 
 #: data/i18n/temp.cpp:127
 #: data/i18n/temp.cpp:343
 msgid "Netherlands Antilles"
-msgstr ""
+msgstr "Antille Olandesi"
 
 #: data/i18n/temp.cpp:155
 #: data/i18n/temp.cpp:371
 msgid "New Caledonia"
-msgstr ""
+msgstr "Nuove Caledonie"
 
 #: data/i18n/temp.cpp:445
 msgid "New Delhi"
-msgstr ""
+msgstr "Nuova Delhi"
 
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:59
 msgid "New Game"
-msgstr ""
+msgstr "Nuovo Gioco"
 
 #: data/i18n/temp.cpp:156
 #: data/i18n/temp.cpp:372
 msgid "New Zealand"
-msgstr ""
+msgstr "Nuova Zelanda"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:112
 msgid "Next Screen"
-msgstr ""
+msgstr "Prossima Schermata"
 
 #: data/i18n/temp.cpp:517
 msgid "Niamey"
-msgstr ""
+msgstr "Niamey"
 
 #: data/i18n/temp.cpp:344
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 #: data/i18n/temp.cpp:605
 msgid "Nicosia"
-msgstr ""
+msgstr "Nicosia"
 
 #: data/i18n/temp.cpp:301
 msgid "Niger"
-msgstr ""
+msgstr "Nigeria"
 
 #: data/i18n/temp.cpp:302
 msgid "Nigeria"
-msgstr ""
+msgstr "Niger"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:249
 msgid "No competitions"
-msgstr ""
+msgstr "Nessun Campionato"
 
 #: src/singlePlayer/wh/CRankingWindowHandler.cpp:196
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:224
@@ -1755,273 +1761,273 @@ msgstr ""
 #: src/singlePlayer/wh/CScorersWindowHandler.cpp:185
 #: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:212
 msgid "No countries"
-msgstr ""
+msgstr "Nessuno Paese"
 
 #: src/singlePlayer/wh/CMatchInfoWindowHandler.cpp:67
 msgid "No info about the match!"
-msgstr ""
+msgstr "Nessuna informazione sul match!"
 
 #: data/i18n/temp.cpp:652
 msgid "North America"
-msgstr ""
+msgstr "Nord America"
 
 #: data/i18n/temp.cpp:235
 msgid "North Korea"
-msgstr ""
+msgstr "Korea del Nord"
 
 #: data/i18n/temp.cpp:200
 #: data/i18n/temp.cpp:416
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Irlanda del Nord"
 
 #: data/i18n/temp.cpp:417
 msgid "Norway"
-msgstr ""
+msgstr "Norvegia"
 
 #: data/i18n/temp.cpp:512
 msgid "Nouakchott"
-msgstr ""
+msgstr "Nouakchott"
 
 #: data/i18n/temp.cpp:587
 msgid "Nouméa"
-msgstr ""
+msgstr "Nouméa"
 
 #: data/i18n/temp.cpp:593
 msgid "Nuku'alofa"
-msgstr ""
+msgstr "Nuku'alofa"
 
 #: data/i18n/temp.cpp:654
 msgid "Oceania"
-msgstr ""
+msgstr "Oceania"
 
 #: data/i18n/temp.cpp:247
 msgid "Oman"
-msgstr ""
+msgstr "Oman"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:101
 msgid "On-line Community"
-msgstr ""
+msgstr "Comunità On-Line"
 
 #: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:122
 msgid "Opponent Team:"
-msgstr ""
+msgstr "Squadra Avversaria:"
 
 #: data/i18n/temp.cpp:537
 msgid "Oranjestad"
-msgstr ""
+msgstr "Oranjestad"
 
 #: data/i18n/temp.cpp:633
 msgid "Oslo"
-msgstr ""
+msgstr "Oslo"
 
 #: data/i18n/temp.cpp:543
 msgid "Ottawa"
-msgstr ""
+msgstr "Ottawa"
 
 #: data/i18n/temp.cpp:486
 msgid "Ouagadougou"
-msgstr ""
+msgstr "Ouagadougou"
 
 #: data/i18n/temp.cpp:584
 msgid "Pago Pago"
-msgstr ""
+msgstr "Pago Pago"
 
 #: data/i18n/temp.cpp:248
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistan"
 
 #: data/i18n/temp.cpp:249
 msgid "Palestine"
-msgstr ""
+msgstr "Palestina"
 
 #: data/i18n/temp.cpp:33
 msgid "Palestinian National Authority"
-msgstr ""
+msgstr "Autorità Nazionale della Palestina"
 
 #: data/i18n/temp.cpp:345
 msgid "Panama"
-msgstr ""
+msgstr "Panama"
 
 #: data/i18n/temp.cpp:561
 msgid "Panama City"
-msgstr ""
+msgstr "Città di Panama"
 
 #: data/i18n/temp.cpp:592
 msgid "Papeete"
-msgstr ""
+msgstr "Papeete"
 
 #: data/i18n/temp.cpp:373
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua Nuova Guinea"
 
 #: data/i18n/temp.cpp:364
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 #: data/i18n/temp.cpp:573
 msgid "Paramaribo"
-msgstr ""
+msgstr "Paramaribo"
 
 #: data/i18n/temp.cpp:612
 msgid "Paris"
-msgstr ""
+msgstr "Parigi"
 
 #: data/i18n/temp.cpp:50
 msgid "People's Democratic Republic of Algeria"
-msgstr ""
+msgstr "Repubblica Democratica dell'Algeria"
 
 #: data/i18n/temp.cpp:6
 msgid "People's Republic of Bangladesh"
-msgstr ""
+msgstr "Repubblica del Bangladesh"
 
 #: data/i18n/temp.cpp:10
 msgid "People's Republic of China"
-msgstr ""
+msgstr "Repubblica della Cina"
 
 #: data/i18n/temp.cpp:365
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: data/i18n/temp.cpp:250
 msgid "Philippines"
-msgstr ""
+msgstr "Filippine"
 
 #: data/i18n/temp.cpp:441
 msgid "Phnom Penh"
-msgstr ""
+msgstr "Phnom Penh"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:108
 msgid "Play Match"
-msgstr ""
+msgstr "Gioca la partita"
 
 #: src/singlePlayer/sim/entity/CReferee.cpp:227
 msgid "Play On"
-msgstr ""
+msgstr "Gioca su"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:108
 msgid "Player Details:"
-msgstr ""
+msgstr "Dettagli Giocatore:"
 
 #: src/engine/time/CTimeManager.cpp:68
 #: src/engine/time/CTimeManager.cpp:74
 msgid "Please wait..."
-msgstr ""
+msgstr "Attendi..."
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:103
 msgid "Please, select your team:"
-msgstr ""
+msgstr "Per favore, scegli la tua squadra:"
 
 #: data/i18n/temp.cpp:558
 msgid "Plymouth"
-msgstr ""
+msgstr "Plymouth"
 
 #: data/i18n/temp.cpp:630
 msgid "Podgorica"
-msgstr ""
+msgstr "Podgorica"
 
 #: data/i18n/temp.cpp:418
 msgid "Poland"
-msgstr ""
+msgstr "Polonia"
 
 #: data/i18n/temp.cpp:513
 msgid "Port Louis"
-msgstr ""
+msgstr "Port Luis"
 
 #: data/i18n/temp.cpp:589
 msgid "Port Moresby"
-msgstr ""
+msgstr "Port Moresby"
 
 #: data/i18n/temp.cpp:594
 msgid "Port Vila"
-msgstr ""
+msgstr "Port Vila"
 
 #: data/i18n/temp.cpp:567
 msgid "Port of Spain"
-msgstr ""
+msgstr "Porto di Spagna"
 
 #: data/i18n/temp.cpp:553
 msgid "Port-au-Prince"
-msgstr ""
+msgstr "Port-au-Prince"
 
 #: data/i18n/temp.cpp:484
 msgid "Porto Novo"
-msgstr ""
+msgstr "Porto Novo"
 
 #: data/i18n/temp.cpp:419
 msgid "Portugal"
-msgstr ""
+msgstr "Portogallo"
 
 #: data/i18n/temp.cpp:203
 msgid "Portuguese Republic"
-msgstr ""
+msgstr "Repubblica Portoghese"
 
 #: data/i18n/temp.cpp:606
 msgid "Prague"
-msgstr ""
+msgstr "Praga"
 
 #: data/i18n/temp.cpp:489
 msgid "Praia"
-msgstr ""
+msgstr "Praia"
 
 #: data/i18n/temp.cpp:526
 msgid "Pretoria-Bloemfontein-Cape Town"
-msgstr ""
+msgstr "Pretoria-Bloemfontein-Città del Capo"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:113
 msgid "Previous Screen"
-msgstr ""
+msgstr "Schermata Precedente"
 
 #: data/i18n/temp.cpp:164
 msgid "Principality of Andorra"
-msgstr ""
+msgstr "Principato di Andorra"
 
 #: data/i18n/temp.cpp:191
 msgid "Principality of Liechtenstein"
-msgstr ""
+msgstr "Principato del Liechtenstein"
 
 #: data/i18n/temp.cpp:197
 msgid "Principality of Monaco"
-msgstr ""
+msgstr "Principato di Monaco"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:104
 msgid "Professional Career"
-msgstr ""
+msgstr "Carriera da Professionista"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:49
 msgid "Programming:"
-msgstr ""
+msgstr "Programmato:"
 
 #: data/i18n/temp.cpp:346
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Porto Rico"
 
 #: data/i18n/temp.cpp:451
 msgid "Pyongyang"
-msgstr ""
+msgstr "Pyongyang"
 
 #: data/i18n/temp.cpp:251
 msgid "Qatar"
-msgstr ""
+msgstr "Qatar"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:109
 msgid "Quick Load"
-msgstr ""
+msgstr "Carica Veloce"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:110
 msgid "Quick Save"
-msgstr ""
+msgstr "Salvataggio Rapido"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:111
 msgid "Quit"
-msgstr ""
+msgstr "Esci"
 
 #: data/i18n/temp.cpp:579
 msgid "Quito"
-msgstr ""
+msgstr "Quito"
 
 #: data/i18n/temp.cpp:514
 msgid "Rabat"
-msgstr ""
+msgstr "Rabat"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:194
 msgid "Ranking"
@@ -2034,366 +2040,366 @@ msgstr "Classifica:"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:121
 msgid "Release Clause:"
-msgstr ""
+msgstr "Clausola Rescissoria"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:91
 msgid "Renderer:"
-msgstr ""
+msgstr "Renderer:"
 
 #: data/i18n/temp.cpp:163
 msgid "Republic of Albania "
-msgstr ""
+msgstr "Repubblica Albanese"
 
 #: data/i18n/temp.cpp:51
 msgid "Republic of Angola"
-msgstr ""
+msgstr "Repubblica dell'Angola"
 
 #: data/i18n/temp.cpp:3
 #: data/i18n/temp.cpp:165
 msgid "Republic of Armenia"
-msgstr ""
+msgstr "Repubblica dell'Armenia"
 
 #: data/i18n/temp.cpp:166
 msgid "Republic of Austria"
-msgstr ""
+msgstr "Repubblica Austriaca"
 
 #: data/i18n/temp.cpp:4
 #: data/i18n/temp.cpp:167
 msgid "Republic of Azerbaijan"
-msgstr ""
+msgstr "Repubblica Azerbaijan"
 
 #: data/i18n/temp.cpp:168
 msgid "Republic of Belarus"
-msgstr ""
+msgstr "Repubblica Bielorussa"
 
 #: data/i18n/temp.cpp:52
 msgid "Republic of Benin"
-msgstr ""
+msgstr "Repubblica del Benin"
 
 #: data/i18n/temp.cpp:143
 msgid "Republic of Bolivia"
-msgstr ""
+msgstr "Repubblica Bolivese"
 
 #: data/i18n/temp.cpp:53
 msgid "Republic of Botswana"
-msgstr ""
+msgstr "Repubblica del Botswana"
 
 #: data/i18n/temp.cpp:171
 msgid "Republic of Bulgaria "
-msgstr ""
+msgstr "Repubblica Bulgara"
 
 #: data/i18n/temp.cpp:55
 msgid "Republic of Burundi"
-msgstr ""
+msgstr "Repubblica del Burundi"
 
 #: data/i18n/temp.cpp:56
 msgid "Republic of Cameroon"
-msgstr ""
+msgstr "Repubblica del Cameroon"
 
 #: data/i18n/temp.cpp:57
 msgid "Republic of Cape Verde"
-msgstr ""
+msgstr "Repubblica di Capo Verde"
 
 #: data/i18n/temp.cpp:59
 msgid "Republic of Chad"
-msgstr ""
+msgstr "Repubblica del Chad"
 
 #: data/i18n/temp.cpp:145
 msgid "Republic of Chile"
-msgstr ""
+msgstr "Repubblica del Cile"
 
 #: data/i18n/temp.cpp:40
 msgid "Republic of China"
-msgstr ""
+msgstr "Repubblica Cinese"
 
 #: data/i18n/temp.cpp:146
 msgid "Republic of Colombia"
-msgstr ""
+msgstr "Repubblica Colombiana"
 
 #: data/i18n/temp.cpp:113
 msgid "Republic of Costa Rica "
-msgstr ""
+msgstr "Repubblica della Costa Rica"
 
 #: data/i18n/temp.cpp:61
 msgid "Republic of Cote d'Ivoire"
-msgstr ""
+msgstr "Repubblica della Costa D'Avorio"
 
 #: data/i18n/temp.cpp:172
 msgid "Republic of Croatia"
-msgstr ""
+msgstr "Repubblica Croata"
 
 #: data/i18n/temp.cpp:114
 msgid "Republic of Cuba "
-msgstr ""
+msgstr "Repubblica Cubana"
 
 #: data/i18n/temp.cpp:173
 msgid "Republic of Cyprus"
-msgstr ""
+msgstr "Repubblica del Cipro"
 
 #: data/i18n/temp.cpp:63
 msgid "Republic of Djibouti"
-msgstr ""
+msgstr "Repubblica del Djibouti"
 
 #: data/i18n/temp.cpp:147
 msgid "Republic of Ecuador"
-msgstr ""
+msgstr "Repubblica del Equador"
 
 #: data/i18n/temp.cpp:117
 msgid "Republic of El Salvador"
-msgstr ""
+msgstr "Repubblica di El Salvador"
 
 #: data/i18n/temp.cpp:65
 msgid "Republic of Equatorial Guinea"
-msgstr ""
+msgstr "Repubblica della Guinea Equatoriale"
 
 #: data/i18n/temp.cpp:177
 msgid "Republic of Estonia"
-msgstr ""
+msgstr "Repubblica Estona"
 
 #: data/i18n/temp.cpp:179
 msgid "Republic of Finland"
-msgstr ""
+msgstr "Repubblica Finlandese"
 
 #: data/i18n/temp.cpp:70
 msgid "Republic of Ghana"
-msgstr ""
+msgstr "Repubblica Ganese"
 
 #: data/i18n/temp.cpp:120
 msgid "Republic of Guatemala"
-msgstr ""
+msgstr "Repubblica del Guatemala"
 
 #: data/i18n/temp.cpp:71
 msgid "Republic of Guinea"
-msgstr ""
+msgstr "Repubblica della Guinea"
 
 #: data/i18n/temp.cpp:72
 msgid "Republic of Guinea-Bissau"
-msgstr ""
+msgstr "Repubblica della Guinea-Bissau"
 
 #: data/i18n/temp.cpp:121
 msgid "Republic of Haiti "
-msgstr ""
+msgstr "Repubblica d'Haiti"
 
 #: data/i18n/temp.cpp:122
 msgid "Republic of Honduras"
-msgstr ""
+msgstr "Repubblica delle Honduras"
 
 #: data/i18n/temp.cpp:184
 msgid "Republic of Hungary"
-msgstr ""
+msgstr "Repubblica Ungherese"
 
 #: data/i18n/temp.cpp:185
 msgid "Republic of Iceland"
-msgstr ""
+msgstr "Repubblica Islandese"
 
 #: data/i18n/temp.cpp:13
 msgid "Republic of India"
-msgstr ""
+msgstr "Repubblica Indiana"
 
 #: data/i18n/temp.cpp:14
 msgid "Republic of Indonesia"
-msgstr ""
+msgstr "Repubblica Indonesiana"
 
 #: data/i18n/temp.cpp:16
 msgid "Republic of Iraq"
-msgstr ""
+msgstr "Repubblica Irachena"
 
 #: data/i18n/temp.cpp:186
 msgid "Republic of Ireland"
-msgstr ""
+msgstr "Repubblica Irlandese"
 
 #: data/i18n/temp.cpp:189
 msgid "Republic of Kazakhstan"
-msgstr ""
+msgstr "Repubblica del Kazakhstan"
 
 #: data/i18n/temp.cpp:73
 msgid "Republic of Kenya"
-msgstr ""
+msgstr "Repubblica del Kenya"
 
 #: data/i18n/temp.cpp:20
 msgid "Republic of Korea"
-msgstr ""
+msgstr "Repubblica Koreana"
 
 #: data/i18n/temp.cpp:190
 msgid "Republic of Latvia"
-msgstr ""
+msgstr "Repubblica della Latvia"
 
 #: data/i18n/temp.cpp:75
 msgid "Republic of Liberia"
-msgstr ""
+msgstr "Repubblica Liberica"
 
 #: data/i18n/temp.cpp:192
 msgid "Republic of Lithuania"
-msgstr ""
+msgstr "Repubblica della Lituania"
 
 #: data/i18n/temp.cpp:194
 msgid "Republic of Macedonia"
-msgstr ""
+msgstr "Repubblica Macedone"
 
 #: data/i18n/temp.cpp:77
 msgid "Republic of Madagascar"
-msgstr ""
+msgstr "Repubblica del Madagascar"
 
 #: data/i18n/temp.cpp:78
 msgid "Republic of Malawi"
-msgstr ""
+msgstr "Repubblica del Malawi"
 
 #: data/i18n/temp.cpp:27
 msgid "Republic of Maldives"
-msgstr ""
+msgstr "Repubblica delle Maldive"
 
 #: data/i18n/temp.cpp:79
 msgid "Republic of Mali"
-msgstr ""
+msgstr "Repubblica del Mali"
 
 #: data/i18n/temp.cpp:195
 msgid "Republic of Malta"
-msgstr ""
+msgstr "Repubblica Maltese"
 
 #: data/i18n/temp.cpp:81
 msgid "Republic of Mauritius"
-msgstr ""
+msgstr "Repubblica di Mauritius"
 
 #: data/i18n/temp.cpp:196
 msgid "Republic of Moldova"
-msgstr ""
+msgstr "Repubblica della Moldavia"
 
 #: data/i18n/temp.cpp:83
 msgid "Republic of Mozambique"
-msgstr ""
+msgstr "Repubblica del Mozambico"
 
 #: data/i18n/temp.cpp:84
 msgid "Republic of Namibia"
-msgstr ""
+msgstr "Repubblica della Namibia"
 
 #: data/i18n/temp.cpp:128
 msgid "Republic of Nicaragua"
-msgstr ""
+msgstr "Repubblica della Nicaragua"
 
 #: data/i18n/temp.cpp:85
 msgid "Republic of Niger"
-msgstr ""
+msgstr "Repubblica del Niger"
 
 #: data/i18n/temp.cpp:129
 msgid "Republic of Panama"
-msgstr ""
+msgstr "Repubblica di Panama"
 
 #: data/i18n/temp.cpp:148
 msgid "Republic of Paraguay"
-msgstr ""
+msgstr "Repubblica del Paraguay"
 
 #: data/i18n/temp.cpp:149
 msgid "Republic of Peru"
-msgstr ""
+msgstr "Repubblica del Perù"
 
 #: data/i18n/temp.cpp:202
 msgid "Republic of Poland"
-msgstr ""
+msgstr "Repubblica Polacca"
 
 #: data/i18n/temp.cpp:88
 msgid "Republic of Rwanda"
-msgstr ""
+msgstr "Repubblica del Rwanda"
 
 #: data/i18n/temp.cpp:90
 msgid "Republic of Senegal"
-msgstr ""
+msgstr "Repubblica Senegalese"
 
 #: data/i18n/temp.cpp:208
 msgid "Republic of Serbia"
-msgstr ""
+msgstr "Repubblica Serba"
 
 #: data/i18n/temp.cpp:91
 msgid "Republic of Seychelles"
-msgstr ""
+msgstr "Repubblica delle Seychelles"
 
 #: data/i18n/temp.cpp:92
 msgid "Republic of Sierra Leone"
-msgstr ""
+msgstr "Repubblica del Sierra Leone"
 
 #: data/i18n/temp.cpp:37
 msgid "Republic of Singapore"
-msgstr ""
+msgstr "Repubblica di Singapore"
 
 #: data/i18n/temp.cpp:210
 msgid "Republic of Slovenia"
-msgstr ""
+msgstr "Repubblica Slovena"
 
 #: data/i18n/temp.cpp:94
 msgid "Republic of South Africa"
-msgstr ""
+msgstr "Repubblica SudAficana"
 
 #: data/i18n/temp.cpp:95
 msgid "Republic of Sudan"
-msgstr ""
+msgstr "Repubblica del Sudan"
 
 #: data/i18n/temp.cpp:141
 msgid "Republic of Suriname"
-msgstr ""
+msgstr "Repubblica del Suriname"
 
 #: data/i18n/temp.cpp:41
 msgid "Republic of Tajikistan"
-msgstr ""
+msgstr "Repubblica del  Tajikistan"
 
 #: data/i18n/temp.cpp:69
 msgid "Republic of The Gambia"
-msgstr ""
+msgstr "Repubblica del Gambia"
 
 #: data/i18n/temp.cpp:135
 msgid "Republic of Trinidad and Tobago"
-msgstr ""
+msgstr "Repubblica di Trinida e Tobago"
 
 #: data/i18n/temp.cpp:214
 msgid "Republic of Turkey"
-msgstr ""
+msgstr "Repubblica Turca"
 
 #: data/i18n/temp.cpp:100
 msgid "Republic of Uganda"
-msgstr ""
+msgstr "Repubblica del Uganda"
 
 #: data/i18n/temp.cpp:150
 msgid "Republic of Uruguay"
-msgstr ""
+msgstr "Repubblica del Uruguay "
 
 #: data/i18n/temp.cpp:46
 msgid "Republic of Uzbekistan"
-msgstr ""
+msgstr "Repubblica del Uzbekistan"
 
 #: data/i18n/temp.cpp:162
 msgid "Republic of Vanuatu"
-msgstr ""
+msgstr "Repubblica del Vanuatu"
 
 #: data/i18n/temp.cpp:48
 msgid "Republic of Yemen"
-msgstr ""
+msgstr "Repubblica dello Yemen"
 
 #: data/i18n/temp.cpp:101
 msgid "Republic of Zambia"
-msgstr ""
+msgstr "Repubblica della Zambia"
 
 #: data/i18n/temp.cpp:102
 msgid "Republic of Zimbabwe"
-msgstr ""
+msgstr "Repubblica dello Zimbabwe"
 
 #: data/i18n/temp.cpp:87
 #: data/i18n/temp.cpp:303
 msgid "Republic of the Congo"
-msgstr ""
+msgstr "Repubblica del Congo"
 
 #: data/i18n/temp.cpp:154
 msgid "Republic of the Fiji Islands"
-msgstr ""
+msgstr "Repubblica dell'isole Fiji"
 
 #: data/i18n/temp.cpp:34
 msgid "Republic of the Philippines"
-msgstr ""
+msgstr "Repubblica delle Filippine"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:92
 msgid "Resolution:"
-msgstr ""
+msgstr "Risoluzione"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:90
 msgid "Result Mode"
-msgstr ""
+msgstr "Modalità Risultato"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:191
 msgid "Results"
@@ -2405,187 +2411,187 @@ msgstr "Risultati:"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:107
 msgid "Return to Main Menu"
-msgstr ""
+msgstr "Torna al menù principale"
 
 #: data/i18n/temp.cpp:617
 msgid "Reykjav¡k"
-msgstr ""
+msgstr "Reykjav¡k"
 
 #: data/i18n/temp.cpp:622
 msgid "Riga"
-msgstr ""
+msgstr "Riga"
 
 #: data/i18n/temp.cpp:468
 msgid "Riyadh"
-msgstr ""
+msgstr "Riyadh"
 
 #: data/i18n/temp.cpp:542
 msgid "Road Town"
-msgstr ""
+msgstr "Road Town"
 
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:83
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:95
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:107
 msgid "Role"
-msgstr ""
+msgstr "Ruolo"
 
 #: data/i18n/temp.cpp:204
 #: data/i18n/temp.cpp:420
 msgid "Romania"
-msgstr ""
+msgstr "Romania"
 
 #: data/i18n/temp.cpp:620
 msgid "Rome"
-msgstr ""
+msgstr "Roma"
 
 #: data/i18n/temp.cpp:547
 msgid "Roseau"
-msgstr ""
+msgstr "Reed"
 
 #: data/i18n/temp.cpp:421
 msgid "Russia"
-msgstr ""
+msgstr "Russia"
 
 #: data/i18n/temp.cpp:205
 msgid "Russian Federation"
-msgstr ""
+msgstr "Federazione Russa"
 
 #: data/i18n/temp.cpp:304
 msgid "Rwanda"
-msgstr ""
+msgstr "Rwanda"
 
 #: data/i18n/temp.cpp:139
 msgid "Région French Guyane"
-msgstr ""
+msgstr "Région French Guyane"
 
 #: data/i18n/temp.cpp:119
 msgid "Région Guadeloupe"
-msgstr ""
+msgstr "Région Guadeloupe"
 
 #: data/i18n/temp.cpp:124
 msgid "Région Martinique"
-msgstr ""
+msgstr "Région Martinique"
 
 #: data/i18n/temp.cpp:347
 msgid "Saint Christopher and Nevis"
-msgstr ""
+msgstr "San Cristiano e Nevis"
 
 #: data/i18n/temp.cpp:536
 msgid "Saint John's"
-msgstr ""
+msgstr "di San Giovanni"
 
 #: data/i18n/temp.cpp:132
 #: data/i18n/temp.cpp:348
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Santa Lucia"
 
 #: data/i18n/temp.cpp:349
 msgid "Saint Martin "
-msgstr ""
+msgstr "San Martino"
 
 #: data/i18n/temp.cpp:134
 #: data/i18n/temp.cpp:350
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "San Vincenzo e il Grenadine"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:120
 msgid "Salary:"
-msgstr ""
+msgstr "Stipendio:"
 
 #: data/i18n/temp.cpp:375
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: data/i18n/temp.cpp:545
 msgid "San José"
-msgstr ""
+msgstr "San José"
 
 #: data/i18n/temp.cpp:562
 msgid "San Juan"
-msgstr ""
+msgstr "San Juan"
 
 #: data/i18n/temp.cpp:422
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: data/i18n/temp.cpp:549
 msgid "San Salvador"
-msgstr ""
+msgstr "San Salvador"
 
 #: data/i18n/temp.cpp:480
 msgid "Sana"
-msgstr ""
+msgstr "Sana"
 
 #: data/i18n/temp.cpp:577
 msgid "Santiago-Valpara¡so"
-msgstr ""
+msgstr "Santiago-Valpara¡so"
 
 #: data/i18n/temp.cpp:548
 msgid "Santo Domingo de Guzmán"
-msgstr ""
+msgstr "Santo Domingo de Guzmán"
 
 #: data/i18n/temp.cpp:521
 msgid "Sao Tomé"
-msgstr ""
+msgstr "Sao Tomé"
 
 #: data/i18n/temp.cpp:602
 msgid "Sarajevo"
-msgstr ""
+msgstr "Sarajevo"
 
 #: data/i18n/temp.cpp:252
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Arabia Saudita"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:96
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:197
 msgid "Scorers"
-msgstr ""
+msgstr "Marcatori"
 
 #: src/singlePlayer/wh/CScorersWindowHandler.cpp:97
 #: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:118
 msgid "Scorers:"
-msgstr ""
+msgstr "Marcatori:"
 
 #: data/i18n/temp.cpp:207
 #: data/i18n/temp.cpp:423
 msgid "Scotland"
-msgstr ""
+msgstr "Scozie"
 
 #: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:64
 #: src/singlePlayer/wh/CSeasonSummaryWindowHandler.cpp:86
 msgid "Season"
-msgstr ""
+msgstr "Stagione"
 
 #: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:70
 msgid "Seasons:"
-msgstr ""
+msgstr "Stagioni:"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:102
 msgid "Select Team"
-msgstr ""
+msgstr "Scegli Squadra"
 
 #: data/i18n/temp.cpp:306
 msgid "Senegal"
-msgstr ""
+msgstr "Senegal"
 
 #: data/i18n/temp.cpp:452
 msgid "Seoul"
-msgstr ""
+msgstr "Seoul"
 
 #: data/i18n/temp.cpp:424
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 #: data/i18n/temp.cpp:307
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychelles"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:110
 msgid "Short Name:"
-msgstr ""
+msgstr "Soprannome:"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:68
 #: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:93
@@ -2595,80 +2601,80 @@ msgstr ""
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:109
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:88
 msgid "Shot power"
-msgstr ""
+msgstr "Potenza Tiro"
 
 #: data/i18n/temp.cpp:308
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sierra Leone"
 
 #: src/singlePlayer/event/CEventsHandler.cpp:171
 msgid "Simulating match: "
-msgstr ""
+msgstr "Simulazione partita:"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:193
 msgid "Simulation View"
-msgstr ""
+msgstr "Modalità Simulazione"
 
 #: data/i18n/temp.cpp:253
 msgid "Singapore"
-msgstr ""
+msgstr "Singapore"
 
 #: data/i18n/temp.cpp:469
 msgid "Singapore City"
-msgstr ""
+msgstr "Singapore City"
 
 #: data/i18n/temp.cpp:626
 msgid "Skopje"
-msgstr ""
+msgstr "Skopje"
 
 #: data/i18n/temp.cpp:209
 msgid "Slovak Republic"
-msgstr ""
+msgstr "Repubblica Slovacca"
 
 #: data/i18n/temp.cpp:425
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovacchia"
 
 #: data/i18n/temp.cpp:426
 msgid "Slovenia"
-msgstr ""
+msgstr "Slovenia"
 
 #: data/i18n/temp.cpp:47
 msgid "Socialist Republic of Vietnam"
-msgstr ""
+msgstr "Repubblica Socialista del Vietnam"
 
 #: data/i18n/temp.cpp:603
 msgid "Sofia"
-msgstr ""
+msgstr "Sofia"
 
 #: data/i18n/temp.cpp:158
 #: data/i18n/temp.cpp:374
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Isole Salomone"
 
 #: data/i18n/temp.cpp:93
 msgid "Somali Republic"
-msgstr ""
+msgstr "Repubblica Somala"
 
 #: data/i18n/temp.cpp:309
 msgid "Somalia"
-msgstr ""
+msgstr "Somalia"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:54
 msgid "Sound Effects:"
-msgstr ""
+msgstr "Effetti Sonori:"
 
 #: data/i18n/temp.cpp:310
 msgid "South Africa"
-msgstr ""
+msgstr "Sud Africa"
 
 #: data/i18n/temp.cpp:653
 msgid "South America"
-msgstr ""
+msgstr "Sud America"
 
 #: data/i18n/temp.cpp:236
 msgid "South Korea"
-msgstr ""
+msgstr "Korea del Sud"
 
 #: data/i18n/temp.cpp:427
 msgid "Spain"
@@ -2682,15 +2688,15 @@ msgstr "Spagna"
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:108
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:87
 msgid "Speed"
-msgstr ""
+msgstr "Velocità"
 
 #: data/i18n/temp.cpp:254
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: data/i18n/temp.cpp:550
 msgid "St. George's"
-msgstr ""
+msgstr "St. George's"
 
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:85
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:105
@@ -2701,108 +2707,108 @@ msgstr "Stadio:"
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:196
 #: src/engine/wh/CNewVirtualGameWindowHandler.cpp:48
 msgid "Start"
-msgstr ""
+msgstr "Inizia"
 
 #: data/i18n/temp.cpp:8
 msgid "State of Brunei, Abode of Peace"
-msgstr ""
+msgstr "Stato del Brunei, adobe dell Pace"
 
 #: data/i18n/temp.cpp:66
 msgid "State of Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 #: data/i18n/temp.cpp:187
 msgid "State of Israel"
-msgstr ""
+msgstr "Israele"
 
 #: data/i18n/temp.cpp:21
 msgid "State of Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: data/i18n/temp.cpp:35
 msgid "State of Qatar"
-msgstr ""
+msgstr "Qatar"
 
 #: data/i18n/temp.cpp:216
 msgid "State of the Vatican City"
-msgstr ""
+msgstr "Città del Vaticano"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:116
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:200
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiche"
 
 #: data/i18n/temp.cpp:644
 msgid "Stockholm"
-msgstr ""
+msgstr "Stoccolma"
 
 #: data/i18n/temp.cpp:311
 msgid "Sudan"
-msgstr ""
+msgstr "Sudan"
 
 #: data/i18n/temp.cpp:31
 msgid "Sultanate of Oman"
-msgstr ""
+msgstr "Sultanato di Oman"
 
 #: data/i18n/temp.cpp:357
 msgid "Suriname"
-msgstr ""
+msgstr "Suriname"
 
 #: data/i18n/temp.cpp:586
 msgid "Suva"
-msgstr ""
+msgstr "Suva"
 
 #: data/i18n/temp.cpp:312
 msgid "Swaziland"
-msgstr ""
+msgstr "Swaziland"
 
 #: data/i18n/temp.cpp:428
 msgid "Sweden"
-msgstr ""
+msgstr "Svezia"
 
 #: data/i18n/temp.cpp:213
 msgid "Swiss Confederation"
-msgstr ""
+msgstr "Confederazione Svizzera"
 
 #: data/i18n/temp.cpp:429
 msgid "Switzerland"
-msgstr ""
+msgstr "Svizzera"
 
 #: data/i18n/temp.cpp:255
 msgid "Syria"
-msgstr ""
+msgstr "Siria"
 
 #: data/i18n/temp.cpp:39
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Repubblica Araba Siria"
 
 #: data/i18n/temp.cpp:472
 msgid "Taipei"
-msgstr ""
+msgstr "Taipei"
 
 #: data/i18n/temp.cpp:256
 msgid "Taiwan"
-msgstr ""
+msgstr "Taiwan"
 
 #: data/i18n/temp.cpp:257
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tajikistan"
 
 #: data/i18n/temp.cpp:609
 msgid "Tallinn"
-msgstr ""
+msgstr "Tallinn"
 
 #: data/i18n/temp.cpp:313
 msgid "Tanzania"
-msgstr ""
+msgstr "Tanzania"
 
 #: data/i18n/temp.cpp:478
 msgid "Tashkent"
-msgstr ""
+msgstr "Tashkent"
 
 #: data/i18n/temp.cpp:613
 msgid "Tbilisi"
-msgstr ""
+msgstr "Tbilisi"
 
 #: src/singlePlayer/wh/CRankingWindowHandler.cpp:112
 #: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:62
@@ -2815,12 +2821,12 @@ msgstr "Squadra"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:162
 msgid "Team Players"
-msgstr ""
+msgstr "Giocatore della Squadra"
 
 #: src/singlePlayer/wh/CTeamPlayersWindowHandler.cpp:80
 #: src/singlePlayer/wh/CLineUpWindowHandler.cpp:122
 msgid "Team Players:"
-msgstr ""
+msgstr "Giocatori della Squadra:"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:117
 msgid "Team:"
@@ -2828,238 +2834,238 @@ msgstr "Squadra:"
 
 #: data/i18n/temp.cpp:554
 msgid "Tegucigalpa"
-msgstr ""
+msgstr "Tegucigalpa"
 
 #: data/i18n/temp.cpp:447
 msgid "Tehran"
-msgstr ""
+msgstr "Tehran"
 
 #: data/i18n/temp.cpp:11
 msgid "Territory of Guam"
-msgstr ""
+msgstr "Territorio del Guam"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:53
 msgid "Textures:"
-msgstr ""
+msgstr "Textures:"
 
 #: data/i18n/temp.cpp:258
 msgid "Thailand"
-msgstr ""
+msgstr "Tailandia"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:56
 msgid "Thanks to:"
-msgstr ""
+msgstr "Grazie a:"
 
 #: data/i18n/temp.cpp:18
 msgid "The Hashemite Kingdom of Jordan"
-msgstr ""
+msgstr "Il Regno Hascemita di Giordania"
 
 #: data/i18n/temp.cpp:535
 msgid "The Valley"
-msgstr ""
+msgstr "La Valletta"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:332
 msgid "The game has been saved"
-msgstr ""
+msgstr "Il gioco è stato salvato"
 
 #: data/i18n/temp.cpp:439
 msgid "Thimphu"
-msgstr ""
+msgstr "Thimphu"
 
 #: data/i18n/temp.cpp:259
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Timor-Leste"
 
 #: data/i18n/temp.cpp:595
 msgid "Tirana"
-msgstr ""
+msgstr "Tirana"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:112
 msgid "Today is:"
-msgstr ""
+msgstr "Oggi è:"
 
 #: data/i18n/temp.cpp:314
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: data/i18n/temp.cpp:98
 msgid "Togolese Republic"
-msgstr ""
+msgstr "Repubblica del Togo"
 
 #: data/i18n/temp.cpp:449
 msgid "Tokyo"
-msgstr ""
+msgstr "Tokyo"
 
 #: data/i18n/temp.cpp:377
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 #: data/i18n/temp.cpp:351
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad e Tobago"
 
 #: data/i18n/temp.cpp:508
 msgid "Tripoli"
-msgstr ""
+msgstr "Tripoli"
 
 #: data/i18n/temp.cpp:531
 msgid "Tunis"
-msgstr ""
+msgstr "Tunisia"
 
 #: data/i18n/temp.cpp:315
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunisia"
 
 #: data/i18n/temp.cpp:99
 msgid "Tunisian Republic"
-msgstr ""
+msgstr "Repubblica Tunisina"
 
 #: data/i18n/temp.cpp:430
 msgid "Turkey"
-msgstr ""
+msgstr "Turchia"
 
 #: data/i18n/temp.cpp:44
 #: data/i18n/temp.cpp:260
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistan"
 
 #: data/i18n/temp.cpp:136
 #: data/i18n/temp.cpp:352
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Isole Turche e Caicos"
 
 #: data/i18n/temp.cpp:610
 msgid "T¢rshavn"
-msgstr ""
+msgstr "T¢rshavn"
 
 #: data/i18n/temp.cpp:353
 msgid "USA"
-msgstr ""
+msgstr "USA"
 
 #: data/i18n/temp.cpp:316
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: data/i18n/temp.cpp:215
 #: data/i18n/temp.cpp:431
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraine"
 
 #: data/i18n/temp.cpp:460
 msgid "Ulan Bator"
-msgstr ""
+msgstr "Ulan Bator"
 
 #: src/singlePlayer/wh/CSeasonsHistoryWindowHandler.cpp:131
 msgid "Unemployed"
-msgstr ""
+msgstr "Disoccupato"
 
 #: data/i18n/temp.cpp:29
 msgid "Union of Myanmar"
-msgstr ""
+msgstr "Unione del Myanmar"
 
 #: data/i18n/temp.cpp:60
 msgid "Union of the Comoros"
-msgstr ""
+msgstr "Unione del Comoros"
 
 #: data/i18n/temp.cpp:45
 #: data/i18n/temp.cpp:261
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Unione Emirati Arabi"
 
 #: data/i18n/temp.cpp:125
 msgid "United Mexican States"
-msgstr ""
+msgstr "Unione Stati Messicani"
 
 #: data/i18n/temp.cpp:97
 msgid "United Republic of Tanzania"
-msgstr ""
+msgstr "Repubblica Unita della Tanzania"
 
 #: data/i18n/temp.cpp:138
 #: data/i18n/temp.cpp:354
 msgid "United States Virgin Islands"
-msgstr ""
+msgstr "Stati Uniti delle Isole Vergini"
 
 #: data/i18n/temp.cpp:137
 msgid "United States of America"
-msgstr ""
+msgstr "Stati Uniti d'America"
 
 #: data/i18n/temp.cpp:366
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 #: data/i18n/temp.cpp:262
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Uzbekistan"
 
 #: data/i18n/temp.cpp:623
 msgid "Vaduz"
-msgstr ""
+msgstr "Vaduz"
 
 #: data/i18n/temp.cpp:627
 msgid "Valletta"
-msgstr ""
+msgstr "Valletta"
 
 #: data/i18n/temp.cpp:378
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: data/i18n/temp.cpp:432
 #: data/i18n/temp.cpp:648
 msgid "Vatican City"
-msgstr ""
+msgstr "Città del Vaticano"
 
 #: data/i18n/temp.cpp:367
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:94
 msgid "Vertical Sync"
-msgstr ""
+msgstr "Sincronizzazione Verticale"
 
 #: data/i18n/temp.cpp:523
 msgid "Victoria"
-msgstr ""
+msgstr "Victoria"
 
 #: src/engine/wh/CConfigWindowHandler.cpp:90
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: data/i18n/temp.cpp:598
 msgid "Vienna"
-msgstr ""
+msgstr "Vienna"
 
 #: data/i18n/temp.cpp:455
 msgid "Vientiane"
-msgstr ""
+msgstr "Vientiane"
 
 #: data/i18n/temp.cpp:263
 msgid "Vietnam"
-msgstr ""
+msgstr "Vietnam"
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:165
 msgid "View Opponent"
-msgstr ""
+msgstr "Vedi Avversario"
 
 #: data/i18n/temp.cpp:624
 msgid "Vilnius"
-msgstr ""
+msgstr "Vilnius"
 
 #: src/engine/wh/CMainMenuWindowHandler.cpp:102
 msgid "Virtual Championship"
-msgstr ""
+msgstr "Campionato Virtuale"
 
 #: data/i18n/temp.cpp:217
 #: data/i18n/temp.cpp:433
 msgid "Wales"
-msgstr ""
+msgstr "GAlles"
 
 #: data/i18n/temp.cpp:634
 msgid "Warsaw"
-msgstr ""
+msgstr "Warsaw"
 
 #: data/i18n/temp.cpp:569
 msgid "Washington D.C."
-msgstr ""
+msgstr "Washington D.C."
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:113
 msgid "Weight:"
@@ -3067,23 +3073,23 @@ msgstr "Peso:"
 
 #: data/i18n/temp.cpp:588
 msgid "Wellington"
-msgstr ""
+msgstr "Wellington"
 
 #: data/i18n/temp.cpp:559
 msgid "Willemstad"
-msgstr ""
+msgstr "Willemstad"
 
 #: data/i18n/temp.cpp:516
 msgid "Windhoek"
-msgstr ""
+msgstr "Windhoek"
 
 #: data/i18n/temp.cpp:493
 msgid "Yamoussoukro"
-msgstr ""
+msgstr "Yamoussoukro"
 
 #: data/i18n/temp.cpp:488
 msgid "Yaoundé"
-msgstr ""
+msgstr "Yaoundé"
 
 #: src/singlePlayer/wh/CTeamPlayerDetailsWindowHandler.cpp:112
 msgid "Years:"
@@ -3091,38 +3097,38 @@ msgstr "Anni:"
 
 #: data/i18n/temp.cpp:264
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 #: data/i18n/temp.cpp:435
 msgid "Yerevan"
-msgstr ""
+msgstr "Yerevan"
 
 #: data/i18n/temp.cpp:597
 msgid "Yeveran"
-msgstr ""
+msgstr "Yeveran"
 
 #: src/singlePlayer/wh/CViewOpponentWindowHandler.cpp:119
 msgid "Your Team:"
-msgstr ""
+msgstr "La tua squadra:"
 
 #: data/i18n/temp.cpp:604
 msgid "Zagreb"
-msgstr ""
+msgstr "Zagreb"
 
 #: data/i18n/temp.cpp:317
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 #: data/i18n/temp.cpp:318
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabwe"
 
 #: src/singlePlayer/wh/CSimulatorWindowHandler.cpp:192
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:87
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:89
 msgid "min"
-msgstr ""
+msgstr "min"
 
