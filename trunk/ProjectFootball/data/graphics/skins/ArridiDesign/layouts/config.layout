@@ -10,7 +10,7 @@
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
-            <Window Type="ArridiDesign/FrameWindow" Name="Config/Video" >
+            <Window Type="ArridiDesign/FrameWindow" Name="Config/Options" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="TitlebarFont" Value="DejaVuSans-10" />
@@ -58,13 +58,24 @@
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.4,0},{0.95,0},{0.5,0}}" />
                 </Window>
-                <Window Type="ArridiDesign/StaticText" Name="Config/Video/" >
+                <Window Type="ArridiDesign/StaticText" Name="Config/Video" >
                     <Property Name="Font" Value="DejaVuSans-10" />
-                    <Property Name="Text" Value="Video (BETA)" />
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.0149497,0},{0.0124999,0},{0.186938,0},{0.0798699,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.0145,0},{0.0124999,0},{0.186938,0},{0.0798699,0}}" />
                     <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/StaticText" Name="Config/Sound" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="FrameEnabled" Value="False" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.0145,0},{0.55,0},{0.19,0},{0.65,0}}" />
+                    <Property Name="BackgroundEnabled" Value="False" />
+                </Window>
+                <Window Type="ArridiDesign/CheckBox" Name="Config/SoundEnabledCheck" >
+                    <Property Name="Font" Value="DejaVuSans-10" />
+                    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.25,0},{0.65,0},{0.95,0},{0.75,0}}" />
                 </Window>
             </Window>
             <Window Type="ArridiDesign/bButton" Name="Config/AcceptButton" >

@@ -59,6 +59,7 @@ void CConfigWindowHandler::enter()
 {
     m_fullscreenCheck->setSelected(CSystemOptionManager::getInstance()->getVideoFullscreen());
     m_vSyncCheck->setSelected(CSystemOptionManager::getInstance()->getVideoVSync());
+    m_soundEnabledCheck->setSelected(CSystemOptionManager::getInstance()->getSoundEnabled());
 
     bool found  = false;
     unsigned int  width  = CSystemOptionManager::getInstance()->getVideoWidth();
@@ -100,6 +101,7 @@ void CConfigWindowHandler::init()
     m_rendererCombo     = static_cast<CEGUI::Combobox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/RendererCombo"));
     m_fullscreenCheck   = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"));
     m_vSyncCheck        = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"));
+    m_soundEnabledCheck = static_cast<CEGUI::Checkbox*>(windowMngr->getWindow((CEGUI::utf8*)"Config/SoundEnabledCheck"));
 
     // i18n support
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/Video"))->setText((CEGUI::utf8*)gettext("Video"));
@@ -107,6 +109,9 @@ void CConfigWindowHandler::init()
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/ResolutionText"))->setText((CEGUI::utf8*)gettext("Resolution:"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/FullScreenCheck"))->setText((CEGUI::utf8*)gettext("Fullscreen"));
     static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/VSyncCheck"))->setText((CEGUI::utf8*)gettext("Vertical Sync"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/Sound"))->setText((CEGUI::utf8*)gettext("Sound"));
+    static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Config/SoundEnabledCheck"))->setText((CEGUI::utf8*)gettext("Sound Enabled"));
+
     m_acceptButton       ->setText((CEGUI::utf8*)gettext("Accept"));
     m_cancelButton       ->setText((CEGUI::utf8*)gettext("Cancel"));
 
@@ -143,6 +148,7 @@ bool CConfigWindowHandler::saveButtonClicked(const CEGUI::EventArgs& e)
     try {
         CSystemOptionManager::getInstance()->setVideoFullscreen(m_fullscreenCheck->isSelected());
         CSystemOptionManager::getInstance()->setVideoVSync(m_vSyncCheck->isSelected());
+        CSystemOptionManager::getInstance()->setSoundEnabled(m_soundEnabledCheck->isSelected());
 
         CEGUI::ListboxItem *item = m_resolutionCombo->getSelectedItem();
         if( item!=NULL ){

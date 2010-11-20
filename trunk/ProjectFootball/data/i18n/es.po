@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-05 10:57+0200\n"
-"PO-Revision-Date: 2010-10-30 15:55+0100\n"
+"POT-Creation-Date: 2010-11-20 12:52+0100\n"
+"PO-Revision-Date: 2010-11-20 12:53+0100\n"
 "Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -61,8 +61,8 @@ msgstr "5 minutos"
 msgid "ATTENTION: Game can not be saved"
 msgstr "ATENCIÓN: El juego no ha podido guardarse"
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:118
-#: src/engine/wh/CConfigWindowHandler.cpp:141
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:117
+#: src/engine/wh/CConfigWindowHandler.cpp:164
 msgid "ATTENTION: Options can not be saved"
 msgstr "ATENCIÓN: Las opciones no han podido guardarse"
 
@@ -77,6 +77,7 @@ msgstr "Abuya"
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
 #: src/engine/wm/CWindowManager.cpp:67
 #: src/engine/wm/CWindowManager.cpp:68
+#: src/engine/wh/CConfigWindowHandler.cpp:115
 msgid "Accept"
 msgstr "Aceptar"
 
@@ -286,7 +287,6 @@ msgid "Azerbaijan"
 msgstr "Azerbaiyán"
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:101
-#: src/engine/wh/CConfigWindowHandler.cpp:95
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:60
 #: src/engine/wh/CCreditsWindowHandler.cpp:60
 #: src/engine/wh/CLoadGameWindowHandler.cpp:75
@@ -539,6 +539,7 @@ msgstr "Canberra"
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wm/CWindowManager.cpp:69
+#: src/engine/wh/CConfigWindowHandler.cpp:116
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -584,7 +585,7 @@ msgstr "República Centroafricana"
 msgid "Chad"
 msgstr "Chad"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:139
+#: src/engine/wh/CConfigWindowHandler.cpp:162
 msgid "Changes will take effect after restart"
 msgstr "Los cambios tendrán efecto tras reiniciar"
 
@@ -966,7 +967,7 @@ msgstr ""
 msgid "French Republic"
 msgstr "República Francesa"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:93
+#: src/engine/wh/CConfigWindowHandler.cpp:110
 msgid "Fullscreen"
 msgstr "Pantalla Completa"
 
@@ -2045,7 +2046,7 @@ msgstr "Clasificación:"
 msgid "Release Clause:"
 msgstr "Cláusula de Rescisión:"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:91
+#: src/engine/wh/CConfigWindowHandler.cpp:108
 msgid "Renderer:"
 msgstr "Render:"
 
@@ -2396,7 +2397,7 @@ msgstr "República de las Islas Fiyi"
 msgid "Republic of the Philippines"
 msgstr "República de Filipinas"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:92
+#: src/engine/wh/CConfigWindowHandler.cpp:109
 msgid "Resolution:"
 msgstr "Resolución:"
 
@@ -2545,10 +2546,6 @@ msgstr "Sarajevo"
 msgid "Saudi Arabia"
 msgstr "Arabia Saudi"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:96
-msgid "Save"
-msgstr "Guardar"
-
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:197
 msgid "Scorers"
 msgstr "Goleadores"
@@ -2663,9 +2660,17 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+#: src/engine/wh/CConfigWindowHandler.cpp:112
+msgid "Sound"
+msgstr "Sonido"
+
 #: src/engine/wh/CCreditsWindowHandler.cpp:54
 msgid "Sound Effects:"
 msgstr "Efectos de Sonido:"
+
+#: src/engine/wh/CConfigWindowHandler.cpp:113
+msgid "Sound Enabled"
+msgstr "Sonido Activado"
 
 #: data/i18n/temp.cpp:310
 msgid "South Africa"
@@ -3021,7 +3026,7 @@ msgstr "Ciudad del Vaticano"
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:94
+#: src/engine/wh/CConfigWindowHandler.cpp:111
 msgid "Vertical Sync"
 msgstr "Sincronización Vertical"
 
@@ -3029,7 +3034,7 @@ msgstr "Sincronización Vertical"
 msgid "Victoria"
 msgstr "Victoria"
 
-#: src/engine/wh/CConfigWindowHandler.cpp:90
+#: src/engine/wh/CConfigWindowHandler.cpp:107
 msgid "Video"
 msgstr "Vídeo"
 
@@ -3135,6 +3140,8 @@ msgstr "Zoom"
 msgid "min"
 msgstr "min"
 
+#~ msgid "Save"
+#~ msgstr "Guardar"
 #~ msgid "Game options saved"
 #~ msgstr "Opciones de la partida guardadas"
 #~ msgid "Name (Alternate)"

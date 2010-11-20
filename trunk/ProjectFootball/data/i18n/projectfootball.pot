@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-05 10:57+0200\n"
+"POT-Creation-Date: 2010-11-20 12:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,8 +63,8 @@ msgstr ""
 msgid "ATTENTION: Game can not be saved"
 msgstr ""
 
-#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:118
-#: src/engine/wh/CConfigWindowHandler.cpp:141
+#: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:117
+#: src/engine/wh/CConfigWindowHandler.cpp:164
 msgid "ATTENTION: Options can not be saved"
 msgstr ""
 
@@ -78,6 +78,7 @@ msgstr ""
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
 #: src/engine/wm/CWindowManager.cpp:67 src/engine/wm/CWindowManager.cpp:68
+#: src/engine/wh/CConfigWindowHandler.cpp:115
 msgid "Accept"
 msgstr ""
 
@@ -277,7 +278,6 @@ msgid "Azerbaijan"
 msgstr ""
 
 #: src/singlePlayer/wh/CSelectTeamWindowHandler.cpp:101
-#: src/engine/wh/CConfigWindowHandler.cpp:95
 #: src/engine/wh/CNewManagerGameWindowHandler.cpp:60
 #: src/engine/wh/CCreditsWindowHandler.cpp:60
 #: src/engine/wh/CLoadGameWindowHandler.cpp:75
@@ -523,6 +523,7 @@ msgstr ""
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:92
 #: src/engine/wm/CWindowManager.cpp:69
+#: src/engine/wh/CConfigWindowHandler.cpp:116
 msgid "Cancel"
 msgstr ""
 
@@ -566,7 +567,7 @@ msgstr ""
 msgid "Chad"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:139
+#: src/engine/wh/CConfigWindowHandler.cpp:162
 msgid "Changes will take effect after restart"
 msgstr ""
 
@@ -939,7 +940,7 @@ msgstr ""
 msgid "French Republic"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:93
+#: src/engine/wh/CConfigWindowHandler.cpp:110
 msgid "Fullscreen"
 msgstr ""
 
@@ -2001,7 +2002,7 @@ msgstr ""
 msgid "Release Clause:"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:91
+#: src/engine/wh/CConfigWindowHandler.cpp:108
 msgid "Renderer:"
 msgstr ""
 
@@ -2349,7 +2350,7 @@ msgstr ""
 msgid "Republic of the Philippines"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:92
+#: src/engine/wh/CConfigWindowHandler.cpp:109
 msgid "Resolution:"
 msgstr ""
 
@@ -2495,10 +2496,6 @@ msgstr ""
 msgid "Saudi Arabia"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:96
-msgid "Save"
-msgstr ""
-
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:197
 msgid "Scorers"
 msgstr ""
@@ -2611,8 +2608,16 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+#: src/engine/wh/CConfigWindowHandler.cpp:112
+msgid "Sound"
+msgstr ""
+
 #: src/engine/wh/CCreditsWindowHandler.cpp:54
 msgid "Sound Effects:"
+msgstr ""
+
+#: src/engine/wh/CConfigWindowHandler.cpp:113
+msgid "Sound Enabled"
 msgstr ""
 
 #: data/i18n/temp.cpp:310
@@ -2963,7 +2968,7 @@ msgstr ""
 msgid "Venezuela"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:94
+#: src/engine/wh/CConfigWindowHandler.cpp:111
 msgid "Vertical Sync"
 msgstr ""
 
@@ -2971,7 +2976,7 @@ msgstr ""
 msgid "Victoria"
 msgstr ""
 
-#: src/engine/wh/CConfigWindowHandler.cpp:90
+#: src/engine/wh/CConfigWindowHandler.cpp:107
 msgid "Video"
 msgstr ""
 

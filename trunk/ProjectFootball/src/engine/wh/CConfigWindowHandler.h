@@ -45,6 +45,7 @@ private:
     CEGUI::Combobox 	*m_rendererCombo;
     CEGUI::Checkbox 	*m_fullscreenCheck;
     CEGUI::Checkbox 	*m_vSyncCheck;
+    CEGUI::Checkbox 	*m_soundEnabledCheck;
     CEGUI::Window       *m_mainWindow;
 
 };
