@@ -267,8 +267,8 @@ void CReferee::addHomeGoal(CFootballPlayer *player)
     if(player->getTeam()->getID() != team->getID()) {
         ownGoal = true;
     }
-    m_simulationManager->goalMatchEvent(team, player, getMinute(), ownGoal);
     m_homeScore++;
+    m_simulationManager->goalMatchEvent(team, player, getMinute(), ownGoal);
 }
 
 
@@ -279,6 +279,6 @@ void CReferee::addAwayGoal(CFootballPlayer *player)
     if(player->getTeam()->getID() != team->getID()) {
         ownGoal = true;
     }
-    m_simulationManager->goalMatchEvent(team, player, getMinute(), ownGoal);
     m_awayScore++;
+    m_simulationManager->goalMatchEvent(team, player, getMinute(), ownGoal);
 }
