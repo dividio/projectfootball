@@ -36,7 +36,7 @@ class CSimulationManager;
 class CPfMatches;
 
 
-#define SIMULATION_SCENE_MANAGER_NODE_NAME	"Simulation SceneManager"
+#define SIMULATION_SCENE_MANAGER_NODE_NAME	"Default SceneManager"
 
 class CSimulatorWindowHandler : public CWindowHandler
 {
@@ -58,56 +58,32 @@ public:
 private:
     bool keyDownHandler(const CEGUI::EventArgs& e);
     bool keyUpHandler(const CEGUI::EventArgs& e);
-    bool backButtonClicked(const CEGUI::EventArgs& e);
     bool continueButtonClicked(const CEGUI::EventArgs& e);
     bool startButtonClicked(const CEGUI::EventArgs& e);
-    bool zoomButtonClicked(const CEGUI::EventArgs& e);
-    bool formation433ButtonClicked(const CEGUI::EventArgs& e);
-    bool formation442ButtonClicked(const CEGUI::EventArgs& e);
-    bool frameWindowCloseClicked(const CEGUI::EventArgs& e);
-    bool view2DButtonClicked(const CEGUI::EventArgs& e);
-    bool view3DButtonClicked(const CEGUI::EventArgs& e);
+    bool toggleCameraButtonClicked(const CEGUI::EventArgs& e);
 
     CEGUI::PushButton		*m_continueButton;
     CEGUI::PushButton		*m_startButton;
-    CEGUI::PushButton		*m_zoomButton;
-    CEGUI::PushButton		*m_formation433Button;
-    CEGUI::PushButton		*m_formation442Button;
-    CEGUI::FrameWindow		*m_frameWindow;
-    CEGUI::PushButton		*m_view2DButton;
-    CEGUI::PushButton		*m_view3DButton;
-    CEGUI::PushButton		*m_frameStartButtom;
+    CEGUI::PushButton		*m_toggleCameraButton;
 
     CEGUI::Listbox          *m_logHistoryList;
-    CEGUI::Listbox          *m_logHistoryListShort;
-    CEGUI::MultiColumnList  *m_teamPlayersList;
-    CEGUI::Window           *m_groundImage;
-    CEGUI::Window           *m_groundFrameImage;
-    CEGUI::Window           *m_teamNames;
     CEGUI::Window           *m_score;
-    CEGUI::Window           *m_frameHomeName;
-    CEGUI::Window           *m_frameAwayName;
-    CEGUI::Window           *m_frameHomeScore;
-    CEGUI::Window           *m_frameAwayScore;
+    CEGUI::Window			*m_time;
 
     Ogre::Camera            *m_cam2D;
     Ogre::Camera            *m_cam3D;
-    Ogre::SceneNode         *m_cam2DNode;
-    Ogre::SceneNode         *m_cam3DNode;
+    Ogre::Camera			*m_previousCamera;
     Ogre::Vector3            m_direction;
     Ogre::SceneManager      *m_sceneMngr;    // The simulation SceneManager
-    Ogre::SceneNode         *m_camNode;     // The SceneNode the camera is currently attached to
-    Ogre::RenderTexture     *m_renderTexture;
 
     CSimulationManager      *m_simulator;
     CSinglePlayerGame		&m_game;
 
     double                   m_previousUpdateTime;
-    bool					 m_initiated;
+    bool					 m_cam2DEnabled;
 
-    void loadTeamPlayers();
-    void toogleZoom();
     void setup2DView();
+    void setup3DView();
 };
 
 #endif // CSIMULATORWINDOWHANDLER_H_
