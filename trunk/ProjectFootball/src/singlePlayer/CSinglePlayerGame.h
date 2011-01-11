@@ -32,7 +32,7 @@ class CPfUsers;
 class CPfMatches;
 class CPfTeamAverages;
 class CPfTeamPlayers;
-class CPfCompetitionsBySeason;
+class CPfCompetitionPhasesBySeason;
 class IDAOFactory;
 class CSinglePlayerOptionManager;
 class CSinglePlayerReportRegister;
@@ -65,15 +65,15 @@ public:
     virtual const char* getFirstScreenName();
 
     // Game progression
-    const EGameState               getGameState() const { return m_gameState; }
-    void				           setGameState(EGameState state);
-    const CDate&                   getCurrentTime() const;
-    const CPfMatches*              getCurrentMatch() const;
-    void				           setCurrentMatch(const CPfMatches* match);
-    const CPfTeamPlayers*          getSelectedTeamPlayer() const;
-    void                           setSelectedTeamPlayer(const CPfTeamPlayers* teamPlayer);
-    const CPfCompetitionsBySeason* getSelectedCompetitionBySeason() const;
-    void                           setSelectedCompetitionBySeason(const CPfCompetitionsBySeason* season);
+    const EGameState               		getGameState() const { return m_gameState; }
+    void				           		setGameState(EGameState state);
+    const CDate&                   		getCurrentTime() const;
+    const CPfMatches*              		getCurrentMatch() const;
+    void				          		setCurrentMatch(const CPfMatches* match);
+    const CPfTeamPlayers*          		getSelectedTeamPlayer() const;
+    void                           		setSelectedTeamPlayer(const CPfTeamPlayers* teamPlayer);
+    const CPfCompetitionPhasesBySeason* getSelectedCompetitionPhaseBySeason() const;
+    void                           		setSelectedCompetitionPhaseBySeason(const CPfCompetitionPhasesBySeason* season);
 
     void simulateMatch(const CPfMatches &match);
 
@@ -85,19 +85,19 @@ private:
 	int  getRandomNGoals(CPfTeamAverages *attackTeam, CPfTeamAverages *defenseTeam);
 
 protected:
-    CPfGames						*m_game;
-    IDAOFactory						*m_daoFactory;
-    CSinglePlayerReportRegister		*m_reportRegister;
-    CSinglePlayerOptionManager		*m_optionManager;
+    CPfGames						   *m_game;
+    IDAOFactory						   *m_daoFactory;
+    CSinglePlayerReportRegister		   *m_reportRegister;
+    CSinglePlayerOptionManager		   *m_optionManager;
 
-    std::vector<IWindowHandler*>	m_windowHandlers;
-    IWindowHandler					*m_matchInfoWindowHandler;
+    std::vector<IWindowHandler*>	    m_windowHandlers;
+    IWindowHandler					   *m_matchInfoWindowHandler;
 
-    const CPfMatches				*m_currentMatch;
-    const CPfTeamPlayers            *m_selectedTeamPlayer;
-    const CPfCompetitionsBySeason   *m_selectedCompetitionBySeason;
-    EGameState						m_gameState;
-    CEventsHandler					*m_eventsHandler;
+    const CPfMatches				   *m_currentMatch;
+    const CPfTeamPlayers               *m_selectedTeamPlayer;
+    const CPfCompetitionPhasesBySeason *m_selectedCompetitionPhaseBySeason;
+    EGameState						    m_gameState;
+    CEventsHandler					   *m_eventsHandler;
 
 };
 

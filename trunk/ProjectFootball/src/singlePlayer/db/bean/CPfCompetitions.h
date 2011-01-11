@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -38,25 +38,25 @@ public:
     const std::string& getSCompetition_str() const;
     CDate getDFoundation() const;
     const std::string& getDFoundation_str() const;
-    int getXFkCountry() const;
-    const std::string& getXFkCountry_str() const;
     int getXCompetition() const;
     const std::string& getXCompetition_str() const;
+    int getXFkCountry() const;
+    const std::string& getXFkCountry_str() const;
 
     void setSCompetition(const std::string &SCompetition);
     void setSCompetition_str(const std::string &SCompetition);
     void setDFoundation(const CDate &DFoundation);
     void setDFoundation_str(const std::string &DFoundation);
-    void setXFkCountry(int XFkCountry);
-    void setXFkCountry_str(const std::string &XFkCountry);
     void setXCompetition(int XCompetition);
     void setXCompetition_str(const std::string &XCompetition);
+    void setXFkCountry(int XFkCountry);
+    void setXFkCountry_str(const std::string &XFkCountry);
 
 private:
     std::string m_SCompetition;
     std::string m_DFoundation;
-    std::string m_XFkCountry;
     std::string m_XCompetition;
+    std::string m_XFkCountry;
 
 };
 #endif /*CPFCOMPETITIONS_H_*/

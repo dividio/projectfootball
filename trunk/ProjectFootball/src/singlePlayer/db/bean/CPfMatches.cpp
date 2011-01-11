@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -29,22 +29,22 @@
 CPfMatches::CPfMatches()
 {
     m_XFkSeason = "0";
-    m_XFkCompetitionPhase = "0";
     m_XFkTeamAway = "0";
     m_DMatch = "";
     m_XMatch = "0";
     m_LPlayed = "N";
+    m_XFkPhaseRound = "0";
     m_XFkTeamHome = "0";
 }
 
 CPfMatches::CPfMatches(const CPfMatches &obj)
 {
     m_XFkSeason = obj.m_XFkSeason;
-    m_XFkCompetitionPhase = obj.m_XFkCompetitionPhase;
     m_XFkTeamAway = obj.m_XFkTeamAway;
     m_DMatch = obj.m_DMatch;
     m_XMatch = obj.m_XMatch;
     m_LPlayed = obj.m_LPlayed;
+    m_XFkPhaseRound = obj.m_XFkPhaseRound;
     m_XFkTeamHome = obj.m_XFkTeamHome;
 }
 
@@ -64,20 +64,6 @@ int CPfMatches::getXFkSeason() const
 const std::string& CPfMatches::getXFkSeason_str() const
 {
     return m_XFkSeason;
-}
-
-int CPfMatches::getXFkCompetitionPhase() const
-{
-    if( m_XFkCompetitionPhase=="" ){
-        return 0;
-    }else{
-        return atoi(m_XFkCompetitionPhase.c_str());
-    }
-}
-
-const std::string& CPfMatches::getXFkCompetitionPhase_str() const
-{
-    return m_XFkCompetitionPhase;
 }
 
 int CPfMatches::getXFkTeamAway() const
@@ -128,6 +114,20 @@ const std::string& CPfMatches::getLPlayed_str() const
     return m_LPlayed;
 }
 
+int CPfMatches::getXFkPhaseRound() const
+{
+    if( m_XFkPhaseRound=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkPhaseRound.c_str());
+    }
+}
+
+const std::string& CPfMatches::getXFkPhaseRound_str() const
+{
+    return m_XFkPhaseRound;
+}
+
 int CPfMatches::getXFkTeamHome() const
 {
     if( m_XFkTeamHome=="" ){
@@ -152,18 +152,6 @@ void CPfMatches::setXFkSeason(int XFkSeason)
 void CPfMatches::setXFkSeason_str(const std::string &XFkSeason)
 {
     m_XFkSeason = XFkSeason;
-}
-
-void CPfMatches::setXFkCompetitionPhase(int XFkCompetitionPhase)
-{
-    std::ostringstream stream;
-    stream << XFkCompetitionPhase;
-    m_XFkCompetitionPhase = stream.str();
-}
-
-void CPfMatches::setXFkCompetitionPhase_str(const std::string &XFkCompetitionPhase)
-{
-    m_XFkCompetitionPhase = XFkCompetitionPhase;
 }
 
 void CPfMatches::setXFkTeamAway(int XFkTeamAway)
@@ -212,6 +200,18 @@ void CPfMatches::setLPlayed(bool LPlayed)
 void CPfMatches::setLPlayed_str(const std::string &LPlayed)
 {
     m_LPlayed = LPlayed;
+}
+
+void CPfMatches::setXFkPhaseRound(int XFkPhaseRound)
+{
+    std::ostringstream stream;
+    stream << XFkPhaseRound;
+    m_XFkPhaseRound = stream.str();
+}
+
+void CPfMatches::setXFkPhaseRound_str(const std::string &XFkPhaseRound)
+{
+    m_XFkPhaseRound = XFkPhaseRound;
 }
 
 void CPfMatches::setXFkTeamHome(int XFkTeamHome)

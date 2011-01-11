@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -50,12 +50,12 @@ bool CPfMatchesDAOSQLiteEntity::deleteReg(CPfMatches *reg)
 
 bool CPfMatchesDAOSQLiteEntity::insertReg(CPfMatches *reg)
 {
-    std::string sql("INSERT INTO PF_MATCHES (X_FK_SEASON,X_FK_COMPETITION_PHASE,X_FK_TEAM_AWAY,D_MATCH,L_PLAYED,X_FK_TEAM_HOME) VALUES (");
+    std::string sql("INSERT INTO PF_MATCHES (X_FK_SEASON,X_FK_TEAM_AWAY,D_MATCH,L_PLAYED,X_FK_PHASE_ROUND,X_FK_TEAM_HOME) VALUES (");
     sql += (reg->getXFkSeason_str()=="")?"NULL":"'"+reg->getXFkSeason_str()+"'";
-    sql += (reg->getXFkCompetitionPhase_str()=="")?",NULL":",'"+reg->getXFkCompetitionPhase_str()+"'";
     sql += (reg->getXFkTeamAway_str()=="")?",NULL":",'"+reg->getXFkTeamAway_str()+"'";
     sql += (reg->getDMatch_str()=="")?",NULL":",'"+reg->getDMatch_str()+"'";
     sql += (reg->getLPlayed_str()=="")?",NULL":",'"+reg->getLPlayed_str()+"'";
+    sql += (reg->getXFkPhaseRound_str()=="")?",NULL":",'"+reg->getXFkPhaseRound_str()+"'";
     sql += (reg->getXFkTeamHome_str()=="")?",NULL":",'"+reg->getXFkTeamHome_str()+"'";
     sql += ")";
     if( exec(sql) ){
@@ -70,11 +70,11 @@ bool CPfMatchesDAOSQLiteEntity::updateReg(CPfMatches *reg)
 {
     std::string sql("UPDATE PF_MATCHES SET ");
     sql += (reg->getXFkSeason_str()=="")?" X_FK_SEASON=NULL":" X_FK_SEASON='"+reg->getXFkSeason_str()+"'";
-    sql += (reg->getXFkCompetitionPhase_str()=="")?",X_FK_COMPETITION_PHASE=NULL":",X_FK_COMPETITION_PHASE='"+reg->getXFkCompetitionPhase_str()+"'";
     sql += (reg->getXFkTeamAway_str()=="")?",X_FK_TEAM_AWAY=NULL":",X_FK_TEAM_AWAY='"+reg->getXFkTeamAway_str()+"'";
     sql += (reg->getDMatch_str()=="")?",D_MATCH=NULL":",D_MATCH='"+reg->getDMatch_str()+"'";
     sql += (reg->getXMatch_str()=="")?",X_MATCH=NULL":",X_MATCH='"+reg->getXMatch_str()+"'";
     sql += (reg->getLPlayed_str()=="")?",L_PLAYED=NULL":",L_PLAYED='"+reg->getLPlayed_str()+"'";
+    sql += (reg->getXFkPhaseRound_str()=="")?",X_FK_PHASE_ROUND=NULL":",X_FK_PHASE_ROUND='"+reg->getXFkPhaseRound_str()+"'";
     sql += (reg->getXFkTeamHome_str()=="")?",X_FK_TEAM_HOME=NULL":",X_FK_TEAM_HOME='"+reg->getXFkTeamHome_str()+"'";
     sql += " WHERE X_MATCH='"+reg->getXMatch_str()+"'";
     return exec(sql);
@@ -152,8 +152,6 @@ int CPfMatchesDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char
         for( int i=0; i<nColumns; i++ ){
             if( strcmp(sColumn[i], "X_FK_SEASON")==0 ){
                 destiny->setXFkSeason_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_COMPETITION_PHASE")==0 ){
-                destiny->setXFkCompetitionPhase_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM_AWAY")==0 ){
                 destiny->setXFkTeamAway_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "D_MATCH")==0 ){
@@ -162,6 +160,8 @@ int CPfMatchesDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char
                 destiny->setXMatch_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "L_PLAYED")==0 ){
                 destiny->setLPlayed_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_PHASE_ROUND")==0 ){
+                destiny->setXFkPhaseRound_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM_HOME")==0 ){
                 destiny->setXFkTeamHome_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
@@ -178,8 +178,6 @@ int CPfMatchesDAOSQLiteEntity::callbackVector(void *object, int nColumns, char *
         for( int i=0; i<nColumns; i++ ){
             if( strcmp(sColumn[i], "X_FK_SEASON")==0 ){
                 destiny->setXFkSeason_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_FK_COMPETITION_PHASE")==0 ){
-                destiny->setXFkCompetitionPhase_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM_AWAY")==0 ){
                 destiny->setXFkTeamAway_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "D_MATCH")==0 ){
@@ -188,6 +186,8 @@ int CPfMatchesDAOSQLiteEntity::callbackVector(void *object, int nColumns, char *
                 destiny->setXMatch_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "L_PLAYED")==0 ){
                 destiny->setLPlayed_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_PHASE_ROUND")==0 ){
+                destiny->setXFkPhaseRound_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM_HOME")==0 ){
                 destiny->setXFkTeamHome_str((vColumn[i]==NULL)?"":vColumn[i]);
             }

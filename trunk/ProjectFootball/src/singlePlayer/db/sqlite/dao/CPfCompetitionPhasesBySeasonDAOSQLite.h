@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -20,32 +20,29 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef IPFTEAMSBYCOMPETITIONSDAO_H_
-#define IPFTEAMSBYCOMPETITIONSDAO_H_
+#ifndef CPFCOMPETITIONPHASESBYSEASONDAOSQLITE_H_
+#define CPFCOMPETITIONPHASESBYSEASONDAOSQLITE_H_
 
 #include <string>
-#include <vector>
+#include <sqlite3.h>
 
-#include "../bean/CPfTeamsByCompetitions.h"
+#include "entity/CPfCompetitionPhasesBySeasonDAOSQLiteEntity.h"
+#include "../../bean/CPfCompetitionPhasesBySeason.h"
 
-class IPfTeamsByCompetitionsDAO
+class CPfCompetitionPhasesBySeasonDAOSQLite : public CPfCompetitionPhasesBySeasonDAOSQLiteEntity
 {
 public:
-    IPfTeamsByCompetitionsDAO(){}
-    virtual ~IPfTeamsByCompetitionsDAO(){}
+    CPfCompetitionPhasesBySeasonDAOSQLite(sqlite3 *database);
+    virtual ~CPfCompetitionPhasesBySeasonDAOSQLite();
 
-    virtual bool deleteReg(CPfTeamsByCompetitions *reg) =0;
-    virtual bool insertReg(CPfTeamsByCompetitions *reg) =0;
-    virtual bool updateReg(CPfTeamsByCompetitions *reg) =0;
-
-    virtual void freeVector(std::vector<CPfTeamsByCompetitions*>* vector) =0;
-
-    virtual CPfTeamsByCompetitions* findByXTeam(int XTeam) =0;
-    virtual CPfTeamsByCompetitions* findByXTeam(const std::string &XTeam) =0;
-    virtual CPfTeamsByCompetitions* findByXFkCompetitionBySeason(int XFkCompetitionBySeason) =0;
-    virtual CPfTeamsByCompetitions* findByXFkCompetitionBySeason(const std::string &XFkCompetitionBySeason) =0;
-    virtual CPfTeamsByCompetitions* findByXTeamByCompetition(int XTeamByCompetition) =0;
-    virtual CPfTeamsByCompetitions* findByXTeamByCompetition(const std::string &XTeamByCompetition) =0;
+    virtual CPfCompetitionPhasesBySeason* findByXFkCompetitionPhase(int XFkCompetitionPhase);
+    virtual CPfCompetitionPhasesBySeason* findByXFkCompetitionPhase(const std::string &XFkCompetitionPhase);
+    virtual CPfCompetitionPhasesBySeason* findByXCompetitionPhaseBySeason(int XCompetitionPhaseBySeason);
+    virtual CPfCompetitionPhasesBySeason* findByXCompetitionPhaseBySeason(const std::string &XCompetitionPhaseBySeason);
+    virtual std::vector<CPfCompetitionPhasesBySeason*>* findByXFkSeason(int XFkSeason);
+    virtual std::vector<CPfCompetitionPhasesBySeason*>* findByXFkSeason(const std::string &XFkSeason);
+    virtual CPfCompetitionPhasesBySeason* findByXFkSeasonAndXTeam(int XFkSeason, int XTeam);
+    virtual CPfCompetitionPhasesBySeason* findByXFkSeasonAndXTeam(const std::string &XFkSeason, const std::string &XTeam);
 
 };
-#endif /*IPFTEAMSBYCOMPETITIONSDAO_H_*/
+#endif /*CPFCOMPETITIONPHASESBYSEASONDAOSQLITE_H_*/

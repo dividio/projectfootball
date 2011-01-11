@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -23,58 +23,58 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "CPfTeamsByCompetitionsDAOSQLiteEntity.h"
+#include "CPfTeamsByCompetitionPhaseDAOSQLiteEntity.h"
 #include "../../../../../exceptions/PFException.h"
 #include "../../../../../utils/CLog.h"
 
-CPfTeamsByCompetitionsDAOSQLiteEntity::CPfTeamsByCompetitionsDAOSQLiteEntity(sqlite3 *database)
+CPfTeamsByCompetitionPhaseDAOSQLiteEntity::CPfTeamsByCompetitionPhaseDAOSQLiteEntity(sqlite3 *database)
 {
     m_database = database;
 }
 
-CPfTeamsByCompetitionsDAOSQLiteEntity::~CPfTeamsByCompetitionsDAOSQLiteEntity()
+CPfTeamsByCompetitionPhaseDAOSQLiteEntity::~CPfTeamsByCompetitionPhaseDAOSQLiteEntity()
 {
 }
 
-void CPfTeamsByCompetitionsDAOSQLiteEntity::setSQLite(sqlite3 *database)
+void CPfTeamsByCompetitionPhaseDAOSQLiteEntity::setSQLite(sqlite3 *database)
 {
     m_database = database;
 }
 
-bool CPfTeamsByCompetitionsDAOSQLiteEntity::deleteReg(CPfTeamsByCompetitions *reg)
+bool CPfTeamsByCompetitionPhaseDAOSQLiteEntity::deleteReg(CPfTeamsByCompetitionPhase *reg)
 {
-    std::string sql("DELETE FROM PF_TEAMS_BY_COMPETITIONS WHERE X_TEAM_BY_COMPETITION=");
-    sql += "'"+reg->getXTeamByCompetition_str()+"'";
+    std::string sql("DELETE FROM PF_TEAMS_BY_COMPETITION_PHASE WHERE X_TEAM_BY_COMPETITION_PHASE=");
+    sql += "'"+reg->getXTeamByCompetitionPhase_str()+"'";
     return exec(sql);
 }
 
-bool CPfTeamsByCompetitionsDAOSQLiteEntity::insertReg(CPfTeamsByCompetitions *reg)
+bool CPfTeamsByCompetitionPhaseDAOSQLiteEntity::insertReg(CPfTeamsByCompetitionPhase *reg)
 {
-    std::string sql("INSERT INTO PF_TEAMS_BY_COMPETITIONS (X_FK_COMPETITION_BY_SEASON,X_FK_TEAM) VALUES (");
-    sql += (reg->getXFkCompetitionBySeason_str()=="")?"NULL":"'"+reg->getXFkCompetitionBySeason_str()+"'";
+    std::string sql("INSERT INTO PF_TEAMS_BY_COMPETITION_PHASE (X_FK_COMPETITION_PHASE_BY_SEASON,X_FK_TEAM) VALUES (");
+    sql += (reg->getXFkCompetitionPhaseBySeason_str()=="")?"NULL":"'"+reg->getXFkCompetitionPhaseBySeason_str()+"'";
     sql += (reg->getXFkTeam_str()=="")?",NULL":",'"+reg->getXFkTeam_str()+"'";
     sql += ")";
     if( exec(sql) ){
-        reg->setXTeamByCompetition(sqlite3_last_insert_rowid(m_database));
+        reg->setXTeamByCompetitionPhase(sqlite3_last_insert_rowid(m_database));
         return true;
     }else{
         return false;
     }
 }
 
-bool CPfTeamsByCompetitionsDAOSQLiteEntity::updateReg(CPfTeamsByCompetitions *reg)
+bool CPfTeamsByCompetitionPhaseDAOSQLiteEntity::updateReg(CPfTeamsByCompetitionPhase *reg)
 {
-    std::string sql("UPDATE PF_TEAMS_BY_COMPETITIONS SET ");
-    sql += (reg->getXFkCompetitionBySeason_str()=="")?" X_FK_COMPETITION_BY_SEASON=NULL":" X_FK_COMPETITION_BY_SEASON='"+reg->getXFkCompetitionBySeason_str()+"'";
-    sql += (reg->getXTeamByCompetition_str()=="")?",X_TEAM_BY_COMPETITION=NULL":",X_TEAM_BY_COMPETITION='"+reg->getXTeamByCompetition_str()+"'";
+    std::string sql("UPDATE PF_TEAMS_BY_COMPETITION_PHASE SET ");
+    sql += (reg->getXTeamByCompetitionPhase_str()=="")?" X_TEAM_BY_COMPETITION_PHASE=NULL":" X_TEAM_BY_COMPETITION_PHASE='"+reg->getXTeamByCompetitionPhase_str()+"'";
+    sql += (reg->getXFkCompetitionPhaseBySeason_str()=="")?",X_FK_COMPETITION_PHASE_BY_SEASON=NULL":",X_FK_COMPETITION_PHASE_BY_SEASON='"+reg->getXFkCompetitionPhaseBySeason_str()+"'";
     sql += (reg->getXFkTeam_str()=="")?",X_FK_TEAM=NULL":",X_FK_TEAM='"+reg->getXFkTeam_str()+"'";
-    sql += " WHERE X_TEAM_BY_COMPETITION='"+reg->getXTeamByCompetition_str()+"'";
+    sql += " WHERE X_TEAM_BY_COMPETITION_PHASE='"+reg->getXTeamByCompetitionPhase_str()+"'";
     return exec(sql);
 }
 
-void CPfTeamsByCompetitionsDAOSQLiteEntity::freeVector(std::vector<CPfTeamsByCompetitions*>* vector )
+void CPfTeamsByCompetitionPhaseDAOSQLiteEntity::freeVector(std::vector<CPfTeamsByCompetitionPhase*>* vector )
 {
-    std::vector<CPfTeamsByCompetitions*>::iterator it;
+    std::vector<CPfTeamsByCompetitionPhase*>::iterator it;
     for( it=vector->begin(); it!=vector->end(); it++ ){
         delete (*it);
         (*it) = NULL;
@@ -82,14 +82,14 @@ void CPfTeamsByCompetitionsDAOSQLiteEntity::freeVector(std::vector<CPfTeamsByCom
     delete vector;
 }
 
-CPfTeamsByCompetitions* CPfTeamsByCompetitionsDAOSQLiteEntity::loadRegister(const std::string &sql)
+CPfTeamsByCompetitionPhase* CPfTeamsByCompetitionPhaseDAOSQLiteEntity::loadRegister(const std::string &sql)
 {
     if( m_database==NULL ){
         throw PFEXCEPTION("No database connection.");
     }
 
     char *msgError = NULL;
-    CPfTeamsByCompetitions *destiny = new CPfTeamsByCompetitions();
+    CPfTeamsByCompetitionPhase *destiny = new CPfTeamsByCompetitionPhase();
     int result = sqlite3_exec(m_database, sql.c_str(), callbackRegister, destiny, &msgError);
     if( result!=SQLITE_OK && result!=SQLITE_ABORT ){
         LOG_ERROR("Error in SQL: \"%s\" --> \"%s\"", sql.c_str(), msgError);
@@ -100,14 +100,14 @@ CPfTeamsByCompetitions* CPfTeamsByCompetitionsDAOSQLiteEntity::loadRegister(cons
     return destiny;
 }
 
-std::vector<CPfTeamsByCompetitions*> * CPfTeamsByCompetitionsDAOSQLiteEntity::loadVector(const std::string &sql)
+std::vector<CPfTeamsByCompetitionPhase*> * CPfTeamsByCompetitionPhaseDAOSQLiteEntity::loadVector(const std::string &sql)
 {
     if( m_database==NULL ){
         throw PFEXCEPTION("No database connection.");
     }
 
     char *msgError = NULL;
-    std::vector<CPfTeamsByCompetitions*> *container = new std::vector<CPfTeamsByCompetitions*>;
+    std::vector<CPfTeamsByCompetitionPhase*> *container = new std::vector<CPfTeamsByCompetitionPhase*>;
     int result = sqlite3_exec(m_database, sql.c_str(), callbackVector, container, &msgError);
     if( result!=SQLITE_OK ){
         LOG_ERROR("Error in SQL: \"%s\" --> \"%s\"", sql.c_str(), msgError);
@@ -118,7 +118,7 @@ std::vector<CPfTeamsByCompetitions*> * CPfTeamsByCompetitionsDAOSQLiteEntity::lo
     return container;
 }
 
-bool CPfTeamsByCompetitionsDAOSQLiteEntity::exec(const std::string &sql)
+bool CPfTeamsByCompetitionPhaseDAOSQLiteEntity::exec(const std::string &sql)
 {
     if( m_database==NULL ){
         throw PFEXCEPTION("No database connection.");
@@ -137,15 +137,15 @@ bool CPfTeamsByCompetitionsDAOSQLiteEntity::exec(const std::string &sql)
     return correct;
 }
 
-int CPfTeamsByCompetitionsDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn)
+int CPfTeamsByCompetitionPhaseDAOSQLiteEntity::callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn)
 {
     if( object!=NULL ){
-        CPfTeamsByCompetitions *destiny = (CPfTeamsByCompetitions*)object;
+        CPfTeamsByCompetitionPhase *destiny = (CPfTeamsByCompetitionPhase*)object;
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "X_FK_COMPETITION_BY_SEASON")==0 ){
-                destiny->setXFkCompetitionBySeason_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_TEAM_BY_COMPETITION")==0 ){
-                destiny->setXTeamByCompetition_str((vColumn[i]==NULL)?"":vColumn[i]);
+            if( strcmp(sColumn[i], "X_TEAM_BY_COMPETITION_PHASE")==0 ){
+                destiny->setXTeamByCompetitionPhase_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_COMPETITION_PHASE_BY_SEASON")==0 ){
+                destiny->setXFkCompetitionPhaseBySeason_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM")==0 ){
                 destiny->setXFkTeam_str((vColumn[i]==NULL)?"":vColumn[i]);
             }
@@ -154,16 +154,16 @@ int CPfTeamsByCompetitionsDAOSQLiteEntity::callbackRegister(void *object, int nC
     return -1; // Abort, don't load more rows
 }
 
-int CPfTeamsByCompetitionsDAOSQLiteEntity::callbackVector(void *object, int nColumns, char **vColumn, char **sColumn)
+int CPfTeamsByCompetitionPhaseDAOSQLiteEntity::callbackVector(void *object, int nColumns, char **vColumn, char **sColumn)
 {
     if( object!=NULL ){
-        std::vector<CPfTeamsByCompetitions*> *container = (std::vector<CPfTeamsByCompetitions*> *)object;
-        CPfTeamsByCompetitions *destiny = new CPfTeamsByCompetitions();
+        std::vector<CPfTeamsByCompetitionPhase*> *container = (std::vector<CPfTeamsByCompetitionPhase*> *)object;
+        CPfTeamsByCompetitionPhase *destiny = new CPfTeamsByCompetitionPhase();
         for( int i=0; i<nColumns; i++ ){
-            if( strcmp(sColumn[i], "X_FK_COMPETITION_BY_SEASON")==0 ){
-                destiny->setXFkCompetitionBySeason_str((vColumn[i]==NULL)?"":vColumn[i]);
-            }else if( strcmp(sColumn[i], "X_TEAM_BY_COMPETITION")==0 ){
-                destiny->setXTeamByCompetition_str((vColumn[i]==NULL)?"":vColumn[i]);
+            if( strcmp(sColumn[i], "X_TEAM_BY_COMPETITION_PHASE")==0 ){
+                destiny->setXTeamByCompetitionPhase_str((vColumn[i]==NULL)?"":vColumn[i]);
+            }else if( strcmp(sColumn[i], "X_FK_COMPETITION_PHASE_BY_SEASON")==0 ){
+                destiny->setXFkCompetitionPhaseBySeason_str((vColumn[i]==NULL)?"":vColumn[i]);
             }else if( strcmp(sColumn[i], "X_FK_TEAM")==0 ){
                 destiny->setXFkTeam_str((vColumn[i]==NULL)?"":vColumn[i]);
             }

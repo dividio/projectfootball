@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -30,16 +30,16 @@ CPfCompetitions::CPfCompetitions()
 {
     m_SCompetition = "";
     m_DFoundation = "";
-    m_XFkCountry = "0";
     m_XCompetition = "0";
+    m_XFkCountry = "0";
 }
 
 CPfCompetitions::CPfCompetitions(const CPfCompetitions &obj)
 {
     m_SCompetition = obj.m_SCompetition;
     m_DFoundation = obj.m_DFoundation;
-    m_XFkCountry = obj.m_XFkCountry;
     m_XCompetition = obj.m_XCompetition;
+    m_XFkCountry = obj.m_XFkCountry;
 }
 
 CPfCompetitions::~CPfCompetitions()
@@ -66,20 +66,6 @@ const std::string& CPfCompetitions::getDFoundation_str() const
     return m_DFoundation;
 }
 
-int CPfCompetitions::getXFkCountry() const
-{
-    if( m_XFkCountry=="" ){
-        return 0;
-    }else{
-        return atoi(m_XFkCountry.c_str());
-    }
-}
-
-const std::string& CPfCompetitions::getXFkCountry_str() const
-{
-    return m_XFkCountry;
-}
-
 int CPfCompetitions::getXCompetition() const
 {
     if( m_XCompetition=="" ){
@@ -92,6 +78,20 @@ int CPfCompetitions::getXCompetition() const
 const std::string& CPfCompetitions::getXCompetition_str() const
 {
     return m_XCompetition;
+}
+
+int CPfCompetitions::getXFkCountry() const
+{
+    if( m_XFkCountry=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkCountry.c_str());
+    }
+}
+
+const std::string& CPfCompetitions::getXFkCountry_str() const
+{
+    return m_XFkCountry;
 }
 
 void CPfCompetitions::setSCompetition(const std::string &SCompetition)
@@ -114,18 +114,6 @@ void CPfCompetitions::setDFoundation_str(const std::string &DFoundation)
     m_DFoundation = DFoundation;
 }
 
-void CPfCompetitions::setXFkCountry(int XFkCountry)
-{
-    std::ostringstream stream;
-    stream << XFkCountry;
-    m_XFkCountry = stream.str();
-}
-
-void CPfCompetitions::setXFkCountry_str(const std::string &XFkCountry)
-{
-    m_XFkCountry = XFkCountry;
-}
-
 void CPfCompetitions::setXCompetition(int XCompetition)
 {
     std::ostringstream stream;
@@ -136,5 +124,17 @@ void CPfCompetitions::setXCompetition(int XCompetition)
 void CPfCompetitions::setXCompetition_str(const std::string &XCompetition)
 {
     m_XCompetition = XCompetition;
+}
+
+void CPfCompetitions::setXFkCountry(int XFkCountry)
+{
+    std::ostringstream stream;
+    stream << XFkCountry;
+    m_XFkCountry = stream.str();
+}
+
+void CPfCompetitions::setXFkCountry_str(const std::string &XFkCountry)
+{
+    m_XFkCountry = XFkCountry;
 }
 

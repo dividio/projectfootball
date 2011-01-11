@@ -60,7 +60,8 @@ void CScorersWindowHandler::enter()
     CPfMatches *lastMatch  = m_game.getIDAOFactory()->getIPfMatchesDAO()->findLastTeamMatch(playerTeam->getXTeam_str());
     if(lastMatch->getXMatch() > 0) {
         loadLastSeason();
-        CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findByXCompetitionPhase(lastMatch->getXFkCompetitionPhase_str());
+        CPfPhaseRounds		 *lastPhaseRound	   = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findByXPhaseRound(lastMatch->getXFkPhaseRound_str());
+        CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findByXCompetitionPhase(lastPhaseRound->getXFkCompetitionPhase());
         CPfCompetitions      *lastCompetition      = m_game.getIDAOFactory()->getIPfCompetitionsDAO()->findByXCompetition(lastCompetitionPhase->getXFkCompetition_str());
         CPfCountries         *lastCountry          = m_game.getIDAOFactory()->getIPfCountriesDAO()->findByXCountry(lastCompetition->getXFkCountry());
 
@@ -70,7 +71,10 @@ void CScorersWindowHandler::enter()
         loadCompetitions(m_lastSeason->getXSeason(), lastCountry->getXCountry(), lastCompetition->getXCompetition());
         loadScorers(m_lastSeason->getXSeason(), lastCompetition->getXCompetition());
 
+        delete lastCountry;
+        delete lastCompetition;
         delete lastCompetitionPhase;
+        delete lastPhaseRound;
     }
     delete lastMatch;
     delete playerTeam;

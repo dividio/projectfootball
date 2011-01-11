@@ -57,9 +57,10 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 
 	IDAOFactory                 *daoFactory = game.getIDAOFactory();
 	IPfSeasonsDAO				*seasonsDAO					= daoFactory->getIPfSeasonsDAO();
-	IPfCompetitionsBySeasonDAO	*competitionsBySeasonDAO	= daoFactory->getIPfCompetitionsBySeasonDAO();
+	IPfCompetitionPhasesBySeasonDAO	*competitionPhasesBySeasonDAO = daoFactory->getIPfCompetitionPhasesBySeasonDAO();
+	IPfCompetitionPhasesDAO	        *competitionPhasesDAO         = daoFactory->getIPfCompetitionPhasesDAO();
 	IPfTeamsDAO					*teamsDAO					= daoFactory->getIPfTeamsDAO();
-	IPfTeamsByCompetitionsDAO	*teamsByCompetitionsDAO		= daoFactory->getIPfTeamsByCompetitionsDAO();
+	IPfTeamsByCompetitionPhaseDAO	*teamsByCompetitionsDAO		= daoFactory->getIPfTeamsByCompetitionPhaseDAO();
 
 	CPfSeasons *season = seasonsDAO->findLastSeason();
 	if( season==NULL || season->getXSeason_str()=="" ){
@@ -81,50 +82,51 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 	daoFactory->getIPfSeasonsDAO()->insertReg(&newSeason);
 
 	// retrieve the competitions associated with the last season
-	std::vector<CPfCompetitionsBySeason*>	*competitionsBySeasonList = competitionsBySeasonDAO->findByXFkSeason(season->getXSeason_str());
+	std::vector<CPfCompetitionPhasesBySeason*>	*competitionsBySeasonList = competitionPhasesBySeasonDAO->findByXFkSeason(season->getXSeason_str());
 
 	// for each competition, create a new competition by season and insert the relevant matches
-	std::vector<CPfCompetitionsBySeason*>::iterator itCompetitionsBySeason;
+	std::vector<CPfCompetitionPhasesBySeason*>::iterator itCompetitionsBySeason;
 	for( itCompetitionsBySeason=competitionsBySeasonList->begin(); itCompetitionsBySeason!=competitionsBySeasonList->end(); itCompetitionsBySeason++ ){
-		CPfCompetitionsBySeason *competitionBySeason = *itCompetitionsBySeason;
+		CPfCompetitionPhasesBySeason *competitionBySeason = *itCompetitionsBySeason;
 
 		// create the new competition by season
-		CPfCompetitionsBySeason *newCompetitionBySeason = new CPfCompetitionsBySeason();
-		newCompetitionBySeason->setDBeginCompetition(getSameWeekDayOneYearLater(competitionBySeason->getDBeginCompetition()));
-		newCompetitionBySeason->setDEndCompetition(getSameWeekDayOneYearLater(competitionBySeason->getDEndCompetition()));
-		newCompetitionBySeason->setXFkCompetition_str(competitionBySeason->getXFkCompetition_str());
+		CPfCompetitionPhasesBySeason *newCompetitionBySeason = new CPfCompetitionPhasesBySeason();
+		newCompetitionBySeason->setDBeginCompetitionPhase(getSameWeekDayOneYearLater(competitionBySeason->getDBeginCompetitionPhase()));
+		newCompetitionBySeason->setDEndCompetitionPhase(getSameWeekDayOneYearLater(competitionBySeason->getDEndCompetitionPhase()));
+		newCompetitionBySeason->setXFkCompetitionPhase_str(competitionBySeason->getXFkCompetitionPhase_str());
 		newCompetitionBySeason->setXFkSeason_str(newSeason.getXSeason_str());
-		competitionsBySeasonDAO->insertReg(newCompetitionBySeason);
+		competitionPhasesBySeasonDAO->insertReg(newCompetitionBySeason);
 
 		// retrieve the teams registered in previous season on the same competition
-		std::vector<CPfTeams*> 				*teamsList = teamsDAO->findByXFKCompetitionAndXFKSeason(competitionBySeason->getXFkCompetition_str(), competitionBySeason->getXFkSeason_str());
-		std::vector<CPfTeams*>::iterator 	itTeams;
+		CPfCompetitionPhases   *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(competitionBySeason->getXFkCompetitionPhase_str());
+		std::vector<CPfTeams*> *teamsList = teamsDAO->findByXFKCompetitionAndXFKSeason(competitionPhase->getXFkCompetition_str(), competitionBySeason->getXFkSeason_str());
+		std::vector<CPfTeams*>::iterator itTeams;
 		for( itTeams=teamsList->begin(); itTeams!=teamsList->end(); itTeams++ ){
 			CPfTeams *team = *itTeams;
 
 			// the team will be associate with the competition for the new season
-			CPfTeamsByCompetitions *newTeamByCompetition = new CPfTeamsByCompetitions();
-			newTeamByCompetition->setXFkCompetitionBySeason_str(newCompetitionBySeason->getXCompetitionBySeason_str());
+			CPfTeamsByCompetitionPhase *newTeamByCompetition = new CPfTeamsByCompetitionPhase();
+			newTeamByCompetition->setXFkCompetitionPhaseBySeason_str(newCompetitionBySeason->getXCompetitionPhaseBySeason_str());
 			newTeamByCompetition->setXFkTeam_str(team->getXTeam_str());
 			teamsByCompetitionsDAO->insertReg(newTeamByCompetition);
 
 			delete newTeamByCompetition;
 		}
 
-		eventMngr->addEvent(new CStartCompetitionEvent(newCompetitionBySeason->getDBeginCompetition()));
+		eventMngr->addEvent(new CStartCompetitionEvent(newCompetitionBySeason->getDBeginCompetitionPhase()));
 
 		//Shuffle teams to create random calendar
 		std::random_shuffle(teamsList->begin(), teamsList->end());
 
 		generateLeagueMatches(game, *newCompetitionBySeason, teamsList); // TODO: Maybe not all competitions are leagues
-		eventMngr->addEvent(new CEndCompetitionEvent(newCompetitionBySeason->getDEndCompetition()));
+		eventMngr->addEvent(new CEndCompetitionEvent(newCompetitionBySeason->getDEndCompetitionPhase()));
 
 		// Retrieve the min & max date for the season events
-		if( newCompetitionBySeason->getDBeginCompetition()<minDate ){
-			minDate = newCompetitionBySeason->getDBeginCompetition();
+		if( newCompetitionBySeason->getDBeginCompetitionPhase()<minDate ){
+			minDate = newCompetitionBySeason->getDBeginCompetitionPhase();
 		}
-		if( newCompetitionBySeason->getDEndCompetition()>maxDate ){
-			maxDate = newCompetitionBySeason->getDEndCompetition();
+		if( newCompetitionBySeason->getDEndCompetitionPhase()>maxDate ){
+			maxDate = newCompetitionBySeason->getDEndCompetitionPhase();
 		}
 
 		teamsDAO->freeVector(teamsList);
@@ -139,18 +141,18 @@ void CSeasonGenerator::generateSeason(CSinglePlayerGame &game)
 	eventMngr->addEvent(new CEndSeasonEvent(maxDate));
 	game.getOptionManager()->setGameCurrentSeason(newSeason.getXSeason());
 
-	competitionsBySeasonDAO->freeVector(competitionsBySeasonList);
+	competitionPhasesBySeasonDAO->freeVector(competitionsBySeasonList);
 	delete season;
 }
 
-void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfCompetitionsBySeason &competitionBySeason, const std::vector<CPfTeams*> *teamsList)
+void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfCompetitionPhasesBySeason &competitionBySeason, const std::vector<CPfTeams*> *teamsList)
 {
 	CEventManager	*eventMngr	= CGameEngine::getInstance()->getEventManager();
 
-	IPfCompetitionPhasesDAO	*competitionPhasesDAO 	= game.getIDAOFactory()->getIPfCompetitionPhasesDAO();
-	IPfMatchesDAO			*matchesDAO				= game.getIDAOFactory()->getIPfMatchesDAO();
+	IPfPhaseRoundsDAO	*phasesRoundsDAO = game.getIDAOFactory()->getIPfPhaseRoundsDAO();
+	IPfMatchesDAO		*matchesDAO		 = game.getIDAOFactory()->getIPfMatchesDAO();
 
-	std::vector<CPfCompetitionPhases*>	*phasesList	= competitionPhasesDAO->findByXFkCompetition(competitionBySeason.getXFkCompetition());
+	std::vector<CPfPhaseRounds*> *phasesList = phasesRoundsDAO->findByXFkCompetitionPhase(competitionBySeason.getXFkCompetitionPhase());
 
 	int i;
 	int nTeams 	= teamsList->size();
@@ -176,20 +178,20 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfC
 		}
     }
 
-	CDate	goDate(competitionBySeason.getDBeginCompetition());
+	CDate goDate(competitionBySeason.getDBeginCompetitionPhase());
 	goDate.setHour(17);
 	goDate.setMin(0);
 	goDate.setSec(0);
 
-	CDate 	returnDate(competitionBySeason.getDBeginCompetition());
+	CDate 	returnDate(competitionBySeason.getDBeginCompetitionPhase());
 	returnDate.setDay(returnDate.getDay()+halfNPhases*7);
 	returnDate.setHour(17);
 	returnDate.setMin(0);
 	returnDate.setSec(0);
 
 	for( i=0; i<halfNPhases; ){
-		CPfCompetitionPhases *goPhase		= phasesList->at(i);
-		CPfCompetitionPhases *returnPhase	= phasesList->at(i+halfNPhases);
+		CPfPhaseRounds *goPhase		= phasesList->at(i);
+		CPfPhaseRounds *returnPhase	= phasesList->at(i+halfNPhases);
 
 		// insert the matches for the current phase and the corresponding return phase
 	    std::list<CPfTeams*>::iterator itHomeTeams;
@@ -204,7 +206,7 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfC
 	        match->setDMatch(goDate);
 	        match->setLPlayed(false);
 	        match->setXFkSeason_str(competitionBySeason.getXFkSeason_str());
-	        match->setXFkCompetitionPhase_str(goPhase->getXCompetitionPhase_str());
+	        match->setXFkPhaseRound_str(goPhase->getXPhaseRound_str());
 	        match->setXFkTeamHome_str(homeTeam->getXTeam_str());
 	        match->setXFkTeamAway_str(awayTeam->getXTeam_str());
 	        matchesDAO->insertReg(match);
@@ -213,7 +215,7 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfC
 	        match->setDMatch(returnDate);
 	        match->setLPlayed(false);
 	        match->setXFkSeason_str(competitionBySeason.getXFkSeason_str());
-	        match->setXFkCompetitionPhase_str(returnPhase->getXCompetitionPhase_str());
+	        match->setXFkPhaseRound_str(returnPhase->getXPhaseRound_str());
 	        match->setXFkTeamHome_str(awayTeam->getXTeam_str());
 	        match->setXFkTeamAway_str(homeTeam->getXTeam_str());
 	        matchesDAO->insertReg(match);
@@ -256,7 +258,7 @@ void CSeasonGenerator::generateLeagueMatches(CSinglePlayerGame &game, const CPfC
 	delete homeTeamsList;
 	delete awayTeamsList;
 
-	competitionPhasesDAO->freeVector(phasesList);
+	phasesRoundsDAO->freeVector(phasesList);
 }
 
 CDate CSeasonGenerator::getSameWeekDayOneYearLater(const CDate &date)

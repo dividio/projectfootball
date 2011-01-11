@@ -114,6 +114,7 @@ void CMatchResultWindowHandler::loadMatchInfo()
     IPfTeamPlayersDAO		*playersDAO      		= daoFactory->getIPfTeamPlayersDAO();
     IPfCompetitionsDAO		*competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
     IPfCompetitionPhasesDAO	*competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
+    IPfPhaseRoundsDAO		*phaseRoundsDAO			= daoFactory->getIPfPhaseRoundsDAO();
     IPfTeamsDAO				*teamsDAO				= daoFactory->getIPfTeamsDAO();
     IPfStadiumsDAO          *stadiumsDAO            = daoFactory->getIPfStadiumsDAO();
 
@@ -121,7 +122,8 @@ void CMatchResultWindowHandler::loadMatchInfo()
     CPfTeams				*homeTeam			= teamsDAO->findByXTeam(match->getXFkTeamHome());
     CPfTeams				*awayTeam			= teamsDAO->findByXTeam(match->getXFkTeamAway());
     CPfStadiums             *stadium            = stadiumsDAO->findByXStadium(homeTeam->getXFkStadium_str());
-    CPfCompetitionPhases	*competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
+    CPfPhaseRounds			*phaseRound			= phaseRoundsDAO->findByXPhaseRound(match->getXFkPhaseRound());
+    CPfCompetitionPhases	*competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(phaseRound->getXFkCompetitionPhase());
     CPfCompetitions			*competition		= competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
     std::vector<CPfGoals*>	*homeGoalsList		= goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), homeTeam->getXTeam());
     std::vector<CPfGoals*>	*awayGoalsList		= goalsDAO->findByXFkMatchAndXFkTeamScorer(match->getXMatch(), awayTeam->getXTeam());
@@ -134,7 +136,7 @@ void CMatchResultWindowHandler::loadMatchInfo()
     std::string homeName = homeTeam->getSTeam();
     std::string awayName = awayTeam->getSTeam();
     m_competitionName     ->setText((CEGUI::utf8*)competition->getSCompetition().c_str());
-    m_competitionPhaseName->setText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
+    m_competitionPhaseName->setText((CEGUI::utf8*)phaseRound->getSPhaseRound().c_str());
     m_homeName            ->setText((CEGUI::utf8*)homeName.c_str());
     m_awayName            ->setText((CEGUI::utf8*)awayName.c_str());
     m_homeScore           ->setText((CEGUI::utf8*)nHomeGoals.str().c_str());
@@ -197,6 +199,7 @@ void CMatchResultWindowHandler::loadMatchInfo()
 
     delete competition;
     delete competitionPhase;
+    delete phaseRound;
     delete stadium;
     delete awayTeam;
     delete homeTeam;

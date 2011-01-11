@@ -95,6 +95,7 @@ void CMatchInfoWindowHandler::updateMatchInfo()
         IPfSeasonsDAO			*seasonsDAO				= daoFactory->getIPfSeasonsDAO();
         IPfCompetitionsDAO      *competitionsDAO		= daoFactory->getIPfCompetitionsDAO();
         IPfCompetitionPhasesDAO *competitionPhasesDAO	= daoFactory->getIPfCompetitionPhasesDAO();
+        IPfPhaseRoundsDAO 		*phaseRoundsDAO			= daoFactory->getIPfPhaseRoundsDAO();
         IPfTeamsDAO             *teamsDAO				= daoFactory->getIPfTeamsDAO();
         IPfTeamAveragesDAO		*teamAveragesDAO		= daoFactory->getIPfTeamAveragesDAO();
         IPfCoachesDAO           *coachesDAO             = daoFactory->getIPfCoachesDAO();
@@ -102,7 +103,8 @@ void CMatchInfoWindowHandler::updateMatchInfo()
 
         // General information
         CPfSeasons				*season				= seasonsDAO->findByXSeason(match->getXFkSeason());
-        CPfCompetitionPhases    *competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(match->getXFkCompetitionPhase());
+        CPfPhaseRounds    		*phaseRound			= phaseRoundsDAO->findByXPhaseRound(match->getXFkPhaseRound());
+        CPfCompetitionPhases    *competitionPhase	= competitionPhasesDAO->findByXCompetitionPhase(phaseRound->getXFkCompetitionPhase());
         CPfCompetitions         *competition		= competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
         CPfCountries            *country			= countriesDAO->findByXCountry(competition->getXFkCountry_str());
     	m_informationBanner->setText((CEGUI::utf8*)gettext("Competition:"));
@@ -111,10 +113,13 @@ void CMatchInfoWindowHandler::updateMatchInfo()
     	m_informationBanner->appendText((CEGUI::utf8*)season->getSSeason().c_str());
     	m_informationBanner->appendText((CEGUI::utf8*)gettext(", Phase:"));
     	m_informationBanner->appendText((CEGUI::utf8*)competitionPhase->getSCompetitionPhase().c_str());
+    	m_informationBanner->appendText((CEGUI::utf8*)gettext(", Round:"));
+		m_informationBanner->appendText((CEGUI::utf8*)phaseRound->getSPhaseRound().c_str());
         m_competitionCountryFlag->setProperty("Image", "set:"+ country->getSFlag() +" image:"+country->getSFlag() + "_mo_flag");
         delete country;
         delete competition;
         delete competitionPhase;
+        delete phaseRound;
         delete season;
 
     	// Home team info

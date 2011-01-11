@@ -108,7 +108,7 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
     // game progression
     m_currentMatch		 = NULL;
     m_selectedTeamPlayer = NULL;
-    m_selectedCompetitionBySeason     = NULL;
+    m_selectedCompetitionPhaseBySeason = NULL;
 }
 
 CSinglePlayerGame::~CSinglePlayerGame()
@@ -133,8 +133,8 @@ CSinglePlayerGame::~CSinglePlayerGame()
     if(m_selectedTeamPlayer != NULL) {
         delete m_selectedTeamPlayer;
     }
-    if(m_selectedCompetitionBySeason != NULL) {
-        delete m_selectedCompetitionBySeason;
+    if(m_selectedCompetitionPhaseBySeason != NULL) {
+        delete m_selectedCompetitionPhaseBySeason;
     }
 }
 
@@ -190,13 +190,13 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
     	throw PFEXCEPTION("The last season is NULL");
     }
 
-	IPfCompetitionsBySeasonDAO 						*competitionBySeasonDAO		= singlePlayerGame->m_daoFactory->getIPfCompetitionsBySeasonDAO();
-	std::vector<CPfCompetitionsBySeason*> 			*competitionsBySeasonList	= competitionBySeasonDAO->findByXFkSeason(season->getXSeason_str());
-	std::vector<CPfCompetitionsBySeason*>::iterator itCompetitionsBySeason;
+	IPfCompetitionPhasesBySeasonDAO 			*competitionBySeasonDAO		= singlePlayerGame->m_daoFactory->getIPfCompetitionPhasesBySeasonDAO();
+	std::vector<CPfCompetitionPhasesBySeason*>  *competitionsBySeasonList	= competitionBySeasonDAO->findByXFkSeason(season->getXSeason_str());
+	std::vector<CPfCompetitionPhasesBySeason*>::iterator itCompetitionsBySeason;
 	for( itCompetitionsBySeason=competitionsBySeasonList->begin(); itCompetitionsBySeason!=competitionsBySeasonList->end(); itCompetitionsBySeason++ ){
-		CPfCompetitionsBySeason *competitionBySeason = *itCompetitionsBySeason;
-		if( competitionBySeason->getDEndCompetition()>maxDate ){
-			maxDate = competitionBySeason->getDEndCompetition();
+		CPfCompetitionPhasesBySeason *competitionBySeason = *itCompetitionsBySeason;
+		if( competitionBySeason->getDEndCompetitionPhase()>maxDate ){
+			maxDate = competitionBySeason->getDEndCompetitionPhase();
 		}
 	}
 
@@ -310,18 +310,18 @@ void CSinglePlayerGame::setSelectedTeamPlayer(const CPfTeamPlayers *teamPlayer)
     m_selectedTeamPlayer = (teamPlayer!=NULL)?new CPfTeamPlayers(*teamPlayer):NULL;
 }
 
-const CPfCompetitionsBySeason* CSinglePlayerGame::getSelectedCompetitionBySeason() const
+const CPfCompetitionPhasesBySeason* CSinglePlayerGame::getSelectedCompetitionPhaseBySeason() const
 {
-    return m_selectedCompetitionBySeason;
+    return m_selectedCompetitionPhaseBySeason;
 }
 
-void CSinglePlayerGame::setSelectedCompetitionBySeason(const CPfCompetitionsBySeason *season)
+void CSinglePlayerGame::setSelectedCompetitionPhaseBySeason(const CPfCompetitionPhasesBySeason *season)
 {
 
-    if(m_selectedCompetitionBySeason != NULL) {
-        delete m_selectedCompetitionBySeason;
+    if(m_selectedCompetitionPhaseBySeason != NULL) {
+        delete m_selectedCompetitionPhaseBySeason;
     }
-    m_selectedCompetitionBySeason = (season!=NULL)?new CPfCompetitionsBySeason(*season):NULL;
+    m_selectedCompetitionPhaseBySeason = (season!=NULL)?new CPfCompetitionPhasesBySeason(*season):NULL;
 }
 
 void CSinglePlayerGame::simulateMatch(const CPfMatches &match)
@@ -412,22 +412,24 @@ void CSinglePlayerGame::loadGameEvents()
 
 	CEventManager *eventMngr = CGameEngine::getInstance()->getEventManager();
 
-	IPfCompetitionsBySeasonDAO	*competitionBySeasonDAO = m_daoFactory->getIPfCompetitionsBySeasonDAO();
-	IPfMatchesDAO				*matchesDAO				= m_daoFactory->getIPfMatchesDAO();
+	IPfCompetitionPhasesBySeasonDAO	*competitionPhasesBySeasonDAO = m_daoFactory->getIPfCompetitionPhasesBySeasonDAO();
+	IPfCompetitionPhasesDAO	        *competitionPhasesDAO         = m_daoFactory->getIPfCompetitionPhasesDAO();
+	IPfMatchesDAO				    *matchesDAO                   = m_daoFactory->getIPfMatchesDAO();
 
 	// the min & max date necesary for the season events
     CDate minDate = CDate::MAX_DATE;
     CDate maxDate = CDate::MIN_DATE;
 
 	// retrieve the competitions for the current season
-	std::vector<CPfCompetitionsBySeason*> *competitionsBySeasonList = competitionBySeasonDAO->findByXFkSeason(xSeason);
-	std::vector<CPfCompetitionsBySeason*>::iterator itCompetitionsBySeason;
+	std::vector<CPfCompetitionPhasesBySeason*> *competitionPhasesBySeasonList = competitionPhasesBySeasonDAO->findByXFkSeason(xSeason);
+	std::vector<CPfCompetitionPhasesBySeason*>::iterator itCompetitionPhasesBySeason;
 	bool someCompetitionStarted = false;
-	for( itCompetitionsBySeason=competitionsBySeasonList->begin(); itCompetitionsBySeason!=competitionsBySeasonList->end(); itCompetitionsBySeason++ ){
-		CPfCompetitionsBySeason *competitionBySeason = *itCompetitionsBySeason;
+	for( itCompetitionPhasesBySeason=competitionPhasesBySeasonList->begin(); itCompetitionPhasesBySeason!=competitionPhasesBySeasonList->end(); itCompetitionPhasesBySeason++ ){
+		CPfCompetitionPhasesBySeason *competitionPhaseBySeason = *itCompetitionPhasesBySeason;
+		CPfCompetitionPhases         *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(competitionPhaseBySeason->getXFkCompetitionPhase_str());
 
 		// for each competition are retrieved the respective matches
-		std::vector<CPfMatches*> *matchesList = matchesDAO->findByXFkCompetitionAndXFkSeason(competitionBySeason->getXFkCompetition_str(), competitionBySeason->getXFkSeason_str());
+		std::vector<CPfMatches*> *matchesList = matchesDAO->findByXFkCompetitionAndXFkSeason(competitionPhase->getXFkCompetition_str(), competitionPhaseBySeason->getXFkSeason_str());
 		std::vector<CPfMatches*>::iterator itMatches;
 		bool someMatchPlayed = false;
 		for( itMatches=matchesList->begin(); itMatches!=matchesList->end(); itMatches++ ){
@@ -440,16 +442,16 @@ void CSinglePlayerGame::loadGameEvents()
 			}
 		}
 		if( !someMatchPlayed ){
-			eventMngr->addEvent(new CStartCompetitionEvent(competitionBySeason->getDBeginCompetition()));
+			eventMngr->addEvent(new CStartCompetitionEvent(competitionPhaseBySeason->getDBeginCompetitionPhase()));
 		}
-		eventMngr->addEvent(new CEndCompetitionEvent(competitionBySeason->getDEndCompetition()));
+		eventMngr->addEvent(new CEndCompetitionEvent(competitionPhaseBySeason->getDEndCompetitionPhase()));
 
 		// Retrieve the min & max date for the season events
-		if( competitionBySeason->getDBeginCompetition()<minDate ){
-			minDate = competitionBySeason->getDBeginCompetition();
+		if( competitionPhaseBySeason->getDBeginCompetitionPhase()<minDate ){
+			minDate = competitionPhaseBySeason->getDBeginCompetitionPhase();
 		}
-		if( competitionBySeason->getDEndCompetition()>maxDate ){
-			maxDate = competitionBySeason->getDEndCompetition();
+		if( competitionPhaseBySeason->getDEndCompetitionPhase()>maxDate ){
+			maxDate = competitionPhaseBySeason->getDEndCompetitionPhase();
 		}
 
 		matchesDAO->freeVector(matchesList);
@@ -464,5 +466,5 @@ void CSinglePlayerGame::loadGameEvents()
 	}
 	eventMngr->addEvent(new CEndSeasonEvent(maxDate));
 
-	competitionBySeasonDAO->freeVector(competitionsBySeasonList);
+	competitionPhasesBySeasonDAO->freeVector(competitionPhasesBySeasonList);
 }

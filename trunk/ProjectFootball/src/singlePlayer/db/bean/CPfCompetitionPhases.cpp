@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -28,50 +28,40 @@
 
 CPfCompetitionPhases::CPfCompetitionPhases()
 {
-    m_NOrder = "0";
-    m_XCompetitionPhase = "0";
+    m_NNumberTeams = "0";
     m_SCompetitionPhase = "";
     m_XFkCompetition = "0";
+    m_XCompetitionPhase = "0";
+    m_NOrder = "0";
+    m_XFkPhaseType = "0";
 }
 
 CPfCompetitionPhases::CPfCompetitionPhases(const CPfCompetitionPhases &obj)
 {
-    m_NOrder = obj.m_NOrder;
-    m_XCompetitionPhase = obj.m_XCompetitionPhase;
+    m_NNumberTeams = obj.m_NNumberTeams;
     m_SCompetitionPhase = obj.m_SCompetitionPhase;
     m_XFkCompetition = obj.m_XFkCompetition;
+    m_XCompetitionPhase = obj.m_XCompetitionPhase;
+    m_NOrder = obj.m_NOrder;
+    m_XFkPhaseType = obj.m_XFkPhaseType;
 }
 
 CPfCompetitionPhases::~CPfCompetitionPhases()
 {
 }
 
-int CPfCompetitionPhases::getNOrder() const
+int CPfCompetitionPhases::getNNumberTeams() const
 {
-    if( m_NOrder=="" ){
+    if( m_NNumberTeams=="" ){
         return 0;
     }else{
-        return atoi(m_NOrder.c_str());
+        return atoi(m_NNumberTeams.c_str());
     }
 }
 
-const std::string& CPfCompetitionPhases::getNOrder_str() const
+const std::string& CPfCompetitionPhases::getNNumberTeams_str() const
 {
-    return m_NOrder;
-}
-
-int CPfCompetitionPhases::getXCompetitionPhase() const
-{
-    if( m_XCompetitionPhase=="" ){
-        return 0;
-    }else{
-        return atoi(m_XCompetitionPhase.c_str());
-    }
-}
-
-const std::string& CPfCompetitionPhases::getXCompetitionPhase_str() const
-{
-    return m_XCompetitionPhase;
+    return m_NNumberTeams;
 }
 
 const std::string& CPfCompetitionPhases::getSCompetitionPhase() const
@@ -98,28 +88,58 @@ const std::string& CPfCompetitionPhases::getXFkCompetition_str() const
     return m_XFkCompetition;
 }
 
-void CPfCompetitionPhases::setNOrder(int NOrder)
+int CPfCompetitionPhases::getXCompetitionPhase() const
+{
+    if( m_XCompetitionPhase=="" ){
+        return 0;
+    }else{
+        return atoi(m_XCompetitionPhase.c_str());
+    }
+}
+
+const std::string& CPfCompetitionPhases::getXCompetitionPhase_str() const
+{
+    return m_XCompetitionPhase;
+}
+
+int CPfCompetitionPhases::getNOrder() const
+{
+    if( m_NOrder=="" ){
+        return 0;
+    }else{
+        return atoi(m_NOrder.c_str());
+    }
+}
+
+const std::string& CPfCompetitionPhases::getNOrder_str() const
+{
+    return m_NOrder;
+}
+
+int CPfCompetitionPhases::getXFkPhaseType() const
+{
+    if( m_XFkPhaseType=="" ){
+        return 0;
+    }else{
+        return atoi(m_XFkPhaseType.c_str());
+    }
+}
+
+const std::string& CPfCompetitionPhases::getXFkPhaseType_str() const
+{
+    return m_XFkPhaseType;
+}
+
+void CPfCompetitionPhases::setNNumberTeams(int NNumberTeams)
 {
     std::ostringstream stream;
-    stream << NOrder;
-    m_NOrder = stream.str();
+    stream << NNumberTeams;
+    m_NNumberTeams = stream.str();
 }
 
-void CPfCompetitionPhases::setNOrder_str(const std::string &NOrder)
+void CPfCompetitionPhases::setNNumberTeams_str(const std::string &NNumberTeams)
 {
-    m_NOrder = NOrder;
-}
-
-void CPfCompetitionPhases::setXCompetitionPhase(int XCompetitionPhase)
-{
-    std::ostringstream stream;
-    stream << XCompetitionPhase;
-    m_XCompetitionPhase = stream.str();
-}
-
-void CPfCompetitionPhases::setXCompetitionPhase_str(const std::string &XCompetitionPhase)
-{
-    m_XCompetitionPhase = XCompetitionPhase;
+    m_NNumberTeams = NNumberTeams;
 }
 
 void CPfCompetitionPhases::setSCompetitionPhase(const std::string &SCompetitionPhase)
@@ -142,5 +162,41 @@ void CPfCompetitionPhases::setXFkCompetition(int XFkCompetition)
 void CPfCompetitionPhases::setXFkCompetition_str(const std::string &XFkCompetition)
 {
     m_XFkCompetition = XFkCompetition;
+}
+
+void CPfCompetitionPhases::setXCompetitionPhase(int XCompetitionPhase)
+{
+    std::ostringstream stream;
+    stream << XCompetitionPhase;
+    m_XCompetitionPhase = stream.str();
+}
+
+void CPfCompetitionPhases::setXCompetitionPhase_str(const std::string &XCompetitionPhase)
+{
+    m_XCompetitionPhase = XCompetitionPhase;
+}
+
+void CPfCompetitionPhases::setNOrder(int NOrder)
+{
+    std::ostringstream stream;
+    stream << NOrder;
+    m_NOrder = stream.str();
+}
+
+void CPfCompetitionPhases::setNOrder_str(const std::string &NOrder)
+{
+    m_NOrder = NOrder;
+}
+
+void CPfCompetitionPhases::setXFkPhaseType(int XFkPhaseType)
+{
+    std::ostringstream stream;
+    stream << XFkPhaseType;
+    m_XFkPhaseType = stream.str();
+}
+
+void CPfCompetitionPhases::setXFkPhaseType_str(const std::string &XFkPhaseType)
+{
+    m_XFkPhaseType = XFkPhaseType;
 }
 

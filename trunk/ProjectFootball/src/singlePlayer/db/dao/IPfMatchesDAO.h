@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -42,8 +42,8 @@ public:
 
     virtual std::vector<CPfMatches*>* findByXFkCompetitionAndXFkSeason(int XFkCompetition, int XFkSeason) =0;
     virtual std::vector<CPfMatches*>* findByXFkCompetitionAndXFkSeason(const std::string &XFkCompetition, const std::string &XFkSeason) =0;
-    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhaseAndXFkSeason(int XFkCompetitionPhase, int XFkSeason) =0;
-    virtual std::vector<CPfMatches*>* findByXFkCompetitionPhaseAndXFkSeason(const std::string &XFkCompetitionPhase, const std::string &XFkSeason) =0;
+    virtual std::vector<CPfMatches*>* findByXFkPhaseRoundAndXFkSeason(int XFkCompetitionPhase, int XFkSeason) =0;
+    virtual std::vector<CPfMatches*>* findByXFkPhaseRoundAndXFkSeason(const std::string &XFkCompetitionPhase, const std::string &XFkSeason) =0;
     virtual CPfMatches* findByXFkTeamHome(int XFkTeamHome) =0;
     virtual CPfMatches* findByXFkTeamHome(const std::string &XFkTeamHome) =0;
     virtual CPfMatches* findByXMatch(int XMatch) =0;

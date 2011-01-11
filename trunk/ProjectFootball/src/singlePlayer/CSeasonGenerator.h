@@ -27,7 +27,7 @@
 
 // Forward declarations
 class CSinglePlayerGame;
-class CPfCompetitionsBySeason;
+class CPfCompetitionPhasesBySeason;
 class CPfTeams;
 
 class CSeasonGenerator {
@@ -40,7 +40,7 @@ protected:
 	CSeasonGenerator();
 
 private:
-	static void generateLeagueMatches(CSinglePlayerGame &game, const CPfCompetitionsBySeason &competitionBySeason, const std::vector<CPfTeams*> *teamsList);
+	static void generateLeagueMatches(CSinglePlayerGame &game, const CPfCompetitionPhasesBySeason &competitionBySeason, const std::vector<CPfTeams*> *teamsList);
 
 	static CDate getSameWeekDayOneYearLater(const CDate &date);
 };

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -24,55 +24,55 @@
 #include <sstream>
 #include <stdlib.h>
 
-#include "CPfTeamsByCompetitions.h"
+#include "CPfTeamsByCompetitionPhase.h"
 
-CPfTeamsByCompetitions::CPfTeamsByCompetitions()
+CPfTeamsByCompetitionPhase::CPfTeamsByCompetitionPhase()
 {
-    m_XFkCompetitionBySeason = "0";
-    m_XTeamByCompetition = "0";
+    m_XTeamByCompetitionPhase = "0";
+    m_XFkCompetitionPhaseBySeason = "0";
     m_XFkTeam = "0";
 }
 
-CPfTeamsByCompetitions::CPfTeamsByCompetitions(const CPfTeamsByCompetitions &obj)
+CPfTeamsByCompetitionPhase::CPfTeamsByCompetitionPhase(const CPfTeamsByCompetitionPhase &obj)
 {
-    m_XFkCompetitionBySeason = obj.m_XFkCompetitionBySeason;
-    m_XTeamByCompetition = obj.m_XTeamByCompetition;
+    m_XTeamByCompetitionPhase = obj.m_XTeamByCompetitionPhase;
+    m_XFkCompetitionPhaseBySeason = obj.m_XFkCompetitionPhaseBySeason;
     m_XFkTeam = obj.m_XFkTeam;
 }
 
-CPfTeamsByCompetitions::~CPfTeamsByCompetitions()
+CPfTeamsByCompetitionPhase::~CPfTeamsByCompetitionPhase()
 {
 }
 
-int CPfTeamsByCompetitions::getXFkCompetitionBySeason() const
+int CPfTeamsByCompetitionPhase::getXTeamByCompetitionPhase() const
 {
-    if( m_XFkCompetitionBySeason=="" ){
+    if( m_XTeamByCompetitionPhase=="" ){
         return 0;
     }else{
-        return atoi(m_XFkCompetitionBySeason.c_str());
+        return atoi(m_XTeamByCompetitionPhase.c_str());
     }
 }
 
-const std::string& CPfTeamsByCompetitions::getXFkCompetitionBySeason_str() const
+const std::string& CPfTeamsByCompetitionPhase::getXTeamByCompetitionPhase_str() const
 {
-    return m_XFkCompetitionBySeason;
+    return m_XTeamByCompetitionPhase;
 }
 
-int CPfTeamsByCompetitions::getXTeamByCompetition() const
+int CPfTeamsByCompetitionPhase::getXFkCompetitionPhaseBySeason() const
 {
-    if( m_XTeamByCompetition=="" ){
+    if( m_XFkCompetitionPhaseBySeason=="" ){
         return 0;
     }else{
-        return atoi(m_XTeamByCompetition.c_str());
+        return atoi(m_XFkCompetitionPhaseBySeason.c_str());
     }
 }
 
-const std::string& CPfTeamsByCompetitions::getXTeamByCompetition_str() const
+const std::string& CPfTeamsByCompetitionPhase::getXFkCompetitionPhaseBySeason_str() const
 {
-    return m_XTeamByCompetition;
+    return m_XFkCompetitionPhaseBySeason;
 }
 
-int CPfTeamsByCompetitions::getXFkTeam() const
+int CPfTeamsByCompetitionPhase::getXFkTeam() const
 {
     if( m_XFkTeam=="" ){
         return 0;
@@ -81,43 +81,43 @@ int CPfTeamsByCompetitions::getXFkTeam() const
     }
 }
 
-const std::string& CPfTeamsByCompetitions::getXFkTeam_str() const
+const std::string& CPfTeamsByCompetitionPhase::getXFkTeam_str() const
 {
     return m_XFkTeam;
 }
 
-void CPfTeamsByCompetitions::setXFkCompetitionBySeason(int XFkCompetitionBySeason)
+void CPfTeamsByCompetitionPhase::setXTeamByCompetitionPhase(int XTeamByCompetitionPhase)
 {
     std::ostringstream stream;
-    stream << XFkCompetitionBySeason;
-    m_XFkCompetitionBySeason = stream.str();
+    stream << XTeamByCompetitionPhase;
+    m_XTeamByCompetitionPhase = stream.str();
 }
 
-void CPfTeamsByCompetitions::setXFkCompetitionBySeason_str(const std::string &XFkCompetitionBySeason)
+void CPfTeamsByCompetitionPhase::setXTeamByCompetitionPhase_str(const std::string &XTeamByCompetitionPhase)
 {
-    m_XFkCompetitionBySeason = XFkCompetitionBySeason;
+    m_XTeamByCompetitionPhase = XTeamByCompetitionPhase;
 }
 
-void CPfTeamsByCompetitions::setXTeamByCompetition(int XTeamByCompetition)
+void CPfTeamsByCompetitionPhase::setXFkCompetitionPhaseBySeason(int XFkCompetitionPhaseBySeason)
 {
     std::ostringstream stream;
-    stream << XTeamByCompetition;
-    m_XTeamByCompetition = stream.str();
+    stream << XFkCompetitionPhaseBySeason;
+    m_XFkCompetitionPhaseBySeason = stream.str();
 }
 
-void CPfTeamsByCompetitions::setXTeamByCompetition_str(const std::string &XTeamByCompetition)
+void CPfTeamsByCompetitionPhase::setXFkCompetitionPhaseBySeason_str(const std::string &XFkCompetitionPhaseBySeason)
 {
-    m_XTeamByCompetition = XTeamByCompetition;
+    m_XFkCompetitionPhaseBySeason = XFkCompetitionPhaseBySeason;
 }
 
-void CPfTeamsByCompetitions::setXFkTeam(int XFkTeam)
+void CPfTeamsByCompetitionPhase::setXFkTeam(int XFkTeam)
 {
     std::ostringstream stream;
     stream << XFkTeam;
     m_XFkTeam = stream.str();
 }
 
-void CPfTeamsByCompetitions::setXFkTeam_str(const std::string &XFkTeam)
+void CPfTeamsByCompetitionPhase::setXFkTeam_str(const std::string &XFkTeam)
 {
     m_XFkTeam = XFkTeam;
 }

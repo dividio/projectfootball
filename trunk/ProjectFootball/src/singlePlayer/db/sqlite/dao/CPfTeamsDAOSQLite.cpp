@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -84,9 +84,10 @@ std::vector<CPfTeams*>* CPfTeamsDAOSQLite::findByXFKCompetitionAndXFKSeason(cons
 	std::string sql(
 			"SELECT T.* "
 			"FROM PF_TEAMS T "
-			"  JOIN PF_TEAMS_BY_COMPETITIONS TBC ON TBC.X_FK_TEAM=T.X_TEAM "
-			"  JOIN PF_COMPETITIONS_BY_SEASON CBS ON CBS.X_COMPETITION_BY_SEASON=TBC.X_FK_COMPETITION_BY_SEASON ");
-	sql +=	"WHERE CBS.X_FK_SEASON='"+XFKSeason+"' AND CBS.X_FK_COMPETITION='"+XFKCompetition+"' ";
+			"  JOIN PF_TEAMS_BY_COMPETITION_PHASE TCP ON TCP.X_FK_TEAM=T.X_TEAM "
+			"  JOIN PF_COMPETITION_PHASES_BY_SEASON CPS ON CPS.X_COMPETITION_PHASE_BY_SEASON=TCP.X_FK_COMPETITION_PHASE_BY_SEASON "
+			"  JOIN PF_COMPETITION_PHASES CP ON CP.X_COMPETITION_PHASE=CPS.X_FK_COMPETITION_PHASE ");
+	sql +=	"WHERE CPS.X_FK_SEASON='"+XFKSeason+"' AND CP.X_FK_COMPETITION='"+XFKCompetition+"' ";
 	sql +=	"ORDER BY T.S_TEAM";
 	return loadVector(sql);
 }

@@ -83,13 +83,14 @@ void CSeasonsHistoryWindowHandler::loadSeasonsHistory()
     m_seasonsList->resetList();
     const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
 
-    IDAOFactory                *daoFactory              = m_game.getIDAOFactory();
-    IPfSeasonsDAO              *seasonsDAO              = daoFactory->getIPfSeasonsDAO();
-    IPfTeamsDAO                *teamsDAO                = daoFactory->getIPfTeamsDAO();
-    IPfCoachesDAO              *coachesDAO              = daoFactory->getIPfCoachesDAO();
-    IPfCoachContractsDAO       *coachContractsDAO       = daoFactory->getIPfCoachContractsDAO();
-    IPfCompetitionsBySeasonDAO *competitionsBySeasonDAO = daoFactory->getIPfCompetitionsBySeasonDAO();
-    IPfCompetitionsDAO         *competitionsDAO         = daoFactory->getIPfCompetitionsDAO();
+    IDAOFactory                		*daoFactory              	  = m_game.getIDAOFactory();
+    IPfSeasonsDAO              		*seasonsDAO              	  = daoFactory->getIPfSeasonsDAO();
+    IPfTeamsDAO                		*teamsDAO                	  = daoFactory->getIPfTeamsDAO();
+    IPfCoachesDAO              		*coachesDAO              	  = daoFactory->getIPfCoachesDAO();
+    IPfCoachContractsDAO       		*coachContractsDAO       	  = daoFactory->getIPfCoachContractsDAO();
+    IPfCompetitionPhasesBySeasonDAO *competitionPhasesBySeasonDAO = daoFactory->getIPfCompetitionPhasesBySeasonDAO();
+    IPfCompetitionPhasesDAO    		*competitionPhasesDAO      	  = daoFactory->getIPfCompetitionPhasesDAO();
+    IPfCompetitionsDAO         		*competitionsDAO         	  = daoFactory->getIPfCompetitionsDAO();
 
     int XCoach = m_game.getOptionManager()->getGamePlayerCoach();
     CPfCoaches *coach = coachesDAO->findByXCoach(XCoach);
@@ -108,22 +109,24 @@ void CSeasonsHistoryWindowHandler::loadSeasonsHistory()
             int row_idx = m_seasonsList->addRow();
 
             CPfTeams *team = teamsDAO->findByXTeam(contract->getXFkTeam_str());
-            CPfCompetitionsBySeason *competitionBySeason = competitionsBySeasonDAO->findByXFkSeasonAndXTeam(XSeason, team->getXTeam());
-            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)team->getSTeam_str().c_str(), competitionBySeason->getXCompetitionBySeason());
+            CPfCompetitionPhasesBySeason *competitionPhaseBySeason = competitionPhasesBySeasonDAO->findByXFkSeasonAndXTeam(XSeason, team->getXTeam());
+            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)team->getSTeam_str().c_str(), competitionPhaseBySeason->getXCompetitionPhaseBySeason());
             item->setSelectionBrushImage(sel_img);
             m_seasonsList->setItem(item, 0, row_idx);
             delete team;
 
-            CPfCompetitions *competition = competitionsDAO->findByXCompetition(competitionBySeason->getXFkCompetition());
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)competition->getSCompetition_str().c_str(), competitionBySeason->getXCompetitionBySeason());
+            CPfCompetitionPhases *competitionPhase = competitionPhasesDAO->findByXCompetitionPhase(competitionPhaseBySeason->getXFkCompetitionPhase());
+            CPfCompetitions *competition = competitionsDAO->findByXCompetition(competitionPhase->getXFkCompetition());
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)competition->getSCompetition_str().c_str(), competitionPhaseBySeason->getXCompetitionPhaseBySeason());
             item->setSelectionBrushImage(sel_img);
             m_seasonsList->setItem(item, 1, row_idx);
             delete competition;
+            delete competitionPhase;
 
-            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)season->getSSeason_str().c_str(), competitionBySeason->getXCompetitionBySeason());
+            item = new CEGUI::ListboxTextItem((CEGUI::utf8*)season->getSSeason_str().c_str(), competitionPhaseBySeason->getXCompetitionPhaseBySeason());
             item->setSelectionBrushImage(sel_img);
             m_seasonsList->setItem(item, 2, row_idx);
-            delete competitionBySeason;
+            delete competitionPhaseBySeason;
         }
         if(contracts->empty()) {
             int row_idx = m_seasonsList->addRow();
@@ -154,13 +157,13 @@ bool CSeasonsHistoryWindowHandler::seasonsListboxSelectionChanged(const CEGUI::E
 
     if( currentItem != NULL ) {
         int currentRow  = m_seasonsList->getItemRowIndex(currentItem);
-        int XCompetitionBySeason = currentItem->getID();
-        if(XCompetitionBySeason != -1) {
-            IPfCompetitionsBySeasonDAO *competitionsBySeasonDAO = m_game.getIDAOFactory()->getIPfCompetitionsBySeasonDAO();
-            CPfCompetitionsBySeason *selectedCompetitionBySeason = competitionsBySeasonDAO->findByXCompetitionBySeason(XCompetitionBySeason);
-            m_game.setSelectedCompetitionBySeason(selectedCompetitionBySeason);
+        int XCompetitionPhaseBySeason = currentItem->getID();
+        if(XCompetitionPhaseBySeason != -1) {
+            IPfCompetitionPhasesBySeasonDAO *competitionPhasesBySeasonDAO = m_game.getIDAOFactory()->getIPfCompetitionPhasesBySeasonDAO();
+            CPfCompetitionPhasesBySeason *selectedCompetitionPhaseBySeason = competitionPhasesBySeasonDAO->findByXCompetitionPhaseBySeason(XCompetitionPhaseBySeason);
+            m_game.setSelectedCompetitionPhaseBySeason(selectedCompetitionPhaseBySeason);
             CGameEngine::getInstance()->getWindowManager()->nextScreen("SeasonSummary");
-            delete selectedCompetitionBySeason;
+            delete selectedCompetitionPhaseBySeason;
         }
     }
     return true;

@@ -60,20 +60,22 @@ void CResultsWindowHandler::enter()
 	CPfMatches           *lastMatch            = m_game.getIDAOFactory()->getIPfMatchesDAO()->findLastTeamMatch(playerTeam->getXTeam_str());
 	if(lastMatch->getXMatch() > 0) {
         loadLastSeason();
-	    CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findByXCompetitionPhase(lastMatch->getXFkCompetitionPhase_str());
-        CPfCompetitions      *lastCompetition      = m_game.getIDAOFactory()->getIPfCompetitionsDAO()->findByXCompetition(lastCompetitionPhase->getXFkCompetition_str());
-        CPfCountries         *lastCountry          = m_game.getIDAOFactory()->getIPfCountriesDAO()->findByXCountry(lastCompetition->getXFkCountry());
+        CPfPhaseRounds		 *lastPhaseRound		= m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findByXPhaseRound(lastMatch->getXFkPhaseRound_str());
+        CPfCompetitionPhases *lastCompetitionPhase	= m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findByXCompetitionPhase(lastPhaseRound->getXFkCompetitionPhase());
+        CPfCompetitions      *lastCompetition  		= m_game.getIDAOFactory()->getIPfCompetitionsDAO()->findByXCompetition(lastCompetitionPhase->getXFkCompetition_str());
+        CPfCountries         *lastCountry       	= m_game.getIDAOFactory()->getIPfCountriesDAO()->findByXCountry(lastCompetition->getXFkCountry());
 
 
         loadConfederations(m_lastSeason->getXSeason(), lastCountry->getXFkConfederation());
         CEGUI::ListboxItem *item = m_confederationsCombobox->getSelectedItem();
         loadCountries(m_lastSeason->getXSeason(), item->getID(), lastCountry->getXCountry());
         loadCompetitions(m_lastSeason->getXSeason(), lastCountry->getXCountry(), lastCompetition->getXCompetition());
-        loadCompetitionPhases(lastCompetition->getXCompetition(), lastCompetitionPhase->getXCompetitionPhase());
-        loadResultsList(lastCompetitionPhase->getXCompetitionPhase());
+        loadCompetitionPhases(lastCompetition->getXCompetition(), lastPhaseRound->getXPhaseRound());
+        loadResultsList(lastPhaseRound->getXPhaseRound());
         delete lastCountry;
         delete lastCompetition;
         delete lastCompetitionPhase;
+        delete lastPhaseRound;
 	}
 	delete lastMatch;
 	delete playerTeam;
@@ -224,38 +226,38 @@ void CResultsWindowHandler::loadCompetitions(int XSeason, int XCountry, int XCom
     competitionsDAO->freeVector(competitionsList);
 }
 
-void CResultsWindowHandler::loadCompetitionPhases(int XCompetition, int XCompetitionPhase)
+void CResultsWindowHandler::loadCompetitionPhases(int XCompetition, int XPhaseRound)
 {
     m_competitionPhasesCombobox->clearAllSelections();
     m_competitionPhasesCombobox->resetList();
     m_competitionPhasesCombobox->getEditbox()->setText("");
     bool selected = false;
 
-        IPfCompetitionPhasesDAO                         *competitionPhasesDAO   = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO();
-        std::vector<CPfCompetitionPhases*>              *competitionPhasesList  = competitionPhasesDAO->findByXFkCompetition(XCompetition);
-        std::vector<CPfCompetitionPhases*>::iterator    it;
+        IPfPhaseRoundsDAO                   *phaseRoundsDAO   = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO();
+        std::vector<CPfPhaseRounds*>        *phaseRoundsList  = phaseRoundsDAO->findByXFkCompetition(XCompetition);
+        std::vector<CPfPhaseRounds*>::iterator    it;
 
-        for( it=competitionPhasesList->begin(); it!=competitionPhasesList->end(); it++ ){
-            CPfCompetitionPhases *competitionPhase = (*it);
-            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)gettext(competitionPhase->getSCompetitionPhase().c_str()),
-                                                                                    competitionPhase->getXCompetitionPhase());
+        for( it=phaseRoundsList->begin(); it!=phaseRoundsList->end(); it++ ){
+        	CPfPhaseRounds *phaseRound = (*it);
+            CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem((CEGUI::utf8*)gettext(phaseRound->getSPhaseRound().c_str()),
+            																				phaseRound->getXPhaseRound());
             m_competitionPhasesCombobox->addItem(item);
-            if(competitionPhase->getXCompetitionPhase() == XCompetitionPhase) {
-                m_competitionPhasesCombobox->setText((CEGUI::utf8*)gettext(competitionPhase->getSCompetitionPhase().c_str()));
+            if(phaseRound->getXPhaseRound() == XPhaseRound) {
+                m_competitionPhasesCombobox->setText((CEGUI::utf8*)gettext(phaseRound->getSPhaseRound().c_str()));
                 selected = true;
                 item->setSelected(true);
             }
         }
         if(!selected) {
-            m_competitionPhasesCombobox->setText((CEGUI::utf8*)gettext(competitionPhasesList->front()->getSCompetitionPhase().c_str()));
+            m_competitionPhasesCombobox->setText((CEGUI::utf8*)gettext(phaseRoundsList->front()->getSPhaseRound().c_str()));
             CEGUI::ListboxItem *item = m_competitionPhasesCombobox->getListboxItemFromIndex(0);
             item->setSelected(true);
         }
 
-        competitionPhasesDAO->freeVector(competitionPhasesList);
+        phaseRoundsDAO->freeVector(phaseRoundsList);
 }
 
-void CResultsWindowHandler::loadResultsList(int XCompetitionPhase)
+void CResultsWindowHandler::loadResultsList(int XPhaseRound)
 {
     m_resultsList->resetList();
 
@@ -267,7 +269,7 @@ void CResultsWindowHandler::loadResultsList(int XCompetitionPhase)
         CPfTeams      *playerTeam = teamsDAO->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
         CPfMatches    *lastMatch  = matchesDAO->findLastTeamMatch(playerTeam->getXTeam_str());
 
-        std::vector<CPfMatches*> *matchesList = matchesDAO->findByXFkCompetitionPhaseAndXFkSeason(XCompetitionPhase, lastMatch->getXFkSeason());
+        std::vector<CPfMatches*> *matchesList = matchesDAO->findByXFkPhaseRoundAndXFkSeason(XPhaseRound, lastMatch->getXFkSeason());
         std::vector<CPfMatches*>::iterator  it;
 
         for( it=matchesList->begin(); it!=matchesList->end(); it++ ){
@@ -332,11 +334,14 @@ bool CResultsWindowHandler::confederationsComboboxListSelectionChanged(const CEG
     item = m_countriesCombobox->getSelectedItem();
     loadCompetitions(m_lastSeason->getXSeason(), item->getID());
     item = m_competitionsCombobox->getSelectedItem();
-    CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason());
-    if(lastCompetitionPhase->getXCompetitionPhase() == 0) {
-        lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason() - 1);
+
+    CPfPhaseRounds *lastPhaseRound = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findLastPhaseRound(item->getID(), m_lastSeason->getXSeason());
+    if(lastPhaseRound->getXPhaseRound() == 0) {
+    	lastPhaseRound = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findLastPhaseRound(item->getID(), m_lastSeason->getXSeason() - 1);
     }
-    loadCompetitionPhases(item->getID(), lastCompetitionPhase->getXCompetitionPhase());
+    loadCompetitionPhases(item->getID(), lastPhaseRound->getXPhaseRound());
+    delete lastPhaseRound;
+
     item = m_competitionPhasesCombobox->getSelectedItem();
     if (item != NULL) {
         loadResultsList(item->getID());
@@ -349,11 +354,14 @@ bool CResultsWindowHandler::countriesComboboxListSelectionChanged(const CEGUI::E
     CEGUI::ListboxItem *item = m_countriesCombobox->getSelectedItem();
     loadCompetitions(m_lastSeason->getXSeason(), item->getID());
     item = m_competitionsCombobox->getSelectedItem();
-    CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason());
-    if(lastCompetitionPhase->getXCompetitionPhase() == 0) {
-        lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason() - 1);
-    }
-    loadCompetitionPhases(item->getID(), lastCompetitionPhase->getXCompetitionPhase());
+
+    CPfPhaseRounds *lastPhaseRound = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findLastPhaseRound(item->getID(), m_lastSeason->getXSeason());
+	if(lastPhaseRound->getXPhaseRound() == 0) {
+		lastPhaseRound = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findLastPhaseRound(item->getID(), m_lastSeason->getXSeason() - 1);
+	}
+	loadCompetitionPhases(item->getID(), lastPhaseRound->getXPhaseRound());
+	delete lastPhaseRound;
+
     item = m_competitionPhasesCombobox->getSelectedItem();
     if (item != NULL) {
         loadResultsList(item->getID());
@@ -364,11 +372,14 @@ bool CResultsWindowHandler::countriesComboboxListSelectionChanged(const CEGUI::E
 bool CResultsWindowHandler::competitionsComboboxListSelectionChanged(const CEGUI::EventArgs& e)
 {
     CEGUI::ListboxItem *item = m_competitionsCombobox->getSelectedItem();
-    CPfCompetitionPhases *lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason());
-    if(lastCompetitionPhase->getXCompetitionPhase() == 0) {
-        lastCompetitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findLastCompetitionPhase(item->getID(), m_lastSeason->getXSeason() - 1);
-    }
-    loadCompetitionPhases(item->getID(), lastCompetitionPhase->getXCompetitionPhase());
+
+    CPfPhaseRounds *lastPhaseRound = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findLastPhaseRound(item->getID(), m_lastSeason->getXSeason());
+	if(lastPhaseRound->getXPhaseRound() == 0) {
+		lastPhaseRound = m_game.getIDAOFactory()->getIPfPhaseRoundsDAO()->findLastPhaseRound(item->getID(), m_lastSeason->getXSeason() - 1);
+	}
+	loadCompetitionPhases(item->getID(), lastPhaseRound->getXPhaseRound());
+	delete lastPhaseRound;
+
     item = m_competitionPhasesCombobox->getSelectedItem();
     if (item != NULL) {
         loadResultsList(item->getID());

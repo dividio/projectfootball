@@ -27,21 +27,23 @@
 #include "../IPfRankingDAO.h"
 #include "../IPfTeamAveragesDAO.h"
 #include "../IPfFormationsDAO.h"
-#include "../IPfTeamsByCompetitionsDAO.h"
 #include "../IPfConfederationsDAO.h"
 #include "../IPfTeamPlayersDAO.h"
+#include "../IPfPhaseRoundsDAO.h"
 #include "../IPfStadiumsDAO.h"
 #include "../IPfTeamsDAO.h"
 #include "../IPfTeamPlayerAveragesDAO.h"
-#include "../IPfCompetitionsBySeasonDAO.h"
 #include "../IPfSeasonsDAO.h"
 #include "../IPfDemarcationsDAO.h"
+#include "../IPfPhaseTypesDAO.h"
 #include "../IPfTeamPlayerContractsDAO.h"
 #include "../IPfStrategicPositionsDAO.h"
 #include "../IPfCoachesDAO.h"
 #include "../IPfMatchesDAO.h"
 #include "../IPfGameOptionsDAO.h"
+#include "../IPfCompetitionPhasesBySeasonDAO.h"
 #include "../IPfGoalsDAO.h"
+#include "../IPfTeamsByCompetitionPhaseDAO.h"
 #include "../IPfRolesDAO.h"
 #include "../IPfCountriesDAO.h"
 #include "../IPfCoachContractsDAO.h"
@@ -69,21 +71,23 @@ public:
     virtual IPfRankingDAO* getIPfRankingDAO() =0;
     virtual IPfTeamAveragesDAO* getIPfTeamAveragesDAO() =0;
     virtual IPfFormationsDAO* getIPfFormationsDAO() =0;
-    virtual IPfTeamsByCompetitionsDAO* getIPfTeamsByCompetitionsDAO() =0;
     virtual IPfConfederationsDAO* getIPfConfederationsDAO() =0;
     virtual IPfTeamPlayersDAO* getIPfTeamPlayersDAO() =0;
+    virtual IPfPhaseRoundsDAO* getIPfPhaseRoundsDAO() =0;
     virtual IPfStadiumsDAO* getIPfStadiumsDAO() =0;
     virtual IPfTeamsDAO* getIPfTeamsDAO() =0;
     virtual IPfTeamPlayerAveragesDAO* getIPfTeamPlayerAveragesDAO() =0;
-    virtual IPfCompetitionsBySeasonDAO* getIPfCompetitionsBySeasonDAO() =0;
     virtual IPfSeasonsDAO* getIPfSeasonsDAO() =0;
     virtual IPfDemarcationsDAO* getIPfDemarcationsDAO() =0;
+    virtual IPfPhaseTypesDAO* getIPfPhaseTypesDAO() =0;
     virtual IPfTeamPlayerContractsDAO* getIPfTeamPlayerContractsDAO() =0;
     virtual IPfStrategicPositionsDAO* getIPfStrategicPositionsDAO() =0;
     virtual IPfCoachesDAO* getIPfCoachesDAO() =0;
     virtual IPfMatchesDAO* getIPfMatchesDAO() =0;
     virtual IPfGameOptionsDAO* getIPfGameOptionsDAO() =0;
+    virtual IPfCompetitionPhasesBySeasonDAO* getIPfCompetitionPhasesBySeasonDAO() =0;
     virtual IPfGoalsDAO* getIPfGoalsDAO() =0;
+    virtual IPfTeamsByCompetitionPhaseDAO* getIPfTeamsByCompetitionPhaseDAO() =0;
     virtual IPfRolesDAO* getIPfRolesDAO() =0;
     virtual IPfCountriesDAO* getIPfCountriesDAO() =0;
     virtual IPfCoachContractsDAO* getIPfCoachContractsDAO() =0;

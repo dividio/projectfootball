@@ -63,6 +63,7 @@ void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_teamplayers.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_roles_by_team_players.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_competitions.sql");
+    daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_phases.sql");
     daoFactory->executeScriptFile("data/database/scripts/singleplayer/inserts_seasons.sql");
 
 

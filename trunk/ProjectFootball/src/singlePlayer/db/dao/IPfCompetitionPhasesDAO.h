@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -44,8 +44,8 @@ public:
     virtual CPfCompetitionPhases* findByXCompetitionPhase(const std::string &XCompetitionPhase) =0;
     virtual std::vector<CPfCompetitionPhases*>* findByXFkCompetition(int XFkCompetition) =0;
     virtual std::vector<CPfCompetitionPhases*>* findByXFkCompetition(const std::string &XFkCompetition) =0;
-    virtual CPfCompetitionPhases* findLastCompetitionPhase(int XFkCompetition, int XSeason) =0;
-    virtual CPfCompetitionPhases* findLastCompetitionPhase(const std::string &XFkCompetition, const std::string &XSeason) =0;
+    virtual CPfCompetitionPhases* findByXFkPhaseType(int XFkPhaseType) =0;
+    virtual CPfCompetitionPhases* findByXFkPhaseType(const std::string &XFkPhaseType) =0;
 
 };
 #endif /*IPFCOMPETITIONPHASESDAO_H_*/

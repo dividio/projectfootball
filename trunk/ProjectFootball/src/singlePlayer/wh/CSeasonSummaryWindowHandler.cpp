@@ -68,9 +68,13 @@ void CSeasonSummaryWindowHandler::enter()
 {
     CEGUI::WindowManager &windowMngr = CEGUI::WindowManager::getSingleton();
 
-    int XCoach       = m_game.getOptionManager()->getGamePlayerCoach();
-    int XSeason      = m_game.getSelectedCompetitionBySeason()->getXFkSeason();
-    int XCompetition = m_game.getSelectedCompetitionBySeason()->getXFkCompetition();
+    int XCoach            = m_game.getOptionManager()->getGamePlayerCoach();
+    int XSeason           = m_game.getSelectedCompetitionPhaseBySeason()->getXFkSeason();
+    int XCompetitionPhase = m_game.getSelectedCompetitionPhaseBySeason()->getXFkCompetitionPhase();
+
+    CPfCompetitionPhases *competitionPhase = m_game.getIDAOFactory()->getIPfCompetitionPhasesDAO()->findByXCompetitionPhase(XCompetitionPhase);
+    int XCompetition = competitionPhase->getXFkCompetition();
+
     loadRanking(XSeason, XCompetition);
     loadScorers(XSeason, XCompetition);
 
@@ -352,7 +356,7 @@ void CSeasonSummaryWindowHandler::loadScorers(int XSeason, int XCompetition)
 
 void CSeasonSummaryWindowHandler::loadLastSeason()
 {
-    m_xLastSeason = m_game.getSelectedCompetitionBySeason()->getXFkSeason();
+    m_xLastSeason = m_game.getSelectedCompetitionPhaseBySeason()->getXFkSeason();
 }
 
 bool CSeasonSummaryWindowHandler::confederationsComboboxListSelectionChanged(const CEGUI::EventArgs& e)

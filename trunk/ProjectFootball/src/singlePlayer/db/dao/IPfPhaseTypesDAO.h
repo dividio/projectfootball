@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -20,40 +20,28 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFCOMPETITIONSBYSEASONDAOSQLITEENTITY_H_
-#define CPFCOMPETITIONSBYSEASONDAOSQLITEENTITY_H_
+#ifndef IPFPHASETYPESDAO_H_
+#define IPFPHASETYPESDAO_H_
 
 #include <string>
 #include <vector>
-#include <sqlite3.h>
 
-#include "../../../bean/CPfCompetitionsBySeason.h"
-#include "../../../dao/IPfCompetitionsBySeasonDAO.h"
+#include "../bean/CPfPhaseTypes.h"
 
-class CPfCompetitionsBySeasonDAOSQLiteEntity : public IPfCompetitionsBySeasonDAO
+class IPfPhaseTypesDAO
 {
 public:
-    CPfCompetitionsBySeasonDAOSQLiteEntity(sqlite3 *database);
-    virtual ~CPfCompetitionsBySeasonDAOSQLiteEntity();
+    IPfPhaseTypesDAO(){}
+    virtual ~IPfPhaseTypesDAO(){}
 
-    void setSQLite(sqlite3 *database);
+    virtual bool deleteReg(CPfPhaseTypes *reg) =0;
+    virtual bool insertReg(CPfPhaseTypes *reg) =0;
+    virtual bool updateReg(CPfPhaseTypes *reg) =0;
 
-    virtual bool deleteReg(CPfCompetitionsBySeason *reg);
-    virtual bool insertReg(CPfCompetitionsBySeason *reg);
-    virtual bool updateReg(CPfCompetitionsBySeason *reg);
+    virtual void freeVector(std::vector<CPfPhaseTypes*>* vector) =0;
 
-    virtual void freeVector(std::vector<CPfCompetitionsBySeason*>* vector);
-
-protected:
-    CPfCompetitionsBySeason* loadRegister(const std::string &sql);
-    std::vector<CPfCompetitionsBySeason*>* loadVector(const std::string &sql);
-
-private:
-    bool exec(const std::string &sql);
-    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
-    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
-
-    sqlite3 *m_database;
+    virtual CPfPhaseTypes* findByXPhaseType(int XPhaseType) =0;
+    virtual CPfPhaseTypes* findByXPhaseType(const std::string &XPhaseType) =0;
 
 };
-#endif /*CPFCOMPETITIONSBYSEASONDAOSQLITEENTITY_H_*/
+#endif /*IPFPHASETYPESDAO_H_*/

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -36,8 +36,6 @@ public:
 
     int getXFkSeason() const;
     const std::string& getXFkSeason_str() const;
-    int getXFkCompetitionPhase() const;
-    const std::string& getXFkCompetitionPhase_str() const;
     int getXFkTeamAway() const;
     const std::string& getXFkTeamAway_str() const;
     CDate getDMatch() const;
@@ -46,13 +44,13 @@ public:
     const std::string& getXMatch_str() const;
     bool getLPlayed() const;
     const std::string& getLPlayed_str() const;
+    int getXFkPhaseRound() const;
+    const std::string& getXFkPhaseRound_str() const;
     int getXFkTeamHome() const;
     const std::string& getXFkTeamHome_str() const;
 
     void setXFkSeason(int XFkSeason);
     void setXFkSeason_str(const std::string &XFkSeason);
-    void setXFkCompetitionPhase(int XFkCompetitionPhase);
-    void setXFkCompetitionPhase_str(const std::string &XFkCompetitionPhase);
     void setXFkTeamAway(int XFkTeamAway);
     void setXFkTeamAway_str(const std::string &XFkTeamAway);
     void setDMatch(const CDate &DMatch);
@@ -61,16 +59,18 @@ public:
     void setXMatch_str(const std::string &XMatch);
     void setLPlayed(bool LPlayed);
     void setLPlayed_str(const std::string &LPlayed);
+    void setXFkPhaseRound(int XFkPhaseRound);
+    void setXFkPhaseRound_str(const std::string &XFkPhaseRound);
     void setXFkTeamHome(int XFkTeamHome);
     void setXFkTeamHome_str(const std::string &XFkTeamHome);
 
 private:
     std::string m_XFkSeason;
-    std::string m_XFkCompetitionPhase;
     std::string m_XFkTeamAway;
     std::string m_DMatch;
     std::string m_XMatch;
     std::string m_LPlayed;
+    std::string m_XFkPhaseRound;
     std::string m_XFkTeamHome;
 
 };

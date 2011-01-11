@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -20,48 +20,31 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef CPFCOMPETITIONSBYSEASON_H_
-#define CPFCOMPETITIONSBYSEASON_H_
+#ifndef CPFPHASETYPES_H_
+#define CPFPHASETYPES_H_
 
 #include <string>
 
-#include "../../../utils/CDate.h"
-
-class CPfCompetitionsBySeason
+class CPfPhaseTypes
 {
 public:
-    CPfCompetitionsBySeason();
-    CPfCompetitionsBySeason(const CPfCompetitionsBySeason &obj);
-    virtual ~CPfCompetitionsBySeason();
+    CPfPhaseTypes();
+    CPfPhaseTypes(const CPfPhaseTypes &obj);
+    virtual ~CPfPhaseTypes();
 
-    int getXFkSeason() const;
-    const std::string& getXFkSeason_str() const;
-    int getXCompetitionBySeason() const;
-    const std::string& getXCompetitionBySeason_str() const;
-    CDate getDEndCompetition() const;
-    const std::string& getDEndCompetition_str() const;
-    int getXFkCompetition() const;
-    const std::string& getXFkCompetition_str() const;
-    CDate getDBeginCompetition() const;
-    const std::string& getDBeginCompetition_str() const;
+    const std::string& getSPhaseType() const;
+    const std::string& getSPhaseType_str() const;
+    int getXPhaseType() const;
+    const std::string& getXPhaseType_str() const;
 
-    void setXFkSeason(int XFkSeason);
-    void setXFkSeason_str(const std::string &XFkSeason);
-    void setXCompetitionBySeason(int XCompetitionBySeason);
-    void setXCompetitionBySeason_str(const std::string &XCompetitionBySeason);
-    void setDEndCompetition(const CDate &DEndCompetition);
-    void setDEndCompetition_str(const std::string &DEndCompetition);
-    void setXFkCompetition(int XFkCompetition);
-    void setXFkCompetition_str(const std::string &XFkCompetition);
-    void setDBeginCompetition(const CDate &DBeginCompetition);
-    void setDBeginCompetition_str(const std::string &DBeginCompetition);
+    void setSPhaseType(const std::string &SPhaseType);
+    void setSPhaseType_str(const std::string &SPhaseType);
+    void setXPhaseType(int XPhaseType);
+    void setXPhaseType_str(const std::string &XPhaseType);
 
 private:
-    std::string m_XFkSeason;
-    std::string m_XCompetitionBySeason;
-    std::string m_DEndCompetition;
-    std::string m_XFkCompetition;
-    std::string m_DBeginCompetition;
+    std::string m_SPhaseType;
+    std::string m_XPhaseType;
 
 };
-#endif /*CPFCOMPETITIONSBYSEASON_H_*/
+#endif /*CPFPHASETYPES_H_*/

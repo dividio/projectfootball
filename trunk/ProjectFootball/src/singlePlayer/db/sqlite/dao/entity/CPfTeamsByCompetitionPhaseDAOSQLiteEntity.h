@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+* Copyright (C) 2010 - Ikaro Games   www.ikarogames.com                       *
 *                                                                             *
 * This program is free software; you can redistribute it and/or               *
 * modify it under the terms of the GNU General Public License                 *
@@ -20,34 +20,40 @@
 *       Version: 1.23                                                         *
 ******************************************************************************/
 
-#ifndef IPFCOMPETITIONSBYSEASONDAO_H_
-#define IPFCOMPETITIONSBYSEASONDAO_H_
+#ifndef CPFTEAMSBYCOMPETITIONPHASEDAOSQLITEENTITY_H_
+#define CPFTEAMSBYCOMPETITIONPHASEDAOSQLITEENTITY_H_
 
 #include <string>
 #include <vector>
+#include <sqlite3.h>
 
-#include "../bean/CPfCompetitionsBySeason.h"
+#include "../../../bean/CPfTeamsByCompetitionPhase.h"
+#include "../../../dao/IPfTeamsByCompetitionPhaseDAO.h"
 
-class IPfCompetitionsBySeasonDAO
+class CPfTeamsByCompetitionPhaseDAOSQLiteEntity : public IPfTeamsByCompetitionPhaseDAO
 {
 public:
-    IPfCompetitionsBySeasonDAO(){}
-    virtual ~IPfCompetitionsBySeasonDAO(){}
+    CPfTeamsByCompetitionPhaseDAOSQLiteEntity(sqlite3 *database);
+    virtual ~CPfTeamsByCompetitionPhaseDAOSQLiteEntity();
 
-    virtual bool deleteReg(CPfCompetitionsBySeason *reg) =0;
-    virtual bool insertReg(CPfCompetitionsBySeason *reg) =0;
-    virtual bool updateReg(CPfCompetitionsBySeason *reg) =0;
+    void setSQLite(sqlite3 *database);
 
-    virtual void freeVector(std::vector<CPfCompetitionsBySeason*>* vector) =0;
+    virtual bool deleteReg(CPfTeamsByCompetitionPhase *reg);
+    virtual bool insertReg(CPfTeamsByCompetitionPhase *reg);
+    virtual bool updateReg(CPfTeamsByCompetitionPhase *reg);
 
-    virtual std::vector<CPfCompetitionsBySeason*>* findByXFkSeason(int XFkSeason) =0;
-    virtual std::vector<CPfCompetitionsBySeason*>* findByXFkSeason(const std::string &XFkSeason) =0;
-    virtual CPfCompetitionsBySeason* findByXCompetitionBySeason(int XCompetitionBySeason) =0;
-    virtual CPfCompetitionsBySeason* findByXCompetitionBySeason(const std::string &XCompetitionBySeason) =0;
-    virtual std::vector<CPfCompetitionsBySeason*>* findByXFkCompetition(int XFkCompetition) =0;
-    virtual std::vector<CPfCompetitionsBySeason*>* findByXFkCompetition(const std::string &XFkCompetition) =0;
-    virtual CPfCompetitionsBySeason* findByXFkSeasonAndXTeam(int XFkSeason, int XTeam) =0;
-    virtual CPfCompetitionsBySeason* findByXFkSeasonAndXTeam(const std::string &XFkSeason, const std::string &XTeam) =0;
+    virtual void freeVector(std::vector<CPfTeamsByCompetitionPhase*>* vector);
+
+protected:
+    CPfTeamsByCompetitionPhase* loadRegister(const std::string &sql);
+    std::vector<CPfTeamsByCompetitionPhase*>* loadVector(const std::string &sql);
+
+private:
+    bool exec(const std::string &sql);
+    static int callbackRegister(void *object, int nColumns, char **vColumn, char **sColumn );
+    static int callbackVector(void *object, int nColumns, char **vColumn, char **sColumn );
+
+    sqlite3 *m_database;
 
 };
-#endif /*IPFCOMPETITIONSBYSEASONDAO_H_*/
+#endif /*CPFTEAMSBYCOMPETITIONPHASEDAOSQLITEENTITY_H_*/
