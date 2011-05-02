@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-02 17:01+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2011-05-02 17:03+0100\n"
+"Last-Translator: David Ballesteros Mayo <davidio@telefonica.net>\n"
+"Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
 
 #: src/engine/wh/CCreditsWindowHandler.cpp:59
 msgid " MAKING FOOTBALL FANS TO ENJOY "
@@ -73,7 +74,8 @@ msgid "Abuja"
 msgstr ""
 
 #: src/singlePlayer/wh/CConfigGameWindowHandler.cpp:91
-#: src/engine/wm/CWindowManager.cpp:67 src/engine/wm/CWindowManager.cpp:68
+#: src/engine/wm/CWindowManager.cpp:67
+#: src/engine/wm/CWindowManager.cpp:68
 #: src/engine/wh/CConfigWindowHandler.cpp:115
 msgid "Accept"
 msgstr ""
@@ -118,7 +120,8 @@ msgid ""
 " from the beginning we have always chased a goal :"
 msgstr ""
 
-#: data/i18n/temp.cpp:152 data/i18n/temp.cpp:368
+#: data/i18n/temp.cpp:152
+#: data/i18n/temp.cpp:368
 msgid "American Samoa"
 msgstr ""
 
@@ -142,7 +145,8 @@ msgstr ""
 msgid "Angola"
 msgstr ""
 
-#: data/i18n/temp.cpp:103 data/i18n/temp.cpp:319
+#: data/i18n/temp.cpp:103
+#: data/i18n/temp.cpp:319
 msgid "Anguilla"
 msgstr ""
 
@@ -154,7 +158,8 @@ msgstr ""
 msgid "Antananarivo"
 msgstr ""
 
-#: data/i18n/temp.cpp:104 data/i18n/temp.cpp:320
+#: data/i18n/temp.cpp:104
+#: data/i18n/temp.cpp:320
 msgid "Antigua and Barbuda "
 msgstr ""
 
@@ -183,8 +188,7 @@ msgid "Are you sure you want to exit this game and return to Mac OS?"
 msgstr ""
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:281
-msgid ""
-"Are you sure you want to exit this game and return to the Operating System?"
+msgid "Are you sure you want to exit this game and return to the Operating System?"
 msgstr ""
 
 #: src/singlePlayer/wh/CGNSWindowHandler.cpp:294
@@ -203,11 +207,13 @@ msgstr ""
 msgid "Argentine Republic"
 msgstr ""
 
-#: data/i18n/temp.cpp:219 data/i18n/temp.cpp:381
+#: data/i18n/temp.cpp:219
+#: data/i18n/temp.cpp:381
 msgid "Armenia"
 msgstr ""
 
-#: data/i18n/temp.cpp:105 data/i18n/temp.cpp:321
+#: data/i18n/temp.cpp:105
+#: data/i18n/temp.cpp:321
 msgid "Aruba "
 msgstr ""
 
@@ -269,7 +275,8 @@ msgstr ""
 msgid "Away Team"
 msgstr ""
 
-#: data/i18n/temp.cpp:220 data/i18n/temp.cpp:383
+#: data/i18n/temp.cpp:220
+#: data/i18n/temp.cpp:383
 msgid "Azerbaijan"
 msgstr ""
 
@@ -293,7 +300,8 @@ msgstr ""
 msgid "Bahrain"
 msgstr ""
 
-#: data/i18n/temp.cpp:436 data/i18n/temp.cpp:599
+#: data/i18n/temp.cpp:436
+#: data/i18n/temp.cpp:599
 msgid "Baku"
 msgstr ""
 
@@ -321,7 +329,8 @@ msgstr ""
 msgid "Banjul"
 msgstr ""
 
-#: data/i18n/temp.cpp:107 data/i18n/temp.cpp:323
+#: data/i18n/temp.cpp:107
+#: data/i18n/temp.cpp:323
 msgid "Barbados"
 msgstr ""
 
@@ -373,7 +382,8 @@ msgstr ""
 msgid "Belgrade"
 msgstr ""
 
-#: data/i18n/temp.cpp:108 data/i18n/temp.cpp:324
+#: data/i18n/temp.cpp:108
+#: data/i18n/temp.cpp:324
 msgid "Belize"
 msgstr ""
 
@@ -429,7 +439,8 @@ msgstr ""
 msgid "Bolivia"
 msgstr ""
 
-#: data/i18n/temp.cpp:170 data/i18n/temp.cpp:386
+#: data/i18n/temp.cpp:170
+#: data/i18n/temp.cpp:386
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
@@ -453,7 +464,8 @@ msgstr ""
 msgid "Bridgetown"
 msgstr ""
 
-#: data/i18n/temp.cpp:110 data/i18n/temp.cpp:326
+#: data/i18n/temp.cpp:110
+#: data/i18n/temp.cpp:326
 msgid "British Virgin Islands"
 msgstr ""
 
@@ -489,7 +501,8 @@ msgstr ""
 msgid "Bulgaria"
 msgstr ""
 
-#: data/i18n/temp.cpp:54 data/i18n/temp.cpp:270
+#: data/i18n/temp.cpp:54
+#: data/i18n/temp.cpp:270
 msgid "Burkina Faso"
 msgstr ""
 
@@ -509,7 +522,8 @@ msgstr ""
 msgid "Cameroon"
 msgstr ""
 
-#: data/i18n/temp.cpp:111 data/i18n/temp.cpp:327
+#: data/i18n/temp.cpp:111
+#: data/i18n/temp.cpp:327
 msgid "Canada"
 msgstr ""
 
@@ -551,11 +565,13 @@ msgstr ""
 msgid "Cayenne(Paris) "
 msgstr ""
 
-#: data/i18n/temp.cpp:112 data/i18n/temp.cpp:328
+#: data/i18n/temp.cpp:112
+#: data/i18n/temp.cpp:328
 msgid "Cayman Islands"
 msgstr ""
 
-#: data/i18n/temp.cpp:58 data/i18n/temp.cpp:274
+#: data/i18n/temp.cpp:58
+#: data/i18n/temp.cpp:274
 msgid "Central African Republic"
 msgstr ""
 
@@ -666,7 +682,8 @@ msgstr ""
 msgid "Contract Details:"
 msgstr ""
 
-#: data/i18n/temp.cpp:153 data/i18n/temp.cpp:369
+#: data/i18n/temp.cpp:153
+#: data/i18n/temp.cpp:369
 msgid "Cook Islands"
 msgstr ""
 
@@ -711,7 +728,8 @@ msgstr ""
 msgid "Cyprus"
 msgstr ""
 
-#: data/i18n/temp.cpp:174 data/i18n/temp.cpp:390
+#: data/i18n/temp.cpp:174
+#: data/i18n/temp.cpp:390
 msgid "Czech Republic"
 msgstr ""
 
@@ -739,7 +757,8 @@ msgstr ""
 msgid "Democratic People's Republic of Korea"
 msgstr ""
 
-#: data/i18n/temp.cpp:89 data/i18n/temp.cpp:305
+#: data/i18n/temp.cpp:89
+#: data/i18n/temp.cpp:305
 msgid "Democratic Republic of Sao Tomé and Príncipe"
 msgstr ""
 
@@ -747,7 +766,8 @@ msgstr ""
 msgid "Democratic Republic of Timor-Leste"
 msgstr ""
 
-#: data/i18n/temp.cpp:62 data/i18n/temp.cpp:278
+#: data/i18n/temp.cpp:62
+#: data/i18n/temp.cpp:278
 msgid "Democratic Republic of the Congo"
 msgstr ""
 
@@ -767,7 +787,8 @@ msgstr ""
 msgid "Dili"
 msgstr ""
 
-#: data/i18n/temp.cpp:279 data/i18n/temp.cpp:495
+#: data/i18n/temp.cpp:279
+#: data/i18n/temp.cpp:495
 msgid "Djibouti"
 msgstr ""
 
@@ -783,7 +804,8 @@ msgstr ""
 msgid "Dominica"
 msgstr ""
 
-#: data/i18n/temp.cpp:116 data/i18n/temp.cpp:332
+#: data/i18n/temp.cpp:116
+#: data/i18n/temp.cpp:332
 msgid "Dominican Republic"
 msgstr ""
 
@@ -823,7 +845,8 @@ msgstr ""
 msgid "End Date:"
 msgstr ""
 
-#: data/i18n/temp.cpp:176 data/i18n/temp.cpp:392
+#: data/i18n/temp.cpp:176
+#: data/i18n/temp.cpp:392
 msgid "England"
 msgstr ""
 
@@ -868,7 +891,8 @@ msgstr ""
 msgid "Exit to OS"
 msgstr ""
 
-#: data/i18n/temp.cpp:178 data/i18n/temp.cpp:394
+#: data/i18n/temp.cpp:178
+#: data/i18n/temp.cpp:394
 msgid "Faroe Islands"
 msgstr ""
 
@@ -924,7 +948,8 @@ msgstr ""
 msgid "French Guyane"
 msgstr ""
 
-#: data/i18n/temp.cpp:160 data/i18n/temp.cpp:376
+#: data/i18n/temp.cpp:160
+#: data/i18n/temp.cpp:376
 msgid "French Polynesia"
 msgstr ""
 
@@ -968,7 +993,8 @@ msgstr ""
 msgid "Georgetown"
 msgstr ""
 
-#: data/i18n/temp.cpp:181 data/i18n/temp.cpp:397
+#: data/i18n/temp.cpp:181
+#: data/i18n/temp.cpp:397
 msgid "Georgia"
 msgstr ""
 
@@ -1012,7 +1038,8 @@ msgstr ""
 msgid "Greece"
 msgstr ""
 
-#: data/i18n/temp.cpp:118 data/i18n/temp.cpp:334
+#: data/i18n/temp.cpp:118
+#: data/i18n/temp.cpp:334
 msgid "Grenada"
 msgstr ""
 
@@ -1093,7 +1120,8 @@ msgstr ""
 msgid "Honduras"
 msgstr ""
 
-#: data/i18n/temp.cpp:228 data/i18n/temp.cpp:444
+#: data/i18n/temp.cpp:228
+#: data/i18n/temp.cpp:444
 msgid "Hong Kong"
 msgstr ""
 
@@ -1181,11 +1209,13 @@ msgstr ""
 msgid "Jakarta"
 msgstr ""
 
-#: data/i18n/temp.cpp:123 data/i18n/temp.cpp:339
+#: data/i18n/temp.cpp:123
+#: data/i18n/temp.cpp:339
 msgid "Jamaica"
 msgstr ""
 
-#: data/i18n/temp.cpp:17 data/i18n/temp.cpp:233
+#: data/i18n/temp.cpp:17
+#: data/i18n/temp.cpp:233
 msgid "Japan"
 msgstr ""
 
@@ -1433,11 +1463,13 @@ msgstr ""
 msgid "Lusaka"
 msgstr ""
 
-#: data/i18n/temp.cpp:409 data/i18n/temp.cpp:625
+#: data/i18n/temp.cpp:409
+#: data/i18n/temp.cpp:625
 msgid "Luxembourg"
 msgstr ""
 
-#: data/i18n/temp.cpp:241 data/i18n/temp.cpp:457
+#: data/i18n/temp.cpp:241
+#: data/i18n/temp.cpp:457
 msgid "Macau"
 msgstr ""
 
@@ -1469,7 +1501,8 @@ msgstr ""
 msgid "Malawi"
 msgstr ""
 
-#: data/i18n/temp.cpp:26 data/i18n/temp.cpp:242
+#: data/i18n/temp.cpp:26
+#: data/i18n/temp.cpp:242
 msgid "Malaysia"
 msgstr ""
 
@@ -1549,11 +1582,13 @@ msgstr ""
 msgid "Moldova"
 msgstr ""
 
-#: data/i18n/temp.cpp:413 data/i18n/temp.cpp:629
+#: data/i18n/temp.cpp:413
+#: data/i18n/temp.cpp:629
 msgid "Monaco"
 msgstr ""
 
-#: data/i18n/temp.cpp:28 data/i18n/temp.cpp:244
+#: data/i18n/temp.cpp:28
+#: data/i18n/temp.cpp:244
 msgid "Mongolia"
 msgstr ""
 
@@ -1561,7 +1596,8 @@ msgstr ""
 msgid "Monrovia"
 msgstr ""
 
-#: data/i18n/temp.cpp:198 data/i18n/temp.cpp:414
+#: data/i18n/temp.cpp:198
+#: data/i18n/temp.cpp:414
 msgid "Montenegro"
 msgstr ""
 
@@ -1569,7 +1605,8 @@ msgstr ""
 msgid "Montevideo"
 msgstr ""
 
-#: data/i18n/temp.cpp:126 data/i18n/temp.cpp:342
+#: data/i18n/temp.cpp:126
+#: data/i18n/temp.cpp:342
 msgid "Montserrat"
 msgstr ""
 
@@ -1656,11 +1693,13 @@ msgstr ""
 msgid "Netherlands"
 msgstr ""
 
-#: data/i18n/temp.cpp:127 data/i18n/temp.cpp:343
+#: data/i18n/temp.cpp:127
+#: data/i18n/temp.cpp:343
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: data/i18n/temp.cpp:155 data/i18n/temp.cpp:371
+#: data/i18n/temp.cpp:155
+#: data/i18n/temp.cpp:371
 msgid "New Caledonia"
 msgstr ""
 
@@ -1672,7 +1711,8 @@ msgstr ""
 msgid "New Game"
 msgstr ""
 
-#: data/i18n/temp.cpp:156 data/i18n/temp.cpp:372
+#: data/i18n/temp.cpp:156
+#: data/i18n/temp.cpp:372
 msgid "New Zealand"
 msgstr ""
 
@@ -1724,7 +1764,8 @@ msgstr ""
 msgid "North Korea"
 msgstr ""
 
-#: data/i18n/temp.cpp:200 data/i18n/temp.cpp:416
+#: data/i18n/temp.cpp:200
+#: data/i18n/temp.cpp:416
 msgid "Northern Ireland"
 msgstr ""
 
@@ -1856,7 +1897,8 @@ msgstr ""
 msgid "Player Details:"
 msgstr ""
 
-#: src/engine/time/CTimeManager.cpp:68 src/engine/time/CTimeManager.cpp:74
+#: src/engine/time/CTimeManager.cpp:68
+#: src/engine/time/CTimeManager.cpp:74
 msgid "Please wait..."
 msgstr ""
 
@@ -2001,7 +2043,8 @@ msgstr ""
 msgid "Republic of Angola"
 msgstr ""
 
-#: data/i18n/temp.cpp:3 data/i18n/temp.cpp:165
+#: data/i18n/temp.cpp:3
+#: data/i18n/temp.cpp:165
 msgid "Republic of Armenia"
 msgstr ""
 
@@ -2009,7 +2052,8 @@ msgstr ""
 msgid "Republic of Austria"
 msgstr ""
 
-#: data/i18n/temp.cpp:4 data/i18n/temp.cpp:167
+#: data/i18n/temp.cpp:4
+#: data/i18n/temp.cpp:167
 msgid "Republic of Azerbaijan"
 msgstr ""
 
@@ -2325,7 +2369,8 @@ msgstr ""
 msgid "Republic of Zimbabwe"
 msgstr ""
 
-#: data/i18n/temp.cpp:87 data/i18n/temp.cpp:303
+#: data/i18n/temp.cpp:87
+#: data/i18n/temp.cpp:303
 msgid "Republic of the Congo"
 msgstr ""
 
@@ -2379,7 +2424,8 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: data/i18n/temp.cpp:204 data/i18n/temp.cpp:420
+#: data/i18n/temp.cpp:204
+#: data/i18n/temp.cpp:420
 msgid "Romania"
 msgstr ""
 
@@ -2423,7 +2469,8 @@ msgstr ""
 msgid "Saint John's"
 msgstr ""
 
-#: data/i18n/temp.cpp:132 data/i18n/temp.cpp:348
+#: data/i18n/temp.cpp:132
+#: data/i18n/temp.cpp:348
 msgid "Saint Lucia"
 msgstr ""
 
@@ -2431,7 +2478,8 @@ msgstr ""
 msgid "Saint Martin "
 msgstr ""
 
-#: data/i18n/temp.cpp:134 data/i18n/temp.cpp:350
+#: data/i18n/temp.cpp:134
+#: data/i18n/temp.cpp:350
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
@@ -2492,7 +2540,8 @@ msgstr ""
 msgid "Scorers:"
 msgstr ""
 
-#: data/i18n/temp.cpp:207 data/i18n/temp.cpp:423
+#: data/i18n/temp.cpp:207
+#: data/i18n/temp.cpp:423
 msgid "Scotland"
 msgstr ""
 
@@ -2579,7 +2628,8 @@ msgstr ""
 msgid "Sofia"
 msgstr ""
 
-#: data/i18n/temp.cpp:158 data/i18n/temp.cpp:374
+#: data/i18n/temp.cpp:158
+#: data/i18n/temp.cpp:374
 msgid "Solomon Islands"
 msgstr ""
 
@@ -2864,11 +2914,13 @@ msgstr ""
 msgid "Turkey"
 msgstr ""
 
-#: data/i18n/temp.cpp:44 data/i18n/temp.cpp:260
+#: data/i18n/temp.cpp:44
+#: data/i18n/temp.cpp:260
 msgid "Turkmenistan"
 msgstr ""
 
-#: data/i18n/temp.cpp:136 data/i18n/temp.cpp:352
+#: data/i18n/temp.cpp:136
+#: data/i18n/temp.cpp:352
 msgid "Turks and Caicos Islands"
 msgstr ""
 
@@ -2884,7 +2936,8 @@ msgstr ""
 msgid "Uganda"
 msgstr ""
 
-#: data/i18n/temp.cpp:215 data/i18n/temp.cpp:431
+#: data/i18n/temp.cpp:215
+#: data/i18n/temp.cpp:431
 msgid "Ukraine"
 msgstr ""
 
@@ -2904,7 +2957,8 @@ msgstr ""
 msgid "Union of the Comoros"
 msgstr ""
 
-#: data/i18n/temp.cpp:45 data/i18n/temp.cpp:261
+#: data/i18n/temp.cpp:45
+#: data/i18n/temp.cpp:261
 msgid "United Arab Emirates"
 msgstr ""
 
@@ -2916,7 +2970,8 @@ msgstr ""
 msgid "United Republic of Tanzania"
 msgstr ""
 
-#: data/i18n/temp.cpp:138 data/i18n/temp.cpp:354
+#: data/i18n/temp.cpp:138
+#: data/i18n/temp.cpp:354
 msgid "United States Virgin Islands"
 msgstr ""
 
@@ -2944,7 +2999,8 @@ msgstr ""
 msgid "Vanuatu"
 msgstr ""
 
-#: data/i18n/temp.cpp:432 data/i18n/temp.cpp:648
+#: data/i18n/temp.cpp:432
+#: data/i18n/temp.cpp:648
 msgid "Vatican City"
 msgstr ""
 
@@ -2988,7 +3044,8 @@ msgstr ""
 msgid "Virtual Championship"
 msgstr ""
 
-#: data/i18n/temp.cpp:217 data/i18n/temp.cpp:433
+#: data/i18n/temp.cpp:217
+#: data/i18n/temp.cpp:433
 msgid "Wales"
 msgstr ""
 
@@ -3060,3 +3117,4 @@ msgstr ""
 #: src/singlePlayer/wh/CMatchResultWindowHandler.cpp:89
 msgid "min"
 msgstr ""
+
