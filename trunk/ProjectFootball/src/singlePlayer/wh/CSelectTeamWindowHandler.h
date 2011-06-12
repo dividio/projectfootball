@@ -73,7 +73,7 @@ private:
     CEGUI::Window                   *m_guiStadiumCapacity;
     CEGUI::Window                   *m_guiTeamBudget;
     CEGUI::Window                   *m_guiTeamAverage;
-    CEGUI::Window                   *m_guiTeamShield;
+    CEGUI::Window                   *m_guiTeamBadge;
     CEGUI::Window                   *m_guiConfederationImage;
     CEGUI::Window                   *m_guiCountryImage;
     CEGUI::Combobox                 *m_confederationsCombobox;

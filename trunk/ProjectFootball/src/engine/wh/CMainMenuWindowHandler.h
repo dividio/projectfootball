@@ -24,7 +24,7 @@
 
 #include <Ogre.h>
 #include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
+#include <RendererModules/Ogre/CEGUIOgreRenderer.h>
 
 #include "../wm/CWindowHandler.h"
 

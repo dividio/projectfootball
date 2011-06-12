@@ -86,7 +86,7 @@ void CLoadGameWindowHandler::init()
 
 void CLoadGameWindowHandler::loadGameList()
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     m_gamesList->resetList();
     m_gamesList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);

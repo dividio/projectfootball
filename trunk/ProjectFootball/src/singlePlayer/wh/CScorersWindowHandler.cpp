@@ -226,7 +226,7 @@ void CScorersWindowHandler::loadCompetitions(int XSeason, int XCountry, int XCom
 void CScorersWindowHandler::loadScorers(int XSeason, int XCompetition)
 {
     m_scorersList->resetList();
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     IDAOFactory                         *daoFactory		= m_game.getIDAOFactory();
     IPfScorersDAO                       *scorersDAO     = daoFactory->getIPfScorersDAO();

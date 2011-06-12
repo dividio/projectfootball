@@ -64,7 +64,6 @@ namespace CEGUI{
 		bool	d_frameEnabled;
 		bool	d_backgroundEnabled;
 	};
-	CEGUI_DEFINE_WR_FACTORY(CPFStatic)
 }
 
 #endif /* CPFSTATIC_H_ */

@@ -185,7 +185,7 @@ void CViewOpponentWindowHandler::loadTeamPlayersList(CPfTeams *team, CEGUI::Mult
 
 void CViewOpponentWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     int row_idx = list->addRow();
     int XTeamPlayer = player->getXTeamPlayer();

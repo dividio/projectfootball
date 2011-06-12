@@ -62,12 +62,6 @@ CApplication::~CApplication()
     if(m_inputManager != NULL)
         delete m_inputManager;
 
-    if(m_system != NULL)
-        delete m_system;
-
-    if(m_renderer != NULL)
-        delete m_renderer;
-
     delete m_root;
 }
 
@@ -82,7 +76,7 @@ void CApplication::go()
     startRenderLoop();
 }
 
-Ogre::RenderSystemList* CApplication::getRenderSystemList()
+const Ogre::RenderSystemList CApplication::getRenderSystemList()
 {
     return m_root->getAvailableRenderers();
 }
@@ -111,15 +105,14 @@ void CApplication::defineResources()
 
 void CApplication::setupRenderSystem()
 {
-    Ogre::RenderSystemList *renderSystems = NULL;
     Ogre::RenderSystemList::iterator r_it;
 
     CSystemOptionManager *op = CSystemOptionManager::getInstance();
     std::string val = op->getVideoRenderSystem();
-    renderSystems = m_root->getAvailableRenderers();
+    Ogre::RenderSystemList renderSystems = m_root->getAvailableRenderers();
 
     bool renderSystemFound = false;
-    for (r_it=renderSystems->begin(); r_it!=renderSystems->end(); r_it++) {
+    for (r_it=renderSystems.begin(); r_it!=renderSystems.end(); r_it++) {
         Ogre:: RenderSystem *tmp = *r_it;
         std::string rName(tmp->getName());
 
@@ -243,16 +236,16 @@ void CApplication::setupCEGUI()
     Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
 
     // CEGUI setup
-    m_renderer = new CEGUI::OgreCEGUIRenderer(m_window, Ogre::RENDER_QUEUE_OVERLAY, false, 3000, mgr);
+    m_renderer = &CEGUI::OgreRenderer::bootstrapSystem(*m_window);
     CEGUI::ScriptModule* script_module = CLuaManager::getInstance();
     std::string parser = CSystemOptionManager::getInstance()->getGUIXMLParser();
     CEGUI::System::setDefaultXMLParserName(parser);
-    m_system = new CEGUI::System(m_renderer, 0, 0, script_module);
+    m_system = CEGUI::System::getSingletonPtr();
 
     CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
 
     // Other CEGUI setup here.
-    CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"Skin.scheme");
+    CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"Skin.scheme");
     m_system->setDefaultMouseCursor((CEGUI::utf8*)"WidgetsImageset", (CEGUI::utf8*)"MouseArrow");
     std::string guiName = CSystemOptionManager::getInstance()->getGUISkin();
     std::string tooltipName = guiName + "/Tooltip";

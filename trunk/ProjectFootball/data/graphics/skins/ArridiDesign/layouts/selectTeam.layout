@@ -36,7 +36,7 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.375649,0},{0.438486,0},{0.936797,0},{0.604627,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
-                <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/TeamShield" >
+                <Window Type="ArridiDesign/StaticImage" Name="SelectTeam/TeamBadge" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                     <Property Name="UnifiedAreaRect" Value="{{0.797858,0},{0.000449089,0},{0.997858,0},{0.996226,0}}" />

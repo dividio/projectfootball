@@ -116,9 +116,9 @@ void CConfigWindowHandler::init()
     m_cancelButton       ->setText((CEGUI::utf8*)gettext("Cancel"));
 
     m_rendererCombo->getEditbox()->setEnabled(false);
-    Ogre::RenderSystemList *renderSystemList = Ogre::Root::getSingleton().getAvailableRenderers();
+    Ogre::RenderSystemList renderSystemList = Ogre::Root::getSingleton().getAvailableRenderers();
     Ogre::RenderSystemList::iterator it;
-    for( it=renderSystemList->begin(); it!=renderSystemList->end(); it++ ){
+    for( it=renderSystemList.begin(); it!=renderSystemList.end(); it++ ){
         Ogre::RenderSystem *renderSystem = (*it);
         m_rendererCombo->addItem(new CEGUI::ListboxTextItem(renderSystem->getName()));
     }

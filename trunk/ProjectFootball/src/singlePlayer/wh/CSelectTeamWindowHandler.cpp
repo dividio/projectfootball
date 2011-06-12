@@ -74,7 +74,7 @@ void CSelectTeamWindowHandler::init()
     m_guiStadiumName            = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/StadiumName"));
     m_guiStadiumCapacity        = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/StadiumCapacity"));
     m_guiTeamBudget       		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBudget"));
-    m_guiTeamShield             = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamShield"));
+    m_guiTeamBadge              = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamBadge"));
     m_guiConfederationImage     = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/ConfederationImage"));
     m_guiCountryImage           = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/CountryImage"));
     m_guiTeamAverage            = static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"SelectTeam/TeamAverage"));
@@ -430,8 +430,8 @@ void CSelectTeamWindowHandler::loadTeamInfo(CPfTeams *team)
     m_guiStadiumCapacity->setText((CEGUI::utf8*)stadium->getNCapacity_str().c_str());
     delete stadium;
 
-    //Loading Shield
-    m_guiTeamShield->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
+    //Loading Badge
+    m_guiTeamBadge->setProperty("Image", "set:"+ team->getSLogo() +" image:"+team->getSLogo()+"_b");
 
     loadTeamPlayersList(team);
 }
@@ -459,7 +459,7 @@ void CSelectTeamWindowHandler::loadTeamPlayersList(CPfTeams *team)
 
 void CSelectTeamWindowHandler::addPlayerToList(CPfTeamPlayers *player)
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     int row_idx = m_teamPlayersList->addRow();
     int XTeamPlayer = player->getXTeamPlayer();
@@ -490,7 +490,7 @@ void CSelectTeamWindowHandler::clearTeamInfo()
     m_guiTeamAverage    ->setText("");
     m_guiStadiumName    ->setText("");
     m_guiStadiumCapacity->setText("");
-    m_guiTeamShield     ->setProperty("Image", "set: image:full_image");
+    m_guiTeamBadge      ->setProperty("Image", "set: image:full_image");
     m_teamPlayersList   ->resetList();
     m_teamPlayersList   ->getHorzScrollbar()->setVisible(false);
 }

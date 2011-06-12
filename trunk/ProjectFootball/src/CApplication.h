@@ -22,8 +22,8 @@
 #define CAPPLICATION_H_
 
 #include <Ogre.h>
-#include <CEGUI/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
+#include <CEGUI.h>
+#include <RendererModules/Ogre/CEGUIOgreRenderer.h>
 
 // Forward declarations
 class CInputManager;
@@ -35,7 +35,7 @@ public:
     static CApplication* getInstance();
 
     void go();
-    Ogre::RenderSystemList* getRenderSystemList();
+    const Ogre::RenderSystemList getRenderSystemList();
     void addFrameListener(Ogre::FrameListener* frameListener);
     void removeFrameListener(Ogre::FrameListener* frameListener);
     void takeScreenshot();
@@ -47,7 +47,7 @@ private:
 
     Ogre::Root 					*m_root;
     Ogre::RenderWindow          *m_window;
-    CEGUI::OgreCEGUIRenderer 	*m_renderer;
+    CEGUI::OgreRenderer 		*m_renderer;
     CEGUI::System 				*m_system;
     CInputManager               *m_inputManager;
 

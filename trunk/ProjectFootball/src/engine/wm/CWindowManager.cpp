@@ -76,9 +76,9 @@ CWindowManager::CWindowManager()
 	CEGUI::WindowFactoryManager::getSingleton().addFactory(&(CEGUI::getCImageListboxItemFactory()));
 
 	// Add new WindowRendererFactory to CEGUI::WindowRendererManager
-	CEGUI::WindowRendererManager::getSingleton().addFactory(&CEGUI::s_CPFStaticWRFactory);
-	CEGUI::WindowRendererManager::getSingleton().addFactory(&CEGUI::s_CPFStaticTextWRFactory);
-	CEGUI::WindowRendererManager::getSingleton().addFactory(&CEGUI::s_CPFRotatingTextWRFactory);
+	CEGUI::WindowRendererManager::getSingleton().addFactory<CEGUI::TplWindowRendererFactory<CEGUI::CPFStatic> >();
+	CEGUI::WindowRendererManager::getSingleton().addFactory<CEGUI::TplWindowRendererFactory<CEGUI::CPFStaticText> >();
+	CEGUI::WindowRendererManager::getSingleton().addFactory<CEGUI::TplWindowRendererFactory<CEGUI::CPFRotatingText> >();
 }
 
 CWindowManager::~CWindowManager()

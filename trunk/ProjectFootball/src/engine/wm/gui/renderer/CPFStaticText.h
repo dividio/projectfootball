@@ -196,7 +196,6 @@ namespace CEGUI{
 		typedef std::vector<Event::Connection> ConnectionList;
 		ConnectionList  d_connections;
 	};
-	CEGUI_DEFINE_WR_FACTORY(CPFStaticText)
 }
 
 

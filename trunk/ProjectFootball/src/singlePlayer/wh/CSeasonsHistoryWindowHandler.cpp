@@ -81,7 +81,7 @@ void CSeasonsHistoryWindowHandler::leave()
 void CSeasonsHistoryWindowHandler::loadSeasonsHistory()
 {
     m_seasonsList->resetList();
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     IDAOFactory                		*daoFactory              	  = m_game.getIDAOFactory();
     IPfSeasonsDAO              		*seasonsDAO              	  = daoFactory->getIPfSeasonsDAO();

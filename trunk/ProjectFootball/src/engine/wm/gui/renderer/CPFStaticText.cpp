@@ -88,7 +88,9 @@ namespace CEGUI{
 		Rect absarea(getTextRenderArea());
 		Rect clipper(absarea);
 
-		float textHeight = font->getFormattedLineCount(d_window->getText(), absarea, (TextFormatting)d_horzFormatting) * font->getLineSpacing();
+		//TODO:Migration to CEGUI 0.7.5
+//		float textHeight = font->getFormattedLineCount(d_window->getText(), absarea, (HorizontalTextFormatting)d_horzFormatting) * font->getLineSpacing();
+		float textHeight = 12;
 
 		Scrollbar* vertScrollbar = getVertScrollbar();
 		Scrollbar* horzScrollbar = getHorzScrollbar();
@@ -99,12 +101,12 @@ namespace CEGUI{
 			{
 			case LeftAligned:
 			case WordWrapLeftAligned:
-			case Justified:
+			case HorzJustified:
 			case WordWrapJustified:
 				absarea.offset(Point(-horzScrollbar->getScrollPosition(), 0));
 				break;
 
-			case Centred:
+			case HorzCentred:
 			case WordWrapCentred:
 				absarea.setWidth(horzScrollbar->getDocumentSize());
 				absarea.offset(Point(-horzScrollbar->getScrollPosition(), 0));
@@ -147,7 +149,8 @@ namespace CEGUI{
 		ColourRect final_cols(d_textCols);
 		final_cols.modulateAlpha(d_window->getEffectiveAlpha());
 		// cache the text for rendering.
-		d_window->getRenderCache().cacheText(d_window->getText(), font, (TextFormatting)d_horzFormatting, absarea, 0, final_cols, &clipper);
+		//TODO:Migration to CEGUI 0.7.5
+//		d_window->getRenderCache().cacheText(d_window->getText(), font, (HorizontalTextFormatting)d_horzFormatting, absarea, 0, final_cols, &clipper);
 	}
 
 	/**************************************************************************
@@ -214,8 +217,12 @@ namespace CEGUI{
 		}
 
 		// return the total extent of the text
-		float totalHeight = font->getFormattedLineCount(d_window->getText(), renderArea, (TextFormatting)d_horzFormatting) * font->getLineSpacing();
-		float widestItem  = font->getFormattedTextExtent(d_window->getText(), renderArea, (TextFormatting)d_horzFormatting);
+		//TODO:Migration to CEGUI 0.7.5
+//		float totalHeight = font->getFormattedLineCount(d_window->getText(), renderArea, (HorizontalTextFormatting)d_horzFormatting) * font->getLineSpacing();
+		float totalHeight = 12;
+		//TODO:Migration to CEGUI 0.7.5
+//		float widestItem  = font->getFormattedTextExtent(d_window->getText(), renderArea, (HorizontalTextFormatting)d_horzFormatting);
+		float widestItem = 12;
 		return Size(widestItem,totalHeight);
 	}
 
@@ -225,7 +232,7 @@ namespace CEGUI{
 	void CPFStaticText::setTextColours(const ColourRect& colours)
 	{
 		d_textCols = colours;
-		d_window->requestRedraw();
+		d_window->invalidate();
 	}
 
 	/**************************************************************************
@@ -235,7 +242,7 @@ namespace CEGUI{
 	{
 		d_vertFormatting = v_fmt;
 		configureScrollbars();
-		d_window->requestRedraw();
+		d_window->invalidate();
 	}
 
 	/**************************************************************************
@@ -245,7 +252,7 @@ namespace CEGUI{
 	{
 		d_horzFormatting = h_fmt;
 		configureScrollbars();
-		d_window->requestRedraw();
+		d_window->invalidate();
 	}
 
 	/**************************************************************************
@@ -326,7 +333,7 @@ namespace CEGUI{
 	bool CPFStaticText::onTextChanged(const EventArgs& e)
 	{
 		configureScrollbars();
-		d_window->requestRedraw();
+		d_window->invalidate();
 		return true;
 	}
 
@@ -345,7 +352,7 @@ namespace CEGUI{
 	bool CPFStaticText::onFontChanged(const EventArgs& event)
 	{
 		configureScrollbars();
-		d_window->requestRedraw();
+		d_window->invalidate();
 		return true;
 	}
 
@@ -373,7 +380,7 @@ namespace CEGUI{
 	 **************************************************************************/
 	bool CPFStaticText::handleScrollbarChange(const EventArgs& e)
 	{
-		d_window->requestRedraw();
+		d_window->invalidate();
 		return true;
 	}
 

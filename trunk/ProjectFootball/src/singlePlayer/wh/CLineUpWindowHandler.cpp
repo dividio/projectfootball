@@ -221,7 +221,7 @@ void CLineUpWindowHandler::loadTeamPlayersList()
 
 void CLineUpWindowHandler::addPlayerToLineUpList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list, int xFormation)
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
     IPfRolesDAO *rolesDAO =  m_game.getIDAOFactory()->getIPfRolesDAO();
 
     int row_idx = list->addRow();
@@ -257,7 +257,7 @@ void CLineUpWindowHandler::addPlayerToLineUpList(CPfTeamPlayers *player, CEGUI::
 
 void CLineUpWindowHandler::addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list)
 {
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
     IPfRolesDAO *rolesDAO =  m_game.getIDAOFactory()->getIPfRolesDAO();
 
     int row_idx = list->addRow();

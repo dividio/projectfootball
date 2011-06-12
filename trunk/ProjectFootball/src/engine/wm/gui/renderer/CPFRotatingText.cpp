@@ -68,7 +68,9 @@ namespace CEGUI{
 		Rect absarea(getTextRenderArea());
 		Rect clipper(absarea);
 
-		float textHeight = font->getFormattedLineCount(d_window->getText(), absarea, (TextFormatting)d_horzFormatting) * font->getLineSpacing();
+		//TODO:Migration to CEGUI 0.7.5
+//		float textHeight = font->getFormattedLineCount(d_window->getText(), absarea, (HorizontalTextFormatting)d_horzFormatting) * font->getLineSpacing();
+		float textHeight = 12;
 
 		Scrollbar* vertScrollbar = getVertScrollbar();
 		Scrollbar* horzScrollbar = getHorzScrollbar();
@@ -91,12 +93,12 @@ namespace CEGUI{
 			{
 			case LeftAligned:
 			case WordWrapLeftAligned:
-			case Justified:
+			case HorzJustified:
 			case WordWrapJustified:
 				absarea.offset(Point(-horzScrollbar->getScrollPosition(), 0));
 				break;
 
-			case Centred:
+			case HorzCentred:
 			case WordWrapCentred:
 				absarea.setWidth(horzScrollbar->getDocumentSize());
 				absarea.offset(Point(-horzScrollbar->getScrollPosition(), 0));
@@ -139,7 +141,8 @@ namespace CEGUI{
 		ColourRect final_cols(d_textCols);
 		final_cols.modulateAlpha(d_window->getEffectiveAlpha());
 		// cache the text for rendering.
-		d_window->getRenderCache().cacheText(d_window->getText(), font, (TextFormatting)d_horzFormatting, absarea, 0, final_cols, &clipper);
+		//TODO:Migration to CEGUI 0.7.5
+//		d_window->getRenderCache().cacheText(d_window->getText(), font, (HorizontalTextFormatting)d_horzFormatting, absarea, 0, final_cols, &clipper);
 	}
 
 	void CPFRotatingText::runThread()
@@ -152,7 +155,7 @@ namespace CEGUI{
 			}
 
 			if( d_window ){
-				d_window->requestRedraw();
+				d_window->invalidate();
 			}
 			boost::system_time time = boost::get_system_time();
 			time += boost::posix_time::milliseconds(10);

@@ -253,7 +253,7 @@ void CSeasonSummaryWindowHandler::loadCompetitions(int XSeason, int XCountry, in
 void CSeasonSummaryWindowHandler::loadRanking(int XSeason, int XCompetition)
 {
     m_rankingList->resetList();
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     IDAOFactory                         *daoFactory		= m_game.getIDAOFactory();
     IPfRankingDAO                       *rankingDAO     = daoFactory->getIPfRankingDAO();
@@ -315,7 +315,7 @@ void CSeasonSummaryWindowHandler::loadRanking(int XSeason, int XCompetition)
 void CSeasonSummaryWindowHandler::loadScorers(int XSeason, int XCompetition)
 {
     m_scorersList->resetList();
-    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().getImageset("WidgetsImageset")->getImage("MultiListSelectionBrush");
+    const CEGUI::Image* sel_img = &CEGUI::ImagesetManager::getSingleton().get("WidgetsImageset").getImage("MultiListSelectionBrush");
 
     IDAOFactory                         *daoFactory     = m_game.getIDAOFactory();
     IPfScorersDAO                       *scorersDAO     = daoFactory->getIPfScorersDAO();

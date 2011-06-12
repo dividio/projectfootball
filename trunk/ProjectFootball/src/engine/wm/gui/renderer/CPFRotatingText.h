@@ -56,7 +56,6 @@ namespace CEGUI{
 		boost::thread	m_thread;
 		bool			m_stopThread;
 	};
-	CEGUI_DEFINE_WR_FACTORY(CPFRotatingText)
 }
 
 #endif /* CPFROTATINGTEXT_H_ */
