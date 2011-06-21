@@ -30,9 +30,9 @@ Creative Commons Attribution-ShareAlike 3.0 license (see Data-License.txt).
 
 To play Project Football you need de following libraries and dependencies:
 
-- Ogre   1.6.x
-- Cegui  0.6.2
-- OIS    1.2.x
+- Ogre   1.7.x
+- Cegui  0.7.5
+- OIS    1.3.x
 - Sqlite 3
 - SDL_mixer 1.2
 - Lua 5.1
