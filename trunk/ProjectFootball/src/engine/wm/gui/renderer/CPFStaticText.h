@@ -170,6 +170,13 @@ namespace CEGUI{
 		Rect getTextRenderArea(void) const;
 		Size getDocumentSize(const Rect& renderArea) const;
 
+        //! update string formatting (gets area size to use from looknfeel)
+        void updateFormatting() const;
+        //! update string formatting using given area size.
+        void updateFormatting(const Size& sz) const;
+        void setupStringFormatter() const;
+
+
 		// overridden event handlers
 		bool onTextChanged(const EventArgs& e);
 		bool onSized(const EventArgs& e);
@@ -192,6 +199,11 @@ namespace CEGUI{
 		ColourRect      d_textCols;             //!< Colours used when rendering the text.
 		bool            d_enableVertScrollbar;  //!< true if vertical scroll bar is enabled.
 		bool            d_enableHorzScrollbar;  //!< true if horizontal scroll bar is enabled.
+
+		//! Class that renders RenderedString with some formatting.
+		mutable FormattedRenderedString* d_formattedRenderedString;
+		//! true when string formatting is up to date.
+		mutable bool d_formatValid;
 
 		typedef std::vector<Event::Connection> ConnectionList;
 		ConnectionList  d_connections;

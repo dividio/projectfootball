@@ -39,6 +39,7 @@ namespace CEGUI{
 	CPFRotatingText::~CPFRotatingText()
 	{
 		m_stopThread = true;
+
 		m_thread.join(); // wait for the thread finish
 	}
 
@@ -68,9 +69,11 @@ namespace CEGUI{
 		Rect absarea(getTextRenderArea());
 		Rect clipper(absarea);
 
-		//TODO:Migration to CEGUI 0.7.5
-//		float textHeight = font->getFormattedLineCount(d_window->getText(), absarea, (HorizontalTextFormatting)d_horzFormatting) * font->getLineSpacing();
-		float textHeight = 12;
+        if (!d_formatValid) {
+            updateFormatting(clipper.getSize());
+        }
+
+        float textHeight = d_formattedRenderedString->getHorizontalExtent();
 
 		Scrollbar* vertScrollbar = getVertScrollbar();
 		Scrollbar* horzScrollbar = getHorzScrollbar();
@@ -141,9 +144,12 @@ namespace CEGUI{
 		ColourRect final_cols(d_textCols);
 		final_cols.modulateAlpha(d_window->getEffectiveAlpha());
 		// cache the text for rendering.
-		//TODO:Migration to CEGUI 0.7.5
-//		d_window->getRenderCache().cacheText(d_window->getText(), font, (HorizontalTextFormatting)d_horzFormatting, absarea, 0, final_cols, &clipper);
+
+		// cache the text for rendering.
+		d_formattedRenderedString->draw(d_window->getGeometryBuffer(),absarea.getPosition(),&final_cols, &clipper);
+
 	}
+
 
 	void CPFRotatingText::runThread()
 	{

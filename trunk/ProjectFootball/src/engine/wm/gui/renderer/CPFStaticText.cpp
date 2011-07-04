@@ -48,6 +48,8 @@ namespace CEGUI{
 		d_horzFormatting(LeftAligned),
 		d_vertFormatting(VertCentred),
 		d_textCols(0xFFFFFFFF),
+		d_formattedRenderedString(0),
+		d_formatValid(false),
 		d_enableVertScrollbar(false),
 		d_enableHorzScrollbar(false)
 	{
@@ -59,7 +61,9 @@ namespace CEGUI{
 	}
 
 	CPFStaticText::~CPFStaticText()
-	{}
+	{
+		delete d_formattedRenderedString;
+	}
 
 	/**************************************************************************
 	 * Populates the rendercache with imagery for this widget
@@ -88,9 +92,11 @@ namespace CEGUI{
 		Rect absarea(getTextRenderArea());
 		Rect clipper(absarea);
 
-		//TODO:Migration to CEGUI 0.7.5
-//		float textHeight = font->getFormattedLineCount(d_window->getText(), absarea, (HorizontalTextFormatting)d_horzFormatting) * font->getLineSpacing();
-		float textHeight = 12;
+        if (!d_formatValid) {
+            updateFormatting(clipper.getSize());
+        }
+
+		float textHeight = d_formattedRenderedString->getVerticalExtent();
 
 		Scrollbar* vertScrollbar = getVertScrollbar();
 		Scrollbar* horzScrollbar = getHorzScrollbar();
@@ -149,8 +155,8 @@ namespace CEGUI{
 		ColourRect final_cols(d_textCols);
 		final_cols.modulateAlpha(d_window->getEffectiveAlpha());
 		// cache the text for rendering.
-		//TODO:Migration to CEGUI 0.7.5
-//		d_window->getRenderCache().cacheText(d_window->getText(), font, (HorizontalTextFormatting)d_horzFormatting, absarea, 0, final_cols, &clipper);
+
+		d_formattedRenderedString->draw(d_window->getGeometryBuffer(),absarea.getPosition(),&final_cols, &clipper);
 	}
 
 	/**************************************************************************
@@ -216,14 +222,93 @@ namespace CEGUI{
 			return Size(0,0);
 		}
 
+		if (!d_formatValid) {
+			updateFormatting();
+		}
+
 		// return the total extent of the text
-		//TODO:Migration to CEGUI 0.7.5
-//		float totalHeight = font->getFormattedLineCount(d_window->getText(), renderArea, (HorizontalTextFormatting)d_horzFormatting) * font->getLineSpacing();
-		float totalHeight = 12;
-		//TODO:Migration to CEGUI 0.7.5
-//		float widestItem  = font->getFormattedTextExtent(d_window->getText(), renderArea, (HorizontalTextFormatting)d_horzFormatting);
-		float widestItem = 12;
+		float totalHeight = d_formattedRenderedString->getVerticalExtent();
+		float widestItem = d_formattedRenderedString->getHorizontalExtent();
 		return Size(widestItem,totalHeight);
+	}
+
+	void CPFStaticText::updateFormatting() const
+	{
+		updateFormatting(getTextRenderArea().getSize());
+	}
+
+	//--------CPFStaticText-------------------------------------------------------------------//
+	void CPFStaticText::updateFormatting(const Size& sz) const
+	{
+		if (!d_window) {
+			return;
+		}
+
+		if (!d_formattedRenderedString) {
+			setupStringFormatter();
+		}
+
+		// 'touch' the window's rendered string to ensure it's re-parsed if needed.
+		d_window->getRenderedString();
+
+		d_formattedRenderedString->format(sz);
+		d_formatValid = true;
+	}
+
+	void CPFStaticText::setupStringFormatter() const
+	{
+		// delete any existing formatter
+		delete d_formattedRenderedString;
+		d_formattedRenderedString = 0;
+		d_formatValid = false;
+
+		// create new formatter of whichever type...
+		switch(d_horzFormatting)
+		{
+		case HTF_LEFT_ALIGNED:
+			d_formattedRenderedString =
+				new LeftAlignedRenderedString(d_window->getRenderedString());
+			break;
+
+		case HTF_RIGHT_ALIGNED:
+			d_formattedRenderedString =
+				new RightAlignedRenderedString(d_window->getRenderedString());
+			break;
+
+		case HTF_CENTRE_ALIGNED:
+			d_formattedRenderedString =
+				new CentredRenderedString(d_window->getRenderedString());
+			break;
+
+		case HTF_JUSTIFIED:
+			d_formattedRenderedString =
+				new JustifiedRenderedString(d_window->getRenderedString());
+			break;
+
+		case HTF_WORDWRAP_LEFT_ALIGNED:
+			d_formattedRenderedString =
+				new RenderedStringWordWrapper
+					<LeftAlignedRenderedString>(d_window->getRenderedString());
+			break;
+
+		case HTF_WORDWRAP_RIGHT_ALIGNED:
+			d_formattedRenderedString =
+				new RenderedStringWordWrapper
+					<RightAlignedRenderedString>(d_window->getRenderedString());
+			break;
+
+		case HTF_WORDWRAP_CENTRE_ALIGNED:
+			d_formattedRenderedString =
+				new RenderedStringWordWrapper
+					<CentredRenderedString>(d_window->getRenderedString());
+			break;
+
+		case HTF_WORDWRAP_JUSTIFIED:
+			d_formattedRenderedString =
+				new RenderedStringWordWrapper
+					<JustifiedRenderedString>(d_window->getRenderedString());
+			break;
+		}
 	}
 
 	/**************************************************************************
