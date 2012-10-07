@@ -4,7 +4,7 @@ ADD_DEFINITIONS(-g -ggdb -Wall -Wextra -pedantic ${CMAKE_CXX_FLAGS})
 #get all source files and data files.
 FILE(GLOB_RECURSE SOURCE_FILES "*.cpp" "*.cxx")
 
-SET(EXEC_NAME project_football)
+SET(EXEC_NAME projectfootball)
 
 #list all source files here
 ADD_EXECUTABLE(${EXEC_NAME} ${SOURCE_FILES})
