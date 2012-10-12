@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <boost/filesystem.hpp>
 
+#include "../projectfootball_config.h"
 #include "CGameEngine.h"
 #include "option/CSystemOptionManager.h"
 #include "utils/CClock.h"
@@ -37,6 +38,8 @@
 
 CGameEngine* CGameEngine::m_instance = NULL;
 
+extern std::string dataPath;
+
 CGameEngine::CGameEngine()// : m_screenStack()
 : m_windowHandlers()
 {
@@ -50,13 +53,13 @@ CGameEngine::CGameEngine()// : m_screenStack()
     const char *masterDatabasePath = CSystemOptionManager::getInstance()->getGeneralMasterDatebasePath();
     if( boost::filesystem::exists(masterDatabasePath) ){
     	m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
-    }
-    else{
+    } else {
     	m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
-    	m_masterDatabase->executeScriptFile("data/database/scripts/master/tables.sql");
-        m_masterDatabase->executeScriptFile("data/database/scripts/master/indexes.sql");
-        m_masterDatabase->executeScriptFile("data/database/scripts/master/inserts_version.sql");
-        m_masterDatabase->executeScriptFile("data/database/scripts/master/inserts_users.sql");
+        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/master/tables.sql"));
+        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/master/indexes.sql"));
+        std::string cmd = "INSERT INTO PF_VERSION (X_VERSION, S_VERSION, D_DATE) VALUES (1, '"PF_VERSION"', '"PF_BUILD_DATE_TIME"')";
+        m_masterDatabase->executeScript(cmd);
+        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/master/inserts_users.sql"));
     }
 
     m_user = NULL;

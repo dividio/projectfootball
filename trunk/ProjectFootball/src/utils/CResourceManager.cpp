@@ -22,12 +22,13 @@
 #include <boost/filesystem.hpp>
 #include <Ogre.h>
 
+#include "../projectfootball_config.h"
 #include "CResourceManager.h"
 #include "CLog.h"
 #include "../engine/option/CSystemOptionManager.h"
 #include "../exceptions/PFException.h"
 
-
+extern std::string dataPath;
 
 
 CResourceManager* CResourceManager::getInstance()
@@ -59,7 +60,7 @@ void CResourceManager::defineResources()
 void CResourceManager::defineGeneral()
 {
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/simulation/textures";
+    archName = CONCAT_PATH(dataPath, "/graphics/simulation/textures");
     typeName = "FileSystem";
     secName  = "General";
     boost::filesystem::path path(archName.c_str());
@@ -70,7 +71,7 @@ void CResourceManager::defineGeneral()
     }
 
 
-    archName = "data/graphics/simulation/meshes";
+    archName = CONCAT_PATH(dataPath, "/graphics/simulation/meshes");
     path = archName.c_str();
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
@@ -78,7 +79,7 @@ void CResourceManager::defineGeneral()
         throw PFEXCEPTION("Can't load \"%s\" directory", archName.c_str());
     }
 
-    archName = "data/graphics/simulation/materials";
+    archName = CONCAT_PATH(dataPath, "/graphics/simulation/materials");
     path = archName.c_str();
     if(boost::filesystem::is_directory(path)) {
         Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
@@ -91,7 +92,7 @@ void CResourceManager::defineSkin()
 {
     Ogre::String skin = CSystemOptionManager::getInstance()->getGUISkin();
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/skins/" + skin;
+    archName = (Ogre::String)CONCAT_PATH(dataPath, "/graphics/skins/") + skin;
     typeName = "FileSystem";
     secName  = skin;
     boost::filesystem::path path(archName.c_str());
@@ -111,7 +112,7 @@ void CResourceManager::defineShields()
 {
     Ogre::String shields = CSystemOptionManager::getInstance()->getGUIShields();
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/shields/" + shields;
+    archName = (Ogre::String)CONCAT_PATH(dataPath, "/graphics/shields/") + shields;
     typeName = "FileSystem";
     secName  = shields;
     boost::filesystem::path path(archName.c_str());
@@ -126,7 +127,7 @@ void CResourceManager::defineFlags()
 {
     Ogre::String flags = CSystemOptionManager::getInstance()->getGUIFlags();
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/countries/" + flags;
+    archName = (Ogre::String)CONCAT_PATH(dataPath, "/graphics/countries/") + flags;
     typeName = "FileSystem";
     secName  = flags;
     boost::filesystem::path path(archName.c_str());
@@ -141,7 +142,7 @@ void CResourceManager::defineConfederations()
 {
     Ogre::String conf = CSystemOptionManager::getInstance()->getGUIConfederations();
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/confederations/" + conf;
+    archName = (Ogre::String)CONCAT_PATH(dataPath, "/graphics/confederations/") + conf;
     typeName = "FileSystem";
     secName  = conf;
     boost::filesystem::path path(archName.c_str());
@@ -156,7 +157,7 @@ void CResourceManager::definePhotos()
 {
     Ogre::String photos = CSystemOptionManager::getInstance()->getGUIPhotos();
     Ogre::String archName, typeName, secName;
-    archName = "data/graphics/photos/" + photos;
+    archName = (Ogre::String)CONCAT_PATH(dataPath, "/graphics/photos/") + photos;
     typeName = "FileSystem";
     secName  = photos;
     boost::filesystem::path path(archName.c_str());

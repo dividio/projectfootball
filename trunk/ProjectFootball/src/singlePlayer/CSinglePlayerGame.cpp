@@ -23,6 +23,7 @@
 #include <vector>
 #include <boost/filesystem.hpp>
 
+#include "../projectfootball_config.h"
 #include "CDataBaseGenerator.h"
 
 #include "db/bean/CPfMatches.h"
@@ -162,7 +163,12 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
 
     srand(time(NULL));
     do{
-    	filename = "data/database/savedgames/";
+        std::string cfg_path = CFG_PATH;
+        if (cfg_path.at(0) == '~') {
+            cfg_path.replace(0, 1, getenv("HOME"));
+        }
+		std::string destPath(cfg_path + "/database/savedgames/");
+    	filename = destPath;
     	for( int i=0; i<8; i++ ){
     		filename += str[rand()%52];
     	}

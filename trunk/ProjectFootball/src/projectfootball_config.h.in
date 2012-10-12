@@ -1,0 +1,32 @@
+#ifndef PF_CONFIG_
+#define PF_CONFIG_
+
+// version definition
+#define PF_VERSION_MAJOR @PF_VERSION_MAJOR@
+#define PF_VERSION_MINOR @PF_VERSION_MINOR@
+#define PF_VERSION_BUILD @PF_VERSION_BUILD@
+#define PF_VERSION_RC @PF_VERSION_RC@
+
+#define XSTRINGIFY(_s) STRINGIFY(_s)
+#define STRINGIFY(_s) #_s
+
+#if @PF_VERSION_RC@
+#      define PF_VERSION XSTRINGIFY(PF_VERSION_MAJOR) "." XSTRINGIFY(PF_VERSION_MINOR) "." XSTRINGIFY(PF_VERSION_BUILD) "-RC_" XSTRINGIFY(PF_VERSION_RC)
+#else
+#      define PF_VERSION XSTRINGIFY(PF_VERSION_MAJOR) "." XSTRINGIFY(PF_VERSION_MINOR) "." XSTRINGIFY(PF_VERSION_BUILD)
+#endif
+
+// pathes
+#define DATA_PATH "@DATA_INSTALL_PATH@"
+#define CFG_PATH "@CONFIG_FILE_PATH@"
+
+#define PF_BUILD_DATE_TIME "@DATE_TIME@"
+
+// macros
+#define CONCAT_PATH(_path, _subPath) ({ \
+	std::string _concatPath = _path; \
+	_concatPath.append(_subPath); \
+	_concatPath.c_str(); \
+})
+
+#endif //PF_CONFIG_

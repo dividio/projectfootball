@@ -22,6 +22,7 @@
 
 #include <libintl.h>
 
+#include "../../../projectfootball_config.h"
 #include "CFootballPlayer.h"
 #include "CTeam.h"
 #include "../../../bullet/btBulletDynamicsCommon.h"
@@ -35,6 +36,7 @@
 
 std::string CReferee::m_pCtorName = "CReferee_p_ctor";
 
+extern std::string dataPath;
 
 CReferee::CReferee(CSimulationManager *simulationManager)
 : CMovingEntity()
@@ -43,7 +45,7 @@ CReferee::CReferee(CSimulationManager *simulationManager)
 	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
 
 	LOG_DEBUG("CReferee()");
-    CLuaManager::getInstance()->runScript("data/scripts/referee.lua");
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/referee.lua"));
     m_stateMachine = new CStateMachine<CReferee>(this);
     m_stateMachine->setGlobalState("SRf_Global");
     m_stateMachine->changeState("SRf_BeforeStart");

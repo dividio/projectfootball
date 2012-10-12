@@ -18,6 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "../../../projectfootball_config.h"
 #include "CTeam.h"
 
 #include "CField.h"
@@ -31,6 +32,7 @@
 
 std::string CTeam::m_pCtorName = "CTeam_p_ctor";
 
+extern std::string dataPath;
 
 CTeam* CTeam::getTeam(CBaseGameEntity *team)
 {
@@ -43,7 +45,7 @@ CTeam::CTeam(CSimulationManager *simulationManager, const CPfTeams *team, bool s
 
     m_simulationManager = simulationManager;
 
-    CLuaManager::getInstance()->runScript("data/scripts/team.lua");
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/team.lua"));
     m_team = new CPfTeams(*team);
     m_sideLeft = sideLeft;
     m_currentFormation = NULL;

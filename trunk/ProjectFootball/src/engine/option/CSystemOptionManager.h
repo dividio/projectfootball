@@ -145,6 +145,8 @@ private:
 	 * Default constructor
 	 */
 	CSystemOptionManager();
+
+	bool           createConfigDirectories(const std::string &script);
 };
 
 #endif /*CSYSTEMOPTIONMANAGER_H_*/

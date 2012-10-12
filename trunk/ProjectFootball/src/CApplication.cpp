@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <libintl.h>
 
+#include "projectfootball_config.h"
 #include "CApplication.h"
 
 #include "audio/CAudioSystem.h"
@@ -36,6 +37,7 @@
 #include "utils/CLuaManager.h"
 #include "utils/CResourceManager.h"
 
+std::string dataPath;
 
 CApplication::CApplication()
 {
@@ -95,7 +97,7 @@ void CApplication::setupAudioSystem()
 
 void CApplication::createRoot()
 {
-    m_root = new Ogre::Root("data/plugins.cfg", "");
+    m_root = new Ogre::Root(CONCAT_PATH(dataPath, "/plugins.cfg"), "");
 }
 
 void CApplication::defineResources()
@@ -316,10 +318,17 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
 int main(int argc, char **argv)
 #endif
 {
+	char *pPath;
+	pPath = getenv("CUSTOM_PF_DATA_PATH");
+	if (pPath)
+		dataPath = pPath;
+	else 
+		dataPath = DATA_PATH;
+
     try{
 
         setlocale(LC_ALL, "");
-        bindtextdomain("projectfootball", "data/i18n");
+        bindtextdomain("projectfootball", CONCAT_PATH(dataPath, "/i18n"));
         textdomain("projectfootball");
         bind_textdomain_codeset("projectfootball", "UTF-8");
 
