@@ -22,7 +22,7 @@
 #include <boost/filesystem.hpp>
 #include <Ogre.h>
 
-#include "../projectfootball_config.h"
+#include "projectfootball_config.h"
 #include "CResourceManager.h"
 #include "CLog.h"
 #include "../engine/option/CSystemOptionManager.h"

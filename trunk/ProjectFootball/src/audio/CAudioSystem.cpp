@@ -18,7 +18,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "../projectfootball_config.h"
+#include "projectfootball_config.h"
 #include "CAudioSystem.h"
 #include "CAudioAbstractFactory.h"
 

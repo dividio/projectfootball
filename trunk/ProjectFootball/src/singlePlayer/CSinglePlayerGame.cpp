@@ -23,7 +23,7 @@
 #include <vector>
 #include <boost/filesystem.hpp>
 
-#include "../projectfootball_config.h"
+#include "projectfootball_config.h"
 #include "CDataBaseGenerator.h"
 
 #include "db/bean/CPfMatches.h"

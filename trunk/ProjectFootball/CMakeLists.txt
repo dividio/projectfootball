@@ -60,6 +60,6 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR}
 
 # configure a header file to pass some of the CMake settings
 # to the source code
-CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/src/projectfootball_config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/src/projectfootball_config.h")
+CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/src/projectfootball_config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/projectfootball_config.h")
 
 ADD_SUBDIRECTORY(src)

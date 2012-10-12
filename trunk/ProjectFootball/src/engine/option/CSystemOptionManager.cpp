@@ -32,7 +32,7 @@
 #include "CSystemOptionManager.h"
 #include "../../exceptions/PFException.h"
 #include "../../utils/CLog.h"
-#include "../../projectfootball_config.h"
+#include "projectfootball_config.h"
 
 char * trim( char *s )
 {

@@ -22,7 +22,7 @@
 
 #include <libintl.h>
 
-#include "../../../projectfootball_config.h"
+#include "projectfootball_config.h"
 #include "CFootballPlayer.h"
 #include "CTeam.h"
 #include "../../../bullet/btBulletDynamicsCommon.h"

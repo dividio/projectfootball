@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <boost/filesystem.hpp>
 
-#include "../projectfootball_config.h"
+#include "projectfootball_config.h"
 #include "CGameEngine.h"
 #include "option/CSystemOptionManager.h"
 #include "utils/CClock.h"
