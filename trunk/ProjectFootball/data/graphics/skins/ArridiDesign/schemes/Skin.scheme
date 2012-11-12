@@ -35,7 +35,9 @@
 	<Imageset Name="spain"				Filename="spain.imageset"/>
 	<Imageset Name="england"			Filename="england.imageset"/>
 	<Imageset Name="p_unknown"          Filename="p_unknown.imageset"/>
-	
+
+	<Imageset Name="Tactics"			Filename="Tactics.imageset"/>  
+
 	<Imageset Name="Intro"				Filename="Intro.imageset"/>  
 	<Imageset Name="WidgetsImageset"	Filename="ArridiDesign.imageset" />
 	<Imageset Name="AuxImages"			Filename="AuxImages.imageset"/>

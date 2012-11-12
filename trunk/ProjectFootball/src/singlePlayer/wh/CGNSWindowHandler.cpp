@@ -61,9 +61,9 @@ void CGNSWindowHandler::enter()
 	CEGUI::RadioButton *button = m_changingRoomRadio->getSelectedButtonInGroup();
 	if( button==m_changingRoomRadio ){
         if(m_game.getCurrentMatch() != NULL) {
-            m_action3Button->setEnabled(true);
+            m_action4Button->setEnabled(true);
         } else {
-            m_action3Button->setEnabled(false);
+            m_action4Button->setEnabled(false);
         }
 	}
 }
@@ -162,18 +162,18 @@ bool CGNSWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action2Button->setText((CEGUI::utf8*)gettext("Team Players"));
 		m_action2Button->setUserString("screen", "TeamPlayers");
 		m_action2Button->setEnabled(true);
-		m_action3Button->setText((CEGUI::utf8*)gettext("View Opponent"));
-		m_action3Button->setUserString("screen", "ViewOpponent");
+		m_action3Button->setText((CEGUI::utf8*)gettext("Formation"));
+		m_action3Button->setUserString("screen", "Formation");
+		m_action3Button->setEnabled(true);
+		m_action4Button->setText((CEGUI::utf8*)gettext("View Opponent"));
+		m_action4Button->setUserString("screen", "ViewOpponent");
 
 		if(m_game.getCurrentMatch() != NULL) {
-		    m_action3Button->setEnabled(true);
+		    m_action4Button->setEnabled(true);
 		} else {
-		    m_action3Button->setEnabled(false);
+		    m_action4Button->setEnabled(false);
 		}
 
-		m_action4Button->setText("");
-		m_action4Button->setUserString("screen", "");
-		m_action4Button->setEnabled(false);
 		m_action5Button->setText("");
 		m_action5Button->setUserString("screen", "");
 		m_action5Button->setEnabled(false);
