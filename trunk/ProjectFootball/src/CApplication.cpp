@@ -291,10 +291,14 @@ void CApplication::removeFrameListener( Ogre::FrameListener *frameListener )
 
 void CApplication::takeScreenshot()
 {
-    std::ostringstream ss;
     CDate date;
-    ss << "screenshot" << "-" << date.getTimestamp() << ".png";
-    m_window->writeContentsToFile(ss.str());
+
+    std::string cfg_path = CFG_PATH;
+	if (cfg_path.at(0) == '~') {
+		cfg_path.replace(0, 1, getenv("HOME"));
+	}
+	std::string destPath(cfg_path + "/screenshots/screenshot" + "-" + date.getTimestamp() + ".png");
+    m_window->writeContentsToFile(destPath);
 }
 
 void CApplication::startRenderLoop()
@@ -320,10 +324,11 @@ int main(int argc, char **argv)
 {
 	char *pPath;
 	pPath = getenv("CUSTOM_PF_DATA_PATH");
-	if (pPath)
+	if (pPath) {
 		dataPath = pPath;
-	else 
+	} else {
 		dataPath = DATA_PATH;
+	}
 
     try{
 

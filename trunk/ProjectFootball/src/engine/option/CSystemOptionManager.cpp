@@ -220,6 +220,18 @@ bool CSystemOptionManager::createConfigDirectories(const std::string &rootPath)
 		}
 	}
 
+	path = rootPath + "/screenshots";
+	boost::filesystem::path pscreenshots(path);
+	if (!boost::filesystem::exists(pscreenshots)) {
+		try {
+			boost::filesystem::create_directories(pscreenshots);
+		} catch (const boost::filesystem::filesystem_error& e) {
+			LOG_ERROR("Failed to create folder %s, please check parent folder's permissions: %s",
+					  path.c_str(), e.what());
+			return false;
+		}
+	}
+
 	return true;
 }
 
