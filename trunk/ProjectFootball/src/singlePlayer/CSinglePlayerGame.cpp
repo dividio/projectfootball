@@ -98,7 +98,7 @@ CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	m_windowHandlers.push_back(new CRankingWindowHandler(*this));
 	m_windowHandlers.push_back(new CScorersWindowHandler(*this));
 	m_windowHandlers.push_back(new CLineUpWindowHandler(*this));
-	m_windowHandlers.push_back(new CFormationWindowHandler(*this, false));
+	m_windowHandlers.push_back(new CFormationWindowHandler(*this));
 	m_windowHandlers.push_back(new CTeamPlayersWindowHandler(*this));
 	m_windowHandlers.push_back(new CTeamPlayerDetailsWindowHandler(*this));
 	m_windowHandlers.push_back(new CMatchResultWindowHandler(*this));

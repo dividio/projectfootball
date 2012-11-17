@@ -34,7 +34,7 @@ class CPfTeamPlayers;
 class CFormationWindowHandler : public CWindowHandler
 {
 public:
-    CFormationWindowHandler(CSinglePlayerGame &game, bool matchInProgress);
+    CFormationWindowHandler(CSinglePlayerGame &game);
     virtual ~CFormationWindowHandler();
 
     virtual void enter();
@@ -43,12 +43,9 @@ public:
 
 private:
     bool lineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
-    bool alternateTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
-    bool notLineUpTeamPlayersListboxSelectionChanged(const CEGUI::EventArgs& e);
 
     void loadTeamPlayersList();
     void addPlayerToLineUpList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list, int xFormation);
-    void addPlayerToList(CPfTeamPlayers *player, CEGUI::MultiColumnList *list);
     void saveTeamPlayersList();
     void changePlayers(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
     void selectChanged(CEGUI::MultiColumnList *list);
@@ -56,14 +53,10 @@ private:
     void changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState);
 
     CEGUI::MultiColumnList 	*m_lineUpTeamPlayersList;
-    CEGUI::MultiColumnList 	*m_alternateTeamPlayersList;
-    CEGUI::MultiColumnList 	*m_notLineUpTeamPlayersList;
 
     CPfTeamPlayers         	*m_selectedPlayer;
     int                      m_selectedPlayerRow;
     CEGUI::MultiColumnList 	*m_selectedPlayerList;
-
-    CEGUI::Window           *m_teamAverage;
 	
 	CEGUI::Window *m_teamFormationName;
 	CEGUI::Window *m_teamFormationImg;
@@ -72,7 +65,6 @@ private:
 
     CSinglePlayerGame		&m_game;
     bool					m_initiated;
-	bool					m_matchInProgress;
 	bool					m_highlight_player;
 };
 

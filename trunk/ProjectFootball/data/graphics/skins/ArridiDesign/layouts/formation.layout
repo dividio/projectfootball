@@ -12,54 +12,34 @@
         </Window>
         <Window Type="ArridiDesign/MultiColumnList" Name="Formation/LineUpTeamPlayersList" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.03,0},{0.60,0},{0.37,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="Formation/TeamSubsListLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.38,0},{0.2,0},{0.40,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/MultiColumnList" Name="Formation/AlternateTeamPlayersList" >
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.41,0},{0.55,0},{0.63,0}}" />
-        </Window>
-        <Window Type="ArridiDesign/StaticText" Name="Formation/TeamUnselectedListLabel" >
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.005,0},{0.64,0},{0.2,0},{0.66,0}}" />
-            <Property Name="BackgroundEnabled" Value="False" />
-        </Window>
-        <Window Type="ArridiDesign/MultiColumnList" Name="Formation/NotLineUpTeamPlayersList" >
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.67,0},{0.55,0},{0.92,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.03,0},{1.0,0},{0.37,0}}" />
         </Window>
         <Window Type="ArridiDesign/StaticImage" Name="Formation/Formation" >
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.61,0},{0.03,0},{1.2,0},{0.80,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.3725,0},{0.65,0},{0.96,0}}" />
             <Window Type="ArridiDesign/StaticText" Name="Formation/FormationLabel" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="HorzFormatting" Value="HorzCentred" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.03,0},{0.3,0},{0.1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.01,0},{0.3,0},{0.1,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/Combobox" Name="Formation/FormationName" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.2,0},{0.03,0},{0.65,0},{0.1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.15,0},{0.001,0},{0.65,0},{0.1,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="ArridiDesign/StaticImage" Name="Formation/FormationLayout" >
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.13,0},{0.64,0},{0.90,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.03,0},{0.105,0},{0.97,0},{0.97,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_1" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_1" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -67,13 +47,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_2" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_2" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -81,13 +61,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_3" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_3" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -95,13 +75,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_4" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_4" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -109,13 +89,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_5" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                     <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_5" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -123,13 +103,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_6" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_6" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -137,13 +117,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_7" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_7" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -151,27 +131,27 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_8" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
-                    </Window>
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
+                </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_8" >
                     <Property Name="Font" Value="DejaVuSans-10" />
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_9" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_9" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -179,13 +159,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_10" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_10" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -193,13 +173,13 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticImage" Name="Formation/Player_img_11" >
                     <Property Name="FrameEnabled" Value="False" />
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
                 <Window Type="ArridiDesign/StaticText" Name="Formation/Player_txt_11" >
                     <Property Name="Font" Value="DejaVuSans-10" />
@@ -207,7 +187,7 @@
                     <Property Name="BackgroundEnabled" Value="False" />
                     <Property Name="HorzFormatting" Value="HorzCentred" />
                     <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.17,0},{0.15,0}}" />
+                    <Property Name="UnifiedAreaRect" Value="{{0.1,0},{0.1,0},{0.14,0},{0.16,0}}" />
                 </Window>
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="Formation/TeamAverageLabel" >

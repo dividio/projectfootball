@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Imageset Name="Tactics" Imagefile="Tactics.png" >
-    <Image Name="Pitch" XPos="7" YPos="4" Width="233" Height="360" />
-    <Image Name="Selected_Player" XPos="267" YPos="5" Width="21" Height="21" />
-    <Image Name="Unselected_Player" XPos="243" YPos="5" Width="21" Height="21" />
+    <Image Name="Pitch" XPos="0" YPos="0" Width="492" Height="319" />
+    <Image Name="Selected_Player" XPos="493" YPos="0" Width="21" Height="21" />
+    <Image Name="Unselected_Player" XPos="493" YPos="23" Width="21" Height="21" />
 </Imageset>
