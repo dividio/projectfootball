@@ -44,7 +44,9 @@ CTimeManager::CTimeManager() :
 CTimeManager::~CTimeManager()
 {
 	m_stopRequest = true;
-	m_thread.join();
+	if(m_thread.joinable()) {
+		m_thread.join();
+	}
 	CGameEngine::getInstance()->getEventManager()->disconnectSlot(m_slotConnection);
 }
 
