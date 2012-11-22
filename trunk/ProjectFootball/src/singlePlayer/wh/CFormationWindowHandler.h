@@ -24,6 +24,7 @@
 #include <CEGUI/CEGUI.h>
 #include <boost/array.hpp>
 #include "../../engine/wm/CWindowHandler.h"
+#include "../db/bean/CPfStrategicPositions.h"
 
 //Forward declarations
 class CSinglePlayerGame;
@@ -51,6 +52,7 @@ private:
     void selectChanged(CEGUI::MultiColumnList *list);
     void changeRows(CEGUI::MultiColumnList *list1, int row1, CEGUI::MultiColumnList *list2, int row2);
     void changeRowSelection(CEGUI::MultiColumnList *list, int row, bool newSelectionState);
+	void setOffDefPosVisability();
 
     CEGUI::MultiColumnList 	*m_lineUpTeamPlayersList;
 
@@ -61,7 +63,7 @@ private:
 	CEGUI::Window *m_teamFormationName;
 	CEGUI::Window *m_teamFormationImg;
 
-	boost::array< std::pair< CEGUI::Window *, CEGUI::Window * >, 11 > m_lineUpGui;
+	boost::array< std::pair< CEGUI::Window *, CEGUI::Window * >, 13 > m_lineUpGui;
 
     CSinglePlayerGame		&m_game;
     bool					m_initiated;

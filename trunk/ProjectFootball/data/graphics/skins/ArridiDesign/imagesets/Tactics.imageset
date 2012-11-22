@@ -2,6 +2,8 @@
 
 <Imageset Name="Tactics" Imagefile="Tactics.png" >
     <Image Name="Pitch" XPos="0" YPos="0" Width="492" Height="319" />
-    <Image Name="Selected_Player" XPos="493" YPos="0" Width="21" Height="21" />
-    <Image Name="Unselected_Player" XPos="493" YPos="23" Width="21" Height="21" />
+    <Image Name="Offensive_Position" XPos="493" YPos="0" Width="21" Height="21" />
+    <Image Name="Initial_Position" XPos="493" YPos="23" Width="21" Height="21" />
+    <Image Name="Inactive_Position" XPos="493" YPos="46" Width="21" Height="21" />
+    <Image Name="Defensive_Position" XPos="493" YPos="69" Width="21" Height="21" />
 </Imageset>

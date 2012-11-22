@@ -39,6 +39,9 @@
 #define HORZ_PITCH_MAX 0.45
 #define HORZ_PITCH_POS_MAX 55
 
+#define GET_OFFENSIVE_GUI m_lineUpGui[11]
+#define GET_DEFENSIVE_GUI m_lineUpGui[12]
+
 CFormationWindowHandler::CFormationWindowHandler(CSinglePlayerGame &game) :
 	CWindowHandler("formation.layout"),
 	m_game(game),
@@ -70,6 +73,7 @@ void CFormationWindowHandler::enter()
 void CFormationWindowHandler::init()
 {
 	CEGUI::WindowManager	&windowMngr = CEGUI::WindowManager::getSingleton();
+	std::string image_pos, label_pos;
 
     m_lineUpTeamPlayersList = static_cast<CEGUI::MultiColumnList*>(windowMngr.getWindow((CEGUI::utf8*)"Formation/LineUpTeamPlayersList"));
     m_lineUpTeamPlayersList->addColumn((CEGUI::utf8*)gettext("Role"),           0, CEGUI::UDim(0.10,0));
@@ -96,14 +100,22 @@ void CFormationWindowHandler::init()
     registerEventConnection(m_lineUpTeamPlayersList->subscribeEvent(CEGUI::MultiColumnList::EventSelectionChanged, CEGUI::Event::Subscriber(&CFormationWindowHandler::lineUpTeamPlayersListboxSelectionChanged, this)));
 
 	for (int i = 0; i < 11; i++) {
-		std::string image_pos = "Formation/Player_img_" + boost::lexical_cast< std::string >(i + 1);
-		std::string label_pos = "Formation/Player_txt_" + boost::lexical_cast< std::string >(i + 1);
+		image_pos = "Formation/Player_img_" + boost::lexical_cast< std::string >(i + 1);
+		label_pos = "Formation/Player_txt_" + boost::lexical_cast< std::string >(i + 1);
 		m_lineUpGui[i] = std::make_pair(static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)image_pos.c_str())),
 										static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)label_pos.c_str())));
-		m_lineUpGui[i].first->setProperty("Image", "set:Tactics image:Unselected_Player");
+		m_lineUpGui[i].first->setProperty("Image", "set:Tactics image:Inactive_Position");
 		m_lineUpGui[i].second->setText("[colour=&apos;FF00FF00&apos;]0");
 	}
 
+	/* update offensive gui */
+	GET_OFFENSIVE_GUI = std::make_pair(static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"Formation/Player_off_img")),
+									   static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Formation/Player_off_txt")));
+	/* update defensive gui */
+	GET_DEFENSIVE_GUI = std::make_pair(static_cast<CEGUI::Window *>(windowMngr.getWindow((CEGUI::utf8*)"Formation/Player_def_img")),
+									   static_cast<CEGUI::Window*>(windowMngr.getWindow((CEGUI::utf8*)"Formation/Player_def_txt")));
+	m_selectedPlayer = NULL;
+	setOffDefPosVisability();
     m_initiated = true;
 }
 
@@ -257,11 +269,14 @@ void CFormationWindowHandler::selectChanged(CEGUI::MultiColumnList *list)
             m_selectedPlayerRow = currentRow;
             m_selectedPlayerList = list;
 			if (m_lineUpTeamPlayersList == list) {
-				m_lineUpGui[m_selectedPlayerRow].first->setProperty("Image", "set:Tactics image:Selected_Player");
+				m_lineUpGui[m_selectedPlayerRow].first->setProperty("Image", "set:Tactics image:Initial_Position");
+				m_lineUpGui[m_selectedPlayerRow].second->setText("[colour=&apos;FF00FF00&apos;]I");
 				m_highlight_player = true;
+				setOffDefPosVisability();
 			}
             changeRowSelection(m_selectedPlayerList, m_selectedPlayerRow, true);
         } else {
+			std::string orig_shirt_num = m_selectedPlayer->getNSquadNumber_str();
             if ((xTeamPlayer == m_selectedPlayer->getXTeamPlayer())) {
                 delete m_selectedPlayer;
                 m_selectedPlayer = NULL;
@@ -269,8 +284,11 @@ void CFormationWindowHandler::selectChanged(CEGUI::MultiColumnList *list)
                 changePlayers(m_selectedPlayerList, m_selectedPlayerRow, list, currentRow);
             }
             if (m_highlight_player) {
-				m_lineUpGui[m_selectedPlayerRow].first->setProperty("Image", "set:Tactics image:Unselected_Player");
+				m_lineUpGui[m_selectedPlayerRow].first->setProperty("Image", "set:Tactics image:Inactive_Position");
+				const std::string text = "[colour=&apos;FF00FF00&apos;]" + orig_shirt_num;
+				m_lineUpGui[m_selectedPlayerRow].second->setText((CEGUI::utf8*)text.c_str());
 				m_highlight_player = false;
+				setOffDefPosVisability();
 			}
         }
     }
@@ -336,4 +354,38 @@ void CFormationWindowHandler::changeRowSelection(CEGUI::MultiColumnList *list, i
         CEGUI::ListboxItem *item = list->getItemAtGridReference(CEGUI::MCLGridRef(row, i));
         item->setSelected(newSelectionState);
     }
+}
+
+void CFormationWindowHandler::setOffDefPosVisability()
+{
+	if (m_selectedPlayer) {
+		std::string currentTimestamp = m_game.getCurrentTime().getTimestamp();
+		CPfTeams *team = m_game.getIDAOFactory()->getIPfTeamsDAO()->findByXTeam(m_game.getOptionManager()->getGamePlayerTeam());
+		IPfFormationsDAO *formationsDAO = m_game.getIDAOFactory()->getIPfFormationsDAO();
+		CPfFormations *formation = formationsDAO->findActiveByXTeam(team->getXTeam(), currentTimestamp);
+		CPfStrategicPositions *position = m_game.getIDAOFactory()->getIPfStrategicPositionsDAO()->findByXFkFormation(formation->getXFormation())->at(m_selectedPlayer->getNLineupOrder() - 1);
+		if ((position->getNOffensivePosX() != position->getNInitialPosX()) or
+			(position->getNOffensivePosZ() != position->getNInitialPosZ())) {
+			CEGUI::UVector2 offPos(CEGUI::UDim((float)(HORZ_PITCH_CENTER + (HORZ_PITCH_MAX * position->getNOffensivePosX() / HORZ_PITCH_POS_MAX)), 0),
+								   CEGUI::UDim((float)(VERT_PITCH_CENTER + (VERT_PITCH_MAX * position->getNOffensivePosZ() / VERT_PITCH_POS_MAX)), 0));
+			GET_OFFENSIVE_GUI.first->setPosition(offPos);
+			GET_OFFENSIVE_GUI.second->setPosition(offPos);
+			GET_OFFENSIVE_GUI.first->setProperty("Image", "set:Tactics image:Offensive_Position");
+			GET_OFFENSIVE_GUI.second->setText("[colour=&apos;FF00FF00&apos;]O");
+		}
+		if ((position->getNDefensivePosX() != position->getNInitialPosX()) or
+			(position->getNDefensivePosZ() != position->getNInitialPosZ())) {
+			CEGUI::UVector2 defPos(CEGUI::UDim((float)(HORZ_PITCH_CENTER + (HORZ_PITCH_MAX * position->getNDefensivePosX() / HORZ_PITCH_POS_MAX)), 0),
+								   CEGUI::UDim((float)(VERT_PITCH_CENTER + (VERT_PITCH_MAX * position->getNDefensivePosZ() / VERT_PITCH_POS_MAX)), 0));
+			GET_DEFENSIVE_GUI.first->setPosition(defPos);
+			GET_DEFENSIVE_GUI.second->setPosition(defPos);
+			GET_DEFENSIVE_GUI.first->setProperty("Image", "set:Tactics image:Defensive_Position");
+			GET_DEFENSIVE_GUI.second->setText("[colour=&apos;FF00FF00&apos;]D");
+		}
+	} else {
+		GET_OFFENSIVE_GUI.first->setProperty("Image", "");
+		GET_OFFENSIVE_GUI.second->setText("");
+		GET_DEFENSIVE_GUI.first->setProperty("Image", "");
+		GET_DEFENSIVE_GUI.second->setText("");
+	}
 }
