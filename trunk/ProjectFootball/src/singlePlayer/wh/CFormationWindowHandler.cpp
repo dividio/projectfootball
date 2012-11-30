@@ -138,6 +138,7 @@ void CFormationWindowHandler::changePlayers(CEGUI::MultiColumnList *list1, int r
     list2->clearAllSelections();
 
 	saveTeamPlayersList();
+	loadTeamPlayersList();
 }
 
 void CFormationWindowHandler::loadTeamPlayersList()
