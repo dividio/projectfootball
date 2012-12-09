@@ -68,14 +68,14 @@
         </Window>
         
         <!-- GNS SCREENS NAVIGATION  -->
-        <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndE" >
+        <Window Type="ArridiDesign/StaticImage" Name="GNS/GNSListEndE" >
             <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_E" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.539,0},{0.667,0},{1,0},{0.765,0}}" />
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
-        <Window Type="ArridiDesign/StaticImage" Name="Game/GNSListEndF" >
+        <Window Type="ArridiDesign/StaticImage" Name="GNS/GNSListEndF" >
             <Property Name="Image" Value="set:WidgetsImageset image:GNS_List_End_F" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

@@ -88,8 +88,8 @@ void CGNSWindowHandler::init()
 	m_statisticsRadio		= static_cast<CEGUI::RadioButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/StatisticsButton"));
 	m_historyRadio          = static_cast<CEGUI::RadioButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/HistoryButton"));
 
-	m_noButtonsBackground	= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Game/GNSListEndE"));
-	m_buttonsBackground		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"Game/GNSListEndF"));
+	m_noButtonsBackground	= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/GNSListEndE"));
+	m_buttonsBackground		= static_cast<CEGUI::Window*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/GNSListEndF"));
 	m_homeButton			= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/HomeButton"));
 	m_nextScreenButton		= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/NextScreenButton"));
 	m_previousScreenButton	= static_cast<CEGUI::PushButton*>(windowMngr->getWindow((CEGUI::utf8*)"GNS/PreviousScreenButton"));
