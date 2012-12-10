@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (C) 2009 - Ikaro Games   www.ikarogames.com                       *
+ * Copyright (C) 2012 - Ikaro Games   www.ikarogames.com                       *
  *                                                                             *
  * This program is free software; you can redistribute it and/or               *
  * modify it under the terms of the GNU General Public License                 *
@@ -18,31 +18,23 @@
  *                                                                             *
  ******************************************************************************/
 
-#ifndef CGNSWINDOWHANDLER_H_
-#define CGNSWINDOWHANDLER_H_
+#ifndef CGNSEDITORWINDOWHANDLER_H_
+#define CGNSEDITORWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
 #include "../../engine/wh/CGNSGenericWindowHandler.h"
 
-//Forward declarations
-class CSinglePlayerGame;
-
-class CGNSWindowHandler: public CGNSGenericWindowHandler {
+class CGNSEditorWindowHandler: public CGNSGenericWindowHandler {
 public:
-	CGNSWindowHandler(CSinglePlayerGame &game);
-	virtual ~CGNSWindowHandler();
+	CGNSEditorWindowHandler();
+	virtual ~CGNSEditorWindowHandler();
 
 	virtual void enter();
 
 protected:
-	virtual bool gnsSelectionChanged	(const CEGUI::EventArgs &e);
-	virtual bool playButtonClicked		(const CEGUI::EventArgs &e);
-	virtual bool quickSaveButtonClicked	(const CEGUI::EventArgs &e);
-
-private:
-    CSinglePlayerGame	&m_game;
+	virtual bool gnsSelectionChanged (const CEGUI::EventArgs &e);
 
 };
 
-#endif /* CGNSWINDOWHANDLER_H_ */
+#endif /* CGNSEDITORWINDOWHANDLER_H_ */

@@ -25,6 +25,7 @@
 #include "../CGameEngine.h"
 #include "../../utils/CLog.h"
 #include "../../singlePlayer/CSinglePlayerGame.h"
+#include "../../editor/CGameEditor.h"
 
 
 CMainMenuWindowHandler::CMainMenuWindowHandler()
@@ -90,6 +91,7 @@ void CMainMenuWindowHandler::init()
 
     // Event handle
     registerEventConnection(m_virtualChampionshipButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::virtualChampionshipButtonClicked, this)));
+    registerEventConnection(m_EditorButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::editorButtonClicked, this)));
     registerEventConnection(m_newManagerGameButton     ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::newManagerGameButtonClicked, this)));
     registerEventConnection(m_configButton             ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::configButtonClicked, this)));
     registerEventConnection(m_creditsButton            ->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&CMainMenuWindowHandler::creditsButtonClicked, this)));
@@ -116,6 +118,13 @@ void CMainMenuWindowHandler::init()
 bool CMainMenuWindowHandler::virtualChampionshipButtonClicked(const CEGUI::EventArgs& e)
 {
     CGameEngine::getInstance()->getWindowManager()->nextScreen("NewVirtualGame");
+    return true;
+}
+
+bool CMainMenuWindowHandler::editorButtonClicked(const CEGUI::EventArgs& e)
+{
+	CGameEngine::getInstance()->loadGame(CGameEditor::load());
+    CGameEngine::getInstance()->getWindowManager()->nextScreen("Editor");
     return true;
 }
 

@@ -18,31 +18,59 @@
  *                                                                             *
  ******************************************************************************/
 
-#ifndef CGNSWINDOWHANDLER_H_
-#define CGNSWINDOWHANDLER_H_
+#ifndef CGNSGENERICWINDOWHANDLER_H_
+#define CGNSGENERICWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
 
-#include "../../engine/wh/CGNSGenericWindowHandler.h"
+#include "../wm/CWindowHandler.h"
 
-//Forward declarations
-class CSinglePlayerGame;
 
-class CGNSWindowHandler: public CGNSGenericWindowHandler {
+class CGNSGenericWindowHandler: public CWindowHandler {
 public:
-	CGNSWindowHandler(CSinglePlayerGame &game);
-	virtual ~CGNSWindowHandler();
+	CGNSGenericWindowHandler(const std::string &homeScreen, const std::string &configScreen);
+	virtual ~CGNSGenericWindowHandler();
 
 	virtual void enter();
+	virtual void init();
 
 protected:
 	virtual bool gnsSelectionChanged	(const CEGUI::EventArgs &e);
-	virtual bool playButtonClicked		(const CEGUI::EventArgs &e);
 	virtual bool quickSaveButtonClicked	(const CEGUI::EventArgs &e);
+	virtual bool playButtonClicked		(const CEGUI::EventArgs &e);
 
-private:
-    CSinglePlayerGame	&m_game;
+	bool actionButtonClicked			(const CEGUI::EventArgs &e);
+	bool exitButtonClicked				(const CEGUI::EventArgs &e);
+	bool exitConfirmed					(const CEGUI::EventArgs &e);
+	bool mainMenuButtonClicked			(const CEGUI::EventArgs &e);
+	bool mainMenuConfirmed				(const CEGUI::EventArgs &e);
+	bool configGameButtonClicked        (const CEGUI::EventArgs &e);
+	bool homeButtonClicked				(const CEGUI::EventArgs &e);
+	bool nextScreenButtonClicked		(const CEGUI::EventArgs &e);
+	bool previousScreenButtonClicked	(const CEGUI::EventArgs &e);
 
+	CEGUI::Window		*m_noButtonsBackground;
+	CEGUI::Window		*m_buttonsBackground;
+	CEGUI::PushButton	*m_homeButton;
+	CEGUI::PushButton	*m_nextScreenButton;
+	CEGUI::PushButton	*m_previousScreenButton;
+
+	CEGUI::PushButton	*m_action1Button;
+	CEGUI::PushButton	*m_action2Button;
+	CEGUI::PushButton	*m_action3Button;
+	CEGUI::PushButton	*m_action4Button;
+	CEGUI::PushButton	*m_action5Button;
+	CEGUI::PushButton	*m_action6Button;
+	CEGUI::PushButton	*m_action7Button;
+	CEGUI::PushButton	*m_action8Button;
+
+	CEGUI::RadioButton  *m_statisticsRadio;
+	CEGUI::RadioButton  *m_changingRoomRadio;
+	CEGUI::RadioButton  *m_historyRadio;
+
+//private:
+	std::string			 m_homeScreen;
+	std::string			 m_configScreen;
 };
 
-#endif /* CGNSWINDOWHANDLER_H_ */
+#endif /* CGNSGENERICWINDOWHANDLER_H_ */

@@ -111,4 +111,17 @@
             <window hook="Game/InfoHook" path="seasonSummary.layout" />
         </window>
     </screen>
+    
+    <!-- Game Editor Screens -->
+    <screen id="Editor">
+        <window hook="none" path="editor.layout">
+            <window hook="Editor/GNSHook" path="gns.layout" />
+        </window>
+    </screen>
+    <screen id="TeamEditor">
+        <window hook="none" path="editor.layout">
+            <window hook="Editor/GNSHook" path="gns.layout" />
+            <window hook="Editor/InfoHook" path="teamEditor.layout" />
+        </window>
+    </screen>
 </screens-config>

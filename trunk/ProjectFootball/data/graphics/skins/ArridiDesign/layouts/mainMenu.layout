@@ -35,7 +35,6 @@
             </Window>
             <Window Type="ArridiDesign/mLeftButton" Name="MainMenu/EditorButton" >
                 <Property Name="Font" Value="DejaVuSans-12" />
-                <Property Name="Disabled" Value="True" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.0296875,0},{0.36007,0},{0.303126,0},{0.434288,0}}" />
             </Window>

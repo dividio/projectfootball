@@ -41,6 +41,7 @@ public:
 
 private:
 	bool virtualChampionshipButtonClicked(const CEGUI::EventArgs& e);
+	bool editorButtonClicked(const CEGUI::EventArgs& e);
 	bool newManagerGameButtonClicked(const CEGUI::EventArgs& e);
 	bool configButtonClicked(const CEGUI::EventArgs& e);
 	bool creditsButtonClicked(const CEGUI::EventArgs& e);
