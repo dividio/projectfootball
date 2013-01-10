@@ -48,8 +48,7 @@ sudo aptitude install build-essential libogre-dev libceguiogre-dev libcegui-mk2-
 3- Instrucciones de compilación
 --------------------------------
 
-- Para compilar, ejecutar desde el directorio ProjectFootball el siguiente comando:
-sh build.sh
+- Ejecutar cmake para compilar el proyeto.
 
 - Para ejecutar Project Football, ejecutar el comando:
 ./ProjectFootball

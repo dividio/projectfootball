@@ -46,8 +46,7 @@ sudo aptitude install build-essential libogre-dev libceguiogre-dev libcegui-mk2-
 3- Compiling
 --------------------------------
 
-- To compile, run this script:
-sh build.sh
+- Run cmake to compile the project.
 
 - To play Project Football, run the following command:
 ./ProjectFootball
