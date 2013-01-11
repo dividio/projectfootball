@@ -44,7 +44,7 @@ class CEditorUtils {
 			for (Iterator it = begin; it != end; it++) {
 				label.clear();
  				callback(it, &label, &id);
-				data->list->addItem(new CEGUI::ListboxTextItem(label.c_str(), id));
+				data->list->addItem(new CEGUI::ListboxTextItem((CEGUI::utf8 *)label.c_str(), id));
 			}
 			if (end != begin)
 				data->button->setEnabled(true);
