@@ -76,7 +76,6 @@ void CGNSGenericWindowHandler::init()
 		exitButton->setTooltipText((CEGUI::utf8*)gettext("Exit to OS"));
 	#endif
 	mainMenuButton			->setTooltipText((CEGUI::utf8*)gettext("Return to Main Menu"));
-	playButton				->setTooltipText((CEGUI::utf8*)gettext("Play Match"));
 	configGameButton        ->setTooltipText((CEGUI::utf8*)gettext("Configuration"));
 	quickSaveButton			->setTooltipText((CEGUI::utf8*)gettext("Quick Save"));
 	m_homeButton			->setTooltipText((CEGUI::utf8*)gettext("Home"));

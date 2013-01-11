@@ -24,17 +24,20 @@
 #include <CEGUI/CEGUI.h>
 
 #include "../../engine/wh/CGNSGenericWindowHandler.h"
+#include "../CGameEditor.h"
 
 class CGNSEditorWindowHandler: public CGNSGenericWindowHandler {
-public:
-	CGNSEditorWindowHandler();
-	virtual ~CGNSEditorWindowHandler();
+	public:
+		CGNSEditorWindowHandler(CGameEditor &editor);
+		virtual ~CGNSEditorWindowHandler();
 
-	virtual void enter();
+		virtual void enter();
 
-protected:
-	virtual bool gnsSelectionChanged (const CEGUI::EventArgs &e);
+	protected:
+		virtual bool gnsSelectionChanged (const CEGUI::EventArgs &e);
 
+	private:
+		CGameEditor &m_editor;
 };
 
 #endif /* CGNSEDITORWINDOWHANDLER_H_ */

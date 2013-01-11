@@ -71,6 +71,7 @@
 
 #include "../utils/CLog.h"
 #include "../utils/CDate.h"
+#include "../utils/CResourceManager.h"
 
 CSinglePlayerGame::CSinglePlayerGame(const CPfGames &game) :
 	m_windowHandlers(),
@@ -160,28 +161,11 @@ IGame* CSinglePlayerGame::newGame(const CPfUsers &user, const std::string &gameN
 {
     LOG_DEBUG("CSinglePlayerGame::newGame");
 
-    const char *str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string filename = "";
-
-    srand(time(NULL));
-    do{
-        std::string cfg_path = CFG_PATH;
-        if (cfg_path.at(0) == '~') {
-            cfg_path.replace(0, 1, getenv("HOME"));
-        }
-		std::string destPath(cfg_path + "/database/savedgames/");
-    	filename = destPath;
-    	for( int i=0; i<8; i++ ){
-    		filename += str[rand()%52];
-    	}
-    	filename += ".sql3";
-    }while(boost::filesystem::exists(filename));
-
     CDate nowDate;
     CPfGames game;
     game.setDLastSaved(nowDate);
     game.setSDriverName("SQLite");
-    game.setSConnectionString(filename);
+    game.setSConnectionString(CResourceManager::getInstance()->getDbFileName());
     game.setSGameName(gameName);
     game.setSGameType(S_GAME_TYPE_SINGLEPLAYER);
     game.setXFkUser(user.getXUser());

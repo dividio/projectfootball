@@ -18,44 +18,43 @@
 *                                                                             *
 ******************************************************************************/
 
-#ifndef CGAMEEDITOR_H_
-#define CGAMEEDITOR_H_
+#ifndef CCOMPETITIONEDITORWINDOWHANDLER_H_
+#define CCOMPETITIONEDITORWINDOWHANDLER_H_
 
-#include <vector>
-
+#include <CEGUI/CEGUI.h>
 #include "../singlePlayer/db/sqlite/dao/factory/CDAOFactorySQLite.h"
-#include "../engine/IGame.h"
-#include "CEditorUtils.h"
+#include "../../engine/wm/CWindowHandler.h"
 
-// Forward declarations
-class CPfGames;
-class CPfUsers;
-class IWindowHandler;
+//Forward declarations
+class CGameEditor;
 
-class CGameEditor : public IGame
+
+class CCompetitionEditorWindowHandler : public CWindowHandler
 {
 	public:
-		CGameEditor();
-	    virtual ~CGameEditor();
+		CCompetitionEditorWindowHandler(CGameEditor &editor);
+		virtual ~CCompetitionEditorWindowHandler();
 
-    	// IGame
-	    virtual CPfGames* save();
-	    virtual const char* getFirstScreenName();
+		virtual void enter();
+		virtual void init();
+		virtual void leave();
 
-	    static IGame* load();
-		CEditorUtils &getEditorUtilsObj();
-		const std::string getConnString() const;
-		CDAOFactorySQLite *getDAOFactory();
-
-	protected:
-	    CGameEditor(const std::string &dbStringName);
-
-    	std::vector<IWindowHandler*>	    m_windowHandlers;
+		bool searchResultsListboxSelectionChanged(const CEGUI::EventArgs& e);
+		bool searchButtonClicked(const CEGUI::EventArgs& e);
+		bool searchClearButtonClicked(const CEGUI::EventArgs& e);
+		bool entryClearButtonClicked(const CEGUI::EventArgs& e);
+		bool entryUpdateButtonClicked(const CEGUI::EventArgs& e);
 
 	private:
-		std::string m_dbStringName;
-		CDAOFactorySQLite *m_daoFactory;
-		CEditorUtils m_editorUtils;
+		void populateEntry(std::vector< CPfCompetitions * >::iterator it, std::string *label, unsigned int *id);
+
+		CGameEditor &m_editor;
+		CEGUI::PushButton *m_searchButton, *m_clearButton;
+		CEGUI::Editbox *m_searchQueryEditbox;
+		CEGUI::Listbox *m_searchResultsListbox;
+		bool m_initiated;
+		CEGUI::PushButton *m_clearEntryButton;
+		CEGUI::PushButton *m_updateEntryButton;
 };
 
-#endif /*CGAMEEDITOR_H_*/
+#endif /*CCOMPETITIONEDITORWINDOWHANDLER_H_*/

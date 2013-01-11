@@ -118,10 +118,28 @@
             <window hook="Editor/GNSHook" path="gns.layout" />
         </window>
     </screen>
+    <screen id="CountryEditor">
+        <window hook="none" path="editor.layout">
+            <window hook="Editor/GNSHook" path="gns.layout" />
+            <window hook="Editor/InfoHook" path="countryEditor.layout" />
+        </window>
+    </screen>
+    <screen id="CompetitionEditor">
+        <window hook="none" path="editor.layout">
+            <window hook="Editor/GNSHook" path="gns.layout" />
+            <window hook="Editor/InfoHook" path="competitionEditor.layout" />
+        </window>
+    </screen>
     <screen id="TeamEditor">
         <window hook="none" path="editor.layout">
             <window hook="Editor/GNSHook" path="gns.layout" />
             <window hook="Editor/InfoHook" path="teamEditor.layout" />
+        </window>
+    </screen>
+    <screen id="StaffEditor">
+        <window hook="none" path="editor.layout">
+            <window hook="Editor/GNSHook" path="gns.layout" />
+            <window hook="Editor/InfoHook" path="staffEditor.layout" />
         </window>
     </screen>
 </screens-config>

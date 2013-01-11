@@ -22,22 +22,33 @@
 
 #include "wh/CGNSEditorWindowHandler.h"
 #include "wh/CTeamEditorWindowHandler.h"
+#include "wh/CCompetitionEditorWindowHandler.h"
+#include "wh/CStaffEditorWindowHandler.h"
+#include "wh/CCountryEditorWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../exceptions/PFException.h"
 #include "../singlePlayer/CSinglePlayerGame.h"
-#include "../singlePlayer/db/dao/factory/IDAOFactory.h"
 #include "../singlePlayer/option/CSinglePlayerOptionManager.h"
+#include "../singlePlayer/CDataBaseGenerator.h"
+
 #include "../utils/CLog.h"
+#include "../utils/CResourceManager.h"
 
-
-CGameEditor::CGameEditor() :
-	m_windowHandlers()
+CGameEditor::CGameEditor(const std::string &dbStringName):
+	m_windowHandlers(),	m_dbStringName(dbStringName)
 {
     LOG_DEBUG("CGameEditor::CGameEditor");
 
-    m_windowHandlers.push_back(new CGNSEditorWindowHandler());
-    m_windowHandlers.push_back(new CTeamEditorWindowHandler(*this));
+    m_windowHandlers.push_back(new CGNSEditorWindowHandler(*this));
+    m_windowHandlers.push_back(new CCountryEditorWindowHandler(*this));
+	m_windowHandlers.push_back(new CCompetitionEditorWindowHandler(*this));
+	m_windowHandlers.push_back(new CTeamEditorWindowHandler(*this));
+	m_windowHandlers.push_back(new CStaffEditorWindowHandler(*this));
+
+	m_daoFactory = new CDAOFactorySQLite(dbStringName);
+	CDataBaseGenerator::generateDataBase(m_daoFactory);
+	m_editorUtils.setDaoFactory(m_daoFactory);
 }
 
 CGameEditor::~CGameEditor()
@@ -51,13 +62,11 @@ CGameEditor::~CGameEditor()
 		}
 		m_windowHandlers.clear();
 	}
+	delete m_daoFactory;
 }
 
 CPfGames* CGameEditor::save()
 {
-//	CPfGames *game = m_game->save();
-//	game->setSGameType(S_GAME_TYPE_FRIENDLYMATCH);
-//	return game;
 	return 0;
 }
 
@@ -70,7 +79,22 @@ IGame* CGameEditor::load()
 {
     LOG_DEBUG("CGameEditor::load");
 
-    CGameEditor *gameEditor = new CGameEditor();
+	CGameEditor *gameEditor = new CGameEditor(CResourceManager::getInstance()->getDbFileName());
 
 	return gameEditor;
+}
+ 
+const std::string CGameEditor::getConnString() const
+{
+	return m_dbStringName;
+}
+
+CDAOFactorySQLite *CGameEditor::getDAOFactory()
+{
+	return m_daoFactory;
+}
+
+CEditorUtils &CGameEditor::getEditorUtilsObj()
+{
+	return m_editorUtils;
 }

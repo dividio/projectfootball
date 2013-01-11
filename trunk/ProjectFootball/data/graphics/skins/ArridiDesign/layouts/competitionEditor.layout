@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout >
-	<Window Type="DefaultWindow" Name="TeamEditor" >
+	<Window Type="DefaultWindow" Name="CompetitionEditor" >
 		<Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
 		<Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-		<Window Type="ArridiDesign/StaticImage" Name="TeamEditor/SearchBox" >
+		<Window Type="ArridiDesign/StaticImage" Name="CompetitionEditor/SearchBox" >
 			<Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
 			<Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.01,0},{1,0},{0.8,0}}" />
-			<Window Name="TeamEditor/SearchBoxLabel" Type="ArridiDesign/StaticText">
+			<Window Name="CompetitionEditor/SearchBoxLabel" Type="ArridiDesign/StaticText">
 				<Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.0,0},{0.9,0},{0.1,0}}" />
 				<Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
 				<Property Name="FrameEnabled" Value="False" />
 				<Property Name="BackgroundEnabled" Value="False" />
 				<Property Name="AlwaysOnTop" Value="True" />
 			</Window>
-			<Window Name="TeamEditor/SearchQuery" Type="ArridiDesign/Editbox">
+			<Window Name="CompetitionEditor/SearchQuery" Type="ArridiDesign/Editbox">
 				<Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.1,0},{0.95,0},{0.15,0}}" />
 			</Window>
-			<Window Name="TeamEditor/SearchResultsList" Type="ArridiDesign/Listbox">
+			<Window Name="CompetitionEditor/SearchResultsList" Type="ArridiDesign/Listbox">
 				<Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.21,0},{0.95,0},{0.89,0}}" />
 			</Window>
-			<Window Name="TeamEditor/SearchGo" Type="ArridiDesign/bButton">
+			<Window Name="CompetitionEditor/SearchGo" Type="ArridiDesign/bButton">
 				<Property Name="UnifiedAreaRect" Value="{{0.05,0},{0.9,0},{0.5,0},{1,0}}" />
 			</Window>
-			<Window Name="TeamEditor/SearchClear" Type="ArridiDesign/bButton">
+			<Window Name="CompetitionEditor/SearchClear" Type="ArridiDesign/bButton">
 				<Property Name="UnifiedAreaRect" Value="{{0.5,0},{0.9,0},{0.95,0},{1,0}}" /> 
 			</Window>
 		</Window>
-		<Window Type="ArridiDesign/StaticImage" Name="TeamEditor/DialogActionButtons" >
+		<Window Type="ArridiDesign/StaticImage" Name="CompetitionEditor/DialogActionButtons" >
 			<Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
 			<Property Name="UnifiedAreaRect" Value="{{0.7,0},{0.8,0},{1,0},{0.88,0}}" />
-			<Window Name="TeamEditor/UpdateEntry" Type="ArridiDesign/bButton">
+			<Window Name="CompetitionEditor/UpdateEntry" Type="ArridiDesign/bButton">
 				<Property Name="UnifiedAreaRect" Value="{{0.01,0},{0.01,0},{0.5,0},{1,0}}" />
 			</Window>
-			<Window Name="TeamEditor/ClearEntry" Type="ArridiDesign/bButton">
+			<Window Name="CompetitionEditor/ClearEntry" Type="ArridiDesign/bButton">
 				<Property Name="UnifiedAreaRect" Value="{{0.51,0},{0.01,0},{0.99,0},{1,0}}" /> 
 			</Window>
 		</Window>
-		<Window Type="ArridiDesign/StaticText" Name="TeamEditor/TeamEditorLabel" >
+		<Window Type="ArridiDesign/StaticText" Name="CompetitionEditor/CompetitionEditorLabel" >
 			<Property Name="FrameEnabled" Value="False" />
 			<Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
 			<Property Name="UnifiedAreaRect" Value="{{0.005,0},{0,0},{0.2,0},{0.02,0}}" />

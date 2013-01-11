@@ -21,13 +21,13 @@
 #include "CGNSEditorWindowHandler.h"
 
 #include <libintl.h>
-#include "../CGameEditor.h"
 #include "../../engine/CGameEngine.h"
 #include "../../engine/wh/CGNSGenericWindowHandler.h"
 #include "../../utils/CLog.h"
 
-CGNSEditorWindowHandler::CGNSEditorWindowHandler() :
-	CGNSGenericWindowHandler("TeamEditor", "TeamEditor")
+CGNSEditorWindowHandler::CGNSEditorWindowHandler(CGameEditor &editor) :
+	CGNSGenericWindowHandler("DataEditor", "DataEditor"),
+	m_editor(editor)
 {}
 
 CGNSEditorWindowHandler::~CGNSEditorWindowHandler()
@@ -35,7 +35,7 @@ CGNSEditorWindowHandler::~CGNSEditorWindowHandler()
 
 void CGNSEditorWindowHandler::enter()
 {
-	if( std::string("TeamEditor")==CGameEngine::getInstance()->getWindowManager()->getCurrentScreen() ){
+	if (std::string("DataEditor") == CGameEngine::getInstance()->getWindowManager()->getCurrentScreen()) {
 		m_noButtonsBackground->setVisible(true);
 		m_buttonsBackground->setVisible(false);
 		m_homeButton->setVisible(false);
@@ -65,19 +65,19 @@ bool CGNSEditorWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 {
 	CEGUI::RadioButton *button = m_changingRoomRadio->getSelectedButtonInGroup();
 	if( button==m_changingRoomRadio ){
-		m_action1Button->setText((CEGUI::utf8*)gettext("Teams"));
-		m_action1Button->setUserString("screen", "TeamEditor");
+		m_action1Button->setText((CEGUI::utf8*)gettext("Countries"));
+		m_action1Button->setUserString("screen", "CountryEditor");
 		m_action1Button->setEnabled(true);
+		m_action2Button->setText((CEGUI::utf8*)gettext("Competitions"));
+		m_action2Button->setUserString("screen", "CompetitionEditor");
+		m_action2Button->setEnabled(true);
+		m_action3Button->setText((CEGUI::utf8*)gettext("Teams"));
+		m_action3Button->setUserString("screen", "TeamEditor");
+		m_action3Button->setEnabled(true);
+		m_action4Button->setText((CEGUI::utf8*)gettext("Staffs"));
+		m_action4Button->setUserString("screen", "StaffEditor");
+ 		m_action4Button->setEnabled(true);
 
-		m_action2Button->setText("");
-		m_action2Button->setUserString("screen", "");
-		m_action2Button->setEnabled(false);
-		m_action3Button->setText("");
-		m_action3Button->setUserString("screen", "");
-		m_action3Button->setEnabled(false);
-		m_action4Button->setText("");
-		m_action4Button->setUserString("screen", "");
-		m_action4Button->setEnabled(false);
 		m_action5Button->setText("");
 		m_action5Button->setUserString("screen", "");
 		m_action5Button->setEnabled(false);

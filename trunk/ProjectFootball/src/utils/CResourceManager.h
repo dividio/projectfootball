@@ -21,12 +21,15 @@
 #ifndef CRESOURCEMANAGER_H_
 #define CRESOURCEMANAGER_H_
 
+#include <string>
+
 class CResourceManager {
 public:
     static CResourceManager* getInstance();
     virtual ~CResourceManager();
 
     void defineResources();
+	std::string getDbFileName();
 
 protected:
     CResourceManager();

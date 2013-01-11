@@ -22,6 +22,7 @@
 #define CTEAMEDITORWINDOWHANDLER_H_
 
 #include <CEGUI/CEGUI.h>
+#include "../singlePlayer/db/sqlite/dao/factory/CDAOFactorySQLite.h"
 #include "../../engine/wm/CWindowHandler.h"
 
 //Forward declarations
@@ -30,16 +31,30 @@ class CGameEditor;
 
 class CTeamEditorWindowHandler : public CWindowHandler
 {
-public:
-    CTeamEditorWindowHandler(CGameEditor &editor);
-    virtual ~CTeamEditorWindowHandler();
+	public:
+		CTeamEditorWindowHandler(CGameEditor &editor);
+		virtual ~CTeamEditorWindowHandler();
 
-    virtual void enter();
-    virtual void init();
-    virtual void leave();
+		virtual void enter();
+		virtual void init();
+		virtual void leave();
 
-private:
-    CGameEditor &m_editor;
+		bool searchResultsListboxSelectionChanged(const CEGUI::EventArgs& e);
+		bool searchButtonClicked(const CEGUI::EventArgs& e);
+		bool searchClearButtonClicked(const CEGUI::EventArgs& e);
+		bool entryClearButtonClicked(const CEGUI::EventArgs& e);
+		bool entryUpdateButtonClicked(const CEGUI::EventArgs& e);
+
+	private:
+		void populateEntry(std::vector< CPfTeams * >::iterator it, std::string *label, unsigned int *id);
+
+		CGameEditor &m_editor;
+		CEGUI::PushButton *m_searchButton, *m_clearButton;
+		CEGUI::Editbox *m_searchQueryEditbox;
+		CEGUI::Listbox *m_searchResultsListbox;
+		bool m_initiated;
+		CEGUI::PushButton *m_clearEntryButton;
+		CEGUI::PushButton *m_updateEntryButton;
 };
 
 #endif /*CTEAMEDITORWINDOWHANDLER_H_*/
