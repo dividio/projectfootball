@@ -52,6 +52,7 @@ public:
     virtual std::vector<CPfTeamPlayers*>* findAlternateByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
     virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(int XFkTeam, const std::string &timestamp) =0;
     virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp) =0;
+	virtual std::vector<CPfTeamPlayers*>* findByName(const std::string &name) = 0;
 
 };
 #endif /*IPFTEAMPLAYERSDAO_H_*/

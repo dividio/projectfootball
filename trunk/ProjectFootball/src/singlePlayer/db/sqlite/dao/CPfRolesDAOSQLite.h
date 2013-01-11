@@ -43,6 +43,7 @@ public:
     virtual CPfRoles* findByXTeamPlayer(const std::string &XTeamPlayer);
     virtual CPfRoles* findInStrategicPositionByXFormationAndLineUpOrder(int XFormation, int LineUpOrder);
 	virtual CPfRoles* findInStrategicPositionByXFormationAndLineUpOrder(const std::string &XFormation, const std::string &LineUpOrder);
+	virtual std::vector< CPfRoles * > *getAllXRole();
 
 };
 #endif /*CPFROLESDAOSQLITE_H_*/

@@ -40,12 +40,14 @@ public:
 
     virtual void freeVector(std::vector<CPfCountries*>* vector) =0;
 
+	virtual std::vector<CPfCountries *> *getAllCounties() = 0;
     virtual CPfCountries* findByXCountry(int XCountry) =0;
     virtual CPfCountries* findByXCountry(const std::string &XCountry) =0;
     virtual std::vector<CPfCountries*>* findByXFkConfederation(int XFkConfederation) =0;
     virtual std::vector<CPfCountries*>* findByXFkConfederation(const std::string &XFkConfederation) =0;
     virtual std::vector<CPfCountries*>* findByXFkConfederationAndXFKSeasonWithLeague(int XFkConfederation, int XFKSeason) =0;
     virtual std::vector<CPfCountries*>* findByXFkConfederationAndXFKSeasonWithLeague(const std::string &XFkConfederation, const std::string &XFKSeason) =0;
+	virtual std::vector<CPfCountries *>* findByName(const std::string &name) = 0;
 
 };
 #endif /*IPFCOUNTRIESDAO_H_*/

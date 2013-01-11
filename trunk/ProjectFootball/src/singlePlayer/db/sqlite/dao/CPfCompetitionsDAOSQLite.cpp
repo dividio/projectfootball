@@ -95,3 +95,9 @@ std::vector<CPfCompetitions*>* CPfCompetitionsDAOSQLite::findByXFkSeason(const s
 	return loadVector(sql);
 }
 
+std::vector< CPfCompetitions * > *CPfCompetitionsDAOSQLite::findbyName(const std::string &name)
+{
+	std::string sql("SELECT * FROM PF_COMPETITIONS WHERE ");
+    sql = sql + "S_COMPETITION like '%" + name + "%'";
+	return loadVector(sql);
+}

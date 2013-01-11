@@ -88,3 +88,16 @@ std::vector<CPfCountries*>* CPfCountriesDAOSQLite::findByXFkConfederationAndXFKS
 	sql +=  "WHERE CT.X_FK_CONFEDERATION='"+XFkConfederation+"' AND CPS.X_FK_SEASON='"+XFKSeason+"'";
 	return loadVector(sql);
 }
+
+std::vector< CPfCountries * > *CPfCountriesDAOSQLite::getAllCounties()
+{
+	std::string sql("SELECT * FROM PF_COUNTRIES");
+	return loadVector(sql);
+}
+
+std::vector< CPfCountries * > *CPfCountriesDAOSQLite::findByName(const std::string &name)
+{
+	std::string sql("SELECT * FROM PF_COUNTRIES WHERE ");
+    sql = sql + "S_COUNTRY like '%" + name + "%'";
+	return loadVector(sql);
+}

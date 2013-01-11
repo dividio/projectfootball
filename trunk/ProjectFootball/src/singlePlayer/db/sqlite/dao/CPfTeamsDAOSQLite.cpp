@@ -106,3 +106,10 @@ CPfTeams* CPfTeamsDAOSQLite::findByXFkCountry(const std::string &XFkCountry)
     return loadRegister(sql);
 }
 
+std::vector<CPfTeams *> *CPfTeamsDAOSQLite::findByName(const std::string &name)
+{
+    std::string sql("SELECT * FROM PF_TEAMS WHERE ");
+    sql = sql + "S_TEAM like '%" + name + "%' or ";
+	sql = sql + "S_SHORT_NAME like '%" + name + "%'";
+    return loadVector(sql);
+}

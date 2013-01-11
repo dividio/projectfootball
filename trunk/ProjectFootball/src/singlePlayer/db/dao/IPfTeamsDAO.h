@@ -49,6 +49,7 @@ public:
     virtual std::vector<CPfTeams*>* findAll() =0;
     virtual std::vector<CPfTeams*>* findByXFKCompetitionAndXFKSeason(int XFKCompetition, int XFKSeason) =0;
     virtual std::vector<CPfTeams*>* findByXFKCompetitionAndXFKSeason(const std::string &XFKCompetition, const std::string &XFKSeason) =0;
+	virtual std::vector<CPfTeams*>* findByName(const std::string &name) = 0;
 
 };
 #endif /*IPFTEAMSDAO_H_*/

@@ -108,7 +108,7 @@ bool CCompetitionEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs
 {
 	if (!m_searchQueryEditbox->getText().empty()) {
 		std::string query_text = m_searchQueryEditbox->getText().c_str();
-		std::vector< CPfCompetitions* > *query_res = NULL;
+		std::vector< CPfCompetitions* > *query_res = m_editor.getDAOFactory()->getIPfCompetitionsDAO()->findbyName(query_text);
 
 		if (query_res and query_res->size()) {
 			struct for_each_if_data data;

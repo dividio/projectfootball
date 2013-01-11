@@ -47,6 +47,7 @@ public:
     virtual std::vector<CPfTeamPlayers*>* findNotLineUpByXFkTeam(const std::string &XFkTeam, const std::string &timestamp);
     virtual CPfTeamPlayers* findByXFkCountry(int XFkCountry);
     virtual CPfTeamPlayers* findByXFkCountry(const std::string &XFkCountry);
+	virtual std::vector<CPfTeamPlayers*>* findByName(const std::string &name);
 
 };
 #endif /*CPFTEAMPLAYERSDAOSQLITE_H_*/

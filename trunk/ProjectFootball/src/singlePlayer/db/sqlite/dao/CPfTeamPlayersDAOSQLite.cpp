@@ -143,3 +143,11 @@ CPfTeamPlayers* CPfTeamPlayersDAOSQLite::findByXFkCountry(const std::string &XFk
     sql = sql+"X_FK_COUNTRY='"+XFkCountry+"'";
     return loadRegister(sql);
 }
+
+std::vector< CPfTeamPlayers * > *CPfTeamPlayersDAOSQLite::findByName(const std::string &name)
+{
+    std::string sql("SELECT * FROM PF_TEAM_PLAYERS WHERE ");
+    sql = sql + "S_NAME like '%" + name + "%' or ";
+	sql = sql + "S_SHORT_NAME like '%" + name + "%'";
+    return loadVector(sql);
+}

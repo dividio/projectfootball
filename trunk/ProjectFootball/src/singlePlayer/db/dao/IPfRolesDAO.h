@@ -40,6 +40,7 @@ public:
 
     virtual void freeVector(std::vector<CPfRoles*>* vector) =0;
 
+	virtual std::vector< CPfRoles* > *getAllXRole() = 0;
     virtual CPfRoles* findByXRole(int XRole) =0;
     virtual CPfRoles* findByXRole(const std::string &XRole) =0;
     virtual CPfRoles* findByXFkDemarcation(int XFkDemarcation) =0;

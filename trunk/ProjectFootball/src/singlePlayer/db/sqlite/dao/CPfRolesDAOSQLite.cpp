@@ -96,3 +96,8 @@ CPfRoles* CPfRolesDAOSQLite::findInStrategicPositionByXFormationAndLineUpOrder(c
 	return loadRegister(sql);
 }
 
+std::vector< CPfRoles* > *CPfRolesDAOSQLite::getAllXRole()
+{
+	std::string sql("SELECT * FROM PF_ROLES");
+	return loadVector(sql);
+} 

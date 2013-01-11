@@ -108,7 +108,7 @@ bool CCountryEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 {
 	if (!m_searchQueryEditbox->getText().empty()) {
 		std::string query_text = m_searchQueryEditbox->getText().c_str();
-		std::vector< CPfCountries* > *query_res = NULL;
+		std::vector< CPfCountries* > *query_res = m_editor.getDAOFactory()->getIPfCountriesDAO()->findByName(query_text);
 
 		if (query_res and query_res->size()) {
 			struct for_each_if_data data;

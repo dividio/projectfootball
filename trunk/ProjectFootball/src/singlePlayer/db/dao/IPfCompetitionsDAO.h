@@ -49,6 +49,7 @@ public:
     virtual std::vector<CPfCompetitions*>* findByXFkCountryAndXFKSeason(const std::string &XFkCountry, const std::string &XFKSeason) =0;
     virtual std::vector<CPfCompetitions*>* findByXFkSeason(int XFKSeason) =0;
     virtual std::vector<CPfCompetitions*>* findByXFkSeason(const std::string &XFKSeason) =0;
+	virtual std::vector<CPfCompetitions*>* findbyName(const std::string &name) = 0;
 
 };
 #endif /*IPFCOMPETITIONSDAO_H_*/

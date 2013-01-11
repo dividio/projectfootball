@@ -108,10 +108,7 @@ bool CTeamEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 {
 	if (!m_searchQueryEditbox->getText().empty()) {
 		std::string query_text = m_searchQueryEditbox->getText().c_str();
-		std::vector< CPfTeams* > *query_res = NULL;
-		query_res->push_back(new CPfTeams());
-		query_res->at(0)->setSTeam("etsst");
-		query_res->at(0)->setXTeam(4);
+		std::vector< CPfTeams* > *query_res = m_editor.getDAOFactory()->getIPfTeamsDAO()->findByName(query_text);
 
 		if (query_res and query_res->size()) {
 			struct for_each_if_data data;

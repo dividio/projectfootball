@@ -35,12 +35,14 @@ public:
     CPfCountriesDAOSQLite(sqlite3 *database);
     virtual ~CPfCountriesDAOSQLite();
 
+	virtual std::vector<CPfCountries *> *getAllCounties();
     virtual CPfCountries* findByXCountry(int XCountry);
     virtual CPfCountries* findByXCountry(const std::string &XCountry);
     virtual std::vector<CPfCountries*>* findByXFkConfederation(int XFkConfederation);
     virtual std::vector<CPfCountries*>* findByXFkConfederation(const std::string &XFkConfederation);
     virtual std::vector<CPfCountries*>* findByXFkConfederationAndXFKSeasonWithLeague(int XFkConfederation, int XFKSeason);
     virtual std::vector<CPfCountries*>* findByXFkConfederationAndXFKSeasonWithLeague(const std::string &XFkConfederation, const std::string &XFKSeason);
+	virtual std::vector< CPfCountries * > *findByName(const std::string &name);
 
 };
 #endif /*CPFCOUNTRIESDAOSQLITE_H_*/
