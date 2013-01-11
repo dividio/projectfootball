@@ -56,6 +56,7 @@ class CStaffEditorWindowHandler : public CWindowHandler
 		bool m_initiated;
 		CEGUI::PushButton *m_clearEntryButton;
 		CEGUI::PushButton *m_updateEntryButton;
+		entry_type *m_entryTypes;
 };
 
 #endif /*CSTAFFEDITORWINDOWHANDLER_H_*/

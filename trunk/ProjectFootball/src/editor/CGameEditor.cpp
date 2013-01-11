@@ -25,6 +25,7 @@
 #include "wh/CCompetitionEditorWindowHandler.h"
 #include "wh/CStaffEditorWindowHandler.h"
 #include "wh/CCountryEditorWindowHandler.h"
+#include "wh/CStadiumEditorWindowHandler.h"
 
 #include "../engine/CGameEngine.h"
 #include "../exceptions/PFException.h"
@@ -42,6 +43,7 @@ CGameEditor::CGameEditor(const std::string &dbStringName):
 
     m_windowHandlers.push_back(new CGNSEditorWindowHandler(*this));
     m_windowHandlers.push_back(new CCountryEditorWindowHandler(*this));
+	m_windowHandlers.push_back(new CStadiumEditorWindowHandler(*this));
 	m_windowHandlers.push_back(new CCompetitionEditorWindowHandler(*this));
 	m_windowHandlers.push_back(new CTeamEditorWindowHandler(*this));
 	m_windowHandlers.push_back(new CStaffEditorWindowHandler(*this));

@@ -62,3 +62,9 @@ CPfStadiums* CPfStadiumsDAOSQLite::findByXFkCountry(const std::string &XFkCountr
     return loadRegister(sql);
 }
 
+std::vector< CPfStadiums * > *CPfStadiumsDAOSQLite::findByName(const std::string &name)
+{
+    std::string sql("SELECT * FROM PF_STADIUMS WHERE ");
+	sql = sql + "S_NAME like '%" + name + "%'";
+    return loadVector(sql);
+}

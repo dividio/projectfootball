@@ -18,11 +18,10 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "../CGameEditor.h"
 #include "CCompetitionEditorWindowHandler.h"
 
 #include <libintl.h>
-
-#include "../CGameEditor.h"
 
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
@@ -32,6 +31,7 @@
 CCompetitionEditorWindowHandler::CCompetitionEditorWindowHandler(CGameEditor &editor) :
 	CWindowHandler("competitionEditor.layout"),
 	m_editor(editor),
+	m_entryType(new entry_type(COMPETITION)),
 	m_initiated(false)
 {
     LOG_DEBUG("CCompetitionEditorWindowHandler()");
@@ -39,6 +39,7 @@ CCompetitionEditorWindowHandler::CCompetitionEditorWindowHandler(CGameEditor &ed
 
 CCompetitionEditorWindowHandler::~CCompetitionEditorWindowHandler()
 {
+	delete(m_entryType);
     LOG_DEBUG("~CCompetitionEditorWindowHandler()");
 }
 
@@ -115,6 +116,7 @@ bool CCompetitionEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs
 			data.list = m_searchResultsListbox;
 			data.button = m_clearButton;
 			data.clearList = true;
+			data.type = m_entryType;
 			m_editor.getEditorUtilsObj().for_each< std::vector< CPfCompetitions* >::iterator >(
 				&data, query_res->begin(), query_res->end(),
 				boost::lambda::bind(&CCompetitionEditorWindowHandler::populateEntry,

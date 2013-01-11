@@ -68,19 +68,19 @@ bool CGNSEditorWindowHandler::gnsSelectionChanged(const CEGUI::EventArgs &e)
 		m_action1Button->setText((CEGUI::utf8*)gettext("Countries"));
 		m_action1Button->setUserString("screen", "CountryEditor");
 		m_action1Button->setEnabled(true);
-		m_action2Button->setText((CEGUI::utf8*)gettext("Competitions"));
-		m_action2Button->setUserString("screen", "CompetitionEditor");
+		m_action2Button->setText((CEGUI::utf8*)gettext("Stadiums"));
+		m_action2Button->setUserString("screen", "StadiumEditor");
 		m_action2Button->setEnabled(true);
-		m_action3Button->setText((CEGUI::utf8*)gettext("Teams"));
-		m_action3Button->setUserString("screen", "TeamEditor");
+		m_action3Button->setText((CEGUI::utf8*)gettext("Competitions"));
+		m_action3Button->setUserString("screen", "CompetitionEditor");
 		m_action3Button->setEnabled(true);
-		m_action4Button->setText((CEGUI::utf8*)gettext("Staffs"));
-		m_action4Button->setUserString("screen", "StaffEditor");
+		m_action4Button->setText((CEGUI::utf8*)gettext("Teams"));
+		m_action4Button->setUserString("screen", "TeamEditor");
  		m_action4Button->setEnabled(true);
+		m_action5Button->setText((CEGUI::utf8*)gettext("Staffs"));
+		m_action5Button->setUserString("screen", "StaffEditor");
+		m_action5Button->setEnabled(true);
 
-		m_action5Button->setText("");
-		m_action5Button->setUserString("screen", "");
-		m_action5Button->setEnabled(false);
 		m_action6Button->setText("");
 		m_action6Button->setUserString("screen", "");
 		m_action6Button->setEnabled(false);

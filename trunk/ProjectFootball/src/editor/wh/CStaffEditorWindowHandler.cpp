@@ -18,11 +18,10 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "../CGameEditor.h"
 #include "CStaffEditorWindowHandler.h"
 
 #include <libintl.h>
-
-#include "../CGameEditor.h"
 
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
@@ -32,13 +31,17 @@
 CStaffEditorWindowHandler::CStaffEditorWindowHandler(CGameEditor &editor) :
 	CWindowHandler("staffEditor.layout"),
 	m_editor(editor),
+	m_entryTypes(new entry_type[2]),
 	m_initiated(false)
 {
+	m_entryTypes[0] = PLAYER;
+	m_entryTypes[1] = COACH;
     LOG_DEBUG("CStaffEditorWindowHandler()");
 }
 
 CStaffEditorWindowHandler::~CStaffEditorWindowHandler()
 {
+	delete[](m_entryTypes);
     LOG_DEBUG("~CStaffEditorWindowHandler()");
 }
 
@@ -119,6 +122,7 @@ bool CStaffEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 		data.list = m_searchResultsListbox;
 		data.button = m_clearButton;
 		data.clearList = true;
+		data.type = &m_entryTypes[0];
 		std::vector< CPfTeamPlayers* > *query_res_players = m_editor.getDAOFactory()->getIPfTeamPlayersDAO()->findByName(query_text);
 
 		if (query_res_players and query_res_players->size()) {
@@ -130,6 +134,7 @@ bool CStaffEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 		}
 
 		data.clearList = false;
+		data.type = &m_entryTypes[1];
 		std::vector< CPfCoaches * > *query_res_coachs = m_editor.getDAOFactory()->getIPfCoachesDAO()->findByName(query_text);
 
 		if (query_res_coachs and query_res_coachs->size()) {

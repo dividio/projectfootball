@@ -18,11 +18,10 @@
 *                                                                             *
 ******************************************************************************/
 
+#include "../CGameEditor.h"
 #include "CTeamEditorWindowHandler.h"
 
 #include <libintl.h>
-
-#include "../CGameEditor.h"
 
 #include "../../engine/CGameEngine.h"
 #include "../../utils/CLog.h"
@@ -32,6 +31,7 @@
 CTeamEditorWindowHandler::CTeamEditorWindowHandler(CGameEditor &editor) :
 	CWindowHandler("teamEditor.layout"),
 	m_editor(editor),
+	m_entryType(new entry_type(TEAM)),
 	m_initiated(false)
 {
     LOG_DEBUG("CTeamEditorWindowHandler()");
@@ -39,6 +39,7 @@ CTeamEditorWindowHandler::CTeamEditorWindowHandler(CGameEditor &editor) :
 
 CTeamEditorWindowHandler::~CTeamEditorWindowHandler()
 {
+	delete(m_entryType);
     LOG_DEBUG("~CTeamEditorWindowHandler()");
 }
 
@@ -115,6 +116,7 @@ bool CTeamEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 			data.list = m_searchResultsListbox;
 			data.button = m_clearButton;
 			data.clearList = true;
+			data.type = m_entryType;
 			m_editor.getEditorUtilsObj().for_each< std::vector< CPfTeams* >::iterator >(
 				&data, query_res->begin(), query_res->end(),
 				boost::lambda::bind(&CTeamEditorWindowHandler::populateEntry,

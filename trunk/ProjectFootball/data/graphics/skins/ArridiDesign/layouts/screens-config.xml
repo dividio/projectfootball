@@ -124,6 +124,12 @@
             <window hook="Editor/InfoHook" path="countryEditor.layout" />
         </window>
     </screen>
+    <screen id="StadiumEditor">
+        <window hook="none" path="editor.layout">
+            <window hook="Editor/GNSHook" path="gns.layout" />
+            <window hook="Editor/InfoHook" path="stadiumEditor.layout" />
+        </window>
+    </screen>
     <screen id="CompetitionEditor">
         <window hook="none" path="editor.layout">
             <window hook="Editor/GNSHook" path="gns.layout" />

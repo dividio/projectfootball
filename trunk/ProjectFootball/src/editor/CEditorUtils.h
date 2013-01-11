@@ -25,10 +25,20 @@
 #include <boost/lambda/lambda.hpp>
 #include <CEGUI/CEGUI.h>
 
+typedef enum {
+	COMPETITION = 0,
+	STADIUM,
+	COUNTRY,
+	TEAM,
+	PLAYER,
+	COACH,
+} entry_type;
+
 struct for_each_if_data {
 	CEGUI::PushButton *button;
 	CEGUI::Listbox *list;
 	bool clearList;
+	entry_type *type;
 };
 
 class CEditorUtils {
@@ -39,14 +49,19 @@ class CEditorUtils {
 		void for_each(struct for_each_if_data *data, Iterator begin, Iterator end,
 					  Callback callback)
 		{
-			if (data->clearList)
-				data->list->resetList();
 			std::string label;
 			unsigned int id;
+			CEGUI::ListboxTextItem *newItem;
+
+			if (data->clearList)
+				data->list->resetList();
+
 			for (Iterator it = begin; it != end; it++) {
 				label.clear();
  				callback(it, &label, &id);
-				data->list->addItem(new CEGUI::ListboxTextItem((CEGUI::utf8 *)label.c_str(), id));
+				newItem = new CEGUI::ListboxTextItem((CEGUI::utf8 *)label.c_str(), id);
+				newItem->setUserData(data->type);
+				data->list->addItem(newItem);
 			}
 			if (end != begin)
 				data->button->setEnabled(true);

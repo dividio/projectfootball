@@ -55,6 +55,7 @@ class CTeamEditorWindowHandler : public CWindowHandler
 		bool m_initiated;
 		CEGUI::PushButton *m_clearEntryButton;
 		CEGUI::PushButton *m_updateEntryButton;
+		entry_type *m_entryType;
 };
 
 #endif /*CTEAMEDITORWINDOWHANDLER_H_*/
