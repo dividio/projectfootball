@@ -46,6 +46,7 @@ public:
     virtual CPfCoaches* findByXFkCountry(const std::string &XFkCountry) =0;
     virtual CPfCoaches* findByXFkFormationSelected(int XFkFormationSelected) =0;
     virtual CPfCoaches* findByXFkFormationSelected(const std::string &XFkFormationSelected) =0;
+	virtual std::vector<CPfCoaches*>* findByName(const std::string &name) = 0;
 
 };
 #endif /*IPFCOACHESDAO_H_*/

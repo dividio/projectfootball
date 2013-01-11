@@ -46,7 +46,8 @@ class CStaffEditorWindowHandler : public CWindowHandler
 		bool entryUpdateButtonClicked(const CEGUI::EventArgs& e);
 
 	private:
-		void populateEntry(std::vector< CPfTeamPlayers * >::iterator it, std::string *label, unsigned int *id);
+		void populateEntryPlayer(std::vector< CPfTeamPlayers * >::iterator it, std::string *label, unsigned int *id);
+		void populateEntryCoach(std::vector< CPfCoaches * >::iterator it, std::string *label, unsigned int *id);
 
 		CGameEditor &m_editor;
 		CEGUI::PushButton *m_searchButton, *m_clearButton;

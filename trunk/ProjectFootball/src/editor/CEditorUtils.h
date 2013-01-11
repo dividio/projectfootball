@@ -28,6 +28,7 @@
 struct for_each_if_data {
 	CEGUI::PushButton *button;
 	CEGUI::Listbox *list;
+	bool clearList;
 };
 
 class CEditorUtils {
@@ -38,7 +39,8 @@ class CEditorUtils {
 		void for_each(struct for_each_if_data *data, Iterator begin, Iterator end,
 					  Callback callback)
 		{
-			data->list->resetList();
+			if (data->clearList)
+				data->list->resetList();
 			std::string label;
 			unsigned int id;
 			for (Iterator it = begin; it != end; it++) {

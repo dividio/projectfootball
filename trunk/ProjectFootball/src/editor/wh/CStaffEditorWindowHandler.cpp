@@ -97,26 +97,45 @@ bool CStaffEditorWindowHandler::entryUpdateButtonClicked(const CEGUI::EventArgs 
 	return true;
 }
 
-void CStaffEditorWindowHandler::populateEntry(std::vector< CPfTeamPlayers * >::iterator it, std::string *label, unsigned int *id)
+void CStaffEditorWindowHandler::populateEntryPlayer(std::vector< CPfTeamPlayers * >::iterator it, std::string *label, unsigned int *id)
 {
 	CPfTeamPlayers *staff = *it;
 	label->append(staff->getSName_str() + " (" + staff->getSShortName() + ")");
 	*id = staff->getXTeamPlayer();
 }
 
+void CStaffEditorWindowHandler::populateEntryCoach(std::vector< CPfCoaches * >::iterator it, std::string *label, unsigned int *id)
+{
+	CPfCoaches *staff = *it;
+	label->append(staff->getSName_str() + " (" + staff->getSShortName() + ")");
+	*id = staff->getXCoach();
+}
+
 bool CStaffEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 {
 	if (!m_searchQueryEditbox->getText().empty()) {
 		std::string query_text = m_searchQueryEditbox->getText().c_str();
-		std::vector< CPfTeamPlayers* > *query_res = m_editor.getDAOFactory()->getIPfTeamPlayersDAO()->findByName(query_text);
+		struct for_each_if_data data;
+		data.list = m_searchResultsListbox;
+		data.button = m_clearButton;
+		data.clearList = true;
+		std::vector< CPfTeamPlayers* > *query_res_players = m_editor.getDAOFactory()->getIPfTeamPlayersDAO()->findByName(query_text);
 
-		if (query_res and query_res->size()) {
-			struct for_each_if_data data;
-			data.list = m_searchResultsListbox;
-			data.button = m_clearButton;
+		if (query_res_players and query_res_players->size()) {
 			m_editor.getEditorUtilsObj().for_each< std::vector< CPfTeamPlayers* >::iterator >(
-				&data,query_res->begin(), query_res->end(),
-				boost::lambda::bind(&CStaffEditorWindowHandler::populateEntry,
+				&data, query_res_players->begin(), query_res_players->end(),
+				boost::lambda::bind(&CStaffEditorWindowHandler::populateEntryPlayer,
+									this, boost::lambda::_1, boost::lambda::_2,
+									boost::lambda::_3));
+		}
+
+		data.clearList = false;
+		std::vector< CPfCoaches * > *query_res_coachs = m_editor.getDAOFactory()->getIPfCoachesDAO()->findByName(query_text);
+
+		if (query_res_coachs and query_res_coachs->size()) {
+			m_editor.getEditorUtilsObj().for_each< std::vector< CPfCoaches* >::iterator >(
+				&data, query_res_coachs->begin(), query_res_coachs->end(),
+				boost::lambda::bind(&CStaffEditorWindowHandler::populateEntryCoach,
 									this, boost::lambda::_1, boost::lambda::_2,
 									boost::lambda::_3));
 		}

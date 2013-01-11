@@ -76,3 +76,10 @@ CPfCoaches* CPfCoachesDAOSQLite::findByXFkFormationSelected(const std::string &X
     return loadRegister(sql);
 }
 
+std::vector< CPfCoaches * > *CPfCoachesDAOSQLite::findByName(const std::string &name)
+{
+	std::string sql("SELECT * FROM PF_COACHES WHERE ");
+    sql = sql + "S_NAME like '%" + name + "%' or ";
+	sql = sql + "S_SHORT_NAME like '%" + name + "%'";
+	return loadVector(sql);
+}

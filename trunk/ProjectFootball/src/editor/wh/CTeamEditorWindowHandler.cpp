@@ -114,6 +114,7 @@ bool CTeamEditorWindowHandler::searchButtonClicked(const CEGUI::EventArgs &e)
 			struct for_each_if_data data;
 			data.list = m_searchResultsListbox;
 			data.button = m_clearButton;
+			data.clearList = true;
 			m_editor.getEditorUtilsObj().for_each< std::vector< CPfTeams* >::iterator >(
 				&data, query_res->begin(), query_res->end(),
 				boost::lambda::bind(&CTeamEditorWindowHandler::populateEntry,
