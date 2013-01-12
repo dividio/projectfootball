@@ -211,13 +211,15 @@ bool CApplication::clickAudioEvent(const CEGUI::EventArgs &e)
 
 bool CApplication::keyDownEvent(const CEGUI::EventArgs &e)
 {
+	bool ans = false;
     const CEGUI::KeyEventArgs& keyEvent = static_cast<const CEGUI::KeyEventArgs&>(e);
 
     if (CEGUI::Key::F12 == keyEvent.scancode) {
         takeScreenshot();
+		ans = true;
     }
 
-    return true;
+    return ans;
 }
 
 bool CApplication::mouseOverAudioEvent(const CEGUI::EventArgs &e)
