@@ -82,11 +82,11 @@ void CInputManager::capture()
     m_keyboard->capture();
 }
 
-
 bool CInputManager::keyPressed(const OIS::KeyEvent& e)
 {
     m_system->injectKeyDown(e.key);
     m_system->injectChar(e.text);
+
     return true;
 }
 
@@ -97,9 +97,12 @@ bool CInputManager::keyReleased(const OIS::KeyEvent& e)
 }
 
 
-bool CInputManager::mouseMoved(const OIS::MouseEvent& e)
+bool CInputManager::mouseMoved(const OIS::MouseEvent &e)
 {
-    m_system->injectMouseMove(e.state.X.rel, e.state.Y.rel);
+	m_system->injectMouseMove(e.state.X.rel, e.state.Y.rel);
+	// Scroll wheel.
+	if (e.state.Z.rel)
+		m_system->injectMouseWheelChange(e.state.Z.rel / 120.0f);
     return true;
 }
 
