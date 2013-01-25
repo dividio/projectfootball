@@ -55,11 +55,11 @@ CGameEngine::CGameEngine()// : m_screenStack()
     	m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
     } else {
     	m_masterDatabase = new CMasterDAOFactorySQLite(masterDatabasePath);
-        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/master/tables.sql"));
-        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/master/indexes.sql"));
+        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/master/tables.sql"));
+        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/master/indexes.sql"));
         std::string cmd = "INSERT INTO PF_VERSION (X_VERSION, S_VERSION, D_DATE) VALUES (1, '"PF_VERSION"', '"PF_BUILD_DATE_TIME"')";
         m_masterDatabase->executeScript(cmd);
-        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/master/inserts_users.sql"));
+        m_masterDatabase->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/master/inserts_users.sql"));
     }
 
     m_user = NULL;

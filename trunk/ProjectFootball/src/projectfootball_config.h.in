@@ -24,9 +24,8 @@
 
 // macros
 #define CONCAT_PATH(_path, _subPath) ({ \
-	std::string _concatPath = _path; \
-	_concatPath.append(_subPath); \
-	_concatPath.c_str(); \
+	boost::filesystem::path _path_((_path) + "/" + (_subPath)); \
+	_path_.make_preferred().c_str(); \
 })
 
 #endif //PF_CONFIG_

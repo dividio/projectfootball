@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <boost/filesystem/operations.hpp>
+
 #include "projectfootball_config.h"
 #include "CTeam.h"
 
@@ -45,7 +47,7 @@ CTeam::CTeam(CSimulationManager *simulationManager, const CPfTeams *team, bool s
 
     m_simulationManager = simulationManager;
 
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/team.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/team.lua"));
     m_team = new CPfTeams(*team);
     m_sideLeft = sideLeft;
     m_currentFormation = NULL;

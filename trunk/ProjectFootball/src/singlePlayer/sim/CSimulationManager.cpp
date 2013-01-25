@@ -17,13 +17,13 @@
 *                                                                             *
 *                                                                             *
 ******************************************************************************/
-
-#include "projectfootball_config.h"
 #include "CSimulationManager.h"
 
 #include <stdlib.h>
 #include <cmath>
+#include <boost/filesystem/operations.hpp>
 
+#include "projectfootball_config.h"
 #include "CSimulationWorld.h"
 #include "message/CMessageDispatcher.h"
 #include "message/MessageTypes.h"
@@ -413,67 +413,67 @@ std::vector<CFootballPlayer*>* CSimulationManager::loadTeamPlayers(CTeam *team)
 
     // TODO: Initialize football players on a loop
     CFootballPlayer *player = new CFootballPlayer(this, playersVector->at(0), 1, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/goalie.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/goalie.lua"));
     player->getFSM()->setGlobalState("SGoalie_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(1), 2, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(2), 3, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(3), 4, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(4), 5, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(5), 6, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(6), 7, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(7), 8, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(8), 9, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(9), 10, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);
 
     player = new CFootballPlayer(this, playersVector->at(10), 11, team);
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/player.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/player.lua"));
     player->getFSM()->setGlobalState("SPl_Global");
     teamPlayers->push_back(player);
     m_simWorld->addObject(player);

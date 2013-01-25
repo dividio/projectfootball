@@ -18,12 +18,15 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "projectfootball_config.h"
 #include "CDataBaseGenerator.h"
 
 #include <vector>
 #include <sstream>
 #include <stdlib.h>
+
+#include <boost/filesystem/operations.hpp>
+
+#include "projectfootball_config.h"
 
 #include "db/dao/factory/IDAOFactory.h"
 #include "db/bean/CPfTeams.h"
@@ -54,20 +57,20 @@ void CDataBaseGenerator::generateDataBase(IDAOFactory *daoFactory)
 	daoFactory->beginTransaction();
 
 	// Database scripts parsing
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/tables.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/indexes.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_gameoptions.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_countries.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_stadiums.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_teams.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_roles.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_formations.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_coaches.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_teamplayers.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_roles_by_team_players.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_competitions.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_phases.sql"));
-    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "/database/scripts/singleplayer/inserts_seasons.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/tables.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/indexes.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_gameoptions.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_countries.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_stadiums.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_teams.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_roles.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_formations.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_coaches.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_teamplayers.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_roles_by_team_players.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_competitions.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_phases.sql"));
+    daoFactory->executeScriptFile(CONCAT_PATH(dataPath, "database/scripts/singleplayer/inserts_seasons.sql"));
 
 
     // Random coaches and players generation

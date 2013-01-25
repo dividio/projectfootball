@@ -21,6 +21,8 @@
 #include <stdio.h>
 #include <libintl.h>
 
+#include <boost/filesystem/operations.hpp>
+
 #include "projectfootball_config.h"
 #include "CApplication.h"
 
@@ -97,7 +99,7 @@ void CApplication::setupAudioSystem()
 
 void CApplication::createRoot()
 {
-    m_root = new Ogre::Root(CONCAT_PATH(dataPath, "/plugins.cfg"), "");
+    m_root = new Ogre::Root(CONCAT_PATH(dataPath, "plugins.cfg"), "");
 }
 
 void CApplication::defineResources()
@@ -335,7 +337,7 @@ int main(int argc, char **argv)
     try{
 
         setlocale(LC_ALL, "");
-        bindtextdomain("projectfootball", CONCAT_PATH(dataPath, "/i18n"));
+        bindtextdomain("projectfootball", CONCAT_PATH(dataPath, "i18n"));
         textdomain("projectfootball");
         bind_textdomain_codeset("projectfootball", "UTF-8");
 

@@ -21,6 +21,7 @@
 #include "CReferee.h"
 
 #include <libintl.h>
+#include <boost/filesystem/operations.hpp>
 
 #include "projectfootball_config.h"
 #include "CFootballPlayer.h"
@@ -45,7 +46,7 @@ CReferee::CReferee(CSimulationManager *simulationManager)
 	Ogre::SceneManager *scnMgr = Ogre::Root::getSingletonPtr()->getSceneManager(SIMULATION_SCENE_MANAGER_NODE_NAME);
 
 	LOG_DEBUG("CReferee()");
-    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "/scripts/referee.lua"));
+    CLuaManager::getInstance()->runScript(CONCAT_PATH(dataPath, "scripts/referee.lua"));
     m_stateMachine = new CStateMachine<CReferee>(this);
     m_stateMachine->setGlobalState("SRf_Global");
     m_stateMachine->changeState("SRf_BeforeStart");

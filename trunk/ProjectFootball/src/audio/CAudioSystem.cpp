@@ -18,6 +18,8 @@
 *                                                                             *
 ******************************************************************************/
 
+#include <boost/filesystem/operations.hpp>
+
 #include "projectfootball_config.h"
 #include "CAudioSystem.h"
 #include "CAudioAbstractFactory.h"
@@ -42,17 +44,17 @@ CAudioSystem* CAudioSystem::getInstance()
 
 IAudioFile* CAudioSystem::click()
 {
-	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile(CONCAT_PATH(dataPath,"/audio/click.ogg"));
+	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile(CONCAT_PATH(dataPath,"audio/click.ogg"));
 }
 
 IAudioFile* CAudioSystem::mouseOver()
 {
-	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile(CONCAT_PATH(dataPath,"/audio/mouseover.ogg"));
+	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile(CONCAT_PATH(dataPath,"audio/mouseover.ogg"));
 }
 
 IAudioFile* CAudioSystem::lowKick()
 {
-	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile(CONCAT_PATH(dataPath,"/audio/low_kick.ogg"));
+	return m_audioAbstractFactory->getIAudioFactory()->createSampleAudioFile(CONCAT_PATH(dataPath,"audio/low_kick.ogg"));
 }
 
 void CAudioSystem::setAudioSystem(AudioSystemType audioSystemType)
