@@ -52,6 +52,7 @@ CApplication::CApplication()
     createRenderWindow();
     initializeResourceGroups();
     setupScene();
+    setupLUA();
     setupCEGUI();
     setupInputSystem();
     createFrameListeners();
@@ -237,10 +238,13 @@ bool CApplication::mouseOverAudioEvent(const CEGUI::EventArgs &e)
     return true;
 }
 
+void CApplication::setupLUA()
+{
+	CLuaManager::getInstance();
+}
+
 void CApplication::setupCEGUI()
 {
-    Ogre::SceneManager *mgr = m_root->getSceneManager("Default SceneManager");
-
     // CEGUI setup
     m_renderer = &CEGUI::OgreRenderer::bootstrapSystem(*m_window);
     std::string parser = CSystemOptionManager::getInstance()->getGUIXMLParser();

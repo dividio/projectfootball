@@ -59,6 +59,7 @@ private:
     void initializeResourceGroups();
     void setupScene();
     void setupInputSystem();
+    void setupLUA();
     void setupCEGUI();
     void createFrameListeners();
     void startRenderLoop();
