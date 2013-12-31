@@ -17,6 +17,7 @@ TARGET_LINK_LIBRARIES(${EXEC_NAME}
 		      ${OGRE_LIBRARIES}
 		      ${OIS_LIBRARIES}
 		      ${CEGUI_LIBRARIES}
+		      ${SDL_LIBRARY}
 		      ${SDLMIXER_LIBRARY})
 
 #add an install target here
