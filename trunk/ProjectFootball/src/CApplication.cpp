@@ -243,12 +243,9 @@ void CApplication::setupCEGUI()
 
     // CEGUI setup
     m_renderer = &CEGUI::OgreRenderer::bootstrapSystem(*m_window);
-    CEGUI::ScriptModule* script_module = CLuaManager::getInstance();
     std::string parser = CSystemOptionManager::getInstance()->getGUIXMLParser();
     CEGUI::System::setDefaultXMLParserName(parser);
     m_system = CEGUI::System::getSingletonPtr();
-
-    CEGUI::System::getSingleton().executeScriptFile("initCEGUI.lua");
 
     // Other CEGUI setup here.
     CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"Skin.scheme");
