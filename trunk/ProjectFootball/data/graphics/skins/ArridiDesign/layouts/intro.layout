@@ -21,7 +21,7 @@
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="Intro/PFcopyright" >
                 <Property Name="Font" Value="DejaVuSans-8" />
-                <Property Name="Text" Value="Copyright 2007-2012 - Project Football 2007-2012" />
+                <Property Name="Text" Value="Copyright 2007-2014 - Project Football 2007-2014" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.014258,0},{0.070483,0},{0.291602,0},{0.092749,0}}" />

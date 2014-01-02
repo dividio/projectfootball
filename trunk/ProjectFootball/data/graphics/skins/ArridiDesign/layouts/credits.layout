@@ -106,6 +106,14 @@
                 <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.4,0},{0.4,0},{0.43,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
+            <Window Type="ArridiDesign/StaticText" Name="Credits/DSLabel_P" >
+                <Property Name="Font" Value="DejaVuSans-10" />
+                <Property Name="Text" Value="Dagg Stompler" />
+                <Property Name="FrameEnabled" Value="False" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.02,0},{0.43,0},{0.4,0},{0.46,0}}" />
+                <Property Name="BackgroundEnabled" Value="False" />
+            </Window>
             <Window Type="ArridiDesign/StaticText" Name="Credits/JMADLabel_GD" >
                 <Property Name="Font" Value="DejaVuSans-10" />
                 <Property Name="Text" Value="José Miguel Arriba Díaz &quot;CHEMO&quot;" />
@@ -223,7 +231,7 @@
             </Window>
             <Window Type="ArridiDesign/StaticText" Name="Credits/PFcopyright" >
                 <Property Name="Font" Value="DejaVuSans-6" />
-                <Property Name="Text" Value="Copyright 2007-2012 - Project Football 2007-2012" />
+                <Property Name="Text" Value="Copyright 2007-2014 - Project Football 2007-2014" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.780547,0},{0.978372,0},{0.993402,0},{1.00445,0}}" />
